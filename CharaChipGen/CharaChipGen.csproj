@@ -1,0 +1,194 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project ToolsVersion="15.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <Import Project="$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props" Condition="Exists('$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props')" />
+  <PropertyGroup>
+    <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
+    <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
+    <ProjectGuid>{B420D5D8-F835-459E-99E2-E7D9CAA86C36}</ProjectGuid>
+    <OutputType>WinExe</OutputType>
+    <RootNamespace>CharaChipGen</RootNamespace>
+    <AssemblyName>CharaChipGen</AssemblyName>
+    <TargetFrameworkVersion>v3.5</TargetFrameworkVersion>
+    <FileAlignment>512</FileAlignment>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
+    <PlatformTarget>AnyCPU</PlatformTarget>
+    <DebugSymbols>true</DebugSymbols>
+    <DebugType>full</DebugType>
+    <Optimize>false</Optimize>
+    <OutputPath>bin\Debug\</OutputPath>
+    <DefineConstants>DEBUG;TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|AnyCPU' ">
+    <PlatformTarget>AnyCPU</PlatformTarget>
+    <DebugType>pdbonly</DebugType>
+    <Optimize>true</Optimize>
+    <OutputPath>bin\Release\</OutputPath>
+    <DefineConstants>TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+  </PropertyGroup>
+  <ItemGroup>
+    <Reference Include="System" />
+    <Reference Include="System.Core" />
+    <Reference Include="System.Xml.Linq" />
+    <Reference Include="System.Data.DataSetExtensions" />
+    <Reference Include="System.Data" />
+    <Reference Include="System.Deployment" />
+    <Reference Include="System.Drawing" />
+    <Reference Include="System.Windows.Forms" />
+    <Reference Include="System.Xml" />
+  </ItemGroup>
+  <ItemGroup>
+    <Compile Include="AppData.cs" />
+    <Compile Include="ExportSettingForm\ExportSettingForm.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="ExportSettingForm\ExportSettingForm.Designer.cs">
+      <DependentUpon>ExportSettingForm.cs</DependentUpon>
+    </Compile>
+    <Compile Include="GeneratorForm\CharaChipView.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="GeneratorForm\CharaChipView.Designer.cs">
+      <DependentUpon>CharaChipView.cs</DependentUpon>
+    </Compile>
+    <Compile Include="GeneratorForm\CharaFaceView.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="GeneratorForm\CharaFaceView.Designer.cs">
+      <DependentUpon>CharaFaceView.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Model\CharaChipDataModel.cs" />
+    <Compile Include="Model\CharaChipExporter.cs" />
+    <Compile Include="Model\CharaChipGenerator.cs" />
+    <Compile Include="GeneratorForm\CharaChipGeneratorForm.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="GeneratorForm\CharaChipGeneratorForm.Designer.cs">
+      <DependentUpon>CharaChipGeneratorForm.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Model\CharaChipParameterModel.cs" />
+    <Compile Include="Model\CharaChipRenderLayerModel.cs" />
+    <Compile Include="Model\CharaChipRenderModel.cs" />
+    <Compile Include="GeneratorForm\CharaChipViewNN.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="GeneratorForm\CharaChipViewNN.Designer.cs">
+      <DependentUpon>CharaChipViewNN.cs</DependentUpon>
+    </Compile>
+    <Compile Include="MainForm\CharacterEntryView.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="MainForm\CharacterEntryView.Designer.cs">
+      <DependentUpon>CharacterEntryView.cs</DependentUpon>
+    </Compile>
+    <Compile Include="GeneratorForm\CharaChipGeneratorParamView.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="GeneratorForm\CharaChipGeneratorParamView.Designer.cs">
+      <DependentUpon>CharaChipGeneratorParamView.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Imaging\ColorConverter.cs" />
+    <Compile Include="Imaging\ColorHSV.cs" />
+    <Compile Include="Imaging\ImageBuffer.cs" />
+    <Compile Include="Imaging\ImageProcessor.cs" />
+    <Compile Include="Model\CharaFaceGenerator.cs" />
+    <Compile Include="Model\CharaFaceRenderLayerModel.cs" />
+    <Compile Include="Model\CharaFaceRenderModel.cs" />
+    <Compile Include="Model\ExportSetting.cs" />
+    <Compile Include="Model\Material.cs" />
+    <Compile Include="MaterialEditorForm\MaterialEditorForm.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="MaterialEditorForm\MaterialEditorForm.Designer.cs">
+      <DependentUpon>MaterialEditorForm.cs</DependentUpon>
+    </Compile>
+    <Compile Include="MaterialEditorForm\MaterialEditorLayerView.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="MaterialEditorForm\MaterialEditorLayerView.Designer.cs">
+      <DependentUpon>MaterialEditorLayerView.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Model\MaterialList.cs" />
+    <Compile Include="ManagementForm\MaterialManagementForm.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="ManagementForm\MaterialManagementForm.Designer.cs">
+      <DependentUpon>MaterialManagementForm.cs</DependentUpon>
+    </Compile>
+    <Compile Include="MainForm\MainForm.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="MainForm\MainForm.Designer.cs">
+      <DependentUpon>MainForm.cs</DependentUpon>
+    </Compile>
+    <Compile Include="MaterialEditorForm\MaterialView3x4.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="MaterialEditorForm\MaterialView3x4.Designer.cs">
+      <DependentUpon>MaterialView3x4.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Model\SettingFileController.cs" />
+    <Compile Include="Program.cs" />
+    <Compile Include="Properties\AssemblyInfo.cs" />
+    <EmbeddedResource Include="ExportSettingForm\ExportSettingForm.resx">
+      <DependentUpon>ExportSettingForm.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="GeneratorForm\CharaChipGeneratorForm.resx">
+      <DependentUpon>CharaChipGeneratorForm.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="GeneratorForm\CharaChipView.resx">
+      <DependentUpon>CharaChipView.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="GeneratorForm\CharaChipViewNN.resx">
+      <DependentUpon>CharaChipViewNN.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="GeneratorForm\CharaFaceView.resx">
+      <DependentUpon>CharaFaceView.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="MainForm\CharacterEntryView.resx">
+      <DependentUpon>CharacterEntryView.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="GeneratorForm\CharaChipGeneratorParamView.resx">
+      <DependentUpon>CharaChipGeneratorParamView.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="MainForm\MainForm.resx">
+      <DependentUpon>MainForm.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="MaterialEditorForm\MaterialEditorForm.resx">
+      <DependentUpon>MaterialEditorForm.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="MaterialEditorForm\MaterialEditorLayerView.resx">
+      <DependentUpon>MaterialEditorLayerView.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="ManagementForm\MaterialManagementForm.resx">
+      <DependentUpon>MaterialManagementForm.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="MaterialEditorForm\MaterialView3x4.resx">
+      <DependentUpon>MaterialView3x4.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Properties\Resources.resx">
+      <Generator>ResXFileCodeGenerator</Generator>
+      <LastGenOutput>Resources.Designer.cs</LastGenOutput>
+      <SubType>Designer</SubType>
+    </EmbeddedResource>
+    <Compile Include="Properties\Resources.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DependentUpon>Resources.resx</DependentUpon>
+      <DesignTime>True</DesignTime>
+    </Compile>
+    <None Include="Properties\Settings.settings">
+      <Generator>SettingsSingleFileGenerator</Generator>
+      <LastGenOutput>Settings.Designer.cs</LastGenOutput>
+    </None>
+    <Compile Include="Properties\Settings.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DependentUpon>Settings.settings</DependentUpon>
+      <DesignTimeSharedInput>True</DesignTimeSharedInput>
+    </Compile>
+  </ItemGroup>
+  <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
+</Project>
