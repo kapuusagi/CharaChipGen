@@ -17,6 +17,7 @@ namespace CharaChipGen
         public const string NameHairStyles = "HairStyles";
         public const string NameEyes = "Eyes";
         public const string NameHeads = "Heads";
+        public const string NameCostumes = "Costumes";
         public const string NameBodies = "Bodies";
         public const string NameHeadAccessories = "HeadAccessories";
         public const string NameFaces = "Faces";
@@ -38,6 +39,7 @@ namespace CharaChipGen
         private MaterialList eyes; // 目
         private MaterialList heads; // 頭
         private MaterialList bodies; // 体
+        private MaterialList costumes; // 衣装
         private MaterialList headAccessories; // 頭部アクセサリ
         private MaterialList faces; // 顔
         private string materialDirectory = ""; // 素材ディレクトリ
@@ -57,9 +59,10 @@ namespace CharaChipGen
             eyes = new MaterialList("目", NameEyes);
             heads = new MaterialList("頭", NameHeads);
             bodies = new MaterialList("体", NameBodies);
+            costumes = new MaterialList("衣装", NameCostumes);
             headAccessories = new MaterialList("頭部アクセサリ", NameHeadAccessories);
             faces = new MaterialList("顔", NameFaces);
-            charaChipDataModels = new CharaChipDataModel[8];
+            charaChipDataModels = new CharaChipDataModel[9];
             for (int i = 0; i < charaChipDataModels.Length; i++)
             {
                 charaChipDataModels[i] = new CharaChipDataModel();
@@ -91,6 +94,8 @@ namespace CharaChipGen
             LoadMaterials(dir, eyes);
             // 頭
             LoadMaterials(dir, heads);
+            // 衣装
+            LoadMaterials(dir, costumes);
             // 体
             LoadMaterials(dir, bodies);
             // 頭部アクセサリ
@@ -207,6 +212,7 @@ namespace CharaChipGen
         {
             get { return this.heads; }
         }
+
         /// <summary>
         /// 頭ディレクトリへのパス
         /// </summary>
@@ -222,6 +228,24 @@ namespace CharaChipGen
         public Material GetHead(string name)
         {
             return heads.Get(name);
+        }
+
+        /// <summary>
+        /// 衣装素材を取得する。
+        /// </summary>
+        /// <param name="name">素材名</param>
+        /// <returns>マテリアル</returns>
+        public Material GetCostume(string name)
+        {
+            return costumes.Get(name);
+        }
+
+        /// <summary>
+        /// 衣装リスト
+        /// </summary>
+        public MaterialList Costumes
+        {
+            get { return this.costumes; }
         }
 
         /// <summary>
@@ -309,6 +333,8 @@ namespace CharaChipGen
                     return this.accessories;
                 case AppData.NameBodies:
                     return this.bodies;
+                case AppData.NameCostumes:
+                    return this.costumes;
                 case AppData.NameEyes:
                     return this.eyes;
                 case AppData.NameFrontHairStyles:

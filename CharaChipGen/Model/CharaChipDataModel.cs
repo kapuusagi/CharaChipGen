@@ -15,6 +15,7 @@ namespace CharaChipGen.Model
         public const string ParamNameFrontHair = "FrontHair";
         public const string ParamNameHair = "Hair";
         public const string ParamNameBody = "Body";
+        public const string ParamNameCostume = "Costume";
         public const string ParamNameAccessory1 = "Accessory1";
         public const string ParamNameAccessory2 = "Accessory2";
         public const string ParamNameAccessory3 = "Accessory3";
@@ -30,6 +31,7 @@ namespace CharaChipGen.Model
         private CharaChipParameterModel eye;
         private CharaChipParameterModel frontHair;
         private CharaChipParameterModel hair;
+        private CharaChipParameterModel costume;
         private CharaChipParameterModel body;
         private CharaChipParameterModel accessory1;
         private CharaChipParameterModel accessory2;
@@ -44,6 +46,7 @@ namespace CharaChipGen.Model
             eye = new CharaChipParameterModel(ParamNameEye);
             frontHair = new CharaChipParameterModel(ParamNameFrontHair);
             hair = new CharaChipParameterModel(ParamNameHair);
+            costume = new CharaChipParameterModel(ParamNameCostume);
             body = new CharaChipParameterModel(ParamNameBody);
             accessory1 = new CharaChipParameterModel(ParamNameAccessory1);
             accessory2 = new CharaChipParameterModel(ParamNameAccessory2);
@@ -61,6 +64,7 @@ namespace CharaChipGen.Model
             eye.ValueChanged += handler;
             frontHair.ValueChanged += handler;
             hair.ValueChanged += handler;
+            costume.ValueChanged += handler;
             body.ValueChanged += handler;
             accessory1.ValueChanged += handler;
             accessory2.ValueChanged += handler;
@@ -81,6 +85,7 @@ namespace CharaChipGen.Model
             eye.CopyTo(model.eye);
             frontHair.CopyTo(model.frontHair);
             hair.CopyTo(model.hair);
+            costume.CopyTo(model.costume);
             body.CopyTo(model.body);
             accessory1.CopyTo(model.accessory1);
             accessory2.CopyTo(model.accessory2);
@@ -101,6 +106,7 @@ namespace CharaChipGen.Model
             frontHair.Reset();
             hair.Reset();
             body.Reset();
+            costume.Reset();
             accessory1.Reset();
             accessory2.Reset();
             accessory3.Reset();
@@ -139,6 +145,15 @@ namespace CharaChipGen.Model
         {
             get { return hair; }
         }
+
+        /// <summary>
+        /// 衣装
+        /// </summary>
+        public CharaChipParameterModel Costume
+        {
+            get { return costume; }
+        }
+
         /// <summary>
         /// 体の設定
         /// </summary>
@@ -198,6 +213,7 @@ namespace CharaChipGen.Model
         {
             if ((sender == head) || (sender == eye) || (sender == frontHair)
                 || (sender == hair) || (sender == body)
+                || (sender == costume)
                 || (sender == accessory1) || (sender == accessory2)
                 || (sender == accessory3)
                 || (sender == headAccessory1) || (sender == headAccessory2))

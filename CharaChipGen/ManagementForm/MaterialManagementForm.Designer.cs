@@ -33,17 +33,19 @@
             System.Windows.Forms.TreeNode treeNode3 = new System.Windows.Forms.TreeNode("頭");
             System.Windows.Forms.TreeNode treeNode4 = new System.Windows.Forms.TreeNode("目");
             System.Windows.Forms.TreeNode treeNode5 = new System.Windows.Forms.TreeNode("体");
-            System.Windows.Forms.TreeNode treeNode6 = new System.Windows.Forms.TreeNode("アクセサリ");
-            System.Windows.Forms.TreeNode treeNode7 = new System.Windows.Forms.TreeNode("頭部アクセサリ");
-            System.Windows.Forms.TreeNode treeNode8 = new System.Windows.Forms.TreeNode("キャラチップ素材", new System.Windows.Forms.TreeNode[] {
+            System.Windows.Forms.TreeNode treeNode6 = new System.Windows.Forms.TreeNode("衣装");
+            System.Windows.Forms.TreeNode treeNode7 = new System.Windows.Forms.TreeNode("アクセサリ");
+            System.Windows.Forms.TreeNode treeNode8 = new System.Windows.Forms.TreeNode("頭部アクセサリ");
+            System.Windows.Forms.TreeNode treeNode9 = new System.Windows.Forms.TreeNode("キャラチップ素材", new System.Windows.Forms.TreeNode[] {
             treeNode1,
             treeNode2,
             treeNode3,
             treeNode4,
             treeNode5,
             treeNode6,
-            treeNode7});
-            System.Windows.Forms.TreeNode treeNode9 = new System.Windows.Forms.TreeNode("顔");
+            treeNode7,
+            treeNode8});
+            System.Windows.Forms.TreeNode treeNode10 = new System.Windows.Forms.TreeNode("顔");
             this.buttonClose = new System.Windows.Forms.Button();
             this.menuStrip1 = new System.Windows.Forms.MenuStrip();
             this.fileToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
@@ -64,7 +66,7 @@
             // 
             // buttonClose
             // 
-            this.buttonClose.Location = new System.Drawing.Point(382, 287);
+            this.buttonClose.Location = new System.Drawing.Point(376, 389);
             this.buttonClose.Name = "buttonClose";
             this.buttonClose.Size = new System.Drawing.Size(75, 23);
             this.buttonClose.TabIndex = 0;
@@ -112,18 +114,20 @@
             treeNode4.Text = "目";
             treeNode5.Name = "Bodies";
             treeNode5.Text = "体";
-            treeNode6.Name = "Accessories";
-            treeNode6.Text = "アクセサリ";
-            treeNode7.Name = "HeadAccessories";
-            treeNode7.Text = "頭部アクセサリ";
-            treeNode8.Name = "CharaChipDirectory";
-            treeNode8.Text = "キャラチップ素材";
-            treeNode9.Name = "Faces";
-            treeNode9.Text = "顔";
+            treeNode6.Name = "Costumes";
+            treeNode6.Text = "衣装";
+            treeNode7.Name = "Accessories";
+            treeNode7.Text = "アクセサリ";
+            treeNode8.Name = "HeadAccessories";
+            treeNode8.Text = "頭部アクセサリ";
+            treeNode9.Name = "CharaChipDirectory";
+            treeNode9.Text = "キャラチップ素材";
+            treeNode10.Name = "Faces";
+            treeNode10.Text = "顔";
             this.treeViewMaterials.Nodes.AddRange(new System.Windows.Forms.TreeNode[] {
-            treeNode8,
-            treeNode9});
-            this.treeViewMaterials.Size = new System.Drawing.Size(100, 234);
+            treeNode9,
+            treeNode10});
+            this.treeViewMaterials.Size = new System.Drawing.Size(102, 283);
             this.treeViewMaterials.TabIndex = 3;
             this.treeViewMaterials.AfterSelect += new System.Windows.Forms.TreeViewEventHandler(this.OnTreeViewItemSelected);
             // 
@@ -135,7 +139,7 @@
             this.listViewMaterials.Enabled = false;
             this.listViewMaterials.Location = new System.Drawing.Point(6, 48);
             this.listViewMaterials.Name = "listViewMaterials";
-            this.listViewMaterials.Size = new System.Drawing.Size(325, 199);
+            this.listViewMaterials.Size = new System.Drawing.Size(325, 235);
             this.listViewMaterials.TabIndex = 5;
             this.listViewMaterials.UseCompatibleStateImageBehavior = false;
             this.listViewMaterials.View = System.Windows.Forms.View.Details;
@@ -159,7 +163,7 @@
             this.groupBoxMaterial.Controls.Add(this.listViewMaterials);
             this.groupBoxMaterial.Location = new System.Drawing.Point(120, 47);
             this.groupBoxMaterial.Name = "groupBoxMaterial";
-            this.groupBoxMaterial.Size = new System.Drawing.Size(337, 234);
+            this.groupBoxMaterial.Size = new System.Drawing.Size(337, 283);
             this.groupBoxMaterial.TabIndex = 6;
             this.groupBoxMaterial.TabStop = false;
             this.groupBoxMaterial.Text = "素材一覧";
@@ -216,9 +220,9 @@
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 12F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(469, 322);
-            this.Controls.Add(this.labelDirectory);
+            this.ClientSize = new System.Drawing.Size(469, 424);
             this.Controls.Add(this.groupBoxMaterial);
+            this.Controls.Add(this.labelDirectory);
             this.Controls.Add(this.treeViewMaterials);
             this.Controls.Add(this.buttonClose);
             this.Controls.Add(this.menuStrip1);
