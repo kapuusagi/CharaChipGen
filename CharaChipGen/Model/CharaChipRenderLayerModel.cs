@@ -51,11 +51,13 @@ namespace CharaChipGen.Model
         {
             get { return image; }
             set {
-                if (image == value)
-                {
+                if (((image == null) && (value == null))
+                        || ((image != null) && (image.Equals(value)))) {
                     return; // 変更なし。
                 }
+
                 image = value;
+                processedImage = null;
             }
         }
  
