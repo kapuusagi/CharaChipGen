@@ -250,7 +250,13 @@ namespace CharaChipGen.Model
             Material m = AppData.GetInstance().GetHead(dataModel.Head.MaterialName);
             SetLayer(layers[9], (m != null) ? m.GetPrimaryLayer() : null, dataModel.Head);
             SetLayer(layers[10], (m != null) ? m.GetSecondaryLayer() : null, dataModel.Head);
-            SetLayer(layers[14], layers[14].Image, dataModel.Head); // 頭の設定値を体に適用。
+            // 頭設定はちょっと複雑。
+            // 体のバックレイヤーに輝度色差調整は頭のパラメータを参照する。
+            CharaChipRenderLayerModel layer = layers[14];
+            layer.Hue = dataModel.Head.Hue;
+            layer.Saturation = dataModel.Head.Saturation;
+            layer.Value = dataModel.Head.Value;
+
             System.Diagnostics.Debug.WriteLine(String.Format("Head = {0}", (m != null) ? m.Name : ""));
         }
         /// <summary>
@@ -290,8 +296,18 @@ namespace CharaChipGen.Model
         {
             Material m = AppData.GetInstance().GetBody(dataModel.Body.MaterialName);
             SetLayer(layers[13], (m != null) ? m.GetPrimaryLayer() : null, dataModel.Body);
-            SetLayer(layers[14], (m != null) ? m.GetSecondaryLayer() : null, dataModel.Head); // 頭の設定値を体適用。
+
+            // 体設定はちょっと複雑。
+            // オフセットはBodyを採用し、輝度色差調整は頭のパラメータを参照する。
+            CharaChipRenderLayerModel layer = layers[14];
+            layer.Image = (m != null) ? m.GetSecondaryLayer() : null;
+            layer.OffsetX = 0;
+            layer.OffsetY = dataModel.Body.Offset; // オフセットはボディを使用する。
             System.Diagnostics.Debug.WriteLine(String.Format("Body = {0}", (m != null) ? m.Name : ""));
+        }
+
+        private void SetBodyBackLayer(Material m)
+        {
         }
 
         private void ApplyCostume()
