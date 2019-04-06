@@ -147,8 +147,8 @@ namespace CharaChipGen.MainForm
                 string baseName = System.IO.Path.GetFileNameWithoutExtension(charaChipPath);
                 string facePath = System.IO.Path.Combine(dir, baseName + "_face.png");
 
-                CharaChipExporter.exportCharaChip(charaChipPath);
-                CharaChipExporter.exportFace(facePath);
+                CharaChipExporter.ExportCharaChip(charaChipPath);
+                CharaChipExporter.ExportFace(facePath);
             }
             catch (Exception e)
             {
@@ -167,6 +167,7 @@ namespace CharaChipGen.MainForm
 
             form.CharaChipSize = appData.ExportSetting.CharaChipSize;
             form.FaceSize = appData.ExportSetting.FaceSize;
+            form.IsExpandTwice = appData.ExportSetting.IsRenderTwice;
 
             DialogResult res = form.ShowDialog(this);
             if (res != DialogResult.OK)
@@ -176,6 +177,7 @@ namespace CharaChipGen.MainForm
 
             appData.ExportSetting.CharaChipSize = form.CharaChipSize;
             appData.ExportSetting.FaceSize = form.FaceSize;
+            appData.ExportSetting.IsRenderTwice = form.IsExpandTwice;
         }
 
         private void OnNewFile_click(object sender, EventArgs e)

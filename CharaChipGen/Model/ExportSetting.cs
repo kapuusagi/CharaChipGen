@@ -13,6 +13,7 @@ namespace CharaChipGen.Model
     {
         private Size charaChipSize; // キャラチップサイズ
         private Size faceSize; // 顔サイズ
+        private bool isRenderTwice; // 2倍で描画するかどうか
 
         /// <summary>
         /// エクスポート設定
@@ -21,6 +22,7 @@ namespace CharaChipGen.Model
         {
             charaChipSize = new Size(32, 48);
             faceSize = new Size(96, 96);
+            isRenderTwice = false;
         }
 
         /// <summary>
@@ -40,5 +42,15 @@ namespace CharaChipGen.Model
             get { return faceSize; }
             set { faceSize = value; }
         }
+
+        /// <summary>
+        /// 2倍のサイズで描画するかどうか
+        /// </summary>
+        public bool IsRenderTwice 
+        {
+            get { return isRenderTwice; }
+            set { isRenderTwice = value; }
+        }
+
     }
 }

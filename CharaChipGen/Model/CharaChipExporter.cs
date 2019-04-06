@@ -17,7 +17,7 @@ namespace CharaChipGen.Model
         /// キャラチップデータをエクスポートする
         /// </summary>
         /// <param name="filePath"></param>
-        public static void exportCharaChip(string filePath)
+        public static void ExportCharaChip(string filePath)
         {
             AppData appData = AppData.GetInstance();
             Size charaChipSize = appData.ExportSetting.CharaChipSize;
@@ -39,7 +39,13 @@ namespace CharaChipGen.Model
                 }
             }
 
-            Image image = exportBuffer.GetImage();
+            Image image = null;
+            if (appData.ExportSetting.IsRenderTwice) {
+                ImageBuffer twiceImage = Imaging.ImageProcessor.ExpansionX2(exportBuffer);
+                image = twiceImage.GetImage();
+            } else {
+                image = exportBuffer.GetImage();
+            }
             image.Save(filePath);
         }
 
@@ -66,7 +72,7 @@ namespace CharaChipGen.Model
         /// 顔データを出力する
         /// </summary>
         /// <param name="filePath"></param>
-        public static void exportFace(string filePath)
+        public static void ExportFace(string filePath)
         {
             AppData appData = AppData.GetInstance();
             Size faceSize = appData.ExportSetting.FaceSize;
@@ -85,6 +91,7 @@ namespace CharaChipGen.Model
             }
 
             Image image = exportBuffer.GetImage();
+
             image.Save(filePath);
         }
 

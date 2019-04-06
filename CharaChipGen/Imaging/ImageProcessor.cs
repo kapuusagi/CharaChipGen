@@ -121,5 +121,18 @@ namespace CharaChipGen.Imaging
             }
             return output;
         }
+
+        public static ImageBuffer ExpansionX2(ImageBuffer image)
+        {
+            ImageBuffer output = ImageBuffer.Create(image.Width * 2, image.Height * 2);
+            for (int y = 0; y < output.Height; y++) {
+                for (int x = 0; x < output.Width; x += 2) {
+                    Color c = image.GetPixel(x / 2, y / 2);
+                    output.SetPixel(x + 0, y, c);
+                    output.SetPixel(x + 1, y, c);
+                }
+            }
+            return output;
+        }
     }
 }

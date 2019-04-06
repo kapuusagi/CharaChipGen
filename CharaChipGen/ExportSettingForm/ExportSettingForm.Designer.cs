@@ -36,6 +36,7 @@
             this.numericUpDownCharaChipHeight = new System.Windows.Forms.NumericUpDown();
             this.numericUpDownFaceWidth = new System.Windows.Forms.NumericUpDown();
             this.numericUpDownFaceHeight = new System.Windows.Forms.NumericUpDown();
+            this.checkBoxRenderTwice = new System.Windows.Forms.CheckBox();
             ((System.ComponentModel.ISupportInitialize)(this.numericUpDownCharaChipWidth)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.numericUpDownCharaChipHeight)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.numericUpDownFaceWidth)).BeginInit();
@@ -44,7 +45,7 @@
             // 
             // buttonOK
             // 
-            this.buttonOK.Location = new System.Drawing.Point(67, 81);
+            this.buttonOK.Location = new System.Drawing.Point(65, 130);
             this.buttonOK.Name = "buttonOK";
             this.buttonOK.Size = new System.Drawing.Size(75, 23);
             this.buttonOK.TabIndex = 0;
@@ -54,7 +55,7 @@
             // 
             // buttonCancel
             // 
-            this.buttonCancel.Location = new System.Drawing.Point(153, 81);
+            this.buttonCancel.Location = new System.Drawing.Point(148, 130);
             this.buttonCancel.Name = "buttonCancel";
             this.buttonCancel.Size = new System.Drawing.Size(75, 23);
             this.buttonCancel.TabIndex = 1;
@@ -168,11 +169,22 @@
             0,
             0});
             // 
+            // checkBoxRenderTwice
+            // 
+            this.checkBoxRenderTwice.AutoSize = true;
+            this.checkBoxRenderTwice.Location = new System.Drawing.Point(17, 82);
+            this.checkBoxRenderTwice.Name = "checkBoxRenderTwice";
+            this.checkBoxRenderTwice.Size = new System.Drawing.Size(108, 16);
+            this.checkBoxRenderTwice.TabIndex = 5;
+            this.checkBoxRenderTwice.Text = "サイズを2倍にする";
+            this.checkBoxRenderTwice.UseVisualStyleBackColor = true;
+            // 
             // ExportSettingForm
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 12F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(235, 111);
+            this.ClientSize = new System.Drawing.Size(235, 165);
+            this.Controls.Add(this.checkBoxRenderTwice);
             this.Controls.Add(this.numericUpDownFaceHeight);
             this.Controls.Add(this.numericUpDownCharaChipHeight);
             this.Controls.Add(this.numericUpDownFaceWidth);
@@ -203,5 +215,6 @@
         private System.Windows.Forms.NumericUpDown numericUpDownCharaChipHeight;
         private System.Windows.Forms.NumericUpDown numericUpDownFaceWidth;
         private System.Windows.Forms.NumericUpDown numericUpDownFaceHeight;
+        private System.Windows.Forms.CheckBox checkBoxRenderTwice;
     }
 }

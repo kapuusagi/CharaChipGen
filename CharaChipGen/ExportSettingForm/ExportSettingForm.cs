@@ -54,6 +54,22 @@ namespace CharaChipGen.ExportSettingForm
 
         }
 
+        /// <summary>
+        /// 2倍のサイズで出力するかどうか
+        /// </summary>
+        public bool IsExpandTwice 
+        {
+            get
+            {
+                return checkBoxRenderTwice.Checked;
+            }
+            set 
+            {
+                checkBoxRenderTwice.Checked = value;
+            }
+
+        }
+
         private void OnOKButton_click(object sender, EventArgs e)
         {
             DialogResult = DialogResult.OK;
