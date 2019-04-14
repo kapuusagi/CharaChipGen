@@ -133,6 +133,9 @@ namespace CharaChipGen.GeneratorForm
             }
 
             comboBoxItem.SelectedIndex = 0; // 未選択状態
+
+            comboBoxItem.Enabled = comboBoxItem.Items.Count > 1;
+
         }
 
 

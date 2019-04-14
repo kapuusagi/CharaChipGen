@@ -31,10 +31,8 @@ namespace CharaChipGen.GeneratorForm
 
             paramViewHead.Model = dataModel.Head;
             paramViewEye.Model = dataModel.Eye;
-            paramViewFrontHair.Model = dataModel.FrontHairStyle;
             paramViewHairStyle.Model = dataModel.Hair;
             paramViewBody.Model = dataModel.Body;
-            paramViewCostume.Model = dataModel.Costume;
             paramViewAccessory1.Model = dataModel.Accessory1;
             paramViewAccessory2.Model = dataModel.Accessory2;
             paramViewAccessory3.Model = dataModel.Accessory3;
@@ -57,10 +55,8 @@ namespace CharaChipGen.GeneratorForm
             AppData data = AppData.GetInstance();
             paramViewHead.SetMaterialList(data.Heads);
             paramViewEye.SetMaterialList(data.Eyes);
-            paramViewFrontHair.SetMaterialList(data.FrontHairStyles);
             paramViewHairStyle.SetMaterialList(data.HairStyles);
             paramViewBody.SetMaterialList(data.Bodies);
-            paramViewCostume.SetMaterialList(data.Costumes);
             paramViewAccessory1.SetMaterialList(data.Accessories);
             paramViewAccessory2.SetMaterialList(data.Accessories);
             paramViewAccessory3.SetMaterialList(data.Accessories);

@@ -75,10 +75,8 @@ namespace CharaChipGen.Model
 
             AddCharaChipParamNode(doc, charaElem, CharaChipDataModel.ParamNameHead, data.Head);
             AddCharaChipParamNode(doc, charaElem, CharaChipDataModel.ParamNameEye, data.Eye);
-            AddCharaChipParamNode(doc, charaElem, CharaChipDataModel.ParamNameFrontHair, data.FrontHairStyle);
             AddCharaChipParamNode(doc, charaElem, CharaChipDataModel.ParamNameHair, data.Hair);
             AddCharaChipParamNode(doc, charaElem, CharaChipDataModel.ParamNameBody, data.Body);
-            AddCharaChipParamNode(doc, charaElem, CharaChipDataModel.ParamNameCostume, data.Costume);
             AddCharaChipParamNode(doc, charaElem, CharaChipDataModel.ParamNameAccessory1, data.Accessory1);
             AddCharaChipParamNode(doc, charaElem, CharaChipDataModel.ParamNameAccessory2, data.Accessory2);
             AddCharaChipParamNode(doc, charaElem, CharaChipDataModel.ParamNameAccessory3, data.Accessory3);
@@ -233,17 +231,11 @@ namespace CharaChipGen.Model
                     case CharaChipDataModel.ParamNameEye:
                         LoadCharaDataParamNode(subNode, model.Eye);
                         break;
-                    case CharaChipDataModel.ParamNameFrontHair:
-                        LoadCharaDataParamNode(subNode, model.FrontHairStyle);
-                        break;
                     case CharaChipDataModel.ParamNameHair:
                         LoadCharaDataParamNode(subNode, model.Hair);
                         break;
                     case CharaChipDataModel.ParamNameBody:
                         LoadCharaDataParamNode(subNode, model.Body);
-                        break;
-                    case CharaChipDataModel.ParamNameCostume:
-                        LoadCharaDataParamNode(subNode, model.Costume);
                         break;
                     case CharaChipDataModel.ParamNameAccessory1:
                         LoadCharaDataParamNode(subNode, model.Accessory1);

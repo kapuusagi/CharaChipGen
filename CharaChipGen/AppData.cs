@@ -13,11 +13,9 @@ namespace CharaChipGen
     class AppData
     {
         public const string NameAccessories = "Accessories";
-        public const string NameFrontHairStyles = "FrontHairStyles";
         public const string NameHairStyles = "HairStyles";
         public const string NameEyes = "Eyes";
         public const string NameHeads = "Heads";
-        public const string NameCostumes = "Costumes";
         public const string NameBodies = "Bodies";
         public const string NameHeadAccessories = "HeadAccessories";
         public const string NameFaces = "Faces";
@@ -34,12 +32,10 @@ namespace CharaChipGen
         }
 
         private MaterialList accessories; // アクセサリ
-        private MaterialList frontHairStyles; // 前髪
         private MaterialList hairStyles; // 髪型
         private MaterialList eyes; // 目
         private MaterialList heads; // 頭
         private MaterialList bodies; // 体
-        private MaterialList costumes; // 衣装
         private MaterialList headAccessories; // 頭部アクセサリ
         private MaterialList faces; // 顔
         private string materialDirectory = ""; // 素材ディレクトリ
@@ -54,12 +50,10 @@ namespace CharaChipGen
         private AppData()
         {
             accessories = new MaterialList("アクセサリ", NameAccessories);
-            frontHairStyles = new MaterialList("前髪", NameFrontHairStyles);
             hairStyles = new MaterialList("髪型", NameHairStyles);
             eyes = new MaterialList("目", NameEyes);
             heads = new MaterialList("頭", NameHeads);
             bodies = new MaterialList("体", NameBodies);
-            costumes = new MaterialList("衣装", NameCostumes);
             headAccessories = new MaterialList("頭部アクセサリ", NameHeadAccessories);
             faces = new MaterialList("顔", NameFaces);
             charaChipDataModels = new CharaChipDataModel[9];
@@ -86,16 +80,12 @@ namespace CharaChipGen
 
             // アクセサリ
             LoadMaterials(dir, accessories);
-            // 前髪
-            LoadMaterials(dir, frontHairStyles);
             // 髪型
             LoadMaterials(dir, hairStyles);
             // 目
             LoadMaterials(dir, eyes);
             // 頭
             LoadMaterials(dir, heads);
-            // 衣装
-            LoadMaterials(dir, costumes);
             // 体
             LoadMaterials(dir, bodies);
             // 頭部アクセサリ
@@ -131,30 +121,6 @@ namespace CharaChipGen
             return accessories.Get(name);
         }
 
-
-        /// <summary>
-        /// 前髪
-        /// </summary>
-        public MaterialList FrontHairStyles
-        {
-            get { return this.frontHairStyles; }
-        }
-        /// <summary>
-        /// 前髪ディレクトリへのパス
-        /// </summary>
-        public string FrontHairStyleDirectory
-        {
-            get { return System.IO.Path.Combine(materialDirectory, this.frontHairStyles.SubDirectoryName); }
-        }
-        /// <summary>
-        /// 前髪素材を取得する。
-        /// </summary>
-        /// <param name="name">マテリアル名</param>
-        /// <returns>マテリアル</returns>
-        public Material GetFrontHairStyle(string name)
-        {
-            return frontHairStyles.Get(name);
-        }
 
         /// <summary>
         /// 髪
@@ -231,23 +197,6 @@ namespace CharaChipGen
         }
 
         /// <summary>
-        /// 衣装素材を取得する。
-        /// </summary>
-        /// <param name="name">素材名</param>
-        /// <returns>マテリアル</returns>
-        public Material GetCostume(string name)
-        {
-            return costumes.Get(name);
-        }
-
-        /// <summary>
-        /// 衣装リスト
-        /// </summary>
-        public MaterialList Costumes
-        {
-            get { return this.costumes; }
-        }
-
         /// <summary>
         /// 体
         /// </summary>
@@ -333,12 +282,8 @@ namespace CharaChipGen
                     return this.accessories;
                 case AppData.NameBodies:
                     return this.bodies;
-                case AppData.NameCostumes:
-                    return this.costumes;
                 case AppData.NameEyes:
                     return this.eyes;
-                case AppData.NameFrontHairStyles:
-                    return this.frontHairStyles;
                 case AppData.NameHairStyles:
                     return this.hairStyles;
                 case AppData.NameHeads:

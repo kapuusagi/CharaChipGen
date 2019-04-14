@@ -29,33 +29,30 @@
         private void InitializeComponent()
         {
             this.components = new System.ComponentModel.Container();
-            CharaChipGen.Model.CharaChipParameterModel charaChipParameterModel7 = new CharaChipGen.Model.CharaChipParameterModel();
-            CharaChipGen.Model.CharaChipParameterModel charaChipParameterModel8 = new CharaChipGen.Model.CharaChipParameterModel();
             CharaChipGen.Model.CharaChipParameterModel charaChipParameterModel1 = new CharaChipGen.Model.CharaChipParameterModel();
-            CharaChipGen.Model.CharaChipParameterModel charaChipParameterModel9 = new CharaChipGen.Model.CharaChipParameterModel();
             CharaChipGen.Model.CharaChipParameterModel charaChipParameterModel2 = new CharaChipGen.Model.CharaChipParameterModel();
-            CharaChipGen.Model.CharaChipParameterModel charaChipParameterModel10 = new CharaChipGen.Model.CharaChipParameterModel();
             CharaChipGen.Model.CharaChipParameterModel charaChipParameterModel3 = new CharaChipGen.Model.CharaChipParameterModel();
-            CharaChipGen.Model.CharaChipParameterModel charaChipParameterModel11 = new CharaChipGen.Model.CharaChipParameterModel();
             CharaChipGen.Model.CharaChipParameterModel charaChipParameterModel4 = new CharaChipGen.Model.CharaChipParameterModel();
             CharaChipGen.Model.CharaChipParameterModel charaChipParameterModel5 = new CharaChipGen.Model.CharaChipParameterModel();
-            CharaChipGen.Model.CharaChipParameterModel charaChipParameterModel12 = new CharaChipGen.Model.CharaChipParameterModel();
             CharaChipGen.Model.CharaChipParameterModel charaChipParameterModel6 = new CharaChipGen.Model.CharaChipParameterModel();
+            CharaChipGen.Model.CharaChipParameterModel charaChipParameterModel7 = new CharaChipGen.Model.CharaChipParameterModel();
+            CharaChipGen.Model.CharaChipParameterModel charaChipParameterModel8 = new CharaChipGen.Model.CharaChipParameterModel();
+            CharaChipGen.Model.CharaChipParameterModel charaChipParameterModel9 = new CharaChipGen.Model.CharaChipParameterModel();
+            CharaChipGen.Model.CharaChipParameterModel charaChipParameterModel10 = new CharaChipGen.Model.CharaChipParameterModel();
             this.panelCharaChipParam = new System.Windows.Forms.Panel();
+            this.paramViewHeadAccessory2 = new CharaChipGen.GeneratorForm.CharaChipGeneratorParamView();
+            this.paramViewHeadAccessory1 = new CharaChipGen.GeneratorForm.CharaChipGeneratorParamView();
+            this.paramViewAccessory3 = new CharaChipGen.GeneratorForm.CharaChipGeneratorParamView();
+            this.paramViewAccessory2 = new CharaChipGen.GeneratorForm.CharaChipGeneratorParamView();
+            this.paramViewAccessory1 = new CharaChipGen.GeneratorForm.CharaChipGeneratorParamView();
             this.label4 = new System.Windows.Forms.Label();
             this.label3 = new System.Windows.Forms.Label();
             this.label2 = new System.Windows.Forms.Label();
             this.label1 = new System.Windows.Forms.Label();
             this.paramViewHead = new CharaChipGen.GeneratorForm.CharaChipGeneratorParamView();
             this.paramViewEye = new CharaChipGen.GeneratorForm.CharaChipGeneratorParamView();
-            this.paramViewHeadAccessory2 = new CharaChipGen.GeneratorForm.CharaChipGeneratorParamView();
-            this.paramViewFrontHair = new CharaChipGen.GeneratorForm.CharaChipGeneratorParamView();
-            this.paramViewHeadAccessory1 = new CharaChipGen.GeneratorForm.CharaChipGeneratorParamView();
             this.paramViewHairStyle = new CharaChipGen.GeneratorForm.CharaChipGeneratorParamView();
-            this.paramViewAccessory3 = new CharaChipGen.GeneratorForm.CharaChipGeneratorParamView();
             this.paramViewBody = new CharaChipGen.GeneratorForm.CharaChipGeneratorParamView();
-            this.paramViewAccessory2 = new CharaChipGen.GeneratorForm.CharaChipGeneratorParamView();
-            this.paramViewAccessory1 = new CharaChipGen.GeneratorForm.CharaChipGeneratorParamView();
             this.panelFaceParam = new System.Windows.Forms.Panel();
             this.paramViewFace = new CharaChipGen.GeneratorForm.CharaChipGeneratorParamView();
             this.buttonOK = new System.Windows.Forms.Button();
@@ -63,7 +60,6 @@
             this.timer = new System.Windows.Forms.Timer(this.components);
             this.charaChipView = new CharaChipGen.GeneratorForm.CharaChipView();
             this.charaFaceView = new CharaChipGen.GeneratorForm.CharaFaceView();
-            this.paramViewCostume = new CharaChipGen.GeneratorForm.CharaChipGeneratorParamView();
             this.panelCharaChipParam.SuspendLayout();
             this.panelFaceParam.SuspendLayout();
             this.SuspendLayout();
@@ -75,20 +71,98 @@
             this.panelCharaChipParam.Controls.Add(this.paramViewAccessory3);
             this.panelCharaChipParam.Controls.Add(this.paramViewAccessory2);
             this.panelCharaChipParam.Controls.Add(this.paramViewAccessory1);
-            this.panelCharaChipParam.Controls.Add(this.paramViewCostume);
             this.panelCharaChipParam.Controls.Add(this.label4);
             this.panelCharaChipParam.Controls.Add(this.label3);
             this.panelCharaChipParam.Controls.Add(this.label2);
             this.panelCharaChipParam.Controls.Add(this.label1);
             this.panelCharaChipParam.Controls.Add(this.paramViewHead);
             this.panelCharaChipParam.Controls.Add(this.paramViewEye);
-            this.panelCharaChipParam.Controls.Add(this.paramViewFrontHair);
             this.panelCharaChipParam.Controls.Add(this.paramViewHairStyle);
             this.panelCharaChipParam.Controls.Add(this.paramViewBody);
             this.panelCharaChipParam.Location = new System.Drawing.Point(359, 12);
             this.panelCharaChipParam.Name = "panelCharaChipParam";
-            this.panelCharaChipParam.Size = new System.Drawing.Size(539, 462);
+            this.panelCharaChipParam.Size = new System.Drawing.Size(539, 408);
             this.panelCharaChipParam.TabIndex = 10;
+            // 
+            // paramViewHeadAccessory2
+            // 
+            this.paramViewHeadAccessory2.EditHSV = true;
+            this.paramViewHeadAccessory2.EditYOffset = true;
+            this.paramViewHeadAccessory2.Location = new System.Drawing.Point(10, 331);
+            charaChipParameterModel1.Hue = 0;
+            charaChipParameterModel1.MaterialName = "";
+            charaChipParameterModel1.Offset = 0;
+            charaChipParameterModel1.Saturation = 0;
+            charaChipParameterModel1.Value = 0;
+            this.paramViewHeadAccessory2.Model = charaChipParameterModel1;
+            this.paramViewHeadAccessory2.Name = "paramViewHeadAccessory2";
+            this.paramViewHeadAccessory2.ParameterName = "頭部アクセサリ２";
+            this.paramViewHeadAccessory2.Size = new System.Drawing.Size(518, 44);
+            this.paramViewHeadAccessory2.TabIndex = 8;
+            // 
+            // paramViewHeadAccessory1
+            // 
+            this.paramViewHeadAccessory1.EditHSV = true;
+            this.paramViewHeadAccessory1.EditYOffset = true;
+            this.paramViewHeadAccessory1.Location = new System.Drawing.Point(10, 293);
+            charaChipParameterModel2.Hue = 0;
+            charaChipParameterModel2.MaterialName = "";
+            charaChipParameterModel2.Offset = 0;
+            charaChipParameterModel2.Saturation = 0;
+            charaChipParameterModel2.Value = 0;
+            this.paramViewHeadAccessory1.Model = charaChipParameterModel2;
+            this.paramViewHeadAccessory1.Name = "paramViewHeadAccessory1";
+            this.paramViewHeadAccessory1.ParameterName = "頭部アクセサリ１";
+            this.paramViewHeadAccessory1.Size = new System.Drawing.Size(518, 44);
+            this.paramViewHeadAccessory1.TabIndex = 7;
+            // 
+            // paramViewAccessory3
+            // 
+            this.paramViewAccessory3.EditHSV = true;
+            this.paramViewAccessory3.EditYOffset = true;
+            this.paramViewAccessory3.Location = new System.Drawing.Point(10, 255);
+            charaChipParameterModel3.Hue = 0;
+            charaChipParameterModel3.MaterialName = "";
+            charaChipParameterModel3.Offset = 0;
+            charaChipParameterModel3.Saturation = 0;
+            charaChipParameterModel3.Value = 0;
+            this.paramViewAccessory3.Model = charaChipParameterModel3;
+            this.paramViewAccessory3.Name = "paramViewAccessory3";
+            this.paramViewAccessory3.ParameterName = "アクセサリ３";
+            this.paramViewAccessory3.Size = new System.Drawing.Size(518, 44);
+            this.paramViewAccessory3.TabIndex = 6;
+            // 
+            // paramViewAccessory2
+            // 
+            this.paramViewAccessory2.EditHSV = true;
+            this.paramViewAccessory2.EditYOffset = true;
+            this.paramViewAccessory2.Location = new System.Drawing.Point(10, 219);
+            charaChipParameterModel4.Hue = 0;
+            charaChipParameterModel4.MaterialName = "";
+            charaChipParameterModel4.Offset = 0;
+            charaChipParameterModel4.Saturation = 0;
+            charaChipParameterModel4.Value = 0;
+            this.paramViewAccessory2.Model = charaChipParameterModel4;
+            this.paramViewAccessory2.Name = "paramViewAccessory2";
+            this.paramViewAccessory2.ParameterName = "アクセサリ２";
+            this.paramViewAccessory2.Size = new System.Drawing.Size(518, 44);
+            this.paramViewAccessory2.TabIndex = 5;
+            // 
+            // paramViewAccessory1
+            // 
+            this.paramViewAccessory1.EditHSV = true;
+            this.paramViewAccessory1.EditYOffset = true;
+            this.paramViewAccessory1.Location = new System.Drawing.Point(10, 182);
+            charaChipParameterModel5.Hue = 0;
+            charaChipParameterModel5.MaterialName = "";
+            charaChipParameterModel5.Offset = 0;
+            charaChipParameterModel5.Saturation = 0;
+            charaChipParameterModel5.Value = 0;
+            this.paramViewAccessory1.Model = charaChipParameterModel5;
+            this.paramViewAccessory1.Name = "paramViewAccessory1";
+            this.paramViewAccessory1.ParameterName = "アクセサリ１";
+            this.paramViewAccessory1.Size = new System.Drawing.Size(518, 44);
+            this.paramViewAccessory1.TabIndex = 4;
             // 
             // label4
             // 
@@ -131,12 +205,12 @@
             this.paramViewHead.EditHSV = true;
             this.paramViewHead.EditYOffset = true;
             this.paramViewHead.Location = new System.Drawing.Point(10, 24);
-            charaChipParameterModel7.Hue = 0;
-            charaChipParameterModel7.MaterialName = "";
-            charaChipParameterModel7.Offset = 0;
-            charaChipParameterModel7.Saturation = 0;
-            charaChipParameterModel7.Value = 0;
-            this.paramViewHead.Model = charaChipParameterModel7;
+            charaChipParameterModel6.Hue = 0;
+            charaChipParameterModel6.MaterialName = "";
+            charaChipParameterModel6.Offset = 0;
+            charaChipParameterModel6.Saturation = 0;
+            charaChipParameterModel6.Value = 0;
+            this.paramViewHead.Model = charaChipParameterModel6;
             this.paramViewHead.Name = "paramViewHead";
             this.paramViewHead.ParameterName = "頭";
             this.paramViewHead.Size = new System.Drawing.Size(518, 44);
@@ -147,144 +221,48 @@
             this.paramViewEye.EditHSV = true;
             this.paramViewEye.EditYOffset = true;
             this.paramViewEye.Location = new System.Drawing.Point(10, 62);
-            charaChipParameterModel8.Hue = 0;
-            charaChipParameterModel8.MaterialName = "";
-            charaChipParameterModel8.Offset = 0;
-            charaChipParameterModel8.Saturation = 0;
-            charaChipParameterModel8.Value = 0;
-            this.paramViewEye.Model = charaChipParameterModel8;
+            charaChipParameterModel7.Hue = 0;
+            charaChipParameterModel7.MaterialName = "";
+            charaChipParameterModel7.Offset = 0;
+            charaChipParameterModel7.Saturation = 0;
+            charaChipParameterModel7.Value = 0;
+            this.paramViewEye.Model = charaChipParameterModel7;
             this.paramViewEye.Name = "paramViewEye";
             this.paramViewEye.ParameterName = "目";
             this.paramViewEye.Size = new System.Drawing.Size(518, 44);
             this.paramViewEye.TabIndex = 0;
             // 
-            // paramViewHeadAccessory2
-            // 
-            this.paramViewHeadAccessory2.EditHSV = true;
-            this.paramViewHeadAccessory2.EditYOffset = true;
-            this.paramViewHeadAccessory2.Location = new System.Drawing.Point(10, 402);
-            charaChipParameterModel1.Hue = 0;
-            charaChipParameterModel1.MaterialName = "";
-            charaChipParameterModel1.Offset = 0;
-            charaChipParameterModel1.Saturation = 0;
-            charaChipParameterModel1.Value = 0;
-            this.paramViewHeadAccessory2.Model = charaChipParameterModel1;
-            this.paramViewHeadAccessory2.Name = "paramViewHeadAccessory2";
-            this.paramViewHeadAccessory2.ParameterName = "頭部アクセサリ２";
-            this.paramViewHeadAccessory2.Size = new System.Drawing.Size(518, 44);
-            this.paramViewHeadAccessory2.TabIndex = 8;
-            // 
-            // paramViewFrontHair
-            // 
-            this.paramViewFrontHair.EditHSV = true;
-            this.paramViewFrontHair.EditYOffset = true;
-            this.paramViewFrontHair.Location = new System.Drawing.Point(10, 102);
-            charaChipParameterModel9.Hue = 0;
-            charaChipParameterModel9.MaterialName = "";
-            charaChipParameterModel9.Offset = 0;
-            charaChipParameterModel9.Saturation = 0;
-            charaChipParameterModel9.Value = 0;
-            this.paramViewFrontHair.Model = charaChipParameterModel9;
-            this.paramViewFrontHair.Name = "paramViewFrontHair";
-            this.paramViewFrontHair.ParameterName = "前髪";
-            this.paramViewFrontHair.Size = new System.Drawing.Size(518, 44);
-            this.paramViewFrontHair.TabIndex = 1;
-            // 
-            // paramViewHeadAccessory1
-            // 
-            this.paramViewHeadAccessory1.EditHSV = true;
-            this.paramViewHeadAccessory1.EditYOffset = true;
-            this.paramViewHeadAccessory1.Location = new System.Drawing.Point(10, 363);
-            charaChipParameterModel2.Hue = 0;
-            charaChipParameterModel2.MaterialName = "";
-            charaChipParameterModel2.Offset = 0;
-            charaChipParameterModel2.Saturation = 0;
-            charaChipParameterModel2.Value = 0;
-            this.paramViewHeadAccessory1.Model = charaChipParameterModel2;
-            this.paramViewHeadAccessory1.Name = "paramViewHeadAccessory1";
-            this.paramViewHeadAccessory1.ParameterName = "頭部アクセサリ１";
-            this.paramViewHeadAccessory1.Size = new System.Drawing.Size(518, 44);
-            this.paramViewHeadAccessory1.TabIndex = 7;
-            // 
             // paramViewHairStyle
             // 
             this.paramViewHairStyle.EditHSV = true;
             this.paramViewHairStyle.EditYOffset = true;
-            this.paramViewHairStyle.Location = new System.Drawing.Point(10, 140);
-            charaChipParameterModel10.Hue = 0;
-            charaChipParameterModel10.MaterialName = "";
-            charaChipParameterModel10.Offset = 0;
-            charaChipParameterModel10.Saturation = 0;
-            charaChipParameterModel10.Value = 0;
-            this.paramViewHairStyle.Model = charaChipParameterModel10;
+            this.paramViewHairStyle.Location = new System.Drawing.Point(10, 101);
+            charaChipParameterModel8.Hue = 0;
+            charaChipParameterModel8.MaterialName = "";
+            charaChipParameterModel8.Offset = 0;
+            charaChipParameterModel8.Saturation = 0;
+            charaChipParameterModel8.Value = 0;
+            this.paramViewHairStyle.Model = charaChipParameterModel8;
             this.paramViewHairStyle.Name = "paramViewHairStyle";
             this.paramViewHairStyle.ParameterName = "髪型";
             this.paramViewHairStyle.Size = new System.Drawing.Size(518, 44);
             this.paramViewHairStyle.TabIndex = 2;
             // 
-            // paramViewAccessory3
-            // 
-            this.paramViewAccessory3.EditHSV = true;
-            this.paramViewAccessory3.EditYOffset = true;
-            this.paramViewAccessory3.Location = new System.Drawing.Point(10, 327);
-            charaChipParameterModel3.Hue = 0;
-            charaChipParameterModel3.MaterialName = "";
-            charaChipParameterModel3.Offset = 0;
-            charaChipParameterModel3.Saturation = 0;
-            charaChipParameterModel3.Value = 0;
-            this.paramViewAccessory3.Model = charaChipParameterModel3;
-            this.paramViewAccessory3.Name = "paramViewAccessory3";
-            this.paramViewAccessory3.ParameterName = "アクセサリ３";
-            this.paramViewAccessory3.Size = new System.Drawing.Size(518, 44);
-            this.paramViewAccessory3.TabIndex = 6;
-            // 
             // paramViewBody
             // 
             this.paramViewBody.EditHSV = true;
             this.paramViewBody.EditYOffset = true;
-            this.paramViewBody.Location = new System.Drawing.Point(10, 179);
-            charaChipParameterModel11.Hue = 0;
-            charaChipParameterModel11.MaterialName = "";
-            charaChipParameterModel11.Offset = 0;
-            charaChipParameterModel11.Saturation = 0;
-            charaChipParameterModel11.Value = 0;
-            this.paramViewBody.Model = charaChipParameterModel11;
+            this.paramViewBody.Location = new System.Drawing.Point(10, 142);
+            charaChipParameterModel9.Hue = 0;
+            charaChipParameterModel9.MaterialName = "";
+            charaChipParameterModel9.Offset = 0;
+            charaChipParameterModel9.Saturation = 0;
+            charaChipParameterModel9.Value = 0;
+            this.paramViewBody.Model = charaChipParameterModel9;
             this.paramViewBody.Name = "paramViewBody";
             this.paramViewBody.ParameterName = "体";
             this.paramViewBody.Size = new System.Drawing.Size(518, 44);
             this.paramViewBody.TabIndex = 3;
-            // 
-            // paramViewAccessory2
-            // 
-            this.paramViewAccessory2.EditHSV = true;
-            this.paramViewAccessory2.EditYOffset = true;
-            this.paramViewAccessory2.Location = new System.Drawing.Point(10, 289);
-            charaChipParameterModel4.Hue = 0;
-            charaChipParameterModel4.MaterialName = "";
-            charaChipParameterModel4.Offset = 0;
-            charaChipParameterModel4.Saturation = 0;
-            charaChipParameterModel4.Value = 0;
-            this.paramViewAccessory2.Model = charaChipParameterModel4;
-            this.paramViewAccessory2.Name = "paramViewAccessory2";
-            this.paramViewAccessory2.ParameterName = "アクセサリ２";
-            this.paramViewAccessory2.Size = new System.Drawing.Size(518, 44);
-            this.paramViewAccessory2.TabIndex = 5;
-            // 
-            // paramViewAccessory1
-            // 
-            this.paramViewAccessory1.EditHSV = true;
-            this.paramViewAccessory1.EditYOffset = true;
-            this.paramViewAccessory1.Location = new System.Drawing.Point(10, 255);
-            charaChipParameterModel5.Hue = 0;
-            charaChipParameterModel5.MaterialName = "";
-            charaChipParameterModel5.Offset = 0;
-            charaChipParameterModel5.Saturation = 0;
-            charaChipParameterModel5.Value = 0;
-            this.paramViewAccessory1.Model = charaChipParameterModel5;
-            this.paramViewAccessory1.Name = "paramViewAccessory1";
-            this.paramViewAccessory1.ParameterName = "アクセサリ１";
-            this.paramViewAccessory1.Size = new System.Drawing.Size(518, 44);
-            this.paramViewAccessory1.TabIndex = 4;
             // 
             // panelFaceParam
             // 
@@ -299,12 +277,12 @@
             this.paramViewFace.EditHSV = true;
             this.paramViewFace.EditYOffset = false;
             this.paramViewFace.Location = new System.Drawing.Point(13, 15);
-            charaChipParameterModel12.Hue = 0;
-            charaChipParameterModel12.MaterialName = "";
-            charaChipParameterModel12.Offset = 0;
-            charaChipParameterModel12.Saturation = 0;
-            charaChipParameterModel12.Value = 0;
-            this.paramViewFace.Model = charaChipParameterModel12;
+            charaChipParameterModel10.Hue = 0;
+            charaChipParameterModel10.MaterialName = "";
+            charaChipParameterModel10.Offset = 0;
+            charaChipParameterModel10.Saturation = 0;
+            charaChipParameterModel10.Value = 0;
+            this.paramViewFace.Model = charaChipParameterModel10;
             this.paramViewFace.Name = "paramViewFace";
             this.paramViewFace.ParameterName = "顔";
             this.paramViewFace.Size = new System.Drawing.Size(515, 44);
@@ -348,22 +326,6 @@
             this.charaFaceView.Size = new System.Drawing.Size(75, 80);
             this.charaFaceView.TabIndex = 15;
             // 
-            // paramViewCostume
-            // 
-            this.paramViewCostume.EditHSV = true;
-            this.paramViewCostume.EditYOffset = true;
-            this.paramViewCostume.Location = new System.Drawing.Point(10, 218);
-            charaChipParameterModel6.Hue = 0;
-            charaChipParameterModel6.MaterialName = "";
-            charaChipParameterModel6.Offset = 0;
-            charaChipParameterModel6.Saturation = 0;
-            charaChipParameterModel6.Value = 0;
-            this.paramViewCostume.Model = charaChipParameterModel6;
-            this.paramViewCostume.Name = "paramViewCostume";
-            this.paramViewCostume.ParameterName = "衣装";
-            this.paramViewCostume.Size = new System.Drawing.Size(518, 44);
-            this.paramViewCostume.TabIndex = 13;
-            // 
             // CharaChipGeneratorForm
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 12F);
@@ -391,7 +353,6 @@
 
         private CharaChipGeneratorParamView paramViewHead;
         private CharaChipGeneratorParamView paramViewEye;
-        private CharaChipGeneratorParamView paramViewFrontHair;
         private CharaChipGeneratorParamView paramViewHairStyle;
         private CharaChipGeneratorParamView paramViewBody;
         private CharaChipGeneratorParamView paramViewAccessory1;
@@ -411,6 +372,5 @@
         private System.Windows.Forms.Label label4;
         private System.Windows.Forms.Label label3;
         private CharaFaceView charaFaceView;
-        private CharaChipGeneratorParamView paramViewCostume;
     }
 }

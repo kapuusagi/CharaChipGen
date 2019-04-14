@@ -28,24 +28,20 @@
         /// </summary>
         private void InitializeComponent()
         {
-            System.Windows.Forms.TreeNode treeNode1 = new System.Windows.Forms.TreeNode("前髪");
-            System.Windows.Forms.TreeNode treeNode2 = new System.Windows.Forms.TreeNode("髪型");
-            System.Windows.Forms.TreeNode treeNode3 = new System.Windows.Forms.TreeNode("頭");
-            System.Windows.Forms.TreeNode treeNode4 = new System.Windows.Forms.TreeNode("目");
-            System.Windows.Forms.TreeNode treeNode5 = new System.Windows.Forms.TreeNode("体");
-            System.Windows.Forms.TreeNode treeNode6 = new System.Windows.Forms.TreeNode("衣装");
-            System.Windows.Forms.TreeNode treeNode7 = new System.Windows.Forms.TreeNode("アクセサリ");
-            System.Windows.Forms.TreeNode treeNode8 = new System.Windows.Forms.TreeNode("頭部アクセサリ");
-            System.Windows.Forms.TreeNode treeNode9 = new System.Windows.Forms.TreeNode("キャラチップ素材", new System.Windows.Forms.TreeNode[] {
+            System.Windows.Forms.TreeNode treeNode1 = new System.Windows.Forms.TreeNode("髪型");
+            System.Windows.Forms.TreeNode treeNode2 = new System.Windows.Forms.TreeNode("頭");
+            System.Windows.Forms.TreeNode treeNode3 = new System.Windows.Forms.TreeNode("目");
+            System.Windows.Forms.TreeNode treeNode4 = new System.Windows.Forms.TreeNode("体");
+            System.Windows.Forms.TreeNode treeNode5 = new System.Windows.Forms.TreeNode("アクセサリ");
+            System.Windows.Forms.TreeNode treeNode6 = new System.Windows.Forms.TreeNode("頭部アクセサリ");
+            System.Windows.Forms.TreeNode treeNode7 = new System.Windows.Forms.TreeNode("キャラチップ素材", new System.Windows.Forms.TreeNode[] {
             treeNode1,
             treeNode2,
             treeNode3,
             treeNode4,
             treeNode5,
-            treeNode6,
-            treeNode7,
-            treeNode8});
-            System.Windows.Forms.TreeNode treeNode10 = new System.Windows.Forms.TreeNode("顔");
+            treeNode6});
+            System.Windows.Forms.TreeNode treeNode8 = new System.Windows.Forms.TreeNode("顔");
             this.buttonClose = new System.Windows.Forms.Button();
             this.menuStrip1 = new System.Windows.Forms.MenuStrip();
             this.fileToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
@@ -104,29 +100,25 @@
             // 
             this.treeViewMaterials.Location = new System.Drawing.Point(12, 47);
             this.treeViewMaterials.Name = "treeViewMaterials";
-            treeNode1.Name = "FrontHairStyles";
-            treeNode1.Text = "前髪";
-            treeNode2.Name = "HairStyles";
-            treeNode2.Text = "髪型";
-            treeNode3.Name = "Heads";
-            treeNode3.Text = "頭";
-            treeNode4.Name = "Eyes";
-            treeNode4.Text = "目";
-            treeNode5.Name = "Bodies";
-            treeNode5.Text = "体";
-            treeNode6.Name = "Costumes";
-            treeNode6.Text = "衣装";
-            treeNode7.Name = "Accessories";
-            treeNode7.Text = "アクセサリ";
-            treeNode8.Name = "HeadAccessories";
-            treeNode8.Text = "頭部アクセサリ";
-            treeNode9.Name = "CharaChipDirectory";
-            treeNode9.Text = "キャラチップ素材";
-            treeNode10.Name = "Faces";
-            treeNode10.Text = "顔";
+            treeNode1.Name = "HairStyles";
+            treeNode1.Text = "髪型";
+            treeNode2.Name = "Heads";
+            treeNode2.Text = "頭";
+            treeNode3.Name = "Eyes";
+            treeNode3.Text = "目";
+            treeNode4.Name = "Bodies";
+            treeNode4.Text = "体";
+            treeNode5.Name = "Accessories";
+            treeNode5.Text = "アクセサリ";
+            treeNode6.Name = "HeadAccessories";
+            treeNode6.Text = "頭部アクセサリ";
+            treeNode7.Name = "CharaChipDirectory";
+            treeNode7.Text = "キャラチップ素材";
+            treeNode8.Name = "Faces";
+            treeNode8.Text = "顔";
             this.treeViewMaterials.Nodes.AddRange(new System.Windows.Forms.TreeNode[] {
-            treeNode9,
-            treeNode10});
+            treeNode7,
+            treeNode8});
             this.treeViewMaterials.Size = new System.Drawing.Size(102, 283);
             this.treeViewMaterials.TabIndex = 3;
             this.treeViewMaterials.AfterSelect += new System.Windows.Forms.TreeViewEventHandler(this.OnTreeViewItemSelected);

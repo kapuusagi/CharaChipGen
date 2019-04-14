@@ -6,6 +6,9 @@ using System.Drawing;
 
 namespace CharaChipGen.Model
 {
+    /// <summary>
+    /// キャラクターチップまたは顔データをファイルにエクスポートするクラス。
+    /// </summary>
     public class CharaChipExporter
     {
         private CharaChipExporter()
@@ -34,7 +37,9 @@ namespace CharaChipGen.Model
             {
                 for (int charaX = 0; charaX < 4; charaX++)
                 {
+                    // キャラクターをレンダリングする。
                     ImageBuffer charaChipImage = RenderCharaChip(appData.GetCharaChipData(charaY * 4 + charaX), charaChipSize);
+                    // レンダリングした画像をエクスポートバッファにコピーする。
                     exportBuffer.WriteImage(charaChipImage, charaX * charaPlaneWidth, charaY * charaPlaneHeight);
                 }
             }
@@ -49,6 +54,12 @@ namespace CharaChipGen.Model
             image.Save(filePath);
         }
 
+        /// <summary>
+        /// 1キャラクターのキャラチップをレンダリングする。
+        /// </summary>
+        /// <param name="model">レンダリング対象のキャラチップ</param>
+        /// <param name="chipSize">キャラチップサイズ</param>
+        /// <returns>レンダリングしたImageBufferが返る。</returns>
         private static ImageBuffer RenderCharaChip(CharaChipDataModel model, Size chipSize)
         {
             CharaChipRenderModel renderModel = new CharaChipRenderModel();

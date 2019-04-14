@@ -7,38 +7,13 @@ using System.Drawing;
 namespace CharaChipGen.Model
 {
     /// <summary>
-    /// キャラチップのレンダリングデータを保持するモデル。
-    /// 
-    /// CharaChipDataModelで指定された各設定をレイヤーに変換するような役割を持つ。
-    /// 
-    /// 対応関係は次のようになっている。
-    /// 
-    ///   top  [レイヤー]                [対応パラメータ]
-    ///   ↑    0.Accessory3-front       アクセサリ3
-    ///   ｜    1.Accessory2-front       アクセサリ2
-    ///   ｜    2.Accessory1-front       アクセサリ1
-    ///   ｜    3.HeadAccessory2-front   ヘッドアクセサリ2
-    ///   ｜    4.HeadAccessory1-front   ヘッドアクセサリ1
-    ///   ｜    5.FrontHairStyle-front   前髪
-    ///   ｜    6.FrontHairStyle-back    前髪
-    ///   ｜    7.Eye-front              目
-    ///   ｜    8.Eye-back               目
-    ///   ｜    9.Head-front             頭
-    ///   ｜   10.Head-back              頭
-    ///   ｜   11.HairStyle-front        髪型
-    ///   ｜   12.Costume-front          衣装
-    ///   ｜   13.Body-front             体
-    ///   ｜   14.Body-back              頭
-    ///   ｜   15.Costume-back           衣装
-    ///   ｜   16.HairStyle-back         髪型
-    ///   ｜   17.HeadAccessory1-back    ヘッドアクセサリ1
-    ///   ｜   18.HeadAccessory2-back    ヘッドアクセサリ2
-    ///   ｜   19.Accessory1-back        アクセサリ1
-    ///   ｜   20.Accessory2-back        アクセサリ2
-    ///   ↓   21.Accessory3-back        アクセサリ3
-    ///   bottom
-    ///   
+    /// キャラチップの設定を元にレンダリングを行い、
+    /// レンダリングしたデータを保持するモデル。
     /// </summary>
+    /// <remarks>
+    /// CharaChipDataModelで指定された各設定をレイヤーに変換するような役割を持つ。
+    ///   
+    /// </remarks>
     class CharaChipRenderModel
     {
         private CharaChipRenderLayerModel[] layers; // レイヤー
@@ -47,36 +22,57 @@ namespace CharaChipGen.Model
         public delegate void ImageChanged(Object sender); // ハンドラ
         public event ImageChanged OnImageChanged; // イメージが変更されたときのイベント
 
+        private enum LayerNames {
+            EyeFront,
+            EyeBack,
+            HeadFront,
+            HeadBack,
+            BodyFront,
+            BodyBack,
+            HairStyleFront,
+            HairStyleBack,
+            HeadAccessory1Front,
+            HeadAccessory1Back,
+            HeadAccessory2Front,
+            HeadAccessory2Back,
+            Accessory1Front,
+            Accessory1Back,
+            Accessory2Front,
+            Accessory2Back,
+            Accessory3Front,
+            Accessory3Back
+        };
+        private LayerNames[] layerOrder = new LayerNames[] {
+            LayerNames.Accessory3Front,
+            LayerNames.HeadAccessory2Front,
+            LayerNames.HeadAccessory1Front,
+            LayerNames.HairStyleFront,
+            LayerNames.Accessory2Front,
+            LayerNames.Accessory1Front,
+            LayerNames.EyeFront,
+            LayerNames.EyeBack,
+            LayerNames.HeadFront,
+            LayerNames.HeadBack,
+            LayerNames.BodyFront,
+            LayerNames.BodyBack,
+            LayerNames.HairStyleBack,
+            LayerNames.Accessory1Back,
+            LayerNames.Accessory2Back,
+            LayerNames.HeadAccessory1Back,
+            LayerNames.HeadAccessory2Back,
+            LayerNames.Accessory3Back
+        };
+
+        
         /// <summary>
         /// レンダリング用データモデル
         /// </summary>
         public CharaChipRenderModel()
         {
-            layers = new CharaChipRenderLayerModel[]
-            {
-                new CharaChipRenderLayerModel("Accessory3-front"), // 0
-                new CharaChipRenderLayerModel("Accessory2-front"), // 1
-                new CharaChipRenderLayerModel("Accessory1-front"), // 2
-                new CharaChipRenderLayerModel("HeadAccessory2-front"), // 3
-                new CharaChipRenderLayerModel("HeadAccessory1-front"), // 4
-                new CharaChipRenderLayerModel("FrontHairStyle-front"), // 5
-                new CharaChipRenderLayerModel("FrontHairStyle-back"), // 6
-                new CharaChipRenderLayerModel("Eye-front"), // 7
-                new CharaChipRenderLayerModel("Eye-back"), // 8
-                new CharaChipRenderLayerModel("Head-front"), // 9
-                new CharaChipRenderLayerModel("Head-back"), // 10
-                new CharaChipRenderLayerModel("HairStyle-front"), // 11
-                new CharaChipRenderLayerModel("Costume-front"), // 12
-                new CharaChipRenderLayerModel("Body-front"), // 13
-                new CharaChipRenderLayerModel("Body-back"), // 14
-                new CharaChipRenderLayerModel("Costume-back"), // 15
-                new CharaChipRenderLayerModel("HairStyle-back"), // 16
-                new CharaChipRenderLayerModel("HeadAccessory1-back"), // 17
-                new CharaChipRenderLayerModel("HeadAccessory2-back"), // 18
-                new CharaChipRenderLayerModel("Accessory1-front"), // 19
-                new CharaChipRenderLayerModel("Accessory2-front"), // 20
-                new CharaChipRenderLayerModel("Accessory3-front"), // 21
-            };
+            layers = new CharaChipRenderLayerModel[layerOrder.Length];
+            for (int i = 0; i < layerOrder.Length; i++) {
+                layers[i] = new CharaChipRenderLayerModel(layerOrder[i].ToString());
+            }
             dataModel = new CharaChipDataModel();
             paramChangeHandler = new CharaChipDataModel.ParamChangeHandler((object sender, string name) =>
             {
@@ -194,17 +190,11 @@ namespace CharaChipGen.Model
                 case CharaChipDataModel.ParamNameEye:
                     ApplyEye();
                     break;
-                case CharaChipDataModel.ParamNameFrontHair:
-                    ApplyFrontHairStyle();
-                    break;
                 case CharaChipDataModel.ParamNameHair:
                     ApplyHairStyle();
                     break;
                 case CharaChipDataModel.ParamNameBody:
                     ApplyBody();
-                    break;
-                case CharaChipDataModel.ParamNameCostume:
-                    ApplyCostume();
                     break;
                 case CharaChipDataModel.ParamNameAccessory1:
                     ApplyAccessory1();
@@ -232,10 +222,8 @@ namespace CharaChipGen.Model
         {
             ApplyHead();
             ApplyEye();
-            ApplyFrontHairStyle();
             ApplyHairStyle();
             ApplyBody();
-            ApplyCostume();
             ApplyAccessory1();
             ApplyAccessory2();
             ApplyAccessory3();
@@ -248,15 +236,14 @@ namespace CharaChipGen.Model
         private void ApplyHead()
         {
             Material m = AppData.GetInstance().GetHead(dataModel.Head.MaterialName);
-            SetLayer(layers[9], (m != null) ? m.GetPrimaryLayer() : null, dataModel.Head);
-            SetLayer(layers[10], (m != null) ? m.GetSecondaryLayer() : null, dataModel.Head);
+            SetLayer(LayerNames.HeadFront, m?.GetPrimaryLayer(), dataModel.Head);
+            SetLayer(LayerNames.HeadBack, m?.GetSecondaryLayer(), dataModel.Head);
             // 頭設定はちょっと複雑。
             // 体のバックレイヤーに輝度色差調整は頭のパラメータを参照する。
-            CharaChipRenderLayerModel layer = layers[14];
+            CharaChipRenderLayerModel layer = GetLayer(LayerNames.BodyBack);
             layer.Hue = dataModel.Head.Hue;
             layer.Saturation = dataModel.Head.Saturation;
             layer.Value = dataModel.Head.Value;
-
             System.Diagnostics.Debug.WriteLine(String.Format("Head = {0}", (m != null) ? m.Name : ""));
         }
         /// <summary>
@@ -265,29 +252,21 @@ namespace CharaChipGen.Model
         private void ApplyEye()
         {
             Material m = AppData.GetInstance().GetEye(dataModel.Eye.MaterialName);
-            SetLayer(layers[7], (m != null) ? m.GetPrimaryLayer() : null, dataModel.Eye);
-            SetLayer(layers[8], (m != null) ? m.GetSecondaryLayer() : null, dataModel.Eye);
+            SetLayer(LayerNames.EyeFront, m?.GetPrimaryLayer(), dataModel.Eye);
+            SetLayer(LayerNames.EyeBack, m?.GetSecondaryLayer(), dataModel.Eye);
             System.Diagnostics.Debug.WriteLine(String.Format("Eye = {0}", (m != null) ? m.Name : ""));
         }
-        /// <summary>
-        /// 前髪設定を適用する。
-        /// </summary>
-        private void ApplyFrontHairStyle()
-        {
-            Material m = AppData.GetInstance().GetHairStyle(dataModel.Hair.MaterialName);
-            SetLayer(layers[5], (m != null) ? m.GetPrimaryLayer() : null, dataModel.Hair);
-            SetLayer(layers[6], (m != null) ? m.GetSecondaryLayer() : null, dataModel.Hair);
-            System.Diagnostics.Debug.WriteLine(String.Format("FrontHairStyle = {0}", (m != null) ? m.Name : ""));
-        }
+
         /// <summary>
         /// 髪型設定を適用する。
         /// </summary>
         private void ApplyHairStyle()
         {
             Material m = AppData.GetInstance().GetHairStyle(dataModel.Hair.MaterialName);
-            SetLayer(layers[11], (m != null) ? m.GetPrimaryLayer() : null, dataModel.Hair);
-            SetLayer(layers[16], (m != null) ? m.GetSecondaryLayer() : null, dataModel.Hair);
-            System.Diagnostics.Debug.WriteLine(String.Format("HairStyle = {0}", (m != null) ? m.Name : ""));
+            SetLayer(LayerNames.HairStyleFront, m?.GetPrimaryLayer(), dataModel.Hair);
+            SetLayer(LayerNames.HairStyleBack, m?.GetSecondaryLayer(), dataModel.Hair);
+            System.Diagnostics.Debug.WriteLine(
+                String.Format("HairStyle = {0}", (m != null) ? m.Name : ""));
         }
         /// <summary>
         /// 体設定を適用する。
@@ -295,37 +274,28 @@ namespace CharaChipGen.Model
         private void ApplyBody()
         {
             Material m = AppData.GetInstance().GetBody(dataModel.Body.MaterialName);
-            SetLayer(layers[13], (m != null) ? m.GetPrimaryLayer() : null, dataModel.Body);
+            SetLayer(LayerNames.BodyFront, m?.GetPrimaryLayer(), dataModel.Body);
 
             // 体設定はちょっと複雑。
             // オフセットはBodyを採用し、輝度色差調整は頭のパラメータを参照する。
-            CharaChipRenderLayerModel layer = layers[14];
-            layer.Image = (m != null) ? m.GetSecondaryLayer() : null;
+            CharaChipRenderLayerModel layer = GetLayer(LayerNames.BodyBack);
+            layer.Image = m?.GetSecondaryLayer();
             layer.OffsetX = 0;
             layer.OffsetY = dataModel.Body.Offset; // オフセットはボディを使用する。
             System.Diagnostics.Debug.WriteLine(String.Format("Body = {0}", (m != null) ? m.Name : ""));
         }
 
-        private void SetBodyBackLayer(Material m)
-        {
-        }
 
-        private void ApplyCostume()
-        {
-            Material m = AppData.GetInstance().GetCostume(dataModel.Costume.MaterialName);
-            SetLayer(layers[12], (m != null) ? m.GetPrimaryLayer() : null, dataModel.Costume);
-            SetLayer(layers[15], (m != null) ? m.GetSecondaryLayer() : null, dataModel.Costume);
-            System.Diagnostics.Debug.WriteLine(String.Format("Costume = {0}", (m != null) ? m.Name : ""));
-        }
         /// <summary>
         /// アクセサリ1設定を適用する。
         /// </summary>
         private void ApplyAccessory1()
         {
             Material m = AppData.GetInstance().GetAccessory(dataModel.Accessory1.MaterialName);
-            SetLayer(layers[2], (m != null) ? m.GetPrimaryLayer() : null, dataModel.Accessory1);
-            SetLayer(layers[19], (m != null) ? m.GetSecondaryLayer() : null, dataModel.Accessory1);
-            System.Diagnostics.Debug.WriteLine(String.Format("Accessory1 = {0}", (m != null) ? m.Name : ""));
+            SetLayer(LayerNames.Accessory1Front, m?.GetPrimaryLayer(), dataModel.Accessory1);
+            SetLayer(LayerNames.Accessory1Back, m?.GetSecondaryLayer(), dataModel.Accessory1);
+            System.Diagnostics.Debug.WriteLine(
+                String.Format("Accessory1 = {0}", (m != null) ? m.Name : ""));
         }
         /// <summary>
         /// アクセサリ2設定を適用する。
@@ -333,9 +303,10 @@ namespace CharaChipGen.Model
         private void ApplyAccessory2()
         {
             Material m = AppData.GetInstance().GetAccessory(dataModel.Accessory2.MaterialName);
-            SetLayer(layers[1], (m != null) ? m.GetPrimaryLayer() : null, dataModel.Accessory2);
-            SetLayer(layers[20], (m != null) ? m.GetSecondaryLayer() : null, dataModel.Accessory2);
-            System.Diagnostics.Debug.WriteLine(String.Format("Accessory2 = {0}", (m != null) ? m.Name : ""));
+            SetLayer(LayerNames.Accessory2Front, m?.GetPrimaryLayer(), dataModel.Accessory2);
+            SetLayer(LayerNames.Accessory2Back, m?.GetSecondaryLayer(), dataModel.Accessory2);
+            System.Diagnostics.Debug.WriteLine(
+                String.Format("Accessory2 = {0}", (m != null) ? m.Name : ""));
         }
         /// <summary>
         /// アクセサリ3設定を適用する。
@@ -343,9 +314,10 @@ namespace CharaChipGen.Model
         private void ApplyAccessory3()
         {
             Material m = AppData.GetInstance().GetAccessory(dataModel.Accessory3.MaterialName);
-            SetLayer(layers[0], (m != null) ? m.GetPrimaryLayer() : null, dataModel.Accessory3);
-            SetLayer(layers[21], (m != null) ? m.GetSecondaryLayer() : null, dataModel.Accessory3);
-            System.Diagnostics.Debug.WriteLine(String.Format("Accessory3 = {0}", (m != null) ? m.Name : ""));
+            SetLayer(LayerNames.Accessory3Front, m?.GetPrimaryLayer(), dataModel.Accessory3);
+            SetLayer(LayerNames.Accessory3Back, m?.GetSecondaryLayer(), dataModel.Accessory3);
+            System.Diagnostics.Debug.WriteLine(
+                String.Format("Accessory3 = {0}", (m != null) ? m.Name : ""));
         }
         /// <summary>
         /// 頭部アクセサリ1設定を適用する。
@@ -353,9 +325,10 @@ namespace CharaChipGen.Model
         private void ApplyHeadAccessory1()
         {
             Material m = AppData.GetInstance().GetHeadAccessory(dataModel.HeadAccessory1.MaterialName);
-            SetLayer(layers[4], (m != null) ? m.GetPrimaryLayer() : null, dataModel.HeadAccessory1);
-            SetLayer(layers[17], (m != null) ? m.GetPrimaryLayer() : null, dataModel.HeadAccessory1);
-            System.Diagnostics.Debug.WriteLine(String.Format("HeadAccessory1 = {0}", (m != null) ? m.Name : ""));
+            SetLayer(LayerNames.HeadAccessory1Front, m?.GetPrimaryLayer(), dataModel.HeadAccessory1);
+            SetLayer(LayerNames.HeadAccessory1Back, m?.GetPrimaryLayer(), dataModel.HeadAccessory1);
+            System.Diagnostics.Debug.WriteLine(
+                String.Format("HeadAccessory1 = {0}", (m != null) ? m.Name : ""));
         }
         /// <summary>
         /// 頭部アクセサリ2設定を適用する。
@@ -363,9 +336,10 @@ namespace CharaChipGen.Model
         private void ApplyHeadAccessory2()
         {
             Material m = AppData.GetInstance().GetHeadAccessory(dataModel.HeadAccessory2.MaterialName);
-            SetLayer(layers[3], (m != null) ? m.GetPrimaryLayer() : null, dataModel.HeadAccessory2);
-            SetLayer(layers[18], (m != null) ? m.GetPrimaryLayer() : null, dataModel.HeadAccessory2);
-            System.Diagnostics.Debug.WriteLine(String.Format("HeadAccessory2 = {0}", (m != null) ? m.Name : ""));
+            SetLayer(LayerNames.HeadAccessory2Front, m?.GetPrimaryLayer(), dataModel.HeadAccessory2);
+            SetLayer(LayerNames.HeadAccessory2Back, m?.GetPrimaryLayer(), dataModel.HeadAccessory2);
+            System.Diagnostics.Debug.WriteLine(
+                String.Format("HeadAccessory2 = {0}", (m != null) ? m.Name : ""));
         }
 
         /// <summary>
@@ -374,14 +348,33 @@ namespace CharaChipGen.Model
         /// <param name="layer">設定対象のレイヤー</param>
         /// <param name="layerImage">レイヤーに設定する画像</param>
         /// <param name="model">設定値を読み出すモデル</param>
-        private static void SetLayer(CharaChipRenderLayerModel layer, Image layerImage, CharaChipParameterModel model)
+        private void SetLayer(LayerNames layerName, Image layerImage, CharaChipParameterModel model)
         {
+            CharaChipRenderLayerModel layer = GetLayer(layerName);
+            if (layer == null) {
+                throw new NullReferenceException(layerName.ToString() + " not exists.");
+            }
             layer.Image = layerImage;
             layer.Hue = model.Hue;
             layer.Saturation = model.Saturation;
             layer.Value = model.Value;
             layer.OffsetX = 0;
             layer.OffsetY = model.Offset;
+        }
+
+        /// <summary>
+        /// nameに一致するレイヤーを取得する。
+        /// </summary>
+        /// <param name="name">レイヤー名</param>
+        /// <returns>レイヤーモデルが返る。見つからない場合にはnullが返る。</returns>
+        private CharaChipRenderLayerModel GetLayer(LayerNames name)
+        {
+            foreach (CharaChipRenderLayerModel layer in layers) {
+                if (layer.LayerName.Equals(name.ToString())) {
+                    return layer;
+                }
+            }
+            return null;
         }
     }
 }
