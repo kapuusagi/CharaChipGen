@@ -10,20 +10,38 @@ using CharaChipGen.Model;
 
 namespace CharaChipGen.MainForm
 {
+
     /// <summary>
     /// メインフォーム
     /// </summary>
     public partial class MainForm : Form
     {
-        private string editFilePath; // 編集中のデータのファイルパス
+        /// <summary>
+        /// 前回作業保存ファイル名。
+        /// </summary>
+        /// <remarks>
+        /// アプリケーション終了時に保存され、起動時に読み込むために使用される。
+        /// 前回作業の続きからやりたいよね。
+        /// </remarks>
+        private const string PreviousSavedFileName = "CharaChipGen.tmp.xml";
+        /// <summary>
+        /// 編集中のデータのファイルパス
+        /// </summary>
+        /// <remarks>
+        /// 「保存」操作が行われたとき、保存ファイルパスとして使用される。
+        /// </remarks>
+        private string editFilePath; 
 
+        /// <summary>
+        /// 新しいインスタンスを構築する。
+        /// </summary>
         public MainForm()
         {
             editFilePath = "";
             InitializeComponent();
         }
 
-        private void ExitToolStripMenuItem_Click(object sender, EventArgs e)
+        private void ExitToolStripMenuItem_Click(object sender, EventArgs evt)
         {
             Close();
         }
@@ -178,6 +196,7 @@ namespace CharaChipGen.MainForm
             appData.ExportSetting.CharaChipSize = form.CharaChipSize;
             appData.ExportSetting.FaceSize = form.FaceSize;
             appData.ExportSetting.IsRenderTwice = form.IsExpandTwice;
+            appData.ExportSetting.Save();
         }
 
         private void OnNewFile_click(object sender, EventArgs e)
@@ -201,20 +220,7 @@ namespace CharaChipGen.MainForm
             }
             try
             {
-                SettingFileController.Load(openFileDialog.FileName);
-                editFilePath = openFileDialog.FileName;
-
-                // Note: 本当はCharaChipDataModelをViewに設定して
-                //       ここに余計なコードを書かない方が美しい。
-                AppData appData = AppData.GetInstance();
-                UpdateEntryView(characterEntryControl1, appData.GetCharaChipData(0));
-                UpdateEntryView(characterEntryControl2, appData.GetCharaChipData(1));
-                UpdateEntryView(characterEntryControl3, appData.GetCharaChipData(2));
-                UpdateEntryView(characterEntryControl4, appData.GetCharaChipData(3));
-                UpdateEntryView(characterEntryControl5, appData.GetCharaChipData(4));
-                UpdateEntryView(characterEntryControl6, appData.GetCharaChipData(5));
-                UpdateEntryView(characterEntryControl7, appData.GetCharaChipData(6));
-                UpdateEntryView(characterEntryControl8, appData.GetCharaChipData(7));
+                LoadDataProc(openFileDialog.FileName);
             }
             catch (Exception e)
             {
@@ -222,6 +228,42 @@ namespace CharaChipGen.MainForm
             }
         }
 
+        /// <summary>
+        /// データを指定されたファイルからロードする。
+        /// </summary>
+        /// <param name="path">パス</param>
+        private void LoadDataProc(string path)
+        {
+            SettingFileController.Load(path);
+            editFilePath = openFileDialog.FileName;
+
+            // Note: 本当はCharaChipDataModelをViewに設定して
+            //       ここに余計なコードを書かない方が美しい。
+            AppData appData = AppData.GetInstance();
+            UpdateEntryView(characterEntryControl1, appData.GetCharaChipData(0));
+            UpdateEntryView(characterEntryControl2, appData.GetCharaChipData(1));
+            UpdateEntryView(characterEntryControl3, appData.GetCharaChipData(2));
+            UpdateEntryView(characterEntryControl4, appData.GetCharaChipData(3));
+            UpdateEntryView(characterEntryControl5, appData.GetCharaChipData(4));
+            UpdateEntryView(characterEntryControl6, appData.GetCharaChipData(5));
+            UpdateEntryView(characterEntryControl7, appData.GetCharaChipData(6));
+            UpdateEntryView(characterEntryControl8, appData.GetCharaChipData(7));
+        }
+
+        /// <summary>
+        /// ファイルに保存する。
+        /// </summary>
+        /// <param name="path">パス</param>
+        private void SaveDataProc(string path)
+        {
+            SettingFileController.Save(path);
+        }
+
+        /// <summary>
+        /// 保存が選択されたときに通知を受け取る。
+        /// </summary>
+        /// <param name="sender">送信元オブジェクト</param>
+        /// <param name="evt">イベント</param>
         private void OnSave_click(object sender, EventArgs evt)
         {
             if (editFilePath == "")
@@ -233,7 +275,7 @@ namespace CharaChipGen.MainForm
             {
                 try
                 {
-                    SettingFileController.Save(editFilePath);
+                    SaveDataProc(editFilePath);
                 }
                 catch(Exception e)
                 {
@@ -243,6 +285,11 @@ namespace CharaChipGen.MainForm
             }
         }
 
+        /// <summary>
+        /// 名前を付けて保存が選択されたときに通知を受け取る。
+        /// </summary>
+        /// <param name="sender">送信元オブジェクト</param>
+        /// <param name="evt">イベントオブジェクト</param>
         private void OnSaveAs_click(object sender, EventArgs evt)
         {
             DialogResult result = saveFileDialog.ShowDialog(this);
@@ -260,6 +307,52 @@ namespace CharaChipGen.MainForm
             catch (Exception e)
             {
                 MessageBox.Show(this, e.Message, "エラー");
+            }
+        }
+
+        /// <summary>
+        /// 画面が表示されたときに通知を受け取る
+        /// </summary>
+        /// <param name="sender">送信元オブジェクト</param>
+        /// <param name="evt">イベントオブジェクト</param>
+        private void OnForm_shown(object sender, EventArgs evt)
+        {
+            AppData.GetInstance().ExportSetting.Load();
+
+            string appDir = System.IO.Path.GetDirectoryName(Application.ExecutablePath);
+            string workTempPath = System.IO.Path.Combine(appDir, PreviousSavedFileName);
+            if (System.IO.File.Exists(workTempPath))
+            {
+                try
+                {
+                    LoadDataProc(workTempPath);
+                }
+                catch (Exception e)
+                {
+                    System.Diagnostics.Debug.WriteLine(e);
+                }
+            }
+
+        }
+
+        /// <summary>
+        /// フォームがクローズされようとしている時に通知を受け取る。
+        /// </summary>
+        /// <param name="sender">送信元オブジェクト</param>
+        /// <param name="evt">イベント。</param>
+        private void MainForm_FormClosing(object sender, FormClosingEventArgs evt)
+        {
+
+            // 次回起動時、作業を継続できるように現在の設定を保存しておく。
+            string appDir = System.IO.Path.GetDirectoryName(Application.ExecutablePath);
+            string workTempPath = System.IO.Path.Combine(appDir, PreviousSavedFileName);
+            try
+            {
+                SaveDataProc(workTempPath);
+            }
+            catch (Exception e)
+            {
+                System.Diagnostics.Debug.WriteLine(e);
             }
         }
     }
