@@ -26,6 +26,7 @@ namespace CharaChipGen.Model
         private const string NodeNameFaceSize = "face-size";
         private const string AttrNameNumber = "number";
         private const string NodeNameRoot = "charachip-gen";
+        private const string AttrNameOpacity = "opacity";
 
 
         /// <summary>
@@ -97,6 +98,7 @@ namespace CharaChipGen.Model
             paramElem.SetAttribute(AttrNameHue, param.Hue.ToString());
             paramElem.SetAttribute(AttrNameSaturation, param.Saturation.ToString());
             paramElem.SetAttribute(AttrNameBrightness, param.Value.ToString());
+            paramElem.SetAttribute(AttrNameOpacity, param.Opacity.ToString());
 
             parent.AppendChild(paramElem);
         }
@@ -284,7 +286,9 @@ namespace CharaChipGen.Model
                         case AttrNameBrightness:
                             param.Value = Int32.Parse(attr.Value);
                             break;
-
+                        case AttrNameOpacity:
+                            param.Opacity = Int32.Parse(attr.Value);
+                            break;
                     }
                 }
                 catch (Exception )

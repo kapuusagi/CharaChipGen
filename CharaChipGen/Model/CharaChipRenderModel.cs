@@ -360,6 +360,7 @@ namespace CharaChipGen.Model
             layer.Value = model.Value;
             layer.OffsetX = 0;
             layer.OffsetY = model.Offset;
+            layer.Opacity = model.Opacity;
         }
 
         /// <summary>

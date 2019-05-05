@@ -135,5 +135,36 @@ namespace CharaChipGen.Imaging
             }
             return output;
         }
+
+        /// <summary>
+        /// 画像に不透明度を適用し、新しい画像として取得する。
+        /// </summary>
+        /// <param name="image">画像</param>
+        /// <param name="opacity">不透明度(0.0～1.0)</param>
+        /// <returns>画像が返る</returns>
+        public static ImageBuffer ApplyOpacity(ImageBuffer image, float opacity)
+        {
+            ImageBuffer output = ImageBuffer.Create(image.Width, image.Height);
+            for (int y = 0; y < output.Height; y++)
+            {
+                for (int x = 0; x < output.Width; x++)
+                {
+                    Color c = image.GetPixel(x, y);
+
+                    int newAlpha = (int)(c.A * opacity);
+                    if (newAlpha < 0)
+                    {
+                        newAlpha = 0;
+                    }
+                    else if (newAlpha > 255)
+                    {
+                        newAlpha = 255;
+                    }
+                    output.SetPixel(x, y, Color.FromArgb(newAlpha, c.R, c.G, c.B));
+                }
+            }
+            return output;
+
+        }
     }
 }

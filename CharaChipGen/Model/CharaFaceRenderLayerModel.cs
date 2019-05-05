@@ -18,6 +18,7 @@ namespace CharaChipGen.Model
         private int hue; // 色相
         private int saturation; // 彩度
         private int value; // 輝度
+        private int opacity; // 不透明度
         private ImageBuffer processedImage; // 処理済みデータ
 
         /// <summary>
@@ -31,6 +32,7 @@ namespace CharaChipGen.Model
             this.hue = 0;
             this.saturation = 0;
             this.hue = 0;
+            this.opacity = 100;
         }
         /// <summary>
         /// レイヤー名
@@ -109,6 +111,21 @@ namespace CharaChipGen.Model
         }
 
         /// <summary>
+        /// 不透明度調整値 (0-100)
+        /// </summary>
+        public int Opacity {
+            get { return opacity; }
+            set {
+                if (this.opacity == value)
+                {
+                    return; // 変更なし。
+                }
+                this.opacity = value;
+                processedImage = null;
+            }
+        }
+
+        /// <summary>
         /// HSV加算演算済みのデータを取得する。
         /// </summary>
         /// <returns></returns>
@@ -120,6 +137,10 @@ namespace CharaChipGen.Model
                 {
                     processedImage = ImageProcessor.ProcessHSVFilter(
                         ImageBuffer.CreateFrom(image), hue, saturation, value);
+                    if (opacity < 100)
+                    {
+                        processedImage = ImageProcessor.ApplyOpacity(processedImage, opacity / 100.0f);
+                    }
                 }
             }
 

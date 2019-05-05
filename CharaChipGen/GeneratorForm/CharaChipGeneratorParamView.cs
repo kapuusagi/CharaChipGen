@@ -108,6 +108,7 @@ namespace CharaChipGen.GeneratorForm
             trackBarHue.Value = model.Hue;
             numericUpDownSaturation.Value = model.Saturation;
             numericUpDownValue.Value = model.Value;
+            numericUpDownOpacity.Value = model.Opacity;
         }
 
         /// <summary>
@@ -178,6 +179,11 @@ namespace CharaChipGen.GeneratorForm
             numericUpDown.Value = 0;
             numericUpDownSaturation.Value = 0;
             numericUpDownValue.Value = 0;
+        }
+
+        private void Opacity_changed(object sender, EventArgs e)
+        {
+            model.Opacity = (int)(numericUpDownOpacity.Value);
         }
     }
 }

@@ -74,6 +74,7 @@ namespace CharaChipGen.Model
             int srcOriginY = srcHeight * yPos;
             int xOffset = (buffer.Width - srcWidth) / 2 - layer.OffsetX;
             int yOffset = (buffer.Height - srcHeight) / 2 - layer.OffsetY;
+            int opacity = layer.Opacity;
 
             for (int y = 0; y < srcHeight; y++)
             {
@@ -92,6 +93,11 @@ namespace CharaChipGen.Model
                         continue;
                     }
                     srcColor = ImageProcessor.ProcessHSVFilter(srcColor, layer.Hue, layer.Saturation, layer.Value);
+                    if (opacity < 100)
+                    {
+                        int newAlpha = (int)(srcColor.A * opacity / 100.0f);
+                        srcColor = Color.FromArgb(newAlpha, srcColor.R, srcColor.G, srcColor.B);
+                    }
 
                     Color dstColor;
                     if (srcColor.A == 0xff)
