@@ -77,10 +77,11 @@ namespace CharaChipGen.Imaging
             float a1 = (c1.A * c2.A) / (float)(255 * 255);
             float a2 = (c1.A * (255 - c2.A)) / (float)(255 * 255);
             float a3 = ((255 - c1.A) * c2.A) / (float)(255 * 255);
-            int a = (int)((a1 + a2 + a3) * 255);
-            int r = (int)(a1 * (c1.R + c2.R) / 2 + a2 * c1.R + a3 * c2.R) / a;
-            int g = (int)(a1 * (c1.G + c2.G) / 2 + a2 * c1.G + a3 * c2.G) / a;
-            int b = (int)(a1 * (c1.B + c2.B) / 2 + a2 * c1.B + a3 * c2.B) / a;
+            float alpha = a1 + a2 + a3;
+            int r = (int)((a1 * (c1.R + c2.R) / 2 + a2 * c1.R + a3 * c2.R) / alpha);
+            int g = (int)((a1 * (c1.G + c2.G) / 2 + a2 * c1.G + a3 * c2.G) / alpha);
+            int b = (int)((a1 * (c1.B + c2.B) / 2 + a2 * c1.B + a3 * c2.B) / alpha);
+            int a = (int)(alpha * 255);
             return Color.FromArgb(a, r, g, b);
         }
 
