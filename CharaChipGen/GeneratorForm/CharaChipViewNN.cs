@@ -116,8 +116,10 @@ namespace CharaChipGen.GeneratorForm
                 CharaChipGenerator.Draw(renderModel, renderBuffer, positionX, positionY);
                 renderedImage = renderBuffer.GetImage();
             }
+
             // グラフィクスに描画する。
             g.DrawImageUnscaled(renderedImage, 0, 0);
+
 
             // 枠を描画
             Pen pen = new Pen(Color.Black);
