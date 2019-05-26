@@ -146,8 +146,6 @@ namespace CharaChipGen.GeneratorForm
                     g.DrawImageUnscaled(renderedImage, xoffs, yoffs);
                 }
             }
-
-            
             // 枠を描画
             Pen pen = new Pen(Color.Black);
             g.DrawRectangle(pen, 0, 0, ClientSize.Width - 1, ClientSize.Height - 1);

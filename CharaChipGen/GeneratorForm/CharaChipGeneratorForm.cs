@@ -25,7 +25,6 @@ namespace CharaChipGen.GeneratorForm
             dataModel = new CharaChipDataModel();
             InitializeComponent();
             InitializeComboBoxItems();
-            AdjustComponentPosition();
 
             charaChipView.SetModel(dataModel);
 
@@ -66,52 +65,6 @@ namespace CharaChipGen.GeneratorForm
             paramViewFace.SetMaterialList(data.Faces);
         }
 
-        private void OnForm_resized(object sender, EventArgs e)
-        {
-            AdjustComponentPosition();
-        }
-        private void AdjustComponentPosition()
-        { 
-            const int insetH = 8;
-            const int insetV = 8;
-            const int inset = 8;
-
-            // ボタン位置
-            int btnOKX = ClientSize.Width - (insetH + buttonCancel.Width + inset + buttonOK.Width);
-            int btnOKY = ClientSize.Height - (insetV + buttonOK.Height);
-            buttonOK.SetBounds(btnOKX, btnOKY, buttonOK.Width, buttonOK.Height);
-
-            int btnCancelX = btnOKX + inset + buttonOK.Width;
-            int btnCancelY = btnOKY;
-            buttonCancel.SetBounds(btnCancelX, btnCancelY, buttonCancel.Width, buttonCancel.Height);
-
-            // 顔パラメータエディタ
-            int faceParamX = ClientSize.Width - (insetH + panelCharaChipParam.Width);
-            int faceParamHeight = 100;
-            int faceParamY = btnCancelY - (inset + faceParamHeight);
-            int faceParamWidth = panelCharaChipParam.Width;
-            panelFaceParam.SetBounds(faceParamX, faceParamY, faceParamWidth, faceParamHeight);
-
-            // 顔パラメータプレビューウィンドウ
-            int faceViewX = faceParamX - (inset + 100);
-            int faceViewY = faceParamY;
-            int faceViewWidth = 100;
-            int faceViewHeight = 100;
-            charaFaceView.SetBounds(faceViewX, faceViewY, faceViewWidth, faceViewHeight);
-
-            // キャラチップパラメータエディタ
-            int charaChipParamX = ClientSize.Width - (insetH + panelCharaChipParam.Width);
-            int charaChipParamY = insetV;
-            panelCharaChipParam.SetBounds(charaChipParamX, charaChipParamY,
-                panelCharaChipParam.Width, panelCharaChipParam.Height);
-
-            // キャラチッププレビュー
-            int charaChipViewX = insetH;
-            int charaChipViewY = insetV;
-            int charaChipViewWidth = charaChipParamX - inset - charaChipViewX;
-            int charaChipViewHeight = faceViewY - charaChipViewY;
-            charaChipView.SetBounds(charaChipViewX, charaChipViewY, charaChipViewWidth, charaChipViewHeight);
-        }
 
         private void OnTimerEvent(object sender, EventArgs e)
         {
