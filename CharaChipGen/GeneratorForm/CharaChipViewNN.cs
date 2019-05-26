@@ -17,7 +17,6 @@ namespace CharaChipGen.GeneratorForm
     {
         private int positionX; // X位置
         private int positionY; // Y位置
-        private ImageBuffer renderBuffer; // レンダリング用バッファ
         private Image renderedImage; // レンダリング完了済みデータ
         private CharaChipRenderModel renderModel; // レンダリングモデル
         private CharaChipRenderModel.ImageChanged handler; // ハンドラ
@@ -26,7 +25,6 @@ namespace CharaChipGen.GeneratorForm
         {
             positionX = 0;
             positionY = 0;
-            renderBuffer = null;
             renderedImage = null;
             renderModel = new CharaChipRenderModel();
             handler = new CharaChipRenderModel.ImageChanged((Object sender) =>
@@ -100,25 +98,56 @@ namespace CharaChipGen.GeneratorForm
         {
             Graphics g = args.Graphics;
 
+            // 表示領域と同じグラフィックバッファを作成し、
+            // それに対してレンダリングを行う実装になっている。
+            // すると等倍にできるでしょ？
+
             // 背景色でクリア
             Brush brush = new SolidBrush(BackColor);
             g.FillRectangle(brush, 0, 0, ClientSize.Width - 1, ClientSize.Height - 1);
             
             // イメージをレンダリング
-            if ((renderBuffer == null) || (renderedImage == null)) 
+            if (renderedImage == null) 
             {
-                if (renderBuffer == null)
+                Size prefSize = renderModel.PreferredSize;
+                if ((prefSize.Width > 0) && (prefSize.Height > 0))
                 {
-                    renderBuffer = ImageBuffer.Create(ClientSize.Width, ClientSize.Height);
+
+                    Size imageSize = new Size(prefSize.Width / 3, prefSize.Height / 4);
+
+                    ImageBuffer renderBuffer = ImageBuffer.Create(imageSize.Width, imageSize.Height);
+
+                    // レンダリングする。
+                    CharaChipGenerator.Draw(renderModel, renderBuffer, positionX, positionY);
+                    renderedImage = renderBuffer.GetImage();
                 }
-
-                // レンダリングする。
-                CharaChipGenerator.Draw(renderModel, renderBuffer, positionX, positionY);
-                renderedImage = renderBuffer.GetImage();
             }
-            // グラフィクスに描画する。
-            g.DrawImageUnscaled(renderedImage, 0, 0);
 
+            if (renderedImage != null)
+            {
+                // グラフィクスに描画する。
+                if ((ClientSize.Width >= (renderedImage.Width * 2))
+                    && (ClientSize.Height >= (renderedImage.Height * 2)))
+                {
+                    // 2倍以上でいけるんじゃない？
+                    Rectangle drawRect = new Rectangle();
+                    drawRect.Width = renderedImage.Width * 2;
+                    drawRect.Height = renderedImage.Height * 2;
+                    drawRect.X = (ClientSize.Width - drawRect.Width) / 2;
+                    drawRect.Y = (ClientSize.Height - drawRect.Height) / 2;
+                    g.DrawImage(renderedImage, drawRect);
+                }
+                else
+                {
+                    // 描画対象範囲が等倍以上でしか表示できないサイズ
+                    int xoffs = (ClientSize.Width - renderedImage.Width) / 2;
+                    int yoffs = (ClientSize.Height - renderedImage.Height) / 2;
+
+                    g.DrawImageUnscaled(renderedImage, xoffs, yoffs);
+                }
+            }
+
+            
             // 枠を描画
             Pen pen = new Pen(Color.Black);
             g.DrawRectangle(pen, 0, 0, ClientSize.Width - 1, ClientSize.Height - 1);
@@ -126,7 +155,6 @@ namespace CharaChipGen.GeneratorForm
 
         private void OnForm_resized(object sender, EventArgs evt)
         {
-            renderBuffer = null;
             Invalidate();
         }
     }
