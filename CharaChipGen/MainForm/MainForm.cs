@@ -170,10 +170,17 @@ namespace CharaChipGen.MainForm
             }
         }
 
+        /// <summary>
+        /// エクスポートボタンが押された時の処理を行う。
+        /// </summary>
+        /// <param name="sender">送信元オブジェクト</param>
+        /// <param name="evt">イベントオブジェクト</param>
         private void OnExportButton_click(object sender, EventArgs evt)
         {
             // エクスポートボタンが押されたらエクスポート処理する。
-            DialogResult res = saveFileDialogExport.ShowDialog(this);
+
+            RestoreDialog(saveFileDialogExport, Properties.Settings.Default.LastSavePath);
+            DialogResult res = saveFileDialogExport.ShowDialog();
             if (res != DialogResult.OK)
             {
                 return; // OK押されていない。
@@ -188,6 +195,9 @@ namespace CharaChipGen.MainForm
 
                 CharaChipExporter.ExportCharaChip(charaChipPath);
                 CharaChipExporter.ExportFace(facePath);
+
+                // 最後にエクスポートしたパスを保存
+                Properties.Settings.Default.LastExportPath = charaChipPath;
             }
             catch (Exception e)
             {
@@ -237,6 +247,7 @@ namespace CharaChipGen.MainForm
 
         private void OnOpen_click(object sender, EventArgs evt)
         {
+            RestoreDialog(openFileDialog, Properties.Settings.Default.LastSavePath);
             DialogResult res = openFileDialog.ShowDialog(this);
             if (res != DialogResult.OK)
             {
@@ -244,7 +255,9 @@ namespace CharaChipGen.MainForm
             }
             try
             {
-                LoadDataProc(openFileDialog.FileName);
+                string fileName = openFileDialog.FileName;
+                LoadDataProc(fileName);
+                Properties.Settings.Default.LastSavePath = fileName;
             }
             catch (Exception e)
             {
@@ -308,6 +321,7 @@ namespace CharaChipGen.MainForm
         /// <param name="evt">イベントオブジェクト</param>
         private void OnSaveAs_click(object sender, EventArgs evt)
         {
+            RestoreDialog(saveFileDialog, Properties.Settings.Default.LastSavePath);
             DialogResult result = saveFileDialog.ShowDialog(this);
             if (result != DialogResult.OK)
             {
@@ -319,10 +333,40 @@ namespace CharaChipGen.MainForm
             {
                 SettingFileController.Save(filePath);
                 editFilePath = filePath;
+                Properties.Settings.Default.LastSavePath = filePath;
             }
             catch (Exception e)
             {
                 MessageBox.Show(this, e.Message, "エラー");
+            }
+        }
+
+        /// <summary>
+        /// pathで指定される内容をダイアログに反映させる。
+        /// </summary>
+        /// <param name="dialog">ダイアログ</param>
+        /// <param name="path">パス</param>
+        private static void RestoreDialog(FileDialog dialog, string path)
+        {
+            if (string.IsNullOrEmpty(path))
+            {
+                dialog.FileName = "";
+                dialog.InitialDirectory = System.IO.Directory.GetCurrentDirectory();
+            }
+            else
+            {
+                string fileName = System.IO.Path.GetFileName(path);
+                string dir = System.IO.Path.GetDirectoryName(path);
+                if (!System.IO.Directory.Exists(dir))
+                {
+                    dialog.FileName = "";
+                    dialog.InitialDirectory = System.IO.Directory.GetCurrentDirectory();
+                }
+                else
+                {
+                    dialog.FileName = fileName;
+                    dialog.InitialDirectory = dir;
+                }
             }
         }
 
