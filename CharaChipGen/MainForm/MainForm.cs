@@ -116,6 +116,27 @@ namespace CharaChipGen.MainForm
             UpdateEntryView(view, appData.GetCharaChipData(index));
         }
 
+        /// <summary>
+        /// UIのエントリ表示部分を全て更新する。
+        /// </summary>
+        private void UpdateAllEntryView()
+        {
+            AppData appData = AppData.GetInstance();
+            UpdateEntryView(characterEntryControl1, appData.GetCharaChipData(0));
+            UpdateEntryView(characterEntryControl2, appData.GetCharaChipData(1));
+            UpdateEntryView(characterEntryControl3, appData.GetCharaChipData(2));
+            UpdateEntryView(characterEntryControl4, appData.GetCharaChipData(3));
+            UpdateEntryView(characterEntryControl5, appData.GetCharaChipData(4));
+            UpdateEntryView(characterEntryControl6, appData.GetCharaChipData(5));
+            UpdateEntryView(characterEntryControl7, appData.GetCharaChipData(6));
+            UpdateEntryView(characterEntryControl8, appData.GetCharaChipData(7));
+        }
+
+        /// <summary>
+        /// UIのエントリ表示部分を更新する。
+        /// </summary>
+        /// <param name="view">ビュー</param>
+        /// <param name="dataModel">対応するデータモデル</param>
         private void UpdateEntryView(CharacterEntryView view, CharaChipDataModel dataModel)
         {
             // キャラクタチップデータ
@@ -209,6 +230,9 @@ namespace CharaChipGen.MainForm
             {
                 appData.GetCharaChipData(i).Reset();
             }
+
+            // モデルに合わせてUIの表示更新
+            UpdateAllEntryView();
         }
 
         private void OnOpen_click(object sender, EventArgs evt)
@@ -239,15 +263,7 @@ namespace CharaChipGen.MainForm
 
             // Note: 本当はCharaChipDataModelをViewに設定して
             //       ここに余計なコードを書かない方が美しい。
-            AppData appData = AppData.GetInstance();
-            UpdateEntryView(characterEntryControl1, appData.GetCharaChipData(0));
-            UpdateEntryView(characterEntryControl2, appData.GetCharaChipData(1));
-            UpdateEntryView(characterEntryControl3, appData.GetCharaChipData(2));
-            UpdateEntryView(characterEntryControl4, appData.GetCharaChipData(3));
-            UpdateEntryView(characterEntryControl5, appData.GetCharaChipData(4));
-            UpdateEntryView(characterEntryControl6, appData.GetCharaChipData(5));
-            UpdateEntryView(characterEntryControl7, appData.GetCharaChipData(6));
-            UpdateEntryView(characterEntryControl8, appData.GetCharaChipData(7));
+            UpdateAllEntryView();
         }
 
         /// <summary>
