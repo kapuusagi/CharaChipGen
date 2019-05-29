@@ -44,7 +44,7 @@ namespace CharaChipGen.GeneratorForm
         /// </summary>
         /// <param name="sender"></param>
         /// <param name="e"></param>
-        private void OnView_resized(object sender, EventArgs e)
+        private void OnViewResized(object sender, EventArgs e)
         {
         }
 

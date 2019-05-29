@@ -33,7 +33,12 @@ namespace CharaChipGen.MaterialEditorForm
             };
         }
 
-        private void OnControl_resized(object sender, EventArgs e)
+        /// <summary>
+        /// コントロールのサイズが変更された時に通知を受け取る。
+        /// </summary>
+        /// <param name="sender">送信元オブジェクト</param>
+        /// <param name="evt">イベントオブジェクト</param>
+        private void OnControlResized(object sender, EventArgs evt)
         {
             int pictureBoxWidth = (ClientSize.Width - 8) / 3;
             int pictureBoxHeight = (ClientSize.Height - 10) / 4;
@@ -45,7 +50,6 @@ namespace CharaChipGen.MaterialEditorForm
                 {
                     int xpos = 2 + (2 + pictureBoxWidth) * x;
                     pictureBoxes[y * 3 + x].SetBounds(xpos, ypos, pictureBoxWidth, pictureBoxHeight);
-
                 }
             }
         }
@@ -121,6 +125,9 @@ namespace CharaChipGen.MaterialEditorForm
             return pictureBoxes[x + y * 3].Image;
         }
 
+        /// <summary>
+        /// 画像表示を更新する。
+        /// </summary>
         private void UpdateImageView()
         {
             if (image == null)
@@ -139,7 +146,8 @@ namespace CharaChipGen.MaterialEditorForm
                 for (int x = 0; x < 3; x++)
                 {
                     Rectangle clipArea = new Rectangle(
-                        x * subImageWidth, y * subImageHeight, subImageWidth, subImageHeight);
+                        x * subImageWidth, y * subImageHeight,
+                        subImageWidth, subImageHeight);
                     pictureBoxes[x + y * 3].Image
                         = image.Clone(clipArea, System.Drawing.Imaging.PixelFormat.Format32bppPArgb);
                 }

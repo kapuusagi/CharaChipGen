@@ -36,7 +36,7 @@
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.DoubleBuffered = true;
             this.Name = "CharaFaceView";
-            this.Resize += new System.EventHandler(this.OnView_resized);
+            this.Resize += new System.EventHandler(this.OnViewResized);
             this.ResumeLayout(false);
 
         }

@@ -30,7 +30,7 @@ namespace CharaChipGen.MaterialEditorForm
             InitializeComponent();
         }
 
-        private void OnControl_resized(object sender, EventArgs e)
+        private void OnControlResized(object sender, EventArgs e)
         {
             // 開くボタン
             int openBtnX = ClientSize.Width - 8 - buttonOpen.Width;
@@ -84,7 +84,7 @@ namespace CharaChipGen.MaterialEditorForm
             labelCharaSize.Text = String.Format("{0} x {1} pixels", subImageWidth, subImageHeight);
         }
 
-        private void OnOpenButton_clicked(object sender, EventArgs evt)
+        private void OnOpenButtonClicked(object sender, EventArgs evt)
         {
             DialogResult res = openFileDialog.ShowDialog(this);
             if (res != DialogResult.OK)

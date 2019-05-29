@@ -47,7 +47,7 @@
             this.buttonSave.TabIndex = 1;
             this.buttonSave.Text = "保存";
             this.buttonSave.UseVisualStyleBackColor = true;
-            this.buttonSave.Click += new System.EventHandler(this.OnSaveButton_clicked);
+            this.buttonSave.Click += new System.EventHandler(this.OnSaveButtonClicked);
             // 
             // buttonCancel
             // 
@@ -57,7 +57,7 @@
             this.buttonCancel.TabIndex = 2;
             this.buttonCancel.Text = "キャンセル";
             this.buttonCancel.UseVisualStyleBackColor = true;
-            this.buttonCancel.Click += new System.EventHandler(this.OnCancelButton_clicked);
+            this.buttonCancel.Click += new System.EventHandler(this.OnCancelButtonClicked);
             // 
             // label1
             // 
@@ -86,7 +86,7 @@
             this.buttonDelete2ndLayer.TabIndex = 8;
             this.buttonDelete2ndLayer.Text = "セカンダリレイヤーを削除";
             this.buttonDelete2ndLayer.UseVisualStyleBackColor = true;
-            this.buttonDelete2ndLayer.Click += new System.EventHandler(this.OnDelete2ndLayerButton_clicked);
+            this.buttonDelete2ndLayer.Click += new System.EventHandler(this.OnDelete2ndLayerButtonClicked);
             // 
             // pictureBoxPreview
             // 
@@ -107,7 +107,7 @@
             this.materialEditorLayerView2.Name = "materialEditorLayerView2";
             this.materialEditorLayerView2.Size = new System.Drawing.Size(312, 512);
             this.materialEditorLayerView2.TabIndex = 7;
-            this.materialEditorLayerView2.ImageChange += new CharaChipGen.MaterialEditorForm.MaterialEditorLayerView.MaterialImageChangeHandler(this.OnLayerView_imageChanged);
+            this.materialEditorLayerView2.ImageChange += new CharaChipGen.MaterialEditorForm.MaterialEditorLayerView.MaterialImageChangeHandler(this.OnLayerViewImageChanged);
             // 
             // materialEditorLayerView1
             // 
@@ -117,7 +117,7 @@
             this.materialEditorLayerView1.Name = "materialEditorLayerView1";
             this.materialEditorLayerView1.Size = new System.Drawing.Size(277, 512);
             this.materialEditorLayerView1.TabIndex = 6;
-            this.materialEditorLayerView1.ImageChange += new CharaChipGen.MaterialEditorForm.MaterialEditorLayerView.MaterialImageChangeHandler(this.OnLayerView_imageChanged);
+            this.materialEditorLayerView1.ImageChange += new CharaChipGen.MaterialEditorForm.MaterialEditorLayerView.MaterialImageChangeHandler(this.OnLayerViewImageChanged);
             // 
             // MaterialEditorForm
             // 
@@ -134,7 +134,7 @@
             this.Controls.Add(this.buttonSave);
             this.Name = "MaterialEditorForm";
             this.Text = "素材エディタ";
-            this.Shown += new System.EventHandler(this.OnForm_shown);
+            this.Shown += new System.EventHandler(this.OnFormShown);
             this.Resize += new System.EventHandler(this.OnForm_resied);
             ((System.ComponentModel.ISupportInitialize)(this.pictureBoxPreview)).EndInit();
             this.ResumeLayout(false);

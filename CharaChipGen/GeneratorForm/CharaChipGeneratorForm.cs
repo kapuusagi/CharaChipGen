@@ -43,6 +43,9 @@ namespace CharaChipGen.GeneratorForm
             paramViewFace.Model = dataModel.Face;
         }
 
+        /// <summary>
+        /// データモデル
+        /// </summary>
         public CharaChipDataModel CharaChipDataModel
         {
             get { return dataModel; }
@@ -66,28 +69,28 @@ namespace CharaChipGen.GeneratorForm
         }
 
 
-        private void OnTimerEvent(object sender, EventArgs e)
+        private void OnTimerEvent(object sender, EventArgs evt)
         {
             charaChipView.UpdateTick();
         }
 
-        private void OnForm_shown(object sender, EventArgs e)
+        private void OnFormShown(object sender, EventArgs evt)
         {
             timer.Start();
         }
 
-        private void OnForm_closed(object sender, FormClosedEventArgs e)
+        private void OnFormClosed(object sender, FormClosedEventArgs evt)
         {
             timer.Stop();
         }
 
-        private void OnCancelButton_clicked(object sender, EventArgs e)
+        private void OnCancelButtonClicked(object sender, EventArgs evt)
         {
             DialogResult = DialogResult.Cancel;
             Close();
         }
 
-        private void OnOKButton_clicked(object sender, EventArgs e)
+        private void OnOKButtonClicked(object sender, EventArgs evt)
         {
             DialogResult = DialogResult.OK;
             Close();

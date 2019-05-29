@@ -139,8 +139,12 @@ namespace CharaChipGen.GeneratorForm
 
         }
 
-
-        private void OnMaterialName_changed(object sender, EventArgs e)
+        /// <summary>
+        /// 素材名が変更された時に通知を受け取る。
+        /// </summary>
+        /// <param name="sender">送信元オブジェクト</param>
+        /// <param name="evt">イベントオブジェクト</param>
+        private void OnMaterialNameChanged(object sender, EventArgs evt)
         {
             Object selItem = comboBoxItem.SelectedItem;
             if (selItem.ToString() == ItemNoSelect)
@@ -153,27 +157,52 @@ namespace CharaChipGen.GeneratorForm
             }
         }
 
-        private void OnOffset_changed(object sender, EventArgs e)
+        /// <summary>
+        /// オフセットが変更された時に通知を受け取る。
+        /// </summary>
+        /// <param name="sender">送信元オブジェクト</param>
+        /// <param name="evt">イベントオブジェクト</param>
+        private void OnOffsetChanged(object sender, EventArgs evt)
         {
             model.Offset = (int)(numericUpDown.Value);
         }
 
-        private void OnHue_changed(object sender, EventArgs e)
+        /// <summary>
+        /// 色相が変更された時に通知を受け取る。
+        /// </summary>
+        /// <param name="sender">送信元オブジェクト</param>
+        /// <param name="evt">イベントオブジェクト</param>
+        private void OnHueChanged(object sender, EventArgs evt)
         {
             model.Hue = trackBarHue.Value;
         }
 
-        private void OnSaturation_changed(object sender, EventArgs e)
+        /// <summary>
+        /// 彩度が変更された時に通知を受け取る。
+        /// </summary>
+        /// <param name="sender">送信元オブジェクト</param>
+        /// <param name="evt">イベントオブジェクト</param>
+        private void OnSaturationChanged(object sender, EventArgs evt)
         {
             model.Saturation = (int)(numericUpDownSaturation.Value);
         }
 
-        private void OnValue_changed(object sender, EventArgs e)
+        /// <summary>
+        /// 輝度が変更された時に通知を受け取る。
+        /// </summary>
+        /// <param name="sender">送信元オブジェクト</param>
+        /// <param name="evt">イベントオブジェクト</param>
+        private void OnValueChanged(object sender, EventArgs evt)
         {
             model.Value = (int)(numericUpDownValue.Value);
         }
 
-        private void OnResetButton_clicked(object sender, EventArgs e)
+        /// <summary>
+        /// リセットボタンがクリックされた時に通知を受け取る。
+        /// </summary>
+        /// <param name="sender">送信元オブジェクト</param>
+        /// <param name="evt">イベントオブジェクト</param>
+        private void OnResetButtonClicked(object sender, EventArgs evt)
         {
             trackBarHue.Value = 0;
             numericUpDown.Value = 0;
@@ -181,7 +210,12 @@ namespace CharaChipGen.GeneratorForm
             numericUpDownValue.Value = 0;
         }
 
-        private void Opacity_changed(object sender, EventArgs e)
+        /// <summary>
+        /// 不当明度が変更された時に通知を受け取る。
+        /// </summary>
+        /// <param name="sender">送信元オブジェクト</param>
+        /// <param name="evt">イベントオブジェクト</param>
+        private void OpacityChanged(object sender, EventArgs evt)
         {
             model.Opacity = (int)(numericUpDownOpacity.Value);
         }

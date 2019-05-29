@@ -36,7 +36,7 @@
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.DoubleBuffered = true;
             this.Name = "CharaChipViewNN";
-            this.Resize += new System.EventHandler(this.OnForm_resized);
+            this.Resize += new System.EventHandler(this.OnFormResized);
             this.ResumeLayout(false);
 
         }

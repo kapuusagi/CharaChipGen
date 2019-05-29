@@ -153,7 +153,7 @@
             this.buttonOK.TabIndex = 12;
             this.buttonOK.Text = "OK";
             this.buttonOK.UseVisualStyleBackColor = true;
-            this.buttonOK.Click += new System.EventHandler(this.OnOKButton_clicked);
+            this.buttonOK.Click += new System.EventHandler(this.OnOKButtonClicked);
             // 
             // buttonCancel
             // 
@@ -163,7 +163,7 @@
             this.buttonCancel.TabIndex = 13;
             this.buttonCancel.Text = "キャンセル";
             this.buttonCancel.UseVisualStyleBackColor = true;
-            this.buttonCancel.Click += new System.EventHandler(this.OnCancelButton_clicked);
+            this.buttonCancel.Click += new System.EventHandler(this.OnCancelButtonClicked);
             // 
             // timer
             // 
@@ -403,8 +403,8 @@
             this.Controls.Add(this.flowLayoutPanel1);
             this.Name = "CharaChipGeneratorForm";
             this.Text = "キャラチップ設定";
-            this.FormClosed += new System.Windows.Forms.FormClosedEventHandler(this.OnForm_closed);
-            this.Shown += new System.EventHandler(this.OnForm_shown);
+            this.FormClosed += new System.Windows.Forms.FormClosedEventHandler(this.OnFormClosed);
+            this.Shown += new System.EventHandler(this.OnFormShown);
             this.panelCharaChipParam.ResumeLayout(false);
             this.panelCharaChipParam.PerformLayout();
             this.panelFaceParam.ResumeLayout(false);

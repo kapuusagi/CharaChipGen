@@ -60,7 +60,7 @@
             this.comboBoxItem.Name = "comboBoxItem";
             this.comboBoxItem.Size = new System.Drawing.Size(140, 20);
             this.comboBoxItem.TabIndex = 1;
-            this.comboBoxItem.SelectedIndexChanged += new System.EventHandler(this.OnMaterialName_changed);
+            this.comboBoxItem.SelectedIndexChanged += new System.EventHandler(this.OnMaterialNameChanged);
             // 
             // numericUpDown
             // 
@@ -78,7 +78,7 @@
             this.numericUpDown.Name = "numericUpDown";
             this.numericUpDown.Size = new System.Drawing.Size(51, 19);
             this.numericUpDown.TabIndex = 2;
-            this.numericUpDown.ValueChanged += new System.EventHandler(this.OnOffset_changed);
+            this.numericUpDown.ValueChanged += new System.EventHandler(this.OnOffsetChanged);
             // 
             // trackBarHue
             // 
@@ -88,7 +88,7 @@
             this.trackBarHue.Name = "trackBarHue";
             this.trackBarHue.Size = new System.Drawing.Size(124, 45);
             this.trackBarHue.TabIndex = 3;
-            this.trackBarHue.ValueChanged += new System.EventHandler(this.OnHue_changed);
+            this.trackBarHue.ValueChanged += new System.EventHandler(this.OnHueChanged);
             // 
             // numericUpDownSaturation
             // 
@@ -106,7 +106,7 @@
             this.numericUpDownSaturation.Name = "numericUpDownSaturation";
             this.numericUpDownSaturation.Size = new System.Drawing.Size(49, 19);
             this.numericUpDownSaturation.TabIndex = 4;
-            this.numericUpDownSaturation.ValueChanged += new System.EventHandler(this.OnSaturation_changed);
+            this.numericUpDownSaturation.ValueChanged += new System.EventHandler(this.OnSaturationChanged);
             // 
             // numericUpDownValue
             // 
@@ -124,7 +124,7 @@
             this.numericUpDownValue.Name = "numericUpDownValue";
             this.numericUpDownValue.Size = new System.Drawing.Size(49, 19);
             this.numericUpDownValue.TabIndex = 5;
-            this.numericUpDownValue.ValueChanged += new System.EventHandler(this.OnValue_changed);
+            this.numericUpDownValue.ValueChanged += new System.EventHandler(this.OnValueChanged);
             // 
             // buttonReset
             // 
@@ -134,7 +134,7 @@
             this.buttonReset.TabIndex = 7;
             this.buttonReset.Text = "R";
             this.buttonReset.UseVisualStyleBackColor = true;
-            this.buttonReset.Click += new System.EventHandler(this.OnResetButton_clicked);
+            this.buttonReset.Click += new System.EventHandler(this.OnResetButtonClicked);
             // 
             // numericUpDownOpacity
             // 
@@ -147,7 +147,7 @@
             0,
             0,
             0});
-            this.numericUpDownOpacity.ValueChanged += new System.EventHandler(this.Opacity_changed);
+            this.numericUpDownOpacity.ValueChanged += new System.EventHandler(this.OpacityChanged);
             // 
             // CharaChipGeneratorParamView
             // 

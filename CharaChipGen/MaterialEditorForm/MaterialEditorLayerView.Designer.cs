@@ -54,7 +54,7 @@
             this.groupBoxLayerName.TabIndex = 0;
             this.groupBoxLayerName.TabStop = false;
             this.groupBoxLayerName.Text = "レイヤー";
-            this.groupBoxLayerName.Resize += new System.EventHandler(this.OnControl_resized);
+            this.groupBoxLayerName.Resize += new System.EventHandler(this.OnControlResized);
             // 
             // labelCharaSize
             // 
@@ -100,7 +100,7 @@
             this.buttonOpen.TabIndex = 0;
             this.buttonOpen.Text = "開く";
             this.buttonOpen.UseVisualStyleBackColor = true;
-            this.buttonOpen.Click += new System.EventHandler(this.OnOpenButton_clicked);
+            this.buttonOpen.Click += new System.EventHandler(this.OnOpenButtonClicked);
             // 
             // openFileDialog
             // 

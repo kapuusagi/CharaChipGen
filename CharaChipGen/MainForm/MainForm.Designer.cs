@@ -95,7 +95,7 @@
             this.NewToolStripMenuItem.ShortcutKeys = ((System.Windows.Forms.Keys)((System.Windows.Forms.Keys.Control | System.Windows.Forms.Keys.N)));
             this.NewToolStripMenuItem.Size = new System.Drawing.Size(232, 22);
             this.NewToolStripMenuItem.Text = "新規作成";
-            this.NewToolStripMenuItem.Click += new System.EventHandler(this.OnNewFile_click);
+            this.NewToolStripMenuItem.Click += new System.EventHandler(this.OnNewFileClick);
             // 
             // OpenToolStripMenuItem
             // 
@@ -103,7 +103,7 @@
             this.OpenToolStripMenuItem.ShortcutKeys = ((System.Windows.Forms.Keys)((System.Windows.Forms.Keys.Control | System.Windows.Forms.Keys.O)));
             this.OpenToolStripMenuItem.Size = new System.Drawing.Size(232, 22);
             this.OpenToolStripMenuItem.Text = "開く";
-            this.OpenToolStripMenuItem.Click += new System.EventHandler(this.OnOpen_click);
+            this.OpenToolStripMenuItem.Click += new System.EventHandler(this.OnOpenClick);
             // 
             // toolStripMenuItem1
             // 
@@ -116,7 +116,7 @@
             this.SaveToolStripMenuItem.ShortcutKeys = ((System.Windows.Forms.Keys)((System.Windows.Forms.Keys.Control | System.Windows.Forms.Keys.S)));
             this.SaveToolStripMenuItem.Size = new System.Drawing.Size(232, 22);
             this.SaveToolStripMenuItem.Text = "上書き保存";
-            this.SaveToolStripMenuItem.Click += new System.EventHandler(this.OnSave_click);
+            this.SaveToolStripMenuItem.Click += new System.EventHandler(this.OnSaveClick);
             // 
             // SaveAsNewToolStripMenuItem
             // 
@@ -125,7 +125,7 @@
             | System.Windows.Forms.Keys.S)));
             this.SaveAsNewToolStripMenuItem.Size = new System.Drawing.Size(232, 22);
             this.SaveAsNewToolStripMenuItem.Text = "名前を付けて保存";
-            this.SaveAsNewToolStripMenuItem.Click += new System.EventHandler(this.OnSaveAs_click);
+            this.SaveAsNewToolStripMenuItem.Click += new System.EventHandler(this.OnSaveAsClick);
             // 
             // toolStripMenuItem2
             // 
@@ -137,7 +137,7 @@
             this.ExportToolStripMenuItem.Name = "ExportToolStripMenuItem";
             this.ExportToolStripMenuItem.Size = new System.Drawing.Size(232, 22);
             this.ExportToolStripMenuItem.Text = "エクスポート";
-            this.ExportToolStripMenuItem.Click += new System.EventHandler(this.OnExportButton_click);
+            this.ExportToolStripMenuItem.Click += new System.EventHandler(this.OnExportButtonClick);
             // 
             // toolStripMenuItem3
             // 
@@ -150,7 +150,7 @@
             this.ExitToolStripMenuItem.ShortcutKeys = ((System.Windows.Forms.Keys)((System.Windows.Forms.Keys.Alt | System.Windows.Forms.Keys.F4)));
             this.ExitToolStripMenuItem.Size = new System.Drawing.Size(232, 22);
             this.ExitToolStripMenuItem.Text = "閉じる";
-            this.ExitToolStripMenuItem.Click += new System.EventHandler(this.ExitToolStripMenuItem_Click);
+            this.ExitToolStripMenuItem.Click += new System.EventHandler(this.OnExitToolStripMenuItemClick);
             // 
             // オプションToolStripMenuItem
             // 
@@ -166,14 +166,14 @@
             this.規格選択ToolStripMenuItem.Name = "規格選択ToolStripMenuItem";
             this.規格選択ToolStripMenuItem.Size = new System.Drawing.Size(122, 22);
             this.規格選択ToolStripMenuItem.Text = "設定";
-            this.規格選択ToolStripMenuItem.Click += new System.EventHandler(this.OnConfigButton_click);
+            this.規格選択ToolStripMenuItem.Click += new System.EventHandler(this.OnConfigButtonClick);
             // 
             // materialManageToolStripMenuItem
             // 
             this.materialManageToolStripMenuItem.Name = "materialManageToolStripMenuItem";
             this.materialManageToolStripMenuItem.Size = new System.Drawing.Size(122, 22);
             this.materialManageToolStripMenuItem.Text = "素材管理";
-            this.materialManageToolStripMenuItem.Click += new System.EventHandler(this.OnMaterialManage_clicked);
+            this.materialManageToolStripMenuItem.Click += new System.EventHandler(this.OnMaterialManageClicked);
             // 
             // ヘルプToolStripMenuItem
             // 
@@ -198,7 +198,7 @@
             this.buttonExport.TabIndex = 10;
             this.buttonExport.Text = "エクスポート";
             this.buttonExport.UseVisualStyleBackColor = true;
-            this.buttonExport.Click += new System.EventHandler(this.OnExportButton_click);
+            this.buttonExport.Click += new System.EventHandler(this.OnExportButtonClick);
             // 
             // buttonMaterialManage
             // 
@@ -208,7 +208,7 @@
             this.buttonMaterialManage.TabIndex = 11;
             this.buttonMaterialManage.Text = "素材管理";
             this.buttonMaterialManage.UseVisualStyleBackColor = true;
-            this.buttonMaterialManage.Click += new System.EventHandler(this.OnMaterialManage_clicked);
+            this.buttonMaterialManage.Click += new System.EventHandler(this.OnMaterialManageClicked);
             // 
             // buttonConfig
             // 
@@ -218,7 +218,7 @@
             this.buttonConfig.TabIndex = 12;
             this.buttonConfig.Text = "設定";
             this.buttonConfig.UseVisualStyleBackColor = true;
-            this.buttonConfig.Click += new System.EventHandler(this.OnConfigButton_click);
+            this.buttonConfig.Click += new System.EventHandler(this.OnConfigButtonClick);
             // 
             // openFileDialog
             // 
@@ -237,7 +237,7 @@
             this.characterEntryControl8.Name = "characterEntryControl8";
             this.characterEntryControl8.Size = new System.Drawing.Size(168, 188);
             this.characterEntryControl8.TabIndex = 9;
-            this.characterEntryControl8.ButtonClick += new System.EventHandler(this.OnCharacterBtn8_clicked);
+            this.characterEntryControl8.ButtonClick += new System.EventHandler(this.OnCharacterBtn8Clicked);
             // 
             // characterEntryControl7
             // 
@@ -248,7 +248,7 @@
             this.characterEntryControl7.Name = "characterEntryControl7";
             this.characterEntryControl7.Size = new System.Drawing.Size(168, 188);
             this.characterEntryControl7.TabIndex = 8;
-            this.characterEntryControl7.ButtonClick += new System.EventHandler(this.OnCharacterBtn7_clicked);
+            this.characterEntryControl7.ButtonClick += new System.EventHandler(this.OnCharacterBtn7Clicked);
             // 
             // characterEntryControl6
             // 
@@ -259,7 +259,7 @@
             this.characterEntryControl6.Name = "characterEntryControl6";
             this.characterEntryControl6.Size = new System.Drawing.Size(168, 188);
             this.characterEntryControl6.TabIndex = 7;
-            this.characterEntryControl6.ButtonClick += new System.EventHandler(this.OnCharacterBtn6_clicked);
+            this.characterEntryControl6.ButtonClick += new System.EventHandler(this.OnCharacterBtn6Clicked);
             // 
             // characterEntryControl5
             // 
@@ -270,7 +270,7 @@
             this.characterEntryControl5.Name = "characterEntryControl5";
             this.characterEntryControl5.Size = new System.Drawing.Size(168, 188);
             this.characterEntryControl5.TabIndex = 6;
-            this.characterEntryControl5.ButtonClick += new System.EventHandler(this.OnCharacterBtn5_clicked);
+            this.characterEntryControl5.ButtonClick += new System.EventHandler(this.OnCharacterBtn5Clicked);
             // 
             // characterEntryControl4
             // 
@@ -281,7 +281,7 @@
             this.characterEntryControl4.Name = "characterEntryControl4";
             this.characterEntryControl4.Size = new System.Drawing.Size(168, 188);
             this.characterEntryControl4.TabIndex = 5;
-            this.characterEntryControl4.ButtonClick += new System.EventHandler(this.OnCharacterBtn4_clicked);
+            this.characterEntryControl4.ButtonClick += new System.EventHandler(this.OnCharacterBtn4Clicked);
             // 
             // characterEntryControl3
             // 
@@ -292,7 +292,7 @@
             this.characterEntryControl3.Name = "characterEntryControl3";
             this.characterEntryControl3.Size = new System.Drawing.Size(168, 188);
             this.characterEntryControl3.TabIndex = 4;
-            this.characterEntryControl3.ButtonClick += new System.EventHandler(this.OnCharacterBtn3_clicked);
+            this.characterEntryControl3.ButtonClick += new System.EventHandler(this.OnCharacterBtn3Clicked);
             // 
             // characterEntryControl2
             // 
@@ -303,7 +303,7 @@
             this.characterEntryControl2.Name = "characterEntryControl2";
             this.characterEntryControl2.Size = new System.Drawing.Size(168, 188);
             this.characterEntryControl2.TabIndex = 3;
-            this.characterEntryControl2.ButtonClick += new System.EventHandler(this.OnCharacterBtn2_clicked);
+            this.characterEntryControl2.ButtonClick += new System.EventHandler(this.OnCharacterBtn2Clicked);
             // 
             // characterEntryControl1
             // 
@@ -314,7 +314,7 @@
             this.characterEntryControl1.Name = "characterEntryControl1";
             this.characterEntryControl1.Size = new System.Drawing.Size(168, 188);
             this.characterEntryControl1.TabIndex = 2;
-            this.characterEntryControl1.ButtonClick += new System.EventHandler(this.OnCharacterBtn1_clicked);
+            this.characterEntryControl1.ButtonClick += new System.EventHandler(this.OnCharacterBtn1Clicked);
             // 
             // saveFileDialogExport
             // 
@@ -343,7 +343,7 @@
             this.Name = "MainForm";
             this.Text = "キャラクターチップジェネレータ";
             this.FormClosing += new System.Windows.Forms.FormClosingEventHandler(this.MainForm_FormClosing);
-            this.Shown += new System.EventHandler(this.OnForm_shown);
+            this.Shown += new System.EventHandler(this.OnFormShown);
             this.menuStripMain.ResumeLayout(false);
             this.menuStripMain.PerformLayout();
             this.ResumeLayout(false);

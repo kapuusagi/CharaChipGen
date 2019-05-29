@@ -56,7 +56,7 @@ namespace CharaChipGen.MaterialEditorForm
             materialEditorLayerView2.Image = editMaterial.GetSecondaryLayer();
         }
 
-        private void OnForm_shown(object sender, EventArgs e)
+        private void OnFormShown(object sender, EventArgs e)
         {
             AdjustPosition();
             ReloadMaterial();
@@ -121,12 +121,12 @@ namespace CharaChipGen.MaterialEditorForm
             pictureBoxPreview.SetBounds(previewX, previewY, previewWidth, previewHeight);
         }
 
-        private void OnCancelButton_clicked(object sender, EventArgs e)
+        private void OnCancelButtonClicked(object sender, EventArgs e)
         {
             Close();
         }
 
-        private void OnSaveButton_clicked(object sender, EventArgs e)
+        private void OnSaveButtonClicked(object sender, EventArgs e)
         {
             /**
              * 保存ボタンが押された場合
@@ -157,12 +157,17 @@ namespace CharaChipGen.MaterialEditorForm
             Close();
         }
 
-        private void OnDelete2ndLayerButton_clicked(object sender, EventArgs e)
+        private void OnDelete2ndLayerButtonClicked(object sender, EventArgs e)
         {
             materialEditorLayerView2.Image = null;
         }
 
-        private void OnLayerView_imageChanged(object sender, Image newImage)
+        /// <summary>
+        /// レイヤービューの画像が変更された時に通知を受け取る。
+        /// </summary>
+        /// <param name="sender">送信元オブジェクト</param>
+        /// <param name="newImage">新しい画像データ</param>
+        private void OnLayerViewImageChanged(object sender, Image newImage)
         {
             pictureBoxPreview.Image = materialEditorLayerView1.GetSubImage(1, 0);
             pictureBoxPreview.BackgroundImage = materialEditorLayerView2.GetSubImage(1, 0);

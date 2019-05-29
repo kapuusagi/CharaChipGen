@@ -41,12 +41,12 @@ namespace CharaChipGen.MainForm
             InitializeComponent();
         }
 
-        private void ExitToolStripMenuItem_Click(object sender, EventArgs evt)
+        private void OnExitToolStripMenuItemClick(object sender, EventArgs evt)
         {
             Close();
         }
 
-        private void OnMaterialManage_clicked(object sender, EventArgs e)
+        private void OnMaterialManageClicked(object sender, EventArgs e)
         {
             CharaChipGen.ManagementForm.MaterialManagementForm form
                 = new CharaChipGen.ManagementForm.MaterialManagementForm();
@@ -54,47 +54,47 @@ namespace CharaChipGen.MainForm
             form.ShowDialog(this);
         }
 
-        private void OnCharacterBtn1_clicked(object sender, EventArgs e)
+        private void OnCharacterBtn1Clicked(object sender, EventArgs e)
         {
-            OnCharacterBtn_clicked(characterEntryControl1, 0);
+            OnCharacterBtnClicked(characterEntryControl1, 0);
         }
 
-        private void OnCharacterBtn2_clicked(object sender, EventArgs e)
+        private void OnCharacterBtn2Clicked(object sender, EventArgs e)
         {
-            OnCharacterBtn_clicked(characterEntryControl2, 1);
+            OnCharacterBtnClicked(characterEntryControl2, 1);
         }
 
-        private void OnCharacterBtn3_clicked(object sender, EventArgs e)
+        private void OnCharacterBtn3Clicked(object sender, EventArgs e)
         {
-            OnCharacterBtn_clicked(characterEntryControl3, 2);
+            OnCharacterBtnClicked(characterEntryControl3, 2);
         }
 
-        private void OnCharacterBtn4_clicked(object sender, EventArgs e)
+        private void OnCharacterBtn4Clicked(object sender, EventArgs e)
         {
-            OnCharacterBtn_clicked(characterEntryControl4, 3);
+            OnCharacterBtnClicked(characterEntryControl4, 3);
         }
 
-        private void OnCharacterBtn5_clicked(object sender, EventArgs e)
+        private void OnCharacterBtn5Clicked(object sender, EventArgs e)
         {
-            OnCharacterBtn_clicked(characterEntryControl5, 4);
+            OnCharacterBtnClicked(characterEntryControl5, 4);
         }
 
-        private void OnCharacterBtn6_clicked(object sender, EventArgs e)
+        private void OnCharacterBtn6Clicked(object sender, EventArgs e)
         {
-            OnCharacterBtn_clicked(characterEntryControl6, 5);
+            OnCharacterBtnClicked(characterEntryControl6, 5);
         }
 
-        private void OnCharacterBtn7_clicked(object sender, EventArgs e)
+        private void OnCharacterBtn7Clicked(object sender, EventArgs e)
         {
-            OnCharacterBtn_clicked(characterEntryControl7, 6);
+            OnCharacterBtnClicked(characterEntryControl7, 6);
         }
 
-        private void OnCharacterBtn8_clicked(object sender, EventArgs e)
+        private void OnCharacterBtn8Clicked(object sender, EventArgs e)
         {
-            OnCharacterBtn_clicked(characterEntryControl8, 7);
+            OnCharacterBtnClicked(characterEntryControl8, 7);
         }
 
-        private void OnCharacterBtn_clicked(CharacterEntryView view, int index)
+        private void OnCharacterBtnClicked(CharacterEntryView view, int index)
         {
             CharaChipGen.GeneratorForm.CharaChipGeneratorForm form
                 = new CharaChipGen.GeneratorForm.CharaChipGeneratorForm();
@@ -175,7 +175,7 @@ namespace CharaChipGen.MainForm
         /// </summary>
         /// <param name="sender">送信元オブジェクト</param>
         /// <param name="evt">イベントオブジェクト</param>
-        private void OnExportButton_click(object sender, EventArgs evt)
+        private void OnExportButtonClick(object sender, EventArgs evt)
         {
             // エクスポートボタンが押されたらエクスポート処理する。
 
@@ -206,7 +206,7 @@ namespace CharaChipGen.MainForm
 
         }
 
-        private void OnConfigButton_click(object sender, EventArgs e)
+        private void OnConfigButtonClick(object sender, EventArgs e)
         {
             // 設定ボタンが押されたとき
             CharaChipGen.ExportSettingForm.ExportSettingForm form
@@ -230,7 +230,7 @@ namespace CharaChipGen.MainForm
             appData.ExportSetting.Save();
         }
 
-        private void OnNewFile_click(object sender, EventArgs e)
+        private void OnNewFileClick(object sender, EventArgs e)
         {
             // 新規作成が押された
             // データをリセットする。
@@ -245,7 +245,7 @@ namespace CharaChipGen.MainForm
             UpdateAllEntryView();
         }
 
-        private void OnOpen_click(object sender, EventArgs evt)
+        private void OnOpenClick(object sender, EventArgs evt)
         {
             RestoreDialog(openFileDialog, Properties.Settings.Default.LastSavePath);
             DialogResult res = openFileDialog.ShowDialog(this);
@@ -293,11 +293,11 @@ namespace CharaChipGen.MainForm
         /// </summary>
         /// <param name="sender">送信元オブジェクト</param>
         /// <param name="evt">イベント</param>
-        private void OnSave_click(object sender, EventArgs evt)
+        private void OnSaveClick(object sender, EventArgs evt)
         {
             if (editFilePath == "")
             {
-                OnSaveAs_click(sender, evt);
+                OnSaveAsClick(sender, evt);
                 return;
             }
             else
@@ -319,7 +319,7 @@ namespace CharaChipGen.MainForm
         /// </summary>
         /// <param name="sender">送信元オブジェクト</param>
         /// <param name="evt">イベントオブジェクト</param>
-        private void OnSaveAs_click(object sender, EventArgs evt)
+        private void OnSaveAsClick(object sender, EventArgs evt)
         {
             RestoreDialog(saveFileDialog, Properties.Settings.Default.LastSavePath);
             DialogResult result = saveFileDialog.ShowDialog(this);
@@ -375,7 +375,7 @@ namespace CharaChipGen.MainForm
         /// </summary>
         /// <param name="sender">送信元オブジェクト</param>
         /// <param name="evt">イベントオブジェクト</param>
-        private void OnForm_shown(object sender, EventArgs evt)
+        private void OnFormShown(object sender, EventArgs evt)
         {
             AppData.GetInstance().ExportSetting.Load();
 

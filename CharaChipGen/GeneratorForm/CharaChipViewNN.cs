@@ -21,6 +21,9 @@ namespace CharaChipGen.GeneratorForm
         private CharaChipRenderModel renderModel; // レンダリングモデル
         private CharaChipRenderModel.ImageChanged handler; // ハンドラ
 
+        /// <summary>
+        /// 新しいインスタンスを構築する。
+        /// </summary>
         public CharaChipViewNN()
         {
             positionX = 0;
@@ -151,7 +154,12 @@ namespace CharaChipGen.GeneratorForm
             g.DrawRectangle(pen, 0, 0, ClientSize.Width - 1, ClientSize.Height - 1);
         }
 
-        private void OnForm_resized(object sender, EventArgs evt)
+        /// <summary>
+        /// フォームのサイズが変更された時に通知を受け取る。
+        /// </summary>
+        /// <param name="sender">送信元オブジェクト</param>
+        /// <param name="evt">イベントオブジェクト</param>
+        private void OnFormResized(object sender, EventArgs evt)
         {
             Invalidate();
         }

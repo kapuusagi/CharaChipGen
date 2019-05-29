@@ -68,7 +68,7 @@
             this.buttonClose.TabIndex = 0;
             this.buttonClose.Text = "閉じる";
             this.buttonClose.UseVisualStyleBackColor = true;
-            this.buttonClose.Click += new System.EventHandler(this.OnCloseMenuStrip_clicked);
+            this.buttonClose.Click += new System.EventHandler(this.OnCloseMenuStripClicked);
             // 
             // menuStrip1
             // 
@@ -94,7 +94,7 @@
             this.closeToolStripMenuItem.ShortcutKeys = ((System.Windows.Forms.Keys)((System.Windows.Forms.Keys.Alt | System.Windows.Forms.Keys.F4)));
             this.closeToolStripMenuItem.Size = new System.Drawing.Size(146, 22);
             this.closeToolStripMenuItem.Text = "閉じる";
-            this.closeToolStripMenuItem.Click += new System.EventHandler(this.OnCloseMenuStrip_clicked);
+            this.closeToolStripMenuItem.Click += new System.EventHandler(this.OnCloseMenuStripClicked);
             // 
             // treeViewMaterials
             // 
@@ -135,7 +135,7 @@
             this.listViewMaterials.TabIndex = 5;
             this.listViewMaterials.UseCompatibleStateImageBehavior = false;
             this.listViewMaterials.View = System.Windows.Forms.View.Details;
-            this.listViewMaterials.ItemSelectionChanged += new System.Windows.Forms.ListViewItemSelectionChangedEventHandler(this.OnMaterialList_selectionChanged);
+            this.listViewMaterials.ItemSelectionChanged += new System.Windows.Forms.ListViewItemSelectionChangedEventHandler(this.OnMaterialListSelectionChanged);
             // 
             // columnHeaderName
             // 
@@ -169,7 +169,7 @@
             this.buttonDelete.TabIndex = 8;
             this.buttonDelete.Text = "削除";
             this.buttonDelete.UseVisualStyleBackColor = true;
-            this.buttonDelete.Click += new System.EventHandler(this.OnMaterialDelete_clicked);
+            this.buttonDelete.Click += new System.EventHandler(this.OnMaterialDeleteClicked);
             // 
             // buttonEdit
             // 
@@ -180,7 +180,7 @@
             this.buttonEdit.TabIndex = 7;
             this.buttonEdit.Text = "編集";
             this.buttonEdit.UseVisualStyleBackColor = true;
-            this.buttonEdit.Click += new System.EventHandler(this.OnMaterialEdit_clicked);
+            this.buttonEdit.Click += new System.EventHandler(this.OnMaterialEditClicked);
             // 
             // buttonAdd
             // 
@@ -191,7 +191,7 @@
             this.buttonAdd.TabIndex = 6;
             this.buttonAdd.Text = "追加";
             this.buttonAdd.UseVisualStyleBackColor = true;
-            this.buttonAdd.Click += new System.EventHandler(this.OnMaterialAdd_clicked);
+            this.buttonAdd.Click += new System.EventHandler(this.OnMaterialAddClicked);
             // 
             // labelDirectory
             // 

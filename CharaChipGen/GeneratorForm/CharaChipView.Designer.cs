@@ -222,7 +222,7 @@
             this.Controls.Add(this.charaChipView11);
             this.Name = "CharaChipView";
             this.Size = new System.Drawing.Size(589, 646);
-            this.Resize += new System.EventHandler(this.OnView_resized);
+            this.Resize += new System.EventHandler(this.OnViewResized);
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox2)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox3)).EndInit();

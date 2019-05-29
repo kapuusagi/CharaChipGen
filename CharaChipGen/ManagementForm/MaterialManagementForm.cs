@@ -18,19 +18,19 @@ namespace CharaChipGen.ManagementForm
         public MaterialManagementForm()
         {
             InitializeComponent();
-            adjustComponentPosition();
+            AdjustComponentPosition();
             treeViewMaterials.ExpandAll();
             labelDirectory.Text = AppData.GetInstance().MaterialDirectory;
         }
 
-        private void OnCloseMenuStrip_clicked(object sender, EventArgs e)
+        private void OnCloseMenuStripClicked(object sender, EventArgs e)
         {
             Close();
         }
 
         private void OnFormResized(object sender, EventArgs e)
         {
-            adjustComponentPosition();
+            AdjustComponentPosition();
         }
 
         /// <summary>
@@ -39,7 +39,7 @@ namespace CharaChipGen.ManagementForm
         /// Note:
         /// Javaと違ってレイアウト調整めんどくさいね。
         /// </summary>
-        private void adjustComponentPosition()
+        private void AdjustComponentPosition()
         {
             int x, y;
             // closeButtonの位置調整
@@ -136,7 +136,7 @@ namespace CharaChipGen.ManagementForm
             }
         }
 
-        private void OnMaterialList_selectionChanged(object sender, ListViewItemSelectionChangedEventArgs e)
+        private void OnMaterialListSelectionChanged(object sender, ListViewItemSelectionChangedEventArgs e)
         {
             /**
              * マテリアルリストの選択状態が変更された場合、
@@ -146,7 +146,7 @@ namespace CharaChipGen.ManagementForm
             buttonEdit.Enabled = (listViewMaterials.SelectedItems.Count == 1) && (getCurrentNodeName() != AppData.NameFaces);
         }
 
-        private void OnMaterialAdd_clicked(object sender, EventArgs evt)
+        private void OnMaterialAddClicked(object sender, EventArgs evt)
         {
             /**
              * 追加ボタンが押されたとき、外部の素材をコピーしてくる。
@@ -230,7 +230,7 @@ namespace CharaChipGen.ManagementForm
             }
         }
 
-        private void OnMaterialEdit_clicked(object sender, EventArgs evt)
+        private void OnMaterialEditClicked(object sender, EventArgs evt)
         {
             /**
              * 編集ボタンが押された場合、編集用のフォームを立ち上げる。
@@ -282,7 +282,7 @@ namespace CharaChipGen.ManagementForm
 
         }
 
-        private void OnMaterialDelete_clicked(object sender, EventArgs evt)
+        private void OnMaterialDeleteClicked(object sender, EventArgs evt)
         {
             /**
              * 削除ボタンがクリックされた場合、削除確認を行い、

@@ -17,6 +17,9 @@ namespace CharaChipGen.GeneratorForm
     {
         private int viewCounter;
 
+        /// <summary>
+        /// 新しいインスタンスを構築する。
+        /// </summary>
         public CharaChipView()
         {
             viewCounter = 0;
@@ -24,6 +27,9 @@ namespace CharaChipGen.GeneratorForm
             AdjustPosition();
         }
 
+        /// <summary>
+        /// 更新する。
+        /// </summary>
         public void UpdateTick()
         {
             switch (viewCounter)
@@ -80,7 +86,7 @@ namespace CharaChipGen.GeneratorForm
             charaChipView34.SetDataModel(model);
         }
 
-        private void OnView_resized(object sender, EventArgs e)
+        private void OnViewResized(object sender, EventArgs e)
         {
             AdjustPosition();
         }

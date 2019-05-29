@@ -193,7 +193,7 @@
             this.Controls.Add(this.pictureBox1);
             this.Name = "MaterialView4x3";
             this.Size = new System.Drawing.Size(264, 508);
-            this.Resize += new System.EventHandler(this.OnControl_resized);
+            this.Resize += new System.EventHandler(this.OnControlResized);
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox2)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox3)).EndInit();

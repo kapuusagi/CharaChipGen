@@ -51,7 +51,7 @@
             this.buttonOK.TabIndex = 0;
             this.buttonOK.Text = "OK";
             this.buttonOK.UseVisualStyleBackColor = true;
-            this.buttonOK.Click += new System.EventHandler(this.OnOKButton_click);
+            this.buttonOK.Click += new System.EventHandler(this.OnOKButtonClick);
             // 
             // buttonCancel
             // 
@@ -61,7 +61,7 @@
             this.buttonCancel.TabIndex = 1;
             this.buttonCancel.Text = "キャンセル";
             this.buttonCancel.UseVisualStyleBackColor = true;
-            this.buttonCancel.Click += new System.EventHandler(this.OnCancelButton_click);
+            this.buttonCancel.Click += new System.EventHandler(this.OnCancelButtonClick);
             // 
             // label1
             // 
