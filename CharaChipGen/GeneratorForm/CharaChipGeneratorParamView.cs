@@ -20,6 +20,9 @@ namespace CharaChipGen.GeneratorForm
 
         private CharaChipParameterModel.ValueChangeHandler handler;
 
+        private ParamEditView paramEditView; 
+        private ToolStripDropDown toolStripDropDown;
+
         /// <summary>
         /// コンストラクタ
         /// </summary>
@@ -32,6 +35,10 @@ namespace CharaChipGen.GeneratorForm
                 ApplyModelToView();
             });
             model.ValueChanged += handler;
+            toolStripDropDown = new ToolStripDropDown();
+            paramEditView = new ParamEditView();
+            paramEditView.Model = Model;
+            toolStripDropDown.Items.Add(new ToolStripControlHost(paramEditView));
         }
 
         /// <summary>
@@ -59,8 +66,8 @@ namespace CharaChipGen.GeneratorForm
         /// </summary>
         public bool EditYOffset
         {
-            get { return numericUpDown.Visible; }
-            set { numericUpDown.Visible = value; }
+            get { return paramEditView.EditYOffset; }
+            set { paramEditView.EditYOffset = value; }
         }
 
         /// <summary>
@@ -68,13 +75,8 @@ namespace CharaChipGen.GeneratorForm
         /// </summary>
         public bool EditHSV
         {
-            get { return trackBarHue.Visible; }
-            set
-            {
-                trackBarHue.Visible = value;
-                numericUpDownSaturation.Visible = value;
-                numericUpDownValue.Visible = value;
-            }
+            get { return paramEditView.EditHSV; }
+            set { paramEditView.EditHSV = value; }
         }
 
         /// <summary>
@@ -104,11 +106,7 @@ namespace CharaChipGen.GeneratorForm
                 }
             }
 
-            numericUpDown.Value = model.Offset;
-            trackBarHue.Value = model.Hue;
-            numericUpDownSaturation.Value = model.Saturation;
-            numericUpDownValue.Value = model.Value;
-            numericUpDownOpacity.Value = model.Opacity;
+            paramEditView.Model = model;
         }
 
         /// <summary>
@@ -157,67 +155,16 @@ namespace CharaChipGen.GeneratorForm
             }
         }
 
-        /// <summary>
-        /// オフセットが変更された時に通知を受け取る。
-        /// </summary>
-        /// <param name="sender">送信元オブジェクト</param>
-        /// <param name="evt">イベントオブジェクト</param>
-        private void OnOffsetChanged(object sender, EventArgs evt)
-        {
-            model.Offset = (int)(numericUpDown.Value);
-        }
+
 
         /// <summary>
-        /// 色相が変更された時に通知を受け取る。
+        /// 調整ボタンがクリックされた時の処理を行う。
         /// </summary>
-        /// <param name="sender">送信元オブジェクト</param>
-        /// <param name="evt">イベントオブジェクト</param>
-        private void OnHueChanged(object sender, EventArgs evt)
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
+        private void OnButtonAdjustClick(object sender, EventArgs e)
         {
-            model.Hue = trackBarHue.Value;
-        }
-
-        /// <summary>
-        /// 彩度が変更された時に通知を受け取る。
-        /// </summary>
-        /// <param name="sender">送信元オブジェクト</param>
-        /// <param name="evt">イベントオブジェクト</param>
-        private void OnSaturationChanged(object sender, EventArgs evt)
-        {
-            model.Saturation = (int)(numericUpDownSaturation.Value);
-        }
-
-        /// <summary>
-        /// 輝度が変更された時に通知を受け取る。
-        /// </summary>
-        /// <param name="sender">送信元オブジェクト</param>
-        /// <param name="evt">イベントオブジェクト</param>
-        private void OnValueChanged(object sender, EventArgs evt)
-        {
-            model.Value = (int)(numericUpDownValue.Value);
-        }
-
-        /// <summary>
-        /// リセットボタンがクリックされた時に通知を受け取る。
-        /// </summary>
-        /// <param name="sender">送信元オブジェクト</param>
-        /// <param name="evt">イベントオブジェクト</param>
-        private void OnResetButtonClicked(object sender, EventArgs evt)
-        {
-            trackBarHue.Value = 0;
-            numericUpDown.Value = 0;
-            numericUpDownSaturation.Value = 0;
-            numericUpDownValue.Value = 0;
-        }
-
-        /// <summary>
-        /// 不当明度が変更された時に通知を受け取る。
-        /// </summary>
-        /// <param name="sender">送信元オブジェクト</param>
-        /// <param name="evt">イベントオブジェクト</param>
-        private void OpacityChanged(object sender, EventArgs evt)
-        {
-            model.Opacity = (int)(numericUpDownOpacity.Value);
+            toolStripDropDown.Show(Cursor.Position);
         }
     }
 }

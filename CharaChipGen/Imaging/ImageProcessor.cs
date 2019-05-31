@@ -78,11 +78,36 @@ namespace CharaChipGen.Imaging
             float a2 = (c1.A * (255 - c2.A)) / (float)(255 * 255);
             float a3 = ((255 - c1.A) * c2.A) / (float)(255 * 255);
             float alpha = a1 + a2 + a3;
-            int r = (int)((a1 * (c1.R + c2.R) / 2 + a2 * c1.R + a3 * c2.R) / alpha);
-            int g = (int)((a1 * (c1.G + c2.G) / 2 + a2 * c1.G + a3 * c2.G) / alpha);
-            int b = (int)((a1 * (c1.B + c2.B) / 2 + a2 * c1.B + a3 * c2.B) / alpha);
-            int a = (int)(alpha * 255);
+            if (alpha == 0)
+            {
+                return Color.FromArgb(0, 0, 0, 0);
+            }
+            int r = Clamp((a1 * (c1.R + c2.R) / 2 + a2 * c1.R + a3 * c2.R) / alpha);
+            int g = Clamp((a1 * (c1.G + c2.G) / 2 + a2 * c1.G + a3 * c2.G) / alpha);
+            int b = Clamp((a1 * (c1.B + c2.B) / 2 + a2 * c1.B + a3 * c2.B) / alpha);
+            int a = Clamp(alpha * 255);
             return Color.FromArgb(a, r, g, b);
+        }
+
+        /// <summary>
+        /// クランプする。
+        /// </summary>
+        /// <param name="d"></param>
+        /// <returns></returns>
+        private static int Clamp(float d)
+        {
+            if (d < 0)
+            {
+                return 0;
+            }
+            else if (d > 255)
+            {
+                return 255;
+            }
+            else
+            {
+                return (int)(d);
+            }
         }
 
         /// <summary>
