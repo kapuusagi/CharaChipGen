@@ -5,6 +5,10 @@ VisualStudioVersion = 15.0.27703.2042
 MinimumVisualStudioVersion = 10.0.40219.1
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "CharaChipGen", "CharaChipGen\CharaChipGen.csproj", "{B420D5D8-F835-459E-99E2-E7D9CAA86C36}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "CharaChipGenUtility", "CharaChipGenUtility\CharaChipGenUtility.csproj", "{55A485A1-82EB-423F-872B-AB3ADDD05E82}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "IconSetViewer", "IconSetViewer\IconSetViewer.csproj", "{FF88A3C5-044F-4E80-AF0D-BD5D42E762C8}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -15,6 +19,14 @@ Global
 		{B420D5D8-F835-459E-99E2-E7D9CAA86C36}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{B420D5D8-F835-459E-99E2-E7D9CAA86C36}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{B420D5D8-F835-459E-99E2-E7D9CAA86C36}.Release|Any CPU.Build.0 = Release|Any CPU
+		{55A485A1-82EB-423F-872B-AB3ADDD05E82}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{55A485A1-82EB-423F-872B-AB3ADDD05E82}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{55A485A1-82EB-423F-872B-AB3ADDD05E82}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{55A485A1-82EB-423F-872B-AB3ADDD05E82}.Release|Any CPU.Build.0 = Release|Any CPU
+		{FF88A3C5-044F-4E80-AF0D-BD5D42E762C8}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{FF88A3C5-044F-4E80-AF0D-BD5D42E762C8}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{FF88A3C5-044F-4E80-AF0D-BD5D42E762C8}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{FF88A3C5-044F-4E80-AF0D-BD5D42E762C8}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
