@@ -8,7 +8,7 @@ using System.Drawing.Imaging;
 
 namespace CharaChipGenUtility.Imaging
 {
-    class ImageBuffer
+    public class ImageBuffer
     {
         /// <summary>
         /// イメージバッファを作成する

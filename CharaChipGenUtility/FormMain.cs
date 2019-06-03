@@ -12,18 +12,27 @@ using CharaChipGenUtility.Imaging;
 
 namespace CharaChipGenUtility
 {
+    /// <summary>
+    /// メインフォーム
+    /// </summary>
     public partial class FormMain : Form
     {
+        private OperationSettings settings; // オペレーション設定
+
+        /// <summary>
+        /// 新しいインスタンスを構築する。
+        /// </summary>
         public FormMain()
         {
+            settings = new OperationSettings();
             InitializeComponent();
         }
 
         /// <summary>
         /// D&Dにてドラッグされてきたときに通知を受け取る。
         /// </summary>
-        /// <param name="sender"></param>
-        /// <param name="evt"></param>
+        /// <param name="sender">送信元オブジェクト</param>
+        /// <param name="evt">イベントオブジェクト</param>
         private void OnPanelAcceptDragEnter(object sender, DragEventArgs evt)
         {
             if (evt.Data.GetDataPresent(DataFormats.FileDrop))
@@ -33,7 +42,7 @@ namespace CharaChipGenUtility
             else
             {
                 evt.Effect = DragDropEffects.None;
-            } 
+            }
 
         }
 
@@ -47,17 +56,13 @@ namespace CharaChipGenUtility
             try
             {
                 string[] fileNames = (string[])(evt.Data.GetData(DataFormats.FileDrop, false));
-                string dir = Properties.Settings.Default.SaveDirectory;
-                if (!System.IO.Directory.Exists(dir))
-                {
-                    dir = System.IO.Directory.GetCurrentDirectory();
-                }
 
-                IImageOperation operation = (IImageOperation)(comboBoxOperation.SelectedItem);
-                foreach (string fileName in fileNames)
+                AbstractImageOperation operation = (AbstractImageOperation)(comboBoxOperation.SelectedItem);
+                if (operation == null)
                 {
-                    Task.Run(() => DoImageProcess(fileName, dir, operation));
+                    return;
                 }
+                Task.Run(() => operation.Process(fileNames));
             }
             catch (AggregateException ae)
             {
@@ -71,38 +76,39 @@ namespace CharaChipGenUtility
         }
 
         /// <summary>
-        /// 画像に対して処理を行う。
-        /// </summary>
-        /// <param name="path"></param>
-        /// <param name="saveDir">保存先ディレクトリ</param>
-        /// <param name="operation">処理</param>
-        private void DoImageProcess(string path, string saveDir, IImageOperation operation)
-        {
-            // 画像読み出し。
-            Image srcImage = Image.FromFile(path);
-            ImageBuffer src = ImageBuffer.CreateFrom(srcImage);
-            srcImage.Dispose();
-
-            // 処理
-            ImageBuffer result = operation.Process(src);
-
-            // 保存
-            string fileName = System.IO.Path.GetFileName(path);
-            string saveFilePath = System.IO.Path.Combine(saveDir, fileName);
-            Image dstImage = result.GetImage();
-            dstImage.Save(saveFilePath, System.Drawing.Imaging.ImageFormat.Png);
-            dstImage.Dispose();
-        }
-
-        /// <summary>
         /// メニューボタンがクリックされた時に通知を受け取る。
         /// </summary>
         /// <param name="sender">送信元オブジェクト</param>
         /// <param name="evt">イベントオブジェクト</param>
         private void OnButtonMenuClick(object sender, EventArgs evt)
         {
-            FormSetting formSetting = new FormSetting();
-            formSetting.ShowDialog(this);
+            try
+            {
+                IOperation operation = (IOperation)(comboBoxOperation.SelectedItem);
+                if (operation == null)
+                {
+                    return;
+                }
+
+                FormSetting formSetting = new FormSetting();
+                formSetting.Setting = operation.Setting;
+                formSetting.ShowDialog(this);
+
+                if (formSetting.Setting != null)
+                {
+                    string data = formSetting.Setting.GetData();
+                    settings[operation.Name] = data;
+
+                    string dir = System.IO.Path.GetDirectoryName(Application.ExecutablePath);
+                    string fileName = "operation.setting";
+                    string path = System.IO.Path.Combine(dir, fileName);
+                    settings.Save(path);
+                }
+            }
+            catch (Exception e)
+            {
+                MessageBox.Show(this, e.Message);
+            }
         }
 
         /// <summary>
@@ -112,15 +118,78 @@ namespace CharaChipGenUtility
         /// <param name="evt">イベントオブジェクト</param>
         private void OnFormShown(object sender, EventArgs evt)
         {
+            try
+            {
+                string dir = System.IO.Path.GetDirectoryName(Application.ExecutablePath);
+                string path = System.IO.Path.Combine(dir, "operation.setting");
+                if (System.IO.File.Exists(path))
+                {
+                    settings.Load(path);
+                }
+            }
+            catch (Exception e)
+            {
+                System.Diagnostics.Debug.WriteLine(e.Message);
+            }
+
             comboBoxOperation.Items.Clear();
-            comboBoxOperation.Items.AddRange(new IImageOperation[] {
-                new EmptyOperation(),
-                new ExtendX2(),
-                new SmartExtendX2(),
-            });
 
+            // オペレーションを追加
+            AddOperations();
 
-            comboBoxOperation.SelectedIndex = 0;
+            // 設定値を適用する。
+            foreach (var item in comboBoxOperation.Items)
+            {
+                IOperation operation = (IOperation)(item);
+                IOperationSetting setting = operation.Setting;
+                if (setting != null)
+                {
+                    setting.SetData(settings[operation.Name]);
+                }
+            }
+
+            if (comboBoxOperation.Items.Count > 0)
+            {
+                comboBoxOperation.SelectedIndex = 0;
+            }
         }
+
+        /// <summary>
+        /// オペレーションを動的に構築してコンボボックスに追加する。
+        /// </summary>
+        /// <remarks>
+        /// もしDLLとかでプラグインをやるならここを修正する。
+        /// 但しその場合にはIOperation回りを基本DLLとして外部に出さないといけない。
+        /// さもないとプラグイン側でこのアプリを参照して相互参照が発生してしまう。
+        /// </remarks>
+        private void AddOperations()
+        {
+            System.Reflection.Assembly asm
+                = System.Reflection.Assembly.GetExecutingAssembly();
+            Type[] types = asm.GetTypes();
+            Type operationType = typeof(IOperation);
+            foreach (Type type in types)
+            {
+                if (type.IsAbstract || type.IsInterface)
+                {
+                    continue;
+                }
+                if (operationType.IsAssignableFrom(type))
+                {
+                    // 割り当て可能なら
+                    try
+                    {
+                        Object item = System.Activator.CreateInstance(type);
+                        comboBoxOperation.Items.Add(item);
+                    }
+                    catch (Exception e)
+                    {
+                        System.Diagnostics.Debug.WriteLine(e);
+                    }
+                }
+            }
+
+        }
+
     }
 }

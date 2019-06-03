@@ -29,11 +29,11 @@
         private void InitializeComponent()
         {
             this.flowLayoutPanel1 = new System.Windows.Forms.FlowLayoutPanel();
+            this.buttonConfig = new System.Windows.Forms.Button();
             this.label1 = new System.Windows.Forms.Label();
             this.comboBoxOperation = new System.Windows.Forms.ComboBox();
             this.panelAccept = new System.Windows.Forms.Panel();
             this.label2 = new System.Windows.Forms.Label();
-            this.buttonConfig = new System.Windows.Forms.Button();
             this.flowLayoutPanel1.SuspendLayout();
             this.panelAccept.SuspendLayout();
             this.SuspendLayout();
@@ -41,9 +41,9 @@
             // flowLayoutPanel1
             // 
             this.flowLayoutPanel1.AutoSize = true;
-            this.flowLayoutPanel1.Controls.Add(this.buttonConfig);
             this.flowLayoutPanel1.Controls.Add(this.label1);
             this.flowLayoutPanel1.Controls.Add(this.comboBoxOperation);
+            this.flowLayoutPanel1.Controls.Add(this.buttonConfig);
             this.flowLayoutPanel1.Dock = System.Windows.Forms.DockStyle.Top;
             this.flowLayoutPanel1.Location = new System.Drawing.Point(0, 0);
             this.flowLayoutPanel1.Name = "flowLayoutPanel1";
@@ -51,12 +51,22 @@
             this.flowLayoutPanel1.Size = new System.Drawing.Size(271, 41);
             this.flowLayoutPanel1.TabIndex = 0;
             // 
+            // buttonConfig
+            // 
+            this.buttonConfig.Location = new System.Drawing.Point(240, 9);
+            this.buttonConfig.Name = "buttonConfig";
+            this.buttonConfig.Size = new System.Drawing.Size(22, 23);
+            this.buttonConfig.TabIndex = 2;
+            this.buttonConfig.Text = "...";
+            this.buttonConfig.UseVisualStyleBackColor = true;
+            this.buttonConfig.Click += new System.EventHandler(this.OnButtonMenuClick);
+            // 
             // label1
             // 
             this.label1.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
             | System.Windows.Forms.AnchorStyles.Left)));
             this.label1.AutoSize = true;
-            this.label1.Location = new System.Drawing.Point(37, 6);
+            this.label1.Location = new System.Drawing.Point(9, 6);
             this.label1.Name = "label1";
             this.label1.Size = new System.Drawing.Size(29, 29);
             this.label1.TabIndex = 0;
@@ -67,7 +77,7 @@
             // 
             this.comboBoxOperation.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
             this.comboBoxOperation.FormattingEnabled = true;
-            this.comboBoxOperation.Location = new System.Drawing.Point(72, 9);
+            this.comboBoxOperation.Location = new System.Drawing.Point(44, 9);
             this.comboBoxOperation.Name = "comboBoxOperation";
             this.comboBoxOperation.Size = new System.Drawing.Size(190, 20);
             this.comboBoxOperation.TabIndex = 1;
@@ -94,16 +104,6 @@
             this.label2.TabIndex = 0;
             this.label2.Text = "ここにファイルをドラッグ";
             this.label2.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
-            // 
-            // buttonConfig
-            // 
-            this.buttonConfig.Location = new System.Drawing.Point(9, 9);
-            this.buttonConfig.Name = "buttonConfig";
-            this.buttonConfig.Size = new System.Drawing.Size(22, 23);
-            this.buttonConfig.TabIndex = 2;
-            this.buttonConfig.Text = "...";
-            this.buttonConfig.UseVisualStyleBackColor = true;
-            this.buttonConfig.Click += new System.EventHandler(this.OnButtonMenuClick);
             // 
             // FormMain
             // 

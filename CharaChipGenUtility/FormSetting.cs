@@ -7,74 +7,71 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
+using CharaChipGenUtility.Operations;
 
 namespace CharaChipGenUtility
 {
     public partial class FormSetting : Form
     {
-        private FolderSelectDialog folderSelectDialog = null;
+        private IOperationSetting setting;
 
+        /// <summary>
+        /// 新しいインスタンスを構築する。
+        /// </summary>
         public FormSetting()
         {
             InitializeComponent();
+            UpdateSettingControl();
         }
 
-        private void OnButtonOKClick(object sender, EventArgs evt)
+        /// <summary>
+        /// オペレーション設定
+        /// </summary>
+        public IOperationSetting Setting {
+            get {
+                return setting;
+            }
+            set {
+                setting = value;
+                UpdateSettingControl();
+            }
+        }
+
+        /// <summary>
+        /// UIのコントロールを更新する。
+        /// </summary>
+        private void UpdateSettingControl()
         {
-            try
+            panelMain.Controls.Clear();
+            if (Setting == null)
             {
-                Properties.Settings settings = Properties.Settings.Default;
-                settings.SaveDirectory = textBoxSaveFolder.Text;
-
-
-                settings.Save();
+                return;
             }
-            catch (Exception e)
+            else
             {
-                System.Diagnostics.Debug.WriteLine(e);
+                Control control = Setting.GetControl();
+                panelMain.Controls.Add(control);
+                control.Dock = DockStyle.Top;
             }
+        }
 
-            DialogResult = DialogResult.OK;
+        /// <summary>
+        /// フォームが表示された時の処理を行う。
+        /// </summary>
+        /// <param name="sender">送信元オブジェクト</param>
+        /// <param name="evt">イベントオブジェクト</param>
+        private void OnFormShown(object sender, EventArgs evt)
+        {
+        }
+
+        /// <summary>
+        /// 閉じるボタンが押された時に通知を受け取る。
+        /// </summary>
+        /// <param name="sender">送信元オブジェクト</param>
+        /// <param name="evt">イベントオブジェクト</param>
+        private void OnButtonCloseClick(object sender, EventArgs evt)
+        {
             Close();
-        }
-
-        private void OnButtonCancelClick(object sender, EventArgs e)
-        {
-
-            DialogResult = DialogResult.Cancel;
-            Close();
-        }
-
-        private void OnFormShown(object sender, EventArgs e)
-        {
-            Properties.Settings settings = Properties.Settings.Default;
-
-            textBoxSaveFolder.Text = settings.SaveDirectory;
-        }
-
-        private void OnButtonSelectFolderClick(object sender, EventArgs evt)
-        {
-            try
-            {
-                if (folderSelectDialog == null)
-                {
-                    folderSelectDialog = new FolderSelectDialog();
-                    folderSelectDialog.Title = "フォルダ選択";
-                }
-
-                folderSelectDialog.Path = textBoxSaveFolder.Text;
-                DialogResult res = folderSelectDialog.ShowDialog(this);
-                if (res != DialogResult.OK)
-                {
-                    return;
-                }
-
-                textBoxSaveFolder.Text = folderSelectDialog.Path;
-            }
-            catch (Exception e)
-            {
-                MessageBox.Show(this, e.Message, "エラー");
-            }
         }
     }
 }

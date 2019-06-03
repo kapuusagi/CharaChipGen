@@ -63,10 +63,22 @@
     <Compile Include="Imaging\ColorHSV.cs" />
     <Compile Include="Imaging\ImageBuffer.cs" />
     <Compile Include="Imaging\ImageProcessor.cs" />
-    <Compile Include="Operations\EmptyOperation.cs" />
-    <Compile Include="Operations\ExtendX2.cs" />
-    <Compile Include="Operations\IImageOperation.cs" />
-    <Compile Include="Operations\SmartExtendX2.cs" />
+    <Compile Include="OperationSettings.cs" />
+    <Compile Include="Operations\ControlSelectDirectory.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="Operations\ControlSelectDirectory.Designer.cs">
+      <DependentUpon>ControlSelectDirectory.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Operations\OperationEmpty.cs" />
+    <Compile Include="Operations\OperationExtendX2.cs" />
+    <Compile Include="Operations\AbstractImageOperation.cs" />
+    <Compile Include="Operations\IOperation.cs" />
+    <Compile Include="Operations\IOperationSetting.cs" />
+    <Compile Include="Operations\OperationCombine.cs" />
+    <Compile Include="Operations\OperationRemoveEdge.cs" />
+    <Compile Include="Operations\SimpleImageOperationSetting.cs" />
+    <Compile Include="Operations\OperationSmartExtendX2.cs" />
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <EmbeddedResource Include="FormMain.resx">
@@ -74,6 +86,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="FormSetting.resx">
       <DependentUpon>FormSetting.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Operations\ControlSelectDirectory.resx">
+      <DependentUpon>ControlSelectDirectory.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Properties\Resources.resx">
       <Generator>ResXFileCodeGenerator</Generator>

@@ -8,14 +8,17 @@ using CharaChipGenUtility.Imaging;
 
 namespace CharaChipGenUtility.Operations
 {
-    class SmartExtendX2 : IImageOperation
+    /// <summary>
+    /// スマート拡大？
+    /// </summary>
+    class OperationSmartExtendX2 : AbstractImageOperation
     {
         /// <summary>
         /// 処理を行う。
         /// </summary>
         /// <param name="buffer">画像バッファ</param>
         /// <returns>処理結果が返る</returns>
-        public ImageBuffer Process(ImageBuffer buffer)
+        protected override ImageBuffer DoImageProcess(ImageBuffer buffer)
         {
             ImageBuffer dstImage = ImageBuffer.Create(buffer.Width * 2, buffer.Height * 2);
 
@@ -82,7 +85,7 @@ namespace CharaChipGenUtility.Operations
                 {
                     Color c1 = dstImage.GetPixel(x - 1, y);
                     Color c2 = dstImage.GetPixel(x + 1, y);
-                    Color c3 = dstImage.GetPixel(x, y + 1);
+                    Color c3 = dstImage.GetPixel(x, y - 1);
                     Color c4 = dstImage.GetPixel(x, y + 1);
 
                     if (((c1.A != 0) && (c2.A != 0)) || ((c3.A != 0) && (c4.A != 0)))
@@ -107,9 +110,11 @@ namespace CharaChipGenUtility.Operations
         /// 名前を取得する。
         /// </summary>
         /// <returns>文字列</returns>
-        public override string ToString()
+        public override string Name
         {
-            return "SmartExtend * 2";
+            get {
+                return "SmartExtend(x2)";
+            }
         }
     }
 }

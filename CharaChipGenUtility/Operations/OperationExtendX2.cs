@@ -7,14 +7,17 @@ using CharaChipGenUtility.Imaging;
 
 namespace CharaChipGenUtility.Operations
 {
-    class ExtendX2 : IImageOperation
+    /// <summary>
+    /// 単純拡大処理
+    /// </summary>
+    class OperationExtendX2 : AbstractImageOperation
     {
         /// <summary>
         /// 処理を行う。
         /// </summary>
         /// <param name="buffer">画像バッファ</param>
         /// <returns>処理結果が返る</returns>
-        public ImageBuffer Process(ImageBuffer buffer)
+        protected override ImageBuffer DoImageProcess(ImageBuffer buffer)
         {
             ImageBuffer dstImage = ImageBuffer.Create(buffer.Width * 2, buffer.Height * 2);
 
@@ -34,9 +37,9 @@ namespace CharaChipGenUtility.Operations
         /// 名前を取得する。
         /// </summary>
         /// <returns>文字列</returns>
-        public override string ToString()
+        public override string Name
         {
-            return "Extend * 2";
+            get { return "SimpleExtend(x2)"; }
         }
     }
 }
