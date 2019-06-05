@@ -4,12 +4,18 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
+using System.ComponentModel;
 
 namespace CharaChipGenUtility.Operations
 {
+    /// <summary>
+    /// 画像操作の設定インタフェース
+    /// </summary>
     class SimpleImageOperationSetting : IOperationSetting
     {
+        // 設定UI
         private ControlSelectDirectory controlSelectDirectory = null;
+        // 出力ディレクトリ
         private string outputDirectory = "";
 
 
@@ -23,9 +29,26 @@ namespace CharaChipGenUtility.Operations
             {
                 controlSelectDirectory = new ControlSelectDirectory();
                 controlSelectDirectory.SelectName = "出力フォルダ";
-                controlSelectDirectory.DirectoryChanged += (dir) => {  };
+                controlSelectDirectory.Directory = outputDirectory;
+                controlSelectDirectory.PropertyChanged += OnControlPropertyChanged;
             }
             return controlSelectDirectory;
+        }
+
+        /// <summary>
+        /// コントロールのプロパティが変更された時に通知を受け取る。
+        /// </summary>
+        /// <param name="sender">送信元オブジェクト</param>
+        /// <param name="evt">イベントオブジェクト</param>
+        private void OnControlPropertyChanged(object sender, PropertyChangedEventArgs evt)
+        {
+            switch (evt.PropertyName)
+            {
+                case "Directory":
+                    OutputDirectory = controlSelectDirectory.Directory;
+                    break;
+            }
+
         }
 
         /// <summary>
@@ -33,53 +56,20 @@ namespace CharaChipGenUtility.Operations
         /// </summary>
         public string OutputDirectory {
             set {
-                outputDirectory = value ?? "";
+                if ((value == null) || (outputDirectory.Equals(value)))
+                {
+                    // nullまたは同じ
+                    return;
+                }
+                outputDirectory = value;
+                if (controlSelectDirectory != null)
+                {
+                    controlSelectDirectory.Directory = outputDirectory;
+                }
             }
             get {
-                if (string.IsNullOrEmpty(outputDirectory))
-                {
-                    return System.IO.Directory.GetCurrentDirectory();
-                }
-                else
-                {
-                    return outputDirectory;
-                }
+                return outputDirectory;
             }
-        }
-
-        /// <summary>
-        /// 保存した文字列表現からデータを復元する。
-        /// </summary>
-        /// <param name="s">文字列</param>
-        public void SetData(string s)
-        {
-            string[] tokens = s.Split(',');
-            foreach (string token in tokens)
-            {
-                int index = token.IndexOf('=');
-                if (index > 0)
-                {
-                    string key = token.Substring(0, index - 1).Trim();
-                    string value = token.Substring(index + 1).Trim();
-                    switch (key)
-                    {
-                        case "OutputDirectory":
-                            outputDirectory = value;
-                            break;
-                    }
-                }
-            }
-        }
-
-        /// <summary>
-        /// 保存用に文字列表現を得る。
-        /// </summary>
-        /// <returns>文字列表現</returns>
-        public string GetData()
-        {
-            StringBuilder sb = new StringBuilder();
-            sb.Append("OutputDirectory=").Append(outputDirectory);
-            return sb.ToString();
         }
     }
 }

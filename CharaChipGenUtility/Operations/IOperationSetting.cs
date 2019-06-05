@@ -17,17 +17,5 @@ namespace CharaChipGenUtility.Operations
         /// </summary>
         /// <returns>ユーザーインタフェース</returns>
         Control GetControl();
-
-        /// <summary>
-        /// 保存した文字列表現からデータを復元する。
-        /// </summary>
-        /// <param name="s">文字列</param>
-        void SetData(string s);
-
-        /// <summary>
-        /// 保存用に文字列表現を得る。
-        /// </summary>
-        /// <returns>文字列表現</returns>
-        string GetData();
     }
 }

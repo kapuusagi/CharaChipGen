@@ -17,14 +17,15 @@ namespace CharaChipGenUtility
     /// </summary>
     public partial class FormMain : Form
     {
-        private OperationSettings settings; // オペレーション設定
+        private List<IOperation> operationList;
+
 
         /// <summary>
         /// 新しいインスタンスを構築する。
         /// </summary>
         public FormMain()
         {
-            settings = new OperationSettings();
+            operationList = new List<IOperation>();
             InitializeComponent();
         }
 
@@ -57,11 +58,12 @@ namespace CharaChipGenUtility
             {
                 string[] fileNames = (string[])(evt.Data.GetData(DataFormats.FileDrop, false));
 
-                AbstractImageOperation operation = (AbstractImageOperation)(comboBoxOperation.SelectedItem);
-                if (operation == null)
+                ComboBoxItem item = (ComboBoxItem)(comboBoxOperation.SelectedItem);
+                if (item == null)
                 {
                     return;
                 }
+                IOperation operation = item.Operation;
                 Task.Run(() => operation.Process(fileNames));
             }
             catch (AggregateException ae)
@@ -84,26 +86,15 @@ namespace CharaChipGenUtility
         {
             try
             {
-                IOperation operation = (IOperation)(comboBoxOperation.SelectedItem);
-                if (operation == null)
+                ComboBoxItem item = (ComboBoxItem)(comboBoxOperation.SelectedItem);
+                if (item == null)
                 {
                     return;
                 }
-
+                IOperation operation = item.Operation;
                 FormSetting formSetting = new FormSetting();
                 formSetting.Setting = operation.Setting;
                 formSetting.ShowDialog(this);
-
-                if (formSetting.Setting != null)
-                {
-                    string data = formSetting.Setting.GetData();
-                    settings[operation.Name] = data;
-
-                    string dir = System.IO.Path.GetDirectoryName(Application.ExecutablePath);
-                    string fileName = "operation.setting";
-                    string path = System.IO.Path.Combine(dir, fileName);
-                    settings.Save(path);
-                }
             }
             catch (Exception e)
             {
@@ -120,52 +111,66 @@ namespace CharaChipGenUtility
         {
             try
             {
-                string dir = System.IO.Path.GetDirectoryName(Application.ExecutablePath);
-                string path = System.IO.Path.Combine(dir, "operation.setting");
-                if (System.IO.File.Exists(path))
-                {
-                    settings.Load(path);
-                }
+                LoadOperations();
             }
             catch (Exception e)
             {
                 System.Diagnostics.Debug.WriteLine(e.Message);
             }
 
-            comboBoxOperation.Items.Clear();
-
-            // オペレーションを追加
-            AddOperations();
+            // オペレーションを更新
+            UpdateComboboxItems();
 
             // 設定値を適用する。
-            foreach (var item in comboBoxOperation.Items)
+            try
             {
-                IOperation operation = (IOperation)(item);
-                IOperationSetting setting = operation.Setting;
-                if (setting != null)
+                string dir = System.IO.Path.GetDirectoryName(Application.ExecutablePath);
+                string path = System.IO.Path.Combine(dir, "operation.setting");
+                if (System.IO.File.Exists(path))
                 {
-                    setting.SetData(settings[operation.Name]);
+                    OperationSettingUtility.Load(path, operationList.ToArray());
                 }
-            }
 
-            if (comboBoxOperation.Items.Count > 0)
+            }
+            catch (Exception e)
             {
-                comboBoxOperation.SelectedIndex = 0;
+                System.Diagnostics.Debug.WriteLine(e.Message);
             }
         }
 
         /// <summary>
-        /// オペレーションを動的に構築してコンボボックスに追加する。
+        /// オペレーションを動的に構築してロードする。
         /// </summary>
         /// <remarks>
         /// もしDLLとかでプラグインをやるならここを修正する。
         /// 但しその場合にはIOperation回りを基本DLLとして外部に出さないといけない。
         /// さもないとプラグイン側でこのアプリを参照して相互参照が発生してしまう。
         /// </remarks>
-        private void AddOperations()
+        private void LoadOperations()
         {
-            System.Reflection.Assembly asm
-                = System.Reflection.Assembly.GetExecutingAssembly();
+            operationList.Clear();
+
+            System.Reflection.Assembly[] loadedAssemblies
+                = AppDomain.CurrentDomain.GetAssemblies();
+            foreach (System.Reflection.Assembly asm in loadedAssemblies)
+            {
+                try
+                {
+                    LoadOperationsFromAssembly(asm);
+                }
+                catch (Exception e)
+                {
+                    System.Diagnostics.Debug.WriteLine(e.Message);
+                }
+            }
+        }
+
+        /// <summary>
+        /// 指定したアセンブリからIOperationを構築してリストに追加する。
+        /// </summary>
+        /// <param name="asm"></param>
+        private void LoadOperationsFromAssembly(System.Reflection.Assembly asm)
+        {
             Type[] types = asm.GetTypes();
             Type operationType = typeof(IOperation);
             foreach (Type type in types)
@@ -179,8 +184,9 @@ namespace CharaChipGenUtility
                     // 割り当て可能なら
                     try
                     {
-                        Object item = System.Activator.CreateInstance(type);
-                        comboBoxOperation.Items.Add(item);
+                        IOperation item
+                            = (IOperation)(System.Activator.CreateInstance(type));
+                        operationList.Add(item);
                     }
                     catch (Exception e)
                     {
@@ -188,8 +194,57 @@ namespace CharaChipGenUtility
                     }
                 }
             }
-
         }
 
+
+        /// <summary>
+        /// コンボボックスに追加する。
+        /// </summary>
+        private void UpdateComboboxItems()
+        {
+            comboBoxOperation.Items.Clear();
+            foreach (IOperation operation in operationList)
+            {
+                comboBoxOperation.Items.Add(new ComboBoxItem(operation));
+            }
+            if (comboBoxOperation.Items.Count > 0)
+            {
+                comboBoxOperation.SelectedIndex = 0;
+            }
+        }
+
+        private class ComboBoxItem
+        {
+            public ComboBoxItem(IOperation operation)
+            {
+                Operation = operation;
+            }
+            public IOperation Operation { get; set; }
+            public override string ToString()
+            {
+                return Operation.Name;
+            }
+        }
+
+        /// <summary>
+        /// フォームがクローズされた時の処理を行う。
+        /// </summary>
+        /// <param name="sender">送信元オブジェクト</param>
+        /// <param name="evt">イベントオブジェクト</param>
+        private void OnFormClosed(object sender, FormClosedEventArgs evt)
+        {
+            try
+            {
+                string dir = System.IO.Path.GetDirectoryName(Application.ExecutablePath);
+                string fileName = "operation.setting";
+                string path = System.IO.Path.Combine(dir, fileName);
+                OperationSettingUtility.Save(path, operationList.ToArray());
+            }
+            catch (Exception e)
+            {
+                System.Diagnostics.Debug.Write(e);
+            }
+
+        }
     }
 }

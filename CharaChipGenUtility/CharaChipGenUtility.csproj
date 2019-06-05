@@ -63,7 +63,14 @@
     <Compile Include="Imaging\ColorHSV.cs" />
     <Compile Include="Imaging\ImageBuffer.cs" />
     <Compile Include="Imaging\ImageProcessor.cs" />
-    <Compile Include="OperationSettings.cs" />
+    <Compile Include="Operations\OperationSettingUtility.cs" />
+    <Compile Include="Operations\CombineOperationSetting.cs" />
+    <Compile Include="Operations\ControlCombineSetting.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="Operations\ControlCombineSetting.Designer.cs">
+      <DependentUpon>ControlCombineSetting.cs</DependentUpon>
+    </Compile>
     <Compile Include="Operations\ControlSelectDirectory.cs">
       <SubType>UserControl</SubType>
     </Compile>
@@ -86,6 +93,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="FormSetting.resx">
       <DependentUpon>FormSetting.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Operations\ControlCombineSetting.resx">
+      <DependentUpon>ControlCombineSetting.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Operations\ControlSelectDirectory.resx">
       <DependentUpon>ControlSelectDirectory.cs</DependentUpon>

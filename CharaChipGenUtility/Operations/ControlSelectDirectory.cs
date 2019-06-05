@@ -17,6 +17,9 @@ namespace CharaChipGenUtility.Operations
     {
         private FolderSelectDialog folderSelectDialog;
 
+        /// <summary>
+        /// 新しいインスタンスを構築する。
+        /// </summary>
         public ControlSelectDirectory()
         {
             InitializeComponent();
@@ -35,6 +38,23 @@ namespace CharaChipGenUtility.Operations
                 else
                 {
                     labelSelectName.Text = value;
+                }
+            }
+        }
+
+        /// <summary>
+        /// ディレクトリ
+        /// </summary>
+        public string Directory {
+            get { return textBoxDirectory.Text; }
+            set {
+                if (InvokeRequired)
+                {
+                    Invoke((MethodInvoker)(() => { textBoxDirectory.Text = value; }));
+                }
+                else
+                {
+                    textBoxDirectory.Text = value;
                 }
             }
         }
@@ -60,9 +80,13 @@ namespace CharaChipGenUtility.Operations
                 {
                     return;
                 }
+                if (textBoxDirectory.Text.Equals(folderSelectDialog.Path))
+                {
+                    // 変更なし。
+                    return;
+                }
                 textBoxDirectory.Text = folderSelectDialog.Path;
-
-                DirectoryChanged?.Invoke(textBoxDirectory.Text);
+                // Note: イベントはtextBoxDirectoryから出されるので特に通知しない。
             }
             catch (Exception e)
             {
@@ -77,12 +101,21 @@ namespace CharaChipGenUtility.Operations
         /// <param name="evt">イベントオブジェクト</param>
         private void OnTextBoxTextChanged(object sender, EventArgs evt)
         {
-            DirectoryChanged?.Invoke(textBoxDirectory.Text);
+            NotifyPropertyChange("Directory");
         }
 
         /// <summary>
-        /// ディレクトリが変更された時に通知を受け取る。
+        /// プロパティが変更された時に通知する。
         /// </summary>
-        public event Action<string> DirectoryChanged;
+        /// <param name="propertyName">プロパティ名</param>
+        private void NotifyPropertyChange(string propertyName)
+        {
+            PropertyChanged?.Invoke(this, new PropertyChangedEventArgs(propertyName));
+        }
+
+        /// <summary>
+        /// 設定が変更されたときに通知を受け取る。
+        /// </summary>
+        public event PropertyChangedEventHandler PropertyChanged;
     }
 }

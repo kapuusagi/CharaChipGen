@@ -31,7 +31,6 @@ namespace CharaChipGenUtility.Operations
         /// <param name="filePaths">ファイルパス</param>
         public void Process(string[] filePaths)
         {
-            List<Exception> errors = new List<Exception>();
             foreach (string filePath in filePaths)
             {
                 using (Image srcImage = Image.FromFile(filePath))
@@ -42,8 +41,13 @@ namespace CharaChipGenUtility.Operations
                     {
                         string fileName = System.IO.Path.GetFileName(filePath);
                         string dir = setting.OutputDirectory;
+                        if (string.IsNullOrEmpty(dir))
+                        {
+                            dir = System.IO.Directory.GetCurrentDirectory();
+                        }
+                        string dstPath = System.IO.Path.Combine(dir, fileName);
 
-                        dstImage.Save(fileName, srcImage.RawFormat);
+                        dstImage.Save(dstPath, srcImage.RawFormat);
                     }
                 }
             }
@@ -71,14 +75,5 @@ namespace CharaChipGenUtility.Operations
             }
         }
 
-
-        /// <summary>
-        /// 文字列表現を得る。
-        /// </summary>
-        /// <returns>文字列表現</returns>
-        public override string ToString()
-        {
-            return Name;
-        }
     }
 }

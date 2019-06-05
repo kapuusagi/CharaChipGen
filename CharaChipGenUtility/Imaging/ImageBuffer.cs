@@ -164,7 +164,8 @@ namespace CharaChipGenUtility.Imaging
         }
 
         /// <summary>
-        /// イメージをコピーする
+        /// このイメージにsrcImageで指定したイメージを書き込む。
+        /// srcImageがこのイメージに対して十分に小さい場合に書き込む用途を想定する。
         /// </summary>
         /// <param name="srcImage">コピーするイメージ</param>
         /// <param name="dstXOffs">コピー先のX位置</param>
@@ -175,7 +176,7 @@ namespace CharaChipGenUtility.Imaging
         }
 
         /// <summary>
-        /// イメージをコピーする
+        /// このイメージにsrcimageで指定したイメージを書き込む。
         /// </summary>
         /// <param name="srcImage">コピーするイメージ</param>
         /// <param name="srcXOffs">コピー元のX位置</param>

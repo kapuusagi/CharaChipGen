@@ -29,9 +29,9 @@
         private void InitializeComponent()
         {
             this.flowLayoutPanel1 = new System.Windows.Forms.FlowLayoutPanel();
-            this.buttonConfig = new System.Windows.Forms.Button();
             this.label1 = new System.Windows.Forms.Label();
             this.comboBoxOperation = new System.Windows.Forms.ComboBox();
+            this.buttonConfig = new System.Windows.Forms.Button();
             this.panelAccept = new System.Windows.Forms.Panel();
             this.label2 = new System.Windows.Forms.Label();
             this.flowLayoutPanel1.SuspendLayout();
@@ -50,16 +50,6 @@
             this.flowLayoutPanel1.Padding = new System.Windows.Forms.Padding(6);
             this.flowLayoutPanel1.Size = new System.Drawing.Size(271, 41);
             this.flowLayoutPanel1.TabIndex = 0;
-            // 
-            // buttonConfig
-            // 
-            this.buttonConfig.Location = new System.Drawing.Point(240, 9);
-            this.buttonConfig.Name = "buttonConfig";
-            this.buttonConfig.Size = new System.Drawing.Size(22, 23);
-            this.buttonConfig.TabIndex = 2;
-            this.buttonConfig.Text = "...";
-            this.buttonConfig.UseVisualStyleBackColor = true;
-            this.buttonConfig.Click += new System.EventHandler(this.OnButtonMenuClick);
             // 
             // label1
             // 
@@ -81,6 +71,16 @@
             this.comboBoxOperation.Name = "comboBoxOperation";
             this.comboBoxOperation.Size = new System.Drawing.Size(190, 20);
             this.comboBoxOperation.TabIndex = 1;
+            // 
+            // buttonConfig
+            // 
+            this.buttonConfig.Location = new System.Drawing.Point(240, 9);
+            this.buttonConfig.Name = "buttonConfig";
+            this.buttonConfig.Size = new System.Drawing.Size(22, 23);
+            this.buttonConfig.TabIndex = 2;
+            this.buttonConfig.Text = "...";
+            this.buttonConfig.UseVisualStyleBackColor = true;
+            this.buttonConfig.Click += new System.EventHandler(this.OnButtonMenuClick);
             // 
             // panelAccept
             // 
@@ -114,6 +114,7 @@
             this.Controls.Add(this.flowLayoutPanel1);
             this.Name = "FormMain";
             this.Text = "Utility";
+            this.FormClosed += new System.Windows.Forms.FormClosedEventHandler(this.OnFormClosed);
             this.Shown += new System.EventHandler(this.OnFormShown);
             this.flowLayoutPanel1.ResumeLayout(false);
             this.flowLayoutPanel1.PerformLayout();
