@@ -5,7 +5,7 @@ using System.Text;
 using System.Threading.Tasks;
 using System.Drawing;
 using System.Drawing.Imaging;
-using CharaChipGenUtility.Imaging;
+using CGenImaging;
 
 namespace CharaChipGenUtility.Operations
 {

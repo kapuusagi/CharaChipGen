@@ -8,7 +8,7 @@ using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
 using CharaChipGenUtility.Operations;
-using CharaChipGenUtility.Imaging;
+using CGenImaging;
 
 namespace CharaChipGenUtility
 {

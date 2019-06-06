@@ -2,9 +2,8 @@
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
-using System.Threading.Tasks;
 
-namespace CharaChipGenUtility.Imaging
+namespace CGenImaging
 {
     public struct ColorHSV
     {
@@ -41,21 +40,23 @@ namespace CharaChipGenUtility.Imaging
         /// <summary>
         /// 色差
         /// </summary>
-        public int Hue {
+        public int Hue
+        {
             get { return this.hue; }
         }
         /// <summary>
         /// 彩度
         /// </summary>
-        public byte Saturation {
+        public byte Saturation
+        {
             get { return saturation; }
         }
         /// <summary>
         /// 輝度
         /// </summary>
-        public byte Value {
+        public byte Value
+        {
             get { return value; }
         }
     }
-
 }

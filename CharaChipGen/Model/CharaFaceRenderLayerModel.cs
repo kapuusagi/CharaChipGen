@@ -3,8 +3,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Drawing;
-using CharaChipGen.Imaging;
-
+using CGenImaging;
 
 namespace CharaChipGen.Model
 {

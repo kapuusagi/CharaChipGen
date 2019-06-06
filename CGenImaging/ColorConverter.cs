@@ -4,7 +4,7 @@ using System.Linq;
 using System.Text;
 using System.Drawing;
 
-namespace CharaChipGen.Imaging
+namespace CGenImaging
 {
     /// <summary>
     /// 色変換を行う機能を提供する。

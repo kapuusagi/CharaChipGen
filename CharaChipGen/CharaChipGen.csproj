@@ -8,8 +8,9 @@
     <OutputType>WinExe</OutputType>
     <RootNamespace>CharaChipGen</RootNamespace>
     <AssemblyName>CharaChipGen</AssemblyName>
-    <TargetFrameworkVersion>v3.5</TargetFrameworkVersion>
+    <TargetFrameworkVersion>v4.6.1</TargetFrameworkVersion>
     <FileAlignment>512</FileAlignment>
+    <TargetFrameworkProfile />
   </PropertyGroup>
   <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
     <PlatformTarget>AnyCPU</PlatformTarget>
@@ -20,6 +21,7 @@
     <DefineConstants>DEBUG;TRACE</DefineConstants>
     <ErrorReport>prompt</ErrorReport>
     <WarningLevel>4</WarningLevel>
+    <Prefer32Bit>false</Prefer32Bit>
   </PropertyGroup>
   <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|AnyCPU' ">
     <PlatformTarget>AnyCPU</PlatformTarget>
@@ -29,6 +31,7 @@
     <DefineConstants>TRACE</DefineConstants>
     <ErrorReport>prompt</ErrorReport>
     <WarningLevel>4</WarningLevel>
+    <Prefer32Bit>false</Prefer32Bit>
   </PropertyGroup>
   <ItemGroup>
     <Reference Include="System" />
@@ -97,10 +100,6 @@
     <Compile Include="GeneratorForm\CharaChipGeneratorParamView.Designer.cs">
       <DependentUpon>CharaChipGeneratorParamView.cs</DependentUpon>
     </Compile>
-    <Compile Include="Imaging\ColorConverter.cs" />
-    <Compile Include="Imaging\ColorHSV.cs" />
-    <Compile Include="Imaging\ImageBuffer.cs" />
-    <Compile Include="Imaging\ImageProcessor.cs" />
     <Compile Include="Model\CharaFaceGenerator.cs" />
     <Compile Include="Model\CharaFaceRenderLayerModel.cs" />
     <Compile Include="Model\CharaFaceRenderModel.cs" />
@@ -209,6 +208,12 @@
       <DependentUpon>Settings.settings</DependentUpon>
       <DesignTimeSharedInput>True</DesignTimeSharedInput>
     </Compile>
+  </ItemGroup>
+  <ItemGroup>
+    <ProjectReference Include="..\CGenImaging\CGenImaging.csproj">
+      <Project>{b8d39ada-e6e0-4d88-97ee-a5dc1346aade}</Project>
+      <Name>CGenImaging</Name>
+    </ProjectReference>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>

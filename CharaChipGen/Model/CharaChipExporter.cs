@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Drawing;
+using CGenImaging;
 
 namespace CharaChipGen.Model
 {
@@ -46,7 +47,7 @@ namespace CharaChipGen.Model
 
             Image image = null;
             if (appData.ExportSetting.IsRenderTwice) {
-                ImageBuffer twiceImage = Imaging.ImageProcessor.ExpansionX2(exportBuffer);
+                ImageBuffer twiceImage = ImageProcessor.ExpansionX2(exportBuffer);
                 image = twiceImage.GetImage();
             } else {
                 image = exportBuffer.GetImage();

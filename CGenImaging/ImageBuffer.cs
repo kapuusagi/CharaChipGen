@@ -5,7 +5,7 @@ using System.Text;
 using System.Drawing;
 using System.Drawing.Imaging;
 
-namespace CharaChipGen
+namespace CGenImaging
 {
     public class ImageBuffer
     {
