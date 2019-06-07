@@ -72,7 +72,15 @@ namespace CharaChipGenUtility.Operations
                 {
                     folderSelectDialog = new FolderSelectDialog();
                     folderSelectDialog.Title = "フォルダ選択";
-                    folderSelectDialog.Path = textBoxDirectory.Text;
+                }
+                string path = textBoxDirectory.Text;
+                if (System.IO.Directory.Exists(path))
+                {
+                    folderSelectDialog.Path = path;
+                }
+                else
+                {
+                    folderSelectDialog.Path = System.IO.Directory.GetCurrentDirectory();
                 }
 
                 DialogResult res = folderSelectDialog.ShowDialog(this.FindForm());
