@@ -10,7 +10,7 @@ namespace CharaChipGenUtility.Operations
     /// <summary>
     /// 結合操作
     /// </summary>
-    public class OperationCombine : IOperation
+    public class CombineOperation : IOperation
     {
         /// <summary>
         /// 設定
@@ -20,7 +20,7 @@ namespace CharaChipGenUtility.Operations
         /// <summary>
         /// 新しいインスタンスを構築する。
         /// </summary>
-        public OperationCombine()
+        public CombineOperation()
         {
             setting = new CombineOperationSetting();
         }
@@ -53,7 +53,6 @@ namespace CharaChipGenUtility.Operations
             int imageCount = setting.HorizontalCount * setting.VerticalCount;
 
             int fileIndex = 0;
-            int fileNo = 0; // 書き出しファイル番号
             while (fileIndex < fileNames.Length)
             {
                 ImageBuffer imageBuffer = null;
@@ -73,8 +72,7 @@ namespace CharaChipGenUtility.Operations
                 if (imageBuffer != null)
                 {
                     // 書き出す。
-                    WriteImage(imageBuffer, fileNo);
-                    fileNo++;
+                    WriteOutputImage(imageBuffer);
                 }
 
             }
@@ -120,20 +118,14 @@ namespace CharaChipGenUtility.Operations
         /// 画像を書き出す。
         /// </summary>
         /// <param name="imageBuffer">イメージバッファ</param>
-        /// <param name="fileNo">ファイル番号</param>
-        private void WriteImage(ImageBuffer imageBuffer, int fileNo)
+        private void WriteOutputImage(ImageBuffer imageBuffer)
         {
-            string fileName = $"image{fileNo.ToString("0000")}.png";
             string dir = setting.OutputDirectory;
             if (string.IsNullOrEmpty(dir))
             {
                 dir = System.IO.Directory.GetCurrentDirectory();
             }
-            string path = System.IO.Path.Combine(dir, fileName);
-            using (System.Drawing.Image writeImage = imageBuffer.GetImage())
-            {
-                writeImage.Save(path, System.Drawing.Imaging.ImageFormat.Png);
-            }
+            OutputUtilities.WriteImageWithNewName(dir, "image", imageBuffer);
         }
     }
 }

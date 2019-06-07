@@ -13,14 +13,14 @@ namespace CharaChipGenUtility.Operations
     /// <summary>
     /// ディレクトリ選択コントロール
     /// </summary>
-    public partial class ControlSelectDirectory : UserControl
+    public partial class SelectDirectoryControl : UserControl
     {
         private FolderSelectDialog folderSelectDialog;
 
         /// <summary>
         /// 新しいインスタンスを構築する。
         /// </summary>
-        public ControlSelectDirectory()
+        public SelectDirectoryControl()
         {
             InitializeComponent();
         }

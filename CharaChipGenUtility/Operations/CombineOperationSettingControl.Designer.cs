@@ -1,6 +1,6 @@
 ﻿namespace CharaChipGenUtility.Operations
 {
-    partial class ControlCombineSetting
+    partial class CombineOperationSettingControl
     {
         /// <summary> 
         /// 必要なデザイナー変数です。
@@ -33,7 +33,7 @@
             this.numericUpDownH = new System.Windows.Forms.NumericUpDown();
             this.label2 = new System.Windows.Forms.Label();
             this.numericUpDownV = new System.Windows.Forms.NumericUpDown();
-            this.controlSelectDirectory = new CharaChipGenUtility.Operations.ControlSelectDirectory();
+            this.controlSelectDirectory = new CharaChipGenUtility.Operations.SelectDirectoryControl();
             this.flowLayoutPanel1.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.numericUpDownH)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.numericUpDownV)).BeginInit();
@@ -152,7 +152,7 @@
 
         #endregion
 
-        private ControlSelectDirectory controlSelectDirectory;
+        private SelectDirectoryControl controlSelectDirectory;
         private System.Windows.Forms.FlowLayoutPanel flowLayoutPanel1;
         private System.Windows.Forms.Label label1;
         private System.Windows.Forms.NumericUpDown numericUpDownH;

@@ -9,7 +9,7 @@ using CGenImaging;
 namespace CharaChipGenUtility.Operations
 {
 
-    class OperationRemoveEdge : AbstractImageOperation
+    class RemoveEdgeOperation : ImageOperationBase
     {
         /// <summary>
         /// 操作の名前を得る

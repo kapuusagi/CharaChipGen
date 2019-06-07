@@ -12,7 +12,7 @@ namespace CharaChipGenUtility.Operations
     /// </summary>
     public class CombineOperationSetting : IOperationSetting
     {
-        private ControlCombineSetting combineSetting;
+        private CombineOperationSettingControl control;
 
         private int horizontalCount = 1;
 
@@ -25,9 +25,9 @@ namespace CharaChipGenUtility.Operations
             get { return horizontalCount; }
             set {
                 horizontalCount = value;
-                if (combineSetting != null)
+                if (control != null)
                 {
-                    combineSetting.HorizontalCount = value;
+                    control.HorizontalCount = value;
                 }
             }
         }
@@ -38,9 +38,9 @@ namespace CharaChipGenUtility.Operations
             get { return verticalCount; }
             set {
                 verticalCount = value;
-                if (combineSetting != null)
+                if (control != null)
                 {
-                    combineSetting.VerticalCount = value;
+                    control.VerticalCount = value;
                 }
 
             }
@@ -56,7 +56,15 @@ namespace CharaChipGenUtility.Operations
         /// </summary>
         public string OutputDirectory {
             set {
-                outputDirectory = value ?? "";
+                if ((value == null) || outputDirectory.Equals(value))
+                {
+                    return;
+                }
+                outputDirectory = value;
+                if (control != null)
+                {
+                    control.OutputDirectory = outputDirectory;
+                }
             }
             get {
                 return outputDirectory;
@@ -71,16 +79,16 @@ namespace CharaChipGenUtility.Operations
         /// <returns>ユーザーインタフェース</returns>
         public System.Windows.Forms.Control GetControl()
         {
-            if (combineSetting == null)
+            if (control == null)
             {
-                combineSetting = new ControlCombineSetting();
-                combineSetting.HorizontalCount = HorizontalCount;
-                combineSetting.VerticalCount = VerticalCount;
-                combineSetting.OutputDirectory = OutputDirectory;
-                combineSetting.PropertyChanged += OnControlCombineSettingPropertyChanged;
+                control = new CombineOperationSettingControl();
+                control.HorizontalCount = HorizontalCount;
+                control.VerticalCount = VerticalCount;
+                control.OutputDirectory = OutputDirectory;
+                control.PropertyChanged += OnControlCombineSettingPropertyChanged;
             }
 
-            return combineSetting;
+            return control;
         }
 
         /// <summary>
@@ -94,13 +102,13 @@ namespace CharaChipGenUtility.Operations
             switch (evt.PropertyName)
             {
                 case "OutputDirectory":
-                    OutputDirectory = combineSetting.OutputDirectory;
+                    OutputDirectory = control.OutputDirectory;
                     break;
                 case "HorizontalCount":
-                    HorizontalCount = combineSetting.HorizontalCount;
+                    HorizontalCount = control.HorizontalCount;
                     break;
                 case "VerticalCount":
-                    VerticalCount = combineSetting.VerticalCount;
+                    VerticalCount = control.VerticalCount;
                     break;
             }
         }

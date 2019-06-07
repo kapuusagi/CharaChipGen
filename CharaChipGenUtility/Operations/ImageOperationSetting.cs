@@ -11,10 +11,10 @@ namespace CharaChipGenUtility.Operations
     /// <summary>
     /// 画像操作の設定インタフェース
     /// </summary>
-    class SimpleImageOperationSetting : IOperationSetting
+    class ImageOperationSetting : IOperationSetting
     {
         // 設定UI
-        private ControlSelectDirectory controlSelectDirectory = null;
+        private SelectDirectoryControl control = null;
         // 出力ディレクトリ
         private string outputDirectory = "";
 
@@ -25,14 +25,14 @@ namespace CharaChipGenUtility.Operations
         /// <returns>ユーザーインタフェース</returns>
         public Control GetControl()
         {
-            if (controlSelectDirectory == null)
+            if (control == null)
             {
-                controlSelectDirectory = new ControlSelectDirectory();
-                controlSelectDirectory.SelectName = "出力フォルダ";
-                controlSelectDirectory.Directory = outputDirectory;
-                controlSelectDirectory.PropertyChanged += OnControlPropertyChanged;
+                control = new SelectDirectoryControl();
+                control.SelectName = "出力フォルダ";
+                control.Directory = outputDirectory;
+                control.PropertyChanged += OnControlPropertyChanged;
             }
-            return controlSelectDirectory;
+            return control;
         }
 
         /// <summary>
@@ -45,7 +45,7 @@ namespace CharaChipGenUtility.Operations
             switch (evt.PropertyName)
             {
                 case "Directory":
-                    OutputDirectory = controlSelectDirectory.Directory;
+                    OutputDirectory = control.Directory;
                     break;
             }
 
@@ -62,9 +62,9 @@ namespace CharaChipGenUtility.Operations
                     return;
                 }
                 outputDirectory = value;
-                if (controlSelectDirectory != null)
+                if (control != null)
                 {
-                    controlSelectDirectory.Directory = outputDirectory;
+                    control.Directory = outputDirectory;
                 }
             }
             get {

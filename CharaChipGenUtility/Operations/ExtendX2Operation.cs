@@ -10,7 +10,7 @@ namespace CharaChipGenUtility.Operations
     /// <summary>
     /// 単純拡大処理
     /// </summary>
-    class OperationExtendX2 : AbstractImageOperation
+    class ExtendX2Operation : ImageOperationBase
     {
         /// <summary>
         /// 処理を行う。

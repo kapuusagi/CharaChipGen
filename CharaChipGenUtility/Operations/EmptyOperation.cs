@@ -10,7 +10,7 @@ namespace CharaChipGenUtility.Operations
     /// <summary>
     /// 空のオペレーション。
     /// </summary>
-    class OperationEmpty : AbstractImageOperation
+    class EmptyOperation : ImageOperationBase
     {
         /// <summary>
         /// オペレーション名

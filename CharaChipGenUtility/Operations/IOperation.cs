@@ -21,7 +21,7 @@ namespace CharaChipGenUtility.Operations
         IOperationSetting Setting { get; }
 
         /// <summary>
-        /// 処理をお行う。
+        /// 処理を行う。
         /// </summary>
         void Process(string[] fileNames);
     }

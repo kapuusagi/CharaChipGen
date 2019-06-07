@@ -165,7 +165,11 @@ namespace CGenImaging
         }
 
         /// <summary>
-        /// イメージをコピーする
+        /// このイメージにsrcImageで指定されるイメージを書き込む。
+        /// srcImageをこのイメージに嵌め込む用途のインタフェースになる。
+        /// 嵌め込む位置だけ指定し、srcImageは左上起点である。
+        /// 特定の範囲を特定の範囲に書き込みたい場合には
+        /// パラメータを詳細に指定可能なオーバーライドメソッドを使う事。
         /// </summary>
         /// <param name="srcImage">コピーするイメージ</param>
         /// <param name="dstXOffs">コピー先のX位置</param>
@@ -176,7 +180,8 @@ namespace CGenImaging
         }
 
         /// <summary>
-        /// イメージをコピーする
+        /// このイメージにsrcImageで指定されるイメージを書き込む。
+        /// 座標が画像データの範囲外を指す部分はコピーされない。
         /// </summary>
         /// <param name="srcImage">コピーするイメージ</param>
         /// <param name="srcXOffs">コピー元のX位置</param>

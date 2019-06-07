@@ -11,7 +11,7 @@ namespace CharaChipGenUtility.Operations
     /// <summary>
     /// スマート拡大？
     /// </summary>
-    class OperationSmartExtendX2 : AbstractImageOperation
+    class SmartExtendX2Operation : ImageOperationBase
     {
         /// <summary>
         /// 処理を行う。

@@ -10,12 +10,12 @@ using System.Windows.Forms;
 
 namespace CharaChipGenUtility.Operations
 {
-    public partial class ControlCombineSetting : UserControl
+    public partial class CombineOperationSettingControl : UserControl
     {
         /// <summary>
         /// 新しいインスタンスを構築する。
         /// </summary>
-        public ControlCombineSetting()
+        public CombineOperationSettingControl()
         {
             InitializeComponent();
         }

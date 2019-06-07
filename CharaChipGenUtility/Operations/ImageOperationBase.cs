@@ -12,17 +12,17 @@ namespace CharaChipGenUtility.Operations
     /// <summary>
     /// 1枚の絵に対する画像処理を行う抽象クラス。
     /// </summary>
-    public abstract class AbstractImageOperation : IOperation
+    public abstract class ImageOperationBase : IOperation
     {
         // 設定
-        private SimpleImageOperationSetting setting;
+        private ImageOperationSetting setting;
 
         /// <summary>
         /// 新しいインスタンスを生成する。
         /// </summary>
-        protected AbstractImageOperation()
+        protected ImageOperationBase()
         {
-            setting = new SimpleImageOperationSetting();
+            setting = new ImageOperationSetting();
         }
 
         /// <summary>

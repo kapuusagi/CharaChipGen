@@ -1,6 +1,6 @@
 ﻿namespace CharaChipGenUtility.Operations
 {
-    partial class ControlSelectDirectory
+    partial class SelectDirectoryControl
     {
         /// <summary> 
         /// 必要なデザイナー変数です。

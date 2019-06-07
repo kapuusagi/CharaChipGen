@@ -59,29 +59,38 @@
     <Compile Include="FormSetting.Designer.cs">
       <DependentUpon>FormSetting.cs</DependentUpon>
     </Compile>
+    <Compile Include="Operations\LineupOperationSettingControl.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="Operations\LineupOperationSettingControl.Designer.cs">
+      <DependentUpon>LineupOperationSettingControl.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Operations\LineupOperation.cs" />
+    <Compile Include="Operations\LineupOperationSetting.cs" />
     <Compile Include="Operations\OperationSettingUtility.cs" />
     <Compile Include="Operations\CombineOperationSetting.cs" />
-    <Compile Include="Operations\ControlCombineSetting.cs">
+    <Compile Include="Operations\CombineOperationSettingControl.cs">
       <SubType>UserControl</SubType>
     </Compile>
-    <Compile Include="Operations\ControlCombineSetting.Designer.cs">
-      <DependentUpon>ControlCombineSetting.cs</DependentUpon>
+    <Compile Include="Operations\CombineOperationSettingControl.Designer.cs">
+      <DependentUpon>CombineOperationSettingControl.cs</DependentUpon>
     </Compile>
-    <Compile Include="Operations\ControlSelectDirectory.cs">
+    <Compile Include="Operations\OutputUtilities.cs" />
+    <Compile Include="Operations\SelectDirectoryControl.cs">
       <SubType>UserControl</SubType>
     </Compile>
-    <Compile Include="Operations\ControlSelectDirectory.Designer.cs">
-      <DependentUpon>ControlSelectDirectory.cs</DependentUpon>
+    <Compile Include="Operations\SelectDirectoryControl.Designer.cs">
+      <DependentUpon>SelectDirectoryControl.cs</DependentUpon>
     </Compile>
-    <Compile Include="Operations\OperationEmpty.cs" />
-    <Compile Include="Operations\OperationExtendX2.cs" />
-    <Compile Include="Operations\AbstractImageOperation.cs" />
+    <Compile Include="Operations\EmptyOperation.cs" />
+    <Compile Include="Operations\ExtendX2Operation.cs" />
+    <Compile Include="Operations\ImageOperationBase.cs" />
     <Compile Include="Operations\IOperation.cs" />
     <Compile Include="Operations\IOperationSetting.cs" />
-    <Compile Include="Operations\OperationCombine.cs" />
-    <Compile Include="Operations\OperationRemoveEdge.cs" />
-    <Compile Include="Operations\SimpleImageOperationSetting.cs" />
-    <Compile Include="Operations\OperationSmartExtendX2.cs" />
+    <Compile Include="Operations\CombineOperation.cs" />
+    <Compile Include="Operations\RemoveEdgeOperation.cs" />
+    <Compile Include="Operations\ImageOperationSetting.cs" />
+    <Compile Include="Operations\SmartExtendX2Operation.cs" />
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <EmbeddedResource Include="FormMain.resx">
@@ -90,11 +99,14 @@
     <EmbeddedResource Include="FormSetting.resx">
       <DependentUpon>FormSetting.cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="Operations\ControlCombineSetting.resx">
-      <DependentUpon>ControlCombineSetting.cs</DependentUpon>
+    <EmbeddedResource Include="Operations\CombineOperationSettingControl.resx">
+      <DependentUpon>CombineOperationSettingControl.cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="Operations\ControlSelectDirectory.resx">
-      <DependentUpon>ControlSelectDirectory.cs</DependentUpon>
+    <EmbeddedResource Include="Operations\LineupOperationSettingControl.resx">
+      <DependentUpon>LineupOperationSettingControl.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Operations\SelectDirectoryControl.resx">
+      <DependentUpon>SelectDirectoryControl.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Properties\Resources.resx">
       <Generator>ResXFileCodeGenerator</Generator>
