@@ -59,6 +59,7 @@
     <Compile Include="FormSetting.Designer.cs">
       <DependentUpon>FormSetting.cs</DependentUpon>
     </Compile>
+    <Compile Include="Operations\IImageOperation.cs" />
     <Compile Include="Operations\LineupOperationSettingControl.cs">
       <SubType>UserControl</SubType>
     </Compile>
@@ -90,6 +91,14 @@
     <Compile Include="Operations\CombineOperation.cs" />
     <Compile Include="Operations\RemoveEdgeOperation.cs" />
     <Compile Include="Operations\ImageOperationSetting.cs" />
+    <Compile Include="Operations\SequentialOperation.cs" />
+    <Compile Include="Operations\SequentialOperationSetting.cs" />
+    <Compile Include="Operations\SequentialOperationSettingControl.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="Operations\SequentialOperationSettingControl.Designer.cs">
+      <DependentUpon>SequentialOperationSettingControl.cs</DependentUpon>
+    </Compile>
     <Compile Include="Operations\SmartExtendX2Operation.cs" />
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
@@ -107,6 +116,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Operations\SelectDirectoryControl.resx">
       <DependentUpon>SelectDirectoryControl.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Operations\SequentialOperationSettingControl.resx">
+      <DependentUpon>SequentialOperationSettingControl.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Properties\Resources.resx">
       <Generator>ResXFileCodeGenerator</Generator>

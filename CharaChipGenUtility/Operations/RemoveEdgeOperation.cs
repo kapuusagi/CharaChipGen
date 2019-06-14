@@ -9,7 +9,10 @@ using CGenImaging;
 namespace CharaChipGenUtility.Operations
 {
 
-    class RemoveEdgeOperation : ImageOperationBase
+    /// <summary>
+    /// 角を削除する。
+    /// </summary>
+    public class RemoveEdgeOperation : ImageOperationBase
     {
         /// <summary>
         /// 操作の名前を得る
@@ -18,7 +21,12 @@ namespace CharaChipGenUtility.Operations
             get { return "RemoveEdge"; }
         }
 
-        protected  override ImageBuffer DoImageProcess(ImageBuffer src)
+        /// <summary>
+        /// 画像に処理を行う。
+        /// </summary>
+        /// <param name="src"></param>
+        /// <returns></returns>
+        public override ImageBuffer Process(ImageBuffer src)
         {
             ImageBuffer dst = ImageBuffer.Create(src.Width, src.Height);
 

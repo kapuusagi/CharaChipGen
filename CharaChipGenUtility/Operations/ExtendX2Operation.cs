@@ -17,7 +17,7 @@ namespace CharaChipGenUtility.Operations
         /// </summary>
         /// <param name="buffer">画像バッファ</param>
         /// <returns>処理結果が返る</returns>
-        protected override ImageBuffer DoImageProcess(ImageBuffer buffer)
+        public override ImageBuffer Process(ImageBuffer buffer)
         {
             ImageBuffer dstImage = ImageBuffer.Create(buffer.Width * 2, buffer.Height * 2);
 

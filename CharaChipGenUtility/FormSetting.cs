@@ -51,7 +51,8 @@ namespace CharaChipGenUtility
             {
                 Control control = Setting.GetControl();
                 panelMain.Controls.Add(control);
-                control.Dock = DockStyle.Top;
+                
+                control.Dock = DockStyle.Fill;
             }
         }
 

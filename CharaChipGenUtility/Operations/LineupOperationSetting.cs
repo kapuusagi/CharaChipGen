@@ -106,5 +106,42 @@ namespace CharaChipGenUtility.Operations
                     break;
             }
         }
+
+        /// <summary>
+        /// プロパティの値を文字列表現にしたものを得る。
+        /// </summary>
+        /// <param name="propertyName">プロパティ名</param>
+        /// <returns>値</returns>
+        public string GetPropertyValue(string propertyName)
+        {
+            switch (propertyName)
+            {
+                case "OutputDirectory":
+                    return OutputDirectory;
+                case "Direction":
+                    return (Direction == 0) ? "Horizontal" : "Vertical";
+                default:
+                    return "";
+            }
+        }
+
+        /// <summary>
+        /// プロパティの値を設定する。
+        /// </summary>
+        /// <param name="propertyName">プロパティ名</param>
+        /// <param name="value">プロパティの値</param>
+        public void SetPropertyValue(string propertyName, string value)
+        {
+            switch (propertyName)
+            {
+                case "OutputDirectory":
+                    OutputDirectory = value;
+                    break;
+                case "Direction":
+                    Direction = (value.ToLower().Equals("horizontal"))
+                        ? DIRECTION_HORIZONTAL : DIRECTION_VERTICAL;
+                    break;
+            }
+        }
     }
 }

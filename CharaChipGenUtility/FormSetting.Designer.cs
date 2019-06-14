@@ -40,15 +40,15 @@
             this.flowLayoutPanel2.Controls.Add(this.buttonClose);
             this.flowLayoutPanel2.Dock = System.Windows.Forms.DockStyle.Bottom;
             this.flowLayoutPanel2.FlowDirection = System.Windows.Forms.FlowDirection.RightToLeft;
-            this.flowLayoutPanel2.Location = new System.Drawing.Point(0, 141);
+            this.flowLayoutPanel2.Location = new System.Drawing.Point(0, 217);
             this.flowLayoutPanel2.Name = "flowLayoutPanel2";
             this.flowLayoutPanel2.Padding = new System.Windows.Forms.Padding(6);
-            this.flowLayoutPanel2.Size = new System.Drawing.Size(421, 41);
+            this.flowLayoutPanel2.Size = new System.Drawing.Size(454, 41);
             this.flowLayoutPanel2.TabIndex = 1;
             // 
             // buttonClose
             // 
-            this.buttonClose.Location = new System.Drawing.Point(331, 9);
+            this.buttonClose.Location = new System.Drawing.Point(364, 9);
             this.buttonClose.Name = "buttonClose";
             this.buttonClose.Size = new System.Drawing.Size(75, 23);
             this.buttonClose.TabIndex = 1;
@@ -62,14 +62,14 @@
             this.panelMain.Location = new System.Drawing.Point(0, 0);
             this.panelMain.Name = "panelMain";
             this.panelMain.Padding = new System.Windows.Forms.Padding(8);
-            this.panelMain.Size = new System.Drawing.Size(421, 141);
+            this.panelMain.Size = new System.Drawing.Size(454, 217);
             this.panelMain.TabIndex = 2;
             // 
             // FormSetting
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 12F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(421, 182);
+            this.ClientSize = new System.Drawing.Size(454, 258);
             this.Controls.Add(this.panelMain);
             this.Controls.Add(this.flowLayoutPanel2);
             this.Name = "FormSetting";

@@ -12,7 +12,7 @@ namespace CharaChipGenUtility.Operations
     /// <summary>
     /// 1枚の絵に対する画像処理を行う抽象クラス。
     /// </summary>
-    public abstract class ImageOperationBase : IOperation
+    public abstract class ImageOperationBase : IOperation, IImageOperation
     {
         // 設定
         private ImageOperationSetting setting;
@@ -36,7 +36,7 @@ namespace CharaChipGenUtility.Operations
                 using (Image srcImage = Image.FromFile(filePath))
                 {
                     ImageBuffer srcBuffer = ImageBuffer.CreateFrom(srcImage);
-                    ImageBuffer dstBuffer = DoImageProcess(srcBuffer);
+                    ImageBuffer dstBuffer = Process(srcBuffer);
                     using (Image dstImage = dstBuffer.GetImage())
                     {
                         string fileName = System.IO.Path.GetFileName(filePath);
@@ -54,12 +54,14 @@ namespace CharaChipGenUtility.Operations
         }
 
 
+
+
         /// <summary>
-        /// 処理を行う。
+        /// 画像に処理を行う。
         /// </summary>
         /// <param name="buffer">画像バッファ</param>
         /// <returns>処理結果が返る</returns>
-        protected abstract ImageBuffer DoImageProcess(ImageBuffer buffer);
+        public abstract ImageBuffer Process(ImageBuffer buffer);
 
         /// <summary>
         /// 操作名

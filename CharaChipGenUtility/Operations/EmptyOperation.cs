@@ -28,11 +28,11 @@ namespace CharaChipGenUtility.Operations
 
 
         /// <summary>
-        /// 処理を行う。
+        /// 画像に処理を行う。
         /// </summary>
         /// <param name="buffer">画像バッファ</param>
         /// <returns>処理結果が返る</returns>
-        protected override ImageBuffer DoImageProcess(ImageBuffer buffer)
+        public override ImageBuffer Process(ImageBuffer buffer)
         {
             return buffer;
         }

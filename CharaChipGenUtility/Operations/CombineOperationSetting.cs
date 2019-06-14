@@ -71,7 +71,46 @@ namespace CharaChipGenUtility.Operations
             }
         }
 
+        /// <summary>
+        /// プロパティの値を文字列表現にしたものを得る。
+        /// </summary>
+        /// <param name="propertyName">プロパティ名</param>
+        /// <returns>値</returns>
+        public string GetPropertyValue(string propertyName)
+        {
+            switch (propertyName)
+            {
+                case "OutputDirectory":
+                    return OutputDirectory;
+                case "HorizontalCount":
+                    return HorizontalCount.ToString();
+                case "VerticalCount":
+                    return VerticalCount.ToString();
+                default:
+                    return "";
+            }
+        }
 
+        /// <summary>
+        /// プロパティの値を設定する。
+        /// </summary>
+        /// <param name="propertyName">プロパティ名</param>
+        /// <param name="value">プロパティの値</param>
+        public void SetPropertyValue(string propertyName, string value)
+        {
+            switch (propertyName)
+            {
+                case "OutputDirectory":
+                    OutputDirectory = value;
+                    break;
+                case "HorizontalCount":
+                    HorizontalCount = Convert.ToInt32(value);
+                    break;
+                case "VerticalCount":
+                    VerticalCount = Convert.ToInt32(value);
+                    break;
+            }
+        }
 
         /// <summary>
         /// この設定を行うのに最適なUIを取得する。
@@ -112,6 +151,5 @@ namespace CharaChipGenUtility.Operations
                     break;
             }
         }
-
     }
 }

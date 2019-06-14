@@ -50,8 +50,8 @@ namespace CharaChipGenUtility.Operations
                     {
                         continue;
                     }
-                    object value = pi.GetValue(setting);
-                    sw.WriteLine($"{pi.Name} = {value.ToString()}");
+                    string value = setting.GetPropertyValue(pi.Name);
+                    sw.WriteLine($"{pi.Name} = {value}");
                 }
             }
             sw.WriteLine();
@@ -90,7 +90,10 @@ namespace CharaChipGenUtility.Operations
                             {
                                 string key = line.Substring(0, index).Trim();
                                 string value = line.Substring(index + 1).Trim();
-                                SetOperationSetting(setting, key, value);
+                                if (setting != null)
+                                {
+                                    setting.SetPropertyValue(key, value);
+                                }
                             }
 
                         }
@@ -120,42 +123,5 @@ namespace CharaChipGenUtility.Operations
 
             return null;
         }
-        
-        /// <summary>
-        /// settingにある、keyで指定されるプロパティをvalueに設定する。
-        /// </summary>
-        /// <param name="setting">設定</param>
-        /// <param name="key">キー</param>
-        /// <param name="value">値</param>
-        private static void SetOperationSetting(IOperationSetting setting,
-            string key, string value)
-        {
-            if (setting == null)
-            {
-                return;
-            }
-
-            System.Reflection.PropertyInfo pi
-                = setting.GetType().GetProperties().First((x) => x.Name.Equals(key));
-            if (pi == null)
-            {
-                // keyに該当する名前を持つプロパティは見つからなかった。
-                return;
-            }
-
-            if (pi.PropertyType == typeof(int))
-            {
-                pi.SetValue(setting, Convert.ToInt32(value));
-            }
-            else if (pi.PropertyType == typeof(double))
-            {
-                pi.SetValue(setting, Convert.ToDouble(value));
-            }
-            else
-            {
-                pi.SetValue(setting, value);
-            }
-        }
-
     }
 }
