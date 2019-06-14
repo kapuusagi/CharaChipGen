@@ -11,6 +11,7 @@ using System.Windows.Forms;
 namespace IconSetViewer
 {
     /// <summary>
+<<<<<<< HEAD
     /// アイコンセットビュー
     /// </summary>
     public partial class IconSetViewControl : UserControl
@@ -20,6 +21,16 @@ namespace IconSetViewer
         private int hIconCount; // 水平アイコン数
         private int vIconCount; // 垂直アイコン数
         private int selectedIndex = 0; // 選択されているアイコンのインデックス番号
+=======
+    /// 
+    /// </summary>
+    public partial class IconSetViewControl : UserControl
+    {
+        private Size iconSize = new Size(32, 32);
+        private Image iconSetImage;
+        private int hIconCount; // 水平アイコン数
+        private int vIconCount; // 垂直アイコン数
+>>>>>>> 046e71479b0dc256da5bddda0f7567d84eeb9a60
 
         /// <summary>
         /// 新しいインスタンスを構築する。
@@ -32,11 +43,14 @@ namespace IconSetViewer
         }
 
         /// <summary>
+<<<<<<< HEAD
         /// 選択インデックスが変更されたときに通知を受け取る。
         /// </summary>
         public event EventHandler SelectedIndexChanged;
 
         /// <summary>
+=======
+>>>>>>> 046e71479b0dc256da5bddda0f7567d84eeb9a60
         /// アイコンセット画像
         /// </summary>
         public Image IconSetImage {
@@ -75,6 +89,11 @@ namespace IconSetViewer
             }
         }
 
+<<<<<<< HEAD
+=======
+        private int selectedIndex = 0;
+
+>>>>>>> 046e71479b0dc256da5bddda0f7567d84eeb9a60
         /// <summary>
         /// アイコンインデックス番号(0, 1, 2, ... (MaxIconCount - 1))
         /// </summary>
@@ -95,15 +114,22 @@ namespace IconSetViewer
                 {
                     selectedIndex = newIndex;
                     Invalidate();
+<<<<<<< HEAD
                     SelectedIndexChanged?.Invoke(this, new EventArgs());
+=======
+>>>>>>> 046e71479b0dc256da5bddda0f7567d84eeb9a60
                 }
             }
         }
         /// <summary>
         /// アイコン最大数
         /// </summary>
+<<<<<<< HEAD
         public int MaxIconCount { get; private set; } = 0;
 
+=======
+        public int MaxIconCount { get; private set; }
+>>>>>>> 046e71479b0dc256da5bddda0f7567d84eeb9a60
         /// <summary>
         /// アイコンデータを更新する。
         /// </summary>
@@ -147,13 +173,18 @@ namespace IconSetViewer
                 int yOffs = (SelectedIndex / hIconCount) * IconSize.Width;
                 int xOffs = (SelectedIndex % hIconCount) * IconSize.Height;
 
+<<<<<<< HEAD
                 using (Pen pen = new Pen(CorsorColor, 2))
+=======
+                using (Pen pen = new Pen(CorsorColor))
+>>>>>>> 046e71479b0dc256da5bddda0f7567d84eeb9a60
                 {
                     g.DrawRectangle(pen, xOffs, yOffs, iconSize.Width - 1, iconSize.Height - 1);
                 }
             }
 
         }
+<<<<<<< HEAD
 
         /// <summary>
         /// マウスでクリックされたときに通知を受け取る。
@@ -169,5 +200,7 @@ namespace IconSetViewer
                 SelectedIndex = iconIndex;
             }
         }
+=======
+>>>>>>> 046e71479b0dc256da5bddda0f7567d84eeb9a60
     }
 }

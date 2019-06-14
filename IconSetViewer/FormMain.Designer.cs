@@ -38,9 +38,13 @@
             this.comboBoxNumber = new System.Windows.Forms.ComboBox();
             this.panel1 = new System.Windows.Forms.Panel();
             this.panelScroll = new System.Windows.Forms.Panel();
+<<<<<<< HEAD
             this.iconSetViewControl = new IconSetViewer.IconSetViewControl();
+=======
+>>>>>>> 046e71479b0dc256da5bddda0f7567d84eeb9a60
             this.flowLayoutPanel2 = new System.Windows.Forms.FlowLayoutPanel();
             this.iconViewControl = new IconSetViewer.IconViewControl();
+            this.iconSetViewControl1 = new IconSetViewer.IconSetViewControl();
             this.menuStrip1.SuspendLayout();
             this.flowLayoutPanel1.SuspendLayout();
             this.panel1.SuspendLayout();
@@ -133,7 +137,11 @@
             // 
             this.panelScroll.AutoScroll = true;
             this.panelScroll.BackColor = System.Drawing.Color.Black;
+<<<<<<< HEAD
             this.panelScroll.Controls.Add(this.iconSetViewControl);
+=======
+            this.panelScroll.Controls.Add(this.iconSetViewControl1);
+>>>>>>> 046e71479b0dc256da5bddda0f7567d84eeb9a60
             this.panelScroll.Dock = System.Windows.Forms.DockStyle.Fill;
             this.panelScroll.Location = new System.Drawing.Point(8, 8);
             this.panelScroll.Name = "panelScroll";
@@ -141,6 +149,7 @@
             this.panelScroll.Size = new System.Drawing.Size(516, 385);
             this.panelScroll.TabIndex = 1;
             // 
+<<<<<<< HEAD
             // iconSetViewControl
             // 
             this.iconSetViewControl.BackColor = System.Drawing.Color.Black;
@@ -153,6 +162,8 @@
             this.iconSetViewControl.Size = new System.Drawing.Size(393, 343);
             this.iconSetViewControl.TabIndex = 0;
             // 
+=======
+>>>>>>> 046e71479b0dc256da5bddda0f7567d84eeb9a60
             // flowLayoutPanel2
             // 
             this.flowLayoutPanel2.AutoSize = true;
@@ -171,9 +182,25 @@
             this.iconViewControl.Image = null;
             this.iconViewControl.Location = new System.Drawing.Point(7, 7);
             this.iconViewControl.Name = "iconViewControl";
+<<<<<<< HEAD
             this.iconViewControl.Number = -1;
+=======
+            this.iconViewControl.Number = 0;
+>>>>>>> 046e71479b0dc256da5bddda0f7567d84eeb9a60
             this.iconViewControl.Size = new System.Drawing.Size(72, 72);
             this.iconViewControl.TabIndex = 0;
+            // 
+            // iconSetViewControl1
+            // 
+            this.iconSetViewControl1.BackColor = System.Drawing.Color.Black;
+            this.iconSetViewControl1.CorsorColor = System.Drawing.Color.Red;
+            this.iconSetViewControl1.IconSetImage = null;
+            this.iconSetViewControl1.IconSize = new System.Drawing.Size(32, 32);
+            this.iconSetViewControl1.Location = new System.Drawing.Point(1, 1);
+            this.iconSetViewControl1.Name = "iconSetViewControl1";
+            this.iconSetViewControl1.SelectedIndex = 0;
+            this.iconSetViewControl1.Size = new System.Drawing.Size(393, 343);
+            this.iconSetViewControl1.TabIndex = 0;
             // 
             // FormMain
             // 
@@ -216,7 +243,11 @@
         private IconViewControl iconViewControl;
         private System.Windows.Forms.Panel panelScroll;
         private System.Windows.Forms.FlowLayoutPanel flowLayoutPanel2;
+<<<<<<< HEAD
         private IconSetViewControl iconSetViewControl;
+=======
+        private IconSetViewControl iconSetViewControl1;
+>>>>>>> 046e71479b0dc256da5bddda0f7567d84eeb9a60
     }
 }
 
