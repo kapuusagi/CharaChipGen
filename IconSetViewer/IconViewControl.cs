@@ -10,6 +10,9 @@ using System.Windows.Forms;
 
 namespace IconSetViewer
 {
+    /// <summary>
+    /// アイコンセット中の、特定のアイコンを表示するためのコントロール。
+    /// </summary>
     public partial class IconViewControl : UserControl
     {
 
@@ -49,7 +52,9 @@ namespace IconSetViewer
                 int srcXOffs = xPos * iconSize.Width;
                 int srcYOffs = yPos * iconSize.Height;
                 Rectangle srcRect = new Rectangle(srcXOffs, srcYOffs,
-                    iconSize.Width, iconSize.Height);
+                    iconSize.Width - 1, iconSize.Height - 1);
+
+                System.Diagnostics.Debug.WriteLine($"{srcRect.ToString()}");
 
                 // 表示先範囲の座標を計算
                 int drawWidth = ClientSize.Width;

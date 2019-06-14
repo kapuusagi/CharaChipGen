@@ -12,9 +12,24 @@ namespace IconSetViewer
 {
     public partial class FormMain : Form
     {
+        /// <summary>
+        /// 新しいインスタンスを構築する。
+        /// </summary>
         public FormMain()
         {
             InitializeComponent();
+            iconSetViewControl.SelectedIndexChanged += OnIconSetViewControlSelectedIndexChanged;
+        }
+
+        /// <summary>
+        /// アイコンセットビューで項目が選択変更されたときに通知を受け取る。
+        /// </summary>
+        /// <param name="sender">送信元オブジェクト</param>
+        /// <param name="evt">イベントオブジェクト</param>
+        private void OnIconSetViewControlSelectedIndexChanged(object sender, EventArgs evt)
+        {
+            comboBoxNumber.SelectedIndex = iconSetViewControl.SelectedIndex;
+            iconViewControl.Number = iconSetViewControl.SelectedIndex;
         }
 
         /// <summary>
@@ -103,6 +118,7 @@ namespace IconSetViewer
                 if ((number > 0) && (number <= iconViewControl.MaxIconCount))
                 {
                     iconViewControl.Number = number - 1;
+                    iconSetViewControl.SelectedIndex = number - 1;
                 }
             }
             catch (Exception e)
@@ -117,6 +133,7 @@ namespace IconSetViewer
             using (Image image = Image.FromFile(filePath))
             {
                 iconViewControl.Image = (Image)(image.Clone());
+                iconSetViewControl.IconSetImage = iconViewControl.Image;
 
                 // イメージがセットできたら最大数(=コンボボックス)を更新
                 int maxIconCount = iconViewControl.MaxIconCount;
@@ -126,11 +143,12 @@ namespace IconSetViewer
                     string item = (i + 1).ToString();
                     comboBoxNumber.Items.Add(item);
                 }
-
+                
                 // デフォルトを選択
                 if (comboBoxNumber.Items.Count > 0)
                 {
                     comboBoxNumber.SelectedIndex = 0;
+                    iconSetViewControl.SelectedIndex = 0;
                 }
 
                 // 有効・無効状態を更新する。
@@ -155,6 +173,7 @@ namespace IconSetViewer
                 }
                 int number = Convert.ToInt32(text);
                 iconViewControl.Number = (number - 1);
+                iconSetViewControl.SelectedIndex = (number - 1);
             }
             catch (Exception e)
             {

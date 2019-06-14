@@ -52,6 +52,12 @@
     <Compile Include="FormMain.Designer.cs">
       <DependentUpon>FormMain.cs</DependentUpon>
     </Compile>
+    <Compile Include="IconSetViewControl.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="IconSetViewControl.Designer.cs">
+      <DependentUpon>IconSetViewControl.cs</DependentUpon>
+    </Compile>
     <Compile Include="IconViewControl.cs">
       <SubType>UserControl</SubType>
     </Compile>
@@ -62,6 +68,9 @@
     <Compile Include="Properties\AssemblyInfo.cs" />
     <EmbeddedResource Include="FormMain.resx">
       <DependentUpon>FormMain.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="IconSetViewControl.resx">
+      <DependentUpon>IconSetViewControl.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Properties\Resources.resx">
       <Generator>ResXFileCodeGenerator</Generator>
