@@ -37,6 +37,11 @@ namespace CharaChipGenUtility.Operations
         /// </summary>
         public void Process(string[] fileNames)
         {
+            // 名前でソートする。
+            // 残念なことに、エクスプローラ上でクリック選択した順番とか
+            // 全く関係なしにわたってくるのだ。
+            Array.Sort(fileNames, (s1, s2) => s1.CompareTo(s2));
+
             ImageBuffer[] images = LoadImages(fileNames);
 
             switch (setting.Direction)
