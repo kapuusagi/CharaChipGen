@@ -37,10 +37,15 @@
             this.label1 = new System.Windows.Forms.Label();
             this.comboBoxNumber = new System.Windows.Forms.ComboBox();
             this.panel1 = new System.Windows.Forms.Panel();
+            this.panelScroll = new System.Windows.Forms.Panel();
+            this.flowLayoutPanel2 = new System.Windows.Forms.FlowLayoutPanel();
             this.iconViewControl = new IconSetViewer.IconViewControl();
+            this.iconSetViewControl1 = new IconSetViewer.IconSetViewControl();
             this.menuStrip1.SuspendLayout();
             this.flowLayoutPanel1.SuspendLayout();
             this.panel1.SuspendLayout();
+            this.panelScroll.SuspendLayout();
+            this.flowLayoutPanel2.SuspendLayout();
             this.SuspendLayout();
             // 
             // menuStrip1
@@ -49,7 +54,7 @@
             this.ファイルToolStripMenuItem});
             this.menuStrip1.Location = new System.Drawing.Point(0, 0);
             this.menuStrip1.Name = "menuStrip1";
-            this.menuStrip1.Size = new System.Drawing.Size(295, 24);
+            this.menuStrip1.Size = new System.Drawing.Size(684, 24);
             this.menuStrip1.TabIndex = 0;
             this.menuStrip1.Text = "menuStrip1";
             // 
@@ -88,9 +93,9 @@
             this.flowLayoutPanel1.Controls.Add(this.comboBoxNumber);
             this.flowLayoutPanel1.Dock = System.Windows.Forms.DockStyle.Right;
             this.flowLayoutPanel1.FlowDirection = System.Windows.Forms.FlowDirection.TopDown;
-            this.flowLayoutPanel1.Location = new System.Drawing.Point(229, 24);
+            this.flowLayoutPanel1.Location = new System.Drawing.Point(618, 24);
             this.flowLayoutPanel1.Name = "flowLayoutPanel1";
-            this.flowLayoutPanel1.Size = new System.Drawing.Size(66, 112);
+            this.flowLayoutPanel1.Size = new System.Drawing.Size(66, 401);
             this.flowLayoutPanel1.TabIndex = 1;
             // 
             // label1
@@ -115,32 +120,67 @@
             // 
             // panel1
             // 
-            this.panel1.Controls.Add(this.iconViewControl);
+            this.panel1.Controls.Add(this.panelScroll);
+            this.panel1.Controls.Add(this.flowLayoutPanel2);
             this.panel1.Dock = System.Windows.Forms.DockStyle.Fill;
             this.panel1.Location = new System.Drawing.Point(0, 24);
             this.panel1.Name = "panel1";
             this.panel1.Padding = new System.Windows.Forms.Padding(8);
-            this.panel1.Size = new System.Drawing.Size(229, 112);
+            this.panel1.Size = new System.Drawing.Size(618, 401);
             this.panel1.TabIndex = 2;
+            // 
+            // panelScroll
+            // 
+            this.panelScroll.AutoScroll = true;
+            this.panelScroll.BackColor = System.Drawing.Color.Black;
+            this.panelScroll.Controls.Add(this.iconSetViewControl1);
+            this.panelScroll.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.panelScroll.Location = new System.Drawing.Point(8, 8);
+            this.panelScroll.Name = "panelScroll";
+            this.panelScroll.Padding = new System.Windows.Forms.Padding(8);
+            this.panelScroll.Size = new System.Drawing.Size(516, 385);
+            this.panelScroll.TabIndex = 1;
+            // 
+            // flowLayoutPanel2
+            // 
+            this.flowLayoutPanel2.AutoSize = true;
+            this.flowLayoutPanel2.Controls.Add(this.iconViewControl);
+            this.flowLayoutPanel2.Dock = System.Windows.Forms.DockStyle.Right;
+            this.flowLayoutPanel2.Location = new System.Drawing.Point(524, 8);
+            this.flowLayoutPanel2.Name = "flowLayoutPanel2";
+            this.flowLayoutPanel2.Padding = new System.Windows.Forms.Padding(4);
+            this.flowLayoutPanel2.Size = new System.Drawing.Size(86, 385);
+            this.flowLayoutPanel2.TabIndex = 2;
             // 
             // iconViewControl
             // 
             this.iconViewControl.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
-            this.iconViewControl.Dock = System.Windows.Forms.DockStyle.Fill;
             this.iconViewControl.IconSize = new System.Drawing.Size(32, 32);
             this.iconViewControl.Image = null;
-            this.iconViewControl.Location = new System.Drawing.Point(8, 8);
+            this.iconViewControl.Location = new System.Drawing.Point(7, 7);
             this.iconViewControl.Name = "iconViewControl";
             this.iconViewControl.Number = 0;
-            this.iconViewControl.Size = new System.Drawing.Size(213, 96);
+            this.iconViewControl.Size = new System.Drawing.Size(72, 72);
             this.iconViewControl.TabIndex = 0;
+            // 
+            // iconSetViewControl1
+            // 
+            this.iconSetViewControl1.BackColor = System.Drawing.Color.Black;
+            this.iconSetViewControl1.CorsorColor = System.Drawing.Color.Red;
+            this.iconSetViewControl1.IconSetImage = null;
+            this.iconSetViewControl1.IconSize = new System.Drawing.Size(32, 32);
+            this.iconSetViewControl1.Location = new System.Drawing.Point(1, 1);
+            this.iconSetViewControl1.Name = "iconSetViewControl1";
+            this.iconSetViewControl1.SelectedIndex = 0;
+            this.iconSetViewControl1.Size = new System.Drawing.Size(393, 343);
+            this.iconSetViewControl1.TabIndex = 0;
             // 
             // FormMain
             // 
             this.AllowDrop = true;
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 12F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(295, 136);
+            this.ClientSize = new System.Drawing.Size(684, 425);
             this.Controls.Add(this.panel1);
             this.Controls.Add(this.flowLayoutPanel1);
             this.Controls.Add(this.menuStrip1);
@@ -154,6 +194,9 @@
             this.flowLayoutPanel1.ResumeLayout(false);
             this.flowLayoutPanel1.PerformLayout();
             this.panel1.ResumeLayout(false);
+            this.panel1.PerformLayout();
+            this.panelScroll.ResumeLayout(false);
+            this.flowLayoutPanel2.ResumeLayout(false);
             this.ResumeLayout(false);
             this.PerformLayout();
 
@@ -171,6 +214,9 @@
         private System.Windows.Forms.ComboBox comboBoxNumber;
         private System.Windows.Forms.Panel panel1;
         private IconViewControl iconViewControl;
+        private System.Windows.Forms.Panel panelScroll;
+        private System.Windows.Forms.FlowLayoutPanel flowLayoutPanel2;
+        private IconSetViewControl iconSetViewControl1;
     }
 }
 

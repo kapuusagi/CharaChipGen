@@ -10,6 +10,9 @@ using System.Windows.Forms;
 
 namespace IconSetViewer
 {
+    /// <summary>
+    /// アイコンセット中の、特定のアイコンを表示するためのコントロール。
+    /// </summary>
     public partial class IconViewControl : UserControl
     {
 
