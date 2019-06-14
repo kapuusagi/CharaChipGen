@@ -118,11 +118,7 @@ namespace IconSetViewer
                 if ((number > 0) && (number <= iconViewControl.MaxIconCount))
                 {
                     iconViewControl.Number = number - 1;
-<<<<<<< HEAD
                     iconSetViewControl.SelectedIndex = number - 1;
-=======
-                    iconSetViewControl1.SelectedIndex = number - 1;
->>>>>>> 046e71479b0dc256da5bddda0f7567d84eeb9a60
                 }
             }
             catch (Exception e)
@@ -137,11 +133,7 @@ namespace IconSetViewer
             using (Image image = Image.FromFile(filePath))
             {
                 iconViewControl.Image = (Image)(image.Clone());
-<<<<<<< HEAD
                 iconSetViewControl.IconSetImage = iconViewControl.Image;
-=======
-                iconSetViewControl1.IconSetImage = iconViewControl.Image;
->>>>>>> 046e71479b0dc256da5bddda0f7567d84eeb9a60
 
                 // イメージがセットできたら最大数(=コンボボックス)を更新
                 int maxIconCount = iconViewControl.MaxIconCount;
@@ -181,11 +173,7 @@ namespace IconSetViewer
                 }
                 int number = Convert.ToInt32(text);
                 iconViewControl.Number = (number - 1);
-<<<<<<< HEAD
                 iconSetViewControl.SelectedIndex = (number - 1);
-=======
-                iconSetViewControl1.SelectedIndex = (number - 1);
->>>>>>> 046e71479b0dc256da5bddda0f7567d84eeb9a60
             }
             catch (Exception e)
             {

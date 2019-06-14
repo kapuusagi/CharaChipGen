@@ -35,15 +35,10 @@
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 12F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.BackColor = System.Drawing.Color.Black;
-<<<<<<< HEAD
             this.DoubleBuffered = true;
             this.Name = "IconSetViewControl";
             this.Size = new System.Drawing.Size(393, 343);
             this.MouseClick += new System.Windows.Forms.MouseEventHandler(this.OnMouseClick);
-=======
-            this.Name = "IconSetViewControl";
-            this.Size = new System.Drawing.Size(393, 343);
->>>>>>> 046e71479b0dc256da5bddda0f7567d84eeb9a60
             this.ResumeLayout(false);
 
         }
