@@ -33,6 +33,8 @@ namespace CharaChipGenUtility.Operations
         {
             foreach (string filePath in filePaths)
             {
+                
+
                 using (Image srcImage = Image.FromFile(filePath))
                 {
                     ImageBuffer srcBuffer = ImageBuffer.CreateFrom(srcImage);
@@ -52,7 +54,6 @@ namespace CharaChipGenUtility.Operations
                 }
             }
         }
-
 
 
 

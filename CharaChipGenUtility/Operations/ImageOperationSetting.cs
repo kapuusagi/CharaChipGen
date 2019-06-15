@@ -14,9 +14,11 @@ namespace CharaChipGenUtility.Operations
     class ImageOperationSetting : IOperationSetting
     {
         // 設定UI
-        private SelectDirectoryControl control = null;
+        private SelectDirectoryControl settingControl = null;
         // 出力ディレクトリ
         private string outputDirectory = "";
+
+        private Panel control = null;
 
 
         /// <summary>
@@ -27,10 +29,13 @@ namespace CharaChipGenUtility.Operations
         {
             if (control == null)
             {
-                control = new SelectDirectoryControl();
-                control.SelectName = "出力フォルダ";
-                control.Directory = outputDirectory;
-                control.PropertyChanged += OnControlPropertyChanged;
+                SelectDirectoryControl settingControl =  new SelectDirectoryControl();
+                settingControl.SelectName = "出力フォルダ";
+                settingControl.Directory = outputDirectory;
+                settingControl.PropertyChanged += OnControlPropertyChanged;
+                settingControl.Dock = DockStyle.Top;
+                control = new Panel();
+                control.Controls.Add(settingControl);
             }
             return control;
         }
@@ -46,7 +51,7 @@ namespace CharaChipGenUtility.Operations
             switch (evt.PropertyName)
             {
                 case "Directory":
-                    OutputDirectory = control.Directory;
+                    OutputDirectory = settingControl.Directory;
                     break;
             }
 
@@ -65,7 +70,7 @@ namespace CharaChipGenUtility.Operations
                 outputDirectory = value;
                 if (control != null)
                 {
-                    control.Directory = outputDirectory;
+                    settingControl.Directory = outputDirectory;
                 }
             }
             get {
