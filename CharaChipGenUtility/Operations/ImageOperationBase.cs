@@ -14,15 +14,12 @@ namespace CharaChipGenUtility.Operations
     /// </summary>
     public abstract class ImageOperationBase : IOperation, IImageOperation
     {
-        // 設定
-        private ImageOperationSetting setting;
 
         /// <summary>
         /// 新しいインスタンスを生成する。
         /// </summary>
         protected ImageOperationBase()
         {
-            setting = new ImageOperationSetting();
         }
 
         /// <summary>
@@ -33,27 +30,43 @@ namespace CharaChipGenUtility.Operations
         {
             foreach (string filePath in filePaths)
             {
-                
+                ImageBuffer srcBuffer;
+                ImageFormat imageFormat;
 
+                // データを読み出す。
+                // usingブロックをすぐに閉じるのは、
+                // こうしないとファイルをオープンしっぱなしになるため。
                 using (Image srcImage = Image.FromFile(filePath))
                 {
-                    ImageBuffer srcBuffer = ImageBuffer.CreateFrom(srcImage);
-                    ImageBuffer dstBuffer = Process(srcBuffer);
-                    using (Image dstImage = dstBuffer.GetImage())
-                    {
-                        string fileName = System.IO.Path.GetFileName(filePath);
-                        string dir = setting.OutputDirectory;
-                        if (string.IsNullOrEmpty(dir))
-                        {
-                            dir = System.IO.Directory.GetCurrentDirectory();
-                        }
-                        string dstPath = System.IO.Path.Combine(dir, fileName);
+                    srcBuffer = ImageBuffer.CreateFrom(srcImage);
+                    imageFormat = srcImage.RawFormat;
+                }
 
-                        dstImage.Save(dstPath, srcImage.RawFormat);
+
+                ImageBuffer dstBuffer = Process(srcBuffer);
+                using (Image dstImage = dstBuffer.GetImage())
+                {
+                    string fileName = System.IO.Path.GetFileName(filePath);
+                    string dir = GetOutputDirectory();
+                    if (string.IsNullOrEmpty(dir))
+                    {
+                        dir = System.IO.Directory.GetCurrentDirectory();
                     }
+                    string dstPath = System.IO.Path.Combine(dir, fileName);
+
+                    dstImage.Save(dstPath, imageFormat);
                 }
             }
         }
+
+        /// <summary>
+        /// 出力ディレクトリを得る。
+        /// </summary>
+        /// <remarks>
+        /// (空文字ornull可)
+        /// </remarks>
+        /// <returns>出力ディレクトリ</returns>
+        protected abstract string GetOutputDirectory();
 
 
 
@@ -72,11 +85,7 @@ namespace CharaChipGenUtility.Operations
         /// <summary>
         /// 設定
         /// </summary>
-        public virtual IOperationSetting Setting {
-            get {
-                return setting;
-            }
-        }
+        public abstract IOperationSetting Setting { get; }
 
     }
 }

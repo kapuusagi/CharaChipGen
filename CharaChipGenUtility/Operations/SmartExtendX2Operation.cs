@@ -11,8 +11,18 @@ namespace CharaChipGenUtility.Operations
     /// <summary>
     /// スマート拡大？
     /// </summary>
-    class SmartExtendX2Operation : ImageOperationBase
+    public class SmartExtendX2Operation : ImageOperationBase
     {
+        private ImageOperationSetting setting;
+
+        /// <summary>
+        /// 新しいインスタンスを構築する。
+        /// </summary>
+        public SmartExtendX2Operation()
+        {
+            setting = new ImageOperationSetting();
+        }
+
         /// <summary>
         /// 画像に処理を行う。
         /// </summary>
@@ -115,6 +125,22 @@ namespace CharaChipGenUtility.Operations
             get {
                 return "SmartExtend(x2)";
             }
+        }
+
+        /// <summary>
+        /// 出力ディレクトリを得る。
+        /// </summary>
+        /// <returns>出力ディレクトリ</returns>
+        protected override string GetOutputDirectory()
+        {
+            return setting.OutputDirectory;
+        }
+
+        /// <summary>
+        /// 設定
+        /// </summary>
+        public override IOperationSetting Setting {
+            get { return setting; }
         }
     }
 }

@@ -9,9 +9,9 @@ using System.ComponentModel;
 namespace CharaChipGenUtility.Operations
 {
     /// <summary>
-    /// 画像操作の設定インタフェース
+    /// 単純な画像操作の設定
     /// </summary>
-    class ImageOperationSetting : IOperationSetting
+    public class ImageOperationSetting : IOperationSetting
     {
         // 設定UI
         private SelectDirectoryControl settingControl = null;
@@ -29,7 +29,7 @@ namespace CharaChipGenUtility.Operations
         {
             if (control == null)
             {
-                SelectDirectoryControl settingControl =  new SelectDirectoryControl();
+                settingControl =  new SelectDirectoryControl();
                 settingControl.SelectName = "出力フォルダ";
                 settingControl.Directory = outputDirectory;
                 settingControl.PropertyChanged += OnControlPropertyChanged;

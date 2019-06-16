@@ -10,8 +10,19 @@ namespace CharaChipGenUtility.Operations
     /// <summary>
     /// 空のオペレーション。
     /// </summary>
-    class EmptyOperation : ImageOperationBase
+    public class EmptyOperation : ImageOperationBase
     {
+        private ImageOperationSetting setting;
+
+        /// <summary>
+        /// 新しいインスタンスを作成する。
+        /// </summary>
+        public EmptyOperation()
+        {
+            setting = new ImageOperationSetting();
+        }
+
+
         /// <summary>
         /// オペレーション名
         /// </summary>
@@ -23,7 +34,16 @@ namespace CharaChipGenUtility.Operations
         /// このオペレーション設定を得る
         /// </summary>
         public override IOperationSetting Setting {
-            get { return null; }
+            get { return setting; }
+        }
+
+        /// <summary>
+        /// 出力ディレクトリを得る。
+        /// </summary>
+        /// <returns></returns>
+        protected override string GetOutputDirectory()
+        {
+            return setting.OutputDirectory;
         }
 
 

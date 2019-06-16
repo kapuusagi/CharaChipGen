@@ -14,6 +14,15 @@ namespace CharaChipGenUtility.Operations
     /// </summary>
     public class RemoveEdgeOperation : ImageOperationBase
     {
+        private ImageOperationSetting setting;
+
+        /// <summary>
+        /// 新しいインスタンスを作成する。
+        /// </summary>
+        public RemoveEdgeOperation()
+        {
+            setting = new ImageOperationSetting();
+        }
         /// <summary>
         /// 操作の名前を得る
         /// </summary>
@@ -87,5 +96,19 @@ namespace CharaChipGenUtility.Operations
 
             return false;
         }
+
+        /// <summary>
+        /// 出力ディレクトリを得る。
+        /// </summary>
+        /// <returns>出力ディレクトリ</returns>
+        protected override string GetOutputDirectory()
+        {
+            return setting.OutputDirectory;
+        }
+
+        /// <summary>
+        /// 設定
+        /// </summary>
+        public override IOperationSetting Setting { get { return setting; } }
     }
 }

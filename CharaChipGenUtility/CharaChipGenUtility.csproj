@@ -59,6 +59,14 @@
     <Compile Include="FormSetting.Designer.cs">
       <DependentUpon>FormSetting.cs</DependentUpon>
     </Compile>
+    <Compile Include="Operations\ClipOperation.cs" />
+    <Compile Include="Operations\ClipOperationSetting.cs" />
+    <Compile Include="Operations\ClipOperationSettingControl.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="Operations\ClipOperationSettingControl.Designer.cs">
+      <DependentUpon>ClipOperationSettingControl.cs</DependentUpon>
+    </Compile>
     <Compile Include="Operations\IImageOperation.cs" />
     <Compile Include="Operations\LineupOperationSettingControl.cs">
       <SubType>UserControl</SubType>
@@ -107,6 +115,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="FormSetting.resx">
       <DependentUpon>FormSetting.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Operations\ClipOperationSettingControl.resx">
+      <DependentUpon>ClipOperationSettingControl.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Operations\CombineOperationSettingControl.resx">
       <DependentUpon>CombineOperationSettingControl.cs</DependentUpon>

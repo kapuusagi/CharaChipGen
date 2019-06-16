@@ -10,8 +10,18 @@ namespace CharaChipGenUtility.Operations
     /// <summary>
     /// 単純拡大処理
     /// </summary>
-    class ExtendX2Operation : ImageOperationBase
+    public class ExtendX2Operation : ImageOperationBase
     {
+        private ImageOperationSetting setting;
+        /// <summary>
+        /// 2倍に拡大する操作。
+        /// </summary>
+        public ExtendX2Operation()
+        {
+            setting = new ImageOperationSetting();
+        }
+
+
         /// <summary>
         /// 処理を行う。
         /// </summary>
@@ -40,6 +50,23 @@ namespace CharaChipGenUtility.Operations
         public override string Name
         {
             get { return "SimpleExtend(x2)"; }
+        }
+
+
+        /// <summary>
+        /// 設定を得る。
+        /// </summary>
+        public override IOperationSetting Setting {
+            get { return setting; }
+        }
+
+        /// <summary>
+        /// 出力ディレクトリを得る。
+        /// </summary>
+        /// <returns>出力ディレクトリ</returns>
+        protected override string GetOutputDirectory()
+        {
+            return setting.OutputDirectory;
         }
     }
 }
