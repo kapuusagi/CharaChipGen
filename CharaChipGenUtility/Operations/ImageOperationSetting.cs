@@ -17,7 +17,7 @@ namespace CharaChipGenUtility.Operations
         private SelectDirectoryControl settingControl = null;
         // 出力ディレクトリ
         private string outputDirectory = "";
-
+        // 設定パネル
         private Panel control = null;
 
 
@@ -50,7 +50,7 @@ namespace CharaChipGenUtility.Operations
         {
             switch (evt.PropertyName)
             {
-                case "Directory":
+                case nameof(settingControl.Directory):
                     OutputDirectory = settingControl.Directory;
                     break;
             }
@@ -86,7 +86,7 @@ namespace CharaChipGenUtility.Operations
         {
             switch (propertyName)
             {
-                case "OutputDirectory":
+                case nameof(OutputDirectory):
                     return OutputDirectory;
                 default:
                     return "";
@@ -102,7 +102,7 @@ namespace CharaChipGenUtility.Operations
         {
             switch (propertyName)
             {
-                case "OutputDirectory":
+                case nameof(OutputDirectory):
                     OutputDirectory = value;
                     break;
             }

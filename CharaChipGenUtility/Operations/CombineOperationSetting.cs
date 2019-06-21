@@ -12,10 +12,11 @@ namespace CharaChipGenUtility.Operations
     /// </summary>
     public class CombineOperationSetting : IOperationSetting
     {
+        // 設定コントロール
         private CombineOperationSettingControl control;
-
+        // 水平カウント
         private int horizontalCount = 1;
-
+        // 垂直カウント
         private int verticalCount = 1;
 
         /// <summary>
@@ -80,11 +81,11 @@ namespace CharaChipGenUtility.Operations
         {
             switch (propertyName)
             {
-                case "OutputDirectory":
+                case nameof(outputDirectory):
                     return OutputDirectory;
-                case "HorizontalCount":
+                case nameof(HorizontalCount):
                     return HorizontalCount.ToString();
-                case "VerticalCount":
+                case nameof(VerticalCount):
                     return VerticalCount.ToString();
                 default:
                     return "";
@@ -100,13 +101,13 @@ namespace CharaChipGenUtility.Operations
         {
             switch (propertyName)
             {
-                case "OutputDirectory":
+                case nameof(OutputDirectory):
                     OutputDirectory = value;
                     break;
-                case "HorizontalCount":
+                case nameof(HorizontalCount):
                     HorizontalCount = Convert.ToInt32(value);
                     break;
-                case "VerticalCount":
+                case nameof(VerticalCount):
                     VerticalCount = Convert.ToInt32(value);
                     break;
             }
@@ -140,13 +141,13 @@ namespace CharaChipGenUtility.Operations
         {
             switch (evt.PropertyName)
             {
-                case "OutputDirectory":
+                case nameof(OutputDirectory):
                     OutputDirectory = control.OutputDirectory;
                     break;
-                case "HorizontalCount":
+                case nameof(HorizontalCount):
                     HorizontalCount = control.HorizontalCount;
                     break;
-                case "VerticalCount":
+                case nameof(VerticalCount):
                     VerticalCount = control.VerticalCount;
                     break;
             }

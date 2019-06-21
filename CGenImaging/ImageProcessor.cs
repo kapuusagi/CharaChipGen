@@ -64,6 +64,61 @@ namespace CGenImaging
         }
 
         /// <summary>
+        /// 単色化
+        /// </summary>
+        /// <remarks>
+        /// これでいけんのかな
+        /// </remarks>
+        /// <param name="image">イメージ</param>
+        /// <param name="color">変更する色</param>
+        /// <returns>単色化した画像が返る</returns>
+        public static ImageBuffer ProcessMonoricColorFilter(ImageBuffer image, Color color)
+        {
+            ImageBuffer dst = ImageBuffer.Create(image.Width, image.Height);
+
+            for (int y = 0; y < image.Height; y++)
+            {
+                for (int x = 0; x < image.Width; x++)
+                {
+                    Color srcColor = image.GetPixel(x, y);
+                    dst.SetPixel(x, y, MonoricColor(srcColor, color));
+                }
+            }
+            return dst;
+        }
+
+        /// <summary>
+        /// 単色カラー
+        /// </summary>
+        /// <param name="color">色</param>
+        /// <param name="hue">色相</param>
+        /// <returns></returns>
+        public static Color MonoricColor(Color color, int hue)
+        {
+            ColorHSV hsv = ColorConverter.ConvertRGBtoHSV(color);
+            ColorHSV newHsv = ColorHSV.FromHSV(hue, hsv.Saturation, hsv.Value);
+            return ColorConverter.ConvertHSVtoRGB(newHsv, color.A);
+        }
+
+        /// <summary>
+        /// 単色処理
+        /// </summary>
+        /// <param name="color"></param>
+        /// <param name="modifyTo"></param>
+        /// <returns></returns>
+        public static Color MonoricColor(Color color, Color modifyTo)
+        {
+            // Note: BT.709
+            float v = 0.2126f * color.R / 255.0f
+                + 0.7152f * color.G / 255.0f
+                + 0.0722f * color.B / 255.0f;
+            int r = Clamp(modifyTo.R * v);
+            int g = Clamp(modifyTo.G * v);
+            int b = Clamp(modifyTo.B * v);
+            return Color.FromArgb(color.A, r, g, b);
+        }
+
+        /// <summary>
         /// 色のブレンディング処理を行う。
         /// 
         /// ブレンディング処理については以下のURLを参考にした。

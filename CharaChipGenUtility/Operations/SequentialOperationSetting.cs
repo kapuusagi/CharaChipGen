@@ -89,10 +89,10 @@ namespace CharaChipGenUtility.Operations
         {
             switch (evt.PropertyName)
             {
-                case "OutputDirectory":
+                case nameof(control.OutputDirectory):
                     OutputDirectory = control.OutputDirectory;
                     break;
-                case "Operations":
+                case nameof(control.Operations):
                     Operations = control.Operations;
                     break;
             }
@@ -107,9 +107,9 @@ namespace CharaChipGenUtility.Operations
         {
             switch (propertyName)
             {
-                case "OutputDirectory":
+                case nameof(OutputDirectory):
                     return OutputDirectory;
-                case "Operations":
+                case nameof(Operations):
                     return GetOperationsAsString();
                 default:
                     return "";
@@ -141,10 +141,10 @@ namespace CharaChipGenUtility.Operations
         {
             switch (propertyName)
             {
-                case "OutputDirectory":
+                case nameof(OutputDirectory):
                     OutputDirectory = value;
                     break;
-                case "Operations":
+                case nameof(Operations):
                     Operations = GetOperationsByString(value);
                     break;
             }

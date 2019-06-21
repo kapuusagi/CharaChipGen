@@ -91,10 +91,10 @@ namespace CharaChipGenUtility.Operations
         {
             switch (evt.PropertyName)
             {
-                case "OutputDirectory":
+                case nameof(control.OutputDirectory):
                     OutputDirectory = control.OutputDirectory;
                     break;
-                case "ClipBounds":
+                case nameof(control.ClipBounds):
                     ClipBounds = control.ClipBounds;
                     break;
             }
@@ -108,9 +108,9 @@ namespace CharaChipGenUtility.Operations
         {
             switch (propertyName)
             {
-                case "OutputDirectory":
+                case nameof(OutputDirectory):
                     return OutputDirectory;
-                case "ClipBounds":
+                case nameof(ClipBounds):
                     return $"{clipBounds.X},{clipBounds.Y},{clipBounds.Width},{clipBounds.Height}";
                 default:
                     return "";
@@ -126,10 +126,10 @@ namespace CharaChipGenUtility.Operations
         {
             switch (propertyName)
             {
-                case "OutputDirectory":
+                case nameof(OutputDirectory):
                     OutputDirectory = value;
                     break;
-                case "ClipBounds":
+                case nameof(ClipBounds):
                     {
                         string[] args = value.Split(',');
                         try

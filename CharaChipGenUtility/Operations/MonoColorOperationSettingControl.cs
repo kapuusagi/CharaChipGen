@@ -11,25 +11,25 @@ using System.Windows.Forms;
 namespace CharaChipGenUtility.Operations
 {
     /// <summary>
-    /// クリップ領域処理設定UI
+    /// 単色化処理設定用コントロール
     /// </summary>
-    public partial class ClipOperationSettingControl : UserControl
+    public partial class MonoColorOperationSettingControl : UserControl
     {
         /// <summary>
         /// 新しいインスタンスを構築する。
         /// </summary>
-        public ClipOperationSettingControl()
+        public MonoColorOperationSettingControl()
         {
             InitializeComponent();
         }
 
         /// <summary>
-        /// プロパティが変更されたときに通知を受け取る。
+        /// プロパティが変更されたことを通知する。
         /// </summary>
         public event PropertyChangedEventHandler PropertyChanged;
 
         /// <summary>
-        /// プロパティが変更されたときに通知する。
+        /// プロパティが変更されたことを通知する。
         /// </summary>
         /// <param name="propertyName">プロパティ名</param>
         private void NotifyPropertyChanged(string propertyName)
@@ -38,15 +38,7 @@ namespace CharaChipGenUtility.Operations
         }
 
         /// <summary>
-        /// 出力ディレクトリ
-        /// </summary>
-        public string OutputDirectory {
-            get { return selectDirectoryControl.Directory; }
-            set { selectDirectoryControl.Directory = value; }
-        }
-
-        /// <summary>
-        /// コントロールのプロパティが変更されたときに通知を受け取る。
+        /// コントロールのプロパティが変更された時に通知を受け取る。
         /// </summary>
         /// <param name="sender">送信元オブジェクト</param>
         /// <param name="evt">イベントオブジェクト</param>
@@ -61,34 +53,44 @@ namespace CharaChipGenUtility.Operations
         }
 
         /// <summary>
-        /// 数値入力欄の値が変更されたときに通知を受けとる。
+        /// 色選択ボタンがクリックされた時に通知を受け取る。
         /// </summary>
         /// <param name="sender">送信元オブジェクト</param>
         /// <param name="evt">イベントオブジェクト</param>
-        private void OnNumericUpDownValueChanged(object sender, EventArgs evt)
+        private void OnSelectColorButtonClick(object sender, EventArgs evt)
         {
-            NotifyPropertyChanged(nameof(ClipBounds));
+            colorDialog.Color = textBoxColor.BackColor;
+            if (colorDialog.ShowDialog(FindForm()) != DialogResult.OK)
+            {
+                return;
+            }
+
+            textBoxColor.BackColor = colorDialog.Color;
+            NotifyPropertyChanged(nameof(Color));
         }
 
         /// <summary>
-        /// クリップ領域設定
+        /// 出力ディレクトリ
         /// </summary>
-        public Rectangle ClipBounds {
-            set {
-                numericUpDownX.Value = value.X;
-                numericUpDownY.Value = value.Y;
-                numericUpDownWidth.Value = value.Width;
-                numericUpDownHeight.Value = value.Height;
-            }
-            get {
-                return new Rectangle(
-                    (int)(numericUpDownX.Value),
-                    (int)(numericUpDownY.Value),
-                    (int)(numericUpDownWidth.Value),
-                    (int)(numericUpDownHeight.Value));
-            }
+        public string OutputDirectory {
+            get { return selectDirectoryControl.Directory; }
+            set { selectDirectoryControl.Directory = value; }
         }
 
+        /// <summary>
+        /// カラー
+        /// </summary>
+        public Color Color {
+            get { return textBoxColor.BackColor; }
+            set {
+                if ((value == null) || (textBoxColor.BackColor.Equals(value)))
+                {
+                    return;
+                }
+                textBoxColor.BackColor = value;
+                NotifyPropertyChanged(nameof(Color));
+            }
+        }
 
     }
 }

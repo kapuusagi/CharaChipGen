@@ -10,6 +10,9 @@ using System.Windows.Forms;
 
 namespace CharaChipGenUtility.Operations
 {
+    /// <summary>
+    /// 結合処理設定コントロール
+    /// </summary>
     public partial class CombineOperationSettingControl : UserControl
     {
         /// <summary>
@@ -55,7 +58,7 @@ namespace CharaChipGenUtility.Operations
                 else
                 {
                     numericUpDownH.Value = value;
-                    NotifyPropertyChanged("HorizontalCount");
+                    NotifyPropertyChanged(nameof(HorizontalCount));
                 }
             }
         }
@@ -80,7 +83,7 @@ namespace CharaChipGenUtility.Operations
                 else
                 {
                     numericUpDownV.Value = value;
-                    NotifyPropertyChanged("VerticalCount");
+                    NotifyPropertyChanged(nameof(VerticalCount));
                 }
             }
         }
@@ -105,7 +108,7 @@ namespace CharaChipGenUtility.Operations
         /// <param name="evt">イベントオブジェクト</param>
         private void OnNumericUpDownHValueChanged(object sender, EventArgs evt)
         {
-            NotifyPropertyChanged("HorizontalCount");
+            NotifyPropertyChanged(nameof(HorizontalCount));
         }
 
         /// <summary>
@@ -115,7 +118,7 @@ namespace CharaChipGenUtility.Operations
         /// <param name="evt">イベントオブジェクト</param>
         private void OnNumericUpDownVValueChanged(object sender, EventArgs evt)
         {
-            NotifyPropertyChanged("VerticalCount");
+            NotifyPropertyChanged(nameof(VerticalCount));
         }
 
         /// <summary>
@@ -129,9 +132,9 @@ namespace CharaChipGenUtility.Operations
         private void OnControlSelectDirectoryPropertyChanged(object sender,
             PropertyChangedEventArgs evt)
         {
-            if (evt.PropertyName.Equals("Directory"))
+            if (evt.PropertyName.Equals(nameof(SelectDirectoryControl.Directory)))
             {
-                NotifyPropertyChanged("OutputDirectory");
+                NotifyPropertyChanged(nameof(OutputDirectory));
             }
         }
     }

@@ -3,90 +3,80 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
-using System.Windows.Forms;
 using System.ComponentModel;
+using System.Drawing;
 
 namespace CharaChipGenUtility.Operations
 {
     /// <summary>
-    /// 配置オペレーション設定
+    /// 単色化処理設定
     /// </summary>
-    public class LineupOperationSetting : IOperationSetting
+    public class MonoColorOperationSetting : IOperationSetting
     {
-        public const int DIRECTION_HORIZONTAL = 0;
-        public const int DIRECTION_VERTICAL = 1;
-
+        // 設定UI
+        private MonoColorOperationSettingControl control;
+        // 出力ディレクトリ
         private string outputDirectory;
-        private int direction;
-        private LineupOperationSettingControl control;
+        // 色
+        private Color color;
 
-        public LineupOperationSetting()
+        /// <summary>
+        /// 新しいインスタンスを構築する。
+        /// </summary>
+        public MonoColorOperationSetting()
         {
             outputDirectory = "";
-            direction = 0;
-            control = null;
+            color = Color.Black;
         }
 
         /// <summary>
-        /// 設定を行うためのUIを返す。
+        /// 出力ディレクトリ
         /// </summary>
-        /// <returns>UI</returns>
+        public string OutputDirectory {
+            get { return outputDirectory; }
+            set {
+                if ((value == null) || (outputDirectory.Equals(value)))
+                {
+                    return;
+                }
+
+                outputDirectory = value;
+                if (control != null)
+                {
+                    control.OutputDirectory = value;
+                }
+            }
+        }
+
+        public Color Color {
+            get { return color; }
+            set {
+                if ((value == null) || color.Equals(value))
+                {
+                    return;
+                }
+                color = value;
+                if (control != null)
+                {
+                    control.Color = color;
+                }
+            }
+        }
+
+        /// <summary>
+        /// この設定を行うのに最適なUIを取得する。
+        /// </summary>
+        /// <returns>ユーザーインタフェース</returns>
         public System.Windows.Forms.Control GetControl()
         {
             if (control == null)
             {
-                control = new LineupOperationSettingControl();
+                control = new MonoColorOperationSettingControl();
                 control.OutputDirectory = outputDirectory;
-                control.Direction = direction;
-                control.PropertyChanged += OnControlPropertyChanged;
+                control.Color = color;
+                control.PropertyChanged += OnPropertyChanged;
             }
-
             return control;
-        }
-
-        /// <summary>
-        /// 出力ディレクトリ設定
-        /// </summary>
-        public string OutputDirectory {
-            set {
-                if ((value == null) || outputDirectory.Equals(value))
-                {
-                    return;
-                }
-                outputDirectory = value;
-                if (control != null)
-                {
-                    control.OutputDirectory = outputDirectory;
-                }
-            }
-            get {
-                return outputDirectory;
-            }
-        }
-
-        /// <summary>
-        /// 方向を設定する。
-        /// </summary>
-        public int Direction {
-            get {
-                return direction;
-            }
-            set {
-                if (direction == value)
-                {
-                    return;
-                }
-                if ((direction != DIRECTION_HORIZONTAL)
-                    && (direction != DIRECTION_VERTICAL))
-                {
-                    throw new ArgumentException($"Invalid direction. {value}");
-                }
-                direction = value;
-                if (control != null)
-                {
-                    control.Direction = value;
-                }
-            }
         }
 
         /// <summary>
@@ -94,17 +84,18 @@ namespace CharaChipGenUtility.Operations
         /// </summary>
         /// <param name="sender">送信元オブジェクト</param>
         /// <param name="evt">イベントオブジェクト</param>
-        private void OnControlPropertyChanged(object sender, PropertyChangedEventArgs evt)
+        private void OnPropertyChanged(object sender, PropertyChangedEventArgs evt)
         {
             switch (evt.PropertyName)
             {
                 case nameof(control.OutputDirectory):
                     OutputDirectory = control.OutputDirectory;
                     break;
-                case nameof(control.Direction):
-                    Direction = control.Direction;
+                case nameof(control.Color):
+                    Color = control.Color;
                     break;
             }
+            
         }
 
         /// <summary>
@@ -118,8 +109,8 @@ namespace CharaChipGenUtility.Operations
             {
                 case nameof(OutputDirectory):
                     return OutputDirectory;
-                case nameof(Direction):
-                    return (Direction == 0) ? "Horizontal" : "Vertical";
+                case nameof(Color):
+                    return $"{Color.R},{Color.G},{Color.B}";
                 default:
                     return "";
             }
@@ -137,11 +128,13 @@ namespace CharaChipGenUtility.Operations
                 case nameof(OutputDirectory):
                     OutputDirectory = value;
                     break;
-                case nameof(Direction):
-                    Direction = (value.ToLower().Equals("horizontal"))
-                        ? DIRECTION_HORIZONTAL : DIRECTION_VERTICAL;
+                case nameof(Color):
+                    string[] values = value.Split(',');
+                    Color = Color.FromArgb(Convert.ToByte(values[0]),
+                        Convert.ToByte(values[1]), Convert.ToByte(values[2]));
                     break;
             }
         }
+
     }
 }

@@ -109,7 +109,7 @@ namespace CharaChipGenUtility.Operations
         /// <param name="evt">イベントオブジェクト</param>
         private void OnTextBoxTextChanged(object sender, EventArgs evt)
         {
-            NotifyPropertyChange("Directory");
+            NotifyPropertyChange(nameof(Directory));
         }
 
         /// <summary>

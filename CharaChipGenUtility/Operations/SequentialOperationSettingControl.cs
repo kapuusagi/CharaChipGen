@@ -149,7 +149,7 @@ namespace CharaChipGenUtility.Operations
             IImageOperation operation
                 = (IImageOperation)(System.Activator.CreateInstance(item.GetType()));
             listBoxOperations.Items.Add(operation);
-            NotifyPropertyChanged("Operations");
+            NotifyPropertyChanged(nameof(Operations));
         }
 
         /// <summary>
@@ -170,7 +170,7 @@ namespace CharaChipGenUtility.Operations
                 listBoxOperations.SelectedIndex = listBoxOperations.Items.Count - 1;
             }
 
-            NotifyPropertyChanged("Operations");
+            NotifyPropertyChanged(nameof(Operations));
         }
 
         /// <summary>
@@ -191,7 +191,7 @@ namespace CharaChipGenUtility.Operations
             listBoxOperations.Items.RemoveAt(selectedIndex);
             listBoxOperations.Items.Insert(selectedIndex - 1, item);
             listBoxOperations.SelectedIndex = selectedIndex - 1;
-            NotifyPropertyChanged("Operations");
+            NotifyPropertyChanged(nameof(Operations));
         }
 
         /// <summary>
@@ -212,7 +212,7 @@ namespace CharaChipGenUtility.Operations
             listBoxOperations.Items.RemoveAt(selectedIndex);
             listBoxOperations.Items.Insert(selectedIndex + 1, item);
             listBoxOperations.SelectedIndex = selectedIndex + 1;
-            NotifyPropertyChanged("Operations");
+            NotifyPropertyChanged(nameof(Operations));
         }
 
         /// <summary>
@@ -224,8 +224,8 @@ namespace CharaChipGenUtility.Operations
         {
             switch (evt.PropertyName)
             {
-                case "Directory":
-                    NotifyPropertyChanged("OutputDirectory");
+                case nameof(selectDirectoryControl.Directory):
+                    NotifyPropertyChanged(nameof(OutputDirectory));
                     break;
             }
         }

@@ -76,6 +76,14 @@
     </Compile>
     <Compile Include="Operations\LineupOperation.cs" />
     <Compile Include="Operations\LineupOperationSetting.cs" />
+    <Compile Include="Operations\MonoColorOperation.cs" />
+    <Compile Include="Operations\MonoColorOperationSetting.cs" />
+    <Compile Include="Operations\MonoColorOperationSettingControl.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="Operations\MonoColorOperationSettingControl.Designer.cs">
+      <DependentUpon>MonoColorOperationSettingControl.cs</DependentUpon>
+    </Compile>
     <Compile Include="Operations\OperationSettingUtility.cs" />
     <Compile Include="Operations\CombineOperationSetting.cs" />
     <Compile Include="Operations\CombineOperationSettingControl.cs">
@@ -124,6 +132,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Operations\LineupOperationSettingControl.resx">
       <DependentUpon>LineupOperationSettingControl.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Operations\MonoColorOperationSettingControl.resx">
+      <DependentUpon>MonoColorOperationSettingControl.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Operations\SelectDirectoryControl.resx">
       <DependentUpon>SelectDirectoryControl.cs</DependentUpon>

@@ -38,8 +38,6 @@ namespace CharaChipGenUtility.Operations
             PropertyChanged?.Invoke(this, new PropertyChangedEventArgs(propertyName));
         }
 
-
-
         /// <summary>
         /// 出力ディレクトリ選択
         /// </summary>
@@ -91,9 +89,9 @@ namespace CharaChipGenUtility.Operations
         private void OnControlSelectDirectoryPropertyChanged(object sender, 
             PropertyChangedEventArgs evt)
         {
-            if (evt.PropertyName.Equals("Directory"))
+            if (evt.PropertyName.Equals(nameof(SelectDirectoryControl.Directory)))
             {
-                NotifyPropertyChanged("OutputDirectory");
+                NotifyPropertyChanged(nameof(OutputDirectory));
             }
             
         }
@@ -105,7 +103,7 @@ namespace CharaChipGenUtility.Operations
         /// <param name="evt">イベントオブジェクト</param>
         private void OnComboBoxDirectionSelectedIndexChanged(object sender, EventArgs evt)
         {
-            NotifyPropertyChanged("Direction");
+            NotifyPropertyChanged(nameof(Direction));
         }
     }
 }
