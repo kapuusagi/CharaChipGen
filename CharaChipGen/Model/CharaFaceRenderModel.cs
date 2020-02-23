@@ -156,7 +156,7 @@ namespace CharaChipGen.Model
         /// </summary>
         private void ApplyFace()
         {
-            Material m = AppData.GetInstance().GetFace(dataModel.Face.MaterialName);
+            var m = AppData.GetInstance().GetFace(dataModel.Face.MaterialName);
             SetLayer(layers[0], m?.GetPrimaryLayer(), dataModel.Face);
             SetLayer(layers[1], m?.GetSecondaryLayer(), null);
             System.Diagnostics.Debug.WriteLine(String.Format("Face = {0}", (m != null) ? m.Name : ""));

@@ -4,7 +4,7 @@ using System.Linq;
 using System.Text;
 using System.Collections;
 
-namespace CharaChipGen.Model
+namespace CharaChipGen.Model.Material
 {
     public class MaterialList : IEnumerable<Material> 
     {

@@ -4,6 +4,7 @@ using System.Linq;
 using System.Text;
 using System.Collections;
 using CharaChipGen.Model;
+using CharaChipGen.Model.Material;
 
 namespace CharaChipGen
 {

@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Drawing;
+using CharaChipGen.Model.Material;
 
 namespace CharaChipGen.Model
 {
@@ -235,7 +236,7 @@ namespace CharaChipGen.Model
         /// </summary>
         private void ApplyHead()
         {
-            Material m = AppData.GetInstance().GetHead(dataModel.Head.MaterialName);
+            var m = AppData.GetInstance().GetHead(dataModel.Head.MaterialName);
             SetLayer(LayerNames.HeadFront, m?.GetPrimaryLayer(), dataModel.Head);
             SetLayer(LayerNames.HeadBack, m?.GetSecondaryLayer(), dataModel.Head);
             // 頭設定はちょっと複雑。
@@ -251,7 +252,7 @@ namespace CharaChipGen.Model
         /// </summary>
         private void ApplyEye()
         {
-            Material m = AppData.GetInstance().GetEye(dataModel.Eye.MaterialName);
+            var m = AppData.GetInstance().GetEye(dataModel.Eye.MaterialName);
             SetLayer(LayerNames.EyeFront, m?.GetPrimaryLayer(), dataModel.Eye);
             SetLayer(LayerNames.EyeBack, m?.GetSecondaryLayer(), dataModel.Eye);
             System.Diagnostics.Debug.WriteLine(String.Format("Eye = {0}", (m != null) ? m.Name : ""));
@@ -262,7 +263,7 @@ namespace CharaChipGen.Model
         /// </summary>
         private void ApplyHairStyle()
         {
-            Material m = AppData.GetInstance().GetHairStyle(dataModel.Hair.MaterialName);
+            var m = AppData.GetInstance().GetHairStyle(dataModel.Hair.MaterialName);
             SetLayer(LayerNames.HairStyleFront, m?.GetPrimaryLayer(), dataModel.Hair);
             SetLayer(LayerNames.HairStyleBack, m?.GetSecondaryLayer(), dataModel.Hair);
             System.Diagnostics.Debug.WriteLine(
@@ -273,7 +274,7 @@ namespace CharaChipGen.Model
         /// </summary>
         private void ApplyBody()
         {
-            Material m = AppData.GetInstance().GetBody(dataModel.Body.MaterialName);
+            var m = AppData.GetInstance().GetBody(dataModel.Body.MaterialName);
             SetLayer(LayerNames.BodyFront, m?.GetPrimaryLayer(), dataModel.Body);
 
             // 体設定はちょっと複雑。
@@ -291,7 +292,7 @@ namespace CharaChipGen.Model
         /// </summary>
         private void ApplyAccessory1()
         {
-            Material m = AppData.GetInstance().GetAccessory(dataModel.Accessory1.MaterialName);
+            var m = AppData.GetInstance().GetAccessory(dataModel.Accessory1.MaterialName);
             SetLayer(LayerNames.Accessory1Front, m?.GetPrimaryLayer(), dataModel.Accessory1);
             SetLayer(LayerNames.Accessory1Back, m?.GetSecondaryLayer(), dataModel.Accessory1);
             System.Diagnostics.Debug.WriteLine(
@@ -302,7 +303,7 @@ namespace CharaChipGen.Model
         /// </summary>
         private void ApplyAccessory2()
         {
-            Material m = AppData.GetInstance().GetAccessory(dataModel.Accessory2.MaterialName);
+            var m = AppData.GetInstance().GetAccessory(dataModel.Accessory2.MaterialName);
             SetLayer(LayerNames.Accessory2Front, m?.GetPrimaryLayer(), dataModel.Accessory2);
             SetLayer(LayerNames.Accessory2Back, m?.GetSecondaryLayer(), dataModel.Accessory2);
             System.Diagnostics.Debug.WriteLine(
@@ -313,7 +314,7 @@ namespace CharaChipGen.Model
         /// </summary>
         private void ApplyAccessory3()
         {
-            Material m = AppData.GetInstance().GetAccessory(dataModel.Accessory3.MaterialName);
+            var m = AppData.GetInstance().GetAccessory(dataModel.Accessory3.MaterialName);
             SetLayer(LayerNames.Accessory3Front, m?.GetPrimaryLayer(), dataModel.Accessory3);
             SetLayer(LayerNames.Accessory3Back, m?.GetSecondaryLayer(), dataModel.Accessory3);
             System.Diagnostics.Debug.WriteLine(
@@ -324,7 +325,7 @@ namespace CharaChipGen.Model
         /// </summary>
         private void ApplyHeadAccessory1()
         {
-            Material m = AppData.GetInstance().GetHeadAccessory(dataModel.HeadAccessory1.MaterialName);
+            var m = AppData.GetInstance().GetHeadAccessory(dataModel.HeadAccessory1.MaterialName);
             SetLayer(LayerNames.HeadAccessory1Front, m?.GetPrimaryLayer(), dataModel.HeadAccessory1);
             SetLayer(LayerNames.HeadAccessory1Back, m?.GetPrimaryLayer(), dataModel.HeadAccessory1);
             System.Diagnostics.Debug.WriteLine(
@@ -335,7 +336,7 @@ namespace CharaChipGen.Model
         /// </summary>
         private void ApplyHeadAccessory2()
         {
-            Material m = AppData.GetInstance().GetHeadAccessory(dataModel.HeadAccessory2.MaterialName);
+            var m = AppData.GetInstance().GetHeadAccessory(dataModel.HeadAccessory2.MaterialName);
             SetLayer(LayerNames.HeadAccessory2Front, m?.GetPrimaryLayer(), dataModel.HeadAccessory2);
             SetLayer(LayerNames.HeadAccessory2Back, m?.GetPrimaryLayer(), dataModel.HeadAccessory2);
             System.Diagnostics.Debug.WriteLine(

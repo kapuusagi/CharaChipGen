@@ -4,7 +4,7 @@ using System.Linq;
 using System.Text;
 using System.Drawing;
 
-namespace CharaChipGen.Model
+namespace CharaChipGen.Model.Material
 {
     /// <summary>
     /// ひとつのマテリアルを表すクラス

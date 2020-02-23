@@ -104,7 +104,6 @@
     <Compile Include="Model\CharaFaceRenderLayerModel.cs" />
     <Compile Include="Model\CharaFaceRenderModel.cs" />
     <Compile Include="Model\ExportSetting.cs" />
-    <Compile Include="Model\Material.cs" />
     <Compile Include="MaterialEditorForm\MaterialEditorForm.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -117,7 +116,8 @@
     <Compile Include="MaterialEditorForm\MaterialEditorLayerView.Designer.cs">
       <DependentUpon>MaterialEditorLayerView.cs</DependentUpon>
     </Compile>
-    <Compile Include="Model\MaterialList.cs" />
+    <Compile Include="Model\Material\Material.cs" />
+    <Compile Include="Model\Material\MaterialEntryFile.cs" />
     <Compile Include="ManagementForm\MaterialManagementForm.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -136,6 +136,7 @@
     <Compile Include="MaterialEditorForm\MaterialView3x4.Designer.cs">
       <DependentUpon>MaterialView3x4.cs</DependentUpon>
     </Compile>
+    <Compile Include="Model\Material\MaterialList.cs" />
     <Compile Include="Model\SettingFileController.cs" />
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />

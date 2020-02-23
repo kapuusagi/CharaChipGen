@@ -7,6 +7,7 @@ using System.Linq;
 using System.Text;
 using System.Windows.Forms;
 using CharaChipGen.Model;
+using CharaChipGen.Model.Material;
 
 namespace CharaChipGen.GeneratorForm
 {
