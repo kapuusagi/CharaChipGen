@@ -43,6 +43,13 @@ namespace CharaChipGen.Model.Material
             => entryFile.GetDisplayName();
 
         /// <summary>
+        /// 表示名を設定する。
+        /// </summary>
+        /// <param name="name">名前</param>
+        public void SetDisplayName(string name)
+            => entryFile.SetDisplayName(name);
+
+        /// <summary>
         /// レイヤーのリストを得る。
         /// </summary>
         public MaterialLayerInfo[] Layers {

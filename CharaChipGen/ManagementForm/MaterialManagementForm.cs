@@ -28,10 +28,22 @@ namespace CharaChipGen.ManagementForm
         }
 
 
-
+        /// <summary>
+        /// ツリービューの選択が変更されたときに通知を受け取る。
+        /// </summary>
+        /// <param name="sender">送信元オブジェクト</param>
+        /// <param name="e">イベントオブジェクト</param>
         private void OnTreeViewItemSelected(object sender, TreeViewEventArgs e)
         {
             // 選択が変更された
+            UpdateMaterialListView();
+        }
+
+        /// <summary>
+        /// 素材リストビューを更新する。
+        /// </summary>
+        private void UpdateMaterialListView()
+        {
             AppData data = AppData.GetInstance();
 
             MaterialList materialList = GetCurrentMaterialList();
@@ -80,92 +92,102 @@ namespace CharaChipGen.ManagementForm
             buttonEdit.Enabled = (listViewMaterials.SelectedItems.Count == 1) && (GetCurrentNodeName() != AppData.NameFaces);
         }
 
+        /// <summary>
+        /// 追加ボタンがクリックされた時に通知を受け取る。
+        /// </summary>
+        /// <param name="sender">送信元オブジェクト</param>
+        /// <param name="evt">イベントオブジェクト</param>
         private void OnMaterialAddClicked(object sender, EventArgs evt)
         {
-            /**
-             * 追加ボタンが押されたとき、外部の素材をコピーしてくる。
-             */
+            // 追加ボタンが押されたとき、外部の素材をコピーしてくる。
             DialogResult res = openFileDialog.ShowDialog(this);
             if (res != DialogResult.OK)
             {
                 return;
             }
 
-            throw new NotSupportedException();
-#if false
-            string[] selectedPaths = openFileDialog.FileNames;
-
-            AppData data = AppData.GetInstance();
-            MaterialList ml = getCurrentMaterialList();
-
             try
             {
-                foreach (string srcPath in selectedPaths)
+                foreach (string selectedPath in openFileDialog.FileNames)
                 {
-                    if (!MaterialEntryFile.IsMaterialEntryFile(srcPath))
-                    {
-                        continue;
-                    }
-
-                    string srcDir = System.IO.Path.GetDirectoryName(srcPath); // srcDir = X:\Pictures
-                    string primaryFileName = System.IO.Path.GetFileName(srcPath); // primaryFileName = hogehoge.png
-                    string materialName = System.IO.Path.GetFileNameWithoutExtension(srcPath); // materialName = hogehoge
-                    string srcPrimaryPath = srcPath; // srcPrimaryPath = X:\Pictures\hogehoge.png
-                    string secondaryFileName = materialName + ".back.png"; // srcSecondaryFileName = hogehoge.back.png
-                    string srcSecondaryPath = System.IO.Path.Combine(srcDir, secondaryFileName); // srcSecondaryPath = X:\Pictures\hogehoge.back.png
-
-
-                    string dstDir = System.IO.Path.Combine(data.MaterialDirectory, ml.SubDirectoryName);
-                    string dstPrimaryPath = System.IO.Path.Combine(dstDir, primaryFileName);
-                    string dstSecondaryPath = System.IO.Path.Combine(dstDir, secondaryFileName);
-
-                    Material existMaterial = ml.Get(materialName);
-
-
-                    // プライマリのレイヤーファイルをコピー
-                    System.IO.File.Copy(srcPrimaryPath, dstPrimaryPath, true);
-                    // セカンダリはインポート元があるかどうかで処理が変わる
-                    if (System.IO.File.Exists(srcSecondaryPath))
-                    {
-                        // インポート元にセカンダリレイヤーファイルが存在するので
-                        // セカンダリレイヤーファイルをコピーする。
-                        System.IO.File.Copy(srcSecondaryPath, dstSecondaryPath, true);
-                    } else
-                    {
-                        if (System.IO.File.Exists(dstSecondaryPath))
-                        {
-                            // インポート元でセカンダリのファイルが存在しないのに、
-                            // インポート先にセカンダリファイルがある。
-                            // インポート先のセカンダリファイルは削除する。
-                            System.IO.File.Delete(dstSecondaryPath);
-                        }
-
-                    }
-
-                    if (existMaterial == null)
-                    {
-                        // 既存の素材が存在しない場合には
-                        // 新しい素材として登録する。
-                        string relPath = System.IO.Path.Combine(ml.SubDirectoryName, primaryFileName);
-                        Material newMaterial = new Material(relPath);
-                        ml.Add(newMaterial);
-                        string[] item = { newMaterial.Name, newMaterial.Path };
-                        listViewMaterials.Items.Add(new ListViewItem(item));
-                    }
+                    // 1つずつ追加する。
+                    AddMaterial(selectedPath);
                 }
             }
             catch (Exception e)
             {
                 MessageBox.Show(this, e.Message, "エラー");
             }
-#endif
+
+            // ビュー更新
+            UpdateMaterialListView();
         }
 
+        /// <summary>
+        /// 素材を追加する。
+        /// </summary>
+        /// <param name="entryFilePath">エントリファイルパス</param>
+        private void AddMaterial(string entryFilePath)
+        {
+            AppData data = AppData.GetInstance();
+            MaterialList ml = GetCurrentMaterialList();
+            string dstDir = System.IO.Path.Combine(data.MaterialDirectory, ml.SubDirectoryName);
+
+            MaterialEntryFile entryFile = new MaterialEntryFile();
+            entryFile.Load(entryFilePath);
+
+
+            // レイヤーを構成するファイルをコピーする。
+            string entryFileDir = System.IO.Path.GetDirectoryName(entryFilePath);
+            foreach (var li in entryFile.Layers)
+            {
+                if (!string.IsNullOrEmpty(li.Value.Path))
+                {
+                    CopyFile(entryFileDir, dstDir, li.Value.Path);
+                }
+            }
+
+            // エントリファイルをコピーする。
+            string entryFileName = System.IO.Path.GetFileName(entryFilePath);
+            CopyFile(entryFileDir, dstDir, entryFileName);
+
+            string materialName = System.IO.Path.GetFileNameWithoutExtension(entryFilePath);
+            Material existMaterial = ml.Get(materialName);
+            if (existMaterial != null)
+            {
+                ml.Delete(materialName);
+            }
+            string relPath = System.IO.Path.Combine(ml.SubDirectoryName, entryFileName);
+            ml.Add(new Material(relPath, entryFile));
+        }
+
+        /// <summary>
+        /// ファイルをコピーする。
+        /// コピー元ファイルがない場合はエラー。
+        /// コピー先に同名のファイルがある場合には上書きする。
+        /// </summary>
+        /// <param name="srcDir">コピー元ディレクトリ</param>
+        /// <param name="dstDir">コピー先ディレクトリ</param>
+        /// <param name="relativePath">ファイル名(相対パス)</param>
+        private void CopyFile(string srcDir, string dstDir, string relativePath)
+        {
+            string srcPath = System.IO.Path.Combine(srcDir, relativePath);
+            string dstPath = System.IO.Path.Combine(dstDir, relativePath);
+            string dir = System.IO.Path.GetDirectoryName(dstPath);
+            if (!System.IO.Directory.Exists(dir))
+            {
+                System.IO.Directory.CreateDirectory(dir);
+            }
+            System.IO.File.Copy(srcPath, dstPath);
+        }
+
+        /// <summary>
+        /// 編集ボタンがクリックされた時に通知を受け取る。
+        /// </summary>
+        /// <param name="sender">送信元オブジェクト</param>
+        /// <param name="evt">イベントオブジェクト</param>
         private void OnMaterialEditClicked(object sender, EventArgs evt)
         {
-            /**
-             * 編集ボタンが押された場合、編集用のフォームを立ち上げる。
-             */
             ListViewItem selectedItem = listViewMaterials.SelectedItems[0];
             MaterialList ml = GetCurrentMaterialList();
             string materialName = selectedItem.SubItems[0].Text;
@@ -184,34 +206,14 @@ namespace CharaChipGen.ManagementForm
                 return;
             }
 
-            throw new NotSupportedException();
-#if false
-            // 編集用のフォームでOKが押された場合にはデータを保存する。
             try
             {
-                Material editedMaterial = form.Material;
-                if (ml.Contains(editedMaterial))
-                {
-                    editedMaterial.SavePrimaryLayer();
-                    editedMaterial.SaveSecondaryLayer();
-                }
-                else
-                {
-                    // 新規追加になる。
-                    editedMaterial.SavePrimaryLayer();
-                    editedMaterial.SaveSecondaryLayer();
-
-                    ml.Add(editedMaterial);
-
-                    string[] item = { editedMaterial.Name, editedMaterial.Path };
-                    listViewMaterials.Items.Add(new ListViewItem(item));
-                }
+                form.ApplyMaterialEdit();
             }
             catch (Exception e)
             {
                 MessageBox.Show(this, e.Message, "エラー");
             }
-#endif
         }
 
         private void OnMaterialDeleteClicked(object sender, EventArgs evt)
@@ -229,9 +231,6 @@ namespace CharaChipGen.ManagementForm
                 return;
             }
 
-            throw new NotSupportedException();
-#if false
-
             AppData data = AppData.GetInstance();
 
             ListView.SelectedListViewItemCollection selItems = listViewMaterials.SelectedItems;
@@ -240,7 +239,7 @@ namespace CharaChipGen.ManagementForm
             {
                 foreach (ListViewItem item in selItems)
                 {
-                    MaterialList ml = getCurrentMaterialList();
+                    MaterialList ml = GetCurrentMaterialList();
                     string materialName = item.SubItems[0].Text;
                     Material m = ml.Get(materialName);
                     if (m == null)
@@ -249,24 +248,18 @@ namespace CharaChipGen.ManagementForm
                     }
 
                     ml.Delete(m.Name); // リストビューアイテムの1項目目はマテリアル名
-                    listViewMaterials.Items.Remove(item);
 
                     // 実際のファイルの削除処理
+                    // 面倒なのでエントリファイルだけ削除してお茶を濁す。
                     string path = System.IO.Path.Combine(data.MaterialDirectory, m.Path);
                     System.IO.File.Delete(path);
-
-                    string subPath = System.IO.Path.Combine(data.MaterialDirectory, m.SubLayerPath);
-                    if (System.IO.File.Exists(subPath))
-                    {
-                        System.IO.File.Delete(subPath);
-                    }
                 }
             }
             catch (Exception e)
             {
                 MessageBox.Show(this, e.Message, "エラー");
             }
-#endif
+            UpdateMaterialListView();
         }
 
         /// <summary>

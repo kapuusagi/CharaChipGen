@@ -28,20 +28,20 @@
         /// </summary>
         private void InitializeComponent()
         {
-            System.Windows.Forms.TreeNode treeNode1 = new System.Windows.Forms.TreeNode("髪型");
-            System.Windows.Forms.TreeNode treeNode2 = new System.Windows.Forms.TreeNode("頭");
-            System.Windows.Forms.TreeNode treeNode3 = new System.Windows.Forms.TreeNode("目");
-            System.Windows.Forms.TreeNode treeNode4 = new System.Windows.Forms.TreeNode("体");
-            System.Windows.Forms.TreeNode treeNode5 = new System.Windows.Forms.TreeNode("アクセサリ");
-            System.Windows.Forms.TreeNode treeNode6 = new System.Windows.Forms.TreeNode("頭部アクセサリ");
-            System.Windows.Forms.TreeNode treeNode7 = new System.Windows.Forms.TreeNode("キャラチップ素材", new System.Windows.Forms.TreeNode[] {
-            treeNode1,
-            treeNode2,
-            treeNode3,
-            treeNode4,
-            treeNode5,
-            treeNode6});
-            System.Windows.Forms.TreeNode treeNode8 = new System.Windows.Forms.TreeNode("顔");
+            System.Windows.Forms.TreeNode treeNode17 = new System.Windows.Forms.TreeNode("髪型");
+            System.Windows.Forms.TreeNode treeNode18 = new System.Windows.Forms.TreeNode("頭");
+            System.Windows.Forms.TreeNode treeNode19 = new System.Windows.Forms.TreeNode("目");
+            System.Windows.Forms.TreeNode treeNode20 = new System.Windows.Forms.TreeNode("体");
+            System.Windows.Forms.TreeNode treeNode21 = new System.Windows.Forms.TreeNode("アクセサリ");
+            System.Windows.Forms.TreeNode treeNode22 = new System.Windows.Forms.TreeNode("頭部アクセサリ");
+            System.Windows.Forms.TreeNode treeNode23 = new System.Windows.Forms.TreeNode("キャラチップ素材", new System.Windows.Forms.TreeNode[] {
+            treeNode17,
+            treeNode18,
+            treeNode19,
+            treeNode20,
+            treeNode21,
+            treeNode22});
+            System.Windows.Forms.TreeNode treeNode24 = new System.Windows.Forms.TreeNode("顔");
             this.buttonClose = new System.Windows.Forms.Button();
             this.menuStrip1 = new System.Windows.Forms.MenuStrip();
             this.fileToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
@@ -51,6 +51,8 @@
             this.columnHeaderName = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
             this.columnHeaderPath = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
             this.groupBoxMaterial = new System.Windows.Forms.GroupBox();
+            this.panel4 = new System.Windows.Forms.Panel();
+            this.flowLayoutPanel2 = new System.Windows.Forms.FlowLayoutPanel();
             this.buttonDelete = new System.Windows.Forms.Button();
             this.buttonEdit = new System.Windows.Forms.Button();
             this.buttonAdd = new System.Windows.Forms.Button();
@@ -60,16 +62,14 @@
             this.panel1 = new System.Windows.Forms.Panel();
             this.panel2 = new System.Windows.Forms.Panel();
             this.panel3 = new System.Windows.Forms.Panel();
-            this.flowLayoutPanel2 = new System.Windows.Forms.FlowLayoutPanel();
-            this.panel4 = new System.Windows.Forms.Panel();
             this.menuStrip1.SuspendLayout();
             this.groupBoxMaterial.SuspendLayout();
+            this.panel4.SuspendLayout();
+            this.flowLayoutPanel2.SuspendLayout();
             this.flowLayoutPanel1.SuspendLayout();
             this.panel1.SuspendLayout();
             this.panel2.SuspendLayout();
             this.panel3.SuspendLayout();
-            this.flowLayoutPanel2.SuspendLayout();
-            this.panel4.SuspendLayout();
             this.SuspendLayout();
             // 
             // buttonClose
@@ -113,25 +113,25 @@
             this.treeViewMaterials.Dock = System.Windows.Forms.DockStyle.Fill;
             this.treeViewMaterials.Location = new System.Drawing.Point(8, 8);
             this.treeViewMaterials.Name = "treeViewMaterials";
-            treeNode1.Name = "HairStyles";
-            treeNode1.Text = "髪型";
-            treeNode2.Name = "Heads";
-            treeNode2.Text = "頭";
-            treeNode3.Name = "Eyes";
-            treeNode3.Text = "目";
-            treeNode4.Name = "Bodies";
-            treeNode4.Text = "体";
-            treeNode5.Name = "Accessories";
-            treeNode5.Text = "アクセサリ";
-            treeNode6.Name = "HeadAccessories";
-            treeNode6.Text = "頭部アクセサリ";
-            treeNode7.Name = "CharaChipDirectory";
-            treeNode7.Text = "キャラチップ素材";
-            treeNode8.Name = "Faces";
-            treeNode8.Text = "顔";
+            treeNode17.Name = "HairStyles";
+            treeNode17.Text = "髪型";
+            treeNode18.Name = "Heads";
+            treeNode18.Text = "頭";
+            treeNode19.Name = "Eyes";
+            treeNode19.Text = "目";
+            treeNode20.Name = "Bodies";
+            treeNode20.Text = "体";
+            treeNode21.Name = "Accessories";
+            treeNode21.Text = "アクセサリ";
+            treeNode22.Name = "HeadAccessories";
+            treeNode22.Text = "頭部アクセサリ";
+            treeNode23.Name = "CharaChipDirectory";
+            treeNode23.Text = "キャラチップ素材";
+            treeNode24.Name = "Faces";
+            treeNode24.Text = "顔";
             this.treeViewMaterials.Nodes.AddRange(new System.Windows.Forms.TreeNode[] {
-            treeNode7,
-            treeNode8});
+            treeNode23,
+            treeNode24});
             this.treeViewMaterials.Size = new System.Drawing.Size(147, 290);
             this.treeViewMaterials.TabIndex = 3;
             this.treeViewMaterials.AfterSelect += new System.Windows.Forms.TreeViewEventHandler(this.OnTreeViewItemSelected);
@@ -143,6 +143,7 @@
             this.columnHeaderPath});
             this.listViewMaterials.Dock = System.Windows.Forms.DockStyle.Fill;
             this.listViewMaterials.Enabled = false;
+            this.listViewMaterials.HideSelection = false;
             this.listViewMaterials.Location = new System.Drawing.Point(8, 8);
             this.listViewMaterials.Name = "listViewMaterials";
             this.listViewMaterials.Size = new System.Drawing.Size(300, 238);
@@ -172,6 +173,28 @@
             this.groupBoxMaterial.TabIndex = 6;
             this.groupBoxMaterial.TabStop = false;
             this.groupBoxMaterial.Text = "素材一覧";
+            // 
+            // panel4
+            // 
+            this.panel4.Controls.Add(this.listViewMaterials);
+            this.panel4.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.panel4.Location = new System.Drawing.Point(3, 49);
+            this.panel4.Name = "panel4";
+            this.panel4.Padding = new System.Windows.Forms.Padding(8);
+            this.panel4.Size = new System.Drawing.Size(316, 254);
+            this.panel4.TabIndex = 10;
+            // 
+            // flowLayoutPanel2
+            // 
+            this.flowLayoutPanel2.Controls.Add(this.buttonDelete);
+            this.flowLayoutPanel2.Controls.Add(this.buttonEdit);
+            this.flowLayoutPanel2.Controls.Add(this.buttonAdd);
+            this.flowLayoutPanel2.Dock = System.Windows.Forms.DockStyle.Top;
+            this.flowLayoutPanel2.FlowDirection = System.Windows.Forms.FlowDirection.RightToLeft;
+            this.flowLayoutPanel2.Location = new System.Drawing.Point(3, 15);
+            this.flowLayoutPanel2.Name = "flowLayoutPanel2";
+            this.flowLayoutPanel2.Size = new System.Drawing.Size(316, 34);
+            this.flowLayoutPanel2.TabIndex = 9;
             // 
             // buttonDelete
             // 
@@ -217,7 +240,7 @@
             // 
             // openFileDialog
             // 
-            this.openFileDialog.Filter = "PNGファイル|*.png";
+            this.openFileDialog.Filter = "素材ファイル|*.ccgmaterial";
             this.openFileDialog.Multiselect = true;
             this.openFileDialog.Title = "追加";
             // 
@@ -261,28 +284,6 @@
             this.panel3.Size = new System.Drawing.Size(322, 306);
             this.panel3.TabIndex = 11;
             // 
-            // flowLayoutPanel2
-            // 
-            this.flowLayoutPanel2.Controls.Add(this.buttonDelete);
-            this.flowLayoutPanel2.Controls.Add(this.buttonEdit);
-            this.flowLayoutPanel2.Controls.Add(this.buttonAdd);
-            this.flowLayoutPanel2.Dock = System.Windows.Forms.DockStyle.Top;
-            this.flowLayoutPanel2.FlowDirection = System.Windows.Forms.FlowDirection.RightToLeft;
-            this.flowLayoutPanel2.Location = new System.Drawing.Point(3, 15);
-            this.flowLayoutPanel2.Name = "flowLayoutPanel2";
-            this.flowLayoutPanel2.Size = new System.Drawing.Size(316, 34);
-            this.flowLayoutPanel2.TabIndex = 9;
-            // 
-            // panel4
-            // 
-            this.panel4.Controls.Add(this.listViewMaterials);
-            this.panel4.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.panel4.Location = new System.Drawing.Point(3, 49);
-            this.panel4.Name = "panel4";
-            this.panel4.Padding = new System.Windows.Forms.Padding(8);
-            this.panel4.Size = new System.Drawing.Size(316, 254);
-            this.panel4.TabIndex = 10;
-            // 
             // MaterialManagementForm
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 12F);
@@ -299,13 +300,13 @@
             this.menuStrip1.ResumeLayout(false);
             this.menuStrip1.PerformLayout();
             this.groupBoxMaterial.ResumeLayout(false);
+            this.panel4.ResumeLayout(false);
+            this.flowLayoutPanel2.ResumeLayout(false);
             this.flowLayoutPanel1.ResumeLayout(false);
             this.panel1.ResumeLayout(false);
             this.panel1.PerformLayout();
             this.panel2.ResumeLayout(false);
             this.panel3.ResumeLayout(false);
-            this.flowLayoutPanel2.ResumeLayout(false);
-            this.panel4.ResumeLayout(false);
             this.ResumeLayout(false);
             this.PerformLayout();
 

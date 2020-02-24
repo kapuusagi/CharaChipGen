@@ -53,15 +53,6 @@ namespace CharaChipGen.Model.Material
         public Dictionary<string, MaterialLayerInfo> Layers { get; private set; }
 
 
-        /// <summary>
-        /// デフォルトの表示名を取得する。
-        /// </summary>
-        /// <returns></returns>
-        public string GetDisplayName()
-        {
-            string caltureName = System.Globalization.CultureInfo.CurrentCulture.Name;
-            return GetDisplayName(caltureName);
-        }
 
         /// <summary>
         /// レイヤー情報を取得する。
@@ -90,10 +81,20 @@ namespace CharaChipGen.Model.Material
         }
 
         /// <summary>
+        /// デフォルトの表示名を取得する。
+        /// </summary>
+        /// <returns>表示名</returns>
+        public string GetDisplayName()
+        {
+            string caltureName = System.Globalization.CultureInfo.CurrentCulture.Name;
+            return GetDisplayName(caltureName);
+        }
+
+        /// <summary>
         /// カルチャ名に対応する表示名を取得する。
         /// </summary>
         /// <param name="caltureName">カルチャ名</param>
-        /// <returns></returns>
+        /// <returns>表示名</returns>
         public string GetDisplayName(string caltureName)
         {
             if (DisplayNames.ContainsKey(caltureName))
@@ -108,6 +109,34 @@ namespace CharaChipGen.Model.Material
             {
                 return DisplayNames.ElementAt(0).Value;
             }
+        }
+
+        /// <summary>
+        /// 表示名を設定する。
+        /// </summary>
+        /// <param name="name">名前</param>
+        public void SetDisplayName(string name)
+        {
+            string caltureName = System.Globalization.CultureInfo.CurrentCulture.Name;
+            SetDisplayName(caltureName, name);
+        }
+
+        /// <summary>
+        /// 表示名を設定する。
+        /// </summary>
+        /// <param name="caltureName">カルチャ名(en-USなど)</param>
+        /// <param name="name">名前</param>
+        public void SetDisplayName(string caltureName, string name)
+        {
+            if (DisplayNames.ContainsKey(caltureName))
+            {
+                DisplayNames[caltureName] = name;
+            }
+            else
+            {
+                DisplayNames.Add(caltureName, name);
+            }
+
         }
 
         /// <summary>

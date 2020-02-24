@@ -29,8 +29,7 @@ namespace CharaChipGen.MaterialEditorForm
         /// <summary>
         /// 編集対象の素材
         /// </summary>
-        public Material Material
-        {
+        public Material Material {
             get { return editMaterial; }
             set {
                 editMaterial = value;
@@ -47,7 +46,7 @@ namespace CharaChipGen.MaterialEditorForm
                 return;
             }
 
-            textBoxMaterialName.Text = editMaterial.Name;
+            textBoxMaterialName.Text = editMaterial.GetDisplayName();
 
             // プライマリレイヤーを設定する
             materialEditorLayerView1.Image = editMaterial.LoadLayerImage(0);
@@ -58,68 +57,13 @@ namespace CharaChipGen.MaterialEditorForm
 
         private void OnFormShown(object sender, EventArgs e)
         {
-            AdjustPosition();
             ReloadMaterial();
         }
 
         private void OnForm_resied(object sender, EventArgs e)
         {
-            AdjustPosition();
         }
-        private void AdjustPosition() {
-            /**
-             * 可変サイズのウィンドウはこれが面倒。
-             * DockやAnchor以外にもっといいのがないのか
-             */
 
-
-            // エディットボックスの配置
-            int txtBoxX = textBoxMaterialName.Location.X;
-            int txtBOxY = textBoxMaterialName.Location.Y;
-            int txtBoxWidth = ClientSize.Width - 4 - textBoxMaterialName.Location.X;
-            int txtBoxHeight = textBoxMaterialName.Height;
-            textBoxMaterialName.SetBounds(txtBoxX, txtBOxY, txtBoxWidth, txtBoxHeight);
-
-
-            // OK, キャンセルボタンの配置
-            int btnOKX = ClientSize.Width - 4 - buttonSave.Width - buttonCancel.Width;
-            int btnOKY = ClientSize.Height - 2 - buttonSave.Height;
-            buttonSave.SetBounds(btnOKX, btnOKY, buttonSave.Width, buttonSave.Height);
-            int btnCancelX = btnOKX + 2 + buttonSave.Width;
-            int btnCancelY = btnOKY;
-            buttonCancel.SetBounds(btnCancelX, btnCancelY, buttonCancel.Width, buttonCancel.Height);
-
-            // Viewの配置
-            int viewX = 4;
-            int viewY = materialEditorLayerView1.Location.Y;
-            int viewWidth = ClientSize.Width - 8;
-            int viewHeight = btnOKY - 2 - viewY;
-
-            int layerView1X = viewX;
-            int layerView1Y = materialEditorLayerView2.Location.Y;
-            int layerViewWidth = (viewWidth - 120 - 4) / 2;
-            int layerViewHeight = viewHeight;
-            materialEditorLayerView1.SetBounds(layerView1X, layerView1Y, layerViewWidth, layerViewHeight);
-
-            int layerView2X = viewX + layerViewWidth + 2;
-            int layerView2Y = layerView1Y;
-            materialEditorLayerView2.SetBounds(layerView2X, layerView2Y, layerViewWidth, layerViewHeight);
-
-            // 操作ボタンなど
-            int btnRm2ndLayerX = layerView2X + 4 + materialEditorLayerView2.Width;
-            int btnRm2ndLayerY = layerView1Y;
-            int btnRm2ndLayerWidth = viewWidth - btnRm2ndLayerX - 2;
-            int btnRm2ndLayerHeight = buttonDelete2ndLayer.Height;
-            buttonDelete2ndLayer.SetBounds(btnRm2ndLayerX, btnRm2ndLayerY, btnRm2ndLayerWidth, btnRm2ndLayerHeight);
-
-            // プレビュー画面の配置
-
-            int previewX = layerView2X + 4 + materialEditorLayerView2.Width;
-            int previewY = layerView1Y + viewHeight - viewHeight / 4;
-            int previewWidth = btnRm2ndLayerWidth;
-            int previewHeight = viewHeight / 4;
-            pictureBoxPreview.SetBounds(previewX, previewY, previewWidth, previewHeight);
-        }
 
         private void OnCancelButtonClicked(object sender, EventArgs e)
         {
@@ -129,39 +73,60 @@ namespace CharaChipGen.MaterialEditorForm
         /// <summary>
         /// Saveボタンがクリックされたときに通知を受け取る。
         /// </summary>
-        /// <param name="sender"></param>
-        /// <param name="e"></param>
+        /// <param name="sender">送信元オブジェクト</param>
+        /// <param name="e">イベントオブジェクト</param>
         private void OnSaveButtonClicked(object sender, EventArgs e)
         {
-            /**
-             * 保存ボタンが押された場合
-             */
             if (textBoxMaterialName.Text.Length == 0)
             {
                 MessageBox.Show(this, "素材名が設定されていません。");
                 return;
             }
 
-            throw new NotSupportedException();
-#if false
             DialogResult = DialogResult.OK;
-
-            if ((editMaterial == null) || (editMaterial.Name != textBoxMaterialName.Text))
-            {
-                // 編集対象のマテリアルが起動時と異なる場合には
-                // 編集対象のマテリアルを新しく構築する。
-                string subDir = System.IO.Path.GetDirectoryName(editMaterial.Path);
-                string fileName = textBoxMaterialName.Text + ".png";
-                string filePath = System.IO.Path.Combine(subDir, fileName);
-
-                Material m = new Material(filePath);
-                editMaterial = m;
-            }
-            editMaterial.SetPrimaryLayer(materialEditorLayerView1.Image);
-            editMaterial.SetSecondaryLayer(materialEditorLayerView2.Image);
-
             Close();
-#endif
+        }
+    
+        /// <summary>
+        /// 素材の変更を適用する。
+        /// </summary>
+        public void ApplyMaterialEdit()
+        { 
+            string materialDir = AppData.GetInstance().MaterialDirectory;
+            string dir = System.IO.Path.Combine(materialDir, editMaterial.Path);
+
+            editMaterial.SetDisplayName(textBoxMaterialName.Text);
+
+            // 各イメージを保存する。
+            string baseName = System.IO.Path.GetFileNameWithoutExtension(editMaterial.Path);
+            if (materialEditorLayerView1.Image != null)
+            {
+                if (string.IsNullOrEmpty(editMaterial.Layers[0].Path))
+                {
+                    editMaterial.Layers[0].Path = $"{baseName}_primary.png";
+                }
+                string path = System.IO.Path.Combine(dir, editMaterial.Layers[0].Path);
+                materialEditorLayerView1.Image.Save(path);
+            }
+            else
+            {
+                editMaterial.Layers[0].Path = null;
+            }
+
+            if (materialEditorLayerView2.Image != null)
+            {
+                if (string.IsNullOrEmpty(editMaterial.Layers[1].Path))
+                {
+                    editMaterial.Layers[1].Path = $"{baseName}_primary.png";
+                }
+                string path = System.IO.Path.Combine(dir, editMaterial.Layers[1].Path);
+                materialEditorLayerView2.Image.Save(path);
+            }
+            else
+            {
+                editMaterial.Layers[0].Path = null;
+            }
+
         }
 
         private void OnDelete2ndLayerButtonClicked(object sender, EventArgs e)
