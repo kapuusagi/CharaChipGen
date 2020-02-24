@@ -157,7 +157,8 @@ namespace CharaChipGen.ManagementForm
                 return;
             }
 
-
+            throw new NotSupportedException();
+#if false
             string[] selectedPaths = openFileDialog.FileNames;
 
             AppData data = AppData.GetInstance();
@@ -167,7 +168,7 @@ namespace CharaChipGen.ManagementForm
             {
                 foreach (string srcPath in selectedPaths)
                 {
-                    if (!MaterialList.IsMaterialEntryFile(srcPath))
+                    if (!MaterialEntryFile.IsMaterialEntryFile(srcPath))
                     {
                         continue;
                     }
@@ -185,12 +186,7 @@ namespace CharaChipGen.ManagementForm
                     string dstSecondaryPath = System.IO.Path.Combine(dstDir, secondaryFileName);
 
                     Material existMaterial = ml.Get(materialName);
-                    if (existMaterial != null)
-                    {
-                        // 既存のマテリアルが存在する場合には
-                        // Dispose()でリソースを解放しておく。
-                        existMaterial.Dispose();
-                    }
+
 
                     // プライマリのレイヤーファイルをコピー
                     System.IO.File.Copy(srcPrimaryPath, dstPrimaryPath, true);
@@ -228,6 +224,7 @@ namespace CharaChipGen.ManagementForm
             {
                 MessageBox.Show(this, e.Message, "エラー");
             }
+#endif
         }
 
         private void OnMaterialEditClicked(object sender, EventArgs evt)
@@ -253,6 +250,8 @@ namespace CharaChipGen.ManagementForm
                 return;
             }
 
+            throw new NotSupportedException();
+#if false
             // 編集用のフォームでOKが押された場合にはデータを保存する。
             try
             {
@@ -278,8 +277,7 @@ namespace CharaChipGen.ManagementForm
             {
                 MessageBox.Show(this, e.Message, "エラー");
             }
-
-
+#endif
         }
 
         private void OnMaterialDeleteClicked(object sender, EventArgs evt)
@@ -296,6 +294,9 @@ namespace CharaChipGen.ManagementForm
             {
                 return;
             }
+
+            throw new NotSupportedException();
+#if false
 
             AppData data = AppData.GetInstance();
 
@@ -316,9 +317,6 @@ namespace CharaChipGen.ManagementForm
                     ml.Delete(m.Name); // リストビューアイテムの1項目目はマテリアル名
                     listViewMaterials.Items.Remove(item);
 
-                    // リソース解放
-                    m.Dispose();
-
                     // 実際のファイルの削除処理
                     string path = System.IO.Path.Combine(data.MaterialDirectory, m.Path);
                     System.IO.File.Delete(path);
@@ -334,6 +332,7 @@ namespace CharaChipGen.ManagementForm
             {
                 MessageBox.Show(this, e.Message, "エラー");
             }
+#endif
         }
 
         /// <summary>

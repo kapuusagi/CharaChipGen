@@ -116,6 +116,7 @@
     <Compile Include="MaterialEditorForm\MaterialEditorLayerView.Designer.cs">
       <DependentUpon>MaterialEditorLayerView.cs</DependentUpon>
     </Compile>
+    <Compile Include="Model\Layer\LayerType.cs" />
     <Compile Include="Model\Material\Material.cs" />
     <Compile Include="Model\Material\MaterialEntryFile.cs" />
     <Compile Include="ManagementForm\MaterialManagementForm.cs">
@@ -136,6 +137,7 @@
     <Compile Include="MaterialEditorForm\MaterialView3x4.Designer.cs">
       <DependentUpon>MaterialView3x4.cs</DependentUpon>
     </Compile>
+    <Compile Include="Model\Material\MaterialLayerInfo.cs" />
     <Compile Include="Model\Material\MaterialList.cs" />
     <Compile Include="Model\SettingFileController.cs" />
     <Compile Include="Program.cs" />

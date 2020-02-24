@@ -10,6 +10,9 @@ namespace CharaChipGen.Model.Material
     {
         private string name; // 素材種別名
         private List<Material> materials; // マテリアル
+        /// <summary>
+        /// 素材のディレクトリ名。(相対パス。データフォルダのルートパスを除いたもの。Accessoriesなど)
+        /// </summary>
         private string directory; // この素材のルートディレクトリ
 
         /// <summary>
@@ -37,12 +40,23 @@ namespace CharaChipGen.Model.Material
             string[] paths = System.IO.Directory.GetFiles(dirPath);
             foreach (string path in paths)
             {
-                if (IsMaterialEntryFile(path))
+                if (MaterialEntryFile.IsMaterialEntryFile(path))
                 {
                     string fname = System.IO.Path.GetFileName(path);
 
-                    Material material = new Material(System.IO.Path.Combine(directory, fname));
-                    Add(material);
+                    MaterialEntryFile entryFile = new MaterialEntryFile();
+                    try
+                    {
+                        entryFile.Load(path);
+
+                        string relativePath = System.IO.Path.Combine(directory, fname);
+                        Material material = new Material(relativePath, entryFile);
+                        Add(material);
+                    }
+                    catch (Exception e)
+                    {
+                        System.Diagnostics.Debug.WriteLine(e);
+                    }
                 }
             }
         }
@@ -118,28 +132,6 @@ namespace CharaChipGen.Model.Material
                 }
             }
             return null;
-        }
-
-        public static bool IsMaterialEntryFile(string path)
-        {
-            if (!path.EndsWith(".png"))
-            {
-                // PNGファイルでない
-                return false;
-            }
-            if (path.EndsWith(".back.png"))
-            {
-                // サブレイヤーのPNGファイルである
-                return false;
-            }
-
-            if (System.IO.Directory.Exists(path))
-            {
-                // ディレクトリ
-                return false;
-            }
-
-            return true;
         }
 
         /// <summary>

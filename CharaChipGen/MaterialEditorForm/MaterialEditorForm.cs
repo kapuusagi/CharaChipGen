@@ -50,10 +50,10 @@ namespace CharaChipGen.MaterialEditorForm
             textBoxMaterialName.Text = editMaterial.Name;
 
             // プライマリレイヤーを設定する
-            materialEditorLayerView1.Image = editMaterial.GetPrimaryLayer();
+            materialEditorLayerView1.Image = editMaterial.LoadLayerImage(0);
 
             // セカンダリレイヤーを設定する
-            materialEditorLayerView2.Image = editMaterial.GetSecondaryLayer();
+            materialEditorLayerView2.Image = editMaterial.LoadLayerImage(1);
         }
 
         private void OnFormShown(object sender, EventArgs e)
@@ -126,6 +126,11 @@ namespace CharaChipGen.MaterialEditorForm
             Close();
         }
 
+        /// <summary>
+        /// Saveボタンがクリックされたときに通知を受け取る。
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
         private void OnSaveButtonClicked(object sender, EventArgs e)
         {
             /**
@@ -137,13 +142,14 @@ namespace CharaChipGen.MaterialEditorForm
                 return;
             }
 
-
+            throw new NotSupportedException();
+#if false
             DialogResult = DialogResult.OK;
 
             if ((editMaterial == null) || (editMaterial.Name != textBoxMaterialName.Text))
             {
-                /* 編集対象のマテリアルが起動時と異なる場合には
-                 * 編集対象のマテリアルを新しく構築する。 */
+                // 編集対象のマテリアルが起動時と異なる場合には
+                // 編集対象のマテリアルを新しく構築する。
                 string subDir = System.IO.Path.GetDirectoryName(editMaterial.Path);
                 string fileName = textBoxMaterialName.Text + ".png";
                 string filePath = System.IO.Path.Combine(subDir, fileName);
@@ -155,6 +161,7 @@ namespace CharaChipGen.MaterialEditorForm
             editMaterial.SetSecondaryLayer(materialEditorLayerView2.Image);
 
             Close();
+#endif
         }
 
         private void OnDelete2ndLayerButtonClicked(object sender, EventArgs e)

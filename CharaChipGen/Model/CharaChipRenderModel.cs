@@ -237,8 +237,8 @@ namespace CharaChipGen.Model
         private void ApplyHead()
         {
             var m = AppData.GetInstance().GetHead(dataModel.Head.MaterialName);
-            SetLayer(LayerNames.HeadFront, m?.GetPrimaryLayer(), dataModel.Head);
-            SetLayer(LayerNames.HeadBack, m?.GetSecondaryLayer(), dataModel.Head);
+            SetLayer(LayerNames.HeadFront, m?.LoadLayerImage(0), dataModel.Head);
+            SetLayer(LayerNames.HeadBack, m?.LoadLayerImage(1), dataModel.Head);
             // 頭設定はちょっと複雑。
             // 体のバックレイヤーに輝度色差調整は頭のパラメータを参照する。
             CharaChipRenderLayerModel layer = GetLayer(LayerNames.BodyBack);
@@ -253,8 +253,8 @@ namespace CharaChipGen.Model
         private void ApplyEye()
         {
             var m = AppData.GetInstance().GetEye(dataModel.Eye.MaterialName);
-            SetLayer(LayerNames.EyeFront, m?.GetPrimaryLayer(), dataModel.Eye);
-            SetLayer(LayerNames.EyeBack, m?.GetSecondaryLayer(), dataModel.Eye);
+            SetLayer(LayerNames.EyeFront, m?.LoadLayerImage(0), dataModel.Eye);
+            SetLayer(LayerNames.EyeBack, m?.LoadLayerImage(1), dataModel.Eye);
             System.Diagnostics.Debug.WriteLine(String.Format("Eye = {0}", (m != null) ? m.Name : ""));
         }
 
@@ -264,8 +264,8 @@ namespace CharaChipGen.Model
         private void ApplyHairStyle()
         {
             var m = AppData.GetInstance().GetHairStyle(dataModel.Hair.MaterialName);
-            SetLayer(LayerNames.HairStyleFront, m?.GetPrimaryLayer(), dataModel.Hair);
-            SetLayer(LayerNames.HairStyleBack, m?.GetSecondaryLayer(), dataModel.Hair);
+            SetLayer(LayerNames.HairStyleFront, m?.LoadLayerImage(0), dataModel.Hair);
+            SetLayer(LayerNames.HairStyleBack, m?.LoadLayerImage(1), dataModel.Hair);
             System.Diagnostics.Debug.WriteLine(
                 String.Format("HairStyle = {0}", (m != null) ? m.Name : ""));
         }
@@ -275,12 +275,12 @@ namespace CharaChipGen.Model
         private void ApplyBody()
         {
             var m = AppData.GetInstance().GetBody(dataModel.Body.MaterialName);
-            SetLayer(LayerNames.BodyFront, m?.GetPrimaryLayer(), dataModel.Body);
+            SetLayer(LayerNames.BodyFront, m?.LoadLayerImage(0), dataModel.Body);
 
             // 体設定はちょっと複雑。
             // オフセットはBodyを採用し、輝度色差調整は頭のパラメータを参照する。
             CharaChipRenderLayerModel layer = GetLayer(LayerNames.BodyBack);
-            layer.Image = m?.GetSecondaryLayer();
+            layer.Image = m?.LoadLayerImage(1);
             layer.OffsetX = 0;
             layer.OffsetY = dataModel.Body.Offset; // オフセットはボディを使用する。
             System.Diagnostics.Debug.WriteLine(String.Format("Body = {0}", (m != null) ? m.Name : ""));
@@ -293,8 +293,8 @@ namespace CharaChipGen.Model
         private void ApplyAccessory1()
         {
             var m = AppData.GetInstance().GetAccessory(dataModel.Accessory1.MaterialName);
-            SetLayer(LayerNames.Accessory1Front, m?.GetPrimaryLayer(), dataModel.Accessory1);
-            SetLayer(LayerNames.Accessory1Back, m?.GetSecondaryLayer(), dataModel.Accessory1);
+            SetLayer(LayerNames.Accessory1Front, m?.LoadLayerImage(0), dataModel.Accessory1);
+            SetLayer(LayerNames.Accessory1Back, m?.LoadLayerImage(1), dataModel.Accessory1);
             System.Diagnostics.Debug.WriteLine(
                 String.Format("Accessory1 = {0}", (m != null) ? m.Name : ""));
         }
@@ -304,8 +304,8 @@ namespace CharaChipGen.Model
         private void ApplyAccessory2()
         {
             var m = AppData.GetInstance().GetAccessory(dataModel.Accessory2.MaterialName);
-            SetLayer(LayerNames.Accessory2Front, m?.GetPrimaryLayer(), dataModel.Accessory2);
-            SetLayer(LayerNames.Accessory2Back, m?.GetSecondaryLayer(), dataModel.Accessory2);
+            SetLayer(LayerNames.Accessory2Front, m?.LoadLayerImage(0), dataModel.Accessory2);
+            SetLayer(LayerNames.Accessory2Back, m?.LoadLayerImage(1), dataModel.Accessory2);
             System.Diagnostics.Debug.WriteLine(
                 String.Format("Accessory2 = {0}", (m != null) ? m.Name : ""));
         }
@@ -315,8 +315,8 @@ namespace CharaChipGen.Model
         private void ApplyAccessory3()
         {
             var m = AppData.GetInstance().GetAccessory(dataModel.Accessory3.MaterialName);
-            SetLayer(LayerNames.Accessory3Front, m?.GetPrimaryLayer(), dataModel.Accessory3);
-            SetLayer(LayerNames.Accessory3Back, m?.GetSecondaryLayer(), dataModel.Accessory3);
+            SetLayer(LayerNames.Accessory3Front, m?.LoadLayerImage(0), dataModel.Accessory3);
+            SetLayer(LayerNames.Accessory3Back, m?.LoadLayerImage(1), dataModel.Accessory3);
             System.Diagnostics.Debug.WriteLine(
                 String.Format("Accessory3 = {0}", (m != null) ? m.Name : ""));
         }
@@ -326,8 +326,8 @@ namespace CharaChipGen.Model
         private void ApplyHeadAccessory1()
         {
             var m = AppData.GetInstance().GetHeadAccessory(dataModel.HeadAccessory1.MaterialName);
-            SetLayer(LayerNames.HeadAccessory1Front, m?.GetPrimaryLayer(), dataModel.HeadAccessory1);
-            SetLayer(LayerNames.HeadAccessory1Back, m?.GetPrimaryLayer(), dataModel.HeadAccessory1);
+            SetLayer(LayerNames.HeadAccessory1Front, m?.LoadLayerImage(0), dataModel.HeadAccessory1);
+            SetLayer(LayerNames.HeadAccessory1Back, m?.LoadLayerImage(0), dataModel.HeadAccessory1);
             System.Diagnostics.Debug.WriteLine(
                 String.Format("HeadAccessory1 = {0}", (m != null) ? m.Name : ""));
         }
@@ -337,8 +337,8 @@ namespace CharaChipGen.Model
         private void ApplyHeadAccessory2()
         {
             var m = AppData.GetInstance().GetHeadAccessory(dataModel.HeadAccessory2.MaterialName);
-            SetLayer(LayerNames.HeadAccessory2Front, m?.GetPrimaryLayer(), dataModel.HeadAccessory2);
-            SetLayer(LayerNames.HeadAccessory2Back, m?.GetPrimaryLayer(), dataModel.HeadAccessory2);
+            SetLayer(LayerNames.HeadAccessory2Front, m?.LoadLayerImage(0), dataModel.HeadAccessory2);
+            SetLayer(LayerNames.HeadAccessory2Back, m?.LoadLayerImage(0), dataModel.HeadAccessory2);
             System.Diagnostics.Debug.WriteLine(
                 String.Format("HeadAccessory2 = {0}", (m != null) ? m.Name : ""));
         }
