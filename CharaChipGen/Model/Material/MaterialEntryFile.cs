@@ -59,7 +59,7 @@ namespace CharaChipGen.Model.Material
         /// <returns></returns>
         public string GetDisplayName()
         {
-            string caltureName = System.Globalization.CultureInfo.CurrentCulture.NativeName;
+            string caltureName = System.Globalization.CultureInfo.CurrentCulture.Name;
             return GetDisplayName(caltureName);
         }
 
