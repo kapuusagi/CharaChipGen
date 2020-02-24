@@ -21,7 +21,8 @@ namespace CharaChipGen.GeneratorForm
 
         private CharaChipParameterModel.ValueChangeHandler handler;
 
-        private ParamEditView paramEditView; 
+        private ParamEditView paramEditView;
+
         private ToolStripDropDown toolStripDropDown;
 
         /// <summary>
@@ -146,7 +147,7 @@ namespace CharaChipGen.GeneratorForm
         private void OnMaterialNameChanged(object sender, EventArgs evt)
         {
             Object selItem = comboBoxItem.SelectedItem;
-            if (selItem.ToString() == ItemNoSelect)
+            if (selItem.Equals(ItemNoSelect))
             {
                 model.MaterialName = "";
             }
@@ -166,6 +167,43 @@ namespace CharaChipGen.GeneratorForm
         private void OnButtonAdjustClick(object sender, EventArgs e)
         {
             toolStripDropDown.Show(Cursor.Position);
+        }
+        
+
+        /// <summary>
+        /// コンボボックスで項目が描画されるときに通知を受け取る。
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
+        private void OnComboBoxDrawItem(object sender, DrawItemEventArgs e)
+        {
+            e.DrawBackground();
+
+            ComboBox cb = sender as ComboBox;
+
+            if ((e.Index >= 0) && (e.Index < cb.Items.Count))
+            {
+                object item = cb.Items[e.Index];
+                string text = item.Equals(ItemNoSelect) ? ItemNoSelect
+                    : ((Material)(item)).GetDisplayName();
+
+                using (Brush brush = new SolidBrush(e.ForeColor))
+                {
+                    var metrix = e.Graphics.MeasureString(text, e.Font);
+                    float x = e.Bounds.X;
+                    float y = e.Bounds.Y + (e.Bounds.Height - metrix.Height) / 2;
+                    e.Graphics.DrawString(text, e.Font, brush, x, y);
+                }
+            }
+            else
+            {
+                using (Brush brush = new SolidBrush(e.BackColor))
+                {
+                    e.Graphics.FillRectangle(brush, e.Bounds);
+                }
+            }
+
+            e.DrawFocusRectangle();
         }
     }
 }

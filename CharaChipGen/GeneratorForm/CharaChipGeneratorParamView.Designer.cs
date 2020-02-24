@@ -47,12 +47,14 @@
             // 
             // comboBoxItem
             // 
+            this.comboBoxItem.DrawMode = System.Windows.Forms.DrawMode.OwnerDrawFixed;
             this.comboBoxItem.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
             this.comboBoxItem.FormattingEnabled = true;
             this.comboBoxItem.Location = new System.Drawing.Point(113, 7);
             this.comboBoxItem.Name = "comboBoxItem";
             this.comboBoxItem.Size = new System.Drawing.Size(121, 20);
             this.comboBoxItem.TabIndex = 1;
+            this.comboBoxItem.DrawItem += new System.Windows.Forms.DrawItemEventHandler(this.OnComboBoxDrawItem);
             this.comboBoxItem.SelectedIndexChanged += new System.EventHandler(this.OnMaterialNameChanged);
             // 
             // flowLayoutPanel1
