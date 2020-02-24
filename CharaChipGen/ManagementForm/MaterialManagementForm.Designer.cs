@@ -56,13 +56,25 @@
             this.buttonAdd = new System.Windows.Forms.Button();
             this.labelDirectory = new System.Windows.Forms.Label();
             this.openFileDialog = new System.Windows.Forms.OpenFileDialog();
+            this.flowLayoutPanel1 = new System.Windows.Forms.FlowLayoutPanel();
+            this.panel1 = new System.Windows.Forms.Panel();
+            this.panel2 = new System.Windows.Forms.Panel();
+            this.panel3 = new System.Windows.Forms.Panel();
+            this.flowLayoutPanel2 = new System.Windows.Forms.FlowLayoutPanel();
+            this.panel4 = new System.Windows.Forms.Panel();
             this.menuStrip1.SuspendLayout();
             this.groupBoxMaterial.SuspendLayout();
+            this.flowLayoutPanel1.SuspendLayout();
+            this.panel1.SuspendLayout();
+            this.panel2.SuspendLayout();
+            this.panel3.SuspendLayout();
+            this.flowLayoutPanel2.SuspendLayout();
+            this.panel4.SuspendLayout();
             this.SuspendLayout();
             // 
             // buttonClose
             // 
-            this.buttonClose.Location = new System.Drawing.Point(376, 389);
+            this.buttonClose.Location = new System.Drawing.Point(395, 9);
             this.buttonClose.Name = "buttonClose";
             this.buttonClose.Size = new System.Drawing.Size(75, 23);
             this.buttonClose.TabIndex = 0;
@@ -76,7 +88,7 @@
             this.fileToolStripMenuItem});
             this.menuStrip1.Location = new System.Drawing.Point(0, 0);
             this.menuStrip1.Name = "menuStrip1";
-            this.menuStrip1.Size = new System.Drawing.Size(469, 24);
+            this.menuStrip1.Size = new System.Drawing.Size(485, 24);
             this.menuStrip1.TabIndex = 2;
             this.menuStrip1.Text = "menuStrip1";
             // 
@@ -98,7 +110,8 @@
             // 
             // treeViewMaterials
             // 
-            this.treeViewMaterials.Location = new System.Drawing.Point(12, 47);
+            this.treeViewMaterials.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.treeViewMaterials.Location = new System.Drawing.Point(8, 8);
             this.treeViewMaterials.Name = "treeViewMaterials";
             treeNode1.Name = "HairStyles";
             treeNode1.Text = "髪型";
@@ -119,7 +132,7 @@
             this.treeViewMaterials.Nodes.AddRange(new System.Windows.Forms.TreeNode[] {
             treeNode7,
             treeNode8});
-            this.treeViewMaterials.Size = new System.Drawing.Size(102, 283);
+            this.treeViewMaterials.Size = new System.Drawing.Size(147, 290);
             this.treeViewMaterials.TabIndex = 3;
             this.treeViewMaterials.AfterSelect += new System.Windows.Forms.TreeViewEventHandler(this.OnTreeViewItemSelected);
             // 
@@ -128,10 +141,11 @@
             this.listViewMaterials.Columns.AddRange(new System.Windows.Forms.ColumnHeader[] {
             this.columnHeaderName,
             this.columnHeaderPath});
+            this.listViewMaterials.Dock = System.Windows.Forms.DockStyle.Fill;
             this.listViewMaterials.Enabled = false;
-            this.listViewMaterials.Location = new System.Drawing.Point(6, 48);
+            this.listViewMaterials.Location = new System.Drawing.Point(8, 8);
             this.listViewMaterials.Name = "listViewMaterials";
-            this.listViewMaterials.Size = new System.Drawing.Size(325, 235);
+            this.listViewMaterials.Size = new System.Drawing.Size(300, 238);
             this.listViewMaterials.TabIndex = 5;
             this.listViewMaterials.UseCompatibleStateImageBehavior = false;
             this.listViewMaterials.View = System.Windows.Forms.View.Details;
@@ -149,13 +163,12 @@
             // 
             // groupBoxMaterial
             // 
-            this.groupBoxMaterial.Controls.Add(this.buttonDelete);
-            this.groupBoxMaterial.Controls.Add(this.buttonEdit);
-            this.groupBoxMaterial.Controls.Add(this.buttonAdd);
-            this.groupBoxMaterial.Controls.Add(this.listViewMaterials);
-            this.groupBoxMaterial.Location = new System.Drawing.Point(120, 47);
+            this.groupBoxMaterial.Controls.Add(this.panel4);
+            this.groupBoxMaterial.Controls.Add(this.flowLayoutPanel2);
+            this.groupBoxMaterial.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.groupBoxMaterial.Location = new System.Drawing.Point(0, 0);
             this.groupBoxMaterial.Name = "groupBoxMaterial";
-            this.groupBoxMaterial.Size = new System.Drawing.Size(337, 283);
+            this.groupBoxMaterial.Size = new System.Drawing.Size(322, 306);
             this.groupBoxMaterial.TabIndex = 6;
             this.groupBoxMaterial.TabStop = false;
             this.groupBoxMaterial.Text = "素材一覧";
@@ -163,7 +176,7 @@
             // buttonDelete
             // 
             this.buttonDelete.Enabled = false;
-            this.buttonDelete.Location = new System.Drawing.Point(256, 19);
+            this.buttonDelete.Location = new System.Drawing.Point(238, 3);
             this.buttonDelete.Name = "buttonDelete";
             this.buttonDelete.Size = new System.Drawing.Size(75, 23);
             this.buttonDelete.TabIndex = 8;
@@ -174,7 +187,7 @@
             // buttonEdit
             // 
             this.buttonEdit.Enabled = false;
-            this.buttonEdit.Location = new System.Drawing.Point(175, 18);
+            this.buttonEdit.Location = new System.Drawing.Point(157, 3);
             this.buttonEdit.Name = "buttonEdit";
             this.buttonEdit.Size = new System.Drawing.Size(75, 23);
             this.buttonEdit.TabIndex = 7;
@@ -185,7 +198,7 @@
             // buttonAdd
             // 
             this.buttonAdd.Enabled = false;
-            this.buttonAdd.Location = new System.Drawing.Point(94, 19);
+            this.buttonAdd.Location = new System.Drawing.Point(76, 3);
             this.buttonAdd.Name = "buttonAdd";
             this.buttonAdd.Size = new System.Drawing.Size(75, 23);
             this.buttonAdd.TabIndex = 6;
@@ -196,7 +209,7 @@
             // labelDirectory
             // 
             this.labelDirectory.AutoSize = true;
-            this.labelDirectory.Location = new System.Drawing.Point(12, 28);
+            this.labelDirectory.Location = new System.Drawing.Point(12, 9);
             this.labelDirectory.Name = "labelDirectory";
             this.labelDirectory.Size = new System.Drawing.Size(54, 12);
             this.labelDirectory.TabIndex = 7;
@@ -208,23 +221,91 @@
             this.openFileDialog.Multiselect = true;
             this.openFileDialog.Title = "追加";
             // 
+            // flowLayoutPanel1
+            // 
+            this.flowLayoutPanel1.AutoSize = true;
+            this.flowLayoutPanel1.Controls.Add(this.buttonClose);
+            this.flowLayoutPanel1.Dock = System.Windows.Forms.DockStyle.Bottom;
+            this.flowLayoutPanel1.FlowDirection = System.Windows.Forms.FlowDirection.RightToLeft;
+            this.flowLayoutPanel1.Location = new System.Drawing.Point(0, 359);
+            this.flowLayoutPanel1.Name = "flowLayoutPanel1";
+            this.flowLayoutPanel1.Padding = new System.Windows.Forms.Padding(6);
+            this.flowLayoutPanel1.Size = new System.Drawing.Size(485, 41);
+            this.flowLayoutPanel1.TabIndex = 8;
+            // 
+            // panel1
+            // 
+            this.panel1.Controls.Add(this.labelDirectory);
+            this.panel1.Dock = System.Windows.Forms.DockStyle.Top;
+            this.panel1.Location = new System.Drawing.Point(0, 24);
+            this.panel1.Name = "panel1";
+            this.panel1.Size = new System.Drawing.Size(485, 29);
+            this.panel1.TabIndex = 9;
+            // 
+            // panel2
+            // 
+            this.panel2.Controls.Add(this.treeViewMaterials);
+            this.panel2.Dock = System.Windows.Forms.DockStyle.Left;
+            this.panel2.Location = new System.Drawing.Point(0, 53);
+            this.panel2.Name = "panel2";
+            this.panel2.Padding = new System.Windows.Forms.Padding(8);
+            this.panel2.Size = new System.Drawing.Size(163, 306);
+            this.panel2.TabIndex = 10;
+            // 
+            // panel3
+            // 
+            this.panel3.Controls.Add(this.groupBoxMaterial);
+            this.panel3.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.panel3.Location = new System.Drawing.Point(163, 53);
+            this.panel3.Name = "panel3";
+            this.panel3.Size = new System.Drawing.Size(322, 306);
+            this.panel3.TabIndex = 11;
+            // 
+            // flowLayoutPanel2
+            // 
+            this.flowLayoutPanel2.Controls.Add(this.buttonDelete);
+            this.flowLayoutPanel2.Controls.Add(this.buttonEdit);
+            this.flowLayoutPanel2.Controls.Add(this.buttonAdd);
+            this.flowLayoutPanel2.Dock = System.Windows.Forms.DockStyle.Top;
+            this.flowLayoutPanel2.FlowDirection = System.Windows.Forms.FlowDirection.RightToLeft;
+            this.flowLayoutPanel2.Location = new System.Drawing.Point(3, 15);
+            this.flowLayoutPanel2.Name = "flowLayoutPanel2";
+            this.flowLayoutPanel2.Size = new System.Drawing.Size(316, 34);
+            this.flowLayoutPanel2.TabIndex = 9;
+            // 
+            // panel4
+            // 
+            this.panel4.Controls.Add(this.listViewMaterials);
+            this.panel4.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.panel4.Location = new System.Drawing.Point(3, 49);
+            this.panel4.Name = "panel4";
+            this.panel4.Padding = new System.Windows.Forms.Padding(8);
+            this.panel4.Size = new System.Drawing.Size(316, 254);
+            this.panel4.TabIndex = 10;
+            // 
             // MaterialManagementForm
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 12F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(469, 424);
-            this.Controls.Add(this.groupBoxMaterial);
-            this.Controls.Add(this.labelDirectory);
-            this.Controls.Add(this.treeViewMaterials);
-            this.Controls.Add(this.buttonClose);
+            this.ClientSize = new System.Drawing.Size(485, 400);
+            this.Controls.Add(this.panel3);
+            this.Controls.Add(this.panel2);
+            this.Controls.Add(this.panel1);
+            this.Controls.Add(this.flowLayoutPanel1);
             this.Controls.Add(this.menuStrip1);
             this.MainMenuStrip = this.menuStrip1;
             this.Name = "MaterialManagementForm";
             this.Text = "素材管理";
-            this.Resize += new System.EventHandler(this.OnFormResized);
             this.menuStrip1.ResumeLayout(false);
             this.menuStrip1.PerformLayout();
             this.groupBoxMaterial.ResumeLayout(false);
+            this.flowLayoutPanel1.ResumeLayout(false);
+            this.panel1.ResumeLayout(false);
+            this.panel1.PerformLayout();
+            this.panel2.ResumeLayout(false);
+            this.panel3.ResumeLayout(false);
+            this.flowLayoutPanel2.ResumeLayout(false);
+            this.panel4.ResumeLayout(false);
             this.ResumeLayout(false);
             this.PerformLayout();
 
@@ -246,5 +327,11 @@
         private System.Windows.Forms.Button buttonAdd;
         private System.Windows.Forms.Label labelDirectory;
         private System.Windows.Forms.OpenFileDialog openFileDialog;
+        private System.Windows.Forms.FlowLayoutPanel flowLayoutPanel1;
+        private System.Windows.Forms.Panel panel4;
+        private System.Windows.Forms.FlowLayoutPanel flowLayoutPanel2;
+        private System.Windows.Forms.Panel panel1;
+        private System.Windows.Forms.Panel panel2;
+        private System.Windows.Forms.Panel panel3;
     }
 }

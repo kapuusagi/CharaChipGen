@@ -18,7 +18,6 @@ namespace CharaChipGen.ManagementForm
         public MaterialManagementForm()
         {
             InitializeComponent();
-            AdjustComponentPosition();
             treeViewMaterials.ExpandAll();
             labelDirectory.Text = AppData.GetInstance().MaterialDirectory;
         }
@@ -28,79 +27,14 @@ namespace CharaChipGen.ManagementForm
             Close();
         }
 
-        private void OnFormResized(object sender, EventArgs e)
-        {
-            AdjustComponentPosition();
-        }
 
-        /// <summary>
-        /// コンポーネントの位置を調整する。
-        /// 
-        /// Note:
-        /// Javaと違ってレイアウト調整めんどくさいね。
-        /// </summary>
-        private void AdjustComponentPosition()
-        {
-            int x, y;
-            // closeButtonの位置調整
-            x = ClientSize.Width - 4 - buttonClose.Width;
-            y = ClientSize.Height - 4 - buttonClose.Height;
-            buttonClose.SetBounds(x, y, buttonClose.Width, buttonClose.Height);
-
-            // 表示領域のサイズはメニューと下方の閉じるボタン領域を除いた部分になる。
-            System.Drawing.Point viewOrigin = new System.Drawing.Point(4, menuStrip1.Height + 4);
-            int viewWidth = ClientSize.Width - 8;
-            int viewHeight = ClientSize.Height - 8 - buttonClose.Height - viewOrigin.Y;
-
-            // ラベルの設定
-            int labelX = viewOrigin.X;
-            int labelY = viewOrigin.Y;
-            labelDirectory.SetBounds(labelX, labelY, viewWidth, labelDirectory.Height);
-
-            // 左側ツリーペインの配置
-            int treeX = viewOrigin.X;
-            int treeY = viewOrigin.Y + labelDirectory.Height + 4;
-            treeViewMaterials.SetBounds(treeX, treeY, 100, viewHeight - labelDirectory.Height - 4);
-
-            // マテリアルリストビューの配置
-            int mViewX = treeViewMaterials.Location.X + treeViewMaterials.Width + 4;
-            int mViewY = treeY;
-            int mViewWidth = ClientSize.Width - mViewX - 4;
-            int mViewHeight = viewHeight - labelDirectory.Height - 4;
-            groupBoxMaterial.SetBounds(mViewX, mViewY, mViewWidth, mViewHeight);
-
-            Rectangle r = groupBoxMaterial.ClientRectangle;
-            int lViewX = 8;
-            int lViewY = 16;
-            int lViewWidth = r.Width - 8 - lViewX;
-            int lViewHeight = r.Height - 8 - lViewY;
-
-            int minButtonWidth = buttonAdd.Width + buttonEdit.Width + buttonDelete.Width + 8;
-            buttonAdd.Visible = (lViewWidth >= minButtonWidth);
-            buttonEdit.Visible = (lViewWidth >= minButtonWidth);
-            buttonDelete.Visible = (lViewWidth >= minButtonWidth);
-
-            int buttonX = lViewX + (lViewWidth - minButtonWidth);
-            int buttonY = lViewY;
-            buttonAdd.SetBounds(buttonX, buttonY, buttonAdd.Width, buttonAdd.Height);
-            buttonX += buttonAdd.Width + 4;
-            buttonEdit.SetBounds(buttonX, buttonY, buttonEdit.Width, buttonEdit.Height);
-            buttonX += buttonEdit.Width + 4;
-            buttonDelete.SetBounds(buttonX, buttonY, buttonDelete.Width, buttonDelete.Height);
-
-            int listX = lViewX;
-            int listY = lViewY + buttonAdd.Height + 4;
-            int listWidth = lViewWidth;
-            int listHeight = lViewHeight - buttonAdd.Height - 4;
-            listViewMaterials.SetBounds(listX, listY, listWidth, listHeight);
-        }
 
         private void OnTreeViewItemSelected(object sender, TreeViewEventArgs e)
         {
             // 選択が変更された
             AppData data = AppData.GetInstance();
 
-            MaterialList materialList = getCurrentMaterialList();
+            MaterialList materialList = GetCurrentMaterialList();
             if (materialList != null)
             {
                 if (materialList.Name == groupBoxMaterial.Text)
@@ -143,7 +77,7 @@ namespace CharaChipGen.ManagementForm
              * 削除ボタンと編集ボタンのEnalbe状態を更新する。
              */
             buttonDelete.Enabled = (listViewMaterials.SelectedItems.Count > 0);
-            buttonEdit.Enabled = (listViewMaterials.SelectedItems.Count == 1) && (getCurrentNodeName() != AppData.NameFaces);
+            buttonEdit.Enabled = (listViewMaterials.SelectedItems.Count == 1) && (GetCurrentNodeName() != AppData.NameFaces);
         }
 
         private void OnMaterialAddClicked(object sender, EventArgs evt)
@@ -233,7 +167,7 @@ namespace CharaChipGen.ManagementForm
              * 編集ボタンが押された場合、編集用のフォームを立ち上げる。
              */
             ListViewItem selectedItem = listViewMaterials.SelectedItems[0];
-            MaterialList ml = getCurrentMaterialList();
+            MaterialList ml = GetCurrentMaterialList();
             string materialName = selectedItem.SubItems[0].Text;
             Material m = ml.Get(materialName);
             if (m == null)
@@ -241,8 +175,8 @@ namespace CharaChipGen.ManagementForm
                 return;
             }
 
-            CharaChipGen.MaterialEditorForm.MaterialEditorForm form
-                = new CharaChipGen.MaterialEditorForm.MaterialEditorForm();
+            MaterialEditorForm.MaterialEditorForm form
+                = new MaterialEditorForm.MaterialEditorForm();
             form.Material = m;
             DialogResult res = form.ShowDialog(this);
             if (res != DialogResult.OK)
@@ -341,18 +275,18 @@ namespace CharaChipGen.ManagementForm
         /// 選択されているマテリアルリストが存在しない場合にはnullが返る。
         /// </summary>
         /// <returns></returns>
-        private MaterialList getCurrentMaterialList()
+        private MaterialList GetCurrentMaterialList()
         {
-            return getMaterialList(getCurrentNodeName());
+            return GetMaterialList(GetCurrentNodeName());
         }
 
-        private string getCurrentNodeName()
+        private string GetCurrentNodeName()
         {
             TreeNode node = treeViewMaterials.SelectedNode;
             return (node != null) ? node.Name : "";
         }
 
-        private MaterialList getMaterialList(string name)
+        private MaterialList GetMaterialList(string name)
         {
             AppData data = AppData.GetInstance();
             return data.getMaterialList(name);
