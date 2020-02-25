@@ -10,18 +10,18 @@ using CharaChipGen.Model;
 
 namespace CharaChipGen.GeneratorForm
 {
-    public partial class ParamEditView : UserControl
+    public partial class PartsEditView : UserControl
     {
         // パラメータモデル
-        private CharaChipParameterModel model;
+        private CharaChipPartsModel model;
 
         /// <summary>
         /// 新しいインスタンスを構築する
         /// </summary>
-        public ParamEditView()
+        public PartsEditView()
         {
             InitializeComponent();
-            model = new CharaChipParameterModel();
+            model = new CharaChipPartsModel();
             model.PropertyChanged += OnModelParameterChanged;
 
             InitHandlers();
@@ -63,7 +63,7 @@ namespace CharaChipGen.GeneratorForm
         /// <summary>
         /// パラメータモデル。
         /// </summary>
-        public CharaChipParameterModel Model {
+        public CharaChipPartsModel Model {
             get { return model; }
             set {
                 if ((model == null) || (model == value))

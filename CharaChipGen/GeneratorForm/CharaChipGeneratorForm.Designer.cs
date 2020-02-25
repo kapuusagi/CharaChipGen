@@ -29,28 +29,28 @@
         private void InitializeComponent()
         {
             this.components = new System.ComponentModel.Container();
-            CharaChipGen.Model.CharaChipParameterModel charaChipParameterModel1 = new CharaChipGen.Model.CharaChipParameterModel();
-            CharaChipGen.Model.CharaChipParameterModel charaChipParameterModel2 = new CharaChipGen.Model.CharaChipParameterModel();
-            CharaChipGen.Model.CharaChipParameterModel charaChipParameterModel3 = new CharaChipGen.Model.CharaChipParameterModel();
-            CharaChipGen.Model.CharaChipParameterModel charaChipParameterModel4 = new CharaChipGen.Model.CharaChipParameterModel();
-            CharaChipGen.Model.CharaChipParameterModel charaChipParameterModel5 = new CharaChipGen.Model.CharaChipParameterModel();
-            CharaChipGen.Model.CharaChipParameterModel charaChipParameterModel9 = new CharaChipGen.Model.CharaChipParameterModel();
-            CharaChipGen.Model.CharaChipParameterModel charaChipParameterModel7 = new CharaChipGen.Model.CharaChipParameterModel();
-            CharaChipGen.Model.CharaChipParameterModel charaChipParameterModel8 = new CharaChipGen.Model.CharaChipParameterModel();
-            CharaChipGen.Model.CharaChipParameterModel charaChipParameterModel6 = new CharaChipGen.Model.CharaChipParameterModel();
-            CharaChipGen.Model.CharaChipParameterModel charaChipParameterModel10 = new CharaChipGen.Model.CharaChipParameterModel();
+            CharaChipGen.Model.CharaChipPartsModel charaChipParameterModel1 = new CharaChipGen.Model.CharaChipPartsModel();
+            CharaChipGen.Model.CharaChipPartsModel charaChipParameterModel2 = new CharaChipGen.Model.CharaChipPartsModel();
+            CharaChipGen.Model.CharaChipPartsModel charaChipParameterModel3 = new CharaChipGen.Model.CharaChipPartsModel();
+            CharaChipGen.Model.CharaChipPartsModel charaChipParameterModel4 = new CharaChipGen.Model.CharaChipPartsModel();
+            CharaChipGen.Model.CharaChipPartsModel charaChipParameterModel5 = new CharaChipGen.Model.CharaChipPartsModel();
+            CharaChipGen.Model.CharaChipPartsModel charaChipParameterModel9 = new CharaChipGen.Model.CharaChipPartsModel();
+            CharaChipGen.Model.CharaChipPartsModel charaChipParameterModel7 = new CharaChipGen.Model.CharaChipPartsModel();
+            CharaChipGen.Model.CharaChipPartsModel charaChipParameterModel8 = new CharaChipGen.Model.CharaChipPartsModel();
+            CharaChipGen.Model.CharaChipPartsModel charaChipParameterModel6 = new CharaChipGen.Model.CharaChipPartsModel();
+            CharaChipGen.Model.CharaChipPartsModel charaChipParameterModel10 = new CharaChipGen.Model.CharaChipPartsModel();
             this.panelCharaChipParam = new System.Windows.Forms.Panel();
-            this.paramViewHeadAccessory2 = new CharaChipGen.GeneratorForm.CharaChipGeneratorParamView();
-            this.paramViewHeadAccessory1 = new CharaChipGen.GeneratorForm.CharaChipGeneratorParamView();
-            this.paramViewAccessory3 = new CharaChipGen.GeneratorForm.CharaChipGeneratorParamView();
-            this.paramViewAccessory2 = new CharaChipGen.GeneratorForm.CharaChipGeneratorParamView();
-            this.paramViewAccessory1 = new CharaChipGen.GeneratorForm.CharaChipGeneratorParamView();
-            this.paramViewHead = new CharaChipGen.GeneratorForm.CharaChipGeneratorParamView();
-            this.paramViewEye = new CharaChipGen.GeneratorForm.CharaChipGeneratorParamView();
-            this.paramViewHairStyle = new CharaChipGen.GeneratorForm.CharaChipGeneratorParamView();
-            this.paramViewBody = new CharaChipGen.GeneratorForm.CharaChipGeneratorParamView();
+            this.paramViewHeadAccessory2 = new CharaChipGen.GeneratorForm.CharaChipGeneratorPartsView();
+            this.paramViewHeadAccessory1 = new CharaChipGen.GeneratorForm.CharaChipGeneratorPartsView();
+            this.paramViewAccessory3 = new CharaChipGen.GeneratorForm.CharaChipGeneratorPartsView();
+            this.paramViewAccessory2 = new CharaChipGen.GeneratorForm.CharaChipGeneratorPartsView();
+            this.paramViewAccessory1 = new CharaChipGen.GeneratorForm.CharaChipGeneratorPartsView();
+            this.paramViewHead = new CharaChipGen.GeneratorForm.CharaChipGeneratorPartsView();
+            this.paramViewEye = new CharaChipGen.GeneratorForm.CharaChipGeneratorPartsView();
+            this.paramViewHairStyle = new CharaChipGen.GeneratorForm.CharaChipGeneratorPartsView();
+            this.paramViewBody = new CharaChipGen.GeneratorForm.CharaChipGeneratorPartsView();
             this.panelFaceParam = new System.Windows.Forms.Panel();
-            this.paramViewFace = new CharaChipGen.GeneratorForm.CharaChipGeneratorParamView();
+            this.paramViewFace = new CharaChipGen.GeneratorForm.CharaChipGeneratorPartsView();
             this.buttonOK = new System.Windows.Forms.Button();
             this.buttonCancel = new System.Windows.Forms.Button();
             this.timer = new System.Windows.Forms.Timer(this.components);
@@ -372,16 +372,16 @@
 
         #endregion
 
-        private CharaChipGeneratorParamView paramViewHead;
-        private CharaChipGeneratorParamView paramViewEye;
-        private CharaChipGeneratorParamView paramViewHairStyle;
-        private CharaChipGeneratorParamView paramViewBody;
-        private CharaChipGeneratorParamView paramViewAccessory1;
-        private CharaChipGeneratorParamView paramViewAccessory2;
-        private CharaChipGeneratorParamView paramViewAccessory3;
-        private CharaChipGeneratorParamView paramViewHeadAccessory1;
-        private CharaChipGeneratorParamView paramViewHeadAccessory2;
-        private CharaChipGeneratorParamView paramViewFace;
+        private CharaChipGeneratorPartsView paramViewHead;
+        private CharaChipGeneratorPartsView paramViewEye;
+        private CharaChipGeneratorPartsView paramViewHairStyle;
+        private CharaChipGeneratorPartsView paramViewBody;
+        private CharaChipGeneratorPartsView paramViewAccessory1;
+        private CharaChipGeneratorPartsView paramViewAccessory2;
+        private CharaChipGeneratorPartsView paramViewAccessory3;
+        private CharaChipGeneratorPartsView paramViewHeadAccessory1;
+        private CharaChipGeneratorPartsView paramViewHeadAccessory2;
+        private CharaChipGeneratorPartsView paramViewFace;
         private System.Windows.Forms.Panel panelCharaChipParam;
         private System.Windows.Forms.Panel panelFaceParam;
         private System.Windows.Forms.Button buttonOK;

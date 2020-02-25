@@ -168,7 +168,7 @@ namespace CharaChipGen.Model
         /// <param name="layer">レイヤー</param>
         /// <param name="layerImage">レイヤーに設定するイメージ</param>
         /// <param name="model">設定値を読み出すモデル</param>
-        private static void SetLayer(CharaFaceRenderLayerModel layer, Image layerImage, CharaChipParameterModel model)
+        private static void SetLayer(CharaFaceRenderLayerModel layer, Image layerImage, CharaChipPartsModel model)
         {
             layer.Image = layerImage;
             layer.Hue = (model != null) ? model.Hue : 0;

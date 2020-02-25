@@ -25,32 +25,32 @@ namespace CharaChipGen.Model
         public event PartsChangeEventHandler OnCharaChipParamChanged;
         public event EventHandler OnFaceParamChanged;
 
-        private CharaChipParameterModel head;
-        private CharaChipParameterModel eye;
-        private CharaChipParameterModel hair;
-        private CharaChipParameterModel body;
-        private CharaChipParameterModel accessory1;
-        private CharaChipParameterModel accessory2;
-        private CharaChipParameterModel accessory3;
-        private CharaChipParameterModel headAccessory1;
-        private CharaChipParameterModel headAccessory2;
-        private CharaChipParameterModel face;
+        private CharaChipPartsModel head;
+        private CharaChipPartsModel eye;
+        private CharaChipPartsModel hair;
+        private CharaChipPartsModel body;
+        private CharaChipPartsModel accessory1;
+        private CharaChipPartsModel accessory2;
+        private CharaChipPartsModel accessory3;
+        private CharaChipPartsModel headAccessory1;
+        private CharaChipPartsModel headAccessory2;
+        private CharaChipPartsModel face;
 
         /// <summary>
         /// 新しいインスタンスを構築する。
         /// </summary>
         public CharaChipDataModel()
         {
-            head = new CharaChipParameterModel(ParamNameHead);
-            eye = new CharaChipParameterModel(ParamNameEye);
-            hair = new CharaChipParameterModel(ParamNameHair);
-            body = new CharaChipParameterModel(ParamNameBody);
-            accessory1 = new CharaChipParameterModel(ParamNameAccessory1);
-            accessory2 = new CharaChipParameterModel(ParamNameAccessory2);
-            accessory3 = new CharaChipParameterModel(ParamNameAccessory3);
-            headAccessory1 = new CharaChipParameterModel(ParamNameHeadAccessory1);
-            headAccessory2 = new CharaChipParameterModel(ParamNameHeadAccessory2);
-            face = new CharaChipParameterModel(ParamNameFace);
+            head = new CharaChipPartsModel(ParamNameHead);
+            eye = new CharaChipPartsModel(ParamNameEye);
+            hair = new CharaChipPartsModel(ParamNameHair);
+            body = new CharaChipPartsModel(ParamNameBody);
+            accessory1 = new CharaChipPartsModel(ParamNameAccessory1);
+            accessory2 = new CharaChipPartsModel(ParamNameAccessory2);
+            accessory3 = new CharaChipPartsModel(ParamNameAccessory3);
+            headAccessory1 = new CharaChipPartsModel(ParamNameHeadAccessory1);
+            headAccessory2 = new CharaChipPartsModel(ParamNameHeadAccessory2);
+            face = new CharaChipPartsModel(ParamNameFace);
 
             PropertyChangedEventHandler handler
                 = new PropertyChangedEventHandler((sender, e) =>
@@ -110,14 +110,14 @@ namespace CharaChipGen.Model
         /// <summary>
         /// 頭の設定
         /// </summary>
-        public CharaChipParameterModel Head
+        public CharaChipPartsModel Head
         {
             get { return this.head; }
         }
         /// <summary>
         /// 目の設定
         /// </summary>
-        public CharaChipParameterModel Eye
+        public CharaChipPartsModel Eye
         {
             get { return this.eye; }
         }
@@ -125,7 +125,7 @@ namespace CharaChipGen.Model
         /// <summary>
         /// 髪型の設定
         /// </summary>
-        public CharaChipParameterModel Hair
+        public CharaChipPartsModel Hair
         {
             get { return hair; }
         }
@@ -133,28 +133,28 @@ namespace CharaChipGen.Model
         /// <summary>
         /// 体の設定
         /// </summary>
-        public CharaChipParameterModel Body
+        public CharaChipPartsModel Body
         {
             get { return body; }
         }
         /// <summary>
         /// アクセサリ1の設定
         /// </summary>
-        public CharaChipParameterModel Accessory1
+        public CharaChipPartsModel Accessory1
         {
             get { return accessory1; }
         }
         /// <summary>
         /// アクセサリ2の設定
         /// </summary>
-        public CharaChipParameterModel Accessory2
+        public CharaChipPartsModel Accessory2
         {
             get { return accessory2; }
         }
         /// <summary>
         /// アクセサリ3の設定
         /// </summary>
-        public CharaChipParameterModel Accessory3
+        public CharaChipPartsModel Accessory3
         {
             get { return accessory3; }
         }
@@ -162,21 +162,21 @@ namespace CharaChipGen.Model
         /// <summary>
         /// ヘッドアクセサリ1の設定
         /// </summary>
-        public CharaChipParameterModel HeadAccessory1
+        public CharaChipPartsModel HeadAccessory1
         {
             get { return headAccessory1; }
         }
         /// <summary>
         /// ヘッドアクセサリ2の設定
         /// </summary>
-        public CharaChipParameterModel HeadAccessory2
+        public CharaChipPartsModel HeadAccessory2
         {
             get { return headAccessory2; }
         }
         /// <summary>
         /// 顔の設定
         /// </summary>
-        public CharaChipParameterModel Face
+        public CharaChipPartsModel Face
         {
             get { return face; }
         }
@@ -194,7 +194,7 @@ namespace CharaChipGen.Model
                 || (sender == headAccessory1) || (sender == headAccessory2))
             {
                 PartsType type = (PartsType)(Enum.Parse(typeof(PartsType),
-                    ((CharaChipParameterModel)(sender)).ParameterName));
+                    ((CharaChipPartsModel)(sender)).ParameterName));
                 OnCharaChipParamChanged?.Invoke(this, new PartsChangeEventArgs(type));
             }
             else if (sender == face)

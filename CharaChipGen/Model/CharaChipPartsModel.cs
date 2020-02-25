@@ -10,7 +10,7 @@ namespace CharaChipGen.Model
     ///  1つのキャラクタチップの1つの
     ///  要素の生成パラメータを表すモデル
     /// </summary>
-    public class CharaChipParameterModel : INotifyPropertyChanged
+    public class CharaChipPartsModel : INotifyPropertyChanged
     {
         private string parameterName; // パラメータ名
         private string materialName; // 選択されているマテリアル名
@@ -24,7 +24,7 @@ namespace CharaChipGen.Model
         /// <summary>
         /// 新しいインスタンスを構築する。
         /// </summary>
-        public CharaChipParameterModel() : this("")
+        public CharaChipPartsModel() : this("")
         {
         }
 
@@ -32,7 +32,7 @@ namespace CharaChipGen.Model
         /// 新しいインスタンスを構築する。
         /// </summary>
         /// <param name="paramName">パラメータ名</param>
-        public CharaChipParameterModel(string paramName)
+        public CharaChipPartsModel(string paramName)
         {
             this.parameterName = paramName;
             materialName = "";
@@ -62,7 +62,7 @@ namespace CharaChipGen.Model
         /// パラメータを指定されたモデルにコピーする
         /// </summary>
         /// <param name="param">パラメータ</param>
-        public void CopyTo(CharaChipParameterModel param)
+        public void CopyTo(CharaChipPartsModel param)
         {
             if ((param.materialName == materialName)
                 && (param.offset == offset)

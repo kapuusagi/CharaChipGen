@@ -1,6 +1,6 @@
 ﻿namespace CharaChipGen.GeneratorForm
 {
-    partial class ParamEditView
+    partial class PartsEditView
     {
         /// <summary> 
         /// 必要なデザイナー変数です。

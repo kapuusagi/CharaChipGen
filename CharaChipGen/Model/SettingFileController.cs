@@ -88,7 +88,7 @@ namespace CharaChipGen.Model
             parent.AppendChild(charaElem);
         }
 
-        private static void AddCharaChipParamNode(XmlDocument doc, XmlElement parent, string paramName, CharaChipParameterModel param)
+        private static void AddCharaChipParamNode(XmlDocument doc, XmlElement parent, string paramName, CharaChipPartsModel param)
         {
             // nodeNameでなく、param.ParameterNameでも良さそうだが、使うモデルによってはParamterNameで""が返る事があるのでやらない。
             XmlElement paramElem = doc.CreateElement(NodeNameCharacterParam);
@@ -263,7 +263,7 @@ namespace CharaChipGen.Model
             return model;
         }
 
-        private static void LoadCharaDataParamNode(XmlNode node, CharaChipParameterModel param)
+        private static void LoadCharaDataParamNode(XmlNode node, CharaChipPartsModel param)
         {
             foreach (XmlAttribute attr in node.Attributes)
             { // 全ての子要素に対して読み出す。

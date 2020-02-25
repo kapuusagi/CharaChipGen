@@ -349,7 +349,7 @@ namespace CharaChipGen.Model
         /// <param name="layer">設定対象のレイヤー</param>
         /// <param name="layerImage">レイヤーに設定する画像</param>
         /// <param name="model">設定値を読み出すモデル</param>
-        private void SetLayer(LayerNames layerName, Image layerImage, CharaChipParameterModel model)
+        private void SetLayer(LayerNames layerName, Image layerImage, CharaChipPartsModel model)
         {
             CharaChipRenderLayerModel layer = GetLayer(layerName);
             if (layer == null) {

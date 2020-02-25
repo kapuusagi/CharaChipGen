@@ -14,33 +14,33 @@ namespace CharaChipGen.GeneratorForm
     /// <summary>
     /// 1つのパラメータを設定するためのUIを提供するクラス。
     /// </summary>
-    public partial class CharaChipGeneratorParamView : UserControl
+    public partial class CharaChipGeneratorPartsView : UserControl
     {
         // 未選択を表すコンボボックスのアイテム。
         private const string ItemNoSelect = "<選択なし>";
         // このビューが表すデータのモデル。
-        private CharaChipParameterModel model;
+        private CharaChipPartsModel model;
         // modelのデータ変更を受け取るためのハンドラ
         private PropertyChangedEventHandler handler;
         // パラメータ編集ビュー
-        private ParamEditView paramEditView;
+        private PartsEditView paramEditView;
         // ドロップダウン表示
         private ToolStripDropDown toolStripDropDown;
 
         /// <summary>
         /// コンストラクタ
         /// </summary>
-        public CharaChipGeneratorParamView()
+        public CharaChipGeneratorPartsView()
         {
             InitializeComponent();
-            model = new CharaChipParameterModel();
+            model = new CharaChipPartsModel();
             handler = new PropertyChangedEventHandler((sender, e) =>
             {
                 ApplyModelToView();
             });
             model.PropertyChanged += handler;
             toolStripDropDown = new ToolStripDropDown();
-            paramEditView = new ParamEditView();
+            paramEditView = new PartsEditView();
             paramEditView.Model = Model;
             toolStripDropDown.Items.Add(new ToolStripControlHost(paramEditView));
         }
@@ -48,7 +48,7 @@ namespace CharaChipGen.GeneratorForm
         /// <summary>
         /// 格納しているデータのモデル
         /// </summary>
-        public CharaChipParameterModel Model
+        public CharaChipPartsModel Model
         {
             get { return model; }
             set
