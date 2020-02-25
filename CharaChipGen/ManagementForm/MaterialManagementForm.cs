@@ -15,6 +15,9 @@ namespace CharaChipGen.ManagementForm
     /// </summary>
     public partial class MaterialManagementForm : Form
     {
+        /// <summary>
+        /// 新しいインスタンスを構築する。
+        /// </summary>
         public MaterialManagementForm()
         {
             InitializeComponent();
@@ -22,7 +25,12 @@ namespace CharaChipGen.ManagementForm
             labelDirectory.Text = AppData.GetInstance().MaterialDirectory;
         }
 
-        private void OnCloseMenuStripClicked(object sender, EventArgs e)
+        /// <summary>
+        /// 閉じるメニュー/ボタンがクリックされたときに通知を受け取る。
+        /// </summary>
+        /// <param name="sender">送信元オブジェクト</param>
+        /// <param name="e">イベントオブジェクト</param>
+        private void OnMenuItemCloseClick(object sender, EventArgs e)
         {
             Close();
         }
@@ -82,6 +90,11 @@ namespace CharaChipGen.ManagementForm
             }
         }
 
+        /// <summary>
+        /// 素材リストの選択状態が変更されたときに通知を受け取る。
+        /// </summary>
+        /// <param name="sender">送信元オブジェクト</param>
+        /// <param name="e">イベントオブジェクト</param>
         private void OnMaterialListSelectionChanged(object sender, ListViewItemSelectionChangedEventArgs e)
         {
             /**
@@ -216,6 +229,11 @@ namespace CharaChipGen.ManagementForm
             }
         }
 
+        /// <summary>
+        /// 削除操作が行われたときに通知を受け取る。
+        /// </summary>
+        /// <param name="sender">送信元オブジェクト</param>
+        /// <param name="evt">イベントオブジェクト</param>
         private void OnMaterialDeleteClicked(object sender, EventArgs evt)
         {
             /**
@@ -273,6 +291,10 @@ namespace CharaChipGen.ManagementForm
             return GetMaterialList(GetCurrentNodeName());
         }
 
+        /// <summary>
+        /// 
+        /// </summary>
+        /// <returns></returns>
         private string GetCurrentNodeName()
         {
             TreeNode node = treeViewMaterials.SelectedNode;

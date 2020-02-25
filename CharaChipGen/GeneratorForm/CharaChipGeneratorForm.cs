@@ -52,6 +52,9 @@ namespace CharaChipGen.GeneratorForm
             set { value.CopyTo(dataModel); }
         }
 
+        /// <summary>
+        /// コンボボックスの項目を初期化する。
+        /// </summary>
         private void InitializeComboBoxItems()
         {
             AppData data = AppData.GetInstance();
@@ -68,29 +71,53 @@ namespace CharaChipGen.GeneratorForm
             paramViewFace.SetMaterialList(data.Faces);
         }
 
-
-        private void OnTimerEvent(object sender, EventArgs evt)
+        /// <summary>
+        /// タイマーイベントの通知を受け取る。
+        /// </summary>
+        /// <param name="sender">送信元オブジェクト</param>
+        /// <param name="e">イベントオブジェクト</param>
+        private void OnTimerEvent(object sender, EventArgs e)
         {
             charaChipView.UpdateTick();
         }
 
-        private void OnFormShown(object sender, EventArgs evt)
+        /// <summary>
+        /// フォームが最初に表示された時に通知を受け取る。
+        /// </summary>
+        /// <param name="sender">送信元オブジェクト</param>
+        /// <param name="e">イベントオブジェクト</param>
+        private void OnFormShown(object sender, EventArgs e)
         {
             timer.Start();
         }
 
-        private void OnFormClosed(object sender, FormClosedEventArgs evt)
+        /// <summary>
+        /// フォームが閉じられた時に通知を受け取る。
+        /// </summary>
+        /// <param name="sender">送信元オブジェクト</param>
+        /// <param name="e">イベントオブジェクト</param>
+        private void OnFormClosed(object sender, FormClosedEventArgs e)
         {
             timer.Stop();
         }
 
-        private void OnCancelButtonClicked(object sender, EventArgs evt)
+        /// <summary>
+        /// キャンセルボタンがクリックされたときに通知を受け取る。
+        /// </summary>
+        /// <param name="sender">送信元オブジェクト</param>
+        /// <param name="e">イベントオブジェクト</param>
+        private void OnCancelButtonClicked(object sender, EventArgs e)
         {
             DialogResult = DialogResult.Cancel;
             Close();
         }
 
-        private void OnOKButtonClicked(object sender, EventArgs evt)
+        /// <summary>
+        /// OKボタンがクリックされた時に通知を受け取る。
+        /// </summary>
+        /// <param name="sender">送信元オブジェクト</param>
+        /// <param name="e">イベントオブジェクト</param>
+        private void OnOKButtonClicked(object sender, EventArgs e)
         {
             DialogResult = DialogResult.OK;
             Close();

@@ -31,7 +31,7 @@ namespace CharaChipGen.MainForm
         /// <remarks>
         /// 「保存」操作が行われたとき、保存ファイルパスとして使用される。
         /// </remarks>
-        private string editFilePath; 
+        private string editFilePath;
 
         /// <summary>
         /// 新しいインスタンスを構築する。
@@ -42,63 +42,79 @@ namespace CharaChipGen.MainForm
             InitializeComponent();
         }
 
-        private void OnExitToolStripMenuItemClick(object sender, EventArgs evt)
+        /// <summary>
+        /// 閉じるボタンがクリックされたときに通知を受け取る。
+        /// </summary>
+        /// <param name="sender">送信元オブジェクト</param>
+        /// <param name="evt">イベントオブジェクト</param>
+        private void OnMenuItemExitClick(object sender, EventArgs evt)
         {
             Close();
         }
 
+        /// <summary>
+        /// 素材管理メニュー/素材管理ボタンがクリックされたときに通知を受け取る。
+        /// </summary>
+        /// <param name="sender">送信元オブジェクト</param>
+        /// <param name="e">イベントオブジェクト</param>
         private void OnMaterialManageClicked(object sender, EventArgs e)
         {
-            CharaChipGen.ManagementForm.MaterialManagementForm form
-                = new CharaChipGen.ManagementForm.MaterialManagementForm();
+            ManagementForm.MaterialManagementForm form
+                = new ManagementForm.MaterialManagementForm();
             // モーダルダイアログとして表示する。
             form.ShowDialog(this);
         }
 
-        private void OnCharacterBtn1Clicked(object sender, EventArgs e)
+        /// <summary>
+        /// キャラクターエントリービューのボタンがクリックされたときに通知を受け取る。
+        /// </summary>
+        /// <param name="sender">送信元オブジェクト</param>
+        /// <param name="e">イベントオブジェクト</param>
+        private void OnCharacterEntryViewButtonClick(object sender, EventArgs e)
         {
-            OnCharacterBtnClicked(characterEntryControl1, 0);
+            if (sender.Equals(characterEntryControl1))
+            {
+                CharacterChipEditProc((CharacterEntryView)(sender), 0);
+            }
+            else if (sender.Equals(characterEntryControl2))
+            {
+                CharacterChipEditProc((CharacterEntryView)(sender), 1);
+            }
+            else if (sender.Equals(characterEntryControl3))
+            {
+                CharacterChipEditProc((CharacterEntryView)(sender), 2);
+            }
+            else if (sender.Equals(characterEntryControl4))
+            {
+                CharacterChipEditProc((CharacterEntryView)(sender), 3);
+            }
+            else if (sender.Equals(characterEntryControl5))
+            {
+                CharacterChipEditProc((CharacterEntryView)(sender), 4);
+            }
+            else if (sender.Equals(characterEntryControl6))
+            {
+                CharacterChipEditProc((CharacterEntryView)(sender), 5);
+            }
+            else if (sender.Equals(characterEntryControl7))
+            {
+                CharacterChipEditProc((CharacterEntryView)(sender), 6);
+            }
+            else if (sender.Equals(characterEntryControl8))
+            {
+                CharacterChipEditProc((CharacterEntryView)(sender), 7);
+            }
         }
 
-        private void OnCharacterBtn2Clicked(object sender, EventArgs e)
+        /// <summary>
+        /// キャラクターチップ編集処理を行う。
+        /// </summary>
+        /// <param name="view">キャラクターチップ表示コントロール</param>
+        /// <param name="index">キャラクター編集対象のインデックス番号</param>
+        private void CharacterChipEditProc(CharacterEntryView view, int index)
         {
-            OnCharacterBtnClicked(characterEntryControl2, 1);
-        }
-
-        private void OnCharacterBtn3Clicked(object sender, EventArgs e)
-        {
-            OnCharacterBtnClicked(characterEntryControl3, 2);
-        }
-
-        private void OnCharacterBtn4Clicked(object sender, EventArgs e)
-        {
-            OnCharacterBtnClicked(characterEntryControl4, 3);
-        }
-
-        private void OnCharacterBtn5Clicked(object sender, EventArgs e)
-        {
-            OnCharacterBtnClicked(characterEntryControl5, 4);
-        }
-
-        private void OnCharacterBtn6Clicked(object sender, EventArgs e)
-        {
-            OnCharacterBtnClicked(characterEntryControl6, 5);
-        }
-
-        private void OnCharacterBtn7Clicked(object sender, EventArgs e)
-        {
-            OnCharacterBtnClicked(characterEntryControl7, 6);
-        }
-
-        private void OnCharacterBtn8Clicked(object sender, EventArgs e)
-        {
-            OnCharacterBtnClicked(characterEntryControl8, 7);
-        }
-
-        private void OnCharacterBtnClicked(CharacterEntryView view, int index)
-        {
-            CharaChipGen.GeneratorForm.CharaChipGeneratorForm form
-                = new CharaChipGen.GeneratorForm.CharaChipGeneratorForm();
+            GeneratorForm.CharaChipGeneratorForm form
+                = new GeneratorForm.CharaChipGeneratorForm();
             form.Text = String.Format("キャラクター {0} - キャラチップ設定", index);
 
             // モデルを設定する。
@@ -165,7 +181,8 @@ namespace CharaChipGen.MainForm
                 CharaFaceGenerator.Draw(faceRenderModel, faceBuffer);
 
                 view.FaceImage = faceBuffer.GetImage();
-            } else
+            }
+            else
             {
                 view.FaceImage = null;
             }
@@ -207,11 +224,16 @@ namespace CharaChipGen.MainForm
 
         }
 
-        private void OnConfigButtonClick(object sender, EventArgs e)
+        /// <summary>
+        /// 設定メニュー/ボタンがクリックされた時に通知を受け取る。
+        /// </summary>
+        /// <param name="sender">送信元オブジェクト</param>
+        /// <param name="e">イベントオブジェクト</param>
+        private void OnPreferenceClick(object sender, EventArgs e)
         {
             // 設定ボタンが押されたとき
-            CharaChipGen.ExportSettingForm.ExportSettingForm form
-                = new CharaChipGen.ExportSettingForm.ExportSettingForm();
+            ExportSettingForm.ExportSettingForm form
+                = new ExportSettingForm.ExportSettingForm();
 
             AppData appData = AppData.GetInstance();
 
@@ -231,7 +253,12 @@ namespace CharaChipGen.MainForm
             appData.ExportSetting.Save();
         }
 
-        private void OnNewFileClick(object sender, EventArgs e)
+        /// <summary>
+        /// 新規作成メニューがクリックされたときに通知を受け取る。
+        /// </summary>
+        /// <param name="sender">送信元オブジェクト</param>
+        /// <param name="e">イベントオブジェクト</param>
+        private void OnMenuItemNewClick(object sender, EventArgs e)
         {
             // 新規作成が押された
             // データをリセットする。
@@ -246,7 +273,12 @@ namespace CharaChipGen.MainForm
             UpdateAllEntryView();
         }
 
-        private void OnOpenClick(object sender, EventArgs evt)
+        /// <summary>
+        /// 開くメニュー項目がクリックされた時に通知を受け取る。
+        /// </summary>
+        /// <param name="sender">送信元オブジェクト</param>
+        /// <param name="evt">イベントオブジェクト</param>
+        private void OnMenuItemOpenClick(object sender, EventArgs evt)
         {
             RestoreDialog(openFileDialog, Properties.Settings.Default.LastSavePath);
             DialogResult res = openFileDialog.ShowDialog(this);
@@ -307,7 +339,7 @@ namespace CharaChipGen.MainForm
                 {
                     SaveDataProc(editFilePath);
                 }
-                catch(Exception e)
+                catch (Exception e)
                 {
                     MessageBox.Show(this, e.Message, "エラー");
                 }
@@ -417,7 +449,12 @@ namespace CharaChipGen.MainForm
             }
         }
 
-        private void OnToolStripMenuItemVersionClick(object sender, EventArgs e)
+        /// <summary>
+        /// バージョンメニューがクリックされた時に通知を受け取る。
+        /// </summary>
+        /// <param name="sender">送信元オブジェクト</param>
+        /// <param name="e">イベントオブジェクト</param>
+        private void OnMenuItemVersionClick(object sender, EventArgs e)
         {
             VersionForm form = new VersionForm();
             form.ShowDialog(this);

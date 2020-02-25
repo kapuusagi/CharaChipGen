@@ -205,7 +205,6 @@
             this.Name = "MaterialEditorForm";
             this.Text = "素材エディタ";
             this.Shown += new System.EventHandler(this.OnFormShown);
-            this.Resize += new System.EventHandler(this.OnForm_resied);
             ((System.ComponentModel.ISupportInitialize)(this.pictureBoxPreview)).EndInit();
             this.panel1.ResumeLayout(false);
             this.panel1.PerformLayout();

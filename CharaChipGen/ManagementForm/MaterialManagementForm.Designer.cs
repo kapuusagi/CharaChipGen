@@ -28,24 +28,24 @@
         /// </summary>
         private void InitializeComponent()
         {
-            System.Windows.Forms.TreeNode treeNode17 = new System.Windows.Forms.TreeNode("髪型");
-            System.Windows.Forms.TreeNode treeNode18 = new System.Windows.Forms.TreeNode("頭");
-            System.Windows.Forms.TreeNode treeNode19 = new System.Windows.Forms.TreeNode("目");
-            System.Windows.Forms.TreeNode treeNode20 = new System.Windows.Forms.TreeNode("体");
-            System.Windows.Forms.TreeNode treeNode21 = new System.Windows.Forms.TreeNode("アクセサリ");
-            System.Windows.Forms.TreeNode treeNode22 = new System.Windows.Forms.TreeNode("頭部アクセサリ");
-            System.Windows.Forms.TreeNode treeNode23 = new System.Windows.Forms.TreeNode("キャラチップ素材", new System.Windows.Forms.TreeNode[] {
-            treeNode17,
-            treeNode18,
-            treeNode19,
-            treeNode20,
-            treeNode21,
-            treeNode22});
-            System.Windows.Forms.TreeNode treeNode24 = new System.Windows.Forms.TreeNode("顔");
+            System.Windows.Forms.TreeNode treeNode1 = new System.Windows.Forms.TreeNode("髪型");
+            System.Windows.Forms.TreeNode treeNode2 = new System.Windows.Forms.TreeNode("頭");
+            System.Windows.Forms.TreeNode treeNode3 = new System.Windows.Forms.TreeNode("目");
+            System.Windows.Forms.TreeNode treeNode4 = new System.Windows.Forms.TreeNode("体");
+            System.Windows.Forms.TreeNode treeNode5 = new System.Windows.Forms.TreeNode("アクセサリ");
+            System.Windows.Forms.TreeNode treeNode6 = new System.Windows.Forms.TreeNode("頭部アクセサリ");
+            System.Windows.Forms.TreeNode treeNode7 = new System.Windows.Forms.TreeNode("キャラチップ素材", new System.Windows.Forms.TreeNode[] {
+            treeNode1,
+            treeNode2,
+            treeNode3,
+            treeNode4,
+            treeNode5,
+            treeNode6});
+            System.Windows.Forms.TreeNode treeNode8 = new System.Windows.Forms.TreeNode("顔");
             this.buttonClose = new System.Windows.Forms.Button();
             this.menuStrip1 = new System.Windows.Forms.MenuStrip();
-            this.fileToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
-            this.closeToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.menuItemFile = new System.Windows.Forms.ToolStripMenuItem();
+            this.menuItemClose = new System.Windows.Forms.ToolStripMenuItem();
             this.treeViewMaterials = new System.Windows.Forms.TreeView();
             this.listViewMaterials = new System.Windows.Forms.ListView();
             this.columnHeaderName = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
@@ -80,58 +80,58 @@
             this.buttonClose.TabIndex = 0;
             this.buttonClose.Text = "閉じる";
             this.buttonClose.UseVisualStyleBackColor = true;
-            this.buttonClose.Click += new System.EventHandler(this.OnCloseMenuStripClicked);
+            this.buttonClose.Click += new System.EventHandler(this.OnMenuItemCloseClick);
             // 
             // menuStrip1
             // 
             this.menuStrip1.Items.AddRange(new System.Windows.Forms.ToolStripItem[] {
-            this.fileToolStripMenuItem});
+            this.menuItemFile});
             this.menuStrip1.Location = new System.Drawing.Point(0, 0);
             this.menuStrip1.Name = "menuStrip1";
             this.menuStrip1.Size = new System.Drawing.Size(485, 24);
             this.menuStrip1.TabIndex = 2;
             this.menuStrip1.Text = "menuStrip1";
             // 
-            // fileToolStripMenuItem
+            // menuItemFile
             // 
-            this.fileToolStripMenuItem.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] {
-            this.closeToolStripMenuItem});
-            this.fileToolStripMenuItem.Name = "fileToolStripMenuItem";
-            this.fileToolStripMenuItem.Size = new System.Drawing.Size(53, 20);
-            this.fileToolStripMenuItem.Text = "ファイル";
+            this.menuItemFile.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] {
+            this.menuItemClose});
+            this.menuItemFile.Name = "menuItemFile";
+            this.menuItemFile.Size = new System.Drawing.Size(53, 20);
+            this.menuItemFile.Text = "ファイル";
             // 
-            // closeToolStripMenuItem
+            // menuItemClose
             // 
-            this.closeToolStripMenuItem.Name = "closeToolStripMenuItem";
-            this.closeToolStripMenuItem.ShortcutKeys = ((System.Windows.Forms.Keys)((System.Windows.Forms.Keys.Alt | System.Windows.Forms.Keys.F4)));
-            this.closeToolStripMenuItem.Size = new System.Drawing.Size(146, 22);
-            this.closeToolStripMenuItem.Text = "閉じる";
-            this.closeToolStripMenuItem.Click += new System.EventHandler(this.OnCloseMenuStripClicked);
+            this.menuItemClose.Name = "menuItemClose";
+            this.menuItemClose.ShortcutKeys = ((System.Windows.Forms.Keys)((System.Windows.Forms.Keys.Alt | System.Windows.Forms.Keys.F4)));
+            this.menuItemClose.Size = new System.Drawing.Size(180, 22);
+            this.menuItemClose.Text = "閉じる";
+            this.menuItemClose.Click += new System.EventHandler(this.OnMenuItemCloseClick);
             // 
             // treeViewMaterials
             // 
             this.treeViewMaterials.Dock = System.Windows.Forms.DockStyle.Fill;
             this.treeViewMaterials.Location = new System.Drawing.Point(8, 8);
             this.treeViewMaterials.Name = "treeViewMaterials";
-            treeNode17.Name = "HairStyles";
-            treeNode17.Text = "髪型";
-            treeNode18.Name = "Heads";
-            treeNode18.Text = "頭";
-            treeNode19.Name = "Eyes";
-            treeNode19.Text = "目";
-            treeNode20.Name = "Bodies";
-            treeNode20.Text = "体";
-            treeNode21.Name = "Accessories";
-            treeNode21.Text = "アクセサリ";
-            treeNode22.Name = "HeadAccessories";
-            treeNode22.Text = "頭部アクセサリ";
-            treeNode23.Name = "CharaChipDirectory";
-            treeNode23.Text = "キャラチップ素材";
-            treeNode24.Name = "Faces";
-            treeNode24.Text = "顔";
+            treeNode1.Name = "HairStyles";
+            treeNode1.Text = "髪型";
+            treeNode2.Name = "Heads";
+            treeNode2.Text = "頭";
+            treeNode3.Name = "Eyes";
+            treeNode3.Text = "目";
+            treeNode4.Name = "Bodies";
+            treeNode4.Text = "体";
+            treeNode5.Name = "Accessories";
+            treeNode5.Text = "アクセサリ";
+            treeNode6.Name = "HeadAccessories";
+            treeNode6.Text = "頭部アクセサリ";
+            treeNode7.Name = "CharaChipDirectory";
+            treeNode7.Text = "キャラチップ素材";
+            treeNode8.Name = "Faces";
+            treeNode8.Text = "顔";
             this.treeViewMaterials.Nodes.AddRange(new System.Windows.Forms.TreeNode[] {
-            treeNode23,
-            treeNode24});
+            treeNode7,
+            treeNode8});
             this.treeViewMaterials.Size = new System.Drawing.Size(147, 290);
             this.treeViewMaterials.TabIndex = 3;
             this.treeViewMaterials.AfterSelect += new System.Windows.Forms.TreeViewEventHandler(this.OnTreeViewItemSelected);
@@ -316,8 +316,8 @@
 
         private System.Windows.Forms.Button buttonClose;
         private System.Windows.Forms.MenuStrip menuStrip1;
-        private System.Windows.Forms.ToolStripMenuItem fileToolStripMenuItem;
-        private System.Windows.Forms.ToolStripMenuItem closeToolStripMenuItem;
+        private System.Windows.Forms.ToolStripMenuItem menuItemFile;
+        private System.Windows.Forms.ToolStripMenuItem menuItemClose;
         private System.Windows.Forms.TreeView treeViewMaterials;
         private System.Windows.Forms.ListView listViewMaterials;
         private System.Windows.Forms.ColumnHeader columnHeaderName;

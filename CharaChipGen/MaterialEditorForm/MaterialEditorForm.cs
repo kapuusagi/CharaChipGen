@@ -37,6 +37,9 @@ namespace CharaChipGen.MaterialEditorForm
             }
         }
 
+        /// <summary>
+        /// 素材を再読込する。
+        /// </summary>
         private void ReloadMaterial()
         {
             // マテリアルを読み出す。
@@ -55,16 +58,21 @@ namespace CharaChipGen.MaterialEditorForm
             materialEditorLayerView2.Image = editMaterial.LoadLayerImage(1);
         }
 
+        /// <summary>
+        /// フォームを表示する。
+        /// </summary>
+        /// <param name="sender">送信元オブジェクト</param>
+        /// <param name="e">イベントオブジェクト</param>
         private void OnFormShown(object sender, EventArgs e)
         {
             ReloadMaterial();
         }
 
-        private void OnForm_resied(object sender, EventArgs e)
-        {
-        }
-
-
+        /// <summary>
+        /// キャンセルボタンがクリックされたときに通知を受け取る。
+        /// </summary>
+        /// <param name="sender">送信元オブジェクト</param>
+        /// <param name="e">イベントオブジェクト</param>
         private void OnCancelButtonClicked(object sender, EventArgs e)
         {
             Close();
@@ -129,6 +137,11 @@ namespace CharaChipGen.MaterialEditorForm
 
         }
 
+        /// <summary>
+        /// 2番目のレイヤー削除ボタンがクリックされたときに通知を受け取る。
+        /// </summary>
+        /// <param name="sender">送信元オブジェクト</param>
+        /// <param name="e">イベントオブジェクト</param>
         private void OnDelete2ndLayerButtonClicked(object sender, EventArgs e)
         {
             materialEditorLayerView2.Image = null;
@@ -138,11 +151,12 @@ namespace CharaChipGen.MaterialEditorForm
         /// レイヤービューの画像が変更された時に通知を受け取る。
         /// </summary>
         /// <param name="sender">送信元オブジェクト</param>
-        /// <param name="newImage">新しい画像データ</param>
-        private void OnLayerViewImageChanged(object sender, Image newImage)
+        /// <param name="e">イベントオブジェクト</param>
+        private void OnLayerViewImageChanged(object sender, EventArgs e)
         {
             pictureBoxPreview.Image = materialEditorLayerView1.GetSubImage(1, 0);
-            pictureBoxPreview.BackgroundImage = materialEditorLayerView2.GetSubImage(1, 0);
+            pictureBoxPreview.BackgroundImage
+                = materialEditorLayerView2.GetSubImage(1, 0);
         }
     }
 }

@@ -16,13 +16,15 @@ namespace CharaChipGen.GeneratorForm
     /// </summary>
     public partial class CharaChipGeneratorParamView : UserControl
     {
+        // 未選択を表すコンボボックスのアイテム。
         private const string ItemNoSelect = "<選択なし>";
-        private CharaChipParameterModel model; // データを格納するモデル
-
-        private CharaChipParameterModel.ValueChangeHandler handler;
-
+        // このビューが表すデータのモデル。
+        private CharaChipParameterModel model;
+        // modelのデータ変更を受け取るためのハンドラ
+        private PropertyChangedEventHandler handler;
+        // パラメータ編集ビュー
         private ParamEditView paramEditView;
-
+        // ドロップダウン表示
         private ToolStripDropDown toolStripDropDown;
 
         /// <summary>
@@ -32,11 +34,11 @@ namespace CharaChipGen.GeneratorForm
         {
             InitializeComponent();
             model = new CharaChipParameterModel();
-            handler = new CharaChipParameterModel.ValueChangeHandler((object sender) =>
+            handler = new PropertyChangedEventHandler((sender, e) =>
             {
                 ApplyModelToView();
             });
-            model.ValueChanged += handler;
+            model.PropertyChanged += handler;
             toolStripDropDown = new ToolStripDropDown();
             paramEditView = new ParamEditView();
             paramEditView.Model = Model;
@@ -55,9 +57,9 @@ namespace CharaChipGen.GeneratorForm
                 {
                     return;
                 }
-                model.ValueChanged -= handler;
+                model.PropertyChanged -= handler;
                 model = value;
-                model.ValueChanged += handler;
+                model.PropertyChanged += handler;
                 
                 ApplyModelToView();
             }

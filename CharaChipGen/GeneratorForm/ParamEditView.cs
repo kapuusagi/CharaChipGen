@@ -22,7 +22,7 @@ namespace CharaChipGen.GeneratorForm
         {
             InitializeComponent();
             model = new CharaChipParameterModel();
-            model.ValueChanged += OnModelParameterChanged;
+            model.PropertyChanged += OnModelParameterChanged;
 
             InitHandlers();
         }
@@ -71,9 +71,9 @@ namespace CharaChipGen.GeneratorForm
                     // nullまたは同一のオブジェクト
                     return;
                 }
-                model.ValueChanged -= OnModelParameterChanged;
+                model.PropertyChanged -= OnModelParameterChanged;
                 model = value;
-                model.ValueChanged += OnModelParameterChanged;
+                model.PropertyChanged += OnModelParameterChanged;
                 ApplyModelToView();
             }
         }
@@ -82,7 +82,7 @@ namespace CharaChipGen.GeneratorForm
         /// パラメータが変更された時に通知を受け取る。
         /// </summary>
         /// <param name="sender"></param>
-        private void OnModelParameterChanged(object sender)
+        private void OnModelParameterChanged(object sender, PropertyChangedEventArgs e)
         {
             ApplyModelToView();
         }

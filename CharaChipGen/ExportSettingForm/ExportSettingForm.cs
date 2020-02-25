@@ -12,6 +12,9 @@ namespace CharaChipGen.ExportSettingForm
 {
     public partial class ExportSettingForm : Form
     {
+        /// <summary>
+        /// 新しいインスタンスを構築する。
+        /// </summary>
         public ExportSettingForm()
         {
             InitializeComponent();

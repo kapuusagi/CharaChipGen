@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
+using System.ComponentModel;
 
 namespace CharaChipGen.Model
 {
@@ -21,9 +22,8 @@ namespace CharaChipGen.Model
         public const string ParamNameHeadAccessory2 = "HeadAccessory2";
         public const string ParamNameFace = "Face";
 
-        public delegate void ParamChangeHandler(Object sender, string name);
-        public event ParamChangeHandler OnCharaChipParamChanged;
-        public event ParamChangeHandler OnFaceParamChanged;
+        public event PartsChangeEventHandler OnCharaChipParamChanged;
+        public event EventHandler OnFaceParamChanged;
 
         private CharaChipParameterModel head;
         private CharaChipParameterModel eye;
@@ -36,6 +36,9 @@ namespace CharaChipGen.Model
         private CharaChipParameterModel headAccessory2;
         private CharaChipParameterModel face;
 
+        /// <summary>
+        /// 新しいインスタンスを構築する。
+        /// </summary>
         public CharaChipDataModel()
         {
             head = new CharaChipParameterModel(ParamNameHead);
@@ -49,22 +52,22 @@ namespace CharaChipGen.Model
             headAccessory2 = new CharaChipParameterModel(ParamNameHeadAccessory2);
             face = new CharaChipParameterModel(ParamNameFace);
 
-            CharaChipParameterModel.ValueChangeHandler handler
-                = new CharaChipParameterModel.ValueChangeHandler((Object sender) =>
+            PropertyChangedEventHandler handler
+                = new PropertyChangedEventHandler((sender, e) =>
                 {
                     OnOneParameterChanged(sender);
                 });
-            head.ValueChanged += handler;
-            eye.ValueChanged += handler;
-            hair.ValueChanged += handler;
-            body.ValueChanged += handler;
-            accessory1.ValueChanged += handler;
-            accessory2.ValueChanged += handler;
-            accessory3.ValueChanged += handler;
-            headAccessory1.ValueChanged += handler;
-            headAccessory2.ValueChanged += handler;
+            head.PropertyChanged += handler;
+            eye.PropertyChanged += handler;
+            hair.PropertyChanged += handler;
+            body.PropertyChanged += handler;
+            accessory1.PropertyChanged += handler;
+            accessory2.PropertyChanged += handler;
+            accessory3.PropertyChanged += handler;
+            headAccessory1.PropertyChanged += handler;
+            headAccessory2.PropertyChanged += handler;
 
-            face.ValueChanged += handler;
+            face.PropertyChanged += handler;
         }
 
         /// <summary>
@@ -190,11 +193,13 @@ namespace CharaChipGen.Model
                 || (sender == accessory3)
                 || (sender == headAccessory1) || (sender == headAccessory2))
             {
-                OnCharaChipParamChanged?.Invoke(this, ((CharaChipParameterModel)(sender)).ParameterName);
+                PartsType type = (PartsType)(Enum.Parse(typeof(PartsType),
+                    ((CharaChipParameterModel)(sender)).ParameterName));
+                OnCharaChipParamChanged?.Invoke(this, new PartsChangeEventArgs(type));
             }
             else if (sender == face)
             {
-                OnFaceParamChanged?.Invoke(this,   face.ParameterName);
+                OnFaceParamChanged?.Invoke(this, new EventArgs());
             }
         }
 

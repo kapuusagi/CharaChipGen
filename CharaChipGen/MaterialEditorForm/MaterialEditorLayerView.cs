@@ -18,8 +18,8 @@ namespace CharaChipGen.MaterialEditorForm
         /// 素材の画像が変更されたときのハンドラ
         /// </summary>
         /// <param name="sender">送信元のオブジェクトお</param>
-        /// <param name="newImage">変更後の画像</param>
-        public delegate void MaterialImageChangeHandler(object sender, Image newImage);
+        /// <param name="e">イベントオブジェクト</param>
+        public delegate void MaterialImageChangeHandler(object sender, EventArgs e);
         /// <summary>
         /// 素材の画像が変更されたときのイベント
         /// </summary>
@@ -45,6 +45,9 @@ namespace CharaChipGen.MaterialEditorForm
             materialView4x3.SetBounds(viewX, viewY, viewWidth, viewHeight);
         }
 
+        /// <summary>
+        /// このビューの画像オブジェクト
+        /// </summary>
         public Image Image
         {
             get { return materialView4x3.Image; }
@@ -56,7 +59,7 @@ namespace CharaChipGen.MaterialEditorForm
 
                 if (ImageChange != null)
                 {
-                    ImageChange(this, value);
+                    ImageChange(this, new EventArgs());
                 }
             }
         }

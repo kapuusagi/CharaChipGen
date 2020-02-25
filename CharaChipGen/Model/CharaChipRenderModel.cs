@@ -19,7 +19,7 @@ namespace CharaChipGen.Model
     {
         private CharaChipRenderLayerModel[] layers; // レイヤー
         private CharaChipDataModel dataModel; // レンダリング対象のデータモデル
-        private CharaChipDataModel.ParamChangeHandler paramChangeHandler; // ハンドラ
+        private PartsChangeEventHandler partsChangeHandler; // ハンドラ
         public delegate void ImageChanged(Object sender); // ハンドラ
         public event ImageChanged OnImageChanged; // イメージが変更されたときのイベント
 
@@ -75,13 +75,13 @@ namespace CharaChipGen.Model
                 layers[i] = new CharaChipRenderLayerModel(layerOrder[i].ToString());
             }
             dataModel = new CharaChipDataModel();
-            paramChangeHandler = new CharaChipDataModel.ParamChangeHandler((object sender, string name) =>
+            partsChangeHandler = new PartsChangeEventHandler((sender, e) =>
             {
-                ApplySetting(name);
+                ApplySetting(e.PartsType.ToString());
             });
 
             ApplySettings();
-            dataModel.OnCharaChipParamChanged += paramChangeHandler;
+            dataModel.OnCharaChipParamChanged += partsChangeHandler;
         }
 
         /// <summary>
@@ -96,9 +96,9 @@ namespace CharaChipGen.Model
                 {
                     return;
                 }
-                dataModel.OnCharaChipParamChanged -= paramChangeHandler;
+                dataModel.OnCharaChipParamChanged -= partsChangeHandler;
                 dataModel = value;
-                dataModel.OnCharaChipParamChanged += paramChangeHandler;
+                dataModel.OnCharaChipParamChanged += partsChangeHandler;
 
                 ApplySettings();
             }

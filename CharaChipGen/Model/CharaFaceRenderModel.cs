@@ -22,7 +22,7 @@ namespace CharaChipGen.Model
     {
         private CharaFaceRenderLayerModel[] layers; // レイヤーデータ
         private CharaChipDataModel dataModel; // キャラデータモデル
-        private CharaChipDataModel.ParamChangeHandler paramChangeHandler; // ハンドラ
+        private EventHandler paramChangeHandler; // ハンドラ
         public delegate void ImageChanged(Object sender); // ハンドラ
         public event ImageChanged OnImageChanged; // イメージが変更されたときのイベント
 
@@ -34,9 +34,9 @@ namespace CharaChipGen.Model
                 new CharaFaceRenderLayerModel("Face-back")
             };
             dataModel = new CharaChipDataModel();
-            paramChangeHandler = new CharaChipDataModel.ParamChangeHandler((object sender, string name) =>
+            paramChangeHandler = new EventHandler((sender, e) =>
             {
-                ApplySetting(name);
+                ApplySetting("Face");
             });
             ApplySettings();
             dataModel.OnFaceParamChanged += paramChangeHandler;

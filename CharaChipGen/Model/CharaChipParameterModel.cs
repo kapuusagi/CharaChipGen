@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
+using System.ComponentModel;
 
 namespace CharaChipGen.Model
 {
@@ -9,7 +10,7 @@ namespace CharaChipGen.Model
     ///  1つのキャラクタチップの1つの
     ///  要素の生成パラメータを表すモデル
     /// </summary>
-    public class CharaChipParameterModel
+    public class CharaChipParameterModel : INotifyPropertyChanged
     {
         private string parameterName; // パラメータ名
         private string materialName; // 選択されているマテリアル名
@@ -19,11 +20,16 @@ namespace CharaChipGen.Model
         private int value; // 輝度調整価
         private int opacity; // 不透明度（高いほど不透明） = アルファチャンネル
 
-        public delegate void ValueChangeHandler(Object sender); // 設定価が変更されたときのハンドラ
-        public event ValueChangeHandler ValueChanged; // 設定値が変更されたときのイベント
 
         /// <summary>
-        /// コンストラクタ
+        /// 新しいインスタンスを構築する。
+        /// </summary>
+        public CharaChipParameterModel() : this("")
+        {
+        }
+
+        /// <summary>
+        /// 新しいインスタンスを構築する。
         /// </summary>
         /// <param name="paramName">パラメータ名</param>
         public CharaChipParameterModel(string paramName)
@@ -37,18 +43,19 @@ namespace CharaChipGen.Model
             opacity = 100;
         }
 
+
         /// <summary>
-        /// コンストラクタ
+        /// プロパティが変更された場合。
         /// </summary>
-        public CharaChipParameterModel()
+        public event PropertyChangedEventHandler PropertyChanged;
+
+        /// <summary>
+        /// プロパティが変更されたことを通知する。
+        /// </summary>
+        /// <param name="propertyName">プロパティ名</param>
+        private void NotifyPropertyChange(string propertyName)
         {
-            this.parameterName = "";
-            materialName = "";
-            offset = 0;
-            hue = 0;
-            saturation = 0;
-            value = 0;
-            opacity = 100;
+            PropertyChanged?.Invoke(this, new PropertyChangedEventArgs(propertyName));
         }
 
         /// <summary>
@@ -68,13 +75,12 @@ namespace CharaChipGen.Model
                 return;
             }
 
-            param.materialName = this.materialName;
-            param.offset = this.offset;
-            param.hue = this.hue;
-            param.saturation = this.saturation;
-            param.value = this.value;
-            param.opacity = this.opacity;
-            param.ValueChanged?.Invoke(param);
+            param.MaterialName = MaterialName;
+            param.Offset = Offset;
+            param.Hue = Hue;
+            param.Saturation = Saturation;
+            param.Value = Value;
+            param.Opacity = Opacity;
         }
 
         /// <summary>
@@ -91,13 +97,12 @@ namespace CharaChipGen.Model
             {
                 return;
             }
-            this.materialName = "";
-            this.offset = 0;
-            this.hue = 0;
-            this.saturation = 0;
-            this.value = 0;
-            this.opacity = 100;
-            ValueChanged?.Invoke(this);
+            MaterialName = "";
+            Offset = 0;
+            Hue = 0;
+            Saturation = 0;
+            Value = 0;
+            Opacity = 100;
         }
 
         /// <summary>
@@ -120,7 +125,7 @@ namespace CharaChipGen.Model
                     return; // 同値なので設定変更不要。
                 }
                 materialName = value;
-                ValueChanged?.Invoke(this);
+                NotifyPropertyChange(nameof(MaterialName));
             }
         }
 
@@ -136,7 +141,7 @@ namespace CharaChipGen.Model
                     return; // 同値なので設定変更不要。
                 }
                 offset = value;
-                ValueChanged?.Invoke(this);
+                NotifyPropertyChange(nameof(Offset));
             }
         }
 
@@ -152,7 +157,7 @@ namespace CharaChipGen.Model
                     return; // 同値なので設定変更不要。
                 }
                 hue = value;
-                ValueChanged?.Invoke(this); // これは if (ValueChanged != null) ValueChanged(this)と同値。
+                NotifyPropertyChange(nameof(Hue));
             }
         }
 
@@ -167,7 +172,7 @@ namespace CharaChipGen.Model
                     return; // 同値なので設定変更不要。
                 }
                 saturation = value;
-                ValueChanged?.Invoke(this);
+                NotifyPropertyChange(nameof(Saturation));
             }
         }
         /// <summary>
@@ -181,7 +186,7 @@ namespace CharaChipGen.Model
                     return;
                 }
                 this.value = value;
-                ValueChanged?.Invoke(this);
+                NotifyPropertyChange(nameof(Value));
             }
         }
 
@@ -196,7 +201,7 @@ namespace CharaChipGen.Model
                     return;
                 }
                 this.opacity = value;
-                ValueChanged?.Invoke(this);
+                NotifyPropertyChange(nameof(Opacity));
             }
         }
     }

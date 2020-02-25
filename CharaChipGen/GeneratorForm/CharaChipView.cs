@@ -24,7 +24,6 @@ namespace CharaChipGen.GeneratorForm
         {
             viewCounter = 0;
             InitializeComponent();
-            AdjustPosition();
         }
 
         /// <summary>
@@ -84,47 +83,6 @@ namespace CharaChipGen.GeneratorForm
             charaChipView14.SetDataModel(model);
             charaChipView24.SetDataModel(model);
             charaChipView34.SetDataModel(model);
-        }
-
-        private void OnViewResized(object sender, EventArgs e)
-        {
-            AdjustPosition();
-        }
-        private void AdjustPosition()
-        { 
-            int inset = 8;
-            int margin = 4;
-            // リサイズ処理
-            int width = (ClientSize.Width - (inset * 2 + 12 + margin * 2)) / 4;
-            int height = (ClientSize.Height - (inset * 2 + margin * 4)) / 4;
-
-            int x = inset;
-            int y = inset;
-            pictureBox1.SetBounds(x, y + (height + margin) * 0, width, height);
-            pictureBox2.SetBounds(x, y + (height + margin) * 1, width, height);
-            pictureBox3.SetBounds(x, y + (height + margin) * 2, width, height);
-            pictureBox4.SetBounds(x, y + (height + margin) * 3, width, height);
-
-            x += (width + 12);
-
-            charaChipView11.SetBounds(x + (width + margin) * 0, y, width, height);
-            charaChipView21.SetBounds(x + (width + margin) * 1, y, width, height);
-            charaChipView31.SetBounds(x + (width + margin) * 2, y, width, height);
-
-            y += (height + margin);
-            charaChipView12.SetBounds(x + (width + margin) * 0, y, width, height);
-            charaChipView22.SetBounds(x + (width + margin) * 1, y, width, height);
-            charaChipView32.SetBounds(x + (width + margin) * 2, y, width, height);
-
-            y += (height + margin);
-            charaChipView13.SetBounds(x + (width + margin) * 0, y, width, height);
-            charaChipView23.SetBounds(x + (width + margin) * 1, y, width, height);
-            charaChipView33.SetBounds(x + (width + margin) * 2, y, width, height);
-
-            y += (height + margin);
-            charaChipView14.SetBounds(x + (width + margin) * 0, y, width, height);
-            charaChipView24.SetBounds(x + (width + margin) * 1, y, width, height);
-            charaChipView34.SetBounds(x + (width + margin) * 2, y, width, height);
         }
     }
 }
