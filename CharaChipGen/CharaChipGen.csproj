@@ -70,6 +70,12 @@
     <Compile Include="GeneratorForm\ParamEditView.Designer.cs">
       <DependentUpon>ParamEditView.cs</DependentUpon>
     </Compile>
+    <Compile Include="MainForm\VersionForm.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="MainForm\VersionForm.Designer.cs">
+      <DependentUpon>VersionForm.cs</DependentUpon>
+    </Compile>
     <Compile Include="Model\CharaChipDataModel.cs" />
     <Compile Include="Model\CharaChipExporter.cs" />
     <Compile Include="Model\CharaChipGenerator.cs" />
@@ -174,6 +180,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="MainForm\MainForm.resx">
       <DependentUpon>MainForm.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="MainForm\VersionForm.resx">
+      <DependentUpon>VersionForm.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="MaterialEditorForm\MaterialEditorForm.resx">
       <DependentUpon>MaterialEditorForm.cs</DependentUpon>

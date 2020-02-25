@@ -164,14 +164,14 @@
             // 規格選択ToolStripMenuItem
             // 
             this.規格選択ToolStripMenuItem.Name = "規格選択ToolStripMenuItem";
-            this.規格選択ToolStripMenuItem.Size = new System.Drawing.Size(122, 22);
+            this.規格選択ToolStripMenuItem.Size = new System.Drawing.Size(180, 22);
             this.規格選択ToolStripMenuItem.Text = "設定";
             this.規格選択ToolStripMenuItem.Click += new System.EventHandler(this.OnConfigButtonClick);
             // 
             // materialManageToolStripMenuItem
             // 
             this.materialManageToolStripMenuItem.Name = "materialManageToolStripMenuItem";
-            this.materialManageToolStripMenuItem.Size = new System.Drawing.Size(122, 22);
+            this.materialManageToolStripMenuItem.Size = new System.Drawing.Size(180, 22);
             this.materialManageToolStripMenuItem.Text = "素材管理";
             this.materialManageToolStripMenuItem.Click += new System.EventHandler(this.OnMaterialManageClicked);
             // 
@@ -186,8 +186,9 @@
             // バージョン情報ToolStripMenuItem
             // 
             this.バージョン情報ToolStripMenuItem.Name = "バージョン情報ToolStripMenuItem";
-            this.バージョン情報ToolStripMenuItem.Size = new System.Drawing.Size(142, 22);
+            this.バージョン情報ToolStripMenuItem.Size = new System.Drawing.Size(180, 22);
             this.バージョン情報ToolStripMenuItem.Text = "バージョン情報";
+            this.バージョン情報ToolStripMenuItem.Click += new System.EventHandler(this.OnToolStripMenuItemVersionClick);
             // 
             // buttonExport
             // 

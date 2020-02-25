@@ -416,5 +416,11 @@ namespace CharaChipGen.MainForm
                 System.Diagnostics.Debug.WriteLine(e);
             }
         }
+
+        private void OnToolStripMenuItemVersionClick(object sender, EventArgs e)
+        {
+            VersionForm form = new VersionForm();
+            form.ShowDialog(this);
+        }
     }
 }
