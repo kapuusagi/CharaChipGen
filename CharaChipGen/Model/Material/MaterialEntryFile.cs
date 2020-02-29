@@ -30,25 +30,64 @@ namespace CharaChipGen.Model.Material
             return false;
         }
 
+        /// 表示名
+        private Dictionary<string, string> displayNames;
+
+        /// レイヤー
+        private Dictionary<string, MaterialLayerInfo> layers;
+
         /// <summary>
         /// 新しいインスタンスを構築する。
         /// </summary>
-        public MaterialEntryFile()
+        public MaterialEntryFile() : this(null)
         {
-            DisplayNames = new Dictionary<string, string>();
-            Layers = new Dictionary<string, MaterialLayerInfo>();
         }
+
+        /// <summary>
+        /// 新しいインスタンスを構築する。
+        /// </summary>
+        /// <param name="path">ファイルパス</param>
+        public MaterialEntryFile(string path)
+        {
+            Path = path;
+            displayNames = null;
+            layers = null;
+            displayNames = new Dictionary<string, string>();
+            layers = new Dictionary<string, MaterialLayerInfo>();
+        }
+
+        /// <summary>
+        /// エントリファイルパス
+        /// </summary>
+        public string Path { get; set; }
 
         /// <summary>
         /// 表示名。
         /// カルチャ名と表示データのペアで構成される。一番先頭はデフォルトのものが格納される。
         /// </summary>
-        public Dictionary<string, string> DisplayNames { get; private set; }
+        public Dictionary<string, string> DisplayNames { 
+            get {
+                if (displayNames == null)
+                {
+                    Load(Path);
+                }
+
+                return displayNames;
+            }
+        }
 
         /// <summary>
         /// レイヤー一覧
         /// </summary>
-        public Dictionary<string, MaterialLayerInfo> Layers { get; private set; }
+        public Dictionary<string, MaterialLayerInfo> Layers {
+            get {
+                if (layers == null)
+                {
+                    Load(Path);
+                }
+                return layers;
+            }
+        }
 
 
 
@@ -175,8 +214,8 @@ namespace CharaChipGen.Model.Material
         /// <param name="path">ファイルパス</param>
         public void Load(string path)
         {
-            DisplayNames.Clear();
-            Layers.Clear();
+            displayNames = new Dictionary<string, string>();
+            layers = new Dictionary<string, MaterialLayerInfo>();
 
             using (var reader = new System.IO.StreamReader(System.IO.File.OpenRead(path)))
             {
