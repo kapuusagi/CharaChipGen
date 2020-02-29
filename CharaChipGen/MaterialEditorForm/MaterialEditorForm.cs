@@ -15,7 +15,8 @@ namespace CharaChipGen.MaterialEditorForm
     /// </summary>
     public partial class MaterialEditorForm : Form
     {
-        private Material editMaterial; // 編集対象の素材
+        // 編集対象の素材
+        private Material editMaterial; 
 
         /// <summary>
         /// コンストラクタ
@@ -100,7 +101,7 @@ namespace CharaChipGen.MaterialEditorForm
         /// </summary>
         public void ApplyMaterialEdit()
         { 
-            string materialDir = AppData.GetInstance().MaterialDirectory;
+            string materialDir = AppData.Instance.MaterialDirectory;
             string dir = System.IO.Path.Combine(materialDir, editMaterial.Path);
 
             editMaterial.SetDisplayName(textBoxMaterialName.Text);

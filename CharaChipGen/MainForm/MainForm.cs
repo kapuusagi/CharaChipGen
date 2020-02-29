@@ -118,7 +118,7 @@ namespace CharaChipGen.MainForm
             form.Text = String.Format("キャラクター {0} - キャラチップ設定", index);
 
             // モデルを設定する。
-            AppData appData = AppData.GetInstance();
+            AppData appData = AppData.Instance;
             appData.GetCharaChipData(index).CopyTo(form.CharaChipDataModel);
 
             DialogResult result = form.ShowDialog(this);
@@ -138,7 +138,7 @@ namespace CharaChipGen.MainForm
         /// </summary>
         private void UpdateAllEntryView()
         {
-            AppData appData = AppData.GetInstance();
+            AppData appData = AppData.Instance;
             UpdateEntryView(characterEntryControl1, appData.GetCharaChipData(0));
             UpdateEntryView(characterEntryControl2, appData.GetCharaChipData(1));
             UpdateEntryView(characterEntryControl3, appData.GetCharaChipData(2));
@@ -170,22 +170,6 @@ namespace CharaChipGen.MainForm
             {
                 view.Image = null;
             }
-
-            // フェイスデータ
-            CharaFaceRenderModel faceRenderModel = new CharaFaceRenderModel();
-            dataModel.CopyTo(faceRenderModel.CharaChipDataModel);
-            Size facePrefSize = view.ImageAreaSize;
-            if ((facePrefSize.Width > 0) && (facePrefSize.Height > 0))
-            {
-                ImageBuffer faceBuffer = ImageBuffer.Create(facePrefSize.Width, facePrefSize.Height);
-                CharaFaceGenerator.Draw(faceRenderModel, faceBuffer);
-
-                view.FaceImage = faceBuffer.GetImage();
-            }
-            else
-            {
-                view.FaceImage = null;
-            }
         }
 
         /// <summary>
@@ -209,10 +193,8 @@ namespace CharaChipGen.MainForm
                 string charaChipPath = saveFileDialogExport.FileName;
                 string dir = System.IO.Path.GetDirectoryName(charaChipPath);
                 string baseName = System.IO.Path.GetFileNameWithoutExtension(charaChipPath);
-                string facePath = System.IO.Path.Combine(dir, baseName + "_face.png");
 
                 CharaChipExporter.ExportCharaChip(charaChipPath);
-                CharaChipExporter.ExportFace(facePath);
 
                 // 最後にエクスポートしたパスを保存
                 Properties.Settings.Default.LastExportPath = charaChipPath;
@@ -235,7 +217,7 @@ namespace CharaChipGen.MainForm
             ExportSettingForm.ExportSettingForm form
                 = new ExportSettingForm.ExportSettingForm();
 
-            AppData appData = AppData.GetInstance();
+            AppData appData = AppData.Instance;
 
             form.CharaChipSize = appData.ExportSetting.CharaChipSize;
             form.FaceSize = appData.ExportSetting.FaceSize;
@@ -263,7 +245,7 @@ namespace CharaChipGen.MainForm
             // 新規作成が押された
             // データをリセットする。
             editFilePath = "";
-            AppData appData = AppData.GetInstance();
+            AppData appData = AppData.Instance;
             for (int i = 0; i < appData.CharaChipDataCount; i++)
             {
                 appData.GetCharaChipData(i).Reset();
@@ -410,7 +392,7 @@ namespace CharaChipGen.MainForm
         /// <param name="evt">イベントオブジェクト</param>
         private void OnFormShown(object sender, EventArgs evt)
         {
-            AppData.GetInstance().ExportSetting.Load();
+            AppData.Instance.ExportSetting.Load();
 
             string appDir = System.IO.Path.GetDirectoryName(Application.ExecutablePath);
             string workTempPath = System.IO.Path.Combine(appDir, PreviousSavedFileName);

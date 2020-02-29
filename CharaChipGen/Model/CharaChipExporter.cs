@@ -23,7 +23,7 @@ namespace CharaChipGen.Model
         /// <param name="filePath"></param>
         public static void ExportCharaChip(string filePath)
         {
-            AppData appData = AppData.GetInstance();
+            AppData appData = AppData.Instance;
             Size charaChipSize = appData.ExportSetting.CharaChipSize;
 
             int charaPlaneWidth = charaChipSize.Width * 3;
@@ -77,43 +77,6 @@ namespace CharaChipGen.Model
                 }
             }
 
-            return imageBuffer;
-        }
-
-        /// <summary>
-        /// 顔データを出力する
-        /// </summary>
-        /// <param name="filePath"></param>
-        public static void ExportFace(string filePath)
-        {
-            AppData appData = AppData.GetInstance();
-            Size faceSize = appData.ExportSetting.FaceSize;
-
-            int exportImageWidth = faceSize.Width * 4;
-            int exportImageHeight = faceSize.Height * 2;
-            ImageBuffer exportBuffer = ImageBuffer.Create(exportImageWidth, exportImageHeight);
-
-            for (int faceY = 0; faceY < 2; faceY++)
-            {
-                for (int faceX = 0; faceX < 4; faceX++)
-                {
-                    ImageBuffer charaChipImage = RenderFace(appData.GetCharaChipData(faceY * 4 + faceX), faceSize);
-                    exportBuffer.WriteImage(charaChipImage, faceX * faceSize.Width, faceY * faceSize.Height);
-                }
-            }
-
-            Image image = exportBuffer.GetImage();
-
-            image.Save(filePath);
-        }
-
-        private static ImageBuffer RenderFace(CharaChipDataModel model, Size faceSize)
-        {
-            CharaFaceRenderModel renderModel = new CharaFaceRenderModel();
-            model.CopyTo(renderModel.CharaChipDataModel);
-
-            ImageBuffer imageBuffer = ImageBuffer.Create(faceSize.Width, faceSize.Height);
-            CharaFaceGenerator.Draw(renderModel, imageBuffer);
             return imageBuffer;
         }
 

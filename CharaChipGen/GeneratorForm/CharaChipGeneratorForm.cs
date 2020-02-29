@@ -37,10 +37,6 @@ namespace CharaChipGen.GeneratorForm
             paramViewAccessory3.Model = dataModel.Accessory3;
             paramViewHeadAccessory1.Model = dataModel.HeadAccessory1;
             paramViewHeadAccessory2.Model = dataModel.HeadAccessory2;
-
-            charaFaceView.SetModel(dataModel);
-
-            paramViewFace.Model = dataModel.Face;
         }
 
         /// <summary>
@@ -57,7 +53,7 @@ namespace CharaChipGen.GeneratorForm
         /// </summary>
         private void InitializeComboBoxItems()
         {
-            AppData data = AppData.GetInstance();
+            AppData data = AppData.Instance;
             paramViewHead.SetMaterialList(data.Heads);
             paramViewEye.SetMaterialList(data.Eyes);
             paramViewHairStyle.SetMaterialList(data.HairStyles);
@@ -67,8 +63,6 @@ namespace CharaChipGen.GeneratorForm
             paramViewAccessory3.SetMaterialList(data.Accessories);
             paramViewHeadAccessory1.SetMaterialList(data.HeadAccessories);
             paramViewHeadAccessory2.SetMaterialList(data.HeadAccessories);
-
-            paramViewFace.SetMaterialList(data.Faces);
         }
 
         /// <summary>

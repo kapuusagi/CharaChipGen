@@ -12,7 +12,7 @@ namespace CharaChipGen.Model.Material
     /// </summary>
     public class MaterialLayerInfo
     {
-        private LayerType? attributeType;
+        private PartsType? attributeType;
         /// <summary>
         /// 新しいインスタンスを構築する。
         /// </summary>
@@ -36,10 +36,10 @@ namespace CharaChipGen.Model.Material
         public LayerType LayerType { get; set; }
 
         /// <summary>
-        /// 適用する属性
+        /// 色パラメータを取得する部品
         /// </summary>
-        public LayerType AttributeType {
-            get => attributeType ?? LayerType;
+        public PartsType? ColorPartsRefs {
+            get => attributeType;
             set => attributeType = value;
         }
 
@@ -57,9 +57,12 @@ namespace CharaChipGen.Model.Material
         public override string ToString()
         {
             StringBuilder sb = new StringBuilder();
-            sb.Append("Layer.").Append(Name).Append(' ');
-            sb.Append(LayerType).Append(' ');
-            sb.Append('(').Append(AttributeType).Append(") ");
+            sb.Append(Name).Append(' ');
+            if (ColorPartsRefs != null)
+            {
+                sb.Append('(').Append(ColorPartsRefs).Append(") ");
+            }
+            sb.Append("Layer.").Append(LayerType).Append(' ');
             sb.Append(Path);
 
             return sb.ToString();

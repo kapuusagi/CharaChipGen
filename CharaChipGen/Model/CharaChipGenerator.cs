@@ -4,13 +4,14 @@ using System.Linq;
 using System.Text;
 using System.Drawing;
 using CGenImaging;
+using CharaChipGen.Model.Layer;
 
 namespace CharaChipGen.Model
 {
     /// <summary>
     /// キャラクタチップを生成するための処理をAPIを提供するクラス。
     /// </summary>
-    class CharaChipGenerator
+    public class CharaChipGenerator
     {
         /// <summary>
         /// キャラクタチップジェネレータ
@@ -42,7 +43,7 @@ namespace CharaChipGen.Model
 
             for (int i = model.LayerCount - 1; i >= 0; i--)
             {
-                CharaChipRenderLayerModel layer = model.GetLayer(i);
+                RenderLayerModel layer = model.GetLayer(i);
                 if (layer.Image == null)
                 {
                     continue;
@@ -61,7 +62,7 @@ namespace CharaChipGen.Model
         /// <param name="xPos">描画対象の水平位置</param>
         /// <param name="yPos">描画対象の垂直位置</param>
         /// <param name="layer">レイヤーモデル</param>
-        private static void DrawLayer(ImageBuffer buffer, int xPos, int yPos, CharaChipRenderLayerModel layer)
+        private static void DrawLayer(ImageBuffer buffer, int xPos, int yPos, RenderLayerModel layer)
         {
             ImageBuffer srcImage = layer.GetProcessedImage();
             if (srcImage == null)

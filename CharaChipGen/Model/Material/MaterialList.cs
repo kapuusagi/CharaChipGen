@@ -6,26 +6,59 @@ using System.Collections;
 
 namespace CharaChipGen.Model.Material
 {
+    /// <summary>
+    /// 素材リスト
+    /// </summary>
     public class MaterialList : IEnumerable<Material> 
     {
-        private string name; // 素材種別名
-        private List<Material> materials; // マテリアル
-        /// <summary>
-        /// 素材のディレクトリ名。(相対パス。データフォルダのルートパスを除いたもの。Accessoriesなど)
-        /// </summary>
-        private string directory; // この素材のルートディレクトリ
+        private List<Material> materials; // 素材
 
         /// <summary>
-        /// コンストラクタ
+        /// 新しいインスタンスを構築する。
+        /// サブディレクトリ名はmaterialType.ToString()が使用される。
         /// </summary>
+        /// <param name="materialType">素材種別</param>
         /// <param name="name">素材種別名</param>
-        /// <param name="dirName">ディレクトリ名(Accessoriesなど)</param>
-        public MaterialList(string name, string dirName)
+        public MaterialList(MaterialType materialType, string name)
+            : this(materialType, name, materialType.ToString())
         {
-            this.name = name;
-            materials = new List<Material>();
-            directory = dirName;
+
         }
+
+        /// <summary>
+        /// 新しいインスタンスを構築する。
+        /// </summary>
+        /// <param name="materialType">素材種別</param>
+        /// <param name="name">素材種別名</param>
+        /// <param name="subDirectoryName">サブディレクトリ名(Accessoriesなど)</param>
+        public MaterialList(MaterialType materialType, string name, string subDirectoryName)
+        {
+            MaterialType = materialType;
+            Name = name;
+            SubDirectoryName = subDirectoryName;
+            materials = new List<Material>();
+        }
+
+        /// <summary>
+        /// 部品種別
+        /// </summary>
+        public MaterialType MaterialType { get; private set; }
+        /// <summary>
+        /// 素材種別名
+        /// </summary>
+        public string Name { get; private set; }
+
+        /// <summary>
+        /// 素材が存在するサブディレクトリ名。
+        /// Accessoriesなど。
+        /// </summary>
+        /// <remarks>
+        /// 相対パス。データフォルダのルートパスを除いたもの。Accessoriesなど。
+        /// 素材のルートディレクトリは含まれない。
+        /// マテリアルディレクトリのフルパスを取得するには、
+        /// ルートディレクトリとこのディレクトリ名を結合する。
+        /// </remarks>
+        public string SubDirectoryName { get; private set; }
 
         /// <summary>
         /// マテリアルリストを読み込む
@@ -35,7 +68,7 @@ namespace CharaChipGen.Model.Material
         {
             materials.Clear();
 
-            string dirPath = System.IO.Path.Combine(materialDirectory, directory);
+            string dirPath = System.IO.Path.Combine(materialDirectory, SubDirectoryName);
 
             string[] paths = System.IO.Directory.GetFiles(dirPath);
             foreach (string path in paths)
@@ -49,7 +82,7 @@ namespace CharaChipGen.Model.Material
                     {
                         entryFile.Load(path);
 
-                        string relativePath = System.IO.Path.Combine(directory, fname);
+                        string relativePath = System.IO.Path.Combine(SubDirectoryName, fname);
                         Material material = new Material(relativePath, entryFile);
                         Add(material);
                     }
@@ -60,6 +93,11 @@ namespace CharaChipGen.Model.Material
                 }
             }
         }
+
+        /// <summary>
+        /// 素材数。
+        /// </summary>
+        public int Count { get => materials.Count; }
 
         /// <summary>
         /// 素材を追加する
@@ -134,25 +172,6 @@ namespace CharaChipGen.Model.Material
             return null;
         }
 
-        /// <summary>
-        /// 素材種別名
-        /// </summary>
-        public string Name
-        {
-            get { return name; }
-        }
-
-        /// <summary>
-        /// 素材が存在するディレクトリm名。
-        /// 素材のルートディレクトリは含まれない。
-        /// マテリアルディレクトリのフルパスを取得するには、
-        /// ルートディレクトリとこのディレクトリ名を結合する。
-        /// Accessoriesなど。
-        /// </summary>
-        public string SubDirectoryName
-        {
-            get { return directory; }
-        }
 
 
         public IEnumerator<Material> GetEnumerator()

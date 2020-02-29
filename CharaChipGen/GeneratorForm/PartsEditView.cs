@@ -21,7 +21,7 @@ namespace CharaChipGen.GeneratorForm
         public PartsEditView()
         {
             InitializeComponent();
-            model = new CharaChipPartsModel();
+            model = new CharaChipPartsModel(PartsType.HairStyle);
             model.PropertyChanged += OnModelParameterChanged;
 
             InitHandlers();
@@ -37,7 +37,7 @@ namespace CharaChipGen.GeneratorForm
         private void InitHandlers()
         {
             numericUpDownYPos.ValueChanged
-                += (s, evt) => { model.Offset = (int)(numericUpDownYPos.Value); };
+                += (s, evt) => { model.OffsetY = (int)(numericUpDownYPos.Value); };
             numericUpDownHue.ValueChanged
                 += (s, evt) => { model.Hue = (int)(numericUpDownHue.Value); };
             numericUpDownSaturation.ValueChanged
@@ -48,7 +48,7 @@ namespace CharaChipGen.GeneratorForm
                 += (s, evt) => { model.Opacity = (int)(numericUpDownOpacity.Value); };
 
             trackBarYPos.ValueChanged
-                += (s, evt) => { model.Offset = trackBarYPos.Value; };
+                += (s, evt) => { model.OffsetY = trackBarYPos.Value; };
             trackBarHue.ValueChanged
                 += (s, evt) => { model.Hue = trackBarHue.Value; };
             trackBarSaturation.ValueChanged
@@ -96,8 +96,8 @@ namespace CharaChipGen.GeneratorForm
             //       データバインディング使った方がいい？
 
             // Y位置
-            trackBarYPos.Value = model.Offset;
-            numericUpDownYPos.Value = model.Offset;
+            trackBarYPos.Value = model.OffsetY;
+            numericUpDownYPos.Value = model.OffsetY;
 
             // 色相
             trackBarHue.Value = model.Hue;
@@ -123,7 +123,7 @@ namespace CharaChipGen.GeneratorForm
         /// <param name="evt">イベントオブジェクト</param>
         private void OnButtonResetClick(object sender, EventArgs evt)
         {
-            model.Offset = 0;
+            model.OffsetY = 0;
             model.Hue = 0;
             model.Saturation = 0;
             model.Value = 0;

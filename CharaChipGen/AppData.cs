@@ -13,50 +13,58 @@ namespace CharaChipGen
     /// </summary>
     class AppData
     {
-        public const string NameAccessories = "Accessories";
-        public const string NameHairStyles = "HairStyles";
-        public const string NameEyes = "Eyes";
-        public const string NameHeads = "Heads";
-        public const string NameBodies = "Bodies";
-        public const string NameHeadAccessories = "HeadAccessories";
-        public const string NameFaces = "Faces";
-
-        private static AppData instance = new AppData();
+        private static AppData instance;
 
         /// <summary>
         /// アプリケーションデータのインスタンスを得る
         /// </summary>
         /// <returns></returns>
-        public static AppData GetInstance()
+        public static AppData Instance
         {
-            return instance;
+            get {
+                if (instance == null)
+                {
+                    instance = new AppData();
+                }
+                return instance;
+            }
         }
 
-        private MaterialList accessories; // アクセサリ
-        private MaterialList hairStyles; // 髪型
-        private MaterialList eyes; // 目
-        private MaterialList heads; // 頭
-        private MaterialList bodies; // 体
-        private MaterialList headAccessories; // 頭部アクセサリ
-        private MaterialList faces; // 顔
-        private string materialDirectory = ""; // 素材ディレクトリ
+        // 素材ディレクトリ
+        private string materialDirectory = "";
+        //  キャラチップデータモデル
+        private CharaChipDataModel[] charaChipDataModels;
+        // エクスポート設定
+        private ExportSetting exportSetting;
+        // 部品エントリ
+        private MaterialList[] materialLists;
 
-        private CharaChipDataModel[] charaChipDataModels; //  キャラチップデータモデル
-        private ExportSetting exportSetting; // エクスポート設定
-
+        private Dictionary<PartsType, MaterialType> materialTable;
 
         /// <summary>
         /// コンストラクタ
         /// </summary>
         private AppData()
         {
-            accessories = new MaterialList("アクセサリ", NameAccessories);
-            hairStyles = new MaterialList("髪型", NameHairStyles);
-            eyes = new MaterialList("目", NameEyes);
-            heads = new MaterialList("頭", NameHeads);
-            bodies = new MaterialList("体", NameBodies);
-            headAccessories = new MaterialList("頭部アクセサリ", NameHeadAccessories);
-            faces = new MaterialList("顔", NameFaces);
+            materialLists = new MaterialList[] {
+                new MaterialList(MaterialType.Accessories, Properties.Resources.NameAccessories),
+                new MaterialList(MaterialType.HairStyles, Properties.Resources.NameHairStyles),
+                new MaterialList(MaterialType.Eyes, Properties.Resources.NameEyes),
+                new MaterialList(MaterialType.Heads, Properties.Resources.NameHeads),
+                new MaterialList(MaterialType.Bodies, Properties.Resources.NameBodies),
+                new MaterialList(MaterialType.HeadAccessories, Properties.Resources.NameHeadAccessories),
+            };
+            materialTable = new Dictionary<PartsType, MaterialType>();
+            materialTable.Add(PartsType.Accessory1, MaterialType.Accessories);
+            materialTable.Add(PartsType.Accessory2, MaterialType.Accessories);
+            materialTable.Add(PartsType.Accessory3, MaterialType.Accessories);
+            materialTable.Add(PartsType.Body, MaterialType.Bodies);
+            materialTable.Add(PartsType.Eye, MaterialType.Eyes);
+            materialTable.Add(PartsType.HairStyle, MaterialType.HairStyles);
+            materialTable.Add(PartsType.Head, MaterialType.Heads);
+            materialTable.Add(PartsType.HeadAccessory1, MaterialType.HeadAccessories);
+            materialTable.Add(PartsType.HeadAccessory2, MaterialType.HeadAccessories);
+
             charaChipDataModels = new CharaChipDataModel[9];
             for (int i = 0; i < charaChipDataModels.Length; i++)
             {
@@ -79,20 +87,13 @@ namespace CharaChipGen
                 return false;
             }
 
-            // アクセサリ
-            LoadMaterials(dir, accessories);
-            // 髪型
-            LoadMaterials(dir, hairStyles);
-            // 目
-            LoadMaterials(dir, eyes);
-            // 頭
-            LoadMaterials(dir, heads);
-            // 体
-            LoadMaterials(dir, bodies);
-            // 頭部アクセサリ
-            LoadMaterials(dir, headAccessories);
-            // 顔
-            LoadMaterials(dir, faces);
+            foreach (MaterialList materialList in materialLists)
+            {
+                if (materialList.Count == 0)
+                {
+                    LoadMaterials(dir, materialList);
+                }
+            }
 
             materialDirectory = dir;
             return true;
@@ -101,216 +102,132 @@ namespace CharaChipGen
         /// <summary>
         /// アクセサリ
         /// </summary>
-        public MaterialList Accessories
-        {
-            get { return this.accessories; }
-        }
-        /// <summary>
-        /// アクセサリディレクトリへのパス
-        /// </summary>
-        public string AccessoryDirectory
-        {
-            get { return System.IO.Path.Combine(materialDirectory, this.accessories.SubDirectoryName); }
-        }
+        public MaterialList Accessories { get => GetMaterialList(MaterialType.Accessories); }
+
         /// <summary>
         /// アクセサリを取得する。
         /// </summary>
         /// <param name="name">マテリアル名</param>
         /// <returns>マテリアル</returns>
-        public Material GetAccessory(string name)
-        {
-            return accessories.Get(name);
-        }
+        public Material GetAccessory(string name) => Accessories.Get(name);
 
 
         /// <summary>
         /// 髪
         /// </summary>
-        public MaterialList HairStyles
-        {
-            get { return this.hairStyles; }
-        }
-        /// <summary>
-        /// 髪ディレクトリへのパス
-        /// </summary>
-        public string HairStyleDirectory
-        {
-            get { return System.IO.Path.Combine(materialDirectory, this.hairStyles.SubDirectoryName); }
-        }
+        public MaterialList HairStyles { get => GetMaterialList(MaterialType.HairStyles); }
+
+
         /// <summary>
         /// 髪素材を取得する
         /// </summary>
         /// <param name="name">素材名</param>
         /// <returns>マテリアル</returns>
-        public Material GetHairStyle(string name)
-        {
-            return hairStyles.Get(name);
-        }
+        public Material GetHairStyle(string name) => HairStyles.Get(name);
 
 
         /// <summary>
         /// 目
         /// </summary>
-        public MaterialList Eyes
-        {
-            get { return this.eyes; }
-        }
-        /// <summary>
-        /// 目ディレクトリへのパス
-        /// </summary>
-        public string EyeDirectory
-        {
-            get { return System.IO.Path.Combine(materialDirectory, this.eyes.SubDirectoryName); }
-        }
+        public MaterialList Eyes { get => GetMaterialList(MaterialType.Eyes); }
+
         /// <summary>
         /// 目素材を取得する。
         /// </summary>
         /// <param name="name">素材名</param>
         /// <returns>マテリアル</returns>
-        public Material GetEye(string name)
-        {
-            return eyes.Get(name);
-        }
+        public Material GetEye(string name) => Eyes.Get(name);
 
         /// <summary>
         /// 頭
         /// </summary>
-        public MaterialList Heads
-        {
-            get { return this.heads; }
-        }
+        public MaterialList Heads { get => GetMaterialList(MaterialType.Heads); }
 
-        /// <summary>
-        /// 頭ディレクトリへのパス
-        /// </summary>
-        public string HeadDirectory
-        {
-            get { return this.HeadDirectory; }
-        }
         /// <summary>
         /// 頭素材を取得する
         /// </summary>
         /// <param name="name">素材名</param>
         /// <returns>マテリアル</returns>
-        public Material GetHead(string name)
-        {
-            return heads.Get(name);
-        }
+        public Material GetHead(string name)=> Heads.Get(name);
 
         /// <summary>
         /// <summary>
         /// 体
         /// </summary>
-        public MaterialList Bodies
-        {
-            get { return this.bodies; }
-        }
-        /// <summary>
-        /// 体ディレクトリへのパス
-        /// </summary>
-        public string BodyDirectory
-        {
-            get { return System.IO.Path.Combine(materialDirectory, this.bodies.SubDirectoryName); }
-        }
+        public MaterialList Bodies { get => GetMaterialList(MaterialType.Bodies); }
+
         /// <summary>
         /// 体素材を取得する
         /// </summary>
         /// <param name="name">マテリアル名</param>
         /// <returns>マテリアル</returns>
-        public Material GetBody(string name)
-        {
-            return bodies.Get(name);
-        }
+        public Material GetBody(string name)=> Bodies.Get(name);
 
         /// <summary>
         /// ヘッドアクセサリ
         /// </summary>
-        public MaterialList HeadAccessories
-        {
-            get { return this.headAccessories; }
-        }
-        /// <summary>
-        /// 頭アクセサリディレクトリへのパス
-        /// </summary>
-        public string HeadAccessoryDirectory
-        {
-            get { return System.IO.Path.Combine(materialDirectory, this.heads.SubDirectoryName); }
-        }
+        public MaterialList HeadAccessories { get => GetMaterialList(MaterialType.HeadAccessories); }
+
+
         /// <summary>
         /// ヘッドアクセサリ素材を取得する。
         /// </summary>
         /// <param name="name">素材名</param>
         /// <returns>マテリアル</returns>
-        public Material GetHeadAccessory(string name)
-        {
-            return headAccessories.Get(name);
-        }
+        public Material GetHeadAccessory(string name) => HeadAccessories.Get(name);
 
         /// <summary>
-        /// 顔
+        /// nameで指定される素材リストを取得する。
         /// </summary>
-        public MaterialList Faces
-        {
-            get { return this.faces; }
-        }
-        /// <summary>
-        /// 顔ディレクトリへのパス
-        /// </summary>
-        public string FaceDirectory
-        {
-            get { return System.IO.Path.Combine(FaceDirectory, this.faces.SubDirectoryName); }
-        }
-        /// <summary>
-        /// 顔素材を取得する
-        /// </summary>
-        /// <param name="name">素材名</param>
-        /// <returns>マテリアル</returns>
-        public Material GetFace(string name)
-        {
-            return faces.Get(name);
-        }
-
-        /// <summary>
-        ///  マテリアルリストを保存する
-        /// </summary>
-        /// <param name="name"></param>
+        /// <param name="name">部品名(=サブディレクトリ名)</param>
         /// <returns></returns>
-        public MaterialList getMaterialList(string name)
+        public MaterialList GetMaterialList(string name)
         {
-            switch (name)
+            if (Enum.TryParse(name, out MaterialType materialType))
             {
-                case AppData.NameAccessories:
-                    return this.accessories;
-                case AppData.NameBodies:
-                    return this.bodies;
-                case AppData.NameEyes:
-                    return this.eyes;
-                case AppData.NameHairStyles:
-                    return this.hairStyles;
-                case AppData.NameHeads:
-                    return this.heads;
-                case AppData.NameHeadAccessories:
-                    return this.headAccessories;
-                case AppData.NameFaces:
-                    return this.faces;
-                default:
-                    return null;
+                return GetMaterialList(materialType);
             }
+            else if (Enum.TryParse(name, out PartsType partsType))
+            {
+                return GetMaterialList(partsType);
+            }
+            return null;
         }
 
         /// <summary>
-        /// マテリアルを読み込む
+        /// materialTypeに対応する素材リストを取得する。
         /// </summary>
-        /// <param name="materialDirectory"></param>
-        /// <param name="list"></param>
-        private static void LoadMaterials(string materialDirectory, MaterialList list)
+        /// <param name="materialType">素材種類</param>
+        /// <returns>素材リスト</returns>
+        public MaterialList GetMaterialList(MaterialType materialType)
         {
-            string dirPath = System.IO.Path.Combine(materialDirectory, list.SubDirectoryName);
+            return materialLists.First((list) => list.MaterialType == materialType);
+        }
+
+        /// <summary>
+        /// partsTypeに対応する素材リストを取得する。
+        /// </summary>
+        /// <param name="partsType">パーツタイプ</param>
+        /// <returns>素材リスト</returns>
+        public MaterialList GetMaterialList(PartsType partsType)
+        {
+            return GetMaterialList(materialTable[partsType]);
+        }
+
+        /// <summary>
+        /// materialRootDirectory下にある、list.SubDirectoryNameフォルダの中をスキャンし、
+        /// 素材のリストを構築する。
+        /// </summary>
+        /// <param name="materialRootDirectory">素材ディレクトリ</param>
+        /// <param name="list">読み込むリスト</param>
+        private static void LoadMaterials(string materialRootDirectory, MaterialList list)
+        {
+            string dirPath = System.IO.Path.Combine(materialRootDirectory, list.SubDirectoryName);
             if (!System.IO.Directory.Exists(dirPath))
             {
                 System.IO.Directory.CreateDirectory(dirPath);
             }
-            list.LoadMaterials(materialDirectory);
+            list.LoadMaterials(materialRootDirectory);
         }
 
         /// <summary>

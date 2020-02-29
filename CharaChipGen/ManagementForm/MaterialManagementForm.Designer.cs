@@ -41,7 +41,6 @@
             treeNode4,
             treeNode5,
             treeNode6});
-            System.Windows.Forms.TreeNode treeNode8 = new System.Windows.Forms.TreeNode("顔");
             this.buttonClose = new System.Windows.Forms.Button();
             this.menuStrip1 = new System.Windows.Forms.MenuStrip();
             this.menuItemFile = new System.Windows.Forms.ToolStripMenuItem();
@@ -104,7 +103,7 @@
             // 
             this.menuItemClose.Name = "menuItemClose";
             this.menuItemClose.ShortcutKeys = ((System.Windows.Forms.Keys)((System.Windows.Forms.Keys.Alt | System.Windows.Forms.Keys.F4)));
-            this.menuItemClose.Size = new System.Drawing.Size(180, 22);
+            this.menuItemClose.Size = new System.Drawing.Size(146, 22);
             this.menuItemClose.Text = "閉じる";
             this.menuItemClose.Click += new System.EventHandler(this.OnMenuItemCloseClick);
             // 
@@ -127,11 +126,8 @@
             treeNode6.Text = "頭部アクセサリ";
             treeNode7.Name = "CharaChipDirectory";
             treeNode7.Text = "キャラチップ素材";
-            treeNode8.Name = "Faces";
-            treeNode8.Text = "顔";
             this.treeViewMaterials.Nodes.AddRange(new System.Windows.Forms.TreeNode[] {
-            treeNode7,
-            treeNode8});
+            treeNode7});
             this.treeViewMaterials.Size = new System.Drawing.Size(147, 290);
             this.treeViewMaterials.TabIndex = 3;
             this.treeViewMaterials.AfterSelect += new System.Windows.Forms.TreeViewEventHandler(this.OnTreeViewItemSelected);

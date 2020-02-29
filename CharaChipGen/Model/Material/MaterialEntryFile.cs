@@ -147,6 +147,7 @@ namespace CharaChipGen.Model.Material
         {
             using (var writer = new System.IO.StreamWriter(System.IO.File.OpenWrite(path)))
             {
+                writer.WriteLine("# Material information.");
                 // 表示名
                 foreach (var entry in DisplayNames)
                 {
@@ -154,14 +155,16 @@ namespace CharaChipGen.Model.Material
                 }
 
                 // レイヤー名
+                int no = 1;
                 foreach (var entry in Layers)
                 {
+                    writer.WriteLine($"# Layer{no}");
                     MaterialLayerInfo layer = entry.Value;
                     writer.WriteLine($"Layer.{layer.Name}.Path = {layer.Path}");
                     writer.WriteLine($"Layer.{layer.Name}.Type = {layer.LayerType.ToString()}");
-                    if (layer.AttributeType != layer.LayerType)
+                    if (layer.ColorPartsRefs != null)
                     {
-                        writer.WriteLine($"Layer.{layer.Name}.Attribute = {layer.AttributeType.ToString()}");
+                        writer.WriteLine($"Layer.{layer.Name}.ColorPartsRefs = {layer.ColorPartsRefs.ToString()}");
                     }
                 }
             }
@@ -183,6 +186,10 @@ namespace CharaChipGen.Model.Material
                 for (int i = 0; i < lines.Length; i++)
                 {
                     string line = lines[i];
+                    if (line.StartsWith("#"))
+                    {
+                        continue;
+                    }
                     int index = line.IndexOf('=');
                     if (index <= 0)
                     {
@@ -190,7 +197,7 @@ namespace CharaChipGen.Model.Material
                     }
                     string key = line.Substring(0, index).Trim();
                     string value = line.Substring(index + 1).Trim();
-                    if (string.IsNullOrEmpty(key))
+                    if (string.IsNullOrEmpty(key) || string.IsNullOrEmpty(value))
                     {
                         continue;
                     }
@@ -254,11 +261,19 @@ namespace CharaChipGen.Model.Material
                             {
                                 layer.LayerType = layerType;
                             }
-                            break;
-                        case "Attribute":
-                            if (Enum.TryParse(value, out LayerType attrType))
+                            else if (Enum.TryParse(value, out int no))
                             {
-                                layer.AttributeType = attrType;
+                                LayerType[] layerTypes = (LayerType[])(Enum.GetValues(typeof(LayerType)));
+                                if ((no >= 0) && (no < layerTypes.Length))
+                                {
+                                    layer.LayerType = layerTypes[no];
+                                }
+                            }
+                            break;
+                        case "ColorPartsRefs":
+                            if (Enum.TryParse(value, out PartsType attrType))
+                            {
+                                layer.ColorPartsRefs = attrType;
                             }
                             break;
                     }

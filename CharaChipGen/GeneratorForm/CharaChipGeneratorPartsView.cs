@@ -12,7 +12,7 @@ using CharaChipGen.Model.Material;
 namespace CharaChipGen.GeneratorForm
 {
     /// <summary>
-    /// 1つのパラメータを設定するためのUIを提供するクラス。
+    /// 1つの部品を設定するためのUIを提供するクラス。
     /// </summary>
     public partial class CharaChipGeneratorPartsView : UserControl
     {
@@ -33,7 +33,7 @@ namespace CharaChipGen.GeneratorForm
         public CharaChipGeneratorPartsView()
         {
             InitializeComponent();
-            model = new CharaChipPartsModel();
+            model = new CharaChipPartsModel(PartsType.Accessory1);
             handler = new PropertyChangedEventHandler((sender, e) =>
             {
                 ApplyModelToView();

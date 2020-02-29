@@ -18,7 +18,7 @@ namespace CharaChipGen
 
             try
             {
-                parseArgs();
+                ParseArgs();
             }
             catch (Exception e)
             {
@@ -30,9 +30,9 @@ namespace CharaChipGen
             Application.Run(new CharaChipGen.MainForm.MainForm());
         }
 
-        private static void parseArgs()
+        private static void ParseArgs()
         {
-            AppData data = AppData.GetInstance();
+            AppData data = AppData.Instance;
 
             string materialDirectory = null;
 
@@ -69,12 +69,8 @@ namespace CharaChipGen
                         // アセンブリのディレクトリで試したが初期化できない。
                         throw new Exception("素材ディレクトリが見つかりませんでした");
                     }
-
                 }
             }
-
-
-
         }
     }
 }

@@ -10,6 +10,9 @@ namespace CharaChipGen.Model
     /// <summary>
     /// 設定ファイルの入出力を行うクラス
     /// </summary>
+    /// <remarks>
+    /// 実装が汚いのでリファクタリングしたい。
+    /// WriterとReaderで分ける&CharaChipDataFileConstantsクラスで定数宣言するようにした方がいい。</remarks>
     public class SettingFileController
     {
         private const string NodeNameCharacters = "characters";
@@ -18,12 +21,12 @@ namespace CharaChipGen.Model
         private const string NodeNameCharacterParam = "character-param";
         private const string AttrNameParamName = "param-name";
         private const string AttrNameMaterialName = "material-name";
+        private const string AttrNameXOffset = "x-offset";
         private const string AttrNameYOffset = "y-offset";
         private const string AttrNameHue = "hue";
         private const string AttrNameSaturation = "saturation";
         private const string AttrNameBrightness = "brightness";
         private const string NodeNameCharaChipSize = "charachip-size";
-        private const string NodeNameFaceSize = "face-size";
         private const string AttrNameNumber = "number";
         private const string NodeNameRoot = "charachip-gen";
         private const string AttrNameOpacity = "opacity";
@@ -42,7 +45,7 @@ namespace CharaChipGen.Model
         /// <param name="filePath"></param>
         public static void Save(string filePath)
         {
-            AppData appData = AppData.GetInstance();
+            AppData appData = AppData.Instance;
 
             // データをXMLモデルで構築する。
             XmlDocument doc = new XmlDocument();
@@ -69,21 +72,17 @@ namespace CharaChipGen.Model
             doc.Save(filePath);
         }
 
-        private static void AddCharaChipDataNode(XmlDocument doc, XmlElement parent, int index, CharaChipDataModel data)
+        private static void AddCharaChipDataNode(XmlDocument doc, XmlElement parent, int index, CharaChipDataModel dataModel)
         {
             XmlElement charaElem = doc.CreateElement("character");
             charaElem.SetAttribute(AttrNameNumber, index.ToString());
 
-            AddCharaChipParamNode(doc, charaElem, CharaChipDataModel.ParamNameHead, data.Head);
-            AddCharaChipParamNode(doc, charaElem, CharaChipDataModel.ParamNameEye, data.Eye);
-            AddCharaChipParamNode(doc, charaElem, CharaChipDataModel.ParamNameHair, data.Hair);
-            AddCharaChipParamNode(doc, charaElem, CharaChipDataModel.ParamNameBody, data.Body);
-            AddCharaChipParamNode(doc, charaElem, CharaChipDataModel.ParamNameAccessory1, data.Accessory1);
-            AddCharaChipParamNode(doc, charaElem, CharaChipDataModel.ParamNameAccessory2, data.Accessory2);
-            AddCharaChipParamNode(doc, charaElem, CharaChipDataModel.ParamNameAccessory3, data.Accessory3);
-            AddCharaChipParamNode(doc, charaElem, CharaChipDataModel.ParamNameHeadAccessory1, data.HeadAccessory1);
-            AddCharaChipParamNode(doc, charaElem, CharaChipDataModel.ParamNameHeadAccessory2, data.HeadAccessory2);
-            AddCharaChipParamNode(doc, charaElem, CharaChipDataModel.ParamNameFace, data.Face);
+            PartsType[] partsTypes = (PartsType[])(Enum.GetValues(typeof(PartsType)));
+            foreach (PartsType partsType in partsTypes)
+            {
+                string partsTypeName = AppData.Instance.GetMaterialList(partsType).Name;
+                AddCharaChipParamNode(doc, charaElem, partsTypeName, dataModel.GetParts(partsType));
+            }
 
             parent.AppendChild(charaElem);
         }
@@ -94,7 +93,8 @@ namespace CharaChipGen.Model
             XmlElement paramElem = doc.CreateElement(NodeNameCharacterParam);
             paramElem.SetAttribute(AttrNameParamName, paramName);
             paramElem.SetAttribute(AttrNameMaterialName, param.MaterialName);
-            paramElem.SetAttribute(AttrNameYOffset, param.Offset.ToString());
+            paramElem.SetAttribute(AttrNameXOffset, param.OffsetX.ToString());
+            paramElem.SetAttribute(AttrNameYOffset, param.OffsetY.ToString());
             paramElem.SetAttribute(AttrNameHue, param.Hue.ToString());
             paramElem.SetAttribute(AttrNameSaturation, param.Saturation.ToString());
             paramElem.SetAttribute(AttrNameBrightness, param.Value.ToString());
@@ -109,11 +109,6 @@ namespace CharaChipGen.Model
             chipSizeElem.SetAttribute("width", setting.CharaChipSize.Width.ToString());
             chipSizeElem.SetAttribute("height", setting.CharaChipSize.Height.ToString());
             parent.AppendChild(chipSizeElem);
-
-            XmlElement faceSizeElem = doc.CreateElement(NodeNameFaceSize);
-            faceSizeElem.SetAttribute("width", setting.FaceSize.Width.ToString());
-            faceSizeElem.SetAttribute("height", setting.FaceSize.Height.ToString());
-            parent.AppendChild(chipSizeElem);
         }
 
 
@@ -123,7 +118,7 @@ namespace CharaChipGen.Model
         /// <param name="filePath"></param>
         public static  void Load(string filePath)
         {
-            AppData appData = AppData.GetInstance();
+            AppData appData = AppData.Instance;
             CharaChipDataModel[] tmpData = new CharaChipDataModel[appData.CharaChipDataCount];
             ExportSetting tmpSetting = new ExportSetting();
 
@@ -225,43 +220,15 @@ namespace CharaChipGen.Model
                     continue;
                 }
 
-                switch (attr.Value)
+                if (Enum.TryParse(attr.Value, out PartsType partsType))
                 {
-                    case CharaChipDataModel.ParamNameHead:
-                        LoadCharaDataParamNode(subNode, model.Head);
-                        break;
-                    case CharaChipDataModel.ParamNameEye:
-                        LoadCharaDataParamNode(subNode, model.Eye);
-                        break;
-                    case CharaChipDataModel.ParamNameHair:
-                        LoadCharaDataParamNode(subNode, model.Hair);
-                        break;
-                    case CharaChipDataModel.ParamNameBody:
-                        LoadCharaDataParamNode(subNode, model.Body);
-                        break;
-                    case CharaChipDataModel.ParamNameAccessory1:
-                        LoadCharaDataParamNode(subNode, model.Accessory1);
-                        break;
-                    case CharaChipDataModel.ParamNameAccessory2:
-                        LoadCharaDataParamNode(subNode, model.Accessory2);
-                        break;
-                    case CharaChipDataModel.ParamNameAccessory3:
-                        LoadCharaDataParamNode(subNode, model.Accessory3);
-                        break;
-                    case CharaChipDataModel.ParamNameHeadAccessory1:
-                        LoadCharaDataParamNode(subNode, model.HeadAccessory1);
-                        break;
-                    case CharaChipDataModel.ParamNameHeadAccessory2:
-                        LoadCharaDataParamNode(subNode, model.HeadAccessory2);
-                        break;
-                    case CharaChipDataModel.ParamNameFace:
-                        LoadCharaDataParamNode(subNode, model.Face);
-                        break;
+                    LoadCharaDataParamNode(subNode, model.GetParts(partsType));
                 }
             }
 
             return model;
         }
+
 
         private static void LoadCharaDataParamNode(XmlNode node, CharaChipPartsModel param)
         {
@@ -274,8 +241,11 @@ namespace CharaChipGen.Model
                         case AttrNameMaterialName:
                             param.MaterialName = attr.Value;
                             break;
+                        case AttrNameXOffset:
+                            param.OffsetX = Int32.Parse(attr.Value);
+                            break;
                         case AttrNameYOffset:
-                            param.Offset = Int32.Parse(attr.Value);
+                            param.OffsetY = Int32.Parse(attr.Value);
                             break;
                         case AttrNameHue:
                             param.Hue = Int32.Parse(attr.Value);
@@ -311,17 +281,6 @@ namespace CharaChipGen.Model
                                 if ((wAttr != null) && (hAttr != null))
                                 {
                                     setting.CharaChipSize
-                                        = new Size(Int32.Parse(wAttr.Value), Int32.Parse(hAttr.Value));
-                                }
-                            }
-                            break;
-                        case NodeNameFaceSize:
-                            {
-                                XmlAttribute wAttr = subNode.Attributes["width"];
-                                XmlAttribute hAttr = subNode.Attributes["height"];
-                                if ((wAttr != null) && (hAttr != null))
-                                {
-                                    setting.FaceSize
                                         = new Size(Int32.Parse(wAttr.Value), Int32.Parse(hAttr.Value));
                                 }
                             }

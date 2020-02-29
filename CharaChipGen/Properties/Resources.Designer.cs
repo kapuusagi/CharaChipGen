@@ -59,5 +59,59 @@ namespace CharaChipGen.Properties {
                 resourceCulture = value;
             }
         }
+        
+        /// <summary>
+        ///   アクセサリ に類似しているローカライズされた文字列を検索します。
+        /// </summary>
+        internal static string NameAccessories {
+            get {
+                return ResourceManager.GetString("NameAccessories", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   体 に類似しているローカライズされた文字列を検索します。
+        /// </summary>
+        internal static string NameBodies {
+            get {
+                return ResourceManager.GetString("NameBodies", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   目 に類似しているローカライズされた文字列を検索します。
+        /// </summary>
+        internal static string NameEyes {
+            get {
+                return ResourceManager.GetString("NameEyes", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   髪型 に類似しているローカライズされた文字列を検索します。
+        /// </summary>
+        internal static string NameHairStyles {
+            get {
+                return ResourceManager.GetString("NameHairStyles", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   頭部アクセサリ に類似しているローカライズされた文字列を検索します。
+        /// </summary>
+        internal static string NameHeadAccessories {
+            get {
+                return ResourceManager.GetString("NameHeadAccessories", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   頭 に類似しているローカライズされた文字列を検索します。
+        /// </summary>
+        internal static string NameHeads {
+            get {
+                return ResourceManager.GetString("NameHeads", resourceCulture);
+            }
+        }
     }
 }

@@ -112,10 +112,27 @@
     <value>2.0</value>
   </resheader>
   <resheader name="reader">
-    <value>System.Resources.ResXResourceReader, System.Windows.Forms, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+    <value>System.Resources.ResXResourceReader, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </resheader>
   <resheader name="writer">
-    <value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+    <value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </resheader>
-  <assembly alias="System.Windows.Forms" name="System.Windows.Forms, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089" />
+  <data name="NameAccessories" xml:space="preserve">
+    <value>アクセサリ</value>
+  </data>
+  <data name="NameBodies" xml:space="preserve">
+    <value>体</value>
+  </data>
+  <data name="NameEyes" xml:space="preserve">
+    <value>目</value>
+  </data>
+  <data name="NameHairStyles" xml:space="preserve">
+    <value>髪型</value>
+  </data>
+  <data name="NameHeadAccessories" xml:space="preserve">
+    <value>頭部アクセサリ</value>
+  </data>
+  <data name="NameHeads" xml:space="preserve">
+    <value>頭</value>
+  </data>
 </root>

@@ -11,63 +11,37 @@ namespace CharaChipGen.Model
     /// </summary>
     public class CharaChipDataModel
     {
-        public const string ParamNameHead = "Head";
-        public const string ParamNameEye = "Eye";
-        public const string ParamNameHair = "Hair";
-        public const string ParamNameBody = "Body";
-        public const string ParamNameAccessory1 = "Accessory1";
-        public const string ParamNameAccessory2 = "Accessory2";
-        public const string ParamNameAccessory3 = "Accessory3";
-        public const string ParamNameHeadAccessory1 = "HeadAccessory1";
-        public const string ParamNameHeadAccessory2 = "HeadAccessory2";
-        public const string ParamNameFace = "Face";
-
+        /// <summary>
+        /// パーツが変更された場合。
+        /// </summary>
         public event PartsChangeEventHandler OnCharaChipParamChanged;
-        public event EventHandler OnFaceParamChanged;
 
-        private CharaChipPartsModel head;
-        private CharaChipPartsModel eye;
-        private CharaChipPartsModel hair;
-        private CharaChipPartsModel body;
-        private CharaChipPartsModel accessory1;
-        private CharaChipPartsModel accessory2;
-        private CharaChipPartsModel accessory3;
-        private CharaChipPartsModel headAccessory1;
-        private CharaChipPartsModel headAccessory2;
-        private CharaChipPartsModel face;
+        /// <summary>
+        /// 部品
+        /// </summary>
+        private Dictionary<PartsType, CharaChipPartsModel> charaChipParts;
+
 
         /// <summary>
         /// 新しいインスタンスを構築する。
         /// </summary>
         public CharaChipDataModel()
         {
-            head = new CharaChipPartsModel(ParamNameHead);
-            eye = new CharaChipPartsModel(ParamNameEye);
-            hair = new CharaChipPartsModel(ParamNameHair);
-            body = new CharaChipPartsModel(ParamNameBody);
-            accessory1 = new CharaChipPartsModel(ParamNameAccessory1);
-            accessory2 = new CharaChipPartsModel(ParamNameAccessory2);
-            accessory3 = new CharaChipPartsModel(ParamNameAccessory3);
-            headAccessory1 = new CharaChipPartsModel(ParamNameHeadAccessory1);
-            headAccessory2 = new CharaChipPartsModel(ParamNameHeadAccessory2);
-            face = new CharaChipPartsModel(ParamNameFace);
+            charaChipParts = new Dictionary<PartsType, CharaChipPartsModel>();
 
             PropertyChangedEventHandler handler
                 = new PropertyChangedEventHandler((sender, e) =>
                 {
-                    OnOneParameterChanged(sender);
+                    OnOneParameterChanged(sender as CharaChipPartsModel, e.PropertyName);
                 });
-            head.PropertyChanged += handler;
-            eye.PropertyChanged += handler;
-            hair.PropertyChanged += handler;
-            body.PropertyChanged += handler;
-            accessory1.PropertyChanged += handler;
-            accessory2.PropertyChanged += handler;
-            accessory3.PropertyChanged += handler;
-            headAccessory1.PropertyChanged += handler;
-            headAccessory2.PropertyChanged += handler;
 
-            face.PropertyChanged += handler;
+            PartsType[] partsTypes = (PartsType[])(Enum.GetValues(typeof(PartsType)));
+            foreach (PartsType partsType in partsTypes)
+            {
+                CharaChipPartsModel partsModel = new CharaChipPartsModel(partsType);
+                partsModel.PropertyChanged += handler;
+                charaChipParts.Add(partsType, partsModel);
+            }
         }
 
         /// <summary>
@@ -76,17 +50,13 @@ namespace CharaChipGen.Model
         /// <param name="model">モデル</param>
         public void CopyTo(CharaChipDataModel model)
         {
-            head.CopyTo(model.head);
-            eye.CopyTo(model.eye);
-            hair.CopyTo(model.hair);
-            body.CopyTo(model.body);
-            accessory1.CopyTo(model.accessory1);
-            accessory2.CopyTo(model.accessory2);
-            accessory3.CopyTo(model.accessory3);
-            headAccessory1.CopyTo(model.headAccessory1);
-            headAccessory2.CopyTo(model.headAccessory2);
-
-            face.CopyTo(model.Face);
+            foreach (var partsEntry in charaChipParts)
+            {
+                if (model.charaChipParts.ContainsKey(partsEntry.Key))
+                {
+                    partsEntry.Value.CopyTo(charaChipParts[partsEntry.Key]);
+                }
+            }
         }
 
         /// <summary>
@@ -94,115 +64,76 @@ namespace CharaChipGen.Model
         /// </summary>
         public void Reset()
         {
-            head.Reset();
-            eye.Reset();
-            hair.Reset();
-            body.Reset();
-            accessory1.Reset();
-            accessory2.Reset();
-            accessory3.Reset();
-            headAccessory1.Reset();
-            headAccessory2.Reset();
-
-            face.Reset();
+            foreach (var partsEntry in charaChipParts)
+            {
+                partsEntry.Value.Reset();
+            }
         }
 
         /// <summary>
         /// 頭の設定
         /// </summary>
-        public CharaChipPartsModel Head
-        {
-            get { return this.head; }
-        }
+        public CharaChipPartsModel Head { get => charaChipParts[PartsType.Head]; }
         /// <summary>
         /// 目の設定
         /// </summary>
-        public CharaChipPartsModel Eye
-        {
-            get { return this.eye; }
-        }
+        public CharaChipPartsModel Eye { get => charaChipParts[PartsType.Eye]; }
 
         /// <summary>
         /// 髪型の設定
         /// </summary>
-        public CharaChipPartsModel Hair
-        {
-            get { return hair; }
-        }
+        public CharaChipPartsModel Hair { get => charaChipParts[PartsType.HairStyle]; }
 
         /// <summary>
         /// 体の設定
         /// </summary>
-        public CharaChipPartsModel Body
-        {
-            get { return body; }
-        }
+        public CharaChipPartsModel Body { get => charaChipParts[PartsType.Body]; }
+
         /// <summary>
         /// アクセサリ1の設定
         /// </summary>
-        public CharaChipPartsModel Accessory1
-        {
-            get { return accessory1; }
-        }
+        public CharaChipPartsModel Accessory1 { get => charaChipParts[PartsType.Accessory1]; }
+
         /// <summary>
         /// アクセサリ2の設定
         /// </summary>
-        public CharaChipPartsModel Accessory2
-        {
-            get { return accessory2; }
-        }
+        public CharaChipPartsModel Accessory2 { get => charaChipParts[PartsType.Accessory2]; }
+
         /// <summary>
         /// アクセサリ3の設定
         /// </summary>
-        public CharaChipPartsModel Accessory3
-        {
-            get { return accessory3; }
-        }
+        public CharaChipPartsModel Accessory3 { get => charaChipParts[PartsType.Accessory3]; }
 
         /// <summary>
         /// ヘッドアクセサリ1の設定
         /// </summary>
-        public CharaChipPartsModel HeadAccessory1
-        {
-            get { return headAccessory1; }
-        }
+        public CharaChipPartsModel HeadAccessory1 { get => charaChipParts[PartsType.HeadAccessory1]; }
+
         /// <summary>
         /// ヘッドアクセサリ2の設定
         /// </summary>
-        public CharaChipPartsModel HeadAccessory2
-        {
-            get { return headAccessory2; }
-        }
+        public CharaChipPartsModel HeadAccessory2 { get => charaChipParts[PartsType.HeadAccessory2]; }
+
         /// <summary>
-        /// 顔の設定
+        /// 部品を得る。
         /// </summary>
-        public CharaChipPartsModel Face
-        {
-            get { return face; }
-        }
+        /// <param name="partsType">部品種類</param>
+        /// <returns>該当するCharaChipPartsModelが返る。</returns>
+        public CharaChipPartsModel GetParts(PartsType partsType)
+            => charaChipParts[partsType];
 
         /// <summary>
         /// 各モデルの設定が変更されたときに通知を受け取る。
         /// </summary>
-        /// <param name="sender"></param>
-        private void OnOneParameterChanged(Object sender)
+        /// <param name="model">送信元モデル</param>
+        /// <param name="propertyName">プロパティ名</param>
+        private void OnOneParameterChanged(CharaChipPartsModel model, string propertyName)
         {
-            if ((sender == head) || (sender == eye) 
-                || (sender == hair) || (sender == body)
-                || (sender == accessory1) || (sender == accessory2)
-                || (sender == accessory3)
-                || (sender == headAccessory1) || (sender == headAccessory2))
+            if (charaChipParts.ContainsValue(model))
             {
-                PartsType type = (PartsType)(Enum.Parse(typeof(PartsType),
-                    ((CharaChipPartsModel)(sender)).ParameterName));
-                OnCharaChipParamChanged?.Invoke(this, new PartsChangeEventArgs(type));
-            }
-            else if (sender == face)
-            {
-                OnFaceParamChanged?.Invoke(this, new EventArgs());
+                PartsType type = model.PartsType;
+                OnCharaChipParamChanged?.Invoke(this, new PartsChangeEventArgs(type, propertyName));
             }
         }
-
-
     }
 }

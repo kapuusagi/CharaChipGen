@@ -1,0 +1,72 @@
+﻿■エントリファイル仕様
+  ファイル形式： テキストファイル(UTF-8エンコーディング)
+  拡張子： ccgmaterial
+  記述内容
+    内容は1行に1つの情報が
+        キー = 値
+    のペアで記述されるディクショナリ形式。
+
+    キーと値のペア仕様は次の通り。
+        Name.default
+		    string型 必須
+		    デフォルトロケールの表示素材名
+		Name.{$Locale}
+		    string型 オプション
+			$Localeに対応する表示素材名。
+		        Name.ja-JP = "素材"
+			などと記載する。
+        Layer.{$LayerName}.Path
+		    string 必須
+			レイヤーイメージファイルの相対パス。
+			エントリファイルの場所からの相対パスを記述する。
+			エントリファイルと同じフォルダにあるなら
+			    image00.png
+			サブフォルダの下にあるなら
+				parts/layer0.png
+			などと記述する。
+	    Layer.{$LayerName}.Type
+		    LayerType 必須
+			レイヤー種別。描画するレイヤーを指定する。
+			以下のいずれか、またはレイヤー番号を記述する。
+			レイヤー番号はAccessory4Frontを0とした場合に
+			Accessory3Frontを1，HeadAccessory2Frontを2というように加算した値。
+			    Accessory4Front
+				Accessory3Front
+			    HeadAccessory2Front
+				HeadAccessory1Front
+				Eye
+				HeadEar
+				HairStyleFront
+				Accessory2Front
+				Accessory1Front
+				Costume
+				Body
+				HairStyleBack
+				Accessory1Back
+				Accessory2Back
+				HeadAccessory1Back
+				HeadAccessory2Back
+				Accessory3Back
+				Accessory4Back
+
+		Layer.{$LayerName}.ColorPartsRefs
+		    PartsType オプション
+			レイヤーに適用する色設定を取得する部品。（オプション）
+			この素材の部品種別とは
+			異なる部品の設定を適用したい場合に指定する。
+			例えばBodyの衣装部分はBodyの色相パラメータ、
+			生身部分はHeadの色相パラメータを参照する場合に使用する。
+			以下のいずれかを指定する。
+			    Head
+				Eye
+				HairStyle
+				Body
+				Accessory1
+				Accessory2
+				Accessory3
+				HeadAccessory1
+				HeadAccessory2
+■レイヤーイメージ仕様
+  ファイル形式：PNG (32bit GBRAが望ましい)
+  ヨコ3分割、
+  タテ4分割。

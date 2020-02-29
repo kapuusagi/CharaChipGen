@@ -22,7 +22,7 @@ namespace CharaChipGen.ManagementForm
         {
             InitializeComponent();
             treeViewMaterials.ExpandAll();
-            labelDirectory.Text = AppData.GetInstance().MaterialDirectory;
+            labelDirectory.Text = AppData.Instance.MaterialDirectory;
         }
 
         /// <summary>
@@ -52,7 +52,7 @@ namespace CharaChipGen.ManagementForm
         /// </summary>
         private void UpdateMaterialListView()
         {
-            AppData data = AppData.GetInstance();
+            AppData data = AppData.Instance;
 
             MaterialList materialList = GetCurrentMaterialList();
             if (materialList != null)
@@ -97,12 +97,8 @@ namespace CharaChipGen.ManagementForm
         /// <param name="e">イベントオブジェクト</param>
         private void OnMaterialListSelectionChanged(object sender, ListViewItemSelectionChangedEventArgs e)
         {
-            /**
-             * マテリアルリストの選択状態が変更された場合、
-             * 削除ボタンと編集ボタンのEnalbe状態を更新する。
-             */
             buttonDelete.Enabled = (listViewMaterials.SelectedItems.Count > 0);
-            buttonEdit.Enabled = (listViewMaterials.SelectedItems.Count == 1) && (GetCurrentNodeName() != AppData.NameFaces);
+            buttonEdit.Enabled = (listViewMaterials.SelectedItems.Count == 1);
         }
 
         /// <summary>
@@ -142,7 +138,7 @@ namespace CharaChipGen.ManagementForm
         /// <param name="entryFilePath">エントリファイルパス</param>
         private void AddMaterial(string entryFilePath)
         {
-            AppData data = AppData.GetInstance();
+            AppData data = AppData.Instance;
             MaterialList ml = GetCurrentMaterialList();
             string dstDir = System.IO.Path.Combine(data.MaterialDirectory, ml.SubDirectoryName);
 
@@ -236,11 +232,6 @@ namespace CharaChipGen.ManagementForm
         /// <param name="evt">イベントオブジェクト</param>
         private void OnMaterialDeleteClicked(object sender, EventArgs evt)
         {
-            /**
-             * 削除ボタンがクリックされた場合、削除確認を行い、
-             * 該当するマテリアルをDisposeしてから削除処理する。
-             */
-
             DialogResult res = MessageBox.Show(this,
                 "選択されているマテリアルを削除してもよろしいですか？",
                 "確認", MessageBoxButtons.YesNo);
@@ -249,7 +240,7 @@ namespace CharaChipGen.ManagementForm
                 return;
             }
 
-            AppData data = AppData.GetInstance();
+            AppData data = AppData.Instance;
 
             ListView.SelectedListViewItemCollection selItems = listViewMaterials.SelectedItems;
 
@@ -303,8 +294,8 @@ namespace CharaChipGen.ManagementForm
 
         private MaterialList GetMaterialList(string name)
         {
-            AppData data = AppData.GetInstance();
-            return data.getMaterialList(name);
+            AppData data = AppData.Instance;
+            return data.GetMaterialList(name);
         }
     }
 }

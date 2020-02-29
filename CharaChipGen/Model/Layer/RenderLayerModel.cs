@@ -3,16 +3,23 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Drawing;
+using System.ComponentModel;
 using CGenImaging;
 
-namespace CharaChipGen.Model
+namespace CharaChipGen.Model.Layer
 {
     /// <summary>
     /// キャラクタチップをレンダリングする際の１つのレイヤーを表すモデル。
+    /// 1つのレイヤーに対して、オフセット/HSV変更を適用したデータを取得する。
     /// </summary>
-    class CharaChipRenderLayerModel
+    /// <remarks>
+    /// RenderLayerModelはImageおよびOffsetなどのプロパティを設定する。
+    /// 最後にGetProcessedImage()で
+    /// 処理済み画像データを取得して使用する。
+    /// プロパティを変更したら、GetProcessedImage()で再度処理済みデータを取得すること。
+    /// </remarks>
+    public class RenderLayerModel : INotifyPropertyChanged
     {
-        private string layerName; // レイヤー名
         private Image image; // レイヤーのオリジナルイメージデータ
         private int offsetX; // オフセットX
         private int offsetY; // オフセットY
@@ -25,10 +32,14 @@ namespace CharaChipGen.Model
         /// <summary>
         /// キャラクターチップ生成のレイヤーを表すモデル
         /// </summary>
-        /// <param name="layerName"></param>
-        public CharaChipRenderLayerModel(string layerName)
+        /// <param name="layerType">レイヤータイプ</param>
+        /// <param name="partsType">パラメータを取得する部品タイプ</param>
+        /// <param name="colorPartsRefs"></param>
+        public RenderLayerModel(LayerType layerType, PartsType partsType, PartsType colorPartsRefs)
         {
-            this.layerName = layerName;
+            LayerType = layerType;
+            PartsType = partsType;
+            ColorPartsRefs = colorPartsRefs;
             this.image = null;
             this.offsetX = 0;
             this.offsetY = 0;
@@ -37,13 +48,35 @@ namespace CharaChipGen.Model
             this.value = 0;
             this.opacity = 100;
         }
+
         /// <summary>
-        /// レイヤー名
+        /// プロパティに変更があった場合に通知する。
         /// </summary>
-        public String LayerName
+        public event PropertyChangedEventHandler PropertyChanged;
+
+        /// <summary>
+        /// プロパティが変更されたときに通知する。
+        /// </summary>
+        /// <param name="propertyName">プロパティ名</param>
+        private void NotifyPropertyChange(string propertyName)
         {
-            get { return layerName; }
+            PropertyChanged?.Invoke(this, new PropertyChangedEventArgs(propertyName));
         }
+
+        /// <summary>
+        /// レイヤー種類
+        /// </summary>
+        public LayerType LayerType { get; private set; }
+
+        /// <summary>
+        /// OffsetX, OffsetYを取得する部品種別
+        /// </summary>
+        public PartsType PartsType { get; private set; }
+
+        /// <summary>
+        /// Hue, Saturation, Value, Opacity を取得する部品種別
+        /// </summary>
+        public PartsType ColorPartsRefs { get; set; }
 
         /// <summary>
         /// レイヤーイメージ
@@ -60,6 +93,7 @@ namespace CharaChipGen.Model
 
                 image = value;
                 processedImage = null;
+                NotifyPropertyChange(nameof(Image));
             }
         }
  
@@ -69,7 +103,14 @@ namespace CharaChipGen.Model
         public int OffsetX
         {
             get { return offsetX; }
-            set { offsetX = value; }
+            set {
+                if (offsetX == value)
+                {
+                    return;
+                }
+                offsetX = value;
+                NotifyPropertyChange(nameof(OffsetX));
+            }
         }
 
         /// <summary>
@@ -77,8 +118,17 @@ namespace CharaChipGen.Model
         /// </summary>
         public int OffsetY
         {
-            get { return offsetY; }
-            set { offsetY = value; }
+            get {
+                return offsetY;
+            }
+            set {
+                if (offsetY == value)
+                {
+                    return;
+                }
+                offsetY = value;
+                NotifyPropertyChange(nameof(OffsetY));
+            }
         }
 
         /// <summary>
@@ -86,7 +136,14 @@ namespace CharaChipGen.Model
         /// </summary>
         public int Opacity {
             get { return opacity; }
-            set { opacity = value; }
+            set {
+                if (opacity == value)
+                {
+                    return;
+                }
+                opacity = value;
+                NotifyPropertyChange(nameof(Opacity));
+            }
         }
 
         /// <summary>
@@ -102,6 +159,7 @@ namespace CharaChipGen.Model
                 }
                 hue = value;
                 processedImage = null;
+                NotifyPropertyChange(nameof(Opacity));
             }
         }
 
@@ -142,7 +200,7 @@ namespace CharaChipGen.Model
         /// <summary>
         /// HSV加算演算済みのデータを取得する。
         /// </summary>
-        /// <returns></returns>
+        /// <returns>ImageBufferオブジェクトが返る。</returns>
         public ImageBuffer GetProcessedImage()
         {
             if (processedImage == null)

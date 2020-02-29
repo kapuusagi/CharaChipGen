@@ -22,7 +22,7 @@ namespace CharaChipGen.Model
         /// <summary>
         /// ヘッドアクセサリ
         /// </summary>
-        Hair,
+        HairStyle,
         /// <summary>
         /// 体
         /// </summary>

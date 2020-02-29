@@ -3,19 +3,21 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using System.ComponentModel;
 
 namespace CharaChipGen.Model
 {
     /// <summary>
     /// 部品が変更されたことを表すイベント。
     /// </summary>
-    public class PartsChangeEventArgs : EventArgs
+    public class PartsChangeEventArgs : PropertyChangedEventArgs
     {
         /// <summary>
         /// 新しいインスタンスを構築する。
         /// </summary>
         /// <param name="type">部品種別</param>
-        public PartsChangeEventArgs(PartsType type)
+        /// <param name="propertyName">プロパティ名</param>
+        public PartsChangeEventArgs(PartsType type, string propertyName) : base(propertyName)
         {
             PartsType = type;
         }

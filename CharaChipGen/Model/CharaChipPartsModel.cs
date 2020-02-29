@@ -12,31 +12,31 @@ namespace CharaChipGen.Model
     /// </summary>
     public class CharaChipPartsModel : INotifyPropertyChanged
     {
-        private string parameterName; // パラメータ名
-        private string materialName; // 選択されているマテリアル名
-        private int offset; // オフセット
-        private int hue; // 色相調整価
-        private int saturation; //  彩度調整値
-        private int value; // 輝度調整価
-        private int opacity; // 不透明度（高いほど不透明） = アルファチャンネル
-
+        // パラメータ名
+        private string materialName;
+        // オフセットX
+        private int offsetX;
+        // オフセットY
+        private int offsetY;
+        // 色相調整値
+        private int hue;
+        //  彩度調整値
+        private int saturation;
+        // 輝度調整値
+        private int value;
+        // 不透明度（高いほど不透明） = アルファチャンネル
+        private int opacity; 
 
         /// <summary>
         /// 新しいインスタンスを構築する。
         /// </summary>
-        public CharaChipPartsModel() : this("")
+        /// <param name="partsType">パーツ種類</param>
+        public CharaChipPartsModel(PartsType partsType)
         {
-        }
-
-        /// <summary>
-        /// 新しいインスタンスを構築する。
-        /// </summary>
-        /// <param name="paramName">パラメータ名</param>
-        public CharaChipPartsModel(string paramName)
-        {
-            this.parameterName = paramName;
+            PartsType = partsType;
             materialName = "";
-            offset = 0;
+            offsetX = 0;
+            offsetY = 0;
             hue = 0;
             saturation = 0;
             value = 0;
@@ -64,8 +64,9 @@ namespace CharaChipGen.Model
         /// <param name="param">パラメータ</param>
         public void CopyTo(CharaChipPartsModel param)
         {
-            if ((param.materialName == materialName)
-                && (param.offset == offset)
+            if ((param.materialName.Equals(materialName))
+                && (param.offsetX == offsetX)
+                && (param.offsetY == offsetY)
                 && (param.hue == hue)
                 && (param.saturation == saturation)
                 && (param.value == value)
@@ -76,7 +77,8 @@ namespace CharaChipGen.Model
             }
 
             param.MaterialName = MaterialName;
-            param.Offset = Offset;
+            param.OffsetX = OffsetX;
+            param.OffsetY = OffsetY;
             param.Hue = Hue;
             param.Saturation = Saturation;
             param.Value = Value;
@@ -89,7 +91,8 @@ namespace CharaChipGen.Model
         public void Reset()
         {
             if ((this.materialName == "")
-                && (this.offset == 0)
+                && (this.offsetX == 0)
+                && (this.offsetY == 0)
                 && (hue == 0)
                 && (saturation == 0)
                 && (value == 0)
@@ -98,7 +101,8 @@ namespace CharaChipGen.Model
                 return;
             }
             MaterialName = "";
-            Offset = 0;
+            OffsetX = 0;
+            OffsetY = 0;
             Hue = 0;
             Saturation = 0;
             Value = 0;
@@ -106,10 +110,10 @@ namespace CharaChipGen.Model
         }
 
         /// <summary>
-        /// このパラメータの名前
+        /// この部品の名前
         /// </summary>
-        public string ParameterName {
-            get { return parameterName; }
+        public PartsType PartsType {
+            get; private set;
         }
 
         /// <summary>
@@ -130,21 +134,36 @@ namespace CharaChipGen.Model
         }
 
         /// <summary>
-        /// 素材のオフセット。
-        /// 上方向が正数。下方向は負数。
+        /// 素材のオフセット
+        /// 左方向が正数、右方向は負数
         /// </summary>
-        public int Offset {
-            get { return offset; }
+        public int OffsetX {
+            get { return offsetX; }
             set {
-                if (offset == value)
+                if (offsetX == value)
                 {
-                    return; // 同値なので設定変更不要。
+                    return;
                 }
-                offset = value;
-                NotifyPropertyChange(nameof(Offset));
+                offsetX = value;
+                NotifyPropertyChange(nameof(OffsetX));
             }
         }
 
+        /// <summary>
+        /// 素材のオフセット。
+        /// 上方向が正数。下方向は負数。
+        /// </summary>
+        public int OffsetY {
+            get { return offsetY; }
+            set {
+                if (offsetY == value)
+                {
+                    return; // 同値なので設定変更不要。
+                }
+                offsetY = value;
+                NotifyPropertyChange(nameof(OffsetY));
+            }
+        }
 
         /// <summary>
         /// 色相調整値(-180 - 0)
