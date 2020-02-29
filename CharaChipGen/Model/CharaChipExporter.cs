@@ -24,8 +24,8 @@ namespace CharaChipGen.Model
         /// <param name="filePath"></param>
         public static void ExportCharaChip(string filePath)
         {
-            AppData appData = AppData.Instance;
-            Size charaChipSize = appData.ExportSetting.CharaChipSize;
+            GeneratorSetting setting = AppData.Instance.GeneratorSetting;
+            Size charaChipSize = setting.ExportSetting.CharaChipSize;
 
             int charaPlaneWidth = charaChipSize.Width * 3;
             int charaPlaneHeight = charaChipSize.Height * 4;
@@ -40,14 +40,14 @@ namespace CharaChipGen.Model
                 for (int charaX = 0; charaX < 4; charaX++)
                 {
                     // キャラクターをレンダリングする。
-                    ImageBuffer charaChipImage = RenderCharaChip(appData.GetCharaChipData(charaY * 4 + charaX), charaChipSize);
+                    ImageBuffer charaChipImage = RenderCharaChip(setting.GetCharactor(charaY * 4 + charaX), charaChipSize);
                     // レンダリングした画像をエクスポートバッファにコピーする。
                     exportBuffer.WriteImage(charaChipImage, charaX * charaPlaneWidth, charaY * charaPlaneHeight);
                 }
             }
 
             Image image = null;
-            if (appData.ExportSetting.IsRenderTwice) {
+            if (setting.ExportSetting.IsRenderTwice) {
                 ImageBuffer twiceImage = ImageProcessor.ExpansionX2(exportBuffer);
                 image = twiceImage.GetImage();
             } else {

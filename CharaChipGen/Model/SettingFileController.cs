@@ -46,7 +46,7 @@ namespace CharaChipGen.Model
         /// <param name="filePath"></param>
         public static void Save(string filePath)
         {
-            AppData appData = AppData.Instance;
+            GeneratorSetting setting = AppData.Instance.GeneratorSetting;
 
             // データをXMLモデルで構築する。
             XmlDocument doc = new XmlDocument();
@@ -58,16 +58,16 @@ namespace CharaChipGen.Model
             XmlElement charactersElem = doc.CreateElement(NodeNameCharacters);
             rootNode.AppendChild(charactersElem);
 
-            for (int i = 0; i < appData.CharaChipDataCount; i++)
+            for (int i = 0; i < setting.GetCharactorCount(); i++)
             {
-                Charactor data = appData.GetCharaChipData(i);
+                Charactor data = setting.GetCharactor(i);
                 AddCharaChipDataNode(doc, charactersElem, i + 1, data);
             }
 
 
             // エクスポート設定ノード
             XmlElement exportConfigElem = doc.CreateElement(NodeNameExportSetting);
-            AddConfigNode(doc, exportConfigElem, appData.ExportSetting);
+            AddConfigNode(doc, exportConfigElem, setting.ExportSetting);
             rootNode.AppendChild(exportConfigElem);
 
             doc.Save(filePath);
@@ -119,8 +119,8 @@ namespace CharaChipGen.Model
         /// <param name="filePath"></param>
         public static  void Load(string filePath)
         {
-            AppData appData = AppData.Instance;
-            Charactor[] tmpData = new Charactor[appData.CharaChipDataCount];
+            GeneratorSetting setting = AppData.Instance.GeneratorSetting;
+            Charactor[] tmpData = new Charactor[setting.GetCharactorCount()];
             ExportSetting tmpSetting = new ExportSetting();
 
             XmlDocument doc = new XmlDocument();
@@ -149,7 +149,7 @@ namespace CharaChipGen.Model
             }
 
             // アプリケーションに設定する。
-            for (int i = 0; i < appData.CharaChipDataCount; i++)
+            for (int i = 0; i < setting.GetCharactorCount(); i++)
             {
                 Charactor src = tmpData[i];
                 if (src == null)
@@ -157,7 +157,7 @@ namespace CharaChipGen.Model
                     // 対象なし。
                     continue;
                 }
-                Charactor dst = appData.GetCharaChipData(i);
+                Charactor dst = setting.GetCharactor(i);
                 if (src == null)
                 {
                     // 対象なし。リセットする。
@@ -171,8 +171,7 @@ namespace CharaChipGen.Model
             }
 
             // エクスポート設定
-            appData.ExportSetting.CharaChipSize = tmpSetting.CharaChipSize;
-            appData.ExportSetting.FaceSize = tmpSetting.FaceSize;
+            setting.ExportSetting.CharaChipSize = tmpSetting.CharaChipSize;
         }
 
         private static void LoadCharactersNode(XmlNode node, Charactor[] tmpData)
