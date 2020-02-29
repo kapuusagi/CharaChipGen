@@ -35,8 +35,6 @@ namespace CharaChipGen
         private string materialDirectory = "";
         // 部品エントリ
         private MaterialList[] materialLists;
-        // キャラクターチップジェネレータ設定
-        private GeneratorSetting generatorSetting;
 
         private Dictionary<PartsType, MaterialType> materialTable;
 
@@ -64,7 +62,7 @@ namespace CharaChipGen
             materialTable.Add(PartsType.HeadAccessory1, MaterialType.HeadAccessories);
             materialTable.Add(PartsType.HeadAccessory2, MaterialType.HeadAccessories);
 
-            generatorSetting = new GeneratorSetting();
+            GeneratorSetting = new GeneratorSetting();
         }
 
         /// <summary>
@@ -235,7 +233,7 @@ namespace CharaChipGen
         /// <summary>
         /// キャラクタチップジェネレータ設定
         /// </summary>
-        public GeneratorSetting GeneratorSetting { get; set; }
+        public GeneratorSetting GeneratorSetting { get; private set; }
 
     }
 }

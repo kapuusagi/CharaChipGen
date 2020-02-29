@@ -202,6 +202,10 @@ namespace CharaChipGen.Model
                                 }
                             }
                             break;
+                        case GeneratorSettingFileDefs.NodeNameExportPath:
+                            XmlAttribute pathAttr = subNode.Attributes["path"];
+                            setting.ExportFilePath = pathAttr.Value;
+                            break;
                     }
                 }
                 catch (Exception)

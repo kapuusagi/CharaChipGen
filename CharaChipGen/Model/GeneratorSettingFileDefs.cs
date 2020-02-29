@@ -23,6 +23,7 @@ namespace CharaChipGen.Model
         public const string AttrNameSaturation = "saturation";
         public const string AttrNameBrightness = "brightness";
         public const string NodeNameCharaChipSize = "charachip-size";
+        public const string NodeNameExportPath = "export-path";
         public const string AttrNameNumber = "number";
         public const string NodeNameRoot = "charachip-gen";
         public const string AttrNameOpacity = "opacity";

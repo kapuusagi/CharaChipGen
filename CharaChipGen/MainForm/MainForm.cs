@@ -175,31 +175,29 @@ namespace CharaChipGen.MainForm
         }
 
         /// <summary>
-        /// エクスポートボタンが押された時の処理を行う。
+        /// エクスポートメニュー/ボタンが押された時の処理を行う。
         /// </summary>
         /// <param name="sender">送信元オブジェクト</param>
         /// <param name="evt">イベントオブジェクト</param>
         private void OnExportButtonClick(object sender, EventArgs evt)
         {
             // エクスポートボタンが押されたらエクスポート処理する。
-
-            RestoreDialog(saveFileDialogExport, Properties.Settings.Default.LastSavePath);
-            DialogResult res = saveFileDialogExport.ShowDialog();
-            if (res != DialogResult.OK)
+            GeneratorSetting setting = AppData.Instance.GeneratorSetting;
+            if (string.IsNullOrEmpty(setting.ExportSetting.ExportFilePath))
             {
-                return; // OK押されていない。
+                RestoreDialog(saveFileDialogExport, Properties.Settings.Default.LastSavePath);
+                DialogResult res = saveFileDialogExport.ShowDialog();
+                if (res != DialogResult.OK)
+                {
+                    return; // OK押されていない。
+                }
+                setting.ExportSetting.ExportFilePath = saveFileDialogExport.FileName;
             }
 
             try
             {
-                string charaChipPath = saveFileDialogExport.FileName;
-                string dir = System.IO.Path.GetDirectoryName(charaChipPath);
-                string baseName = System.IO.Path.GetFileNameWithoutExtension(charaChipPath);
-
-                CharaChipExporter.ExportCharaChip(charaChipPath);
-
-                // 最後にエクスポートしたパスを保存
-                Properties.Settings.Default.LastExportPath = charaChipPath;
+                CharaChipExporter.ExportCharaChip(setting);
+                MessageBox.Show(this, $" {setting.ExportSetting.ExportFilePath}", "Export succeed.");
             }
             catch (Exception e)
             {
@@ -398,8 +396,6 @@ namespace CharaChipGen.MainForm
         /// <param name="evt">イベントオブジェクト</param>
         private void OnFormShown(object sender, EventArgs evt)
         {
-            AppData.Instance.GeneratorSetting.ExportSetting.Load();
-
             string appDir = System.IO.Path.GetDirectoryName(Application.ExecutablePath);
             string workTempPath = System.IO.Path.Combine(appDir, PreviousSavedFileName);
             if (System.IO.File.Exists(workTempPath))

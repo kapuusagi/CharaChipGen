@@ -11,94 +11,22 @@ namespace CharaChipGen.Model
     /// </summary>
     public class ExportSetting
     {
-        private Size charaChipSize; // キャラチップサイズ
-        private Size faceSize; // 顔サイズ
-        private bool isRenderTwice; // 2倍で描画するかどうか
-
         /// <summary>
         /// エクスポート設定
         /// </summary>
         public ExportSetting()
         {
-            charaChipSize = new Size(32, 48);
-            faceSize = new Size(96, 96);
-            isRenderTwice = false;
-        }
-
-        /// <summary>
-        /// 設定を読み出す。
-        /// </summary>
-        public void Load()
-        {
-            // アプリケーションが格納している設定をロード
-            ParseSizeString(Properties.Settings.Default.CharacterSize, charaChipSize);
-            ParseSizeString(Properties.Settings.Default.FaceSize, faceSize);
-            isRenderTwice = Properties.Settings.Default.IsRenderTwice;
-        }
-
-        /// <summary>
-        /// 設定を保存する。
-        /// </summary>
-        public void Save()
-        {
-            Properties.Settings.Default.CharacterSize = $"{charaChipSize.Width},{charaChipSize.Width}";
-            Properties.Settings.Default.FaceSize = $"{faceSize.Width},{faceSize.Height}";
-            Properties.Settings.Default.IsRenderTwice = isRenderTwice;
-            try
-            {
-                Properties.Settings.Default.Save();
-            }
-            catch (Exception e)
-            {
-                System.Diagnostics.Debug.WriteLine(e);
-            }
-        }
-
-
-        private static void ParseSizeString(string s, Size size)
-        {
-            try
-            {
-                string[] tokens = s.Split(',');
-                if (tokens.Length >= 2)
-                {
-                    int width = Convert.ToInt32(tokens[0]);
-                    int height = Convert.ToInt32(tokens[1]);
-                    size.Width = width;
-                    size.Height = height;
-                }
-            }
-            catch
-            {
-            }
         }
 
         /// <summary>
         /// キャラクターサイズ
         /// </summary>
-        public Size CharaChipSize
-        {
-            get { return charaChipSize; }
-            set { charaChipSize = value; }
-        }
+        public Size CharaChipSize { get; set; }
 
         /// <summary>
-        /// 顔サイズ
+        /// 出力ファイルパス
         /// </summary>
-        public Size FaceSize
-        {
-            get { return faceSize; }
-            set { faceSize = value; }
-        }
-
-        /// <summary>
-        /// 2倍のサイズで描画するかどうか
-        /// </summary>
-        public bool IsRenderTwice 
-        {
-            get { return isRenderTwice; }
-            set { isRenderTwice = value; }
-        }
+        public string ExportFilePath { get; set; }
 
         /// <summary>
         /// settingに設定をコピーする。
@@ -107,6 +35,7 @@ namespace CharaChipGen.Model
         public void CopyTo(ExportSetting setting)
         {
             setting.CharaChipSize = CharaChipSize;
+            setting.ExportFilePath = ExportFilePath;
         }
     }
 }

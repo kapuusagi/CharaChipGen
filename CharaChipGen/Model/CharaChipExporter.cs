@@ -21,10 +21,13 @@ namespace CharaChipGen.Model
         /// <summary>
         /// キャラチップデータをエクスポートする
         /// </summary>
-        /// <param name="filePath"></param>
-        public static void ExportCharaChip(string filePath)
+        public static void ExportCharaChip(GeneratorSetting setting)
         {
-            GeneratorSetting setting = AppData.Instance.GeneratorSetting;
+            if (string.IsNullOrEmpty(setting.ExportSetting.ExportFilePath))
+            {
+                throw new ArgumentException("ExportFilePath not specified.");
+            }
+
             Size charaChipSize = setting.ExportSetting.CharaChipSize;
 
             int charaPlaneWidth = charaChipSize.Width * 3;
@@ -47,13 +50,8 @@ namespace CharaChipGen.Model
             }
 
             Image image = null;
-            if (setting.ExportSetting.IsRenderTwice) {
-                ImageBuffer twiceImage = ImageProcessor.ExpansionX2(exportBuffer);
-                image = twiceImage.GetImage();
-            } else {
-                image = exportBuffer.GetImage();
-            }
-            image.Save(filePath);
+            image = exportBuffer.GetImage();
+            image.Save(setting.ExportSetting.ExportFilePath);
         }
 
         /// <summary>

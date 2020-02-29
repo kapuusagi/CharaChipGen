@@ -132,6 +132,10 @@ namespace CharaChipGen.Model
             chipSizeElem.SetAttribute("width", setting.CharaChipSize.Width.ToString());
             chipSizeElem.SetAttribute("height", setting.CharaChipSize.Height.ToString());
             parent.AppendChild(chipSizeElem);
+
+            XmlElement exportPathElem = doc.CreateElement(GeneratorSettingFileDefs.NodeNameExportPath);
+            exportPathElem.SetAttribute("path", setting.ExportFilePath);
+            parent.AppendChild(exportPathElem);
         }
     }
 }

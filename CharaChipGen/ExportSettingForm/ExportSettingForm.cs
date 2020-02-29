@@ -23,55 +23,27 @@ namespace CharaChipGen.ExportSettingForm
         /// <summary>
         /// キャラチップサイズ
         /// </summary>
-        public Size CharaChipSize
-        {
-            get
-            {
+        public Size CharaChipSize {
+            get {
                 int width = (int)(numericUpDownCharaChipWidth.Value);
                 int height = (int)(numericUpDownCharaChipHeight.Value);
                 return new Size(width, height);
             }
-            set
-            {
+            set {
                 numericUpDownCharaChipWidth.Value = value.Width;
                 numericUpDownCharaChipHeight.Value = value.Height;
             }
         }
 
         /// <summary>
-        /// 顔サイズ
+        /// 出力ファイルパス
         /// </summary>
-        public Size FaceSize
+        public string ExportFilePath
         {
-            get
-            {
-                int width = (int)(numericUpDownFaceWidth.Value);
-                int height = (int)(numericUpDownFaceHeight.Value);
-                return new Size(width, height);
-            }
-            set
-            {
-                numericUpDownFaceWidth.Value = value.Width;
-                numericUpDownFaceHeight.Value = value.Height;
-            }
-
+            get => textBoxExportFilePath.Text;
+            set => textBoxExportFilePath.Text = value;           
         }
 
-        /// <summary>
-        /// 2倍のサイズで出力するかどうか
-        /// </summary>
-        public bool IsExpandTwice 
-        {
-            get
-            {
-                return checkBoxRenderTwice.Checked;
-            }
-            set 
-            {
-                checkBoxRenderTwice.Checked = value;
-            }
-
-        }
 
         /// <summary>
         /// 設定値をUIに反映させる。
@@ -80,6 +52,7 @@ namespace CharaChipGen.ExportSettingForm
         public void LoadFromSetting(ExportSetting setting)
         {
             CharaChipSize = setting.CharaChipSize;
+            ExportFilePath = setting.ExportFilePath;
         }
 
         /// <summary>
@@ -89,6 +62,7 @@ namespace CharaChipGen.ExportSettingForm
         public void StorToSetting(ExportSetting setting)
         {
             setting.CharaChipSize = CharaChipSize;
+            setting.ExportFilePath = ExportFilePath;
         }
 
         /// <summary>
@@ -109,6 +83,27 @@ namespace CharaChipGen.ExportSettingForm
         private void OnCancelButtonClick(object sender, EventArgs evt)
         {
             DialogResult = DialogResult.Cancel;
+        }
+
+        /// <summary>
+        /// 出力ファイルパス選択ボタンがクリックされたときに通知を受け取る。
+        /// </summary>
+        /// <param name="sender">送信元オブジェクト</param>
+        /// <param name="e">イベントオブジェクト</param>
+        private void OnButtonSelectExportFilePathClick(object sender, EventArgs e)
+        {
+            if (!string.IsNullOrEmpty(textBoxExportFilePath.Text))
+            {
+                string dir = System.IO.Path.GetDirectoryName(textBoxExportFilePath.Text);
+                saveFileDialog.InitialDirectory = dir;
+                saveFileDialog.FileName = textBoxExportFilePath.Text;
+            }
+
+            if (saveFileDialog.ShowDialog() == DialogResult.OK)
+            {
+                textBoxExportFilePath.Text = saveFileDialog.FileName;
+            }
+
         }
     }
 }
