@@ -1,12 +1,7 @@
-﻿using System;
-using System.Collections.Generic;
-using System.ComponentModel;
-using System.Data;
+﻿using CharaChipGen.Model;
+using System;
 using System.Drawing;
-using System.Linq;
-using System.Text;
 using System.Windows.Forms;
-using CharaChipGen.Model;
 
 namespace CharaChipGen.ExportSettingForm
 {
@@ -38,10 +33,9 @@ namespace CharaChipGen.ExportSettingForm
         /// <summary>
         /// 出力ファイルパス
         /// </summary>
-        public string ExportFilePath
-        {
+        public string ExportFilePath {
             get => textBoxExportFilePath.Text;
-            set => textBoxExportFilePath.Text = value;           
+            set => textBoxExportFilePath.Text = value;
         }
 
 

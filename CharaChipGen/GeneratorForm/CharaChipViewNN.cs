@@ -1,14 +1,9 @@
-﻿using System;
-using System.Collections.Generic;
-using System.ComponentModel;
-using System.Drawing;
-using System.Data;
-using System.Linq;
-using System.Text;
-using System.Windows.Forms;
+﻿using CGenImaging;
 using CharaChipGen.Model;
 using CharaChipGen.Model.CharaChip;
-using CGenImaging;
+using System;
+using System.Drawing;
+using System.Windows.Forms;
 
 namespace CharaChipGen.GeneratorForm
 {
@@ -61,11 +56,11 @@ namespace CharaChipGen.GeneratorForm
         /// <summary>
         /// 水平位置
         /// </summary>
-        public int CharaChipPositionX
-        {
+        public int CharaChipPositionX {
             get { return positionX; }
             set {
-                if ((value >= 0) && (value < 3)) {
+                if ((value >= 0) && (value < 3))
+                {
                     positionX = value;
                 }
             }
@@ -83,11 +78,9 @@ namespace CharaChipGen.GeneratorForm
         /// <summary>
         /// 垂直位置
         /// </summary>
-        public int CharaChipPositionY
-        {
+        public int CharaChipPositionY {
             get { return positionY; }
-            set
-            {
+            set {
                 if ((value >= 0) && (value < 4))
                 {
                     positionY = value;
@@ -110,9 +103,9 @@ namespace CharaChipGen.GeneratorForm
             // 背景色でクリア
             Brush brush = new SolidBrush(BackColor);
             g.FillRectangle(brush, 0, 0, ClientSize.Width - 1, ClientSize.Height - 1);
-            
+
             // イメージをレンダリング
-            if (renderedImage == null) 
+            if (renderedImage == null)
             {
                 Size prefSize = renderModel.PreferredSize;
                 if ((prefSize.Width > 0) && (prefSize.Height > 0))

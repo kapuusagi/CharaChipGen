@@ -1,10 +1,6 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Drawing;
-using CGenImaging;
+﻿using CGenImaging;
 using CharaChipGen.Model.Layer;
+using System.Drawing;
 
 namespace CharaChipGen.Model
 {
@@ -36,7 +32,7 @@ namespace CharaChipGen.Model
 
             buffer.Clear();
 
-            if ((model == null) || (model.LayerCount == 0)) 
+            if ((model == null) || (model.LayerCount == 0))
             {
                 return;
             }

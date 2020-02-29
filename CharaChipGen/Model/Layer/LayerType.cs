@@ -1,10 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-
-namespace CharaChipGen.Model.Layer
+﻿namespace CharaChipGen.Model.Layer
 {
     /// <summary>
     /// レイヤー種別。

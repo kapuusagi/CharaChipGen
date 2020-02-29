@@ -1,14 +1,9 @@
-﻿using System;
-using System.Collections.Generic;
-using System.ComponentModel;
-using System.Data;
-using System.Drawing;
-using System.Linq;
-using System.Text;
-using System.Windows.Forms;
+﻿using CGenImaging;
 using CharaChipGen.Model;
 using CharaChipGen.Model.CharaChip;
-using CGenImaging;
+using System;
+using System.Drawing;
+using System.Windows.Forms;
 
 namespace CharaChipGen.MainForm
 {
@@ -140,7 +135,7 @@ namespace CharaChipGen.MainForm
         private void UpdateAllEntryView()
         {
             GeneratorSetting setting = AppData.Instance.GeneratorSetting;
-            
+
             UpdateEntryView(characterEntryControl1, setting.GetCharacter(0));
             UpdateEntryView(characterEntryControl2, setting.GetCharacter(1));
             UpdateEntryView(characterEntryControl3, setting.GetCharacter(2));

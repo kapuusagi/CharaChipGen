@@ -1,15 +1,13 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
 using System.Collections;
+using System.Collections.Generic;
 
 namespace CharaChipGen.Model.Material
 {
     /// <summary>
     /// 素材リスト
     /// </summary>
-    public class MaterialList : IEnumerable<Material> 
+    public class MaterialList : IEnumerable<Material>
     {
         private List<Material> materials; // 素材
 
@@ -117,7 +115,8 @@ namespace CharaChipGen.Model.Material
             if (insertPos >= 0)
             {
                 materials.Insert(insertPos, material);
-            } else
+            }
+            else
             {
                 materials.Add(material);
             }
@@ -178,7 +177,7 @@ namespace CharaChipGen.Model.Material
         {
             for (int i = 0; i < materials.Count; i++)
             {
-                yield return materials[i]; 
+                yield return materials[i];
             }
         }
 

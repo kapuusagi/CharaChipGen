@@ -1,10 +1,5 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.ComponentModel;
 using System.Drawing;
-using System.Data;
-using System.Linq;
-using System.Text;
 using System.Windows.Forms;
 
 namespace CharaChipGen.MaterialEditorForm
@@ -48,11 +43,9 @@ namespace CharaChipGen.MaterialEditorForm
         /// <summary>
         /// このビューの画像オブジェクト
         /// </summary>
-        public Image Image
-        {
+        public Image Image {
             get { return materialView4x3.Image; }
-            set
-            {
+            set {
                 materialView4x3.Image = value;
 
                 UpdateView();
@@ -64,8 +57,7 @@ namespace CharaChipGen.MaterialEditorForm
             }
         }
 
-        public string LayerName
-        {
+        public string LayerName {
             set { groupBoxLayerName.Text = value; }
             get { return groupBoxLayerName.Text; }
         }

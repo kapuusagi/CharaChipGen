@@ -1,11 +1,8 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Drawing;
-using System.ComponentModel;
-using CGenImaging;
+﻿using CGenImaging;
 using CharaChipGen.Model.CharaChip;
+using System;
+using System.ComponentModel;
+using System.Drawing;
 
 namespace CharaChipGen.Model.Layer
 {
@@ -83,12 +80,12 @@ namespace CharaChipGen.Model.Layer
         /// レイヤーイメージ
         /// 未設定の場合にはnull
         /// </summary>
-        public Image Image
-        {
+        public Image Image {
             get { return image; }
             set {
                 if (((image == null) && (value == null))
-                        || ((image != null) && (image.Equals(value)))) {
+                        || ((image != null) && (image.Equals(value))))
+                {
                     return; // 変更なし。
                 }
 
@@ -97,12 +94,11 @@ namespace CharaChipGen.Model.Layer
                 NotifyPropertyChange(nameof(Image));
             }
         }
- 
+
         /// <summary>
         /// オフセットX
         /// </summary>
-        public int OffsetX
-        {
+        public int OffsetX {
             get { return offsetX; }
             set {
                 if (offsetX == value)
@@ -117,8 +113,7 @@ namespace CharaChipGen.Model.Layer
         /// <summary>
         /// オフセットY
         /// </summary>
-        public int OffsetY
-        {
+        public int OffsetY {
             get {
                 return offsetY;
             }
@@ -150,8 +145,7 @@ namespace CharaChipGen.Model.Layer
         /// <summary>
         /// 色相調整値
         /// </summary>
-        public int Hue
-        {
+        public int Hue {
             get { return hue; }
             set {
                 if (hue == value)
@@ -167,11 +161,9 @@ namespace CharaChipGen.Model.Layer
         /// <summary>
         /// 彩度調整値
         /// </summary>
-        public int Saturation
-        {
+        public int Saturation {
             get { return saturation; }
-            set
-            {
+            set {
                 if (saturation == value)
                 {
                     return; // 変更なし。
@@ -184,11 +176,9 @@ namespace CharaChipGen.Model.Layer
         /// <summary>
         /// 輝度調整値
         /// </summary>
-        public int Value
-        {
+        public int Value {
             get { return value; }
-            set
-            {
+            set {
                 if (this.value == value)
                 {
                     return; // 変更なし。
@@ -219,10 +209,9 @@ namespace CharaChipGen.Model.Layer
         /// <summary>
         /// 推奨する画像の幅
         /// </summary>
-        public int PreferredWidth
-        {
+        public int PreferredWidth {
             get {
-                return (this.image != null) 
+                return (this.image != null)
                     ? image.Width + Math.Abs(offsetX) : Math.Abs(offsetX);
             }
         }
@@ -230,10 +219,9 @@ namespace CharaChipGen.Model.Layer
         /// <summary>
         /// 推奨する画像の高さ
         /// </summary>
-        public int PreferredHeight
-        {
+        public int PreferredHeight {
             get {
-                return (this.image != null) 
+                return (this.image != null)
                     ? image.Height + Math.Abs(offsetY) : Math.Abs(offsetY);
             }
         }

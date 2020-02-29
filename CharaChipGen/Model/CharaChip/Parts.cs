@@ -1,8 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.ComponentModel;
+﻿using System.ComponentModel;
 
 namespace CharaChipGen.Model.CharaChip
 {
@@ -24,7 +20,7 @@ namespace CharaChipGen.Model.CharaChip
         // 輝度調整値
         private int value;
         // 不透明度（高いほど不透明） = アルファチャンネル
-        private int opacity; 
+        private int opacity;
 
         /// <summary>
         /// 新しいインスタンスを構築する。

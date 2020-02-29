@@ -1,10 +1,5 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.ComponentModel;
 using System.Drawing;
-using System.Data;
-using System.Linq;
-using System.Text;
 using System.Windows.Forms;
 
 namespace CharaChipGen.MaterialEditorForm
@@ -57,11 +52,9 @@ namespace CharaChipGen.MaterialEditorForm
         /// <summary>
         /// 背景色を設定する。
         /// </summary>
-        public override Color BackColor
-        {
+        public override Color BackColor {
             get { return pictureBox1.BackColor; }
-            set
-            {
+            set {
                 pictureBox1.BackColor = value;
                 pictureBox2.BackColor = value;
                 pictureBox3.BackColor = value;
@@ -80,11 +73,9 @@ namespace CharaChipGen.MaterialEditorForm
         /// <summary>
         /// レイヤーの画像データ
         /// </summary>
-        public Image Image
-        {
+        public Image Image {
             get { return image; }
-            set
-            {
+            set {
                 if (value == null)
                 {
                     image = null;

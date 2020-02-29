@@ -1,12 +1,6 @@
-﻿using System;
-using System.Collections.Generic;
-using System.ComponentModel;
-using System.Data;
-using System.Drawing;
-using System.Linq;
-using System.Text;
+﻿using CharaChipGen.Model.Material;
+using System;
 using System.Windows.Forms;
-using CharaChipGen.Model.Material;
 
 namespace CharaChipGen.MaterialEditorForm
 {
@@ -16,7 +10,7 @@ namespace CharaChipGen.MaterialEditorForm
     public partial class MaterialEditorForm : Form
     {
         // 編集対象の素材
-        private Material editMaterial; 
+        private Material editMaterial;
 
         /// <summary>
         /// コンストラクタ
@@ -95,12 +89,12 @@ namespace CharaChipGen.MaterialEditorForm
             DialogResult = DialogResult.OK;
             Close();
         }
-    
+
         /// <summary>
         /// 素材の変更を適用する。
         /// </summary>
         public void ApplyMaterialEdit()
-        { 
+        {
             string materialDir = AppData.Instance.MaterialDirectory;
             string dir = System.IO.Path.Combine(materialDir, editMaterial.Path);
 

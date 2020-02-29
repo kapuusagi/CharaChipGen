@@ -1,10 +1,6 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
+﻿using CharaChipGen.Model.CharaChip;
 using CharaChipGen.Model.Layer;
-using CharaChipGen.Model.CharaChip;
+using System.Text;
 
 namespace CharaChipGen.Model.Material
 {
@@ -47,7 +43,8 @@ namespace CharaChipGen.Model.Material
         /// <summary>
         /// このレイヤーデータが有効データを持つかどうか。
         /// </summary>
-        public bool IsValid() {
+        public bool IsValid()
+        {
             return !string.IsNullOrEmpty(Name) && !string.IsNullOrEmpty(Path);
         }
 

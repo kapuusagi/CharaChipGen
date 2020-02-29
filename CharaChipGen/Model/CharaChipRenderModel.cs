@@ -1,11 +1,10 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Drawing;
-using CharaChipGen.Model.Material;
+﻿using CharaChipGen.Model.CharaChip;
 using CharaChipGen.Model.Layer;
-using CharaChipGen.Model.CharaChip;
+using CharaChipGen.Model.Material;
+using System;
+using System.Collections.Generic;
+using System.Drawing;
+using System.Linq;
 
 namespace CharaChipGen.Model
 {
@@ -27,8 +26,8 @@ namespace CharaChipGen.Model
         // ハンドラ
         public delegate void ImageChanged(Object sender);
         // イメージが変更されたときのイベント
-        public event ImageChanged OnImageChanged; 
-        
+        public event ImageChanged OnImageChanged;
+
         /// <summary>
         /// レンダリング用データモデル
         /// </summary>
@@ -42,7 +41,7 @@ namespace CharaChipGen.Model
             }
 
             dataModel = new Character();
-            
+
             partsChangeHandler = new PartsChangeEventHandler((sender, e) =>
             {
                 OnPartsChanged((Character)(sender), e.PartsType, e.PropertyName);
@@ -54,11 +53,9 @@ namespace CharaChipGen.Model
         /// <summary>
         /// データモデル
         /// </summary>
-        public Character CharaChipDataModel
-        {
+        public Character CharaChipDataModel {
             get { return dataModel; }
-            set
-            {
+            set {
                 if ((value == null) || (dataModel == value))
                 {
                     return;
@@ -88,8 +85,7 @@ namespace CharaChipGen.Model
         /// <summary>
         /// レイヤー総数
         /// </summary>
-        public int LayerCount
-        {
+        public int LayerCount {
             get { return layerGroups.Sum((group) => group.Count); }
         }
 
@@ -121,10 +117,8 @@ namespace CharaChipGen.Model
         /// 1キャラクタをレンダリングするために必要なサイズが返る。
         /// 1キャラクターの1パターンを描画するサイズではないことに注意。
         /// </summary>
-        public Size PreferredSize
-        {
-            get
-            {
+        public Size PreferredSize {
+            get {
                 int width = 0;
                 int height = 0;
                 foreach (RenderLayerModel layer in this)
@@ -147,10 +141,8 @@ namespace CharaChipGen.Model
         /// 
         /// 1キャラクタを表示するために必要な幅が返る。
         /// </summary>
-        public int PreferredWidth
-        {
-            get
-            {
+        public int PreferredWidth {
+            get {
                 return PreferredSize.Width;
             }
         }
@@ -160,10 +152,8 @@ namespace CharaChipGen.Model
         /// 
         /// 1キャラクタを表示するために必要な高さが返る。
         /// </summary>
-        public int PreferredHeight
-        {
-            get
-            {
+        public int PreferredHeight {
+            get {
                 return PreferredSize.Height;
             }
         }
@@ -212,8 +202,8 @@ namespace CharaChipGen.Model
             }
 
             // この部品のレイヤーを得て追加する。
-            var m = AppData.Instance.GetMaterialList(partsType).Get(parts.MaterialName); 
-            for (int i = 0; i <  m.GetLayerCount(); i++)
+            var m = AppData.Instance.GetMaterialList(partsType).Get(parts.MaterialName);
+            for (int i = 0; i < m.GetLayerCount(); i++)
             {
                 MaterialLayerInfo info = m.Layers[i];
                 RenderLayerGroup group = layerGroups.First((entry) => entry.LayerType == info.LayerType);

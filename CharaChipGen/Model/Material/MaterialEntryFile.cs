@@ -1,10 +1,8 @@
-﻿using System;
+﻿using CharaChipGen.Model.CharaChip;
+using CharaChipGen.Model.Layer;
+using System;
 using System.Collections.Generic;
 using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-using CharaChipGen.Model.Layer;
-using CharaChipGen.Model.CharaChip;
 
 namespace CharaChipGen.Model.Material
 {

@@ -1,10 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-
-namespace CharaChipGen.Model.Material
+﻿namespace CharaChipGen.Model.Material
 {
     /// <summary>
     /// 素材種類

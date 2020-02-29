@@ -1,12 +1,5 @@
-﻿using System;
-using System.Collections.Generic;
-using System.ComponentModel;
-using System.Drawing;
-using System.Data;
-using System.Linq;
-using System.Text;
+﻿using CharaChipGen.Model.CharaChip;
 using System.Windows.Forms;
-using CharaChipGen.Model.CharaChip;
 
 namespace CharaChipGen.GeneratorForm
 {

@@ -1,13 +1,9 @@
-﻿using System;
-using System.Collections.Generic;
+﻿using CharaChipGen.Model.CharaChip;
+using CharaChipGen.Model.Material;
+using System;
 using System.ComponentModel;
 using System.Drawing;
-using System.Data;
-using System.Linq;
-using System.Text;
 using System.Windows.Forms;
-using CharaChipGen.Model.CharaChip;
-using CharaChipGen.Model.Material;
 
 namespace CharaChipGen.GeneratorForm
 {
@@ -48,11 +44,9 @@ namespace CharaChipGen.GeneratorForm
         /// <summary>
         /// 格納しているデータのモデル
         /// </summary>
-        public Parts Model
-        {
+        public Parts Model {
             get { return model; }
-            set
-            {
+            set {
                 if ((value == null) || (value == model))
                 {
                     return;
@@ -60,7 +54,7 @@ namespace CharaChipGen.GeneratorForm
                 model.PropertyChanged -= handler;
                 model = value;
                 model.PropertyChanged += handler;
-                
+
                 ApplyModelToView();
             }
         }
@@ -68,8 +62,7 @@ namespace CharaChipGen.GeneratorForm
         /// <summary>
         /// Yオフセット値の表示可否
         /// </summary>
-        public bool EditYOffset
-        {
+        public bool EditYOffset {
             get { return paramEditView.EditYOffset; }
             set { paramEditView.EditYOffset = value; }
         }
@@ -77,8 +70,7 @@ namespace CharaChipGen.GeneratorForm
         /// <summary>
         /// HSVの表示可否
         /// </summary>
-        public bool EditHSV
-        {
+        public bool EditHSV {
             get { return paramEditView.EditHSV; }
             set { paramEditView.EditHSV = value; }
         }
@@ -97,7 +89,7 @@ namespace CharaChipGen.GeneratorForm
                 }
             }
             else
-            { 
+            {
                 // 何かしらが選択されている
                 for (int i = 1; i < comboBoxItem.Items.Count; i++)
                 {
@@ -116,8 +108,7 @@ namespace CharaChipGen.GeneratorForm
         /// <summary>
         /// 項目名
         /// </summary>
-        public string ParameterName
-        {
+        public string ParameterName {
             get { return labelItemName.Text; }
             set { labelItemName.Text = value; }
         }
@@ -170,7 +161,7 @@ namespace CharaChipGen.GeneratorForm
         {
             toolStripDropDown.Show(Cursor.Position);
         }
-        
+
 
         /// <summary>
         /// コンボボックスで項目が描画されるときに通知を受け取る。

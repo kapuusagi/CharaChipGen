@@ -1,12 +1,6 @@
-﻿using System;
-using System.Collections.Generic;
-using System.ComponentModel;
-using System.Data;
-using System.Drawing;
-using System.Linq;
-using System.Text;
+﻿using CharaChipGen.Model.CharaChip;
+using System;
 using System.Windows.Forms;
-using CharaChipGen.Model.CharaChip;
 
 namespace CharaChipGen.GeneratorForm
 {
@@ -42,8 +36,7 @@ namespace CharaChipGen.GeneratorForm
         /// <summary>
         /// データモデル
         /// </summary>
-        public Character CharaChipDataModel
-        {
+        public Character CharaChipDataModel {
             get { return dataModel; }
             set { value.CopyTo(dataModel); }
         }

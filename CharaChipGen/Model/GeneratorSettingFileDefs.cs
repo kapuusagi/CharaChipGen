@@ -1,10 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-
-namespace CharaChipGen.Model
+﻿namespace CharaChipGen.Model
 {
     /// <summary>
     /// キャラクタチップジェネレータ設定ファイルで使用される定義。

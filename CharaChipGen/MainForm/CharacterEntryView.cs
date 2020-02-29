@@ -1,10 +1,5 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.ComponentModel;
 using System.Drawing;
-using System.Data;
-using System.Linq;
-using System.Text;
 using System.Windows.Forms;
 
 namespace CharaChipGen.MainForm
@@ -63,8 +58,7 @@ namespace CharaChipGen.MainForm
         /// <summary>
         /// ボタン名
         /// </summary>
-        public string ButtonName
-        {
+        public string ButtonName {
             get { return button.Text; }
             set { button.Text = value; }
         }
@@ -72,8 +66,7 @@ namespace CharaChipGen.MainForm
         /// <summary>
         /// イメージ
         /// </summary>
-        public Image Image
-        {
+        public Image Image {
             get { return charaChipImage; }
             set {
                 charaChipImage = value;
@@ -81,8 +74,7 @@ namespace CharaChipGen.MainForm
             }
         }
 
-        public Image FaceImage
-        {
+        public Image FaceImage {
             get { return faceImage; }
             set {
                 faceImage = value;
@@ -90,10 +82,8 @@ namespace CharaChipGen.MainForm
             }
         }
 
-        public Size ImageAreaSize
-        {
-            get
-            {
+        public Size ImageAreaSize {
+            get {
                 int inset = 4;
                 int margin = 4;
                 int width = ClientSize.Width - inset * 2;
