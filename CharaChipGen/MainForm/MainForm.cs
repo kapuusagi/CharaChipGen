@@ -7,6 +7,7 @@ using System.Linq;
 using System.Text;
 using System.Windows.Forms;
 using CharaChipGen.Model;
+using CharaChipGen.Model.CharaChip;
 using CGenImaging;
 
 namespace CharaChipGen.MainForm
@@ -119,7 +120,7 @@ namespace CharaChipGen.MainForm
 
             // モデルを設定する。
             AppData appData = AppData.Instance;
-            appData.GetCharaChipData(index).CopyTo(form.CharaChipDataModel);
+            appData.GeneratorSetting.GetCharactor(index).CopyTo(form.CharaChipDataModel);
 
             DialogResult result = form.ShowDialog(this);
             if (result != DialogResult.OK)
@@ -128,9 +129,9 @@ namespace CharaChipGen.MainForm
             }
 
             // 反映処理する。
-            form.CharaChipDataModel.CopyTo(appData.GetCharaChipData(index));
+            form.CharaChipDataModel.CopyTo(appData.GeneratorSetting.GetCharactor(index));
 
-            UpdateEntryView(view, appData.GetCharaChipData(index));
+            UpdateEntryView(view, appData.GeneratorSetting.GetCharactor(index));
         }
 
         /// <summary>
@@ -138,15 +139,16 @@ namespace CharaChipGen.MainForm
         /// </summary>
         private void UpdateAllEntryView()
         {
-            AppData appData = AppData.Instance;
-            UpdateEntryView(characterEntryControl1, appData.GetCharaChipData(0));
-            UpdateEntryView(characterEntryControl2, appData.GetCharaChipData(1));
-            UpdateEntryView(characterEntryControl3, appData.GetCharaChipData(2));
-            UpdateEntryView(characterEntryControl4, appData.GetCharaChipData(3));
-            UpdateEntryView(characterEntryControl5, appData.GetCharaChipData(4));
-            UpdateEntryView(characterEntryControl6, appData.GetCharaChipData(5));
-            UpdateEntryView(characterEntryControl7, appData.GetCharaChipData(6));
-            UpdateEntryView(characterEntryControl8, appData.GetCharaChipData(7));
+            GeneratorSetting setting = AppData.Instance.GeneratorSetting;
+            
+            UpdateEntryView(characterEntryControl1, setting.GetCharactor(0));
+            UpdateEntryView(characterEntryControl2, setting.GetCharactor(1));
+            UpdateEntryView(characterEntryControl3, setting.GetCharactor(2));
+            UpdateEntryView(characterEntryControl4, setting.GetCharactor(3));
+            UpdateEntryView(characterEntryControl5, setting.GetCharactor(4));
+            UpdateEntryView(characterEntryControl6, setting.GetCharactor(5));
+            UpdateEntryView(characterEntryControl7, setting.GetCharactor(6));
+            UpdateEntryView(characterEntryControl8, setting.GetCharactor(7));
         }
 
         /// <summary>
@@ -154,7 +156,7 @@ namespace CharaChipGen.MainForm
         /// </summary>
         /// <param name="view">ビュー</param>
         /// <param name="dataModel">対応するデータモデル</param>
-        private void UpdateEntryView(CharacterEntryView view, CharaChipDataModel dataModel)
+        private void UpdateEntryView(CharacterEntryView view, Character dataModel)
         {
             // キャラクタチップデータ
             CharaChipRenderModel renderModel = new CharaChipRenderModel();
@@ -217,11 +219,9 @@ namespace CharaChipGen.MainForm
             ExportSettingForm.ExportSettingForm form
                 = new ExportSettingForm.ExportSettingForm();
 
-            AppData appData = AppData.Instance;
+            GeneratorSetting setting = AppData.Instance.GeneratorSetting;
 
-            form.CharaChipSize = appData.ExportSetting.CharaChipSize;
-            form.FaceSize = appData.ExportSetting.FaceSize;
-            form.IsExpandTwice = appData.ExportSetting.IsRenderTwice;
+            form.LoadFromSetting(setting.ExportSetting);
 
             DialogResult res = form.ShowDialog(this);
             if (res != DialogResult.OK)
@@ -229,10 +229,8 @@ namespace CharaChipGen.MainForm
                 return;
             }
 
-            appData.ExportSetting.CharaChipSize = form.CharaChipSize;
-            appData.ExportSetting.FaceSize = form.FaceSize;
-            appData.ExportSetting.IsRenderTwice = form.IsExpandTwice;
-            appData.ExportSetting.Save();
+            form.StorToSetting(setting.ExportSetting);
+
         }
 
         /// <summary>
@@ -245,10 +243,10 @@ namespace CharaChipGen.MainForm
             // 新規作成が押された
             // データをリセットする。
             editFilePath = "";
-            AppData appData = AppData.Instance;
-            for (int i = 0; i < appData.CharaChipDataCount; i++)
+            GeneratorSetting setting = AppData.Instance.GeneratorSetting;
+            for (int i = 0; i < setting.GetCharactorCount(); i++)
             {
-                appData.GetCharaChipData(i).Reset();
+                setting.GetCharactor(i).Reset();
             }
 
             // モデルに合わせてUIの表示更新
@@ -286,7 +284,13 @@ namespace CharaChipGen.MainForm
         /// <param name="path">パス</param>
         private void LoadDataProc(string path)
         {
-            SettingFileController.Load(path);
+            GeneratorSettingReader reader = new GeneratorSettingReader();
+            GeneratorSetting readSetting = reader.Read(path);
+
+            GeneratorSetting setting = AppData.Instance.GeneratorSetting;
+            readSetting.CopyTo(setting);
+
+
             editFilePath = openFileDialog.FileName;
 
             // Note: 本当はCharaChipDataModelをViewに設定して
@@ -300,7 +304,8 @@ namespace CharaChipGen.MainForm
         /// <param name="path">パス</param>
         private void SaveDataProc(string path)
         {
-            SettingFileController.Save(path);
+            GeneratorSettingWriter writer = new GeneratorSettingWriter();
+            writer.Write(path, AppData.Instance.GeneratorSetting);
         }
 
         /// <summary>
@@ -346,7 +351,8 @@ namespace CharaChipGen.MainForm
             string filePath = saveFileDialog.FileName;
             try
             {
-                SettingFileController.Save(filePath);
+                GeneratorSettingWriter writer = new GeneratorSettingWriter();
+                writer.Write(filePath, AppData.Instance.GeneratorSetting);
                 editFilePath = filePath;
                 Properties.Settings.Default.LastSavePath = filePath;
             }
@@ -392,7 +398,7 @@ namespace CharaChipGen.MainForm
         /// <param name="evt">イベントオブジェクト</param>
         private void OnFormShown(object sender, EventArgs evt)
         {
-            AppData.Instance.ExportSetting.Load();
+            AppData.Instance.GeneratorSetting.ExportSetting.Load();
 
             string appDir = System.IO.Path.GetDirectoryName(Application.ExecutablePath);
             string workTempPath = System.IO.Path.Combine(appDir, PreviousSavedFileName);

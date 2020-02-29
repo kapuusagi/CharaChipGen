@@ -4,6 +4,7 @@ using System.Linq;
 using System.Text;
 using System.Collections;
 using CharaChipGen.Model;
+using CharaChipGen.Model.CharaChip;
 using CharaChipGen.Model.Material;
 
 namespace CharaChipGen
@@ -32,12 +33,10 @@ namespace CharaChipGen
 
         // 素材ディレクトリ
         private string materialDirectory = "";
-        //  キャラチップデータモデル
-        private CharaChipDataModel[] charaChipDataModels;
-        // エクスポート設定
-        private ExportSetting exportSetting;
         // 部品エントリ
         private MaterialList[] materialLists;
+        // キャラクターチップジェネレータ設定
+        private GeneratorSetting generatorSetting;
 
         private Dictionary<PartsType, MaterialType> materialTable;
 
@@ -65,12 +64,7 @@ namespace CharaChipGen
             materialTable.Add(PartsType.HeadAccessory1, MaterialType.HeadAccessories);
             materialTable.Add(PartsType.HeadAccessory2, MaterialType.HeadAccessories);
 
-            charaChipDataModels = new CharaChipDataModel[9];
-            for (int i = 0; i < charaChipDataModels.Length; i++)
-            {
-                charaChipDataModels[i] = new CharaChipDataModel();
-            }
-            exportSetting = new ExportSetting();
+            generatorSetting = new GeneratorSetting();
         }
 
         /// <summary>
@@ -239,34 +233,9 @@ namespace CharaChipGen
         }
 
         /// <summary>
-        /// エクスポート設定
+        /// キャラクタチップジェネレータ設定
         /// </summary>
-        public ExportSetting ExportSetting
-        {
-            get { return exportSetting; }
-        }
+        public GeneratorSetting GeneratorSetting { get; set; }
 
-        /// <summary>
-        /// データ数を取得する
-        /// </summary>
-        public int CharaChipDataCount
-        {
-            get { return charaChipDataModels.Length; }
-        }
-
-        /// <summary>
-        /// キャラチップデータを取得する。
-        /// </summary>
-        /// <param name="index"></param>
-        /// <returns></returns>
-        public CharaChipDataModel GetCharaChipData(int index)
-        {
-            if ((index < 0) || (index > charaChipDataModels.Length))
-            {
-                return null;
-            }
-
-            return charaChipDataModels[index];
-        }
     }
 }

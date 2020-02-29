@@ -6,14 +6,14 @@ using System.Data;
 using System.Linq;
 using System.Text;
 using System.Windows.Forms;
-using CharaChipGen.Model;
+using CharaChipGen.Model.CharaChip;
 
 namespace CharaChipGen.GeneratorForm
 {
     public partial class PartsEditView : UserControl
     {
         // パラメータモデル
-        private CharaChipPartsModel model;
+        private Parts model;
 
         /// <summary>
         /// 新しいインスタンスを構築する
@@ -21,7 +21,7 @@ namespace CharaChipGen.GeneratorForm
         public PartsEditView()
         {
             InitializeComponent();
-            model = new CharaChipPartsModel(PartsType.HairStyle);
+            model = new Parts(PartsType.HairStyle);
             model.PropertyChanged += OnModelParameterChanged;
 
             InitHandlers();
@@ -63,7 +63,7 @@ namespace CharaChipGen.GeneratorForm
         /// <summary>
         /// パラメータモデル。
         /// </summary>
-        public CharaChipPartsModel Model {
+        public Parts Model {
             get { return model; }
             set {
                 if ((model == null) || (model == value))

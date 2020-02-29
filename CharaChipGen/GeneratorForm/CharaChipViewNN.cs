@@ -7,6 +7,7 @@ using System.Linq;
 using System.Text;
 using System.Windows.Forms;
 using CharaChipGen.Model;
+using CharaChipGen.Model.CharaChip;
 using CGenImaging;
 
 namespace CharaChipGen.GeneratorForm
@@ -46,7 +47,7 @@ namespace CharaChipGen.GeneratorForm
         /// データモデルを設定する
         /// </summary>
         /// <param name="model">データモデル</param>
-        public void SetDataModel(CharaChipDataModel model)
+        public void SetDataModel(Character model)
         {
             renderModel.OnImageChanged -= handler;
             // データモデルを置き換える。

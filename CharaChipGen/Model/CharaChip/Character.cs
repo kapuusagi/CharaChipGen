@@ -9,7 +9,7 @@ namespace CharaChipGen.Model.CharaChip
     /// <summary>
     /// 1名のキャラクタチップを生成するための設定モデル
     /// </summary>
-    public class Charactor
+    public class Character
     {
         /// <summary>
         /// パーツが変更された場合。
@@ -25,7 +25,7 @@ namespace CharaChipGen.Model.CharaChip
         /// <summary>
         /// 新しいインスタンスを構築する。
         /// </summary>
-        public Charactor()
+        public Character()
         {
             charaChipParts = new Dictionary<PartsType, Parts>();
 
@@ -48,7 +48,7 @@ namespace CharaChipGen.Model.CharaChip
         /// modelで指定されたモデルに設定値をコピーする。
         /// </summary>
         /// <param name="model">モデル</param>
-        public void CopyTo(Charactor model)
+        public void CopyTo(Character model)
         {
             foreach (var partsEntry in charaChipParts)
             {

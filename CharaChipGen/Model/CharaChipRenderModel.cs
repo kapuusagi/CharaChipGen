@@ -21,7 +21,7 @@ namespace CharaChipGen.Model
         // レイヤー
         private RenderLayerGroup[] layerGroups;
         // レンダリング対象のキャラクターチップデータモデル
-        private Charactor dataModel;
+        private Character dataModel;
         // ハンドラ
         private PartsChangeEventHandler partsChangeHandler;
         // ハンドラ
@@ -41,11 +41,11 @@ namespace CharaChipGen.Model
                 layerGroups[i] = new RenderLayerGroup(layerTypes[i]);
             }
 
-            dataModel = new Charactor();
+            dataModel = new Character();
             
             partsChangeHandler = new PartsChangeEventHandler((sender, e) =>
             {
-                OnPartsChanged((Charactor)(sender), e.PartsType, e.PropertyName);
+                OnPartsChanged((Character)(sender), e.PartsType, e.PropertyName);
             });
 
             dataModel.OnCharaChipParamChanged += partsChangeHandler;
@@ -54,7 +54,7 @@ namespace CharaChipGen.Model
         /// <summary>
         /// データモデル
         /// </summary>
-        public Charactor CharaChipDataModel
+        public Character CharaChipDataModel
         {
             get { return dataModel; }
             set
@@ -174,7 +174,7 @@ namespace CharaChipGen.Model
         /// <param name="model">データモデル</param>
         /// <param name="name">パーツ種別</param>
         /// <param name="partsType">プロパティ名</param>
-        private void OnPartsChanged(Charactor model, PartsType partsType, string propertyName)
+        private void OnPartsChanged(Character model, PartsType partsType, string propertyName)
         {
             if (propertyName.Equals(nameof(Parts.MaterialName)))
             {
@@ -196,7 +196,7 @@ namespace CharaChipGen.Model
         /// </summary>
         /// <param name="model">キャラチップモデル</param>
         /// <param name="partsType">部品タイプ</param>
-        private void OnMaterialChanged(Charactor model, PartsType partsType)
+        private void OnMaterialChanged(Character model, PartsType partsType)
         {
             // 該当レイヤーを削除
             foreach (RenderLayerGroup group in layerGroups)
@@ -232,7 +232,7 @@ namespace CharaChipGen.Model
         /// </summary>
         /// <param name="model">キャラチップモデル</param>
         /// <param name="partsType">部品タイプ</param>
-        private void OnPartsAttributeChanged(Charactor model, PartsType partsType)
+        private void OnPartsAttributeChanged(Character model, PartsType partsType)
         {
             // 変更対象の部品に関係するレイヤーに設定を適用する。
             Parts parts = model.GetParts(partsType);
@@ -257,7 +257,7 @@ namespace CharaChipGen.Model
         /// </summary>
         /// <param name="layer">レイヤー</param>
         /// <param name="model">キャラチップモデル</param>
-        private void ApplyLayerColor(RenderLayerModel layer, Charactor model)
+        private void ApplyLayerColor(RenderLayerModel layer, Character model)
         {
             Parts parts = model.GetParts(layer.ColorPartsRefs);
             ApplyLayerColor(layer, parts);
@@ -281,7 +281,7 @@ namespace CharaChipGen.Model
         /// </summary>
         /// <param name="layer">レイヤー</param>
         /// <param name="model">キャラチップモデル</param>
-        private void ApplyLayerOffsets(RenderLayerModel layer, Charactor model)
+        private void ApplyLayerOffsets(RenderLayerModel layer, Character model)
         {
             Parts parts = model.GetParts(layer.PartsType);
             ApplyLayerOffsets(layer, parts);

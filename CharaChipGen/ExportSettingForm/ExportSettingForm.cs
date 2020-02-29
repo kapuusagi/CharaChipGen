@@ -74,6 +74,24 @@ namespace CharaChipGen.ExportSettingForm
         }
 
         /// <summary>
+        /// 設定値をUIに反映させる。
+        /// </summary>
+        /// <param name="setting">エクスポート設定</param>
+        public void LoadFromSetting(ExportSetting setting)
+        {
+            CharaChipSize = setting.CharaChipSize;
+        }
+
+        /// <summary>
+        /// UIの値を設定値に格納する
+        /// </summary>
+        /// <param name="setting">エクスポート設定</param>
+        public void StorToSetting(ExportSetting setting)
+        {
+            setting.CharaChipSize = CharaChipSize;
+        }
+
+        /// <summary>
         /// OKボタンがクリックされたときに通知を受け取る。
         /// </summary>
         /// <param name="sender">送信元オブジェクト</param>

@@ -6,7 +6,7 @@ using System.Data;
 using System.Linq;
 using System.Text;
 using System.Windows.Forms;
-using CharaChipGen.Model;
+using CharaChipGen.Model.CharaChip;
 
 namespace CharaChipGen.GeneratorForm
 {
@@ -69,7 +69,7 @@ namespace CharaChipGen.GeneratorForm
         /// モデルを設定する
         /// </summary>
         /// <param name="model">データモデル</param>
-        public void SetModel(CharaChipDataModel model)
+        public void SetModel(Character model)
         {
             charaChipView11.SetDataModel(model);
             charaChipView21.SetDataModel(model);

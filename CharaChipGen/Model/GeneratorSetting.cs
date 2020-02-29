@@ -13,17 +13,17 @@ namespace CharaChipGen.Model
     public class GeneratorSetting
     {
         // キャラチップデータモデル
-        private Charactor[] charactors;
+        private Character[] charactors;
 
         /// <summary>
         /// 新しいインスタンスを構築する。
         /// </summary>
         public GeneratorSetting()
         {
-            charactors = new Charactor[9];
+            charactors = new Character[9];
             for (int i = 0; i < charactors.Length; i++)
             {
-                charactors[i] = new Charactor();
+                charactors[i] = new Character();
             }
             ExportSetting = new ExportSetting();
         }
@@ -33,7 +33,7 @@ namespace CharaChipGen.Model
         /// </summary>
         /// <param name="index">キャラクター番号(0≦index＜GetCharactorCount())</param>
         /// <returns>Charactorオブジェクトが返る</returns>
-        public Charactor GetCharactor(int index)
+        public Character GetCharactor(int index)
         {
             if ((index < 0) || (index >= charactors.Length))
             {
@@ -53,5 +53,18 @@ namespace CharaChipGen.Model
         /// エクスポート設定
         /// </summary>
         public ExportSetting ExportSetting { get; private set; }
+
+        public void CopyTo(GeneratorSetting setting)
+        {
+            for (int i = 0; i < setting.GetCharactorCount(); i++)
+            {
+                Character src = GetCharactor(i);
+                Character dst = setting.GetCharactor(i);
+                src.CopyTo(dst);
+            }
+
+            // エクスポート設定
+            ExportSetting.CopyTo(setting.ExportSetting);
+        }
     }
 }

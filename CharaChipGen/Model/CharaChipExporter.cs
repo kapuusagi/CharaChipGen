@@ -62,7 +62,7 @@ namespace CharaChipGen.Model
         /// <param name="model">レンダリング対象のキャラチップ</param>
         /// <param name="chipSize">キャラチップサイズ</param>
         /// <returns>レンダリングしたImageBufferが返る。</returns>
-        private static ImageBuffer RenderCharaChip(Charactor model, Size chipSize)
+        private static ImageBuffer RenderCharaChip(Character model, Size chipSize)
         {
             CharaChipRenderModel renderModel = new CharaChipRenderModel();
             model.CopyTo(renderModel.CharaChipDataModel);

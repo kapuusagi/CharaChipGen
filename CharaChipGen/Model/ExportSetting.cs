@@ -23,7 +23,6 @@ namespace CharaChipGen.Model
             charaChipSize = new Size(32, 48);
             faceSize = new Size(96, 96);
             isRenderTwice = false;
-
         }
 
         /// <summary>
@@ -101,5 +100,13 @@ namespace CharaChipGen.Model
             set { isRenderTwice = value; }
         }
 
+        /// <summary>
+        /// settingに設定をコピーする。
+        /// </summary>
+        /// <param name="setting">ExportSettingオブジェクト</param>
+        public void CopyTo(ExportSetting setting)
+        {
+            setting.CharaChipSize = CharaChipSize;
+        }
     }
 }

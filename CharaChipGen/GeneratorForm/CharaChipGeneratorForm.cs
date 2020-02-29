@@ -6,7 +6,7 @@ using System.Drawing;
 using System.Linq;
 using System.Text;
 using System.Windows.Forms;
-using CharaChipGen.Model;
+using CharaChipGen.Model.CharaChip;
 
 namespace CharaChipGen.GeneratorForm
 {
@@ -15,14 +15,14 @@ namespace CharaChipGen.GeneratorForm
     /// </summary>
     public partial class CharaChipGeneratorForm : Form
     {
-        private CharaChipDataModel dataModel; // キャラクターチップデータモデル
+        private Character dataModel; // キャラクターチップデータモデル
 
         /// <summary>
         /// コンストラクタ
         /// </summary>
         public CharaChipGeneratorForm()
         {
-            dataModel = new CharaChipDataModel();
+            dataModel = new Character();
             InitializeComponent();
             InitializeComboBoxItems();
 
@@ -42,7 +42,7 @@ namespace CharaChipGen.GeneratorForm
         /// <summary>
         /// データモデル
         /// </summary>
-        public CharaChipDataModel CharaChipDataModel
+        public Character CharaChipDataModel
         {
             get { return dataModel; }
             set { value.CopyTo(dataModel); }

@@ -6,7 +6,7 @@ using System.Data;
 using System.Linq;
 using System.Text;
 using System.Windows.Forms;
-using CharaChipGen.Model;
+using CharaChipGen.Model.CharaChip;
 using CharaChipGen.Model.Material;
 
 namespace CharaChipGen.GeneratorForm
@@ -19,7 +19,7 @@ namespace CharaChipGen.GeneratorForm
         // 未選択を表すコンボボックスのアイテム。
         private const string ItemNoSelect = "<選択なし>";
         // このビューが表すデータのモデル。
-        private CharaChipPartsModel model;
+        private Parts model;
         // modelのデータ変更を受け取るためのハンドラ
         private PropertyChangedEventHandler handler;
         // パラメータ編集ビュー
@@ -33,7 +33,7 @@ namespace CharaChipGen.GeneratorForm
         public CharaChipGeneratorPartsView()
         {
             InitializeComponent();
-            model = new CharaChipPartsModel(PartsType.Accessory1);
+            model = new Parts(PartsType.Accessory1);
             handler = new PropertyChangedEventHandler((sender, e) =>
             {
                 ApplyModelToView();
@@ -48,7 +48,7 @@ namespace CharaChipGen.GeneratorForm
         /// <summary>
         /// 格納しているデータのモデル
         /// </summary>
-        public CharaChipPartsModel Model
+        public Parts Model
         {
             get { return model; }
             set
