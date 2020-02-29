@@ -5,7 +5,7 @@ using System.Text;
 using System.Threading.Tasks;
 using System.ComponentModel;
 
-namespace CharaChipGen.Model
+namespace CharaChipGen.Model.CharaChip
 {
     /// <summary>
     /// 部品が変更されたことを表すイベント。

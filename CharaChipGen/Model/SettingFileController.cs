@@ -4,6 +4,7 @@ using System.Linq;
 using System.Text;
 using System.Xml;
 using System.Drawing;
+using CharaChipGen.Model.CharaChip;
 
 namespace CharaChipGen.Model
 {
@@ -59,7 +60,7 @@ namespace CharaChipGen.Model
 
             for (int i = 0; i < appData.CharaChipDataCount; i++)
             {
-                CharaChipDataModel data = appData.GetCharaChipData(i);
+                Charactor data = appData.GetCharaChipData(i);
                 AddCharaChipDataNode(doc, charactersElem, i + 1, data);
             }
 
@@ -72,7 +73,7 @@ namespace CharaChipGen.Model
             doc.Save(filePath);
         }
 
-        private static void AddCharaChipDataNode(XmlDocument doc, XmlElement parent, int index, CharaChipDataModel dataModel)
+        private static void AddCharaChipDataNode(XmlDocument doc, XmlElement parent, int index, Charactor dataModel)
         {
             XmlElement charaElem = doc.CreateElement("character");
             charaElem.SetAttribute(AttrNameNumber, index.ToString());
@@ -87,7 +88,7 @@ namespace CharaChipGen.Model
             parent.AppendChild(charaElem);
         }
 
-        private static void AddCharaChipParamNode(XmlDocument doc, XmlElement parent, string paramName, CharaChipPartsModel param)
+        private static void AddCharaChipParamNode(XmlDocument doc, XmlElement parent, string paramName, Parts param)
         {
             // nodeNameでなく、param.ParameterNameでも良さそうだが、使うモデルによってはParamterNameで""が返る事があるのでやらない。
             XmlElement paramElem = doc.CreateElement(NodeNameCharacterParam);
@@ -119,7 +120,7 @@ namespace CharaChipGen.Model
         public static  void Load(string filePath)
         {
             AppData appData = AppData.Instance;
-            CharaChipDataModel[] tmpData = new CharaChipDataModel[appData.CharaChipDataCount];
+            Charactor[] tmpData = new Charactor[appData.CharaChipDataCount];
             ExportSetting tmpSetting = new ExportSetting();
 
             XmlDocument doc = new XmlDocument();
@@ -150,13 +151,13 @@ namespace CharaChipGen.Model
             // アプリケーションに設定する。
             for (int i = 0; i < appData.CharaChipDataCount; i++)
             {
-                CharaChipDataModel src = tmpData[i];
+                Charactor src = tmpData[i];
                 if (src == null)
                 {
                     // 対象なし。
                     continue;
                 }
-                CharaChipDataModel dst = appData.GetCharaChipData(i);
+                Charactor dst = appData.GetCharaChipData(i);
                 if (src == null)
                 {
                     // 対象なし。リセットする。
@@ -174,7 +175,7 @@ namespace CharaChipGen.Model
             appData.ExportSetting.FaceSize = tmpSetting.FaceSize;
         }
 
-        private static void LoadCharactersNode(XmlNode node, CharaChipDataModel[] tmpData)
+        private static void LoadCharactersNode(XmlNode node, Charactor[] tmpData)
         {
             for (int i = 0; i < node.ChildNodes.Count; i++)
             {
@@ -203,9 +204,9 @@ namespace CharaChipGen.Model
         }
 
 
-        private static CharaChipDataModel LoadCharaDataNode(XmlNode node)
+        private static Charactor LoadCharaDataNode(XmlNode node)
         {
-            CharaChipDataModel model = new CharaChipDataModel();
+            Charactor model = new Charactor();
 
             for (int i = 0; i < node.ChildNodes.Count; i++)
             {
@@ -230,7 +231,7 @@ namespace CharaChipGen.Model
         }
 
 
-        private static void LoadCharaDataParamNode(XmlNode node, CharaChipPartsModel param)
+        private static void LoadCharaDataParamNode(XmlNode node, Parts param)
         {
             foreach (XmlAttribute attr in node.Attributes)
             { // 全ての子要素に対して読み出す。

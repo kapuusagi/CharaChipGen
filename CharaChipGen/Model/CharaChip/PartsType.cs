@@ -4,7 +4,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace CharaChipGen.Model
+namespace CharaChipGen.Model.CharaChip
 {
     /// <summary>
     /// 部品タイプ

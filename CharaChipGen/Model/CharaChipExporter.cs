@@ -4,6 +4,7 @@ using System.Linq;
 using System.Text;
 using System.Drawing;
 using CGenImaging;
+using CharaChipGen.Model.CharaChip;
 
 namespace CharaChipGen.Model
 {
@@ -61,7 +62,7 @@ namespace CharaChipGen.Model
         /// <param name="model">レンダリング対象のキャラチップ</param>
         /// <param name="chipSize">キャラチップサイズ</param>
         /// <returns>レンダリングしたImageBufferが返る。</returns>
-        private static ImageBuffer RenderCharaChip(CharaChipDataModel model, Size chipSize)
+        private static ImageBuffer RenderCharaChip(Charactor model, Size chipSize)
         {
             CharaChipRenderModel renderModel = new CharaChipRenderModel();
             model.CopyTo(renderModel.CharaChipDataModel);

@@ -4,13 +4,12 @@ using System.Linq;
 using System.Text;
 using System.ComponentModel;
 
-namespace CharaChipGen.Model
+namespace CharaChipGen.Model.CharaChip
 {
     /// <summary>
-    ///  1つのキャラクタチップの1つの
-    ///  要素の生成パラメータを表すモデル
+    ///  1キャラクタの1つの部品を表すモデル
     /// </summary>
-    public class CharaChipPartsModel : INotifyPropertyChanged
+    public class Parts : INotifyPropertyChanged
     {
         // パラメータ名
         private string materialName;
@@ -31,7 +30,7 @@ namespace CharaChipGen.Model
         /// 新しいインスタンスを構築する。
         /// </summary>
         /// <param name="partsType">パーツ種類</param>
-        public CharaChipPartsModel(PartsType partsType)
+        public Parts(PartsType partsType)
         {
             PartsType = partsType;
             materialName = "";
@@ -62,7 +61,7 @@ namespace CharaChipGen.Model
         /// パラメータを指定されたモデルにコピーする
         /// </summary>
         /// <param name="param">パラメータ</param>
-        public void CopyTo(CharaChipPartsModel param)
+        public void CopyTo(Parts param)
         {
             if ((param.materialName.Equals(materialName))
                 && (param.offsetX == offsetX)

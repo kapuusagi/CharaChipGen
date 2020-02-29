@@ -5,6 +5,7 @@ using System.Text;
 using System.Drawing;
 using System.ComponentModel;
 using CGenImaging;
+using CharaChipGen.Model.CharaChip;
 
 namespace CharaChipGen.Model.Layer
 {

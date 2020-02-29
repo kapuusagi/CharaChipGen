@@ -4,12 +4,12 @@ using System.Linq;
 using System.Text;
 using System.ComponentModel;
 
-namespace CharaChipGen.Model
+namespace CharaChipGen.Model.CharaChip
 {
     /// <summary>
     /// 1名のキャラクタチップを生成するための設定モデル
     /// </summary>
-    public class CharaChipDataModel
+    public class Charactor
     {
         /// <summary>
         /// パーツが変更された場合。
@@ -19,26 +19,26 @@ namespace CharaChipGen.Model
         /// <summary>
         /// 部品
         /// </summary>
-        private Dictionary<PartsType, CharaChipPartsModel> charaChipParts;
+        private Dictionary<PartsType, Parts> charaChipParts;
 
 
         /// <summary>
         /// 新しいインスタンスを構築する。
         /// </summary>
-        public CharaChipDataModel()
+        public Charactor()
         {
-            charaChipParts = new Dictionary<PartsType, CharaChipPartsModel>();
+            charaChipParts = new Dictionary<PartsType, Parts>();
 
             PropertyChangedEventHandler handler
                 = new PropertyChangedEventHandler((sender, e) =>
                 {
-                    OnOneParameterChanged(sender as CharaChipPartsModel, e.PropertyName);
+                    OnOneParameterChanged(sender as Parts, e.PropertyName);
                 });
 
             PartsType[] partsTypes = (PartsType[])(Enum.GetValues(typeof(PartsType)));
             foreach (PartsType partsType in partsTypes)
             {
-                CharaChipPartsModel partsModel = new CharaChipPartsModel(partsType);
+                Parts partsModel = new Parts(partsType);
                 partsModel.PropertyChanged += handler;
                 charaChipParts.Add(partsType, partsModel);
             }
@@ -48,7 +48,7 @@ namespace CharaChipGen.Model
         /// modelで指定されたモデルに設定値をコピーする。
         /// </summary>
         /// <param name="model">モデル</param>
-        public void CopyTo(CharaChipDataModel model)
+        public void CopyTo(Charactor model)
         {
             foreach (var partsEntry in charaChipParts)
             {
@@ -73,53 +73,53 @@ namespace CharaChipGen.Model
         /// <summary>
         /// 頭の設定
         /// </summary>
-        public CharaChipPartsModel Head { get => charaChipParts[PartsType.Head]; }
+        public Parts Head { get => charaChipParts[PartsType.Head]; }
         /// <summary>
         /// 目の設定
         /// </summary>
-        public CharaChipPartsModel Eye { get => charaChipParts[PartsType.Eye]; }
+        public Parts Eye { get => charaChipParts[PartsType.Eye]; }
 
         /// <summary>
         /// 髪型の設定
         /// </summary>
-        public CharaChipPartsModel Hair { get => charaChipParts[PartsType.HairStyle]; }
+        public Parts Hair { get => charaChipParts[PartsType.HairStyle]; }
 
         /// <summary>
         /// 体の設定
         /// </summary>
-        public CharaChipPartsModel Body { get => charaChipParts[PartsType.Body]; }
+        public Parts Body { get => charaChipParts[PartsType.Body]; }
 
         /// <summary>
         /// アクセサリ1の設定
         /// </summary>
-        public CharaChipPartsModel Accessory1 { get => charaChipParts[PartsType.Accessory1]; }
+        public Parts Accessory1 { get => charaChipParts[PartsType.Accessory1]; }
 
         /// <summary>
         /// アクセサリ2の設定
         /// </summary>
-        public CharaChipPartsModel Accessory2 { get => charaChipParts[PartsType.Accessory2]; }
+        public Parts Accessory2 { get => charaChipParts[PartsType.Accessory2]; }
 
         /// <summary>
         /// アクセサリ3の設定
         /// </summary>
-        public CharaChipPartsModel Accessory3 { get => charaChipParts[PartsType.Accessory3]; }
+        public Parts Accessory3 { get => charaChipParts[PartsType.Accessory3]; }
 
         /// <summary>
         /// ヘッドアクセサリ1の設定
         /// </summary>
-        public CharaChipPartsModel HeadAccessory1 { get => charaChipParts[PartsType.HeadAccessory1]; }
+        public Parts HeadAccessory1 { get => charaChipParts[PartsType.HeadAccessory1]; }
 
         /// <summary>
         /// ヘッドアクセサリ2の設定
         /// </summary>
-        public CharaChipPartsModel HeadAccessory2 { get => charaChipParts[PartsType.HeadAccessory2]; }
+        public Parts HeadAccessory2 { get => charaChipParts[PartsType.HeadAccessory2]; }
 
         /// <summary>
         /// 部品を得る。
         /// </summary>
         /// <param name="partsType">部品種類</param>
         /// <returns>該当するCharaChipPartsModelが返る。</returns>
-        public CharaChipPartsModel GetParts(PartsType partsType)
+        public Parts GetParts(PartsType partsType)
             => charaChipParts[partsType];
 
         /// <summary>
@@ -127,7 +127,7 @@ namespace CharaChipGen.Model
         /// </summary>
         /// <param name="model">送信元モデル</param>
         /// <param name="propertyName">プロパティ名</param>
-        private void OnOneParameterChanged(CharaChipPartsModel model, string propertyName)
+        private void OnOneParameterChanged(Parts model, string propertyName)
         {
             if (charaChipParts.ContainsValue(model))
             {
