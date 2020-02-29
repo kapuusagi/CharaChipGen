@@ -61,9 +61,9 @@ namespace CharaChipGen.Model
             // キャラクター設定ノード
             XmlElement charactersElem = doc.CreateElement(GeneratorSettingFileDefs.NodeNameCharacters);
             rootNode.AppendChild(charactersElem);
-            for (int i = 0; i < setting.GetCharactorCount(); i++)
+            for (int i = 0; i < setting.GetCharacterCount(); i++)
             {
-                Character data = setting.GetCharactor(i);
+                Character data = setting.GetCharacter(i);
                 AddCharacter(doc, charactersElem, i + 1, data);
             }
 
@@ -91,7 +91,7 @@ namespace CharaChipGen.Model
             foreach (PartsType partsType in partsTypes)
             {
                 string partsTypeName = AppData.Instance.GetMaterialList(partsType).Name;
-                AddCharactorPartsNode(doc, charaElem, partsTypeName, character.GetParts(partsType));
+                AddCharacterPartsNode(doc, charaElem, partsTypeName, character.GetParts(partsType));
             }
 
             parent.AppendChild(charaElem);
@@ -104,7 +104,7 @@ namespace CharaChipGen.Model
         /// <param name="parent">親要素</param>
         /// <param name="partsName">部品名(素材名ではない)</param>
         /// <param name="parts">部品</param>
-        private static void AddCharactorPartsNode(XmlDocument doc, XmlElement parent, string partsName, Parts parts)
+        private static void AddCharacterPartsNode(XmlDocument doc, XmlElement parent, string partsName, Parts parts)
         {
             // nodeNameでなく、param.ParameterNameでも良さそうだが、使うモデルによってはParamterNameで""が返る事があるのでやらない。
             XmlElement paramElem = doc.CreateElement(GeneratorSettingFileDefs.NodeNameCharacterParts);

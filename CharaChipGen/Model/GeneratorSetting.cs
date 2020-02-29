@@ -13,17 +13,17 @@ namespace CharaChipGen.Model
     public class GeneratorSetting
     {
         // キャラチップデータモデル
-        private Character[] charactors;
+        private Character[] characters;
 
         /// <summary>
         /// 新しいインスタンスを構築する。
         /// </summary>
         public GeneratorSetting()
         {
-            charactors = new Character[9];
-            for (int i = 0; i < charactors.Length; i++)
+            characters = new Character[9];
+            for (int i = 0; i < characters.Length; i++)
             {
-                charactors[i] = new Character();
+                characters[i] = new Character();
             }
             ExportSetting = new ExportSetting();
         }
@@ -31,23 +31,23 @@ namespace CharaChipGen.Model
         /// <summary>
         /// キャラクタを得る。
         /// </summary>
-        /// <param name="index">キャラクター番号(0≦index＜GetCharactorCount())</param>
-        /// <returns>Charactorオブジェクトが返る</returns>
-        public Character GetCharactor(int index)
+        /// <param name="index">キャラクター番号(0≦index＜GetCharacterCount())</param>
+        /// <returns>Characterオブジェクトが返る</returns>
+        public Character GetCharacter(int index)
         {
-            if ((index < 0) || (index >= charactors.Length))
+            if ((index < 0) || (index >= characters.Length))
             {
                 throw new IndexOutOfRangeException("index is out of range. [" + index + "]");
             }
 
-            return charactors[index];
+            return characters[index];
         }
 
         /// <summary>
         /// キャラクタの数を得る。
         /// </summary>
         /// <returns>キャラクタの数</returns>
-        public int GetCharactorCount() => charactors.Length;
+        public int GetCharacterCount() => characters.Length;
 
         /// <summary>
         /// エクスポート設定
@@ -56,10 +56,10 @@ namespace CharaChipGen.Model
 
         public void CopyTo(GeneratorSetting setting)
         {
-            for (int i = 0; i < setting.GetCharactorCount(); i++)
+            for (int i = 0; i < setting.GetCharacterCount(); i++)
             {
-                Character src = GetCharactor(i);
-                Character dst = setting.GetCharactor(i);
+                Character src = GetCharacter(i);
+                Character dst = setting.GetCharacter(i);
                 src.CopyTo(dst);
             }
 

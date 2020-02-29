@@ -40,7 +40,7 @@ namespace CharaChipGen.Model
                 for (int charaX = 0; charaX < 4; charaX++)
                 {
                     // キャラクターをレンダリングする。
-                    ImageBuffer charaChipImage = RenderCharaChip(setting.GetCharactor(charaY * 4 + charaX), charaChipSize);
+                    ImageBuffer charaChipImage = RenderCharaChip(setting.GetCharacter(charaY * 4 + charaX), charaChipSize);
                     // レンダリングした画像をエクスポートバッファにコピーする。
                     exportBuffer.WriteImage(charaChipImage, charaX * charaPlaneWidth, charaY * charaPlaneHeight);
                 }

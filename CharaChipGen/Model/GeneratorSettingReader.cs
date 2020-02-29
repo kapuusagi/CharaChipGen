@@ -96,11 +96,11 @@ namespace CharaChipGen.Model
                         continue; // number 属性がない。
                     }
                     int index = Int32.Parse(attr.Value) - 1;
-                    if ((index < 0) || (index >= setting.GetCharactorCount()))
+                    if ((index < 0) || (index >= setting.GetCharacterCount()))
                     {
                         continue;
                     }
-                    LoadCharacterNode(node.ChildNodes[i], setting.GetCharactor(index));
+                    LoadCharacterNode(node.ChildNodes[i], setting.GetCharacter(index));
                 }
                 catch (Exception)
                 { // 解析の例外は無視する。

@@ -120,7 +120,7 @@ namespace CharaChipGen.MainForm
 
             // モデルを設定する。
             AppData appData = AppData.Instance;
-            appData.GeneratorSetting.GetCharactor(index).CopyTo(form.CharaChipDataModel);
+            appData.GeneratorSetting.GetCharacter(index).CopyTo(form.CharaChipDataModel);
 
             DialogResult result = form.ShowDialog(this);
             if (result != DialogResult.OK)
@@ -129,9 +129,9 @@ namespace CharaChipGen.MainForm
             }
 
             // 反映処理する。
-            form.CharaChipDataModel.CopyTo(appData.GeneratorSetting.GetCharactor(index));
+            form.CharaChipDataModel.CopyTo(appData.GeneratorSetting.GetCharacter(index));
 
-            UpdateEntryView(view, appData.GeneratorSetting.GetCharactor(index));
+            UpdateEntryView(view, appData.GeneratorSetting.GetCharacter(index));
         }
 
         /// <summary>
@@ -141,14 +141,14 @@ namespace CharaChipGen.MainForm
         {
             GeneratorSetting setting = AppData.Instance.GeneratorSetting;
             
-            UpdateEntryView(characterEntryControl1, setting.GetCharactor(0));
-            UpdateEntryView(characterEntryControl2, setting.GetCharactor(1));
-            UpdateEntryView(characterEntryControl3, setting.GetCharactor(2));
-            UpdateEntryView(characterEntryControl4, setting.GetCharactor(3));
-            UpdateEntryView(characterEntryControl5, setting.GetCharactor(4));
-            UpdateEntryView(characterEntryControl6, setting.GetCharactor(5));
-            UpdateEntryView(characterEntryControl7, setting.GetCharactor(6));
-            UpdateEntryView(characterEntryControl8, setting.GetCharactor(7));
+            UpdateEntryView(characterEntryControl1, setting.GetCharacter(0));
+            UpdateEntryView(characterEntryControl2, setting.GetCharacter(1));
+            UpdateEntryView(characterEntryControl3, setting.GetCharacter(2));
+            UpdateEntryView(characterEntryControl4, setting.GetCharacter(3));
+            UpdateEntryView(characterEntryControl5, setting.GetCharacter(4));
+            UpdateEntryView(characterEntryControl6, setting.GetCharacter(5));
+            UpdateEntryView(characterEntryControl7, setting.GetCharacter(6));
+            UpdateEntryView(characterEntryControl8, setting.GetCharacter(7));
         }
 
         /// <summary>
@@ -244,9 +244,9 @@ namespace CharaChipGen.MainForm
             // データをリセットする。
             editFilePath = "";
             GeneratorSetting setting = AppData.Instance.GeneratorSetting;
-            for (int i = 0; i < setting.GetCharactorCount(); i++)
+            for (int i = 0; i < setting.GetCharacterCount(); i++)
             {
-                setting.GetCharactor(i).Reset();
+                setting.GetCharacter(i).Reset();
             }
 
             // モデルに合わせてUIの表示更新
