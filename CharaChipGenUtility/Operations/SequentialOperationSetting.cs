@@ -1,20 +1,17 @@
 ﻿using System;
 using System.Collections.Generic;
-using System.Linq;
 using System.Text;
-using System.Threading.Tasks;
+using System.ComponentModel;
 
 namespace CharaChipGenUtility.Operations
 {
     /// <summary>
     /// シーケンシャルオペレーションの設定
     /// </summary>
-    public class SequentialOperationSetting : IOperationSetting
+    public class SequentialOperationSetting : IOperationSetting, INotifyPropertyChanged
     {
-        // コントロール
-        private SequentialOperationSettingControl control;
         // イメージオペレーションリスト
-        private List<IImageOperation> operations;
+        private BindingList<IImageOperation> operations;
         // 出力ディレクトリ
         private string outputDirectory;
 
@@ -23,23 +20,39 @@ namespace CharaChipGenUtility.Operations
         /// </summary>
         public SequentialOperationSetting()
         {
-            control = null;
-            operations = new List<IImageOperation>();
+            operations = new BindingList<IImageOperation>();
+            operations.ListChanged += (sender, e) => { NotifyPropertyChanged(nameof(Operations)); };
+        }
+
+        /// <summary>
+        /// プロパティが変更された。
+        /// </summary>
+        public event PropertyChangedEventHandler PropertyChanged;
+
+        /// <summary>
+        /// プロパティが変更されたときに通知する。
+        /// </summary>
+        /// <param name="propertyName">プロパティ名</param>
+        private void NotifyPropertyChanged(string propertyName)
+        {
+            PropertyChanged?.Invoke(this, new PropertyChangedEventArgs(propertyName));
         }
 
         /// <summary>
         /// イメージオペレーションリスト
         /// </summary>
-        public List<IImageOperation> Operations {
+        public BindingList<IImageOperation> Operations {
             get {
                 return operations;
             }
             set {
-                operations = value;
-                if (control == null)
+                if (operations.Equals(value))
                 {
-                    control.Operations = operations;
+                    return;
                 }
+                operations = value;
+                NotifyPropertyChanged(nameof(Operations));
+
             }
         }
 
@@ -54,10 +67,7 @@ namespace CharaChipGenUtility.Operations
                     return;
                 }
                 outputDirectory = value;
-                if (control != null)
-                {
-                    control.OutputDirectory = OutputDirectory;
-                }
+                NotifyPropertyChanged(nameof(OutputDirectory));
             }
         }
 
@@ -68,36 +78,9 @@ namespace CharaChipGenUtility.Operations
         /// <returns>ユーザーインタフェース</returns>
         public System.Windows.Forms.Control GetControl()
         {
-            if (control == null)
-            {
-                control = new SequentialOperationSettingControl();
-                control.Operations = Operations;
-                control.OutputDirectory = OutputDirectory;
-
-                control.PropertyChanged += OnControlPropertyChanged;
-            }
-            return control;
+            return new SequentialOperationSettingControl() { Model = this };
         }
 
-        /// <summary>
-        /// コントロールのプロパティが変更された時に通知を受け取る。
-        /// </summary>
-        /// <param name="sender">送信元オブジェクト</param>
-        /// <param name="evt">イベントオブジェクト</param>
-        private void OnControlPropertyChanged(object sender,
-            System.ComponentModel.PropertyChangedEventArgs evt)
-        {
-            switch (evt.PropertyName)
-            {
-                case nameof(control.OutputDirectory):
-                    OutputDirectory = control.OutputDirectory;
-                    break;
-                case nameof(control.Operations):
-                    Operations = control.Operations;
-                    break;
-            }
-            
-        }
         /// <summary>
         /// プロパティの値を文字列表現にしたものを得る。
         /// </summary>
@@ -155,9 +138,9 @@ namespace CharaChipGenUtility.Operations
         /// </summary>
         /// <param name="value">値</param>
         /// <returns>IImageOperationリスト</returns>
-        private List<IImageOperation> GetOperationsByString(string value)
+        private BindingList<IImageOperation> GetOperationsByString(string value)
         {
-            List<IImageOperation> ops = new List<IImageOperation>();
+            BindingList<IImageOperation> ops = new BindingList<IImageOperation>();
             string[] classNames = value.Split(',');
             System.Reflection.Assembly asm = System.Reflection.Assembly.GetExecutingAssembly();
             foreach (string className in classNames)

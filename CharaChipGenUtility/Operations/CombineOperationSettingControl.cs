@@ -1,11 +1,5 @@
 ﻿using System;
-using System.Collections.Generic;
 using System.ComponentModel;
-using System.Drawing;
-using System.Data;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 using System.Windows.Forms;
 
 namespace CharaChipGenUtility.Operations
@@ -16,90 +10,60 @@ namespace CharaChipGenUtility.Operations
     public partial class CombineOperationSettingControl : UserControl
     {
         /// <summary>
+        /// データモデル
+        /// </summary>
+        private CombineOperationSetting model;
+        /// <summary>
         /// 新しいインスタンスを構築する。
         /// </summary>
         public CombineOperationSettingControl()
         {
+            model = null;
             InitializeComponent();
         }
 
         /// <summary>
-        /// ユーザーによってプロパティが変更された。
+        /// データモデル
         /// </summary>
-        public event PropertyChangedEventHandler PropertyChanged;
+        public CombineOperationSetting Model {
+            get => model;
+            set {
+                if ((model == value) || ((model != null) && (model.Equals(value))))
+                {
+                    return;
+                }
+                if (model != null)
+                {
+                    model.PropertyChanged -= OnModelPropertyChanged;
+                }
+                model = value;
+                if (model != null)
+                {
+                    model.PropertyChanged += OnModelPropertyChanged;
+                }
+                ModelToUI();
+            }
+        }
 
         /// <summary>
-        /// プロパティが変更された時に通知する。
+        /// プロパティが変更されたときに通知を受け取る。
         /// </summary>
-        /// <param name="propertyName">プロパティ名</param>
-        private void NotifyPropertyChanged(string propertyName)
+        /// <param name="sender">送信元オブジェクト</param>
+        /// <param name="e">イベントオブジェクト</param>
+        private void OnModelPropertyChanged(object sender, PropertyChangedEventArgs e)
         {
-            PropertyChanged?.Invoke(this, new PropertyChangedEventArgs(propertyName));
-        }
- 
-
-        /// <summary>
-        /// 水平カウント
-        /// </summary>
-        public int HorizontalCount {
-            get {
-                return (int)(numericUpDownH.Value);
-            }
-            set {
-                if ((int)(numericUpDownH.Value) == value)
-                {
-                    // 変更なし。
-                    return;
-                }
-                if (InvokeRequired)
-                {
-                    Invoke((MethodInvoker)(() => { HorizontalCount = value; }));
-                }
-                else
-                {
-                    numericUpDownH.Value = value;
-                    NotifyPropertyChanged(nameof(HorizontalCount));
-                }
-            }
+            ModelToUI();
         }
 
         /// <summary>
-        /// 垂直カウント
+        /// モデルの設定をUIに反映させる。
         /// </summary>
-        public int VerticalCount {
-            get {
-                return (int)(numericUpDownV.Value);
-            }
-            set {
-                if ((int)(numericUpDownV.Value) == value)
-                {
-                    // 変更なし。
-                    return;
-                }
-                if (InvokeRequired)
-                {
-                    Invoke((MethodInvoker)(() => { VerticalCount = value; }));
-                }
-                else
-                {
-                    numericUpDownV.Value = value;
-                    NotifyPropertyChanged(nameof(VerticalCount));
-                }
-            }
+        private void ModelToUI()
+        {
+            controlSelectDirectory.Directory = Model?.OutputDirectory ?? "";
+            numericUpDownH.Value = Model?.HorizontalCount ?? 1;
+            numericUpDownV.Value = Model?.VerticalCount ?? 1;
         }
-
-        /// <summary>
-        /// 出力ディレクトリ選択
-        /// </summary>
-        public string OutputDirectory {
-            get {
-                return controlSelectDirectory.Directory;
-            }
-            set {
-                controlSelectDirectory.Directory = value;
-            }
-        }
-
 
         /// <summary>
         /// 水平カウント欄の値が変更された時に通知を受け取る。
@@ -108,7 +72,10 @@ namespace CharaChipGenUtility.Operations
         /// <param name="evt">イベントオブジェクト</param>
         private void OnNumericUpDownHValueChanged(object sender, EventArgs evt)
         {
-            NotifyPropertyChanged(nameof(HorizontalCount));
+            if (Model != null)
+            {
+                Model.HorizontalCount = (int)(numericUpDownH.Value);
+            }
         }
 
         /// <summary>
@@ -118,7 +85,10 @@ namespace CharaChipGenUtility.Operations
         /// <param name="evt">イベントオブジェクト</param>
         private void OnNumericUpDownVValueChanged(object sender, EventArgs evt)
         {
-            NotifyPropertyChanged(nameof(VerticalCount));
+            if (Model != null)
+            {
+                Model.VerticalCount = (int)(numericUpDownV.Value);
+            }
         }
 
         /// <summary>
@@ -134,7 +104,10 @@ namespace CharaChipGenUtility.Operations
         {
             if (evt.PropertyName.Equals(nameof(SelectDirectoryControl.Directory)))
             {
-                NotifyPropertyChanged(nameof(OutputDirectory));
+                if (Model != null)
+                {
+                    Model.OutputDirectory = controlSelectDirectory.Directory;
+                }
             }
         }
     }

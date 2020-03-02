@@ -9,29 +9,29 @@ using System.Linq;
 namespace CharaChipGen.Model
 {
     /// <summary>
-    /// CharaChipDataModelと、各レイヤーを保持するクラス。
+    /// キャラクターのパーツ設定と、描画するための各レイヤーを保持するクラス。
     /// レイヤーの重ね合わせ処理はこのモデルのデータを使用して描画する。
     /// </summary>
     /// <remarks>
-    /// CharaChipDataModelでの設定変更を、関連するRenderLayerModelに設定する役割を持つ。
+    /// Character での設定変更を、関連するRenderLayerに設定する役割を持つ。
     /// </remarks>
-    public class CharaChipRenderModel : IEnumerable<RenderLayerModel>
+    public class CharaChipRenderData : IEnumerable<RenderLayer>
     {
         // レイヤー
         private RenderLayerGroup[] layerGroups;
         // レンダリング対象のキャラクターチップデータモデル
-        private Character dataModel;
+        private Character character;
         // ハンドラ
         private PartsChangeEventHandler partsChangeHandler;
         // ハンドラ
-        public delegate void ImageChanged(Object sender);
+        public delegate void ImageChanged(Object sender, EventArgs e);
         // イメージが変更されたときのイベント
         public event ImageChanged OnImageChanged;
 
         /// <summary>
         /// レンダリング用データモデル
         /// </summary>
-        public CharaChipRenderModel()
+        public CharaChipRenderData()
         {
             LayerType[] layerTypes = (LayerType[])(Enum.GetValues(typeof(LayerType)));
             layerGroups = new RenderLayerGroup[layerTypes.Length];
@@ -40,31 +40,31 @@ namespace CharaChipGen.Model
                 layerGroups[i] = new RenderLayerGroup(layerTypes[i]);
             }
 
-            dataModel = new Character();
+            character = new Character();
 
             partsChangeHandler = new PartsChangeEventHandler((sender, e) =>
             {
                 OnPartsChanged((Character)(sender), e.PartsType, e.PropertyName);
             });
 
-            dataModel.OnCharaChipParamChanged += partsChangeHandler;
+            character.OnCharaChipParamChanged += partsChangeHandler;
         }
 
         /// <summary>
         /// データモデル
         /// </summary>
-        public Character CharaChipDataModel {
-            get { return dataModel; }
+        public Character Character {
+            get { return character; }
             set {
-                if ((value == null) || (dataModel == value))
+                if ((value == null) || (character == value))
                 {
                     return;
                 }
-                dataModel.OnCharaChipParamChanged -= partsChangeHandler;
-                dataModel = value;
-                dataModel.OnCharaChipParamChanged += partsChangeHandler;
+                character.OnCharaChipParamChanged -= partsChangeHandler;
+                character = value;
+                character.OnCharaChipParamChanged += partsChangeHandler;
 
-                OnCharaChipModelChanged();
+                OnCharacterChanged();
             }
         }
 
@@ -72,13 +72,13 @@ namespace CharaChipGen.Model
         /// キャラチップモデル自体が変更されたとき、
         /// モデルから設定を読み出してレイヤーを構築する処理を行う。
         /// </summary>
-        private void OnCharaChipModelChanged()
+        private void OnCharacterChanged()
         {
             // 全部品の変更適用をする。
             PartsType[] partsTypes = (PartsType[])(Enum.GetValues(typeof(PartsType)));
             foreach (PartsType partsType in partsTypes)
             {
-                OnMaterialChanged(dataModel, partsType);
+                OnMaterialChanged(character, partsType);
             }
         }
 
@@ -94,12 +94,12 @@ namespace CharaChipGen.Model
         /// </summary>
         /// <param name="index">インデックス番号</param>
         /// <returns>レイヤーモデル。インデックスが範囲外の場合にはnull</returns>
-        public RenderLayerModel GetLayer(int index)
+        public RenderLayer GetLayer(int index)
         {
             int i = 0;
             foreach (RenderLayerGroup group in layerGroups)
             {
-                foreach (RenderLayerModel layer in group)
+                foreach (RenderLayer layer in group)
                 {
                     if (i == index)
                     {
@@ -121,7 +121,7 @@ namespace CharaChipGen.Model
             get {
                 int width = 0;
                 int height = 0;
-                foreach (RenderLayerModel layer in this)
+                foreach (RenderLayer layer in this)
                 {
                     if (layer.PreferredWidth > width)
                     {
@@ -148,7 +148,7 @@ namespace CharaChipGen.Model
         }
 
         /// <summary>
-        /// 推奨される高さ
+        /// 推奨される高さ。
         /// 
         /// 1キャラクタを表示するために必要な高さが返る。
         /// </summary>
@@ -178,7 +178,7 @@ namespace CharaChipGen.Model
                 OnPartsAttributeChanged(model, partsType);
             }
 
-            OnImageChanged?.Invoke(this);
+            OnImageChanged?.Invoke(this, new EventArgs());
         }
 
         /// <summary>
@@ -208,7 +208,7 @@ namespace CharaChipGen.Model
                 MaterialLayerInfo info = m.Layers[i];
                 RenderLayerGroup group = layerGroups.First((entry) => entry.LayerType == info.LayerType);
                 PartsType colorPartsRefs = info.ColorPartsRefs ?? partsType;
-                RenderLayerModel layer = new RenderLayerModel(info.LayerType, partsType, colorPartsRefs);
+                RenderLayer layer = new RenderLayer(info.LayerType, partsType, colorPartsRefs);
                 layer.Image = m.LoadLayerImage(i);
                 // レイヤーに設定値適用
                 ApplyLayerOffsets(layer, model);
@@ -228,7 +228,7 @@ namespace CharaChipGen.Model
             Parts parts = model.GetParts(partsType);
             foreach (RenderLayerGroup layerGroup in layerGroups)
             {
-                foreach (RenderLayerModel layer in layerGroup)
+                foreach (RenderLayer layer in layerGroup)
                 {
                     if (layer.PartsType == partsType)
                     {
@@ -247,7 +247,7 @@ namespace CharaChipGen.Model
         /// </summary>
         /// <param name="layer">レイヤー</param>
         /// <param name="model">キャラチップモデル</param>
-        private void ApplyLayerColor(RenderLayerModel layer, Character model)
+        private void ApplyLayerColor(RenderLayer layer, Character model)
         {
             Parts parts = model.GetParts(layer.ColorPartsRefs);
             ApplyLayerColor(layer, parts);
@@ -258,7 +258,7 @@ namespace CharaChipGen.Model
         /// </summary>
         /// <param name="layer">レイヤー</param>
         /// <param name="parts">部品</param>
-        private void ApplyLayerColor(RenderLayerModel layer, Parts parts)
+        private void ApplyLayerColor(RenderLayer layer, Parts parts)
         {
             layer.Hue = parts.Hue;
             layer.Saturation = parts.Saturation;
@@ -271,7 +271,7 @@ namespace CharaChipGen.Model
         /// </summary>
         /// <param name="layer">レイヤー</param>
         /// <param name="model">キャラチップモデル</param>
-        private void ApplyLayerOffsets(RenderLayerModel layer, Character model)
+        private void ApplyLayerOffsets(RenderLayer layer, Character model)
         {
             Parts parts = model.GetParts(layer.PartsType);
             ApplyLayerOffsets(layer, parts);
@@ -282,7 +282,7 @@ namespace CharaChipGen.Model
         /// </summary>
         /// <param name="layer">レイヤー</param>
         /// <param name="parts">部品</param>
-        private void ApplyLayerOffsets(RenderLayerModel layer, Parts parts)
+        private void ApplyLayerOffsets(RenderLayer layer, Parts parts)
         {
             layer.OffsetX = parts.OffsetX;
             layer.OffsetY = parts.OffsetY;
@@ -301,11 +301,11 @@ namespace CharaChipGen.Model
         /// レイヤーにアクセスするための列挙子を取得する。
         /// </summary>
         /// <returns>列挙子が返る。</returns>
-        public IEnumerator<RenderLayerModel> GetEnumerator()
+        public IEnumerator<RenderLayer> GetEnumerator()
         {
             foreach (RenderLayerGroup group in layerGroups)
             {
-                foreach (RenderLayerModel layer in group)
+                foreach (RenderLayer layer in group)
                 {
                     yield return layer;
                 }

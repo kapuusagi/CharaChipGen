@@ -59,6 +59,12 @@
     <Compile Include="FormSetting.Designer.cs">
       <DependentUpon>FormSetting.cs</DependentUpon>
     </Compile>
+    <Compile Include="Operations\ImageOperationSettingControl.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="Operations\ImageOperationSettingControl.Designer.cs">
+      <DependentUpon>ImageOperationSettingControl.cs</DependentUpon>
+    </Compile>
     <Compile Include="Operations\ClipOperation.cs" />
     <Compile Include="Operations\ClipOperationSetting.cs" />
     <Compile Include="Operations\ClipOperationSettingControl.cs">
@@ -123,6 +129,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="FormSetting.resx">
       <DependentUpon>FormSetting.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Operations\ImageOperationSettingControl.resx">
+      <DependentUpon>ImageOperationSettingControl.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Operations\ClipOperationSettingControl.resx">
       <DependentUpon>ClipOperationSettingControl.cs</DependentUpon>

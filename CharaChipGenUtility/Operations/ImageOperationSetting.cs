@@ -1,24 +1,36 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
+﻿using System.ComponentModel;
 using System.Windows.Forms;
-using System.ComponentModel;
 
 namespace CharaChipGenUtility.Operations
 {
     /// <summary>
     /// 単純な画像操作の設定
     /// </summary>
-    public class ImageOperationSetting : IOperationSetting
+    public class ImageOperationSetting : IOperationSetting, INotifyPropertyChanged
     {
-        // 設定UI
-        private SelectDirectoryControl settingControl = null;
         // 出力ディレクトリ
         private string outputDirectory = "";
-        // 設定パネル
-        private Panel control = null;
+
+        /// <summary>
+        /// 新しいインスタンスを構築する。
+        /// </summary>
+        public ImageOperationSetting()
+        {
+        }
+
+        /// <summary>
+        /// プロパティが変更された。
+        /// </summary>
+        public event PropertyChangedEventHandler PropertyChanged;
+
+        /// <summary>
+        /// プロパティが変更されたときに通知する。
+        /// </summary>
+        /// <param name="propertyName">プロパティ名</param>
+        private void NotifyPropertyChanged(string propertyName)
+        {
+            PropertyChanged?.Invoke(this, new PropertyChangedEventArgs(propertyName));
+        }
 
 
         /// <summary>
@@ -27,34 +39,7 @@ namespace CharaChipGenUtility.Operations
         /// <returns>ユーザーインタフェース</returns>
         public Control GetControl()
         {
-            if (control == null)
-            {
-                settingControl =  new SelectDirectoryControl();
-                settingControl.SelectName = "出力フォルダ";
-                settingControl.Directory = outputDirectory;
-                settingControl.PropertyChanged += OnControlPropertyChanged;
-                settingControl.Dock = DockStyle.Top;
-                control = new Panel();
-                control.Controls.Add(settingControl);
-            }
-            return control;
-        }
-
-
-        /// <summary>
-        /// コントロールのプロパティが変更された時に通知を受け取る。
-        /// </summary>
-        /// <param name="sender">送信元オブジェクト</param>
-        /// <param name="evt">イベントオブジェクト</param>
-        private void OnControlPropertyChanged(object sender, PropertyChangedEventArgs evt)
-        {
-            switch (evt.PropertyName)
-            {
-                case nameof(settingControl.Directory):
-                    OutputDirectory = settingControl.Directory;
-                    break;
-            }
-
+            return new ImageOperationSettingControl() { Model = this };
         }
 
         /// <summary>
@@ -68,10 +53,7 @@ namespace CharaChipGenUtility.Operations
                     return;
                 }
                 outputDirectory = value;
-                if (control != null)
-                {
-                    settingControl.Directory = outputDirectory;
-                }
+                NotifyPropertyChanged(nameof(OutputDirectory));
             }
             get {
                 return outputDirectory;

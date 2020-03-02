@@ -15,10 +15,7 @@ namespace CharaChipGenUtility.Operations
     /// </summary>
     public partial class SequentialOperationSettingControl : UserControl
     {
-        /// <summary>
-        /// プロパティが変更された時に通知を受け取る。
-        /// </summary>
-        public event PropertyChangedEventHandler PropertyChanged;
+        private SequentialOperationSetting model;
 
 
         /// <summary>
@@ -31,16 +28,66 @@ namespace CharaChipGenUtility.Operations
         }
 
         /// <summary>
-        /// 出力ディレクトリを選択する。
+        /// データモデル
         /// </summary>
-        public string OutputDirectory {
+        public SequentialOperationSetting Model {
+            get => model;
             set {
-                selectDirectoryControl.Directory = value;
-            }
-            get {
-                return selectDirectoryControl.Directory;
+                if ((model == value) || ((model != null) && model.Equals(value)))
+                {
+                    return;
+                }
+
+                if (model != null)
+                {
+                    model.PropertyChanged -= OnModelPropertyChanged;
+                }
+                model = value;
+                if (model != null)
+                {
+                    model.PropertyChanged += OnModelPropertyChanged;
+                }
+                ModelToUI();
             }
         }
+
+        /// <summary>
+        /// モデルのプロパティが変更されたときに通知を受け取る。
+        /// </summary>
+        /// <param name="sender">送信元オブジェクト</param>
+        /// <param name="e">イベントオブジェクト</param>
+        private void OnModelPropertyChanged(object sender, PropertyChangedEventArgs e)
+        {
+            switch (e.PropertyName)
+            {
+                case nameof(SequentialOperationSetting.OutputDirectory):
+                    selectDirectoryControl.Directory = Model?.OutputDirectory ?? "";
+                    break;
+                case nameof(SequentialOperationSetting.Operations):
+                    listBoxOperations.Items.Clear();
+                    if (Model != null)
+                    {
+                        listBoxOperations.Items.AddRange(Model.Operations.ToArray());
+                    }
+                    break;
+            }
+        }
+
+        /// <summary>
+        /// モデルの設定をUIに反映させる。
+        /// </summary>
+        private void ModelToUI()
+        {
+            selectDirectoryControl.Directory = Model?.OutputDirectory ?? "";
+            listBoxOperations.Items.Clear();
+            if (Model != null)
+            {
+                listBoxOperations.Items.AddRange(Model.Operations.ToArray());
+            }
+
+        }
+
+
 
         /// <summary>
         /// 処理
@@ -149,7 +196,10 @@ namespace CharaChipGenUtility.Operations
             IImageOperation operation
                 = (IImageOperation)(System.Activator.CreateInstance(item.GetType()));
             listBoxOperations.Items.Add(operation);
-            NotifyPropertyChanged(nameof(Operations));
+            if (Model != null)
+            {
+                Model.Operations.Add(operation);
+            }
         }
 
         /// <summary>
@@ -161,6 +211,10 @@ namespace CharaChipGenUtility.Operations
         {
             int selectedIndex = listBoxOperations.SelectedIndex;
             listBoxOperations.Items.RemoveAt(selectedIndex);
+            if (Model != null)
+            {
+                Model.Operations.RemoveAt(selectedIndex);
+            }
             if (selectedIndex < listBoxOperations.Items.Count)
             {
                 listBoxOperations.SelectedIndex = selectedIndex;
@@ -169,8 +223,6 @@ namespace CharaChipGenUtility.Operations
             {
                 listBoxOperations.SelectedIndex = listBoxOperations.Items.Count - 1;
             }
-
-            NotifyPropertyChanged(nameof(Operations));
         }
 
         /// <summary>
@@ -190,8 +242,14 @@ namespace CharaChipGenUtility.Operations
             object item = listBoxOperations.Items[selectedIndex];
             listBoxOperations.Items.RemoveAt(selectedIndex);
             listBoxOperations.Items.Insert(selectedIndex - 1, item);
+            if (Model != null)
+            {
+                Model.Operations.RemoveAt(selectedIndex);
+                Model.Operations.Insert(selectedIndex - 1, (IImageOperation)(item));
+            }
             listBoxOperations.SelectedIndex = selectedIndex - 1;
-            NotifyPropertyChanged(nameof(Operations));
+
+
         }
 
         /// <summary>
@@ -211,8 +269,13 @@ namespace CharaChipGenUtility.Operations
             object item = listBoxOperations.Items[selectedIndex];
             listBoxOperations.Items.RemoveAt(selectedIndex);
             listBoxOperations.Items.Insert(selectedIndex + 1, item);
+
+            if (Model != null)
+            {
+                Model.Operations.RemoveAt(selectedIndex);
+                Model.Operations.Insert(selectedIndex, (IImageOperation)(item));
+            }
             listBoxOperations.SelectedIndex = selectedIndex + 1;
-            NotifyPropertyChanged(nameof(Operations));
         }
 
         /// <summary>
@@ -225,18 +288,14 @@ namespace CharaChipGenUtility.Operations
             switch (evt.PropertyName)
             {
                 case nameof(selectDirectoryControl.Directory):
-                    NotifyPropertyChanged(nameof(OutputDirectory));
+                    if (Model != null)
+                    {
+                        Model.OutputDirectory = selectDirectoryControl.Directory;
+                    }
                     break;
             }
         }
 
-        /// <summary>
-        /// プロパティの変更があったことを通知する。
-        /// </summary>
-        /// <param name="propertyName">プロパティ名</param>
-        private void NotifyPropertyChanged(string propertyName)
-        {
-            PropertyChanged?.Invoke(this, new PropertyChangedEventArgs(propertyName));
-        }
+
     }
 }

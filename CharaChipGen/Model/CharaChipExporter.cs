@@ -59,8 +59,8 @@ namespace CharaChipGen.Model
         /// <returns>レンダリングしたImageBufferが返る。</returns>
         private static ImageBuffer RenderCharaChip(Character model, Size chipSize)
         {
-            CharaChipRenderModel renderModel = new CharaChipRenderModel();
-            model.CopyTo(renderModel.CharaChipDataModel);
+            CharaChipRenderData renderModel = new CharaChipRenderData();
+            model.CopyTo(renderModel.Character);
 
             ImageBuffer imageBuffer = ImageBuffer.Create(chipSize.Width * 3, chipSize.Height * 4);
             for (int y = 0; y < 4; y++)

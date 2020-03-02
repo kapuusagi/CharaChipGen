@@ -1,8 +1,4 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 using System.ComponentModel;
 
 namespace CharaChipGenUtility.Operations
@@ -10,25 +6,45 @@ namespace CharaChipGenUtility.Operations
     /// <summary>
     /// 結合オペレーション設定
     /// </summary>
-    public class CombineOperationSetting : IOperationSetting
+    public sealed class CombineOperationSetting : IOperationSetting, INotifyPropertyChanged
     {
-        // 設定コントロール
-        private CombineOperationSettingControl control;
         // 水平カウント
         private int horizontalCount = 1;
         // 垂直カウント
         private int verticalCount = 1;
 
         /// <summary>
+        /// 新しいインスタンスを構築する。
+        /// </summary>
+        public CombineOperationSetting()
+        {
+        }
+
+        /// <summary>
+        /// プロパティが変更された。
+        /// </summary>
+        public event PropertyChangedEventHandler PropertyChanged;
+
+        /// <summary>
+        /// プロパティが変更されたときに通知する。
+        /// </summary>
+        /// <param name="propertyName">プロパティ名</param>
+        private void NotifyPropertyChanged(string propertyName)
+        {
+            PropertyChanged?.Invoke(this, new PropertyChangedEventArgs(propertyName));
+        }
+
+
+        /// <summary>
         /// 水平数
         /// </summary>
         public int HorizontalCount {
-            get { return horizontalCount; }
+            get => horizontalCount;
             set {
-                horizontalCount = value;
-                if (control != null)
+                if (horizontalCount != value)
                 {
-                    control.HorizontalCount = value;
+                    horizontalCount = value;
+                    NotifyPropertyChanged(nameof(HorizontalCount));
                 }
             }
         }
@@ -36,14 +52,13 @@ namespace CharaChipGenUtility.Operations
         /// 垂直数
         /// </summary>
         public int VerticalCount {
-            get { return verticalCount; }
+            get => verticalCount;
             set {
-                verticalCount = value;
-                if (control != null)
+                if (verticalCount != value)
                 {
-                    control.VerticalCount = value;
+                    verticalCount = value;
+                    NotifyPropertyChanged(nameof(VerticalCount));
                 }
-
             }
         }
 
@@ -62,14 +77,9 @@ namespace CharaChipGenUtility.Operations
                     return;
                 }
                 outputDirectory = value;
-                if (control != null)
-                {
-                    control.OutputDirectory = outputDirectory;
-                }
+                NotifyPropertyChanged(nameof(OutputDirectory));
             }
-            get {
-                return outputDirectory;
-            }
+            get => outputDirectory;
         }
 
         /// <summary>
@@ -119,38 +129,7 @@ namespace CharaChipGenUtility.Operations
         /// <returns>ユーザーインタフェース</returns>
         public System.Windows.Forms.Control GetControl()
         {
-            if (control == null)
-            {
-                control = new CombineOperationSettingControl();
-                control.HorizontalCount = HorizontalCount;
-                control.VerticalCount = VerticalCount;
-                control.OutputDirectory = OutputDirectory;
-                control.PropertyChanged += OnControlCombineSettingPropertyChanged;
-            }
-
-            return control;
-        }
-
-        /// <summary>
-        /// コントロールのプロパティが変更された時に通知を受け取る。
-        /// </summary>
-        /// <param name="sender">送信元オブジェクト</param>
-        /// <param name="evt">イベントオブジェクト</param>
-        private void OnControlCombineSettingPropertyChanged(object sender,
-            PropertyChangedEventArgs evt)
-        {
-            switch (evt.PropertyName)
-            {
-                case nameof(OutputDirectory):
-                    OutputDirectory = control.OutputDirectory;
-                    break;
-                case nameof(HorizontalCount):
-                    HorizontalCount = control.HorizontalCount;
-                    break;
-                case nameof(VerticalCount):
-                    VerticalCount = control.VerticalCount;
-                    break;
-            }
+            return new CombineOperationSettingControl() { Model = this };
         }
     }
 }

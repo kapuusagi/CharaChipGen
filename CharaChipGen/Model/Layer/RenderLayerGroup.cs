@@ -6,7 +6,7 @@ namespace CharaChipGen.Model.Layer
     /// <summary>
     /// レンダリング対象レイヤーグループ
     /// </summary>
-    public class RenderLayerGroup : IEnumerable<RenderLayerModel>
+    public class RenderLayerGroup : IEnumerable<RenderLayer>
     {
         // レイヤー
         private List<RenderLayerEntry> layerEntries;
@@ -30,7 +30,7 @@ namespace CharaChipGen.Model.Layer
         /// </summary>
         /// <param name="partsType">パーツ種別</param>
         /// <param name="layer">レイヤー</param>
-        public void Add(PartsType partsType, RenderLayerModel layer)
+        public void Add(PartsType partsType, RenderLayer layer)
         {
             for (int i = 0; i < layerEntries.Count; i++)
             {
@@ -65,7 +65,7 @@ namespace CharaChipGen.Model.Layer
         /// </summary>
         /// <param name="index">インデックス番号(0≦index＜Count)</param>
         /// <returns>レイヤーオブジェクト。インデックスが不正な場合にはnull.</returns>
-        public RenderLayerModel this[int index] {
+        public RenderLayer this[int index] {
             get {
                 if ((index >= 0) && (index < layerEntries.Count))
                 {
@@ -95,7 +95,7 @@ namespace CharaChipGen.Model.Layer
         /// 要素にアクセスするための列挙子を得る。
         /// </summary>
         /// <returns>列挙子</returns>
-        public IEnumerator<RenderLayerModel> GetEnumerator()
+        public IEnumerator<RenderLayer> GetEnumerator()
         {
             foreach (var entry in layerEntries)
             {
@@ -113,7 +113,7 @@ namespace CharaChipGen.Model.Layer
             /// </summary>
             /// <param name="partsType">パーツ種別</param>
             /// <param name="layer">レイヤー</param>
-            public RenderLayerEntry(PartsType partsType, RenderLayerModel layer)
+            public RenderLayerEntry(PartsType partsType, RenderLayer layer)
             {
                 PartsType = partsType;
                 Layer = layer;
@@ -127,7 +127,7 @@ namespace CharaChipGen.Model.Layer
             /// <summary>
             /// レイヤーデータ
             /// </summary>
-            public RenderLayerModel Layer { get; private set; }
+            public RenderLayer Layer { get; private set; }
         }
     }
 }

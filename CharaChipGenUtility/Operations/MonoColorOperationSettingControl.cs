@@ -15,6 +15,8 @@ namespace CharaChipGenUtility.Operations
     /// </summary>
     public partial class MonoColorOperationSettingControl : UserControl
     {
+        private MonoColorOperationSetting model;
+
         /// <summary>
         /// 新しいインスタンスを構築する。
         /// </summary>
@@ -24,18 +26,48 @@ namespace CharaChipGenUtility.Operations
         }
 
         /// <summary>
-        /// プロパティが変更されたことを通知する。
+        /// データモデル
         /// </summary>
-        public event PropertyChangedEventHandler PropertyChanged;
+        public MonoColorOperationSetting Model {
+            get => model;
+            set {
+                if ((model == value) || ((model != null) && (model.Equals(value))))
+                {
+                    return;
+                }
+
+                if (model != null)
+                {
+                    model.PropertyChanged -= OnModelPropertyChanged;
+                }
+                model = value;
+                if (model != null)
+                {
+                    model.PropertyChanged += OnModelPropertyChanged;
+                }
+                ModelToUI();
+            }
+        }
 
         /// <summary>
-        /// プロパティが変更されたことを通知する。
+        /// モデルのプロパティが変更されたときに通知を受け取る。
         /// </summary>
-        /// <param name="propertyName">プロパティ名</param>
-        private void NotifyPropertyChanged(string propertyName)
+        /// <param name="sender">送信元オブジェクト</param>
+        /// <param name="e">イベントオブジェクト</param>
+        private void OnModelPropertyChanged(object sender, PropertyChangedEventArgs e)
         {
-            PropertyChanged?.Invoke(this, new PropertyChangedEventArgs(propertyName));
+            ModelToUI();
         }
+
+        /// <summary>
+        /// モデルの設定をUIに反映させる。
+        /// </summary>
+        private void ModelToUI()
+        {
+            selectDirectoryControl.Directory = Model?.OutputDirectory ?? "";
+            textBoxColor.BackColor = Model?.Color ?? Color.Black;
+        }
+
 
         /// <summary>
         /// コントロールのプロパティが変更された時に通知を受け取る。
@@ -47,7 +79,10 @@ namespace CharaChipGenUtility.Operations
             switch (evt.PropertyName)
             {
                 case nameof(selectDirectoryControl.Directory):
-                    NotifyPropertyChanged(nameof(OutputDirectory));
+                    if (Model != null)
+                    {
+                        Model.OutputDirectory = selectDirectoryControl.Directory;
+                    }
                     break;
             }
         }
@@ -66,31 +101,10 @@ namespace CharaChipGenUtility.Operations
             }
 
             textBoxColor.BackColor = colorDialog.Color;
-            NotifyPropertyChanged(nameof(Color));
-        }
-
-        /// <summary>
-        /// 出力ディレクトリ
-        /// </summary>
-        public string OutputDirectory {
-            get { return selectDirectoryControl.Directory; }
-            set { selectDirectoryControl.Directory = value; }
-        }
-
-        /// <summary>
-        /// カラー
-        /// </summary>
-        public Color Color {
-            get { return textBoxColor.BackColor; }
-            set {
-                if ((value == null) || (textBoxColor.BackColor.Equals(value)))
-                {
-                    return;
-                }
-                textBoxColor.BackColor = value;
-                NotifyPropertyChanged(nameof(Color));
+            if (Model != null)
+            {
+                Model.Color = colorDialog.Color;
             }
         }
-
     }
 }

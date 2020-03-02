@@ -15,8 +15,8 @@ namespace CharaChipGen.GeneratorForm
         private int positionX; // X位置
         private int positionY; // Y位置
         private Image renderedImage; // レンダリング完了済みデータ
-        private CharaChipRenderModel renderModel; // レンダリングモデル
-        private CharaChipRenderModel.ImageChanged handler; // ハンドラ
+        private CharaChipRenderData renderModel; // レンダリングモデル
+        private CharaChipRenderData.ImageChanged handler; // ハンドラ
 
         /// <summary>
         /// 新しいインスタンスを構築する。
@@ -26,8 +26,8 @@ namespace CharaChipGen.GeneratorForm
             positionX = 0;
             positionY = 0;
             renderedImage = null;
-            renderModel = new CharaChipRenderModel();
-            handler = new CharaChipRenderModel.ImageChanged((Object sender) =>
+            renderModel = new CharaChipRenderData();
+            handler = new CharaChipRenderData.ImageChanged((sender, e) =>
             {
                 // 表示データの変更が入った場合にはイメージを削除して
                 // 表示の更新が必要であるとマークする。
@@ -48,7 +48,7 @@ namespace CharaChipGen.GeneratorForm
             // データモデルを置き換える。
             // 置き換えたことによってイベントが飛ぶので
             // そちらで更新処理が行われる。
-            renderModel.CharaChipDataModel = model;
+            renderModel.Character = model;
 
             renderModel.OnImageChanged += handler;
         }

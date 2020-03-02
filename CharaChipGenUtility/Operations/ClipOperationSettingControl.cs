@@ -15,6 +15,8 @@ namespace CharaChipGenUtility.Operations
     /// </summary>
     public partial class ClipOperationSettingControl : UserControl
     {
+        private ClipOperationSetting model;
+
         /// <summary>
         /// 新しいインスタンスを構築する。
         /// </summary>
@@ -24,25 +26,50 @@ namespace CharaChipGenUtility.Operations
         }
 
         /// <summary>
-        /// プロパティが変更されたときに通知を受け取る。
+        /// データモデル
         /// </summary>
-        public event PropertyChangedEventHandler PropertyChanged;
+        public ClipOperationSetting Model {
+            get => model;
+            set {
+                if ((model == value) || ((model != null) && model.Equals(value)))
+                {
+                    return;
+                }
 
-        /// <summary>
-        /// プロパティが変更されたときに通知する。
-        /// </summary>
-        /// <param name="propertyName">プロパティ名</param>
-        private void NotifyPropertyChanged(string propertyName)
-        {
-            PropertyChanged?.Invoke(this, new PropertyChangedEventArgs(propertyName));
+                if (model != null)
+                {
+                    model.PropertyChanged -= OnPropertyChanged;
+                }
+                model = value;
+                if (model != null)
+                {
+                    model.PropertyChanged += OnPropertyChanged;
+                }
+                ModelToUI();
+            }
         }
 
         /// <summary>
-        /// 出力ディレクトリ
+        /// プロパティが変更されたときに通知を受け取る。
         /// </summary>
-        public string OutputDirectory {
-            get { return selectDirectoryControl.Directory; }
-            set { selectDirectoryControl.Directory = value; }
+        /// <param name="sender">送信元オブジェクト</param>
+        /// <param name="e">イベントオブジェクト</param>
+        private void OnPropertyChanged(object sender, PropertyChangedEventArgs e)
+        {
+            ModelToUI();
+        }
+
+        /// <summary>
+        /// モデルの設定をUIに反映させる。
+        /// </summary>
+        private void ModelToUI()
+        {
+            selectDirectoryControl.Directory = Model.OutputDirectory;
+
+            numericUpDownX.Value = Model.ClipBounds.X;
+            numericUpDownY.Value = Model.ClipBounds.Y;
+            numericUpDownWidth.Value = Model.ClipBounds.Width;
+            numericUpDownHeight.Value = Model.ClipBounds.Height;
         }
 
         /// <summary>
@@ -55,7 +82,10 @@ namespace CharaChipGenUtility.Operations
             switch (evt.PropertyName)
             {
                 case nameof(selectDirectoryControl.Directory):
-                    NotifyPropertyChanged(nameof(OutputDirectory));
+                    if (Model != null)
+                    {
+                        Model.OutputDirectory = selectDirectoryControl.Directory;
+                    }
                     break;
             }
         }
@@ -67,28 +97,14 @@ namespace CharaChipGenUtility.Operations
         /// <param name="evt">イベントオブジェクト</param>
         private void OnNumericUpDownValueChanged(object sender, EventArgs evt)
         {
-            NotifyPropertyChanged(nameof(ClipBounds));
-        }
-
-        /// <summary>
-        /// クリップ領域設定
-        /// </summary>
-        public Rectangle ClipBounds {
-            set {
-                numericUpDownX.Value = value.X;
-                numericUpDownY.Value = value.Y;
-                numericUpDownWidth.Value = value.Width;
-                numericUpDownHeight.Value = value.Height;
-            }
-            get {
-                return new Rectangle(
+            if (Model != null)
+            {
+                Model.ClipBounds = new Rectangle(
                     (int)(numericUpDownX.Value),
                     (int)(numericUpDownY.Value),
                     (int)(numericUpDownWidth.Value),
                     (int)(numericUpDownHeight.Value));
             }
         }
-
-
     }
 }

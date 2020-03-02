@@ -59,7 +59,7 @@ namespace CGenImaging
             ColorHSV srcHSV = ColorConverter.ConvertRGBtoHSV(c);
             int h = (srcHSV.Hue + hue) % 360;
             int s = ModifyValueByPercent(srcHSV.Saturation, 0, 255, saturation / 255.0f);
-            int v = ModifyValueByPercent(srcHSV.Value, 0, 255, value / 255.0f);
+            int v = Clamp(srcHSV.Value * (1.0f + value / 255.0f));
 
             return ColorConverter.ConvertHSVtoRGB(ColorHSV.FromHSV(h, s, v), c.A);
         }
@@ -121,7 +121,7 @@ namespace CGenImaging
         /// 輝度・彩度はそのままで、hueで指定された色相の色を得る。
         /// </summary>
         /// <param name="color">色</param>
-        /// <param name="hue">変更先の色相</param>
+        /// <param name="hue">変更先の色相(0≦hue≦360)</param>
         /// <returns>変化させた色</returns>
         public static Color MonoricColor(Color color, int hue)
         {

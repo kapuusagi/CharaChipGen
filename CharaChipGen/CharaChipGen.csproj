@@ -84,7 +84,6 @@
     <Compile Include="GeneratorForm\CharaChipGeneratorForm.Designer.cs">
       <DependentUpon>CharaChipGeneratorForm.cs</DependentUpon>
     </Compile>
-    <Compile Include="Model\CharaChipRenderModel.cs" />
     <Compile Include="GeneratorForm\CharaChipViewNN.cs">
       <SubType>UserControl</SubType>
     </Compile>
@@ -97,6 +96,7 @@
     <Compile Include="MainForm\CharacterEntryView.Designer.cs">
       <DependentUpon>CharacterEntryView.cs</DependentUpon>
     </Compile>
+    <Compile Include="Model\CharaChipRenderData.cs" />
     <Compile Include="Model\CharaChip\Character.cs" />
     <Compile Include="Model\GeneratorSetting.cs" />
     <Compile Include="Model\CharaChip\Parts.cs" />
@@ -119,9 +119,9 @@
     <Compile Include="Model\GeneratorSettingFileDefs.cs" />
     <Compile Include="Model\GeneratorSettingReader.cs" />
     <Compile Include="Model\GeneratorSettingWriter.cs" />
+    <Compile Include="Model\Layer\RenderLayer.cs" />
     <Compile Include="Model\Layer\RenderLayerGroup.cs" />
     <Compile Include="Model\Layer\LayerType.cs" />
-    <Compile Include="Model\Layer\RenderLayerModel.cs" />
     <Compile Include="Model\Material\Material.cs" />
     <Compile Include="Model\Material\MaterialEntryFile.cs" />
     <Compile Include="ManagementForm\MaterialManagementForm.cs">

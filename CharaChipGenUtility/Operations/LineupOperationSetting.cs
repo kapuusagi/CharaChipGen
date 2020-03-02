@@ -1,9 +1,4 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-using System.Windows.Forms;
 using System.ComponentModel;
 
 namespace CharaChipGenUtility.Operations
@@ -11,20 +6,35 @@ namespace CharaChipGenUtility.Operations
     /// <summary>
     /// 配置オペレーション設定
     /// </summary>
-    public class LineupOperationSetting : IOperationSetting
+    public class LineupOperationSetting : IOperationSetting, INotifyPropertyChanged
     {
         public const int DIRECTION_HORIZONTAL = 0;
         public const int DIRECTION_VERTICAL = 1;
 
         private string outputDirectory;
         private int direction;
-        private LineupOperationSettingControl control;
 
+        /// <summary>
+        /// 新しいインスタンスを構築する。
+        /// </summary>
         public LineupOperationSetting()
         {
             outputDirectory = "";
             direction = 0;
-            control = null;
+        }
+
+        /// <summary>
+        /// プロパティが変更された。
+        /// </summary>
+        public event PropertyChangedEventHandler PropertyChanged;
+
+        /// <summary>
+        /// プロパティが変更された時に通知する。
+        /// </summary>
+        /// <param name="propertyName">プロパティ名</param>
+        private void NotifyPropertyChanged(string propertyName)
+        {
+            PropertyChanged?.Invoke(this, new PropertyChangedEventArgs(propertyName));
         }
 
         /// <summary>
@@ -33,15 +43,7 @@ namespace CharaChipGenUtility.Operations
         /// <returns>UI</returns>
         public System.Windows.Forms.Control GetControl()
         {
-            if (control == null)
-            {
-                control = new LineupOperationSettingControl();
-                control.OutputDirectory = outputDirectory;
-                control.Direction = direction;
-                control.PropertyChanged += OnControlPropertyChanged;
-            }
-
-            return control;
+            return new LineupOperationSettingControl() { Model = this };
         }
 
         /// <summary>
@@ -54,10 +56,7 @@ namespace CharaChipGenUtility.Operations
                     return;
                 }
                 outputDirectory = value;
-                if (control != null)
-                {
-                    control.OutputDirectory = outputDirectory;
-                }
+                NotifyPropertyChanged(nameof(OutputDirectory));
             }
             get {
                 return outputDirectory;
@@ -82,28 +81,7 @@ namespace CharaChipGenUtility.Operations
                     throw new ArgumentException($"Invalid direction. {value}");
                 }
                 direction = value;
-                if (control != null)
-                {
-                    control.Direction = value;
-                }
-            }
-        }
-
-        /// <summary>
-        /// コントロールのプロパティが変更された時に通知を受け取る。
-        /// </summary>
-        /// <param name="sender">送信元オブジェクト</param>
-        /// <param name="evt">イベントオブジェクト</param>
-        private void OnControlPropertyChanged(object sender, PropertyChangedEventArgs evt)
-        {
-            switch (evt.PropertyName)
-            {
-                case nameof(control.OutputDirectory):
-                    OutputDirectory = control.OutputDirectory;
-                    break;
-                case nameof(control.Direction):
-                    Direction = control.Direction;
-                    break;
+                NotifyPropertyChanged(nameof(Direction));
             }
         }
 

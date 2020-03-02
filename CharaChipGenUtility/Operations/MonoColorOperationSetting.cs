@@ -11,10 +11,8 @@ namespace CharaChipGenUtility.Operations
     /// <summary>
     /// 単色化処理設定
     /// </summary>
-    public class MonoColorOperationSetting : IOperationSetting
+    public class MonoColorOperationSetting : IOperationSetting, INotifyPropertyChanged
     {
-        // 設定UI
-        private MonoColorOperationSettingControl control;
         // 出力ディレクトリ
         private string outputDirectory;
         // 色
@@ -27,6 +25,19 @@ namespace CharaChipGenUtility.Operations
         {
             outputDirectory = "";
             color = Color.Black;
+        }
+        /// <summary>
+        /// プロパティが変更された。
+        /// </summary>
+        public event PropertyChangedEventHandler PropertyChanged;
+
+        /// <summary>
+        /// プロパティが変更されたときに通知する。
+        /// </summary>
+        /// <param name="propertyName">プロパティ名</param>
+        private void NotifyPropertyChanged(string propertyName)
+        {
+            PropertyChanged?.Invoke(this, new PropertyChangedEventArgs(propertyName));
         }
 
         /// <summary>
@@ -41,13 +52,13 @@ namespace CharaChipGenUtility.Operations
                 }
 
                 outputDirectory = value;
-                if (control != null)
-                {
-                    control.OutputDirectory = value;
-                }
+                NotifyPropertyChanged(nameof(OutputDirectory));
             }
         }
 
+        /// <summary>
+        /// 色
+        /// </summary>
         public Color Color {
             get { return color; }
             set {
@@ -56,10 +67,7 @@ namespace CharaChipGenUtility.Operations
                     return;
                 }
                 color = value;
-                if (control != null)
-                {
-                    control.Color = color;
-                }
+                NotifyPropertyChanged(nameof(Color));
             }
         }
 
@@ -69,34 +77,9 @@ namespace CharaChipGenUtility.Operations
         /// <returns>ユーザーインタフェース</returns>
         public System.Windows.Forms.Control GetControl()
         {
-            if (control == null)
-            {
-                control = new MonoColorOperationSettingControl();
-                control.OutputDirectory = outputDirectory;
-                control.Color = color;
-                control.PropertyChanged += OnPropertyChanged;
-            }
-            return control;
+            return new MonoColorOperationSettingControl() { Model = this };
         }
 
-        /// <summary>
-        /// コントロールのプロパティが変更された時に通知を受け取る。
-        /// </summary>
-        /// <param name="sender">送信元オブジェクト</param>
-        /// <param name="evt">イベントオブジェクト</param>
-        private void OnPropertyChanged(object sender, PropertyChangedEventArgs evt)
-        {
-            switch (evt.PropertyName)
-            {
-                case nameof(control.OutputDirectory):
-                    OutputDirectory = control.OutputDirectory;
-                    break;
-                case nameof(control.Color):
-                    Color = control.Color;
-                    break;
-            }
-            
-        }
 
         /// <summary>
         /// プロパティの値を文字列表現にしたものを得る。

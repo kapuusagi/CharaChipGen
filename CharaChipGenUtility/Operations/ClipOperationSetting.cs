@@ -1,18 +1,13 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
+using System.ComponentModel;
 
 namespace CharaChipGenUtility.Operations
 {
     /// <summary>
     /// クリッピング処理設定
     /// </summary>
-    public class ClipOperationSetting : IOperationSetting
+    public sealed class ClipOperationSetting : IOperationSetting, INotifyPropertyChanged
     {
-        // 設定用UI
-        private ClipOperationSettingControl control;
         // 出力ディレクトリ
         private string outputDirectory;
         // クリップ領域
@@ -24,8 +19,21 @@ namespace CharaChipGenUtility.Operations
         public ClipOperationSetting()
         {
             outputDirectory = "";
-            control = null;
             clipBounds = new System.Drawing.Rectangle(0, 0, 192, 384);
+        }
+
+        /// <summary>
+        /// プロパティが変更された。
+        /// </summary>
+        public event PropertyChangedEventHandler PropertyChanged;
+
+        /// <summary>
+        /// プロパティが変更されたときに通知する。
+        /// </summary>
+        /// <param name="propertyName">プロパティ名</param>
+        private void NotifyPropertyChanged(string propertyName)
+        {
+            PropertyChanged?.Invoke(this, new PropertyChangedEventArgs(propertyName));
         }
 
         /// <summary>
@@ -39,10 +47,7 @@ namespace CharaChipGenUtility.Operations
                     return;
                 }
                 outputDirectory = value;
-                if (control != null)
-                {
-                    control.OutputDirectory = value;
-                }
+                NotifyPropertyChanged(nameof(OutputDirectory));
             }
         }
 
@@ -57,11 +62,7 @@ namespace CharaChipGenUtility.Operations
                     return;
                 }
                 clipBounds = value;
-                if (control != null)
-                {
-                    control.ClipBounds = value;
-                }
-
+                NotifyPropertyChanged(nameof(ClipBounds));
             }
         }
 
@@ -71,34 +72,9 @@ namespace CharaChipGenUtility.Operations
         /// <returns>UIが返る。</returns>
         public System.Windows.Forms.Control GetControl()
         {
-            if (control == null)
-            {
-                control = new ClipOperationSettingControl();
-                control.OutputDirectory = OutputDirectory;
-                control.ClipBounds = ClipBounds;
-                control.PropertyChanged += OnControlPropertyChanged;
-            }
-            return control;
+            return new ClipOperationSettingControl() { Model = this };
         }
 
-
-        /// <summary>
-        /// コントロールのプロパティが変更されたときに通知を受け取る。
-        /// </summary>
-        /// <param name="sender">送信元オブジェクト</param>
-        /// <param name="evt">イベントオブジェクト</param>
-        private void OnControlPropertyChanged(object sender, System.ComponentModel.PropertyChangedEventArgs evt)
-        {
-            switch (evt.PropertyName)
-            {
-                case nameof(control.OutputDirectory):
-                    OutputDirectory = control.OutputDirectory;
-                    break;
-                case nameof(control.ClipBounds):
-                    ClipBounds = control.ClipBounds;
-                    break;
-            }
-        }
         /// <summary>
         /// プロパティの値を文字列表現にしたものを得る。
         /// </summary>

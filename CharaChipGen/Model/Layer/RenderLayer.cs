@@ -11,29 +11,37 @@ namespace CharaChipGen.Model.Layer
     /// 1つのレイヤーに対して、オフセット/HSV変更を適用したデータを取得する。
     /// </summary>
     /// <remarks>
-    /// RenderLayerModelはImageおよびOffsetなどのプロパティを設定する。
-    /// 最後にGetProcessedImage()で
-    /// 処理済み画像データを取得して使用する。
-    /// プロパティを変更したら、GetProcessedImage()で再度処理済みデータを取得すること。
+    /// 使用想定
+    /// PropertyChangedにハンドラを登録する。
+    /// PropertyChangedイベントを受けたときにGetProcessedImage()メソッドを使用し、
+    /// HSV/Offsetフィルタ適用済み画像データを取得する。
     /// </remarks>
-    public class RenderLayerModel : INotifyPropertyChanged
+    public class RenderLayer : INotifyPropertyChanged
     {
-        private Image image; // レイヤーのオリジナルイメージデータ
-        private int offsetX; // オフセットX
-        private int offsetY; // オフセットY
-        private int hue; // 色相
-        private int saturation; // 彩度
-        private int value; // 輝度
-        private int opacity; // 不透明度
-        private ImageBuffer processedImage; // 処理済みデータ
+        // レイヤーのオリジナルイメージデータ
+        private Image image;
+        // オフセットX
+        private int offsetX;
+        // オフセットY
+        private int offsetY;
+        // 色相
+        private int hue;
+        // 彩度
+        private int saturation;
+        // 輝度
+        private int value;
+        // 不透明度
+        private int opacity;
+        // 処理済みデータ
+        private ImageBuffer processedImage; 
 
         /// <summary>
         /// キャラクターチップ生成のレイヤーを表すモデル
         /// </summary>
         /// <param name="layerType">レイヤータイプ</param>
         /// <param name="partsType">パラメータを取得する部品タイプ</param>
-        /// <param name="colorPartsRefs"></param>
-        public RenderLayerModel(LayerType layerType, PartsType partsType, PartsType colorPartsRefs)
+        /// <param name="colorPartsRefs">色パラメータを取得する部品タイプ</param>
+        public RenderLayer(LayerType layerType, PartsType partsType, PartsType colorPartsRefs)
         {
             LayerType = layerType;
             PartsType = partsType;

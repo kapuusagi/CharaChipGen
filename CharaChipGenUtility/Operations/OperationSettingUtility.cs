@@ -18,14 +18,23 @@ namespace CharaChipGenUtility.Operations
         /// <param name="operations">保存するデータ</param>
         public static void Save(string path, IOperation[] operations)
         {
-            using (System.IO.FileStream fs = System.IO.File.OpenWrite(path))
-            using (System.IO.StreamWriter sw = new System.IO.StreamWriter(fs))
+            System.IO.Stream stream = null;
+            try
             {
-                // 保存処理
-                foreach (IOperation operation in operations)
+                stream = System.IO.File.OpenWrite(path);
+                using (System.IO.StreamWriter sw = new System.IO.StreamWriter(stream))
                 {
-                    WriteOperationSetting(sw, operation);
+                    stream = null;
+
+                    foreach (IOperation operation in operations)
+                    {
+                        WriteOperationSetting(sw, operation);
+                    }
                 }
+            }
+            finally
+            {
+                stream?.Dispose();
             }
         }
 
@@ -64,46 +73,58 @@ namespace CharaChipGenUtility.Operations
         /// <param name="operations">読み出した値を適用するデータ</param>
         public static void Load(string path, IOperation[] operations)
         {
-            using (System.IO.FileStream fs = System.IO.File.OpenRead(path))
-            using (System.IO.StreamReader sr = new System.IO.StreamReader(fs))
+            System.IO.Stream stream = null;
+            try
             {
-                // 読出処理(こっちはセクション区切りがあるのでちょっと面倒)
-                string textData = sr.ReadToEnd();
-                string[] lines = textData.Split('\n');
-                IOperationSetting setting = null;
-                for (int i = 0; i < lines.Length; i++)
+                stream = System.IO.File.OpenRead(path);
+                using (System.IO.StreamReader sr = new System.IO.StreamReader(stream))
                 {
-                    try
-                    {
-                        string line = lines[i].Trim();
-                        if (line.StartsWith("[") && line.EndsWith("]"))
-                        {
-                            // セクション名
-                            string sectionName = line.Substring(1, line.Length - 2);
-                            setting = GetOperationSetting(operations, sectionName);
-                        }
-                        else
-                        {
-                            // 設定値（多分）
-                            int index = line.IndexOf('=');
-                            if (index > 0)
-                            {
-                                string key = line.Substring(0, index).Trim();
-                                string value = line.Substring(index + 1).Trim();
-                                if (setting != null)
-                                {
-                                    setting.SetPropertyValue(key, value);
-                                }
-                            }
+                    stream = null;
 
-                        }
-                    }
-                    catch (Exception e)
+                    // 読出処理(こっちはセクション区切りがあるのでちょっと面倒)
+                    string textData = sr.ReadToEnd();
+                    string[] lines = textData.Split('\n');
+                    IOperationSetting setting = null;
+                    for (int i = 0; i < lines.Length; i++)
                     {
-                        System.Diagnostics.Debug.WriteLine($"line{i + 1}:{e.Message}");
+                        try
+                        {
+                            string line = lines[i].Trim();
+                            if (line.StartsWith("[") && line.EndsWith("]"))
+                            {
+                                // セクション名
+                                string sectionName = line.Substring(1, line.Length - 2);
+                                setting = GetOperationSetting(operations, sectionName);
+                            }
+                            else
+                            {
+                                // 設定値（多分）
+                                int index = line.IndexOf('=');
+                                if (index > 0)
+                                {
+                                    string key = line.Substring(0, index).Trim();
+                                    string value = line.Substring(index + 1).Trim();
+                                    if (setting != null)
+                                    {
+                                        setting.SetPropertyValue(key, value);
+                                    }
+                                }
+
+                            }
+                        }
+                        catch (Exception e)
+                        {
+                            System.Diagnostics.Debug.WriteLine($"line{i + 1}:{e.Message}");
+                        }
                     }
                 }
+
             }
+            finally
+            {
+                stream?.Dispose();
+            }
+
         }
 
         /// <summary>

@@ -11,25 +11,24 @@ using System.Windows.Forms;
 namespace CharaChipGenUtility.Operations
 {
     /// <summary>
-    /// 並べる操作の設定UI
+    /// ImageOperationSettingを設定するためのUI。
     /// </summary>
-    public partial class LineupOperationSettingControl : UserControl
+    public partial class ImageOperationSettingControl : UserControl
     {
-        private LineupOperationSetting model;
+        private ImageOperationSetting model;
 
         /// <summary>
         /// 新しいインスタンスを構築する。
         /// </summary>
-        public LineupOperationSettingControl()
+        public ImageOperationSettingControl()
         {
             InitializeComponent();
-            comboBoxDirection.SelectedIndex = 0;
         }
 
         /// <summary>
         /// データモデル
         /// </summary>
-        public LineupOperationSetting Model {
+        public ImageOperationSetting Model {
             get => model;
             set {
                 if ((model == value) || ((model != null) && model.Equals(value)))
@@ -46,7 +45,9 @@ namespace CharaChipGenUtility.Operations
                 {
                     model.PropertyChanged += OnModelPropertyChanged;
                 }
+
                 ModelToUI();
+
             }
         }
 
@@ -61,43 +62,28 @@ namespace CharaChipGenUtility.Operations
         }
 
         /// <summary>
-        /// モデルの設定をUIに反映させる。
+        /// モデルをUIに反映させる。
         /// </summary>
         private void ModelToUI()
         {
-            controlSelectDirectory.Directory = Model?.OutputDirectory ?? "";
-            comboBoxDirection.SelectedIndex = Model?.Direction ?? 0;
+            selectDirectoryControl.Directory = model?.OutputDirectory ?? "";
         }
 
 
+
         /// <summary>
-        /// ディレクトリ選択コントロールのプロパティが変更された時に通知を受け取る。
+        /// ディレクトリ選択コントロールのプロパティが変更されたときに通知を受け取る。
         /// </summary>
         /// <param name="sender">送信元オブジェクト</param>
-        /// <param name="evt">イベントオブジェクト</param>
-        private void OnControlSelectDirectoryPropertyChanged(object sender, 
-            PropertyChangedEventArgs evt)
+        /// <param name="e">イベントオブジェクト</param>
+        private void OnSelectDirectoryControlPropertyChanged(object sender, PropertyChangedEventArgs e)
         {
-            if (evt.PropertyName.Equals(nameof(SelectDirectoryControl.Directory)))
+            if (e.PropertyName.Equals(nameof(selectDirectoryControl.Directory)))
             {
                 if (Model != null)
                 {
-                    Model.OutputDirectory = controlSelectDirectory.Directory;
+                    Model.OutputDirectory = selectDirectoryControl.Directory;
                 }
-            }
-            
-        }
-
-        /// <summary>
-        /// 方向コンボボックスで選択が変更された時に通知を受け取る。
-        /// </summary>
-        /// <param name="sender">送信元オブジェクト</param>
-        /// <param name="evt">イベントオブジェクト</param>
-        private void OnComboBoxDirectionSelectedIndexChanged(object sender, EventArgs evt)
-        {
-            if (Model != null)
-            {
-                Model.Direction = comboBoxDirection.SelectedIndex;
             }
         }
     }

@@ -9,8 +9,10 @@ namespace CharaChipGen.MaterialEditorForm
     /// </summary>
     public partial class MaterialView3x4 : UserControl
     {
-        private PictureBox[] pictureBoxes; // ピクチャーボックス
-        private Bitmap image; // 表示するイメージ
+        // ピクチャーボックス
+        private PictureBox[] pictureBoxes;
+        // 表示するイメージ
+        private Bitmap image; 
 
         /// <summary>
         /// コンストラクタ
@@ -27,6 +29,24 @@ namespace CharaChipGen.MaterialEditorForm
                 pictureBox10, pictureBox11, pictureBox12
             };
         }
+
+        /// <summary> 
+        /// 使用中のリソースをすべてクリーンアップします。
+        /// </summary>
+        /// <param name="disposing">マネージ リソースを破棄する場合は true を指定し、その他の場合は false を指定します。</param>
+        protected override void Dispose(bool disposing)
+        {
+            if (disposing && (components != null))
+            {
+                components.Dispose();
+            }
+            if (disposing && (image != null))
+            {
+                image.Dispose();
+            }
+            base.Dispose(disposing);
+        }
+
 
         /// <summary>
         /// コントロールのサイズが変更された時に通知を受け取る。

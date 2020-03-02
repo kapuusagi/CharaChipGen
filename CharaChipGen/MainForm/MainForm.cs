@@ -154,8 +154,8 @@ namespace CharaChipGen.MainForm
         private void UpdateEntryView(CharacterEntryView view, Character dataModel)
         {
             // キャラクタチップデータ
-            CharaChipRenderModel renderModel = new CharaChipRenderModel();
-            dataModel.CopyTo(renderModel.CharaChipDataModel);
+            CharaChipRenderData renderModel = new CharaChipRenderData();
+            dataModel.CopyTo(renderModel.Character);
             Size cchipPrefSize = renderModel.PreferredSize;
             if ((cchipPrefSize.Width > 0) && (cchipPrefSize.Height > 0))
             {

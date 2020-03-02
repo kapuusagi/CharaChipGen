@@ -23,7 +23,7 @@ namespace CharaChipGen.Model
         /// <param name="buffer">描画対象バッファ</param>
         /// <param name="xPos">水平位置</param>
         /// <param name="yPos">垂直位置</param>
-        public static void Draw(CharaChipRenderModel model, ImageBuffer buffer, int xPos, int yPos)
+        public static void Draw(CharaChipRenderData model, ImageBuffer buffer, int xPos, int yPos)
         {
             if ((xPos < 0) || (xPos > 2) || (yPos < 0) || (yPos > 3))
             {
@@ -39,7 +39,7 @@ namespace CharaChipGen.Model
 
             for (int i = model.LayerCount - 1; i >= 0; i--)
             {
-                RenderLayerModel layer = model.GetLayer(i);
+                RenderLayer layer = model.GetLayer(i);
                 if (layer.Image == null)
                 {
                     continue;
@@ -58,7 +58,7 @@ namespace CharaChipGen.Model
         /// <param name="xPos">描画対象の水平位置</param>
         /// <param name="yPos">描画対象の垂直位置</param>
         /// <param name="layer">レイヤーモデル</param>
-        private static void DrawLayer(ImageBuffer buffer, int xPos, int yPos, RenderLayerModel layer)
+        private static void DrawLayer(ImageBuffer buffer, int xPos, int yPos, RenderLayer layer)
         {
             ImageBuffer srcImage = layer.GetProcessedImage();
             if (srcImage == null)
