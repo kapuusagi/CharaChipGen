@@ -17,7 +17,7 @@ namespace CharaChipGen.GeneratorForm
         {
             InitializeComponent();
             model = new Parts(PartsType.HairStyle);
-            model.PropertyChanged += OnModelParameterChanged;
+            model.PropertyChanged += OnPartsPropertyChanged;
 
             InitHandlers();
         }
@@ -66,9 +66,9 @@ namespace CharaChipGen.GeneratorForm
                     // nullまたは同一のオブジェクト
                     return;
                 }
-                model.PropertyChanged -= OnModelParameterChanged;
+                model.PropertyChanged -= OnPartsPropertyChanged;
                 model = value;
-                model.PropertyChanged += OnModelParameterChanged;
+                model.PropertyChanged += OnPartsPropertyChanged;
                 ApplyModelToView();
             }
         }
@@ -77,7 +77,7 @@ namespace CharaChipGen.GeneratorForm
         /// パラメータが変更された時に通知を受け取る。
         /// </summary>
         /// <param name="sender"></param>
-        private void OnModelParameterChanged(object sender, PropertyChangedEventArgs e)
+        private void OnPartsPropertyChanged(object sender, PropertyChangedEventArgs e)
         {
             ApplyModelToView();
         }

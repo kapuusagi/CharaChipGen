@@ -314,14 +314,14 @@
             this.groupBox1.TabStop = false;
             this.groupBox1.Text = "調整";
             // 
-            // ParamEditView
+            // PartsEditView
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 12F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.Controls.Add(this.groupBox1);
             this.Controls.Add(this.panel1);
             this.MinimumSize = new System.Drawing.Size(280, 280);
-            this.Name = "ParamEditView";
+            this.Name = "PartsEditView";
             this.Size = new System.Drawing.Size(280, 284);
             this.tableLayoutPanel1.ResumeLayout(false);
             this.tableLayoutPanel1.PerformLayout();

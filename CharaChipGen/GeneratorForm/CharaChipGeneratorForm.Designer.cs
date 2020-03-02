@@ -29,141 +29,141 @@
         private void InitializeComponent()
         {
             this.components = new System.ComponentModel.Container();
-            this.panelCharaChipParam = new System.Windows.Forms.Panel();
-            this.paramViewHeadAccessory2 = new CharaChipGen.GeneratorForm.CharaChipGeneratorPartsView();
-            this.paramViewHeadAccessory1 = new CharaChipGen.GeneratorForm.CharaChipGeneratorPartsView();
-            this.paramViewAccessory3 = new CharaChipGen.GeneratorForm.CharaChipGeneratorPartsView();
-            this.paramViewAccessory2 = new CharaChipGen.GeneratorForm.CharaChipGeneratorPartsView();
-            this.paramViewAccessory1 = new CharaChipGen.GeneratorForm.CharaChipGeneratorPartsView();
-            this.paramViewBody = new CharaChipGen.GeneratorForm.CharaChipGeneratorPartsView();
-            this.paramViewEye = new CharaChipGen.GeneratorForm.CharaChipGeneratorPartsView();
-            this.paramViewHairStyle = new CharaChipGen.GeneratorForm.CharaChipGeneratorPartsView();
-            this.paramViewHead = new CharaChipGen.GeneratorForm.CharaChipGeneratorPartsView();
+            this.panelCharaChipParts = new System.Windows.Forms.Panel();
+            this.partsViewHeadAccessory2 = new CharaChipGen.GeneratorForm.CharaChipGeneratorPartsView();
+            this.partsViewHeadAccessory1 = new CharaChipGen.GeneratorForm.CharaChipGeneratorPartsView();
+            this.partsViewAccessory3 = new CharaChipGen.GeneratorForm.CharaChipGeneratorPartsView();
+            this.partsViewAccessory2 = new CharaChipGen.GeneratorForm.CharaChipGeneratorPartsView();
+            this.partsViewAccessory1 = new CharaChipGen.GeneratorForm.CharaChipGeneratorPartsView();
+            this.partsViewBody = new CharaChipGen.GeneratorForm.CharaChipGeneratorPartsView();
+            this.partsViewEye = new CharaChipGen.GeneratorForm.CharaChipGeneratorPartsView();
+            this.partsViewHairStyle = new CharaChipGen.GeneratorForm.CharaChipGeneratorPartsView();
+            this.partsViewHead = new CharaChipGen.GeneratorForm.CharaChipGeneratorPartsView();
             this.buttonOK = new System.Windows.Forms.Button();
             this.buttonCancel = new System.Windows.Forms.Button();
             this.timer = new System.Windows.Forms.Timer(this.components);
             this.flowLayoutPanel1 = new System.Windows.Forms.FlowLayoutPanel();
             this.tableLayoutPanel1 = new System.Windows.Forms.TableLayoutPanel();
             this.charaChipView = new CharaChipGen.GeneratorForm.CharaChipView();
-            this.panelCharaChipParam.SuspendLayout();
+            this.panelCharaChipParts.SuspendLayout();
             this.flowLayoutPanel1.SuspendLayout();
             this.tableLayoutPanel1.SuspendLayout();
             this.SuspendLayout();
             // 
-            // panelCharaChipParam
+            // panelCharaChipParts
             // 
-            this.panelCharaChipParam.Controls.Add(this.paramViewHeadAccessory2);
-            this.panelCharaChipParam.Controls.Add(this.paramViewHeadAccessory1);
-            this.panelCharaChipParam.Controls.Add(this.paramViewAccessory3);
-            this.panelCharaChipParam.Controls.Add(this.paramViewAccessory2);
-            this.panelCharaChipParam.Controls.Add(this.paramViewAccessory1);
-            this.panelCharaChipParam.Controls.Add(this.paramViewBody);
-            this.panelCharaChipParam.Controls.Add(this.paramViewEye);
-            this.panelCharaChipParam.Controls.Add(this.paramViewHairStyle);
-            this.panelCharaChipParam.Controls.Add(this.paramViewHead);
-            this.panelCharaChipParam.Location = new System.Drawing.Point(349, 3);
-            this.panelCharaChipParam.Name = "panelCharaChipParam";
-            this.panelCharaChipParam.Size = new System.Drawing.Size(354, 395);
-            this.panelCharaChipParam.TabIndex = 10;
+            this.panelCharaChipParts.Controls.Add(this.partsViewHeadAccessory2);
+            this.panelCharaChipParts.Controls.Add(this.partsViewHeadAccessory1);
+            this.panelCharaChipParts.Controls.Add(this.partsViewAccessory3);
+            this.panelCharaChipParts.Controls.Add(this.partsViewAccessory2);
+            this.panelCharaChipParts.Controls.Add(this.partsViewAccessory1);
+            this.panelCharaChipParts.Controls.Add(this.partsViewBody);
+            this.panelCharaChipParts.Controls.Add(this.partsViewEye);
+            this.panelCharaChipParts.Controls.Add(this.partsViewHairStyle);
+            this.panelCharaChipParts.Controls.Add(this.partsViewHead);
+            this.panelCharaChipParts.Location = new System.Drawing.Point(349, 3);
+            this.panelCharaChipParts.Name = "panelCharaChipParts";
+            this.panelCharaChipParts.Size = new System.Drawing.Size(354, 395);
+            this.panelCharaChipParts.TabIndex = 10;
             // 
-            // paramViewHeadAccessory2
+            // partsViewHeadAccessory2
             // 
-            this.paramViewHeadAccessory2.Dock = System.Windows.Forms.DockStyle.Top;
-            this.paramViewHeadAccessory2.EditHSV = true;
-            this.paramViewHeadAccessory2.EditYOffset = true;
-            this.paramViewHeadAccessory2.Location = new System.Drawing.Point(0, 352);
-            this.paramViewHeadAccessory2.Name = "paramViewHeadAccessory2";
-            this.paramViewHeadAccessory2.ParameterName = "頭部アクセサリ２";
-            this.paramViewHeadAccessory2.Size = new System.Drawing.Size(354, 44);
-            this.paramViewHeadAccessory2.TabIndex = 8;
+            this.partsViewHeadAccessory2.Dock = System.Windows.Forms.DockStyle.Top;
+            this.partsViewHeadAccessory2.EditHSV = true;
+            this.partsViewHeadAccessory2.EditYOffset = true;
+            this.partsViewHeadAccessory2.Location = new System.Drawing.Point(0, 352);
+            this.partsViewHeadAccessory2.Name = "partsViewHeadAccessory2";
+            this.partsViewHeadAccessory2.PartsName = "頭部アクセサリ２";
+            this.partsViewHeadAccessory2.Size = new System.Drawing.Size(354, 44);
+            this.partsViewHeadAccessory2.TabIndex = 8;
             // 
-            // paramViewHeadAccessory1
+            // partsViewHeadAccessory1
             // 
-            this.paramViewHeadAccessory1.Dock = System.Windows.Forms.DockStyle.Top;
-            this.paramViewHeadAccessory1.EditHSV = true;
-            this.paramViewHeadAccessory1.EditYOffset = true;
-            this.paramViewHeadAccessory1.Location = new System.Drawing.Point(0, 308);
-            this.paramViewHeadAccessory1.Name = "paramViewHeadAccessory1";
-            this.paramViewHeadAccessory1.ParameterName = "頭部アクセサリ１";
-            this.paramViewHeadAccessory1.Size = new System.Drawing.Size(354, 44);
-            this.paramViewHeadAccessory1.TabIndex = 7;
+            this.partsViewHeadAccessory1.Dock = System.Windows.Forms.DockStyle.Top;
+            this.partsViewHeadAccessory1.EditHSV = true;
+            this.partsViewHeadAccessory1.EditYOffset = true;
+            this.partsViewHeadAccessory1.Location = new System.Drawing.Point(0, 308);
+            this.partsViewHeadAccessory1.Name = "partsViewHeadAccessory1";
+            this.partsViewHeadAccessory1.PartsName = "頭部アクセサリ１";
+            this.partsViewHeadAccessory1.Size = new System.Drawing.Size(354, 44);
+            this.partsViewHeadAccessory1.TabIndex = 7;
             // 
-            // paramViewAccessory3
+            // partsViewAccessory3
             // 
-            this.paramViewAccessory3.Dock = System.Windows.Forms.DockStyle.Top;
-            this.paramViewAccessory3.EditHSV = true;
-            this.paramViewAccessory3.EditYOffset = true;
-            this.paramViewAccessory3.Location = new System.Drawing.Point(0, 264);
-            this.paramViewAccessory3.Name = "paramViewAccessory3";
-            this.paramViewAccessory3.ParameterName = "アクセサリ３";
-            this.paramViewAccessory3.Size = new System.Drawing.Size(354, 44);
-            this.paramViewAccessory3.TabIndex = 6;
+            this.partsViewAccessory3.Dock = System.Windows.Forms.DockStyle.Top;
+            this.partsViewAccessory3.EditHSV = true;
+            this.partsViewAccessory3.EditYOffset = true;
+            this.partsViewAccessory3.Location = new System.Drawing.Point(0, 264);
+            this.partsViewAccessory3.Name = "partsViewAccessory3";
+            this.partsViewAccessory3.PartsName = "アクセサリ３";
+            this.partsViewAccessory3.Size = new System.Drawing.Size(354, 44);
+            this.partsViewAccessory3.TabIndex = 6;
             // 
-            // paramViewAccessory2
+            // partsViewAccessory2
             // 
-            this.paramViewAccessory2.Dock = System.Windows.Forms.DockStyle.Top;
-            this.paramViewAccessory2.EditHSV = true;
-            this.paramViewAccessory2.EditYOffset = true;
-            this.paramViewAccessory2.Location = new System.Drawing.Point(0, 220);
-            this.paramViewAccessory2.Name = "paramViewAccessory2";
-            this.paramViewAccessory2.ParameterName = "アクセサリ２";
-            this.paramViewAccessory2.Size = new System.Drawing.Size(354, 44);
-            this.paramViewAccessory2.TabIndex = 5;
+            this.partsViewAccessory2.Dock = System.Windows.Forms.DockStyle.Top;
+            this.partsViewAccessory2.EditHSV = true;
+            this.partsViewAccessory2.EditYOffset = true;
+            this.partsViewAccessory2.Location = new System.Drawing.Point(0, 220);
+            this.partsViewAccessory2.Name = "partsViewAccessory2";
+            this.partsViewAccessory2.PartsName = "アクセサリ２";
+            this.partsViewAccessory2.Size = new System.Drawing.Size(354, 44);
+            this.partsViewAccessory2.TabIndex = 5;
             // 
-            // paramViewAccessory1
+            // partsViewAccessory1
             // 
-            this.paramViewAccessory1.Dock = System.Windows.Forms.DockStyle.Top;
-            this.paramViewAccessory1.EditHSV = true;
-            this.paramViewAccessory1.EditYOffset = true;
-            this.paramViewAccessory1.Location = new System.Drawing.Point(0, 176);
-            this.paramViewAccessory1.Name = "paramViewAccessory1";
-            this.paramViewAccessory1.ParameterName = "アクセサリ１";
-            this.paramViewAccessory1.Size = new System.Drawing.Size(354, 44);
-            this.paramViewAccessory1.TabIndex = 4;
+            this.partsViewAccessory1.Dock = System.Windows.Forms.DockStyle.Top;
+            this.partsViewAccessory1.EditHSV = true;
+            this.partsViewAccessory1.EditYOffset = true;
+            this.partsViewAccessory1.Location = new System.Drawing.Point(0, 176);
+            this.partsViewAccessory1.Name = "partsViewAccessory1";
+            this.partsViewAccessory1.PartsName = "アクセサリ１";
+            this.partsViewAccessory1.Size = new System.Drawing.Size(354, 44);
+            this.partsViewAccessory1.TabIndex = 4;
             // 
-            // paramViewBody
+            // partsViewBody
             // 
-            this.paramViewBody.Dock = System.Windows.Forms.DockStyle.Top;
-            this.paramViewBody.EditHSV = true;
-            this.paramViewBody.EditYOffset = true;
-            this.paramViewBody.Location = new System.Drawing.Point(0, 132);
-            this.paramViewBody.Name = "paramViewBody";
-            this.paramViewBody.ParameterName = "体";
-            this.paramViewBody.Size = new System.Drawing.Size(354, 44);
-            this.paramViewBody.TabIndex = 3;
+            this.partsViewBody.Dock = System.Windows.Forms.DockStyle.Top;
+            this.partsViewBody.EditHSV = true;
+            this.partsViewBody.EditYOffset = true;
+            this.partsViewBody.Location = new System.Drawing.Point(0, 132);
+            this.partsViewBody.Name = "partsViewBody";
+            this.partsViewBody.PartsName = "体";
+            this.partsViewBody.Size = new System.Drawing.Size(354, 44);
+            this.partsViewBody.TabIndex = 3;
             // 
-            // paramViewEye
+            // partsViewEye
             // 
-            this.paramViewEye.Dock = System.Windows.Forms.DockStyle.Top;
-            this.paramViewEye.EditHSV = true;
-            this.paramViewEye.EditYOffset = true;
-            this.paramViewEye.Location = new System.Drawing.Point(0, 88);
-            this.paramViewEye.Name = "paramViewEye";
-            this.paramViewEye.ParameterName = "目";
-            this.paramViewEye.Size = new System.Drawing.Size(354, 44);
-            this.paramViewEye.TabIndex = 0;
+            this.partsViewEye.Dock = System.Windows.Forms.DockStyle.Top;
+            this.partsViewEye.EditHSV = true;
+            this.partsViewEye.EditYOffset = true;
+            this.partsViewEye.Location = new System.Drawing.Point(0, 88);
+            this.partsViewEye.Name = "partsViewEye";
+            this.partsViewEye.PartsName = "目";
+            this.partsViewEye.Size = new System.Drawing.Size(354, 44);
+            this.partsViewEye.TabIndex = 0;
             // 
-            // paramViewHairStyle
+            // partsViewHairStyle
             // 
-            this.paramViewHairStyle.Dock = System.Windows.Forms.DockStyle.Top;
-            this.paramViewHairStyle.EditHSV = true;
-            this.paramViewHairStyle.EditYOffset = true;
-            this.paramViewHairStyle.Location = new System.Drawing.Point(0, 44);
-            this.paramViewHairStyle.Name = "paramViewHairStyle";
-            this.paramViewHairStyle.ParameterName = "髪型";
-            this.paramViewHairStyle.Size = new System.Drawing.Size(354, 44);
-            this.paramViewHairStyle.TabIndex = 2;
+            this.partsViewHairStyle.Dock = System.Windows.Forms.DockStyle.Top;
+            this.partsViewHairStyle.EditHSV = true;
+            this.partsViewHairStyle.EditYOffset = true;
+            this.partsViewHairStyle.Location = new System.Drawing.Point(0, 44);
+            this.partsViewHairStyle.Name = "partsViewHairStyle";
+            this.partsViewHairStyle.PartsName = "髪型";
+            this.partsViewHairStyle.Size = new System.Drawing.Size(354, 44);
+            this.partsViewHairStyle.TabIndex = 2;
             // 
-            // paramViewHead
+            // partsViewHead
             // 
-            this.paramViewHead.Dock = System.Windows.Forms.DockStyle.Top;
-            this.paramViewHead.EditHSV = true;
-            this.paramViewHead.EditYOffset = true;
-            this.paramViewHead.Location = new System.Drawing.Point(0, 0);
-            this.paramViewHead.Name = "paramViewHead";
-            this.paramViewHead.ParameterName = "頭";
-            this.paramViewHead.Size = new System.Drawing.Size(354, 44);
-            this.paramViewHead.TabIndex = 0;
+            this.partsViewHead.Dock = System.Windows.Forms.DockStyle.Top;
+            this.partsViewHead.EditHSV = true;
+            this.partsViewHead.EditYOffset = true;
+            this.partsViewHead.Location = new System.Drawing.Point(0, 0);
+            this.partsViewHead.Name = "partsViewHead";
+            this.partsViewHead.PartsName = "頭";
+            this.partsViewHead.Size = new System.Drawing.Size(354, 44);
+            this.partsViewHead.TabIndex = 0;
             // 
             // buttonOK
             // 
@@ -207,7 +207,7 @@
             this.tableLayoutPanel1.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 100F));
             this.tableLayoutPanel1.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Absolute, 360F));
             this.tableLayoutPanel1.Controls.Add(this.charaChipView, 0, 0);
-            this.tableLayoutPanel1.Controls.Add(this.panelCharaChipParam, 1, 0);
+            this.tableLayoutPanel1.Controls.Add(this.panelCharaChipParts, 1, 0);
             this.tableLayoutPanel1.Dock = System.Windows.Forms.DockStyle.Fill;
             this.tableLayoutPanel1.Location = new System.Drawing.Point(0, 0);
             this.tableLayoutPanel1.Name = "tableLayoutPanel1";
@@ -235,7 +235,7 @@
             this.Text = "キャラチップ設定";
             this.FormClosed += new System.Windows.Forms.FormClosedEventHandler(this.OnFormClosed);
             this.Shown += new System.EventHandler(this.OnFormShown);
-            this.panelCharaChipParam.ResumeLayout(false);
+            this.panelCharaChipParts.ResumeLayout(false);
             this.flowLayoutPanel1.ResumeLayout(false);
             this.tableLayoutPanel1.ResumeLayout(false);
             this.ResumeLayout(false);
@@ -245,16 +245,16 @@
 
         #endregion
 
-        private CharaChipGeneratorPartsView paramViewHead;
-        private CharaChipGeneratorPartsView paramViewEye;
-        private CharaChipGeneratorPartsView paramViewHairStyle;
-        private CharaChipGeneratorPartsView paramViewBody;
-        private CharaChipGeneratorPartsView paramViewAccessory1;
-        private CharaChipGeneratorPartsView paramViewAccessory2;
-        private CharaChipGeneratorPartsView paramViewAccessory3;
-        private CharaChipGeneratorPartsView paramViewHeadAccessory1;
-        private CharaChipGeneratorPartsView paramViewHeadAccessory2;
-        private System.Windows.Forms.Panel panelCharaChipParam;
+        private CharaChipGeneratorPartsView partsViewHead;
+        private CharaChipGeneratorPartsView partsViewEye;
+        private CharaChipGeneratorPartsView partsViewHairStyle;
+        private CharaChipGeneratorPartsView partsViewBody;
+        private CharaChipGeneratorPartsView partsViewAccessory1;
+        private CharaChipGeneratorPartsView partsViewAccessory2;
+        private CharaChipGeneratorPartsView partsViewAccessory3;
+        private CharaChipGeneratorPartsView partsViewHeadAccessory1;
+        private CharaChipGeneratorPartsView partsViewHeadAccessory2;
+        private System.Windows.Forms.Panel panelCharaChipParts;
         private System.Windows.Forms.Button buttonOK;
         private System.Windows.Forms.Button buttonCancel;
         private GeneratorForm.CharaChipView charaChipView;

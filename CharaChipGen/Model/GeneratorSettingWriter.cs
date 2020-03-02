@@ -102,7 +102,7 @@ namespace CharaChipGen.Model
         /// <param name="parts">部品</param>
         private static void AddCharacterPartsNode(XmlDocument doc, XmlElement parent, string partsName, Parts parts)
         {
-            // nodeNameでなく、param.ParameterNameでも良さそうだが、使うモデルによってはParamterNameで""が返る事があるのでやらない。
+            // nodeNameでなく、parts.MaterialNameでも良さそうだが、使うモデルによってはMaterialNameで""が返る事があるのでやらない。
             XmlElement paramElem = doc.CreateElement(GeneratorSettingFileDefs.NodeNameCharacterParts);
             paramElem.SetAttribute(GeneratorSettingFileDefs.AttrNamePartsName, partsName);
             paramElem.SetAttribute(GeneratorSettingFileDefs.AttrNameMaterialName, parts.MaterialName);

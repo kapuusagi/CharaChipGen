@@ -106,9 +106,9 @@ namespace CharaChipGen.GeneratorForm
         }
 
         /// <summary>
-        /// 項目名
+        /// 部品名
         /// </summary>
-        public string ParameterName {
+        public string PartsName {
             get { return labelItemName.Text; }
             set { labelItemName.Text = value; }
         }

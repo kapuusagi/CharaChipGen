@@ -12,7 +12,7 @@ namespace CharaChipGen.Model.CharaChip
         /// <summary>
         /// パーツが変更された場合。
         /// </summary>
-        public event PartsChangeEventHandler OnCharaChipParamChanged;
+        public event PartsChangeEventHandler OnCharaChipPartsChanged;
 
         /// <summary>
         /// 部品
@@ -30,7 +30,7 @@ namespace CharaChipGen.Model.CharaChip
             PropertyChangedEventHandler handler
                 = new PropertyChangedEventHandler((sender, e) =>
                 {
-                    OnOneParameterChanged(sender as Parts, e.PropertyName);
+                    OnPartsPropertyChanged(sender as Parts, e.PropertyName);
                 });
 
             PartsType[] partsTypes = (PartsType[])(Enum.GetValues(typeof(PartsType)));
@@ -121,16 +121,16 @@ namespace CharaChipGen.Model.CharaChip
             => charaChipParts[partsType];
 
         /// <summary>
-        /// 各モデルの設定が変更されたときに通知を受け取る。
+        /// 各部品の設定が変更されたときに通知を受け取る。
         /// </summary>
         /// <param name="model">送信元モデル</param>
         /// <param name="propertyName">プロパティ名</param>
-        private void OnOneParameterChanged(Parts model, string propertyName)
+        private void OnPartsPropertyChanged(Parts model, string propertyName)
         {
             if (charaChipParts.ContainsValue(model))
             {
                 PartsType type = model.PartsType;
-                OnCharaChipParamChanged?.Invoke(this, new PartsChangeEventArgs(type, propertyName));
+                OnCharaChipPartsChanged?.Invoke(this, new PartsChangeEventArgs(type, propertyName));
             }
         }
     }

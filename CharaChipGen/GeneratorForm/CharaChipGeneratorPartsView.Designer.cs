@@ -80,12 +80,12 @@
             this.buttonAdjust.UseVisualStyleBackColor = true;
             this.buttonAdjust.Click += new System.EventHandler(this.OnButtonAdjustClick);
             // 
-            // CharaChipGeneratorParamView
+            // CharaChipGeneratorPartsView
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 12F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.Controls.Add(this.flowLayoutPanel1);
-            this.Name = "CharaChipGeneratorParamView";
+            this.Name = "CharaChipGeneratorPartsView";
             this.Size = new System.Drawing.Size(356, 36);
             this.flowLayoutPanel1.ResumeLayout(false);
             this.ResumeLayout(false);

@@ -22,15 +22,15 @@ namespace CharaChipGen.GeneratorForm
 
             charaChipView.SetModel(dataModel);
 
-            paramViewHead.Model = dataModel.Head;
-            paramViewEye.Model = dataModel.Eye;
-            paramViewHairStyle.Model = dataModel.Hair;
-            paramViewBody.Model = dataModel.Body;
-            paramViewAccessory1.Model = dataModel.Accessory1;
-            paramViewAccessory2.Model = dataModel.Accessory2;
-            paramViewAccessory3.Model = dataModel.Accessory3;
-            paramViewHeadAccessory1.Model = dataModel.HeadAccessory1;
-            paramViewHeadAccessory2.Model = dataModel.HeadAccessory2;
+            partsViewHead.Model = dataModel.Head;
+            partsViewEye.Model = dataModel.Eye;
+            partsViewHairStyle.Model = dataModel.Hair;
+            partsViewBody.Model = dataModel.Body;
+            partsViewAccessory1.Model = dataModel.Accessory1;
+            partsViewAccessory2.Model = dataModel.Accessory2;
+            partsViewAccessory3.Model = dataModel.Accessory3;
+            partsViewHeadAccessory1.Model = dataModel.HeadAccessory1;
+            partsViewHeadAccessory2.Model = dataModel.HeadAccessory2;
         }
 
         /// <summary>
@@ -47,15 +47,15 @@ namespace CharaChipGen.GeneratorForm
         private void InitializeComboBoxItems()
         {
             AppData data = AppData.Instance;
-            paramViewHead.SetMaterialList(data.Heads);
-            paramViewEye.SetMaterialList(data.Eyes);
-            paramViewHairStyle.SetMaterialList(data.HairStyles);
-            paramViewBody.SetMaterialList(data.Bodies);
-            paramViewAccessory1.SetMaterialList(data.Accessories);
-            paramViewAccessory2.SetMaterialList(data.Accessories);
-            paramViewAccessory3.SetMaterialList(data.Accessories);
-            paramViewHeadAccessory1.SetMaterialList(data.HeadAccessories);
-            paramViewHeadAccessory2.SetMaterialList(data.HeadAccessories);
+            partsViewHead.SetMaterialList(data.Heads);
+            partsViewEye.SetMaterialList(data.Eyes);
+            partsViewHairStyle.SetMaterialList(data.HairStyles);
+            partsViewBody.SetMaterialList(data.Bodies);
+            partsViewAccessory1.SetMaterialList(data.Accessories);
+            partsViewAccessory2.SetMaterialList(data.Accessories);
+            partsViewAccessory3.SetMaterialList(data.Accessories);
+            partsViewHeadAccessory1.SetMaterialList(data.HeadAccessories);
+            partsViewHeadAccessory2.SetMaterialList(data.HeadAccessories);
         }
 
         /// <summary>

@@ -47,7 +47,7 @@ namespace CharaChipGen.Model
                 OnPartsChanged((Character)(sender), e.PartsType, e.PropertyName);
             });
 
-            character.OnCharaChipParamChanged += partsChangeHandler;
+            character.OnCharaChipPartsChanged += partsChangeHandler;
         }
 
         /// <summary>
@@ -60,9 +60,9 @@ namespace CharaChipGen.Model
                 {
                     return;
                 }
-                character.OnCharaChipParamChanged -= partsChangeHandler;
+                character.OnCharaChipPartsChanged -= partsChangeHandler;
                 character = value;
-                character.OnCharaChipParamChanged += partsChangeHandler;
+                character.OnCharaChipPartsChanged += partsChangeHandler;
 
                 OnCharacterChanged();
             }
