@@ -12,24 +12,54 @@ namespace CGenImaging
     public class ImageProcessor
     {
         /// <summary>
+        /// 指定された割合分だけ変化させた値を返す。
+        /// </summary>
+        /// <param name="value">値</param>
+        /// <param name="min">valueの取り得る最小値</param>
+        /// <param name="max">valueの取り得る最大値</param>
+        /// <param name="modifyPercent">変更割合(-1.0≦modifyPercent≦1.0)</param>
+        /// <returns>変化させた値</returns>
+        private static int ModifyValueByPercent(int value, int min, int max, float modifyPercent)
+        {
+            float d;
+            if (modifyPercent > 0)
+            {
+                float diff = (max - value) * modifyPercent;
+                d = value + diff;
+            }
+            else if (modifyPercent < 0)
+            {
+                float diff = (value - min) * (modifyPercent);
+                d = value + diff;
+            }
+            else
+            {
+                d = value;
+            }
+
+            return Clamp(d, min, max);
+        }
+
+
+        /// <summary>
         /// HSVの色調整を行ってピクセルデータを返す。
         /// </summary>
         /// <param name="c">カラー</param>
-        /// <param name="hue">色差加算値</param>
-        /// <param name="saturation">彩度加算値</param>
-        /// <param name="value">輝度加算値</param>
+        /// <param name="hue">色差加算値(-360≦hue≦360)</param>
+        /// <param name="saturation">彩度加割合(-255≦saturation≦255)</param>
+        /// <param name="value">輝度加算割合(-255≦saturation≦255)</param>
         /// <returns></returns>
         public static Color ProcessHSVFilter(Color c, int hue, int saturation, int value)
         {
-            if ((c.A == 0) || ((hue == 0) && (saturation == 0) && (value == 0)))
+            if (((hue == 0) && (saturation == 0) && (value == 0)))
             {
-                return c; // アルファ値が0または色変換しない。
+                return c; // 色変換しない。
             }
 
             ColorHSV srcHSV = ColorConverter.ConvertRGBtoHSV(c);
             int h = (srcHSV.Hue + hue) % 360;
-            int s = srcHSV.Saturation + saturation;
-            int v = srcHSV.Value + value;
+            int s = ModifyValueByPercent(srcHSV.Saturation, 0, 255, saturation / 255.0f);
+            int v = ModifyValueByPercent(srcHSV.Value, 0, 255, value / 255.0f);
 
             return ColorConverter.ConvertHSVtoRGB(ColorHSV.FromHSV(h, s, v), c.A);
         }
@@ -38,9 +68,9 @@ namespace CGenImaging
         /// HSVの色調整を行ったデータを返す。
         /// </summary>
         /// <param name="image">画像</param>
-        /// <param name="hue">色相加算値</param>
-        /// <param name="saturation">彩度加算値</param>
-        /// <param name="value">輝度加算値</param>
+        /// <param name="hue">色相加算値(-360≦hue≦360)</param>
+        /// <param name="saturation">彩度加算割合(-255≦saturation≦255)</param>
+        /// <param name="value">輝度加算割合(-255≦saturation≦255)</param>
         /// <returns>イメージを返す</returns>
         public static ImageBuffer ProcessHSVFilter(ImageBuffer image, int hue, int saturation, int value)
         {
@@ -64,7 +94,7 @@ namespace CGenImaging
         }
 
         /// <summary>
-        /// 単色化
+        /// colorで指定した色相の画像を得る。
         /// </summary>
         /// <remarks>
         /// これでいけんのかな
@@ -88,11 +118,11 @@ namespace CGenImaging
         }
 
         /// <summary>
-        /// 単色カラー
+        /// 輝度・彩度はそのままで、hueで指定された色相の色を得る。
         /// </summary>
         /// <param name="color">色</param>
-        /// <param name="hue">色相</param>
-        /// <returns></returns>
+        /// <param name="hue">変更先の色相</param>
+        /// <returns>変化させた色</returns>
         public static Color MonoricColor(Color color, int hue)
         {
             ColorHSV hsv = ColorConverter.ConvertRGBtoHSV(color);
@@ -101,11 +131,11 @@ namespace CGenImaging
         }
 
         /// <summary>
-        /// 単色処理
+        /// colorで指定される色をmodifyToの色相に変更させる。
         /// </summary>
-        /// <param name="color"></param>
-        /// <param name="modifyTo"></param>
-        /// <returns></returns>
+        /// <param name="color">色</param>
+        /// <param name="modifyTo">変更先の色</param>
+        /// <returns>変化させた色</returns>
         public static Color MonoricColor(Color color, Color modifyTo)
         {
             // Note: BT.709
@@ -126,7 +156,7 @@ namespace CGenImaging
         /// </summary>
         /// <param name="c1">色1</param>
         /// <param name="c2">色2</param>
-        /// <returns></returns>
+        /// <returns>ブレンディングされた色</returns>
         public static Color Blend(Color c1, Color c2)
         {
             float a1 = (c1.A * c2.A) / (float)(255 * 255);
@@ -147,17 +177,26 @@ namespace CGenImaging
         /// <summary>
         /// クランプする。
         /// </summary>
-        /// <param name="d"></param>
-        /// <returns></returns>
-        private static int Clamp(float d)
+        /// <param name="d">クランプさせる値。</param>
+        /// <returns>クランプした値</returns>
+        private static int Clamp(float d) => Clamp(d, 0, 255);
+
+        /// <summary>
+        /// クランプする。
+        /// </summary>
+        /// <param name="d">クランプさせる値。</param>
+        /// <param name="min">最小値</param>
+        /// <param name="max">最大値</param>
+        /// <returns>クランプした値</returns>
+        private static int Clamp(float d, int min, int max)
         {
-            if (d < 0)
+            if (d < min)
             {
-                return 0;
+                return min;
             }
-            else if (d > 255)
+            else if (d > max)
             {
-                return 255;
+                return max;
             }
             else
             {
@@ -203,6 +242,11 @@ namespace CGenImaging
             return output;
         }
 
+        /// <summary>
+        /// 2倍に単純拡大する。
+        /// </summary>
+        /// <param name="image">画像</param>
+        /// <returns>拡大した画像</returns>
         public static ImageBuffer ExpansionX2(ImageBuffer image)
         {
             ImageBuffer output = ImageBuffer.Create(image.Width * 2, image.Height * 2);
@@ -220,7 +264,7 @@ namespace CGenImaging
         /// 画像に不透明度を適用し、新しい画像として取得する。
         /// </summary>
         /// <param name="image">画像</param>
-        /// <param name="opacity">不透明度(0.0～1.0)</param>
+        /// <param name="opacity">不透明度(0.0≦opacity≦1.0)</param>
         /// <returns>画像が返る</returns>
         public static ImageBuffer ApplyOpacity(ImageBuffer image, float opacity)
         {

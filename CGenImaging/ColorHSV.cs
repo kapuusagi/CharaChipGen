@@ -10,9 +10,9 @@ namespace CGenImaging
         /// <summary>
         ///  新しいHIV色を取得する
         /// </summary>
-        /// <param name="hue"></param>
-        /// <param name="saturation"></param>
-        /// <param name="value"></param>
+        /// <param name="hue">色差</param>
+        /// <param name="saturation">彩度</param>
+        /// <param name="value">輝度</param>
         /// <returns></returns>
         public static ColorHSV FromHSV(int hue, int saturation, int value)
         {
@@ -38,7 +38,7 @@ namespace CGenImaging
         private byte value; // 輝度 0-255
 
         /// <summary>
-        /// 色差
+        /// 色差。（0≦Hue＜360） 
         /// </summary>
         public int Hue
         {
