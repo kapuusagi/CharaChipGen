@@ -224,6 +224,7 @@ namespace CharaChipGen.MainForm
 
             form.StorToSetting(setting.ExportSetting);
 
+            labelOutputPath.Text = setting.ExportSetting.ExportFilePath;
         }
 
         /// <summary>
@@ -269,6 +270,7 @@ namespace CharaChipGen.MainForm
             {
                 MessageBox.Show(this, e.Message, "エラー");
             }
+
         }
 
         /// <summary>
@@ -283,12 +285,13 @@ namespace CharaChipGen.MainForm
             GeneratorSetting setting = AppData.Instance.GeneratorSetting;
             readSetting.CopyTo(setting);
 
-
             editFilePath = openFileDialog.FileName;
 
             // Note: 本当はCharaChipDataModelをViewに設定して
             //       ここに余計なコードを書かない方が美しい。
             UpdateAllEntryView();
+
+            labelOutputPath.Text = setting.ExportSetting.ExportFilePath;
         }
 
         /// <summary>
