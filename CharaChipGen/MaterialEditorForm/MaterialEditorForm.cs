@@ -163,17 +163,7 @@ namespace CharaChipGen.MaterialEditorForm
 
             try
             {
-                // 使用不可能な文字が使われていないか？
-                if (!MaterialEntryFile.IsValidName(layerName))
-                {
-                    throw new Exception("レイヤー名として使用できない文字が使用されています。");
-                }
-
-                // 既に使用済みでないか？
-                if (entryFile.Layers.ContainsKey(layerName))
-                {
-                    throw new Exception("既に同名のレイヤーが存在します。");
-                }
+                CheckLayerName(layerName);
 
                 // 適用可能
                 MaterialLayerInfo layerInfo = new MaterialLayerInfo(layerName);
@@ -209,16 +199,7 @@ namespace CharaChipGen.MaterialEditorForm
             try
             {
                 // 使用不可能な文字が使われていないか？
-                char[] invalidChars = System.IO.Path.GetInvalidPathChars();
-                if (MaterialEntryFile.IsValidName(layerName))
-                {
-                    throw new Exception("レイヤー名として使用できない文字が使用されています。");
-                }
-
-                if (entryFile.Layers.ContainsKey(layerName))
-                {
-                    throw new Exception("既に同名のレイヤーが存在します。");
-                }
+                CheckLayerName(layerName);
 
                 // 適用可能
                 entryFile.Layers.Remove(targetLayerInfo.Name);
@@ -241,5 +222,25 @@ namespace CharaChipGen.MaterialEditorForm
                 MessageBox.Show(this, ex.Message, "エラー");
             }
         }
+
+        /// <summary>
+        /// レイヤー名として適当であることを確認する。
+        /// 適当でない場合には例外をスルーする。
+        /// </summary>
+        /// <param name="name">レイヤー名</param>
+        private void CheckLayerName(string name)
+        {
+            char[] invalidChars = System.IO.Path.GetInvalidPathChars();
+            if (MaterialEntryFile.IsValidName(name))
+            {
+                throw new Exception("レイヤー名として使用できない文字が使用されています。");
+            }
+
+            if (entryFile.Layers.ContainsKey(name))
+            {
+                throw new Exception("既に同名のレイヤーが存在します。");
+            }
+        }
+
     }
 }

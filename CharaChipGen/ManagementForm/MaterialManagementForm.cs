@@ -47,31 +47,17 @@ namespace CharaChipGen.ManagementForm
         private void UpdateMaterialListView()
         {
             MaterialList materialList = GetCurrentMaterialList();
+            groupBoxMaterial.Text = materialList?.Name ?? "素材一覧";
+            listViewMaterials.Enabled = (materialList != null);
+            listViewMaterials.Items.Clear();
             if (materialList != null)
             {
-                if (materialList.Name == groupBoxMaterial.Text)
-                {
-                    // 既に設定されている。
-                    return;
-                }
-                groupBoxMaterial.Text = materialList.Name;
-                listViewMaterials.Items.Clear();
-                listViewMaterials.Enabled = true;
-
                 // リストビューへの追加
-                foreach (Material m in materialList)
+                foreach (Material material in materialList)
                 {
-                    string[] item = { m.Name, m.GetDisplayName(), m.Path };
-                    listViewMaterials.Items.Add(new ListViewItem(item));
+                    listViewMaterials.Items.Add(GenerateListViewMaterial(material));
                 }
                 listViewMaterials.View = View.Details;
-            }
-            else
-            {
-                // 未選択
-                listViewMaterials.Items.Clear();
-                listViewMaterials.Enabled = false;
-                groupBoxMaterial.Text = "素材一覧";
             }
 
             buttonAdd.Enabled = (materialList != null);
@@ -79,6 +65,17 @@ namespace CharaChipGen.ManagementForm
             buttonDelete.Enabled = (materialList != null);
             buttonNew.Enabled = (materialList != null);
             buttonRename.Enabled = (materialList != null);
+        }
+
+        /// <summary>
+        /// MaterialからListViewItemを構築する。
+        /// </summary>
+        /// <param name="material">Materialオブジェクト</param>
+        /// <returns>ListViewItemオブジェクト</returns>
+        private ListViewItem GenerateListViewMaterial(Material material)
+        {
+            return new ListViewItem(new string[] { 
+                material.Name, material.GetDisplayName(), material.Path });
         }
 
         /// <summary>
@@ -126,39 +123,38 @@ namespace CharaChipGen.ManagementForm
         /// <summary>
         /// 素材を追加する。
         /// </summary>
-        /// <param name="entryFilePath">エントリファイルパス</param>
-        private void AddMaterial(string entryFilePath)
+        /// <param name="srcEntryFilePath">追加するエントリファイルパス</param>
+        private void AddMaterial(string srcEntryFilePath)
         {
-            AppData data = AppData.Instance;
             MaterialList materialList = GetCurrentMaterialList();
-            string dstDir = System.IO.Path.Combine(data.MaterialDirectory, materialList.SubDirectoryName);
+            string srcEntryFileDir = System.IO.Path.GetDirectoryName(srcEntryFilePath);
+            string dstEntryFileDir = System.IO.Path.Combine(AppData.Instance.MaterialDirectory, materialList.SubDirectoryName);
+            string materialName = System.IO.Path.GetFileNameWithoutExtension(srcEntryFilePath);
 
-            MaterialEntryFile entryFile = new MaterialEntryFile();
-            entryFile.Load(entryFilePath);
+            MaterialEntryFile srcEntryFile = new MaterialEntryFile(srcEntryFilePath);
+            srcEntryFile.Reload();
 
 
-            // レイヤーを構成するファイルをコピーする。
-            string entryFileDir = System.IO.Path.GetDirectoryName(entryFilePath);
-            foreach (var layerEntry in entryFile.Layers)
+            // レイヤーを構成する画像ファイルをコピーする。
+            foreach (var layerEntry in srcEntryFile.Layers)
             {
                 if (!string.IsNullOrEmpty(layerEntry.Value.Path))
                 {
-                    CopyFile(entryFileDir, dstDir, layerEntry.Value.Path);
+                    CopyFile(srcEntryFileDir, dstEntryFileDir, layerEntry.Value.Path);
                 }
             }
 
             // エントリファイルをコピーする。
-            string entryFileName = System.IO.Path.GetFileName(entryFilePath);
-            CopyFile(entryFileDir, dstDir, entryFileName);
+            string entryFileName = System.IO.Path.GetFileName(srcEntryFilePath);
+            CopyFile(srcEntryFileDir, dstEntryFileDir, entryFileName);
 
-            string materialName = System.IO.Path.GetFileNameWithoutExtension(entryFilePath);
-            Material existMaterial = materialList.Get(materialName);
-            if (existMaterial != null)
+            // 既存のエントリがあるなら削除
+            if (materialList.Contains(materialName))
             {
                 materialList.Delete(materialName);
             }
             string relPath = System.IO.Path.Combine(materialList.SubDirectoryName, entryFileName);
-            materialList.Add(new Material(relPath, entryFile));
+            materialList.Add(new Material(relPath, srcEntryFile));
         }
 
         /// <summary>
@@ -178,7 +174,7 @@ namespace CharaChipGen.ManagementForm
             {
                 System.IO.Directory.CreateDirectory(dir);
             }
-            System.IO.File.Copy(srcPath, dstPath);
+            System.IO.File.Copy(srcPath, dstPath, true);
         }
 
         /// <summary>
@@ -189,10 +185,10 @@ namespace CharaChipGen.ManagementForm
         private void OnMaterialEditClicked(object sender, EventArgs evt)
         {
             ListViewItem selectedItem = listViewMaterials.SelectedItems[0];
-            MaterialList ml = GetCurrentMaterialList();
+            MaterialList materialList = GetCurrentMaterialList();
             string materialName = selectedItem.SubItems[0].Text;
-            Material m = ml.Get(materialName);
-            if (m == null)
+            Material material = materialList.Get(materialName);
+            if (material == null)
             {
                 return;
             }
@@ -201,7 +197,8 @@ namespace CharaChipGen.ManagementForm
             {
                 MaterialEditorForm.MaterialEditorForm form
                     = new MaterialEditorForm.MaterialEditorForm();
-                string entryFilePath = System.IO.Path.Combine(AppData.Instance.MaterialDirectory,m.Path);
+
+                string entryFilePath = System.IO.Path.Combine(AppData.Instance.MaterialDirectory, material.Path);
                 MaterialEntryFile entryFile = new MaterialEntryFile();
                 entryFile.Load(entryFilePath);
 
@@ -216,7 +213,7 @@ namespace CharaChipGen.ManagementForm
                 ApplyEdit(entryFile);
 
 
-                m.Reload(); // 更新する。
+                material.Reload(); // 更新する。
             }
             catch (Exception e)
             {
@@ -270,8 +267,6 @@ namespace CharaChipGen.ManagementForm
                 return;
             }
 
-            AppData data = AppData.Instance;
-
             ListView.SelectedListViewItemCollection selItems = listViewMaterials.SelectedItems;
 
             try
@@ -280,17 +275,18 @@ namespace CharaChipGen.ManagementForm
                 foreach (ListViewItem item in selItems)
                 {
                     string materialName = item.SubItems[0].Text;
-                    Material m = materialList.Get(materialName);
-                    if (m == null)
+                    Material material = materialList.Get(materialName);
+                    if (material == null)
                     {
                         return;
                     }
 
-                    materialList.Delete(m.Name); // リストビューアイテムの1項目目はマテリアル名
+                    // リストビューアイテムの1項目目はマテリアル名
+                    materialList.Delete(material.Name); 
 
                     // 実際のファイルの削除処理
                     // エントリファイルだけ削除する。
-                    string path = System.IO.Path.Combine(data.MaterialDirectory, m.Path);
+                    string path = System.IO.Path.Combine(AppData.Instance.MaterialDirectory, material.Path);
                     System.IO.File.Delete(path);
                 }
             }
@@ -314,9 +310,9 @@ namespace CharaChipGen.ManagementForm
         }
 
         /// <summary>
-        /// 
+        /// ツリービューで、現在選択されているノードの名前を取得する。
         /// </summary>
-        /// <returns></returns>
+        /// <returns>ノードの名前</returns>
         private string GetCurrentNodeName()
         {
             TreeNode node = treeViewMaterials.SelectedNode;
@@ -356,34 +352,25 @@ namespace CharaChipGen.ManagementForm
                 return;
             }
 
-            // 素材の名前を変更しよう！
+            // 素材の名前を変更する
             try
             {
-                // 使用不可能な文字が使われていないか？
-                if (!MaterialEntryFile.IsValidName(newName))
-                {
-                    throw new Exception("素材名として使用できない文字が使用されています。");
-                }
+                CheckMaterialName(materialList, newName);
 
-
-                // 同名のファイルが存在しないか？
-                if (materialList.Contains(newName))
-                {
-                    throw new Exception("同名の素材が既にあります。");
-                }
-
+                // エントリファイルのパス名を変更
                 string entryFilePath = System.IO.Path.Combine(AppData.Instance.MaterialDirectory, targetMaterial.Path);
                 string dstRelativePath = System.IO.Path.Combine(materialList.SubDirectoryName,
                     $"{newName}{MaterialEntryFile.EntryFileSuffix}");
                 string dstFilePath = System.IO.Path.Combine(AppData.Instance.MaterialDirectory, dstRelativePath);
                 System.IO.File.Move(entryFilePath, dstFilePath);
+
+                // 素材リストの素材を入れ替え
                 Material newMaterial = new Material(dstRelativePath, new MaterialEntryFile(dstFilePath));
                 materialList.Delete(targetMaterial);
                 materialList.Add(newMaterial);
 
                 listViewMaterials.Items.Remove(items[0]);
-                listViewMaterials.Items.Add(new ListViewItem(new string[] {
-                    newMaterial.Name, newMaterial.GetDisplayName(), newMaterial.Path }));
+                listViewMaterials.Items.Add(GenerateListViewMaterial(newMaterial));
             }
             catch (Exception ex)
             {
@@ -409,17 +396,7 @@ namespace CharaChipGen.ManagementForm
             
             try
             {
-                // 使用不可能な文字が使われていないか？
-                if (!MaterialEntryFile.IsValidName(newName))
-                {
-                    throw new Exception("素材名として使用できない文字が使用されています。");
-                }
-
-                // 同名のファイルが存在しないか？
-                if (materialList.Contains(newName))
-                {
-                    throw new Exception("同名の素材が既にあります。");
-                }
+                CheckMaterialName(materialList, newName);
 
                 string newRelativePath = System.IO.Path.Combine(materialList.SubDirectoryName,
                     $"{newName}{MaterialEntryFile.EntryFileSuffix}");
@@ -431,13 +408,32 @@ namespace CharaChipGen.ManagementForm
                 Material newMaterial = new Material(newRelativePath, entryFile);
                 materialList.Add(newMaterial);
 
-                listViewMaterials.Items.Add(new ListViewItem(new string[] {
-                    newMaterial.Name, newMaterial.GetDisplayName(), newMaterial.Path }));
-
+                listViewMaterials.Items.Add(GenerateListViewMaterial(newMaterial));
             }
             catch (Exception ex)
             {
                 MessageBox.Show(this, ex.Message, "エラー");
+            }
+        }
+
+        /// <summary>
+        /// 素材名が有効かどうかを確認する。
+        /// 正しくない場合には例外がスルーされる。
+        /// </summary>
+        /// <param name="materialList">マテリアルリスト</param>
+        /// <param name="name">素材名</param>
+        private void CheckMaterialName(MaterialList materialList, string name)
+        {
+            // 使用不可能な文字が使われていないか？
+            if (!MaterialEntryFile.IsValidName(name))
+            {
+                throw new Exception("素材名として使用できない文字が使用されています。");
+            }
+
+            // 同名のファイルが存在しないか？
+            if (materialList.Contains(name))
+            {
+                throw new Exception("同名の素材が既にあります。");
             }
         }
 
