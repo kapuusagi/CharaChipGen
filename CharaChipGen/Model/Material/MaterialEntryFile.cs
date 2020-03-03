@@ -30,6 +30,17 @@ namespace CharaChipGen.Model.Material
             return false;
         }
 
+        /// <summary>
+        /// 有効な名前かどうかを返す。
+        /// </summary>
+        /// <param name="name">名前</param>
+        /// <returns>有効な名前の場合にはtrue, それ以外はfalse</returns>
+        public static bool IsValidName(string name)
+        {
+            char[] invalidChars = System.IO.Path.GetInvalidPathChars();
+            return (name.IndexOfAny(invalidChars) < 0);
+        }
+
         // 識別名
         private string name;
         // エントリファイルパス
@@ -57,8 +68,6 @@ namespace CharaChipGen.Model.Material
             Path = path;
             displayNames = null;
             layers = null;
-            displayNames = new Dictionary<string, string>();
-            layers = new Dictionary<string, MaterialLayerInfo>();
         }
 
         /// <summary>
@@ -214,22 +223,33 @@ namespace CharaChipGen.Model.Material
             {
                 writer.WriteLine("# Material information.");
                 // 表示名
-                foreach (var entry in DisplayNames)
+                if (displayNames != null)
                 {
-                    writer.WriteLine($"Name.{entry.Key} = {entry.Value}");
+                    foreach (var entry in DisplayNames)
+                    {
+                        writer.WriteLine($"Name.{entry.Key} = {entry.Value}");
+                    }
+                }
+                else
+                {
+                    string name = System.IO.Path.GetFileNameWithoutExtension(path);
+                    writer.WriteLine($"Name.default = {name}");
                 }
 
                 // レイヤー名
-                int no = 1;
-                foreach (var entry in Layers)
+                if (layers != null)
                 {
-                    writer.WriteLine($"# Layer{no}");
-                    MaterialLayerInfo layer = entry.Value;
-                    writer.WriteLine($"Layer.{layer.Name}.Path = {layer.Path}");
-                    writer.WriteLine($"Layer.{layer.Name}.Type = {layer.LayerType.ToString()}");
-                    if (layer.ColorPartsRefs != null)
+                    int no = 1;
+                    foreach (var entry in Layers)
                     {
-                        writer.WriteLine($"Layer.{layer.Name}.ColorPartsRefs = {layer.ColorPartsRefs.ToString()}");
+                        writer.WriteLine($"# Layer{no}");
+                        MaterialLayerInfo layer = entry.Value;
+                        writer.WriteLine($"Layer.{layer.Name}.Path = {layer.Path}");
+                        writer.WriteLine($"Layer.{layer.Name}.Type = {layer.LayerType.ToString()}");
+                        if (layer.ColorPartsRefs != null)
+                        {
+                            writer.WriteLine($"Layer.{layer.Name}.ColorPartsRefs = {layer.ColorPartsRefs.ToString()}");
+                        }
                     }
                 }
             }
@@ -292,12 +312,6 @@ namespace CharaChipGen.Model.Material
                 // entyrFileにて明示的な指定があればそちらが使用される。
                 SetDisplayName("default", System.IO.Path.GetFileNameWithoutExtension(path));
 
-            }
-
-            // 有効なレイヤーが一つ以上あるかどうか。
-            if (!Layers.Any((entry) => entry.Value.IsValid()))
-            {
-                throw new NotSupportedException("Material entry file has no layers.");
             }
         }
 

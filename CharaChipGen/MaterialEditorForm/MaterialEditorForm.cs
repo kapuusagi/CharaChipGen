@@ -164,8 +164,7 @@ namespace CharaChipGen.MaterialEditorForm
             try
             {
                 // 使用不可能な文字が使われていないか？
-                char[] invalidChars = System.IO.Path.GetInvalidPathChars();
-                if (layerName.IndexOfAny(invalidChars) >= 0)
+                if (!MaterialEntryFile.IsValidName(layerName))
                 {
                     throw new Exception("レイヤー名として使用できない文字が使用されています。");
                 }
@@ -211,7 +210,7 @@ namespace CharaChipGen.MaterialEditorForm
             {
                 // 使用不可能な文字が使われていないか？
                 char[] invalidChars = System.IO.Path.GetInvalidPathChars();
-                if (layerName.IndexOfAny(invalidChars) >= 0)
+                if (MaterialEntryFile.IsValidName(layerName))
                 {
                     throw new Exception("レイヤー名として使用できない文字が使用されています。");
                 }

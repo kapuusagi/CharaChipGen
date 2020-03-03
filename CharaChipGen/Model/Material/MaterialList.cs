@@ -171,6 +171,15 @@ namespace CharaChipGen.Model.Material
             return null;
         }
 
+        /// <summary>
+        /// nameで指定される素材が存在するかどうかを判定する。
+        /// </summary>
+        /// <param name="name">素材名</param>
+        /// <returns>存在する場合にはture, 存在しない場合にはfalse</returns>
+        public bool Contains(string name)
+        {
+            return (materials.Find((m) => m.Name.Equals(name)) != null);
+        }
 
 
         public IEnumerator<Material> GetEnumerator()
