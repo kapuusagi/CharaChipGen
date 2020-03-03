@@ -1,6 +1,9 @@
 ﻿using System;
 using System.Drawing;
 using System.Windows.Forms;
+using CharaChipGen.Model.Material;
+using CharaChipGen.Model.Layer;
+using CharaChipGen.Model.CharaChip;
 
 namespace CharaChipGen.MaterialEditorForm
 {
@@ -9,89 +12,179 @@ namespace CharaChipGen.MaterialEditorForm
     /// </summary>
     public partial class MaterialEditorLayerView : UserControl
     {
-        /// <summary>
-        /// 素材の画像が変更されたときのハンドラ
-        /// </summary>
-        /// <param name="sender">送信元のオブジェクトお</param>
-        /// <param name="e">イベントオブジェクト</param>
-        public delegate void MaterialImageChangeHandler(object sender, EventArgs e);
-        /// <summary>
-        /// 素材の画像が変更されたときのイベント
-        /// </summary>
-        public event MaterialImageChangeHandler ImageChange;
+        // エントリファイル
+        private MaterialEntryFile entryFile;
+        // レイヤー情報
+        private MaterialLayerInfo layerInfo;
 
+        /// <summary>
+        /// 新しいインスタンスを構築する。
+        /// </summary>
         public MaterialEditorLayerView()
         {
             InitializeComponent();
-        }
 
-        private void OnControlResized(object sender, EventArgs e)
-        {
-            // 開くボタン
-            int openBtnX = ClientSize.Width - 8 - buttonOpen.Width;
-            int openBtnY = buttonOpen.Location.Y;
-            buttonOpen.SetBounds(openBtnX, openBtnY, buttonOpen.Width, buttonOpen.Height);
-
-            //  4x3view
-            int viewX = materialView4x3.Location.X;
-            int viewY = materialView4x3.Location.Y;
-            int viewWidth = ClientSize.Width - 8 - viewX;
-            int viewHeight = ClientSize.Height - 8 - viewY;
-            materialView4x3.SetBounds(viewX, viewY, viewWidth, viewHeight);
+            foreach (LayerType layerType in Enum.GetValues(typeof(LayerType)))
+            {
+                comboBoxLayerType.Items.Add(layerType);
+            }
+            comboBoxColorRefs.Items.Add(Properties.Resources.ItemNameUsePartsSetting);
+            foreach (PartsType partsType in Enum.GetValues(typeof(PartsType)))
+            {
+                comboBoxColorRefs.Items.Add(partsType);
+            }
         }
 
         /// <summary>
-        /// このビューの画像オブジェクト
+        /// レイヤー情報を設定する
         /// </summary>
-        public Image Image {
-            get { return materialView4x3.Image; }
-            set {
-                materialView4x3.Image = value;
+        /// <param name="entryFile">エントリーファイル</param>
+        /// <param name="layerInfo">レイヤー情報</param>
+        public void SetLayerInfo(MaterialEntryFile entryFile, MaterialLayerInfo layerInfo)
+        {
+            this.entryFile = entryFile;
+            this.layerInfo = layerInfo;
+            ModelToUI();
+        }
 
-                UpdateView();
 
-                if (ImageChange != null)
+        /// <summary>
+        /// レイヤー情報モデルの設定をUIに反映させる。
+        /// </summary>
+        private void ModelToUI()
+        {
+            if ((entryFile != null) && (layerInfo != null))
+            {
+                string dir = System.IO.Path.GetDirectoryName(entryFile.Path);
+                if (!string.IsNullOrEmpty(layerInfo.Path))
                 {
-                    ImageChange(this, new EventArgs());
+                    // レイヤーにパスが設定されている
+                    string path = System.IO.Path.Combine(dir, layerInfo.Path);
+                    Image image = Bitmap.FromFile(path);
+                    SetImage(image);
+                }
+                else
+                {
+                    SetImage(null);
+                }
+            }
+            else
+            {
+                SetImage(null);
+            }
+
+            // レイヤー名
+            groupBoxLayerName.Text = layerInfo?.Name ?? "";
+
+            // 描画するレイヤー
+            SetLayerType(layerInfo?.LayerType ?? null);
+
+            // カラー参照
+            SetColorRefs(layerInfo?.ColorPartsRefs ?? null);
+        }
+
+        /// <summary>
+        /// レイヤー種別の設定をUIに反映させる。
+        /// </summary>
+        /// <param name="selValue">レイヤーの設定(null可)</param>
+        private void SetLayerType(LayerType? selValue)
+        {
+            if (selValue == null)
+            {
+                comboBoxLayerType.SelectedIndex = 0;
+            }
+            else
+            {
+                for (int i = 0; i < comboBoxLayerType.Items.Count; i++)
+                {
+                    if (comboBoxLayerType.Items[i].Equals(selValue))
+                    {
+                        comboBoxLayerType.SelectedIndex = i;
+                        break;
+                    }
                 }
             }
         }
 
-        public string LayerName {
-            set { groupBoxLayerName.Text = value; }
-            get { return groupBoxLayerName.Text; }
-        }
-
-        private void UpdateView()
+        /// <summary>
+        /// 色参照部品設定をUIに反映させる。
+        /// </summary>
+        /// <param name="selValue">レイヤーの設定(null可)</param>
+        private void SetColorRefs(PartsType? selValue)
         {
-            Image image = materialView4x3.Image;
-            if (image == null)
+            if (selValue == null)
             {
-                labelCharaSize.Text = "0 x 0 pixels";
-                labelPictureSize.Text = "0 x 0 pixels";
-                return;
+                comboBoxColorRefs.SelectedIndex = 0;
             }
-
-            int subImageWidth = image.Width / 3;
-            int subImageHeight = image.Height / 4;
-
-            labelPictureSize.Text = String.Format("{0} x {1} pixels", image.Width, image.Height);
-            labelCharaSize.Text = String.Format("{0} x {1} pixels", subImageWidth, subImageHeight);
+            else
+            {
+                for (int i = 0; i < comboBoxColorRefs.Items.Count; i++)
+                {
+                    if (comboBoxColorRefs.Items[i].Equals(selValue))
+                    {
+                        comboBoxColorRefs.SelectedIndex = i;
+                        break;
+                    }
+                }
+            }
         }
 
+        /// <summary>
+        /// イメージを設定する。
+        /// </summary>
+        /// <param name="image">イメージ</param>
+        private void SetImage(Image image)
+        {
+            materialView4x3.Image = image;
+
+            int width = image?.Width ?? 0;
+            int height = image?.Height ?? 0;
+            int subImageWidth = width / 3;
+            int subImageHeight = height / 4;
+
+            labelPictureSize.Text = $"{width} x {height} pixels";
+            labelCharaSize.Text = $"{subImageWidth} x {subImageHeight} pixels";
+
+        }
+
+
+        /// <summary>
+        /// レイヤーファイルを開くボタン
+        /// </summary>
+        /// <param name="sender">送信元オブジェクト</param>
+        /// <param name="evt">イベントオブジェクト</param>
         private void OnOpenButtonClicked(object sender, EventArgs evt)
         {
+            string entryFileDir = System.IO.Path.GetDirectoryName(entryFile.Path);
+            openFileDialog.InitialDirectory = entryFileDir;
+            if (!string.IsNullOrEmpty(layerInfo.Path))
+            {
+                if (System.IO.Path.IsPathRooted(layerInfo.Path))
+                {
+                    // 絶対パス指定(編集中) 
+                    openFileDialog.FileName = layerInfo.Path;
+                }
+                else
+                {
+                    // 相対パス(確定済み)
+                    string path = System.IO.Path.Combine(entryFileDir, layerInfo.Path);
+                    openFileDialog.FileName = path;
+                }
+            }
+            else
+            {
+                openFileDialog.FileName = null;
+            }
             DialogResult res = openFileDialog.ShowDialog(this);
             if (res != DialogResult.OK)
             {
                 return;
             }
 
-            string path = openFileDialog.FileName;
-
             try
             {
-                Image = Image.FromFile(path);
+                layerInfo.Path = openFileDialog.FileName;
+                ModelToUI();
             }
             catch (Exception e)
             {
@@ -99,9 +192,47 @@ namespace CharaChipGen.MaterialEditorForm
             }
         }
 
-        public Image GetSubImage(int x, int y)
+        /// <summary>
+        /// レイヤー種別の選択が変更されたときに通知を受け取る。
+        /// </summary>
+        /// <param name="sender">送信元オブジェクト</param>
+        /// <param name="e">イベントオブジェクト</param>
+        private void OnComboBoxLayerTypeSelectedValueChanged(object sender, EventArgs e)
         {
-            return materialView4x3.GetSubImage(x, y);
+            if (layerInfo == null)
+            {
+                return;
+            }
+
+            ComboBox comboBox = (ComboBox)(sender);
+            if (comboBox.SelectedItem != null)
+            {
+                layerInfo.LayerType = (LayerType)(comboBox.SelectedItem);
+            }
+        }
+
+        /// <summary>
+        /// 色参照コンボボックスの選択が変更されたときに通知を受け取る。
+        /// </summary>
+        /// <param name="sender">送信元オブジェクト</param>
+        /// <param name="e">イベントオブジェクト</param>
+        private void OnComboBoxColorRefsSelectedValueChanged(object sender, EventArgs e)
+        {
+            if (layerInfo == null)
+            {
+                return;
+            }
+
+            ComboBox comboBox = (ComboBox)(sender);
+            object selectedItem = comboBox.SelectedItem;
+            if ((selectedItem != null) && (selectedItem is PartsType partsType))
+            {
+                layerInfo.ColorPartsRefs = partsType;
+            }
+            else
+            {
+                layerInfo.ColorPartsRefs = null;
+            }
         }
     }
 }

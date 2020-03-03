@@ -4,8 +4,11 @@ using System.Linq;
 namespace CharaChipGen.Model.Material
 {
     /// <summary>
-    /// ひとつのマテリアルを表すクラス
+    /// ひとつのマテリアルを表すクラス。
     /// </summary>
+    /// <remarks>
+    /// 素材識別名(Name)はエントリファイルの名前(拡張子抜き)となっていることに注意する。
+    /// </remarks>
     public class Material
     {
         private MaterialEntryFile entryFile;
@@ -17,7 +20,6 @@ namespace CharaChipGen.Model.Material
         /// <param name="entryFile">エントリファイル</param>
         public Material(string path, MaterialEntryFile entryFile)
         {
-            this.Name = System.IO.Path.GetFileNameWithoutExtension(path);
             this.Path = path;
             this.entryFile = entryFile;
         }
@@ -25,7 +27,7 @@ namespace CharaChipGen.Model.Material
         /// <summary>
         /// 素材の識別名
         /// </summary>
-        public string Name { get; private set; }
+        public string Name { get => entryFile.Name; }
 
         /// <summary>
         /// エントリファイルの相対バス。
@@ -83,6 +85,14 @@ namespace CharaChipGen.Model.Material
         public int GetLayerCount()
         {
             return entryFile.Layers.Count;
+        }
+
+        /// <summary>
+        /// 再読み込みする。
+        /// </summary>
+        public void Reload()
+        {
+            entryFile.Reload();
         }
 
         /// <summary>

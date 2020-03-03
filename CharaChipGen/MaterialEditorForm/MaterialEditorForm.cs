@@ -1,6 +1,7 @@
 ﻿using CharaChipGen.Model.Material;
 using System;
 using System.Windows.Forms;
+using CharaChipGen.Model.CharaChip;
 
 namespace CharaChipGen.MaterialEditorForm
 {
@@ -9,8 +10,7 @@ namespace CharaChipGen.MaterialEditorForm
     /// </summary>
     public partial class MaterialEditorForm : Form
     {
-        // 編集対象の素材
-        private Material editMaterial;
+        private MaterialEntryFile entryFile;
 
         /// <summary>
         /// コンストラクタ
@@ -24,11 +24,12 @@ namespace CharaChipGen.MaterialEditorForm
         /// <summary>
         /// 編集対象の素材
         /// </summary>
-        public Material Material {
-            get { return editMaterial; }
+        public MaterialEntryFile MaterialEntryFile { 
+            get => entryFile; 
             set {
-                editMaterial = value;
+                entryFile = value;
                 ReloadMaterial();
+
             }
         }
 
@@ -37,20 +38,20 @@ namespace CharaChipGen.MaterialEditorForm
         /// </summary>
         private void ReloadMaterial()
         {
-            // マテリアルを読み出す。
-            if (editMaterial == null)
+            textBoxMaterialName.Text = entryFile?.GetDisplayName() ?? "";
+
+            listBoxLayers.Items.Clear();
+            if (entryFile != null)
             {
-                // 新規作成 → マテリアルなし。
-                return;
+                foreach (var entry in entryFile.Layers)
+                {
+                    listBoxLayers.Items.Add(entry.Value);
+                }
+                if (listBoxLayers.Items.Count > 0)
+                {
+                    listBoxLayers.SelectedIndex = 0;
+                }
             }
-
-            textBoxMaterialName.Text = editMaterial.GetDisplayName();
-
-            // プライマリレイヤーを設定する
-            materialEditorLayerView1.Image = editMaterial.LoadLayerImage(0);
-
-            // セカンダリレイヤーを設定する
-            materialEditorLayerView2.Image = editMaterial.LoadLayerImage(1);
         }
 
         /// <summary>
@@ -90,68 +91,60 @@ namespace CharaChipGen.MaterialEditorForm
             Close();
         }
 
-        /// <summary>
-        /// 素材の変更を適用する。
-        /// </summary>
-        public void ApplyMaterialEdit()
-        {
-            string materialDir = AppData.Instance.MaterialDirectory;
-            string dir = System.IO.Path.Combine(materialDir, editMaterial.Path);
-
-            editMaterial.SetDisplayName(textBoxMaterialName.Text);
-
-            // 各イメージを保存する。
-            string baseName = System.IO.Path.GetFileNameWithoutExtension(editMaterial.Path);
-            if (materialEditorLayerView1.Image != null)
-            {
-                if (string.IsNullOrEmpty(editMaterial.Layers[0].Path))
-                {
-                    editMaterial.Layers[0].Path = $"{baseName}_primary.png";
-                }
-                string path = System.IO.Path.Combine(dir, editMaterial.Layers[0].Path);
-                materialEditorLayerView1.Image.Save(path);
-            }
-            else
-            {
-                editMaterial.Layers[0].Path = null;
-            }
-
-            if (materialEditorLayerView2.Image != null)
-            {
-                if (string.IsNullOrEmpty(editMaterial.Layers[1].Path))
-                {
-                    editMaterial.Layers[1].Path = $"{baseName}_primary.png";
-                }
-                string path = System.IO.Path.Combine(dir, editMaterial.Layers[1].Path);
-                materialEditorLayerView2.Image.Save(path);
-            }
-            else
-            {
-                editMaterial.Layers[0].Path = null;
-            }
-
-        }
 
         /// <summary>
-        /// 2番目のレイヤー削除ボタンがクリックされたときに通知を受け取る。
+        /// リストボックスの項目を描画する際に通知を受け取る。
         /// </summary>
         /// <param name="sender">送信元オブジェクト</param>
         /// <param name="e">イベントオブジェクト</param>
-        private void OnDelete2ndLayerButtonClicked(object sender, EventArgs e)
+        private void OnListBoxLayersDrawItem(object sender, DrawItemEventArgs e)
         {
-            materialEditorLayerView2.Image = null;
+            e.DrawBackground();
+
+            if (e.Index >= 0)
+            {
+                MaterialLayerInfo item = ((ListBox)(sender)).Items[e.Index] as MaterialLayerInfo;
+                using (System.Drawing.Brush brush = new System.Drawing.SolidBrush(e.ForeColor))
+                {
+                    string text = item.Name;
+                    e.Graphics.DrawString(text, e.Font, brush, e.Bounds);
+                }
+            }
+
+            e.DrawFocusRectangle();
         }
 
         /// <summary>
-        /// レイヤービューの画像が変更された時に通知を受け取る。
+        /// レイヤー削除ボタンがクリックされたときに通知を受け取る。
         /// </summary>
         /// <param name="sender">送信元オブジェクト</param>
         /// <param name="e">イベントオブジェクト</param>
-        private void OnLayerViewImageChanged(object sender, EventArgs e)
+        private void OnDeleteLayerButtonClicked(object sender, EventArgs e)
         {
-            pictureBoxPreview.Image = materialEditorLayerView1.GetSubImage(1, 0);
-            pictureBoxPreview.BackgroundImage
-                = materialEditorLayerView2.GetSubImage(1, 0);
+            int index = listBoxLayers.SelectedIndex;
+            if (index >= 0)
+            {
+                MaterialLayerInfo sel = (MaterialLayerInfo)(listBoxLayers.SelectedItem);
+                listBoxLayers.Items.RemoveAt(listBoxLayers.SelectedIndex);
+                entryFile.Layers.Remove(sel.Name);
+            }
+        }
+
+        /// <summary>
+        /// レイヤーリストの選択状態が変化したときに通知を受け取る。
+        /// </summary>
+        /// <param name="sender">送信元オブジェクト</param>
+        /// <param name="e">イベントオブジェクト</param>
+        private void OnListBoxLayersSelectedValueChanged(object sender, EventArgs e)
+        {
+            ListBox listBox = (ListBox)(sender);
+            MaterialLayerInfo layer = listBox.SelectedItem as MaterialLayerInfo;
+            materialEditorLayerView.Visible = (layer != null);
+            if (layer != null)
+            {
+                materialEditorLayerView.SetLayerInfo(entryFile, layer);
+            }
+            buttonDeleteLayer.Enabled = (layer != null);
         }
     }
 }

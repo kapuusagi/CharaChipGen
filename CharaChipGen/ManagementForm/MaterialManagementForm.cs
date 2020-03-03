@@ -200,23 +200,62 @@ namespace CharaChipGen.ManagementForm
                 return;
             }
 
-            MaterialEditorForm.MaterialEditorForm form
-                = new MaterialEditorForm.MaterialEditorForm();
-            form.Material = m;
-            DialogResult res = form.ShowDialog(this);
-            if (res != DialogResult.OK)
-            {
-                return;
-            }
-
             try
             {
-                form.ApplyMaterialEdit();
+                MaterialEditorForm.MaterialEditorForm form
+                    = new MaterialEditorForm.MaterialEditorForm();
+                string entryFilePath = System.IO.Path.Combine(AppData.Instance.MaterialDirectory,m.Path);
+                MaterialEntryFile entryFile = new MaterialEntryFile();
+                entryFile.Load(entryFilePath);
+
+                form.MaterialEntryFile = entryFile;
+                DialogResult res = form.ShowDialog(this);
+                if (res != DialogResult.OK)
+                {
+                    return;
+                }
+
+                // 編集反映処理
+                ApplyEdit(entryFile);
+
+
+                m.Reload(); // 更新する。
             }
             catch (Exception e)
             {
                 MessageBox.Show(this, e.Message, "エラー");
             }
+        }
+
+        /// <summary>
+        /// 編集結果を反映させる。
+        /// </summary>
+        /// <param name="entryFile">エントリファイル</param>
+        private void ApplyEdit(MaterialEntryFile entryFile)
+        {
+            string entryFileDir = System.IO.Path.GetDirectoryName(entryFile.Path);
+
+            foreach (var layerEntry in entryFile.Layers)
+            {
+                MaterialLayerInfo layer = layerEntry.Value;
+                if (string.IsNullOrEmpty(layer.Path))
+                {
+                    // 普通はここに来ないけど。
+                    continue;
+                }
+                if (System.IO.Path.IsPathRooted(layer.Path))
+                {
+                    // 絶対パス指定になってるので変更されたやつである。
+                    // コピーして相対パスに変更する。
+                    string newFileName = $"{entryFile.Name}.{layer.Name}.png";
+                    string newPath = System.IO.Path.Combine(entryFileDir, newFileName);
+                    System.IO.File.Copy(layer.Path, newPath);
+                    layer.Path = newFileName;
+                }
+            }
+
+            // 設定変更を書き出す。
+            entryFile.Save();
         }
 
         /// <summary>
@@ -227,7 +266,7 @@ namespace CharaChipGen.ManagementForm
         private void OnMaterialDeleteClicked(object sender, EventArgs evt)
         {
             DialogResult res = MessageBox.Show(this,
-                "選択されているマテリアルを削除してもよろしいですか？",
+                "選択されている部品を削除してもよろしいですか？",
                 "確認", MessageBoxButtons.YesNo);
             if (res != DialogResult.Yes)
             {
@@ -253,7 +292,7 @@ namespace CharaChipGen.ManagementForm
                     ml.Delete(m.Name); // リストビューアイテムの1項目目はマテリアル名
 
                     // 実際のファイルの削除処理
-                    // 面倒なのでエントリファイルだけ削除してお茶を濁す。
+                    // エントリファイルだけ削除する。
                     string path = System.IO.Path.Combine(data.MaterialDirectory, m.Path);
                     System.IO.File.Delete(path);
                 }

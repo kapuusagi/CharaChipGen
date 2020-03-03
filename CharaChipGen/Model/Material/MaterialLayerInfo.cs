@@ -20,10 +20,13 @@ namespace CharaChipGen.Model.Material
             attributeType = null;
         }
 
+        /// <summary>
+        /// レイヤー名。レイヤーリスト中で一意。
+        /// </summary>
         public string Name { get; private set; }
 
         /// <summary>
-        /// レイヤーファイル名
+        /// レイヤーファイル名(エントリファイルからの相対パス) 
         /// </summary>
         public string Path { get; set; }
 
@@ -33,7 +36,7 @@ namespace CharaChipGen.Model.Material
         public LayerType LayerType { get; set; }
 
         /// <summary>
-        /// 色パラメータを取得する部品
+        /// 色パラメータを取得する部品。素材が割り当てられている部品の設定を使用する場合にはnull。
         /// </summary>
         public PartsType? ColorPartsRefs {
             get => attributeType;

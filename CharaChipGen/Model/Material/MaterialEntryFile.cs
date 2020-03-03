@@ -30,10 +30,15 @@ namespace CharaChipGen.Model.Material
             return false;
         }
 
-        /// 表示名
+        // 識別名
+        private string name;
+        // エントリファイルパス
+        private string path;
+
+        // 表示名
         private Dictionary<string, string> displayNames;
 
-        /// レイヤー
+        // レイヤー
         private Dictionary<string, MaterialLayerInfo> layers;
 
         /// <summary>
@@ -57,9 +62,27 @@ namespace CharaChipGen.Model.Material
         }
 
         /// <summary>
+        /// このエントリーファイルの識別名を得る。
+        /// ディレクトリ名、拡張子を抜いたものが返る。
+        /// </summary>
+        public string Name {
+            get => name;
+        }
+
+        /// <summary>
         /// エントリファイルパス
         /// </summary>
-        public string Path { get; set; }
+        public string Path { 
+            get => path; 
+            set {
+                if ((path != null) && path.Equals(value))
+                {
+                    return;
+                }
+                path = value;
+                name = (value != null) ? System.IO.Path.GetFileNameWithoutExtension(path) : "";
+            }
+        }
 
         /// <summary>
         /// 表示名。
@@ -77,7 +100,7 @@ namespace CharaChipGen.Model.Material
         }
 
         /// <summary>
-        /// レイヤー一覧
+        /// レイヤー一覧。MaterialLayerInfo.NameとMaterialLayerInfoのディクショナリ。
         /// </summary>
         public Dictionary<string, MaterialLayerInfo> Layers {
             get {
@@ -177,6 +200,11 @@ namespace CharaChipGen.Model.Material
         }
 
         /// <summary>
+        /// エントリファイルを上書きする。
+        /// </summary>
+        public void Save() => Save(Path);
+
+        /// <summary>
         /// パスにエントリファイルを書き出す。
         /// </summary>
         /// <param name="path">ファイルパス</param>
@@ -205,8 +233,17 @@ namespace CharaChipGen.Model.Material
                     }
                 }
             }
+
+            Path = path;
         }
 
+        /// <summary>
+        /// エントリファイルを再読み込みする。
+        /// </summary>
+        public void Reload()
+        {
+            Load(Path);
+        }
 
         /// <summary>
         /// パスからエントリファイルを読み込む。
@@ -214,6 +251,7 @@ namespace CharaChipGen.Model.Material
         /// <param name="path">ファイルパス</param>
         public void Load(string path)
         {
+            Path = path;
             displayNames = new Dictionary<string, string>();
             layers = new Dictionary<string, MaterialLayerInfo>();
 
@@ -248,9 +286,12 @@ namespace CharaChipGen.Model.Material
             }
 
             // 値チェック
-            if (DisplayNames.Count == 0)
+            if (!DisplayNames.ContainsKey("default"))
             {
-                throw new NotSupportedException("Material entry file has no name.");
+                // デフォルト名はファイル名からパクっておく。
+                // entyrFileにて明示的な指定があればそちらが使用される。
+                SetDisplayName("default", System.IO.Path.GetFileNameWithoutExtension(path));
+
             }
 
             // 有効なレイヤーが一つ以上あるかどうか。
