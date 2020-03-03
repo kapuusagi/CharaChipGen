@@ -100,7 +100,7 @@ namespace CharaChipGen.Model.Material
         /// </summary>
         public void Reload()
         {
-            entryFile.Reload();
+            entryFile.Load();
         }
 
         /// <summary>

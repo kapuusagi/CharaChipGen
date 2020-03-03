@@ -131,8 +131,7 @@ namespace CharaChipGen.ManagementForm
             string dstEntryFileDir = System.IO.Path.Combine(AppData.Instance.MaterialDirectory, materialList.SubDirectoryName);
             string materialName = System.IO.Path.GetFileNameWithoutExtension(srcEntryFilePath);
 
-            MaterialEntryFile srcEntryFile = new MaterialEntryFile(srcEntryFilePath);
-            srcEntryFile.Reload();
+            MaterialEntryFile srcEntryFile = MaterialEntryFile.LoadFrom(srcEntryFilePath);
 
 
             // レイヤーを構成する画像ファイルをコピーする。
@@ -199,8 +198,7 @@ namespace CharaChipGen.ManagementForm
                     = new MaterialEditorForm.MaterialEditorForm();
 
                 string entryFilePath = System.IO.Path.Combine(AppData.Instance.MaterialDirectory, material.Path);
-                MaterialEntryFile entryFile = new MaterialEntryFile();
-                entryFile.Load(entryFilePath);
+                MaterialEntryFile entryFile = MaterialEntryFile.LoadFrom(entryFilePath);
 
                 form.MaterialEntryFile = entryFile;
                 DialogResult res = form.ShowDialog(this);

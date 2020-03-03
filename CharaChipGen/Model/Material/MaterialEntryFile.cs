@@ -41,23 +41,23 @@ namespace CharaChipGen.Model.Material
             return (name.IndexOfAny(invalidChars) < 0);
         }
 
-        // 識別名
-        private string name;
-        // エントリファイルパス
-        private string path;
+
+        /// <summary>
+        /// パスからエントリファイルを読み込む。
+        /// </summary>
+        /// <param name="path">ファイルパス</param>
+        public static MaterialEntryFile LoadFrom(string path)
+        {
+            MaterialEntryFile materialEntryFile = MaterialEntryFile.LoadFrom(path);
+            return materialEntryFile;
+        }
+
 
         // 表示名
         private Dictionary<string, string> displayNames;
 
         // レイヤー
         private Dictionary<string, MaterialLayerInfo> layers;
-
-        /// <summary>
-        /// 新しいインスタンスを構築する。
-        /// </summary>
-        public MaterialEntryFile() : this(null)
-        {
-        }
 
         /// <summary>
         /// 新しいインスタンスを構築する。
@@ -75,23 +75,14 @@ namespace CharaChipGen.Model.Material
         /// ディレクトリ名、拡張子を抜いたものが返る。
         /// </summary>
         public string Name {
-            get => name;
+            get => System.IO.Path.GetFileNameWithoutExtension(Path);
         }
 
         /// <summary>
-        /// エントリファイルパス
+        /// エントリファイルパス。
+        /// フルパスで返る。
         /// </summary>
-        public string Path { 
-            get => path; 
-            set {
-                if ((path != null) && path.Equals(value))
-                {
-                    return;
-                }
-                path = value;
-                name = (value != null) ? System.IO.Path.GetFileNameWithoutExtension(path) : "";
-            }
-        }
+        public string Path { get; private set; }
 
         /// <summary>
         /// 表示名。
@@ -101,7 +92,7 @@ namespace CharaChipGen.Model.Material
             get {
                 if (displayNames == null)
                 {
-                    Load(Path);
+                    Load();
                 }
 
                 return displayNames;
@@ -115,7 +106,7 @@ namespace CharaChipGen.Model.Material
             get {
                 if (layers == null)
                 {
-                    Load(Path);
+                    Load();
                 }
                 return layers;
             }
@@ -211,13 +202,13 @@ namespace CharaChipGen.Model.Material
         /// <summary>
         /// エントリファイルを上書きする。
         /// </summary>
-        public void Save() => Save(Path);
+        public void Save() => SaveAs(Path);
 
         /// <summary>
         /// パスにエントリファイルを書き出す。
         /// </summary>
         /// <param name="path">ファイルパス</param>
-        public void Save(string path)
+        public void SaveAs(string path)
         {
             using (var writer = new System.IO.StreamWriter(System.IO.File.OpenWrite(path)))
             {
@@ -253,29 +244,17 @@ namespace CharaChipGen.Model.Material
                     }
                 }
             }
-
-            Path = path;
         }
 
         /// <summary>
         /// エントリファイルを再読み込みする。
         /// </summary>
-        public void Reload()
+        public void Load()
         {
-            Load(Path);
-        }
-
-        /// <summary>
-        /// パスからエントリファイルを読み込む。
-        /// </summary>
-        /// <param name="path">ファイルパス</param>
-        public void Load(string path)
-        {
-            Path = path;
             displayNames = new Dictionary<string, string>();
             layers = new Dictionary<string, MaterialLayerInfo>();
 
-            using (var reader = new System.IO.StreamReader(System.IO.File.OpenRead(path)))
+            using (var reader = new System.IO.StreamReader(System.IO.File.OpenRead(Path)))
             {
                 string[] lines = reader.ReadToEnd().Split('\n');
                 for (int i = 0; i < lines.Length; i++)
@@ -310,7 +289,7 @@ namespace CharaChipGen.Model.Material
             {
                 // デフォルト名はファイル名からパクっておく。
                 // entyrFileにて明示的な指定があればそちらが使用される。
-                SetDisplayName("default", System.IO.Path.GetFileNameWithoutExtension(path));
+                SetDisplayName("default", System.IO.Path.GetFileNameWithoutExtension(Path));
 
             }
         }
