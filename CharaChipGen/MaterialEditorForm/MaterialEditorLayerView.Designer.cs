@@ -29,7 +29,6 @@
         private void InitializeComponent()
         {
             this.groupBoxLayerName = new System.Windows.Forms.GroupBox();
-            this.materialView4x3 = new CharaChipGen.MaterialEditorForm.MaterialView3x4();
             this.panel1 = new System.Windows.Forms.Panel();
             this.tableLayoutPanel1 = new System.Windows.Forms.TableLayoutPanel();
             this.label3 = new System.Windows.Forms.Label();
@@ -43,6 +42,7 @@
             this.flowLayoutPanel1 = new System.Windows.Forms.FlowLayoutPanel();
             this.buttonOpen = new System.Windows.Forms.Button();
             this.openFileDialog = new System.Windows.Forms.OpenFileDialog();
+            this.materialView4x3 = new CharaChipGen.MaterialEditorForm.MaterialView3x4();
             this.groupBoxLayerName.SuspendLayout();
             this.panel1.SuspendLayout();
             this.tableLayoutPanel1.SuspendLayout();
@@ -60,15 +60,6 @@
             this.groupBoxLayerName.TabIndex = 0;
             this.groupBoxLayerName.TabStop = false;
             this.groupBoxLayerName.Text = "レイヤー";
-            // 
-            // materialView4x3
-            // 
-            this.materialView4x3.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.materialView4x3.Image = null;
-            this.materialView4x3.Location = new System.Drawing.Point(3, 159);
-            this.materialView4x3.Name = "materialView4x3";
-            this.materialView4x3.Size = new System.Drawing.Size(429, 308);
-            this.materialView4x3.TabIndex = 5;
             // 
             // panel1
             // 
@@ -210,6 +201,15 @@
             // 
             this.openFileDialog.Filter = "PNGファイル|*.png";
             this.openFileDialog.Title = "開く";
+            // 
+            // materialView4x3
+            // 
+            this.materialView4x3.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.materialView4x3.Image = null;
+            this.materialView4x3.Location = new System.Drawing.Point(3, 159);
+            this.materialView4x3.Name = "materialView4x3";
+            this.materialView4x3.Size = new System.Drawing.Size(429, 308);
+            this.materialView4x3.TabIndex = 5;
             // 
             // MaterialEditorLayerView
             // 

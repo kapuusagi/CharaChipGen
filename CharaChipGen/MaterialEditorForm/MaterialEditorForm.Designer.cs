@@ -152,11 +152,11 @@
             // 
             this.flowLayoutPanel2.Controls.Add(this.buttonAddLayer);
             this.flowLayoutPanel2.Controls.Add(this.buttonDeleteLayer);
-            this.flowLayoutPanel2.Dock = System.Windows.Forms.DockStyle.Bottom;
-            this.flowLayoutPanel2.Location = new System.Drawing.Point(0, 369);
+            this.flowLayoutPanel2.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.flowLayoutPanel2.Location = new System.Drawing.Point(0, 350);
             this.flowLayoutPanel2.Name = "flowLayoutPanel2";
             this.flowLayoutPanel2.Padding = new System.Windows.Forms.Padding(6);
-            this.flowLayoutPanel2.Size = new System.Drawing.Size(174, 135);
+            this.flowLayoutPanel2.Size = new System.Drawing.Size(174, 154);
             this.flowLayoutPanel2.TabIndex = 0;
             // 
             // buttonAddLayer
@@ -167,6 +167,7 @@
             this.buttonAddLayer.TabIndex = 9;
             this.buttonAddLayer.Text = "レイヤーを追加";
             this.buttonAddLayer.UseVisualStyleBackColor = true;
+            this.buttonAddLayer.Click += new System.EventHandler(this.OnButtonAddLayerClick);
             // 
             // tableLayoutPanel1
             // 

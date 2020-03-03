@@ -146,5 +146,46 @@ namespace CharaChipGen.MaterialEditorForm
             }
             buttonDeleteLayer.Enabled = (layer != null);
         }
+
+        /// <summary>
+        /// レイヤー追加ボタンがクリックされたときに通知を受け取る。
+        /// </summary>
+        /// <param name="sender">送信元オブジェクト</param>
+        /// <param name="e">イベントオブジェクト</param>
+        private void OnButtonAddLayerClick(object sender, EventArgs e)
+        {
+            string layerName = InputForm.InputForm.ShowDialog(this, "レイヤー名を入力", "入力");
+            if (layerName == null)
+            {
+                return;
+            }
+
+            try
+            {
+                // 使用不可能な文字が使われていないか？
+                char[] invalidChars = System.IO.Path.GetInvalidPathChars();
+                if (layerName.IndexOfAny(invalidChars) >= 0)
+                {
+                    throw new Exception("レイヤー名として使用できない文字が使用されています。");
+                }
+
+                // 既に使用済みでないか？
+                if (entryFile.Layers.ContainsKey(layerName))
+                {
+                    throw new Exception("既に同名のレイヤーが存在します。");
+                }
+
+                // 適用可能
+                MaterialLayerInfo layerInfo = new MaterialLayerInfo(layerName);
+                entryFile.Layers.Add(layerName, layerInfo);
+                listBoxLayers.Items.Add(layerInfo);
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show(this, ex.Message, "エラー");
+            }
+
+
+        }
     }
 }
