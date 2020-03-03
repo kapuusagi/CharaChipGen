@@ -71,7 +71,15 @@ namespace CharaChipGen.Model.Material
                 string materialPath = System.IO.Path.Combine(new string[] {
                     materialDir, subDirectory, layerInfo.Path
                 });
-                return Bitmap.FromFile(materialPath);
+
+                if (System.IO.File.Exists(materialPath))
+                {
+                    return Bitmap.FromFile(materialPath);
+                }
+                else
+                {
+                    return null;
+                }
             }
             else
             {
