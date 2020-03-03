@@ -44,6 +44,7 @@
             this.groupBox1 = new System.Windows.Forms.GroupBox();
             this.listBoxLayers = new System.Windows.Forms.ListBox();
             this.materialEditorLayerView = new CharaChipGen.MaterialEditorForm.MaterialEditorLayerView();
+            this.buttonRenameLayer = new System.Windows.Forms.Button();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBoxPreview)).BeginInit();
             this.panel1.SuspendLayout();
             this.flowLayoutPanel1.SuspendLayout();
@@ -96,7 +97,7 @@
             // 
             // buttonDeleteLayer
             // 
-            this.buttonDeleteLayer.Location = new System.Drawing.Point(9, 38);
+            this.buttonDeleteLayer.Location = new System.Drawing.Point(9, 67);
             this.buttonDeleteLayer.Name = "buttonDeleteLayer";
             this.buttonDeleteLayer.Size = new System.Drawing.Size(110, 23);
             this.buttonDeleteLayer.TabIndex = 8;
@@ -150,6 +151,7 @@
             // 
             // flowLayoutPanel2
             // 
+            this.flowLayoutPanel2.Controls.Add(this.buttonRenameLayer);
             this.flowLayoutPanel2.Controls.Add(this.buttonAddLayer);
             this.flowLayoutPanel2.Controls.Add(this.buttonDeleteLayer);
             this.flowLayoutPanel2.Dock = System.Windows.Forms.DockStyle.Fill;
@@ -161,7 +163,7 @@
             // 
             // buttonAddLayer
             // 
-            this.buttonAddLayer.Location = new System.Drawing.Point(9, 9);
+            this.buttonAddLayer.Location = new System.Drawing.Point(9, 38);
             this.buttonAddLayer.Name = "buttonAddLayer";
             this.buttonAddLayer.Size = new System.Drawing.Size(110, 23);
             this.buttonAddLayer.TabIndex = 9;
@@ -225,6 +227,16 @@
             this.materialEditorLayerView.Size = new System.Drawing.Size(303, 504);
             this.materialEditorLayerView.TabIndex = 1;
             // 
+            // buttonRename
+            // 
+            this.buttonRenameLayer.Location = new System.Drawing.Point(9, 9);
+            this.buttonRenameLayer.Name = "buttonRename";
+            this.buttonRenameLayer.Size = new System.Drawing.Size(110, 23);
+            this.buttonRenameLayer.TabIndex = 10;
+            this.buttonRenameLayer.Text = "レイヤー名を変更";
+            this.buttonRenameLayer.UseVisualStyleBackColor = true;
+            this.buttonRenameLayer.Click += new System.EventHandler(this.OnButtonRenameLayerClick);
+            // 
             // MaterialEditorForm
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 12F);
@@ -268,5 +280,6 @@
         private System.Windows.Forms.ListBox listBoxLayers;
         private System.Windows.Forms.Button buttonAddLayer;
         private MaterialEditorLayerView materialEditorLayerView;
+        private System.Windows.Forms.Button buttonRenameLayer;
     }
 }

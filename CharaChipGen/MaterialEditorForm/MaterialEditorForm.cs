@@ -144,6 +144,7 @@ namespace CharaChipGen.MaterialEditorForm
             {
                 materialEditorLayerView.SetLayerInfo(entryFile, layer);
             }
+            buttonRenameLayer.Enabled = (layer != null);
             buttonDeleteLayer.Enabled = (layer != null);
         }
 
@@ -184,8 +185,62 @@ namespace CharaChipGen.MaterialEditorForm
             {
                 MessageBox.Show(this, ex.Message, "エラー");
             }
+        }
 
+        /// <summary>
+        /// レイヤー名変更ボタンがクリックされたときに通知を受け取る。
+        /// </summary>
+        /// <param name="sender">送信元オブジェクト</param>
+        /// <param name="e">イベントオブジェクト</param>
+        private void OnButtonRenameLayerClick(object sender, EventArgs e)
+        {
+            MaterialLayerInfo targetLayerInfo = (MaterialLayerInfo)(listBoxLayers.SelectedItem);
+            string layerName = InputForm.InputForm.ShowDialog(this, "レイヤー名を入力", "入力", targetLayerInfo.Name);
+            if (layerName == null)
+            {
+                return;
+            }
+            // 既に使用済みでないか？
+            if (targetLayerInfo.Name.Equals(layerName))
+            {
+                // 名前変更なし。
+                return;
+            }
 
+            try
+            {
+                // 使用不可能な文字が使われていないか？
+                char[] invalidChars = System.IO.Path.GetInvalidPathChars();
+                if (layerName.IndexOfAny(invalidChars) >= 0)
+                {
+                    throw new Exception("レイヤー名として使用できない文字が使用されています。");
+                }
+
+                if (entryFile.Layers.ContainsKey(layerName))
+                {
+                    throw new Exception("既に同名のレイヤーが存在します。");
+                }
+
+                // 適用可能
+                entryFile.Layers.Remove(targetLayerInfo.Name);
+                int selIndex = listBoxLayers.SelectedIndex;
+                listBoxLayers.Items.RemoveAt(selIndex);
+
+                MaterialLayerInfo layerInfo = new MaterialLayerInfo(layerName) { 
+                    Path = targetLayerInfo.Path,
+                    LayerType = targetLayerInfo.LayerType,
+                    ColorPartsRefs = targetLayerInfo.ColorPartsRefs
+                };
+
+                entryFile.Layers.Add(layerName, layerInfo);
+                listBoxLayers.Items.Insert(selIndex, layerInfo);
+
+                listBoxLayers.SelectedIndex = selIndex;
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show(this, ex.Message, "エラー");
+            }
         }
     }
 }
