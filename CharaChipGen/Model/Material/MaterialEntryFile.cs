@@ -48,7 +48,8 @@ namespace CharaChipGen.Model.Material
         /// <param name="path">ファイルパス</param>
         public static MaterialEntryFile LoadFrom(string path)
         {
-            MaterialEntryFile materialEntryFile = MaterialEntryFile.LoadFrom(path);
+            MaterialEntryFile materialEntryFile = new MaterialEntryFile(path);
+            materialEntryFile.Load();
             return materialEntryFile;
         }
 
@@ -61,6 +62,9 @@ namespace CharaChipGen.Model.Material
 
         /// <summary>
         /// 新しいインスタンスを構築する。
+        /// インスタンス生成時にpathで指定されたファイルは読み込まず、
+        /// 最初にメンバにアクセスされた時に読み込んで返す。
+        /// 高速にインスタンスを生成したい場合に使用する。
         /// </summary>
         /// <param name="path">ファイルパス</param>
         public MaterialEntryFile(string path)
@@ -332,7 +336,7 @@ namespace CharaChipGen.Model.Material
                             {
                                 layer.LayerType = layerType;
                             }
-                            else if (Enum.TryParse(value, out int no))
+                            else if (int.TryParse(value, out int no))
                             {
                                 LayerType[] layerTypes = (LayerType[])(Enum.GetValues(typeof(LayerType)));
                                 if ((no >= 0) && (no < layerTypes.Length))
