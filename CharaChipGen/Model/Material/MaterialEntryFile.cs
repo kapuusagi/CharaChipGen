@@ -38,7 +38,7 @@ namespace CharaChipGen.Model.Material
         public static bool IsValidName(string name)
         {
             char[] invalidChars = System.IO.Path.GetInvalidPathChars();
-            return (name.IndexOfAny(invalidChars) < 0);
+            return ((name.Length > 0) && (name.IndexOfAny(invalidChars) < 0));
         }
 
 

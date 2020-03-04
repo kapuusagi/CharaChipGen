@@ -347,8 +347,8 @@ namespace CharaChipGen.ManagementForm
 
             MaterialList materialList = GetCurrentMaterialList();
             Material targetMaterial = materialList.Get(items[0].SubItems[0].Text);
-            string newName = InputForm.InputForm.ShowDialog(this, "素材名を入力", "素材名変更", targetMaterial.Name);
-            if ((newName == null) || newName.Equals(targetMaterial.Name))
+            string inputText = InputForm.InputForm.ShowDialog(this, "素材名を入力", "素材名変更", targetMaterial.Name);
+            if ((inputText == null) || inputText.Trim().Equals(targetMaterial.Name))
             {
                 // キャンセルされたか、変更なし。
                 return;
@@ -357,6 +357,7 @@ namespace CharaChipGen.ManagementForm
             // 素材の名前を変更する
             try
             {
+                string newName = inputText.Trim();
                 CheckMaterialName(materialList, newName);
 
                 // エントリファイルのパス名を変更
@@ -389,12 +390,13 @@ namespace CharaChipGen.ManagementForm
         {
             MaterialList materialList = GetCurrentMaterialList();
             string defaultName = GenerateName(materialList);
-            string newName = InputForm.InputForm.ShowDialog(this, "素材名を入力", "素材名変更", defaultName);
-            if (newName == null)
+            string intputText = InputForm.InputForm.ShowDialog(this, "素材名を入力", "素材名変更", defaultName);
+            if (intputText == null)
             {
-                // キャンセルされたか、変更なし。
+                // キャンセルされた。
                 return;
             }
+            string newName = intputText.Trim();
             
             try
             {
@@ -426,6 +428,10 @@ namespace CharaChipGen.ManagementForm
         /// <param name="name">素材名</param>
         private void CheckMaterialName(MaterialList materialList, string name)
         {
+            if (name.Length == 0)
+            {
+                throw new Exception("素材名が指定されていません。");
+            }
             // 使用不可能な文字が使われていないか？
             if (!MaterialEntryFile.IsValidName(name))
             {

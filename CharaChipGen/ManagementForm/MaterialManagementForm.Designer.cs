@@ -28,19 +28,19 @@
         /// </summary>
         private void InitializeComponent()
         {
-            System.Windows.Forms.TreeNode treeNode15 = new System.Windows.Forms.TreeNode("髪型");
-            System.Windows.Forms.TreeNode treeNode16 = new System.Windows.Forms.TreeNode("頭");
-            System.Windows.Forms.TreeNode treeNode17 = new System.Windows.Forms.TreeNode("目");
-            System.Windows.Forms.TreeNode treeNode18 = new System.Windows.Forms.TreeNode("体");
-            System.Windows.Forms.TreeNode treeNode19 = new System.Windows.Forms.TreeNode("アクセサリ");
-            System.Windows.Forms.TreeNode treeNode20 = new System.Windows.Forms.TreeNode("頭部アクセサリ");
-            System.Windows.Forms.TreeNode treeNode21 = new System.Windows.Forms.TreeNode("キャラチップ素材", new System.Windows.Forms.TreeNode[] {
-            treeNode15,
-            treeNode16,
-            treeNode17,
-            treeNode18,
-            treeNode19,
-            treeNode20});
+            System.Windows.Forms.TreeNode treeNode8 = new System.Windows.Forms.TreeNode("髪型");
+            System.Windows.Forms.TreeNode treeNode9 = new System.Windows.Forms.TreeNode("頭");
+            System.Windows.Forms.TreeNode treeNode10 = new System.Windows.Forms.TreeNode("目");
+            System.Windows.Forms.TreeNode treeNode11 = new System.Windows.Forms.TreeNode("体");
+            System.Windows.Forms.TreeNode treeNode12 = new System.Windows.Forms.TreeNode("アクセサリ");
+            System.Windows.Forms.TreeNode treeNode13 = new System.Windows.Forms.TreeNode("頭部アクセサリ");
+            System.Windows.Forms.TreeNode treeNode14 = new System.Windows.Forms.TreeNode("キャラチップ素材", new System.Windows.Forms.TreeNode[] {
+            treeNode8,
+            treeNode9,
+            treeNode10,
+            treeNode11,
+            treeNode12,
+            treeNode13});
             this.buttonClose = new System.Windows.Forms.Button();
             this.menuStrip1 = new System.Windows.Forms.MenuStrip();
             this.menuItemFile = new System.Windows.Forms.ToolStripMenuItem();
@@ -48,6 +48,7 @@
             this.treeViewMaterials = new System.Windows.Forms.TreeView();
             this.listViewMaterials = new System.Windows.Forms.ListView();
             this.columnHeaderName = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
+            this.columnHeaderDisplayName = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
             this.columnHeaderPath = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
             this.groupBoxMaterial = new System.Windows.Forms.GroupBox();
             this.panel4 = new System.Windows.Forms.Panel();
@@ -55,15 +56,14 @@
             this.buttonDelete = new System.Windows.Forms.Button();
             this.buttonEdit = new System.Windows.Forms.Button();
             this.buttonAdd = new System.Windows.Forms.Button();
+            this.buttonRename = new System.Windows.Forms.Button();
+            this.buttonNew = new System.Windows.Forms.Button();
             this.labelDirectory = new System.Windows.Forms.Label();
             this.openFileDialog = new System.Windows.Forms.OpenFileDialog();
             this.flowLayoutPanel1 = new System.Windows.Forms.FlowLayoutPanel();
             this.panel1 = new System.Windows.Forms.Panel();
             this.panel2 = new System.Windows.Forms.Panel();
             this.panel3 = new System.Windows.Forms.Panel();
-            this.buttonNew = new System.Windows.Forms.Button();
-            this.buttonRename = new System.Windows.Forms.Button();
-            this.columnHeaderDisplayName = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
             this.menuStrip1.SuspendLayout();
             this.groupBoxMaterial.SuspendLayout();
             this.panel4.SuspendLayout();
@@ -91,7 +91,7 @@
             this.menuStrip1.Location = new System.Drawing.Point(0, 0);
             this.menuStrip1.Name = "menuStrip1";
             this.menuStrip1.Size = new System.Drawing.Size(613, 24);
-            this.menuStrip1.TabIndex = 2;
+            this.menuStrip1.TabIndex = 0;
             this.menuStrip1.Text = "menuStrip1";
             // 
             // menuItemFile
@@ -106,7 +106,7 @@
             // 
             this.menuItemClose.Name = "menuItemClose";
             this.menuItemClose.ShortcutKeys = ((System.Windows.Forms.Keys)((System.Windows.Forms.Keys.Alt | System.Windows.Forms.Keys.F4)));
-            this.menuItemClose.Size = new System.Drawing.Size(180, 22);
+            this.menuItemClose.Size = new System.Drawing.Size(146, 22);
             this.menuItemClose.Text = "閉じる";
             this.menuItemClose.Click += new System.EventHandler(this.OnMenuItemCloseClick);
             // 
@@ -115,24 +115,24 @@
             this.treeViewMaterials.Dock = System.Windows.Forms.DockStyle.Fill;
             this.treeViewMaterials.Location = new System.Drawing.Point(8, 8);
             this.treeViewMaterials.Name = "treeViewMaterials";
-            treeNode15.Name = "HairStyles";
-            treeNode15.Text = "髪型";
-            treeNode16.Name = "Heads";
-            treeNode16.Text = "頭";
-            treeNode17.Name = "Eyes";
-            treeNode17.Text = "目";
-            treeNode18.Name = "Bodies";
-            treeNode18.Text = "体";
-            treeNode19.Name = "Accessories";
-            treeNode19.Text = "アクセサリ";
-            treeNode20.Name = "HeadAccessories";
-            treeNode20.Text = "頭部アクセサリ";
-            treeNode21.Name = "CharaChipDirectory";
-            treeNode21.Text = "キャラチップ素材";
+            treeNode8.Name = "HairStyles";
+            treeNode8.Text = "髪型";
+            treeNode9.Name = "Heads";
+            treeNode9.Text = "頭";
+            treeNode10.Name = "Eyes";
+            treeNode10.Text = "目";
+            treeNode11.Name = "Bodies";
+            treeNode11.Text = "体";
+            treeNode12.Name = "Accessories";
+            treeNode12.Text = "アクセサリ";
+            treeNode13.Name = "HeadAccessories";
+            treeNode13.Text = "頭部アクセサリ";
+            treeNode14.Name = "CharaChipDirectory";
+            treeNode14.Text = "キャラチップ素材";
             this.treeViewMaterials.Nodes.AddRange(new System.Windows.Forms.TreeNode[] {
-            treeNode21});
+            treeNode14});
             this.treeViewMaterials.Size = new System.Drawing.Size(147, 290);
-            this.treeViewMaterials.TabIndex = 3;
+            this.treeViewMaterials.TabIndex = 0;
             this.treeViewMaterials.AfterSelect += new System.Windows.Forms.TreeViewEventHandler(this.OnTreeViewItemSelected);
             // 
             // listViewMaterials
@@ -147,7 +147,7 @@
             this.listViewMaterials.Location = new System.Drawing.Point(8, 8);
             this.listViewMaterials.Name = "listViewMaterials";
             this.listViewMaterials.Size = new System.Drawing.Size(428, 243);
-            this.listViewMaterials.TabIndex = 5;
+            this.listViewMaterials.TabIndex = 0;
             this.listViewMaterials.UseCompatibleStateImageBehavior = false;
             this.listViewMaterials.View = System.Windows.Forms.View.Details;
             this.listViewMaterials.ItemSelectionChanged += new System.Windows.Forms.ListViewItemSelectionChangedEventHandler(this.OnMaterialListSelectionChanged);
@@ -156,6 +156,11 @@
             // 
             this.columnHeaderName.Text = "素材名";
             this.columnHeaderName.Width = 120;
+            // 
+            // columnHeaderDisplayName
+            // 
+            this.columnHeaderDisplayName.Text = "表示名";
+            this.columnHeaderDisplayName.Width = 120;
             // 
             // columnHeaderPath
             // 
@@ -170,7 +175,7 @@
             this.groupBoxMaterial.Location = new System.Drawing.Point(0, 0);
             this.groupBoxMaterial.Name = "groupBoxMaterial";
             this.groupBoxMaterial.Size = new System.Drawing.Size(450, 306);
-            this.groupBoxMaterial.TabIndex = 6;
+            this.groupBoxMaterial.TabIndex = 0;
             this.groupBoxMaterial.TabStop = false;
             this.groupBoxMaterial.Text = "素材一覧";
             // 
@@ -182,7 +187,7 @@
             this.panel4.Name = "panel4";
             this.panel4.Padding = new System.Windows.Forms.Padding(8);
             this.panel4.Size = new System.Drawing.Size(444, 259);
-            this.panel4.TabIndex = 10;
+            this.panel4.TabIndex = 1;
             // 
             // flowLayoutPanel2
             // 
@@ -197,7 +202,7 @@
             this.flowLayoutPanel2.Location = new System.Drawing.Point(3, 15);
             this.flowLayoutPanel2.Name = "flowLayoutPanel2";
             this.flowLayoutPanel2.Size = new System.Drawing.Size(444, 29);
-            this.flowLayoutPanel2.TabIndex = 9;
+            this.flowLayoutPanel2.TabIndex = 0;
             // 
             // buttonDelete
             // 
@@ -205,7 +210,7 @@
             this.buttonDelete.Location = new System.Drawing.Point(366, 3);
             this.buttonDelete.Name = "buttonDelete";
             this.buttonDelete.Size = new System.Drawing.Size(75, 23);
-            this.buttonDelete.TabIndex = 8;
+            this.buttonDelete.TabIndex = 4;
             this.buttonDelete.Text = "削除";
             this.buttonDelete.UseVisualStyleBackColor = true;
             this.buttonDelete.Click += new System.EventHandler(this.OnMaterialDeleteClicked);
@@ -216,7 +221,7 @@
             this.buttonEdit.Location = new System.Drawing.Point(285, 3);
             this.buttonEdit.Name = "buttonEdit";
             this.buttonEdit.Size = new System.Drawing.Size(75, 23);
-            this.buttonEdit.TabIndex = 7;
+            this.buttonEdit.TabIndex = 3;
             this.buttonEdit.Text = "編集";
             this.buttonEdit.UseVisualStyleBackColor = true;
             this.buttonEdit.Click += new System.EventHandler(this.OnMaterialEditClicked);
@@ -227,10 +232,32 @@
             this.buttonAdd.Location = new System.Drawing.Point(204, 3);
             this.buttonAdd.Name = "buttonAdd";
             this.buttonAdd.Size = new System.Drawing.Size(75, 23);
-            this.buttonAdd.TabIndex = 6;
+            this.buttonAdd.TabIndex = 2;
             this.buttonAdd.Text = "追加";
             this.buttonAdd.UseVisualStyleBackColor = true;
             this.buttonAdd.Click += new System.EventHandler(this.OnMaterialAddClicked);
+            // 
+            // buttonRename
+            // 
+            this.buttonRename.Enabled = false;
+            this.buttonRename.Location = new System.Drawing.Point(123, 3);
+            this.buttonRename.Name = "buttonRename";
+            this.buttonRename.Size = new System.Drawing.Size(75, 23);
+            this.buttonRename.TabIndex = 1;
+            this.buttonRename.Text = "名前変更";
+            this.buttonRename.UseVisualStyleBackColor = true;
+            this.buttonRename.Click += new System.EventHandler(this.OnButtonRenameClick);
+            // 
+            // buttonNew
+            // 
+            this.buttonNew.Enabled = false;
+            this.buttonNew.Location = new System.Drawing.Point(42, 3);
+            this.buttonNew.Name = "buttonNew";
+            this.buttonNew.Size = new System.Drawing.Size(75, 23);
+            this.buttonNew.TabIndex = 0;
+            this.buttonNew.Text = "新規";
+            this.buttonNew.UseVisualStyleBackColor = true;
+            this.buttonNew.Click += new System.EventHandler(this.OnButtonNewClick);
             // 
             // labelDirectory
             // 
@@ -238,7 +265,7 @@
             this.labelDirectory.Location = new System.Drawing.Point(12, 9);
             this.labelDirectory.Name = "labelDirectory";
             this.labelDirectory.Size = new System.Drawing.Size(54, 12);
-            this.labelDirectory.TabIndex = 7;
+            this.labelDirectory.TabIndex = 0;
             this.labelDirectory.Text = "ディレクトリ";
             // 
             // openFileDialog
@@ -257,7 +284,7 @@
             this.flowLayoutPanel1.Name = "flowLayoutPanel1";
             this.flowLayoutPanel1.Padding = new System.Windows.Forms.Padding(6);
             this.flowLayoutPanel1.Size = new System.Drawing.Size(613, 41);
-            this.flowLayoutPanel1.TabIndex = 8;
+            this.flowLayoutPanel1.TabIndex = 4;
             // 
             // panel1
             // 
@@ -266,7 +293,7 @@
             this.panel1.Location = new System.Drawing.Point(0, 24);
             this.panel1.Name = "panel1";
             this.panel1.Size = new System.Drawing.Size(613, 29);
-            this.panel1.TabIndex = 9;
+            this.panel1.TabIndex = 1;
             // 
             // panel2
             // 
@@ -276,7 +303,7 @@
             this.panel2.Name = "panel2";
             this.panel2.Padding = new System.Windows.Forms.Padding(8);
             this.panel2.Size = new System.Drawing.Size(163, 306);
-            this.panel2.TabIndex = 10;
+            this.panel2.TabIndex = 2;
             // 
             // panel3
             // 
@@ -286,31 +313,6 @@
             this.panel3.Name = "panel3";
             this.panel3.Size = new System.Drawing.Size(450, 306);
             this.panel3.TabIndex = 11;
-            // 
-            // buttonNew
-            // 
-            this.buttonNew.Location = new System.Drawing.Point(42, 3);
-            this.buttonNew.Name = "buttonNew";
-            this.buttonNew.Size = new System.Drawing.Size(75, 23);
-            this.buttonNew.TabIndex = 9;
-            this.buttonNew.Text = "新規";
-            this.buttonNew.UseVisualStyleBackColor = true;
-            this.buttonNew.Click += new System.EventHandler(this.OnButtonNewClick);
-            // 
-            // buttonRename
-            // 
-            this.buttonRename.Location = new System.Drawing.Point(123, 3);
-            this.buttonRename.Name = "buttonRename";
-            this.buttonRename.Size = new System.Drawing.Size(75, 23);
-            this.buttonRename.TabIndex = 10;
-            this.buttonRename.Text = "名前変更";
-            this.buttonRename.UseVisualStyleBackColor = true;
-            this.buttonRename.Click += new System.EventHandler(this.OnButtonRenameClick);
-            // 
-            // columnHeaderDisplayName
-            // 
-            this.columnHeaderDisplayName.Text = "表示名";
-            this.columnHeaderDisplayName.Width = 120;
             // 
             // MaterialManagementForm
             // 

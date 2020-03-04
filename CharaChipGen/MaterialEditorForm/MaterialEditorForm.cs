@@ -159,14 +159,16 @@ namespace CharaChipGen.MaterialEditorForm
         /// <param name="e">イベントオブジェクト</param>
         private void OnButtonAddLayerClick(object sender, EventArgs e)
         {
-            string layerName = InputForm.InputForm.ShowDialog(this, "レイヤー名を入力", "入力");
-            if (layerName == null)
+            string defaultLayerName = GenerateDefaultLayerName();
+            string inputText = InputForm.InputForm.ShowDialog(this, "レイヤー名を入力", "入力", defaultLayerName);
+            if (inputText == null)
             {
                 return;
             }
 
             try
             {
+                string layerName = inputText.Trim();
                 CheckLayerName(layerName);
 
                 // 適用可能
@@ -188,13 +190,14 @@ namespace CharaChipGen.MaterialEditorForm
         private void OnButtonRenameLayerClick(object sender, EventArgs e)
         {
             MaterialLayerInfo targetLayerInfo = (MaterialLayerInfo)(listBoxLayers.SelectedItem);
-            string layerName = InputForm.InputForm.ShowDialog(this, "レイヤー名を入力", "入力", targetLayerInfo.Name);
-            if (layerName == null)
+            string inputText = InputForm.InputForm.ShowDialog(this, "レイヤー名を入力", "入力", targetLayerInfo.Name);
+            if (inputText == null)
             {
                 return;
             }
+            string newLayerName = inputText.Trim();
             // 既に使用済みでないか？
-            if (targetLayerInfo.Name.Equals(layerName))
+            if (targetLayerInfo.Name.Equals(newLayerName))
             {
                 // 名前変更なし。
                 return;
@@ -203,20 +206,20 @@ namespace CharaChipGen.MaterialEditorForm
             try
             {
                 // 使用不可能な文字が使われていないか？
-                CheckLayerName(layerName);
+                CheckLayerName(newLayerName);
 
                 // 適用可能
                 entryFile.Layers.Remove(targetLayerInfo.Name);
                 int selIndex = listBoxLayers.SelectedIndex;
                 listBoxLayers.Items.RemoveAt(selIndex);
 
-                MaterialLayerInfo layerInfo = new MaterialLayerInfo(layerName) { 
+                MaterialLayerInfo layerInfo = new MaterialLayerInfo(newLayerName) { 
                     Path = targetLayerInfo.Path,
                     LayerType = targetLayerInfo.LayerType,
                     ColorPartsRefs = targetLayerInfo.ColorPartsRefs
                 };
 
-                entryFile.Layers.Add(layerName, layerInfo);
+                entryFile.Layers.Add(newLayerName, layerInfo);
                 listBoxLayers.Items.Insert(selIndex, layerInfo);
 
                 listBoxLayers.SelectedIndex = selIndex;
@@ -234,8 +237,12 @@ namespace CharaChipGen.MaterialEditorForm
         /// <param name="name">レイヤー名</param>
         private void CheckLayerName(string name)
         {
+            if (name.Length == 0)
+            {
+                throw new Exception("レイヤー名が正しくありません。");
+            }
             char[] invalidChars = System.IO.Path.GetInvalidPathChars();
-            if (MaterialEntryFile.IsValidName(name))
+            if (!MaterialEntryFile.IsValidName(name))
             {
                 throw new Exception("レイヤー名として使用できない文字が使用されています。");
             }
@@ -246,6 +253,14 @@ namespace CharaChipGen.MaterialEditorForm
             }
         }
 
+        /// <summary>
+        /// デフォルトレイヤー名を生成して返す。
+        /// </summary>
+        /// <returns>レイヤー名</returns>
+        private string GenerateDefaultLayerName()
+        {
+            return $"layer{entryFile.Layers.Count.ToString("000")}";
+        }
 
     }
 }
