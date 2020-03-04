@@ -30,24 +30,19 @@
 			以下のいずれか、またはレイヤー番号を記述する。
 			レイヤー番号はAccessory4Frontを0とした場合に
 			Accessory3Frontを1，HeadAccessory2Frontを2というように加算した値。
-			    Accessory4Front
-				Accessory3Front
-			    HeadAccessory2Front
-				HeadAccessory1Front
+			    ExtAccessoryFront
+				HeadAccessoryFront
 				Eye
 				HeadEar
 				HairStyleFront
-				Accessory2Front
-				Accessory1Front
+				AccessoryFront
 				Costume
 				Body
 				HairStyleBack
 				Accessory1Back
 				Accessory2Back
-				HeadAccessory1Back
-				HeadAccessory2Back
-				Accessory3Back
-				Accessory4Back
+				HeadAccessoryBack
+				ExtAccessoryBack
 
 		Layer.{$LayerName}.ColorPartsRefs
 		    PartsType オプション

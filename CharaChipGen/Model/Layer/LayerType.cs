@@ -9,21 +9,16 @@
     public enum LayerType
     {
         /// <summary>
-        /// アクセサリ4表
+        /// 外部アクセサリ表
         /// </summary>
-        Accessory4Front,
+        /// <remarks>
+        /// 外部アクセサリレイヤーは背負い品など前後を覆う系統に使用する
+        /// </remarks>
+        ExtAccessoryFront,
         /// <summary>
-        /// アクセサリ3表
+        /// 頭アクセサリ表
         /// </summary>
-        Accessory3Front,
-        /// <summary>
-        /// 頭アクセサリ2表
-        /// </summary>
-        HeadAccessory2Front,
-        /// <summary>
-        /// 頭アクセサリ1表
-        /// </summary>
-        HeadAccessory1Front,
+        HeadAccessoryFront,
         /// <summary>
         /// 目
         /// </summary>
@@ -37,13 +32,9 @@
         /// </summary>
         HairStyleFront,
         /// <summary>
-        /// アクセサリ2表
-        /// </summary>
-        Accessory2Front,
-        /// <summary>
         /// アクセサリ1表
         /// </summary>
-        Accessory1Front,
+        AccessoryFront,
         /// <summary>
         /// 衣装
         /// </summary>
@@ -57,29 +48,19 @@
         /// </summary>
         HairStyleBack,
         /// <summary>
-        /// アクセサリ1後
+        /// アクセサリ後
         /// </summary>
-        Accessory1Back,
+        AccessoryBack,
         /// <summary>
-        /// アクセサリ2後
+        /// 頭アクセサリ後
         /// </summary>
-        Accessory2Back,
+        HeadAccessoryBack,
         /// <summary>
-        /// 頭アクセサリ1後
+        /// 外部アクセサリ後
         /// </summary>
-        HeadAccessory1Back,
-        /// <summary>
-        /// 頭アクセサリ2後
-        /// </summary>
-        HeadAccessory2Back,
-        /// <summary>
-        /// アクセサリ3後
-        /// </summary>
-        /// <remarks>3,4は背負い品など前後を覆う系統に使用する</remarks>
-        Accessory3Back,
-        /// <summary>
-        /// アクセサリ4後
-        /// </summary>
-        Accessory4Back
+        /// <remarks>
+        /// 外部アクセサリレイヤーは背負い品など前後を覆う系統に使用する
+        /// </remarks>
+        ExtAccessoryBack,
     }
 }
