@@ -97,7 +97,7 @@ namespace CharaChipGen.MainForm
         /// </summary>
         /// <param name="sender">送信オブジェクト</param>
         /// <param name="e">イベント</param>
-        private void OnButton_clicked(object sender, EventArgs e)
+        private void OnButtonClick(object sender, EventArgs e)
         {
             ButtonClick?.Invoke(this, e); // 通知する
         }

@@ -45,7 +45,7 @@
             this.button.TabIndex = 1;
             this.button.Text = "ButtonName";
             this.button.UseVisualStyleBackColor = true;
-            this.button.Click += new System.EventHandler(this.OnButton_clicked);
+            this.button.Click += new System.EventHandler(this.OnButtonClick);
             // 
             // contextMenuStrip
             // 
