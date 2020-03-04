@@ -33,22 +33,18 @@
             this.label1 = new System.Windows.Forms.Label();
             this.textBoxMaterialName = new System.Windows.Forms.TextBox();
             this.buttonDeleteLayer = new System.Windows.Forms.Button();
-            this.pictureBoxPreview = new System.Windows.Forms.PictureBox();
             this.panel1 = new System.Windows.Forms.Panel();
             this.flowLayoutPanel1 = new System.Windows.Forms.FlowLayoutPanel();
-            this.panel2 = new System.Windows.Forms.Panel();
             this.flowLayoutPanel2 = new System.Windows.Forms.FlowLayoutPanel();
+            this.buttonRenameLayer = new System.Windows.Forms.Button();
             this.buttonAddLayer = new System.Windows.Forms.Button();
             this.tableLayoutPanel1 = new System.Windows.Forms.TableLayoutPanel();
             this.panel3 = new System.Windows.Forms.Panel();
             this.groupBox1 = new System.Windows.Forms.GroupBox();
             this.listBoxLayers = new System.Windows.Forms.ListBox();
             this.materialEditorLayerView = new CharaChipGen.MaterialEditorForm.MaterialEditorLayerView();
-            this.buttonRenameLayer = new System.Windows.Forms.Button();
-            ((System.ComponentModel.ISupportInitialize)(this.pictureBoxPreview)).BeginInit();
             this.panel1.SuspendLayout();
             this.flowLayoutPanel1.SuspendLayout();
-            this.panel2.SuspendLayout();
             this.flowLayoutPanel2.SuspendLayout();
             this.tableLayoutPanel1.SuspendLayout();
             this.panel3.SuspendLayout();
@@ -57,7 +53,7 @@
             // 
             // buttonSave
             // 
-            this.buttonSave.Location = new System.Drawing.Point(489, 9);
+            this.buttonSave.Location = new System.Drawing.Point(333, 9);
             this.buttonSave.Name = "buttonSave";
             this.buttonSave.Size = new System.Drawing.Size(75, 23);
             this.buttonSave.TabIndex = 1;
@@ -67,7 +63,7 @@
             // 
             // buttonCancel
             // 
-            this.buttonCancel.Location = new System.Drawing.Point(570, 9);
+            this.buttonCancel.Location = new System.Drawing.Point(414, 9);
             this.buttonCancel.Name = "buttonCancel";
             this.buttonCancel.Size = new System.Drawing.Size(75, 23);
             this.buttonCancel.TabIndex = 2;
@@ -92,7 +88,7 @@
             this.textBoxMaterialName.Font = new System.Drawing.Font("MS UI Gothic", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(128)));
             this.textBoxMaterialName.Location = new System.Drawing.Point(64, 8);
             this.textBoxMaterialName.Name = "textBoxMaterialName";
-            this.textBoxMaterialName.Size = new System.Drawing.Size(588, 23);
+            this.textBoxMaterialName.Size = new System.Drawing.Size(432, 23);
             this.textBoxMaterialName.TabIndex = 5;
             // 
             // buttonDeleteLayer
@@ -105,17 +101,6 @@
             this.buttonDeleteLayer.UseVisualStyleBackColor = true;
             this.buttonDeleteLayer.Click += new System.EventHandler(this.OnDeleteLayerButtonClicked);
             // 
-            // pictureBoxPreview
-            // 
-            this.pictureBoxPreview.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Center;
-            this.pictureBoxPreview.BorderStyle = System.Windows.Forms.BorderStyle.Fixed3D;
-            this.pictureBoxPreview.Location = new System.Drawing.Point(9, 351);
-            this.pictureBoxPreview.Name = "pictureBoxPreview";
-            this.pictureBoxPreview.Size = new System.Drawing.Size(141, 153);
-            this.pictureBoxPreview.SizeMode = System.Windows.Forms.PictureBoxSizeMode.CenterImage;
-            this.pictureBoxPreview.TabIndex = 9;
-            this.pictureBoxPreview.TabStop = false;
-            // 
             // panel1
             // 
             this.panel1.Controls.Add(this.textBoxMaterialName);
@@ -124,7 +109,7 @@
             this.panel1.Location = new System.Drawing.Point(0, 0);
             this.panel1.Name = "panel1";
             this.panel1.Padding = new System.Windows.Forms.Padding(8);
-            this.panel1.Size = new System.Drawing.Size(660, 41);
+            this.panel1.Size = new System.Drawing.Size(504, 41);
             this.panel1.TabIndex = 10;
             // 
             // flowLayoutPanel1
@@ -137,17 +122,8 @@
             this.flowLayoutPanel1.Location = new System.Drawing.Point(0, 551);
             this.flowLayoutPanel1.Name = "flowLayoutPanel1";
             this.flowLayoutPanel1.Padding = new System.Windows.Forms.Padding(6);
-            this.flowLayoutPanel1.Size = new System.Drawing.Size(660, 41);
+            this.flowLayoutPanel1.Size = new System.Drawing.Size(504, 41);
             this.flowLayoutPanel1.TabIndex = 11;
-            // 
-            // panel2
-            // 
-            this.panel2.Controls.Add(this.pictureBoxPreview);
-            this.panel2.Dock = System.Windows.Forms.DockStyle.Right;
-            this.panel2.Location = new System.Drawing.Point(489, 41);
-            this.panel2.Name = "panel2";
-            this.panel2.Size = new System.Drawing.Size(171, 510);
-            this.panel2.TabIndex = 12;
             // 
             // flowLayoutPanel2
             // 
@@ -160,6 +136,16 @@
             this.flowLayoutPanel2.Padding = new System.Windows.Forms.Padding(6);
             this.flowLayoutPanel2.Size = new System.Drawing.Size(174, 154);
             this.flowLayoutPanel2.TabIndex = 0;
+            // 
+            // buttonRenameLayer
+            // 
+            this.buttonRenameLayer.Location = new System.Drawing.Point(9, 9);
+            this.buttonRenameLayer.Name = "buttonRenameLayer";
+            this.buttonRenameLayer.Size = new System.Drawing.Size(110, 23);
+            this.buttonRenameLayer.TabIndex = 10;
+            this.buttonRenameLayer.Text = "レイヤー名を変更";
+            this.buttonRenameLayer.UseVisualStyleBackColor = true;
+            this.buttonRenameLayer.Click += new System.EventHandler(this.OnButtonRenameLayerClick);
             // 
             // buttonAddLayer
             // 
@@ -183,7 +169,7 @@
             this.tableLayoutPanel1.Name = "tableLayoutPanel1";
             this.tableLayoutPanel1.RowCount = 1;
             this.tableLayoutPanel1.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 100F));
-            this.tableLayoutPanel1.Size = new System.Drawing.Size(489, 510);
+            this.tableLayoutPanel1.Size = new System.Drawing.Size(504, 510);
             this.tableLayoutPanel1.TabIndex = 13;
             // 
             // panel3
@@ -224,36 +210,23 @@
             this.materialEditorLayerView.Dock = System.Windows.Forms.DockStyle.Fill;
             this.materialEditorLayerView.Location = new System.Drawing.Point(183, 3);
             this.materialEditorLayerView.Name = "materialEditorLayerView";
-            this.materialEditorLayerView.Size = new System.Drawing.Size(303, 504);
+            this.materialEditorLayerView.Size = new System.Drawing.Size(318, 504);
             this.materialEditorLayerView.TabIndex = 1;
-            // 
-            // buttonRename
-            // 
-            this.buttonRenameLayer.Location = new System.Drawing.Point(9, 9);
-            this.buttonRenameLayer.Name = "buttonRename";
-            this.buttonRenameLayer.Size = new System.Drawing.Size(110, 23);
-            this.buttonRenameLayer.TabIndex = 10;
-            this.buttonRenameLayer.Text = "レイヤー名を変更";
-            this.buttonRenameLayer.UseVisualStyleBackColor = true;
-            this.buttonRenameLayer.Click += new System.EventHandler(this.OnButtonRenameLayerClick);
             // 
             // MaterialEditorForm
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 12F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(660, 592);
+            this.ClientSize = new System.Drawing.Size(504, 592);
             this.Controls.Add(this.tableLayoutPanel1);
-            this.Controls.Add(this.panel2);
             this.Controls.Add(this.flowLayoutPanel1);
             this.Controls.Add(this.panel1);
             this.Name = "MaterialEditorForm";
             this.Text = "素材エディタ";
             this.Shown += new System.EventHandler(this.OnFormShown);
-            ((System.ComponentModel.ISupportInitialize)(this.pictureBoxPreview)).EndInit();
             this.panel1.ResumeLayout(false);
             this.panel1.PerformLayout();
             this.flowLayoutPanel1.ResumeLayout(false);
-            this.panel2.ResumeLayout(false);
             this.flowLayoutPanel2.ResumeLayout(false);
             this.tableLayoutPanel1.ResumeLayout(false);
             this.panel3.ResumeLayout(false);
@@ -269,10 +242,8 @@
         private System.Windows.Forms.Label label1;
         private System.Windows.Forms.TextBox textBoxMaterialName;
         private System.Windows.Forms.Button buttonDeleteLayer;
-        private System.Windows.Forms.PictureBox pictureBoxPreview;
         private System.Windows.Forms.Panel panel1;
         private System.Windows.Forms.FlowLayoutPanel flowLayoutPanel1;
-        private System.Windows.Forms.Panel panel2;
         private System.Windows.Forms.FlowLayoutPanel flowLayoutPanel2;
         private System.Windows.Forms.TableLayoutPanel tableLayoutPanel1;
         private System.Windows.Forms.Panel panel3;

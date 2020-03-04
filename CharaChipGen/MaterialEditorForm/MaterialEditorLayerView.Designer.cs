@@ -29,6 +29,7 @@
         private void InitializeComponent()
         {
             this.groupBoxLayerName = new System.Windows.Forms.GroupBox();
+            this.materialView4x3 = new CharaChipGen.MaterialEditorForm.MaterialView3x4();
             this.panel1 = new System.Windows.Forms.Panel();
             this.tableLayoutPanel1 = new System.Windows.Forms.TableLayoutPanel();
             this.label3 = new System.Windows.Forms.Label();
@@ -42,7 +43,6 @@
             this.flowLayoutPanel1 = new System.Windows.Forms.FlowLayoutPanel();
             this.buttonOpen = new System.Windows.Forms.Button();
             this.openFileDialog = new System.Windows.Forms.OpenFileDialog();
-            this.materialView4x3 = new CharaChipGen.MaterialEditorForm.MaterialView3x4();
             this.groupBoxLayerName.SuspendLayout();
             this.panel1.SuspendLayout();
             this.tableLayoutPanel1.SuspendLayout();
@@ -56,26 +56,36 @@
             this.groupBoxLayerName.Dock = System.Windows.Forms.DockStyle.Fill;
             this.groupBoxLayerName.Location = new System.Drawing.Point(0, 0);
             this.groupBoxLayerName.Name = "groupBoxLayerName";
-            this.groupBoxLayerName.Size = new System.Drawing.Size(435, 470);
+            this.groupBoxLayerName.Size = new System.Drawing.Size(323, 470);
             this.groupBoxLayerName.TabIndex = 0;
             this.groupBoxLayerName.TabStop = false;
             this.groupBoxLayerName.Text = "レイヤー";
             // 
+            // materialView4x3
+            // 
+            this.materialView4x3.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.materialView4x3.Image = null;
+            this.materialView4x3.Location = new System.Drawing.Point(3, 159);
+            this.materialView4x3.Name = "materialView4x3";
+            this.materialView4x3.Size = new System.Drawing.Size(317, 308);
+            this.materialView4x3.TabIndex = 5;
+            // 
             // panel1
             // 
             this.panel1.Controls.Add(this.tableLayoutPanel1);
-            this.panel1.Controls.Add(this.flowLayoutPanel1);
             this.panel1.Dock = System.Windows.Forms.DockStyle.Top;
             this.panel1.Location = new System.Drawing.Point(3, 15);
             this.panel1.Name = "panel1";
-            this.panel1.Size = new System.Drawing.Size(429, 144);
+            this.panel1.Size = new System.Drawing.Size(317, 144);
             this.panel1.TabIndex = 6;
             // 
             // tableLayoutPanel1
             // 
-            this.tableLayoutPanel1.ColumnCount = 2;
+            this.tableLayoutPanel1.ColumnCount = 3;
             this.tableLayoutPanel1.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle());
             this.tableLayoutPanel1.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 100F));
+            this.tableLayoutPanel1.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle());
+            this.tableLayoutPanel1.Controls.Add(this.flowLayoutPanel1, 2, 0);
             this.tableLayoutPanel1.Controls.Add(this.label3, 0, 0);
             this.tableLayoutPanel1.Controls.Add(this.label4, 0, 1);
             this.tableLayoutPanel1.Controls.Add(this.labelCharaSize, 1, 1);
@@ -92,7 +102,7 @@
             this.tableLayoutPanel1.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 25F));
             this.tableLayoutPanel1.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 25F));
             this.tableLayoutPanel1.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 25F));
-            this.tableLayoutPanel1.Size = new System.Drawing.Size(336, 144);
+            this.tableLayoutPanel1.Size = new System.Drawing.Size(317, 144);
             this.tableLayoutPanel1.TabIndex = 1;
             // 
             // label3
@@ -157,34 +167,36 @@
             // 
             // comboBoxLayerType
             // 
+            this.tableLayoutPanel1.SetColumnSpan(this.comboBoxLayerType, 2);
             this.comboBoxLayerType.Dock = System.Windows.Forms.DockStyle.Fill;
             this.comboBoxLayerType.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
             this.comboBoxLayerType.FormattingEnabled = true;
             this.comboBoxLayerType.Location = new System.Drawing.Point(95, 75);
             this.comboBoxLayerType.Name = "comboBoxLayerType";
-            this.comboBoxLayerType.Size = new System.Drawing.Size(238, 20);
+            this.comboBoxLayerType.Size = new System.Drawing.Size(219, 20);
             this.comboBoxLayerType.TabIndex = 7;
             this.comboBoxLayerType.SelectedValueChanged += new System.EventHandler(this.OnComboBoxLayerTypeSelectedValueChanged);
             // 
             // comboBoxColorRefs
             // 
+            this.tableLayoutPanel1.SetColumnSpan(this.comboBoxColorRefs, 2);
             this.comboBoxColorRefs.Dock = System.Windows.Forms.DockStyle.Fill;
             this.comboBoxColorRefs.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
             this.comboBoxColorRefs.FormattingEnabled = true;
             this.comboBoxColorRefs.Location = new System.Drawing.Point(95, 111);
             this.comboBoxColorRefs.Name = "comboBoxColorRefs";
-            this.comboBoxColorRefs.Size = new System.Drawing.Size(238, 20);
+            this.comboBoxColorRefs.Size = new System.Drawing.Size(219, 20);
             this.comboBoxColorRefs.TabIndex = 8;
             this.comboBoxColorRefs.SelectedValueChanged += new System.EventHandler(this.OnComboBoxColorRefsSelectedValueChanged);
             // 
             // flowLayoutPanel1
             // 
             this.flowLayoutPanel1.Controls.Add(this.buttonOpen);
-            this.flowLayoutPanel1.Dock = System.Windows.Forms.DockStyle.Right;
-            this.flowLayoutPanel1.Location = new System.Drawing.Point(336, 0);
+            this.flowLayoutPanel1.Location = new System.Drawing.Point(221, 3);
             this.flowLayoutPanel1.Name = "flowLayoutPanel1";
             this.flowLayoutPanel1.Padding = new System.Windows.Forms.Padding(6);
-            this.flowLayoutPanel1.Size = new System.Drawing.Size(93, 144);
+            this.tableLayoutPanel1.SetRowSpan(this.flowLayoutPanel1, 2);
+            this.flowLayoutPanel1.Size = new System.Drawing.Size(93, 66);
             this.flowLayoutPanel1.TabIndex = 0;
             // 
             // buttonOpen
@@ -202,22 +214,13 @@
             this.openFileDialog.Filter = "PNGファイル|*.png";
             this.openFileDialog.Title = "開く";
             // 
-            // materialView4x3
-            // 
-            this.materialView4x3.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.materialView4x3.Image = null;
-            this.materialView4x3.Location = new System.Drawing.Point(3, 159);
-            this.materialView4x3.Name = "materialView4x3";
-            this.materialView4x3.Size = new System.Drawing.Size(429, 308);
-            this.materialView4x3.TabIndex = 5;
-            // 
             // MaterialEditorLayerView
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 12F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.Controls.Add(this.groupBoxLayerName);
             this.Name = "MaterialEditorLayerView";
-            this.Size = new System.Drawing.Size(435, 470);
+            this.Size = new System.Drawing.Size(323, 470);
             this.groupBoxLayerName.ResumeLayout(false);
             this.panel1.ResumeLayout(false);
             this.tableLayoutPanel1.ResumeLayout(false);
