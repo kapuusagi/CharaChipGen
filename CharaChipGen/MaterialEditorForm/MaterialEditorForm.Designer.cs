@@ -127,8 +127,8 @@
             // 
             // flowLayoutPanel2
             // 
-            this.flowLayoutPanel2.Controls.Add(this.buttonRenameLayer);
             this.flowLayoutPanel2.Controls.Add(this.buttonAddLayer);
+            this.flowLayoutPanel2.Controls.Add(this.buttonRenameLayer);
             this.flowLayoutPanel2.Controls.Add(this.buttonDeleteLayer);
             this.flowLayoutPanel2.Dock = System.Windows.Forms.DockStyle.Fill;
             this.flowLayoutPanel2.Location = new System.Drawing.Point(0, 350);
@@ -139,7 +139,7 @@
             // 
             // buttonRenameLayer
             // 
-            this.buttonRenameLayer.Location = new System.Drawing.Point(9, 9);
+            this.buttonRenameLayer.Location = new System.Drawing.Point(9, 38);
             this.buttonRenameLayer.Name = "buttonRenameLayer";
             this.buttonRenameLayer.Size = new System.Drawing.Size(110, 23);
             this.buttonRenameLayer.TabIndex = 10;
@@ -149,7 +149,7 @@
             // 
             // buttonAddLayer
             // 
-            this.buttonAddLayer.Location = new System.Drawing.Point(9, 38);
+            this.buttonAddLayer.Location = new System.Drawing.Point(9, 9);
             this.buttonAddLayer.Name = "buttonAddLayer";
             this.buttonAddLayer.Size = new System.Drawing.Size(110, 23);
             this.buttonAddLayer.TabIndex = 9;
