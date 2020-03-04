@@ -32,6 +32,8 @@
             this.materialView4x3 = new CharaChipGen.MaterialEditorForm.MaterialView3x4();
             this.panel1 = new System.Windows.Forms.Panel();
             this.tableLayoutPanel1 = new System.Windows.Forms.TableLayoutPanel();
+            this.flowLayoutPanel1 = new System.Windows.Forms.FlowLayoutPanel();
+            this.buttonOpen = new System.Windows.Forms.Button();
             this.label3 = new System.Windows.Forms.Label();
             this.label4 = new System.Windows.Forms.Label();
             this.labelCharaSize = new System.Windows.Forms.Label();
@@ -40,8 +42,6 @@
             this.label2 = new System.Windows.Forms.Label();
             this.comboBoxLayerType = new System.Windows.Forms.ComboBox();
             this.comboBoxColorRefs = new System.Windows.Forms.ComboBox();
-            this.flowLayoutPanel1 = new System.Windows.Forms.FlowLayoutPanel();
-            this.buttonOpen = new System.Windows.Forms.Button();
             this.openFileDialog = new System.Windows.Forms.OpenFileDialog();
             this.groupBoxLayerName.SuspendLayout();
             this.panel1.SuspendLayout();
@@ -68,7 +68,7 @@
             this.materialView4x3.Location = new System.Drawing.Point(3, 159);
             this.materialView4x3.Name = "materialView4x3";
             this.materialView4x3.Size = new System.Drawing.Size(317, 308);
-            this.materialView4x3.TabIndex = 5;
+            this.materialView4x3.TabIndex = 1;
             // 
             // panel1
             // 
@@ -103,7 +103,27 @@
             this.tableLayoutPanel1.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 25F));
             this.tableLayoutPanel1.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 25F));
             this.tableLayoutPanel1.Size = new System.Drawing.Size(317, 144);
-            this.tableLayoutPanel1.TabIndex = 1;
+            this.tableLayoutPanel1.TabIndex = 0;
+            // 
+            // flowLayoutPanel1
+            // 
+            this.flowLayoutPanel1.Controls.Add(this.buttonOpen);
+            this.flowLayoutPanel1.Location = new System.Drawing.Point(221, 3);
+            this.flowLayoutPanel1.Name = "flowLayoutPanel1";
+            this.flowLayoutPanel1.Padding = new System.Windows.Forms.Padding(6);
+            this.tableLayoutPanel1.SetRowSpan(this.flowLayoutPanel1, 2);
+            this.flowLayoutPanel1.Size = new System.Drawing.Size(93, 66);
+            this.flowLayoutPanel1.TabIndex = 2;
+            // 
+            // buttonOpen
+            // 
+            this.buttonOpen.Location = new System.Drawing.Point(9, 9);
+            this.buttonOpen.Name = "buttonOpen";
+            this.buttonOpen.Size = new System.Drawing.Size(75, 23);
+            this.buttonOpen.TabIndex = 0;
+            this.buttonOpen.Text = "開く";
+            this.buttonOpen.UseVisualStyleBackColor = true;
+            this.buttonOpen.Click += new System.EventHandler(this.OnOpenButtonClicked);
             // 
             // label3
             // 
@@ -112,7 +132,7 @@
             this.label3.Location = new System.Drawing.Point(3, 12);
             this.label3.Name = "label3";
             this.label3.Size = new System.Drawing.Size(58, 12);
-            this.label3.TabIndex = 3;
+            this.label3.TabIndex = 0;
             this.label3.Text = "画像サイズ";
             // 
             // label4
@@ -142,7 +162,7 @@
             this.labelPictureSize.Location = new System.Drawing.Point(95, 12);
             this.labelPictureSize.Name = "labelPictureSize";
             this.labelPictureSize.Size = new System.Drawing.Size(65, 12);
-            this.labelPictureSize.TabIndex = 4;
+            this.labelPictureSize.TabIndex = 1;
             this.labelPictureSize.Text = "0 x 0 pixels";
             // 
             // label1
@@ -162,7 +182,7 @@
             this.label2.Location = new System.Drawing.Point(3, 120);
             this.label2.Name = "label2";
             this.label2.Size = new System.Drawing.Size(85, 12);
-            this.label2.TabIndex = 6;
+            this.label2.TabIndex = 7;
             this.label2.Text = "色パラメータ参照";
             // 
             // comboBoxLayerType
@@ -174,7 +194,7 @@
             this.comboBoxLayerType.Location = new System.Drawing.Point(95, 75);
             this.comboBoxLayerType.Name = "comboBoxLayerType";
             this.comboBoxLayerType.Size = new System.Drawing.Size(219, 20);
-            this.comboBoxLayerType.TabIndex = 7;
+            this.comboBoxLayerType.TabIndex = 6;
             this.comboBoxLayerType.SelectedValueChanged += new System.EventHandler(this.OnComboBoxLayerTypeSelectedValueChanged);
             // 
             // comboBoxColorRefs
@@ -188,26 +208,6 @@
             this.comboBoxColorRefs.Size = new System.Drawing.Size(219, 20);
             this.comboBoxColorRefs.TabIndex = 8;
             this.comboBoxColorRefs.SelectedValueChanged += new System.EventHandler(this.OnComboBoxColorRefsSelectedValueChanged);
-            // 
-            // flowLayoutPanel1
-            // 
-            this.flowLayoutPanel1.Controls.Add(this.buttonOpen);
-            this.flowLayoutPanel1.Location = new System.Drawing.Point(221, 3);
-            this.flowLayoutPanel1.Name = "flowLayoutPanel1";
-            this.flowLayoutPanel1.Padding = new System.Windows.Forms.Padding(6);
-            this.tableLayoutPanel1.SetRowSpan(this.flowLayoutPanel1, 2);
-            this.flowLayoutPanel1.Size = new System.Drawing.Size(93, 66);
-            this.flowLayoutPanel1.TabIndex = 0;
-            // 
-            // buttonOpen
-            // 
-            this.buttonOpen.Location = new System.Drawing.Point(9, 9);
-            this.buttonOpen.Name = "buttonOpen";
-            this.buttonOpen.Size = new System.Drawing.Size(75, 23);
-            this.buttonOpen.TabIndex = 0;
-            this.buttonOpen.Text = "開く";
-            this.buttonOpen.UseVisualStyleBackColor = true;
-            this.buttonOpen.Click += new System.EventHandler(this.OnOpenButtonClicked);
             // 
             // openFileDialog
             // 

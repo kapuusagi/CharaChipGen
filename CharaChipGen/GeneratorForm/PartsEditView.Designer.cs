@@ -114,7 +114,7 @@
             this.label2.Location = new System.Drawing.Point(9, 45);
             this.label2.Name = "label2";
             this.label2.Size = new System.Drawing.Size(95, 41);
-            this.label2.TabIndex = 1;
+            this.label2.TabIndex = 3;
             this.label2.Text = "色相";
             this.label2.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
             // 
@@ -125,7 +125,7 @@
             this.label3.Location = new System.Drawing.Point(9, 86);
             this.label3.Name = "label3";
             this.label3.Size = new System.Drawing.Size(95, 41);
-            this.label3.TabIndex = 2;
+            this.label3.TabIndex = 6;
             this.label3.Text = "彩度";
             this.label3.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
             // 
@@ -136,7 +136,7 @@
             this.label4.Location = new System.Drawing.Point(9, 127);
             this.label4.Name = "label4";
             this.label4.Size = new System.Drawing.Size(95, 41);
-            this.label4.TabIndex = 3;
+            this.label4.TabIndex = 9;
             this.label4.Text = "輝度";
             this.label4.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
             // 
@@ -147,7 +147,7 @@
             this.label5.Location = new System.Drawing.Point(9, 168);
             this.label5.Name = "label5";
             this.label5.Size = new System.Drawing.Size(95, 43);
-            this.label5.TabIndex = 4;
+            this.label5.TabIndex = 12;
             this.label5.Text = "不当明度";
             this.label5.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
             // 
@@ -183,7 +183,7 @@
             -2147483648});
             this.numericUpDownHue.Name = "numericUpDownHue";
             this.numericUpDownHue.Size = new System.Drawing.Size(54, 19);
-            this.numericUpDownHue.TabIndex = 4;
+            this.numericUpDownHue.TabIndex = 5;
             // 
             // numericUpDownSaturation
             // 
@@ -200,7 +200,7 @@
             -2147483648});
             this.numericUpDownSaturation.Name = "numericUpDownSaturation";
             this.numericUpDownSaturation.Size = new System.Drawing.Size(54, 19);
-            this.numericUpDownSaturation.TabIndex = 6;
+            this.numericUpDownSaturation.TabIndex = 8;
             // 
             // numericUpDownValue
             // 
@@ -217,14 +217,14 @@
             -2147483648});
             this.numericUpDownValue.Name = "numericUpDownValue";
             this.numericUpDownValue.Size = new System.Drawing.Size(54, 19);
-            this.numericUpDownValue.TabIndex = 8;
+            this.numericUpDownValue.TabIndex = 11;
             // 
             // numericUpDownOpacity
             // 
             this.numericUpDownOpacity.Location = new System.Drawing.Point(211, 171);
             this.numericUpDownOpacity.Name = "numericUpDownOpacity";
             this.numericUpDownOpacity.Size = new System.Drawing.Size(54, 19);
-            this.numericUpDownOpacity.TabIndex = 10;
+            this.numericUpDownOpacity.TabIndex = 14;
             this.numericUpDownOpacity.Value = new decimal(new int[] {
             100,
             0,
@@ -249,7 +249,7 @@
             this.trackBarHue.Minimum = -180;
             this.trackBarHue.Name = "trackBarHue";
             this.trackBarHue.Size = new System.Drawing.Size(95, 35);
-            this.trackBarHue.TabIndex = 3;
+            this.trackBarHue.TabIndex = 4;
             this.trackBarHue.TickFrequency = 60;
             // 
             // trackBarSaturation
@@ -259,7 +259,7 @@
             this.trackBarSaturation.Minimum = -255;
             this.trackBarSaturation.Name = "trackBarSaturation";
             this.trackBarSaturation.Size = new System.Drawing.Size(95, 35);
-            this.trackBarSaturation.TabIndex = 5;
+            this.trackBarSaturation.TabIndex = 7;
             this.trackBarSaturation.TickFrequency = 50;
             // 
             // trackBarValue
@@ -269,7 +269,7 @@
             this.trackBarValue.Minimum = -255;
             this.trackBarValue.Name = "trackBarValue";
             this.trackBarValue.Size = new System.Drawing.Size(95, 35);
-            this.trackBarValue.TabIndex = 7;
+            this.trackBarValue.TabIndex = 10;
             this.trackBarValue.TickFrequency = 50;
             // 
             // trackBarOpacity
@@ -278,7 +278,7 @@
             this.trackBarOpacity.Maximum = 100;
             this.trackBarOpacity.Name = "trackBarOpacity";
             this.trackBarOpacity.Size = new System.Drawing.Size(95, 37);
-            this.trackBarOpacity.TabIndex = 9;
+            this.trackBarOpacity.TabIndex = 13;
             this.trackBarOpacity.TickFrequency = 10;
             this.trackBarOpacity.Value = 100;
             // 
@@ -298,7 +298,7 @@
             this.buttonReset.Location = new System.Drawing.Point(6, 4);
             this.buttonReset.Name = "buttonReset";
             this.buttonReset.Size = new System.Drawing.Size(268, 43);
-            this.buttonReset.TabIndex = 11;
+            this.buttonReset.TabIndex = 0;
             this.buttonReset.Text = "リセット";
             this.buttonReset.UseVisualStyleBackColor = true;
             this.buttonReset.Click += new System.EventHandler(this.OnButtonResetClick);
@@ -310,7 +310,7 @@
             this.groupBox1.Location = new System.Drawing.Point(0, 0);
             this.groupBox1.Name = "groupBox1";
             this.groupBox1.Size = new System.Drawing.Size(280, 233);
-            this.groupBox1.TabIndex = 2;
+            this.groupBox1.TabIndex = 0;
             this.groupBox1.TabStop = false;
             this.groupBox1.Text = "調整";
             // 

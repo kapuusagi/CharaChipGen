@@ -141,7 +141,7 @@
             this.partsViewEye.Name = "partsViewEye";
             this.partsViewEye.PartsName = "目";
             this.partsViewEye.Size = new System.Drawing.Size(354, 44);
-            this.partsViewEye.TabIndex = 0;
+            this.partsViewEye.TabIndex = 2;
             // 
             // partsViewHairStyle
             // 
@@ -152,7 +152,7 @@
             this.partsViewHairStyle.Name = "partsViewHairStyle";
             this.partsViewHairStyle.PartsName = "髪型";
             this.partsViewHairStyle.Size = new System.Drawing.Size(354, 44);
-            this.partsViewHairStyle.TabIndex = 2;
+            this.partsViewHairStyle.TabIndex = 1;
             // 
             // partsViewHead
             // 
@@ -170,7 +170,7 @@
             this.buttonOK.Location = new System.Drawing.Point(547, 3);
             this.buttonOK.Name = "buttonOK";
             this.buttonOK.Size = new System.Drawing.Size(75, 23);
-            this.buttonOK.TabIndex = 12;
+            this.buttonOK.TabIndex = 0;
             this.buttonOK.Text = "OK";
             this.buttonOK.UseVisualStyleBackColor = true;
             this.buttonOK.Click += new System.EventHandler(this.OnOKButtonClicked);
@@ -180,7 +180,7 @@
             this.buttonCancel.Location = new System.Drawing.Point(628, 3);
             this.buttonCancel.Name = "buttonCancel";
             this.buttonCancel.Size = new System.Drawing.Size(75, 23);
-            this.buttonCancel.TabIndex = 13;
+            this.buttonCancel.TabIndex = 1;
             this.buttonCancel.Text = "キャンセル";
             this.buttonCancel.UseVisualStyleBackColor = true;
             this.buttonCancel.Click += new System.EventHandler(this.OnCancelButtonClicked);
@@ -199,7 +199,7 @@
             this.flowLayoutPanel1.Location = new System.Drawing.Point(0, 416);
             this.flowLayoutPanel1.Name = "flowLayoutPanel1";
             this.flowLayoutPanel1.Size = new System.Drawing.Size(706, 29);
-            this.flowLayoutPanel1.TabIndex = 16;
+            this.flowLayoutPanel1.TabIndex = 1;
             // 
             // tableLayoutPanel1
             // 
@@ -214,7 +214,7 @@
             this.tableLayoutPanel1.RowCount = 1;
             this.tableLayoutPanel1.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 80F));
             this.tableLayoutPanel1.Size = new System.Drawing.Size(706, 416);
-            this.tableLayoutPanel1.TabIndex = 17;
+            this.tableLayoutPanel1.TabIndex = 0;
             // 
             // charaChipView
             // 
@@ -222,7 +222,7 @@
             this.charaChipView.Location = new System.Drawing.Point(3, 3);
             this.charaChipView.Name = "charaChipView";
             this.charaChipView.Size = new System.Drawing.Size(340, 410);
-            this.charaChipView.TabIndex = 14;
+            this.charaChipView.TabIndex = 0;
             // 
             // CharaChipGeneratorForm
             // 

@@ -39,9 +39,9 @@
             this.tableLayoutPanel1 = new System.Windows.Forms.TableLayoutPanel();
             this.flowLayoutPanel3 = new System.Windows.Forms.FlowLayoutPanel();
             this.panel2 = new System.Windows.Forms.Panel();
-            this.label2 = new System.Windows.Forms.Label();
-            this.buttonSelectExportFilePath = new System.Windows.Forms.Button();
             this.textBoxExportFilePath = new System.Windows.Forms.TextBox();
+            this.buttonSelectExportFilePath = new System.Windows.Forms.Button();
+            this.label2 = new System.Windows.Forms.Label();
             this.saveFileDialog = new System.Windows.Forms.SaveFileDialog();
             ((System.ComponentModel.ISupportInitialize)(this.numericUpDownCharaChipWidth)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.numericUpDownCharaChipHeight)).BeginInit();
@@ -78,7 +78,7 @@
             this.label1.Location = new System.Drawing.Point(4, 4);
             this.label1.Name = "label1";
             this.label1.Size = new System.Drawing.Size(85, 12);
-            this.label1.TabIndex = 2;
+            this.label1.TabIndex = 0;
             this.label1.Text = "キャラチップサイズ";
             // 
             // numericUpDownCharaChipWidth
@@ -97,7 +97,7 @@
             0});
             this.numericUpDownCharaChipWidth.Name = "numericUpDownCharaChipWidth";
             this.numericUpDownCharaChipWidth.Size = new System.Drawing.Size(48, 19);
-            this.numericUpDownCharaChipWidth.TabIndex = 4;
+            this.numericUpDownCharaChipWidth.TabIndex = 1;
             this.numericUpDownCharaChipWidth.Value = new decimal(new int[] {
             1,
             0,
@@ -120,7 +120,7 @@
             0});
             this.numericUpDownCharaChipHeight.Name = "numericUpDownCharaChipHeight";
             this.numericUpDownCharaChipHeight.Size = new System.Drawing.Size(48, 19);
-            this.numericUpDownCharaChipHeight.TabIndex = 4;
+            this.numericUpDownCharaChipHeight.TabIndex = 3;
             this.numericUpDownCharaChipHeight.Value = new decimal(new int[] {
             1,
             0,
@@ -138,7 +138,7 @@
             this.flowLayoutPanel1.Name = "flowLayoutPanel1";
             this.flowLayoutPanel1.Padding = new System.Windows.Forms.Padding(6);
             this.flowLayoutPanel1.Size = new System.Drawing.Size(408, 41);
-            this.flowLayoutPanel1.TabIndex = 6;
+            this.flowLayoutPanel1.TabIndex = 1;
             // 
             // panel1
             // 
@@ -151,7 +151,7 @@
             this.panel1.Name = "panel1";
             this.panel1.Padding = new System.Windows.Forms.Padding(4);
             this.panel1.Size = new System.Drawing.Size(390, 25);
-            this.panel1.TabIndex = 0;
+            this.panel1.TabIndex = 1;
             // 
             // label3
             // 
@@ -160,7 +160,7 @@
             this.label3.Location = new System.Drawing.Point(327, 4);
             this.label3.Name = "label3";
             this.label3.Size = new System.Drawing.Size(11, 12);
-            this.label3.TabIndex = 0;
+            this.label3.TabIndex = 2;
             this.label3.Text = "x";
             // 
             // tableLayoutPanel1
@@ -181,7 +181,7 @@
             this.tableLayoutPanel1.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 25F));
             this.tableLayoutPanel1.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 25F));
             this.tableLayoutPanel1.Size = new System.Drawing.Size(408, 137);
-            this.tableLayoutPanel1.TabIndex = 8;
+            this.tableLayoutPanel1.TabIndex = 0;
             // 
             // flowLayoutPanel3
             // 
@@ -201,7 +201,26 @@
             this.panel2.Name = "panel2";
             this.panel2.Padding = new System.Windows.Forms.Padding(4);
             this.panel2.Size = new System.Drawing.Size(390, 25);
-            this.panel2.TabIndex = 3;
+            this.panel2.TabIndex = 0;
+            // 
+            // textBoxExportFilePath
+            // 
+            this.textBoxExportFilePath.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.textBoxExportFilePath.Location = new System.Drawing.Point(52, 4);
+            this.textBoxExportFilePath.Name = "textBoxExportFilePath";
+            this.textBoxExportFilePath.Size = new System.Drawing.Size(259, 19);
+            this.textBoxExportFilePath.TabIndex = 1;
+            // 
+            // buttonSelectExportFilePath
+            // 
+            this.buttonSelectExportFilePath.Dock = System.Windows.Forms.DockStyle.Right;
+            this.buttonSelectExportFilePath.Location = new System.Drawing.Point(311, 4);
+            this.buttonSelectExportFilePath.Name = "buttonSelectExportFilePath";
+            this.buttonSelectExportFilePath.Size = new System.Drawing.Size(75, 17);
+            this.buttonSelectExportFilePath.TabIndex = 2;
+            this.buttonSelectExportFilePath.Text = "選択";
+            this.buttonSelectExportFilePath.UseVisualStyleBackColor = true;
+            this.buttonSelectExportFilePath.Click += new System.EventHandler(this.OnButtonSelectExportFilePathClick);
             // 
             // label2
             // 
@@ -212,25 +231,6 @@
             this.label2.Size = new System.Drawing.Size(48, 12);
             this.label2.TabIndex = 0;
             this.label2.Text = "出力パス";
-            // 
-            // buttonSelectExportFilePath
-            // 
-            this.buttonSelectExportFilePath.Dock = System.Windows.Forms.DockStyle.Right;
-            this.buttonSelectExportFilePath.Location = new System.Drawing.Point(311, 4);
-            this.buttonSelectExportFilePath.Name = "buttonSelectExportFilePath";
-            this.buttonSelectExportFilePath.Size = new System.Drawing.Size(75, 17);
-            this.buttonSelectExportFilePath.TabIndex = 1;
-            this.buttonSelectExportFilePath.Text = "選択";
-            this.buttonSelectExportFilePath.UseVisualStyleBackColor = true;
-            this.buttonSelectExportFilePath.Click += new System.EventHandler(this.OnButtonSelectExportFilePathClick);
-            // 
-            // textBoxExportFilePath
-            // 
-            this.textBoxExportFilePath.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.textBoxExportFilePath.Location = new System.Drawing.Point(52, 4);
-            this.textBoxExportFilePath.Name = "textBoxExportFilePath";
-            this.textBoxExportFilePath.Size = new System.Drawing.Size(259, 19);
-            this.textBoxExportFilePath.TabIndex = 2;
             // 
             // saveFileDialog
             // 

@@ -59,18 +59,18 @@
             this.characterEntryControl1 = new CharaChipGen.MainForm.CharacterEntryView();
             this.saveFileDialogExport = new System.Windows.Forms.SaveFileDialog();
             this.panel1 = new System.Windows.Forms.Panel();
-            this.flowLayoutPanel2 = new System.Windows.Forms.FlowLayoutPanel();
             this.flowLayoutPanel1 = new System.Windows.Forms.FlowLayoutPanel();
-            this.tableLayoutPanel1 = new System.Windows.Forms.TableLayoutPanel();
             this.panel2 = new System.Windows.Forms.Panel();
-            this.label1 = new System.Windows.Forms.Label();
             this.labelOutputPath = new System.Windows.Forms.Label();
+            this.label1 = new System.Windows.Forms.Label();
+            this.flowLayoutPanel2 = new System.Windows.Forms.FlowLayoutPanel();
+            this.tableLayoutPanel1 = new System.Windows.Forms.TableLayoutPanel();
             this.menuStripMain.SuspendLayout();
             this.panel1.SuspendLayout();
-            this.flowLayoutPanel2.SuspendLayout();
             this.flowLayoutPanel1.SuspendLayout();
-            this.tableLayoutPanel1.SuspendLayout();
             this.panel2.SuspendLayout();
+            this.flowLayoutPanel2.SuspendLayout();
+            this.tableLayoutPanel1.SuspendLayout();
             this.SuspendLayout();
             // 
             // menuStripMain
@@ -82,7 +82,7 @@
             this.menuStripMain.Location = new System.Drawing.Point(0, 0);
             this.menuStripMain.Name = "menuStripMain";
             this.menuStripMain.Size = new System.Drawing.Size(727, 24);
-            this.menuStripMain.TabIndex = 1;
+            this.menuStripMain.TabIndex = 0;
             this.menuStripMain.Text = "menuStrip1";
             // 
             // menuItemFile
@@ -208,7 +208,7 @@
             this.buttonExport.Location = new System.Drawing.Point(96, 9);
             this.buttonExport.Name = "buttonExport";
             this.buttonExport.Size = new System.Drawing.Size(158, 38);
-            this.buttonExport.TabIndex = 10;
+            this.buttonExport.TabIndex = 0;
             this.buttonExport.Text = "エクスポート";
             this.buttonExport.UseVisualStyleBackColor = true;
             this.buttonExport.Click += new System.EventHandler(this.OnExportButtonClick);
@@ -219,7 +219,7 @@
             this.buttonMaterialManage.Location = new System.Drawing.Point(9, 58);
             this.buttonMaterialManage.Name = "buttonMaterialManage";
             this.buttonMaterialManage.Size = new System.Drawing.Size(75, 23);
-            this.buttonMaterialManage.TabIndex = 11;
+            this.buttonMaterialManage.TabIndex = 0;
             this.buttonMaterialManage.Text = "素材管理";
             this.buttonMaterialManage.UseVisualStyleBackColor = true;
             this.buttonMaterialManage.Click += new System.EventHandler(this.OnMaterialManageClicked);
@@ -230,7 +230,7 @@
             this.buttonConfig.Location = new System.Drawing.Point(537, 6);
             this.buttonConfig.Name = "buttonConfig";
             this.buttonConfig.Size = new System.Drawing.Size(75, 20);
-            this.buttonConfig.TabIndex = 12;
+            this.buttonConfig.TabIndex = 2;
             this.buttonConfig.Text = "設定";
             this.buttonConfig.UseVisualStyleBackColor = true;
             this.buttonConfig.Click += new System.EventHandler(this.OnPreferenceClick);
@@ -251,7 +251,7 @@
             this.characterEntryControl8.Location = new System.Drawing.Point(543, 183);
             this.characterEntryControl8.Name = "characterEntryControl8";
             this.characterEntryControl8.Size = new System.Drawing.Size(168, 169);
-            this.characterEntryControl8.TabIndex = 9;
+            this.characterEntryControl8.TabIndex = 7;
             this.characterEntryControl8.ButtonClick += new System.EventHandler(this.OnCharacterEntryViewButtonClick);
             // 
             // characterEntryControl7
@@ -262,7 +262,7 @@
             this.characterEntryControl7.Location = new System.Drawing.Point(365, 183);
             this.characterEntryControl7.Name = "characterEntryControl7";
             this.characterEntryControl7.Size = new System.Drawing.Size(168, 169);
-            this.characterEntryControl7.TabIndex = 8;
+            this.characterEntryControl7.TabIndex = 6;
             this.characterEntryControl7.ButtonClick += new System.EventHandler(this.OnCharacterEntryViewButtonClick);
             // 
             // characterEntryControl6
@@ -273,7 +273,7 @@
             this.characterEntryControl6.Location = new System.Drawing.Point(187, 183);
             this.characterEntryControl6.Name = "characterEntryControl6";
             this.characterEntryControl6.Size = new System.Drawing.Size(168, 169);
-            this.characterEntryControl6.TabIndex = 7;
+            this.characterEntryControl6.TabIndex = 5;
             this.characterEntryControl6.ButtonClick += new System.EventHandler(this.OnCharacterEntryViewButtonClick);
             // 
             // characterEntryControl5
@@ -284,7 +284,7 @@
             this.characterEntryControl5.Location = new System.Drawing.Point(9, 183);
             this.characterEntryControl5.Name = "characterEntryControl5";
             this.characterEntryControl5.Size = new System.Drawing.Size(168, 169);
-            this.characterEntryControl5.TabIndex = 6;
+            this.characterEntryControl5.TabIndex = 4;
             this.characterEntryControl5.ButtonClick += new System.EventHandler(this.OnCharacterEntryViewButtonClick);
             // 
             // characterEntryControl4
@@ -295,7 +295,7 @@
             this.characterEntryControl4.Location = new System.Drawing.Point(543, 9);
             this.characterEntryControl4.Name = "characterEntryControl4";
             this.characterEntryControl4.Size = new System.Drawing.Size(168, 168);
-            this.characterEntryControl4.TabIndex = 5;
+            this.characterEntryControl4.TabIndex = 3;
             this.characterEntryControl4.ButtonClick += new System.EventHandler(this.OnCharacterEntryViewButtonClick);
             // 
             // characterEntryControl3
@@ -306,7 +306,7 @@
             this.characterEntryControl3.Location = new System.Drawing.Point(365, 9);
             this.characterEntryControl3.Name = "characterEntryControl3";
             this.characterEntryControl3.Size = new System.Drawing.Size(168, 168);
-            this.characterEntryControl3.TabIndex = 4;
+            this.characterEntryControl3.TabIndex = 2;
             this.characterEntryControl3.ButtonClick += new System.EventHandler(this.OnCharacterEntryViewButtonClick);
             // 
             // characterEntryControl2
@@ -317,7 +317,7 @@
             this.characterEntryControl2.Location = new System.Drawing.Point(187, 9);
             this.characterEntryControl2.Name = "characterEntryControl2";
             this.characterEntryControl2.Size = new System.Drawing.Size(168, 168);
-            this.characterEntryControl2.TabIndex = 3;
+            this.characterEntryControl2.TabIndex = 1;
             this.characterEntryControl2.ButtonClick += new System.EventHandler(this.OnCharacterEntryViewButtonClick);
             // 
             // characterEntryControl1
@@ -328,7 +328,7 @@
             this.characterEntryControl1.Location = new System.Drawing.Point(9, 9);
             this.characterEntryControl1.Name = "characterEntryControl1";
             this.characterEntryControl1.Size = new System.Drawing.Size(168, 168);
-            this.characterEntryControl1.TabIndex = 2;
+            this.characterEntryControl1.TabIndex = 0;
             this.characterEntryControl1.ButtonClick += new System.EventHandler(this.OnCharacterEntryViewButtonClick);
             // 
             // saveFileDialogExport
@@ -347,17 +347,6 @@
             this.panel1.Size = new System.Drawing.Size(727, 96);
             this.panel1.TabIndex = 13;
             // 
-            // flowLayoutPanel2
-            // 
-            this.flowLayoutPanel2.Controls.Add(this.buttonMaterialManage);
-            this.flowLayoutPanel2.Dock = System.Windows.Forms.DockStyle.Left;
-            this.flowLayoutPanel2.FlowDirection = System.Windows.Forms.FlowDirection.BottomUp;
-            this.flowLayoutPanel2.Location = new System.Drawing.Point(0, 0);
-            this.flowLayoutPanel2.Name = "flowLayoutPanel2";
-            this.flowLayoutPanel2.Padding = new System.Windows.Forms.Padding(6);
-            this.flowLayoutPanel2.Size = new System.Drawing.Size(109, 96);
-            this.flowLayoutPanel2.TabIndex = 1;
-            // 
             // flowLayoutPanel1
             // 
             this.flowLayoutPanel1.Controls.Add(this.buttonExport);
@@ -367,7 +356,50 @@
             this.flowLayoutPanel1.Name = "flowLayoutPanel1";
             this.flowLayoutPanel1.Padding = new System.Windows.Forms.Padding(6);
             this.flowLayoutPanel1.Size = new System.Drawing.Size(269, 64);
-            this.flowLayoutPanel1.TabIndex = 0;
+            this.flowLayoutPanel1.TabIndex = 2;
+            // 
+            // panel2
+            // 
+            this.panel2.Controls.Add(this.labelOutputPath);
+            this.panel2.Controls.Add(this.label1);
+            this.panel2.Controls.Add(this.buttonConfig);
+            this.panel2.Dock = System.Windows.Forms.DockStyle.Top;
+            this.panel2.Location = new System.Drawing.Point(109, 0);
+            this.panel2.Name = "panel2";
+            this.panel2.Padding = new System.Windows.Forms.Padding(6);
+            this.panel2.Size = new System.Drawing.Size(618, 32);
+            this.panel2.TabIndex = 1;
+            // 
+            // labelOutputPath
+            // 
+            this.labelOutputPath.AutoSize = true;
+            this.labelOutputPath.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.labelOutputPath.Location = new System.Drawing.Point(53, 6);
+            this.labelOutputPath.Name = "labelOutputPath";
+            this.labelOutputPath.Size = new System.Drawing.Size(35, 12);
+            this.labelOutputPath.TabIndex = 1;
+            this.labelOutputPath.Text = "xxxxx";
+            // 
+            // label1
+            // 
+            this.label1.AutoSize = true;
+            this.label1.Dock = System.Windows.Forms.DockStyle.Left;
+            this.label1.Location = new System.Drawing.Point(6, 6);
+            this.label1.Name = "label1";
+            this.label1.Size = new System.Drawing.Size(47, 12);
+            this.label1.TabIndex = 0;
+            this.label1.Text = "出力先：";
+            // 
+            // flowLayoutPanel2
+            // 
+            this.flowLayoutPanel2.Controls.Add(this.buttonMaterialManage);
+            this.flowLayoutPanel2.Dock = System.Windows.Forms.DockStyle.Left;
+            this.flowLayoutPanel2.FlowDirection = System.Windows.Forms.FlowDirection.BottomUp;
+            this.flowLayoutPanel2.Location = new System.Drawing.Point(0, 0);
+            this.flowLayoutPanel2.Name = "flowLayoutPanel2";
+            this.flowLayoutPanel2.Padding = new System.Windows.Forms.Padding(6);
+            this.flowLayoutPanel2.Size = new System.Drawing.Size(109, 96);
+            this.flowLayoutPanel2.TabIndex = 0;
             // 
             // tableLayoutPanel1
             // 
@@ -392,39 +424,7 @@
             this.tableLayoutPanel1.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 50F));
             this.tableLayoutPanel1.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 50F));
             this.tableLayoutPanel1.Size = new System.Drawing.Size(727, 361);
-            this.tableLayoutPanel1.TabIndex = 14;
-            // 
-            // panel2
-            // 
-            this.panel2.Controls.Add(this.labelOutputPath);
-            this.panel2.Controls.Add(this.label1);
-            this.panel2.Controls.Add(this.buttonConfig);
-            this.panel2.Dock = System.Windows.Forms.DockStyle.Top;
-            this.panel2.Location = new System.Drawing.Point(109, 0);
-            this.panel2.Name = "panel2";
-            this.panel2.Padding = new System.Windows.Forms.Padding(6);
-            this.panel2.Size = new System.Drawing.Size(618, 32);
-            this.panel2.TabIndex = 2;
-            // 
-            // label1
-            // 
-            this.label1.AutoSize = true;
-            this.label1.Dock = System.Windows.Forms.DockStyle.Left;
-            this.label1.Location = new System.Drawing.Point(6, 6);
-            this.label1.Name = "label1";
-            this.label1.Size = new System.Drawing.Size(47, 12);
-            this.label1.TabIndex = 13;
-            this.label1.Text = "出力先：";
-            // 
-            // labelOutputPath
-            // 
-            this.labelOutputPath.AutoSize = true;
-            this.labelOutputPath.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.labelOutputPath.Location = new System.Drawing.Point(53, 6);
-            this.labelOutputPath.Name = "labelOutputPath";
-            this.labelOutputPath.Size = new System.Drawing.Size(35, 12);
-            this.labelOutputPath.TabIndex = 14;
-            this.labelOutputPath.Text = "xxxxx";
+            this.tableLayoutPanel1.TabIndex = 1;
             // 
             // MainForm
             // 
@@ -443,11 +443,11 @@
             this.menuStripMain.ResumeLayout(false);
             this.menuStripMain.PerformLayout();
             this.panel1.ResumeLayout(false);
-            this.flowLayoutPanel2.ResumeLayout(false);
             this.flowLayoutPanel1.ResumeLayout(false);
-            this.tableLayoutPanel1.ResumeLayout(false);
             this.panel2.ResumeLayout(false);
             this.panel2.PerformLayout();
+            this.flowLayoutPanel2.ResumeLayout(false);
+            this.tableLayoutPanel1.ResumeLayout(false);
             this.ResumeLayout(false);
             this.PerformLayout();
 

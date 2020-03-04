@@ -36,8 +36,8 @@
             this.panel1 = new System.Windows.Forms.Panel();
             this.flowLayoutPanel1 = new System.Windows.Forms.FlowLayoutPanel();
             this.flowLayoutPanel2 = new System.Windows.Forms.FlowLayoutPanel();
-            this.buttonRenameLayer = new System.Windows.Forms.Button();
             this.buttonAddLayer = new System.Windows.Forms.Button();
+            this.buttonRenameLayer = new System.Windows.Forms.Button();
             this.tableLayoutPanel1 = new System.Windows.Forms.TableLayoutPanel();
             this.panel3 = new System.Windows.Forms.Panel();
             this.groupBox1 = new System.Windows.Forms.GroupBox();
@@ -79,7 +79,7 @@
             this.label1.Location = new System.Drawing.Point(8, 8);
             this.label1.Name = "label1";
             this.label1.Size = new System.Drawing.Size(56, 16);
-            this.label1.TabIndex = 4;
+            this.label1.TabIndex = 0;
             this.label1.Text = "素材名";
             // 
             // textBoxMaterialName
@@ -89,14 +89,14 @@
             this.textBoxMaterialName.Location = new System.Drawing.Point(64, 8);
             this.textBoxMaterialName.Name = "textBoxMaterialName";
             this.textBoxMaterialName.Size = new System.Drawing.Size(432, 23);
-            this.textBoxMaterialName.TabIndex = 5;
+            this.textBoxMaterialName.TabIndex = 1;
             // 
             // buttonDeleteLayer
             // 
             this.buttonDeleteLayer.Location = new System.Drawing.Point(9, 67);
             this.buttonDeleteLayer.Name = "buttonDeleteLayer";
             this.buttonDeleteLayer.Size = new System.Drawing.Size(110, 23);
-            this.buttonDeleteLayer.TabIndex = 8;
+            this.buttonDeleteLayer.TabIndex = 2;
             this.buttonDeleteLayer.Text = "レイヤーを削除";
             this.buttonDeleteLayer.UseVisualStyleBackColor = true;
             this.buttonDeleteLayer.Click += new System.EventHandler(this.OnDeleteLayerButtonClicked);
@@ -110,7 +110,7 @@
             this.panel1.Name = "panel1";
             this.panel1.Padding = new System.Windows.Forms.Padding(8);
             this.panel1.Size = new System.Drawing.Size(504, 41);
-            this.panel1.TabIndex = 10;
+            this.panel1.TabIndex = 0;
             // 
             // flowLayoutPanel1
             // 
@@ -137,25 +137,25 @@
             this.flowLayoutPanel2.Size = new System.Drawing.Size(174, 154);
             this.flowLayoutPanel2.TabIndex = 0;
             // 
-            // buttonRenameLayer
-            // 
-            this.buttonRenameLayer.Location = new System.Drawing.Point(9, 38);
-            this.buttonRenameLayer.Name = "buttonRenameLayer";
-            this.buttonRenameLayer.Size = new System.Drawing.Size(110, 23);
-            this.buttonRenameLayer.TabIndex = 10;
-            this.buttonRenameLayer.Text = "レイヤー名を変更";
-            this.buttonRenameLayer.UseVisualStyleBackColor = true;
-            this.buttonRenameLayer.Click += new System.EventHandler(this.OnButtonRenameLayerClick);
-            // 
             // buttonAddLayer
             // 
             this.buttonAddLayer.Location = new System.Drawing.Point(9, 9);
             this.buttonAddLayer.Name = "buttonAddLayer";
             this.buttonAddLayer.Size = new System.Drawing.Size(110, 23);
-            this.buttonAddLayer.TabIndex = 9;
+            this.buttonAddLayer.TabIndex = 0;
             this.buttonAddLayer.Text = "レイヤーを追加";
             this.buttonAddLayer.UseVisualStyleBackColor = true;
             this.buttonAddLayer.Click += new System.EventHandler(this.OnButtonAddLayerClick);
+            // 
+            // buttonRenameLayer
+            // 
+            this.buttonRenameLayer.Location = new System.Drawing.Point(9, 38);
+            this.buttonRenameLayer.Name = "buttonRenameLayer";
+            this.buttonRenameLayer.Size = new System.Drawing.Size(110, 23);
+            this.buttonRenameLayer.TabIndex = 1;
+            this.buttonRenameLayer.Text = "レイヤー名を変更";
+            this.buttonRenameLayer.UseVisualStyleBackColor = true;
+            this.buttonRenameLayer.Click += new System.EventHandler(this.OnButtonRenameLayerClick);
             // 
             // tableLayoutPanel1
             // 
@@ -189,7 +189,7 @@
             this.groupBox1.Location = new System.Drawing.Point(0, 0);
             this.groupBox1.Name = "groupBox1";
             this.groupBox1.Size = new System.Drawing.Size(174, 350);
-            this.groupBox1.TabIndex = 0;
+            this.groupBox1.TabIndex = 1;
             this.groupBox1.TabStop = false;
             this.groupBox1.Text = "レイヤー一覧";
             // 
@@ -211,7 +211,7 @@
             this.materialEditorLayerView.Location = new System.Drawing.Point(183, 3);
             this.materialEditorLayerView.Name = "materialEditorLayerView";
             this.materialEditorLayerView.Size = new System.Drawing.Size(318, 504);
-            this.materialEditorLayerView.TabIndex = 1;
+            this.materialEditorLayerView.TabIndex = 0;
             // 
             // MaterialEditorForm
             // 

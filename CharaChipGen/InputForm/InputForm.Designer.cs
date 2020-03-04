@@ -51,14 +51,14 @@
             this.flowLayoutPanel1.Name = "flowLayoutPanel1";
             this.flowLayoutPanel1.Padding = new System.Windows.Forms.Padding(4);
             this.flowLayoutPanel1.Size = new System.Drawing.Size(345, 37);
-            this.flowLayoutPanel1.TabIndex = 0;
+            this.flowLayoutPanel1.TabIndex = 2;
             // 
             // buttonCancel
             // 
             this.buttonCancel.Location = new System.Drawing.Point(259, 7);
             this.buttonCancel.Name = "buttonCancel";
             this.buttonCancel.Size = new System.Drawing.Size(75, 23);
-            this.buttonCancel.TabIndex = 0;
+            this.buttonCancel.TabIndex = 1;
             this.buttonCancel.Text = "Cancel";
             this.buttonCancel.UseVisualStyleBackColor = true;
             this.buttonCancel.Click += new System.EventHandler(this.OnButtonCancelClick);
@@ -68,7 +68,7 @@
             this.buttonOK.Location = new System.Drawing.Point(178, 7);
             this.buttonOK.Name = "buttonOK";
             this.buttonOK.Size = new System.Drawing.Size(75, 23);
-            this.buttonOK.TabIndex = 1;
+            this.buttonOK.TabIndex = 0;
             this.buttonOK.Text = "OK";
             this.buttonOK.UseVisualStyleBackColor = true;
             this.buttonOK.Click += new System.EventHandler(this.OnButtonOKClick);
@@ -81,7 +81,7 @@
             this.panel1.Name = "panel1";
             this.panel1.Padding = new System.Windows.Forms.Padding(12, 12, 12, 4);
             this.panel1.Size = new System.Drawing.Size(345, 40);
-            this.panel1.TabIndex = 1;
+            this.panel1.TabIndex = 0;
             // 
             // labelPrompt
             // 
@@ -109,7 +109,7 @@
             this.panel2.Name = "panel2";
             this.panel2.Padding = new System.Windows.Forms.Padding(12, 4, 12, 12);
             this.panel2.Size = new System.Drawing.Size(345, 55);
-            this.panel2.TabIndex = 2;
+            this.panel2.TabIndex = 1;
             // 
             // InputForm
             // 

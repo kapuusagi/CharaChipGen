@@ -68,7 +68,7 @@
             this.flowLayoutPanel1.Name = "flowLayoutPanel1";
             this.flowLayoutPanel1.Padding = new System.Windows.Forms.Padding(4);
             this.flowLayoutPanel1.Size = new System.Drawing.Size(356, 36);
-            this.flowLayoutPanel1.TabIndex = 8;
+            this.flowLayoutPanel1.TabIndex = 0;
             // 
             // buttonAdjust
             // 
