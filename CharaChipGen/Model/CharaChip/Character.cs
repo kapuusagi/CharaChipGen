@@ -52,7 +52,7 @@ namespace CharaChipGen.Model.CharaChip
             {
                 if (model.charaChipParts.ContainsKey(partsEntry.Key))
                 {
-                    partsEntry.Value.CopyTo(charaChipParts[partsEntry.Key]);
+                    partsEntry.Value.CopyTo(model.charaChipParts[partsEntry.Key]);
                 }
             }
         }
