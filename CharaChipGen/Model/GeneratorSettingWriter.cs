@@ -28,6 +28,17 @@ namespace CharaChipGen.Model
         }
 
         /// <summary>
+        /// 設定をwriterに書き出す。
+        /// </summary>
+        /// <param name="writer">テキストライター</param>
+        /// <param name="setting">設定</param>
+        public void Write(System.IO.TextWriter writer, GeneratorSetting setting)
+        {
+            XmlDocument doc = GenerateXmlDocument(setting);
+            doc.Save(writer);
+        }
+
+        /// <summary>
         /// 設定を書き出す。
         /// </summary>
         /// <param name="stream">出力ストリーム</param>
@@ -51,11 +62,11 @@ namespace CharaChipGen.Model
             // データをXMLモデルで構築する。
             XmlDocument doc = new XmlDocument();
 
-            XmlElement rootNode = doc.CreateElement(GeneratorSettingFileDefs.NodeNameRoot);
+            XmlElement rootNode = doc.CreateElement(GeneratorSettingFileDefs.NodeCharaChipGen);
             doc.AppendChild(rootNode);
 
             // キャラクター設定ノード
-            XmlElement charactersElem = doc.CreateElement(GeneratorSettingFileDefs.NodeNameCharacters);
+            XmlElement charactersElem = doc.CreateElement(GeneratorSettingFileDefs.NodeCharacters);
             rootNode.AppendChild(charactersElem);
             for (int i = 0; i < setting.GetCharacterCount(); i++)
             {
@@ -64,7 +75,7 @@ namespace CharaChipGen.Model
             }
 
             // エクスポート設定ノード
-            XmlElement exportConfigElem = doc.CreateElement(GeneratorSettingFileDefs.NodeNameExportSetting);
+            XmlElement exportConfigElem = doc.CreateElement(GeneratorSettingFileDefs.NodeExportSetting);
             AddConfigNode(doc, exportConfigElem, setting.ExportSetting);
             rootNode.AppendChild(exportConfigElem);
 
@@ -81,7 +92,7 @@ namespace CharaChipGen.Model
         private static void AddCharacter(XmlDocument doc, XmlElement parent, int index, Character character)
         {
             XmlElement charaElem = doc.CreateElement("character");
-            charaElem.SetAttribute(GeneratorSettingFileDefs.AttrNameNumber, index.ToString());
+            charaElem.SetAttribute(GeneratorSettingFileDefs.CharacterAttrNumber, index.ToString());
 
             PartsType[] partsTypes = (PartsType[])(Enum.GetValues(typeof(PartsType)));
             foreach (PartsType partsType in partsTypes)
@@ -102,17 +113,17 @@ namespace CharaChipGen.Model
         private static void AddCharacterPartsNode(XmlDocument doc, XmlElement parent, PartsType partsType, Parts parts)
         {
             // nodeNameでなく、parts.MaterialNameでも良さそうだが、使うモデルによってはMaterialNameで""が返る事があるのでやらない。
-            XmlElement paramElem = doc.CreateElement(GeneratorSettingFileDefs.NodeNameCharacterParts);
-            paramElem.SetAttribute(GeneratorSettingFileDefs.AttrNamePartsName, partsType.ToString());
-            paramElem.SetAttribute(GeneratorSettingFileDefs.AttrNameMaterialName, parts.MaterialName);
-            paramElem.SetAttribute(GeneratorSettingFileDefs.AttrNameXOffset, parts.OffsetX.ToString());
-            paramElem.SetAttribute(GeneratorSettingFileDefs.AttrNameYOffset, parts.OffsetY.ToString());
-            paramElem.SetAttribute(GeneratorSettingFileDefs.AttrNameHue, parts.Hue.ToString());
-            paramElem.SetAttribute(GeneratorSettingFileDefs.AttrNameSaturation, parts.Saturation.ToString());
-            paramElem.SetAttribute(GeneratorSettingFileDefs.AttrNameBrightness, parts.Value.ToString());
-            paramElem.SetAttribute(GeneratorSettingFileDefs.AttrNameOpacity, parts.Opacity.ToString());
+            XmlElement partsElem = doc.CreateElement(GeneratorSettingFileDefs.NodeParts);
+            partsElem.SetAttribute(GeneratorSettingFileDefs.PartsAttrName, partsType.ToString());
+            partsElem.SetAttribute(GeneratorSettingFileDefs.PartsAttrMaterialName, parts.MaterialName);
+            partsElem.SetAttribute(GeneratorSettingFileDefs.PartsAttrOffsetX, parts.OffsetX.ToString());
+            partsElem.SetAttribute(GeneratorSettingFileDefs.PartsAttrOffsetY, parts.OffsetY.ToString());
+            partsElem.SetAttribute(GeneratorSettingFileDefs.PartsAttrHue, parts.Hue.ToString());
+            partsElem.SetAttribute(GeneratorSettingFileDefs.PartsAttrSaturation, parts.Saturation.ToString());
+            partsElem.SetAttribute(GeneratorSettingFileDefs.PartsAttrBrightness, parts.Value.ToString());
+            partsElem.SetAttribute(GeneratorSettingFileDefs.PartsAttrOpacity, parts.Opacity.ToString());
 
-            parent.AppendChild(paramElem);
+            parent.AppendChild(partsElem);
         }
 
         /// <summary>
@@ -123,12 +134,12 @@ namespace CharaChipGen.Model
         /// <param name="setting">出力設定</param>
         private static void AddConfigNode(XmlDocument doc, XmlElement parent, ExportSetting setting)
         {
-            XmlElement chipSizeElem = doc.CreateElement(GeneratorSettingFileDefs.NodeNameCharaChipSize);
+            XmlElement chipSizeElem = doc.CreateElement(GeneratorSettingFileDefs.NodeCharaChipSize);
             chipSizeElem.SetAttribute("width", setting.CharaChipSize.Width.ToString());
             chipSizeElem.SetAttribute("height", setting.CharaChipSize.Height.ToString());
             parent.AppendChild(chipSizeElem);
 
-            XmlElement exportPathElem = doc.CreateElement(GeneratorSettingFileDefs.NodeNameExportPath);
+            XmlElement exportPathElem = doc.CreateElement(GeneratorSettingFileDefs.NodeExportPath);
             exportPathElem.SetAttribute("path", setting.ExportFilePath);
             parent.AppendChild(exportPathElem);
         }

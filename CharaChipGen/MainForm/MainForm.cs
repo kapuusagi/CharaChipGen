@@ -68,38 +68,49 @@ namespace CharaChipGen.MainForm
         /// <param name="e">イベントオブジェクト</param>
         private void OnCharacterEntryViewButtonClick(object sender, EventArgs e)
         {
-            if (sender.Equals(characterEntryControl1))
+            int index = GetCharacterModelIndex(sender);
+            if (index >= 0)
             {
-                CharacterChipEditProc((CharacterEntryView)(sender), 0);
+                CharacterChipEditProc((CharacterEntryView)(sender), index);
             }
-            else if (sender.Equals(characterEntryControl2))
+        }
+
+        /// <summary>
+        /// キャラクターエントリビュー
+        /// </summary>
+        private CharacterEntryView[] CharacterEntryViews {
+            get => new CharacterEntryView[]
             {
-                CharacterChipEditProc((CharacterEntryView)(sender), 1);
-            }
-            else if (sender.Equals(characterEntryControl3))
+                characterEntryControl1,
+                characterEntryControl2,
+                characterEntryControl3,
+                characterEntryControl4,
+                characterEntryControl5,
+                characterEntryControl6,
+                characterEntryControl7,
+                characterEntryControl8,
+            };
+        }
+
+        /// <summary>
+        /// 送信元オブジェクトからキャラクターモデルのインデックス番号を取得する。
+        /// 
+        /// </summary>
+        /// <param name="sender">送信元オブジェクト</param>
+        /// <returns>インデックス番号。該当するものがない場合には-1</returns>
+        private int GetCharacterModelIndex(object sender)
+        {
+            CharacterEntryView[] characterEntryViews = CharacterEntryViews;
+
+            for (int i = 0; i < characterEntryViews.Length; i++)
             {
-                CharacterChipEditProc((CharacterEntryView)(sender), 2);
+                if (characterEntryViews[i] == sender)
+                {
+                    return i;
+                }
             }
-            else if (sender.Equals(characterEntryControl4))
-            {
-                CharacterChipEditProc((CharacterEntryView)(sender), 3);
-            }
-            else if (sender.Equals(characterEntryControl5))
-            {
-                CharacterChipEditProc((CharacterEntryView)(sender), 4);
-            }
-            else if (sender.Equals(characterEntryControl6))
-            {
-                CharacterChipEditProc((CharacterEntryView)(sender), 5);
-            }
-            else if (sender.Equals(characterEntryControl7))
-            {
-                CharacterChipEditProc((CharacterEntryView)(sender), 6);
-            }
-            else if (sender.Equals(characterEntryControl8))
-            {
-                CharacterChipEditProc((CharacterEntryView)(sender), 7);
-            }
+
+            return -1;
         }
 
         /// <summary>
@@ -150,12 +161,12 @@ namespace CharaChipGen.MainForm
         /// UIのエントリ表示部分を更新する。
         /// </summary>
         /// <param name="view">ビュー</param>
-        /// <param name="dataModel">対応するデータモデル</param>
-        private void UpdateEntryView(CharacterEntryView view, Character dataModel)
+        /// <param name="character">対応するデータモデル</param>
+        private void UpdateEntryView(CharacterEntryView view, Character character)
         {
             // キャラクタチップデータ
             CharaChipRenderData renderModel = new CharaChipRenderData();
-            dataModel.CopyTo(renderModel.Character);
+            character.CopyTo(renderModel.Character);
             Size cchipPrefSize = renderModel.PreferredSize;
             if ((cchipPrefSize.Width > 0) && (cchipPrefSize.Height > 0))
             {
@@ -440,6 +451,148 @@ namespace CharaChipGen.MainForm
         {
             VersionForm form = new VersionForm();
             form.ShowDialog(this);
+        }
+
+        /// <summary>
+        /// クリップボードにコピーする
+        /// </summary>
+        /// <param name="view">ビュー</param>
+        /// <param name="character">クリップボードにコピーするキャラクター</param>
+        private void CopyCharacter(CharacterEntryView view, Character character)
+        {
+            CharacterWriter cw = new CharacterWriter();
+            using (System.IO.StringWriter writer = new System.IO.StringWriter())
+            {
+                cw.Write(writer, character);
+                writer.Flush();
+                string text = writer.ToString();
+                Clipboard.SetText(text);
+            }
+        }
+
+        /// <summary>
+        /// クリップボードからコピーする。
+        /// </summary>
+        /// <param name="view">ビュー</param>
+        /// <param name="character">クリップボードからコピーするキャラクター</param>
+        private void PasteCharacter(CharacterEntryView view, Character character)
+        {
+
+            string text = Clipboard.GetText();
+            if (string.IsNullOrEmpty(text))
+            {
+                return;
+            }
+
+            CharacterReader cr = new CharacterReader();
+            System.IO.StringReader reader = new System.IO.StringReader(text);
+            Character readCharacter = cr.Read(reader);
+            readCharacter.CopyTo(character);
+
+            UpdateEntryView(view, character);
+        }
+
+        /// <summary>
+        /// キーが押された時に通知を受け取る。
+        /// </summary>
+        /// <param name="sender">送信元オブジェクト</param>
+        /// <param name="e">イベントオブジェクト</param>
+        private void OnCharacterEntryControlKeyDown(object sender, KeyEventArgs e)
+        {
+            CharacterEntryView view = sender as CharacterEntryView;
+            int index = GetCharacterModelIndex(sender);
+            if (index < 0)
+            {
+                return;
+            }
+
+            try
+            {
+                if ((Control.ModifierKeys & Keys.Control) == Keys.Control)
+                {
+                    switch (e.KeyCode)
+                    {
+                        case Keys.C:
+                            CopyCharacter(view, AppData.Instance.GeneratorSetting.GetCharacter(index));
+                            e.Handled = true;
+                            break;
+                        case Keys.V:
+                            PasteCharacter(view, AppData.Instance.GeneratorSetting.GetCharacter(index));
+                            e.Handled = true;
+                            break;
+                    }
+                }
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show(this, ex.Message, "エラー");
+            }
+        }
+
+        /// <summary>
+        /// コピーメニューが選択された時に通知を受け取る。
+        /// </summary>
+        /// <param name="sender">送信元オブジェクト</param>
+        /// <param name="e">イベントオブジェクト</param>
+        private void OnMenuItemCopyClick(object sender, EventArgs e)
+        {
+            CharacterEntryView view = GetSelectedEntryView();
+            if (view == null)
+            {
+                return;
+            }
+            try
+            {
+                int index = GetCharacterModelIndex(view);
+                Character character = AppData.Instance.GeneratorSetting.GetCharacter(index);
+                CopyCharacter(view, character);
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show(this, ex.Message, "エラー");
+            }
+
+        }
+
+        /// <summary>
+        /// ペーストメニューが選択された時に通知を受け取る。
+        /// </summary>
+        /// <param name="sender">送信元オブジェクト</param>
+        /// <param name="e">イベントオブジェクト</param>
+        private void OnMenuItemPasteClick(object sender, EventArgs e)
+        {
+            CharacterEntryView view = GetSelectedEntryView();
+            if (view == null)
+            {
+                return;
+            }
+            try
+            {
+                int index = GetCharacterModelIndex(view);
+                Character character = AppData.Instance.GeneratorSetting.GetCharacter(index);
+                PasteCharacter(view, character);
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show(this, ex.Message, "エラー");
+            }
+        }
+
+        /// <summary>
+        /// 選択されているエントリビューを得る。
+        /// </summary>
+        /// <returns>選択されているエントリビュー。該当ビューが無い場合にはnull</returns>
+        private CharacterEntryView GetSelectedEntryView()
+        {
+            CharacterEntryView[] characterEntryViews = CharacterEntryViews;
+            foreach (CharacterEntryView view in characterEntryViews)
+            {
+                if (view.ActiveControl != null)
+                {
+                    return view;
+                }
+            }
+            return null;
         }
     }
 }

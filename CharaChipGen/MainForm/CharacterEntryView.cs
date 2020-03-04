@@ -101,5 +101,35 @@ namespace CharaChipGen.MainForm
         {
             ButtonClick?.Invoke(this, e); // 通知する
         }
+
+        /// <summary>
+        /// ボタンでキーが押された時に通知を受け取る。
+        /// </summary>
+        /// <param name="sender">送信元オブジェクト</param>
+        /// <param name="e">イベントオブジェクト</param>
+        private void OnButtonKeyPress(object sender, KeyPressEventArgs e)
+        {
+            OnKeyPress(e);
+        }
+
+        /// <summary>
+        /// ボタンでキーが押された時に通知を受け取る。
+        /// </summary>
+        /// <param name="sender">送信元オブジェクト</param>
+        /// <param name="e">イベントオブジェクト</param>
+        private void OnButtonKeyDown(object sender, KeyEventArgs e)
+        {
+            OnKeyDown(e);
+        }
+
+        /// <summary>
+        /// ボタンでキーが離された時に通知を受け取る。
+        /// </summary>
+        /// <param name="sender">送信元オブジェクト</param>
+        /// <param name="e">イベントオブジェクト</param>
+        private void OnButtonKeyUp(object sender, KeyEventArgs e)
+        {
+            OnKeyUp(e);
+        }
     }
 }

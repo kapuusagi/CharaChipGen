@@ -29,6 +29,18 @@ namespace CharaChipGen.Model
         }
 
         /// <summary>
+        /// readerで指定されるリーダーを使用してGeneratorSettingを読み込む。
+        /// </summary>
+        /// <param name="reader">リーダー</param>
+        /// <returns>GeneratorSettingオブジェクト</returns>
+        public GeneratorSetting Read(System.IO.TextReader reader)
+        {
+            XmlDocument doc = new XmlDocument();
+            doc.Load(reader);
+            return ParseXmlDocument(doc);
+        }
+
+        /// <summary>
         /// streamで指定されるストリームからGeneratorSettingを読み込む。
         /// </summary>
         /// <param name="stream">読み込むストリーム</param>
@@ -51,7 +63,7 @@ namespace CharaChipGen.Model
             // ツリーからXMLで取得する。
             foreach (XmlNode rootNode in doc.ChildNodes)
             {
-                if (rootNode.Name != GeneratorSettingFileDefs.NodeNameRoot)
+                if (rootNode.Name != GeneratorSettingFileDefs.NodeCharaChipGen)
                 {
                     throw new NotSupportedException("Unsupported root node. [" + rootNode.Name + "]");
                 }
@@ -59,10 +71,10 @@ namespace CharaChipGen.Model
                 {
                     switch (node.Name)
                     {
-                        case GeneratorSettingFileDefs.NodeNameCharacters:
+                        case GeneratorSettingFileDefs.NodeCharacters:
                             LoadCharactersNode(node, setting);
                             break;
-                        case GeneratorSettingFileDefs.NodeNameExportSetting:
+                        case GeneratorSettingFileDefs.NodeExportSetting:
                             LoadConfigNode(node, setting.ExportSetting);
                             break;
                     }
@@ -82,11 +94,11 @@ namespace CharaChipGen.Model
             {
                 try
                 {
-                    if (node.ChildNodes[i].Name != GeneratorSettingFileDefs.NodeNameCharacter)
+                    if (node.ChildNodes[i].Name != GeneratorSettingFileDefs.NodeCharacter)
                     {
                         continue;
                     }
-                    XmlAttribute attr = node.ChildNodes[i].Attributes[GeneratorSettingFileDefs.AttrNameNumber];
+                    XmlAttribute attr = node.ChildNodes[i].Attributes[GeneratorSettingFileDefs.CharacterAttrNumber];
                     if (attr == null)
                     {
                         continue; // number 属性がない。
@@ -107,18 +119,17 @@ namespace CharaChipGen.Model
         /// <summary>
         /// キャラクターノードを解析し、設定値を得る。
         /// </summary>
-        /// <param name="node">キャラクターノード</param>
+        /// <param name="characterNode">キャラクターノード</param>
         /// <param name="character">Characterオブジェクト</param>
-        private static void LoadCharacterNode(XmlNode node, Character character)
+        private static void LoadCharacterNode(XmlNode characterNode, Character character)
         {
-            for (int i = 0; i < node.ChildNodes.Count; i++)
+            foreach (XmlNode node in characterNode.ChildNodes)
             {
-                XmlNode subNode = node.ChildNodes[i];
-                if (subNode.Name != GeneratorSettingFileDefs.NodeNameCharacterParts)
+                if (!node.Name.Equals(GeneratorSettingFileDefs.NodeParts))
                 {
                     continue;
                 }
-                XmlAttribute attr = subNode.Attributes[GeneratorSettingFileDefs.AttrNamePartsName];
+                XmlAttribute attr = node.Attributes[GeneratorSettingFileDefs.PartsAttrName];
                 if (attr == null)
                 {
                     continue;
@@ -126,7 +137,7 @@ namespace CharaChipGen.Model
 
                 if (Enum.TryParse(attr.Value, out PartsType partsType))
                 {
-                    LoadCharacterPartsNode(subNode, character.GetParts(partsType));
+                    LoadCharacterPartsNode(node, character.GetParts(partsType));
                 }
             }
 
@@ -145,26 +156,26 @@ namespace CharaChipGen.Model
                 {
                     switch (attr.Name)
                     {
-                        case GeneratorSettingFileDefs.AttrNameMaterialName:
+                        case GeneratorSettingFileDefs.PartsAttrMaterialName:
                             parts.MaterialName = attr.Value;
                             break;
-                        case GeneratorSettingFileDefs.AttrNameXOffset:
-                            parts.OffsetX = Int32.Parse(attr.Value);
+                        case GeneratorSettingFileDefs.PartsAttrOffsetX:
+                            parts.OffsetX = int.Parse(attr.Value);
                             break;
-                        case GeneratorSettingFileDefs.AttrNameYOffset:
-                            parts.OffsetY = Int32.Parse(attr.Value);
+                        case GeneratorSettingFileDefs.PartsAttrOffsetY:
+                            parts.OffsetY = int.Parse(attr.Value);
                             break;
-                        case GeneratorSettingFileDefs.AttrNameHue:
-                            parts.Hue = Int32.Parse(attr.Value);
+                        case GeneratorSettingFileDefs.PartsAttrHue:
+                            parts.Hue = int.Parse(attr.Value);
                             break;
-                        case GeneratorSettingFileDefs.AttrNameSaturation:
-                            parts.Saturation = Int32.Parse(attr.Value);
+                        case GeneratorSettingFileDefs.PartsAttrSaturation:
+                            parts.Saturation = int.Parse(attr.Value);
                             break;
-                        case GeneratorSettingFileDefs.AttrNameBrightness:
-                            parts.Value = Int32.Parse(attr.Value);
+                        case GeneratorSettingFileDefs.PartsAttrBrightness:
+                            parts.Value = int.Parse(attr.Value);
                             break;
-                        case GeneratorSettingFileDefs.AttrNameOpacity:
-                            parts.Opacity = Int32.Parse(attr.Value);
+                        case GeneratorSettingFileDefs.PartsAttrOpacity:
+                            parts.Opacity = int.Parse(attr.Value);
                             break;
                     }
                 }
@@ -187,7 +198,7 @@ namespace CharaChipGen.Model
                 {
                     switch (subNode.Name)
                     {
-                        case GeneratorSettingFileDefs.NodeNameCharaChipSize:
+                        case GeneratorSettingFileDefs.NodeCharaChipSize:
                             {
                                 XmlAttribute wAttr = subNode.Attributes["width"];
                                 XmlAttribute hAttr = subNode.Attributes["height"];
@@ -198,7 +209,7 @@ namespace CharaChipGen.Model
                                 }
                             }
                             break;
-                        case GeneratorSettingFileDefs.NodeNameExportPath:
+                        case GeneratorSettingFileDefs.NodeExportPath:
                             XmlAttribute pathAttr = subNode.Attributes["path"];
                             setting.ExportFilePath = pathAttr.Value;
                             break;

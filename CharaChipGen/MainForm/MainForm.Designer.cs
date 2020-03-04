@@ -49,14 +49,6 @@
             this.buttonConfig = new System.Windows.Forms.Button();
             this.openFileDialog = new System.Windows.Forms.OpenFileDialog();
             this.saveFileDialog = new System.Windows.Forms.SaveFileDialog();
-            this.characterEntryControl8 = new CharaChipGen.MainForm.CharacterEntryView();
-            this.characterEntryControl7 = new CharaChipGen.MainForm.CharacterEntryView();
-            this.characterEntryControl6 = new CharaChipGen.MainForm.CharacterEntryView();
-            this.characterEntryControl5 = new CharaChipGen.MainForm.CharacterEntryView();
-            this.characterEntryControl4 = new CharaChipGen.MainForm.CharacterEntryView();
-            this.characterEntryControl3 = new CharaChipGen.MainForm.CharacterEntryView();
-            this.characterEntryControl2 = new CharaChipGen.MainForm.CharacterEntryView();
-            this.characterEntryControl1 = new CharaChipGen.MainForm.CharacterEntryView();
             this.saveFileDialogExport = new System.Windows.Forms.SaveFileDialog();
             this.panel1 = new System.Windows.Forms.Panel();
             this.flowLayoutPanel1 = new System.Windows.Forms.FlowLayoutPanel();
@@ -65,6 +57,17 @@
             this.label1 = new System.Windows.Forms.Label();
             this.flowLayoutPanel2 = new System.Windows.Forms.FlowLayoutPanel();
             this.tableLayoutPanel1 = new System.Windows.Forms.TableLayoutPanel();
+            this.characterEntryControl1 = new CharaChipGen.MainForm.CharacterEntryView();
+            this.characterEntryControl2 = new CharaChipGen.MainForm.CharacterEntryView();
+            this.characterEntryControl8 = new CharaChipGen.MainForm.CharacterEntryView();
+            this.characterEntryControl3 = new CharaChipGen.MainForm.CharacterEntryView();
+            this.characterEntryControl7 = new CharaChipGen.MainForm.CharacterEntryView();
+            this.characterEntryControl4 = new CharaChipGen.MainForm.CharacterEntryView();
+            this.characterEntryControl6 = new CharaChipGen.MainForm.CharacterEntryView();
+            this.characterEntryControl5 = new CharaChipGen.MainForm.CharacterEntryView();
+            this.menuItemEdit = new System.Windows.Forms.ToolStripMenuItem();
+            this.menuItemCopy = new System.Windows.Forms.ToolStripMenuItem();
+            this.menuItemPaste = new System.Windows.Forms.ToolStripMenuItem();
             this.menuStripMain.SuspendLayout();
             this.panel1.SuspendLayout();
             this.flowLayoutPanel1.SuspendLayout();
@@ -77,6 +80,7 @@
             // 
             this.menuStripMain.Items.AddRange(new System.Windows.Forms.ToolStripItem[] {
             this.menuItemFile,
+            this.menuItemEdit,
             this.menuItemOption,
             this.menuItemHelp});
             this.menuStripMain.Location = new System.Drawing.Point(0, 0);
@@ -176,14 +180,14 @@
             // menuItemPreference
             // 
             this.menuItemPreference.Name = "menuItemPreference";
-            this.menuItemPreference.Size = new System.Drawing.Size(122, 22);
+            this.menuItemPreference.Size = new System.Drawing.Size(180, 22);
             this.menuItemPreference.Text = "設定";
             this.menuItemPreference.Click += new System.EventHandler(this.OnPreferenceClick);
             // 
             // menuItemMaterialManagement
             // 
             this.menuItemMaterialManagement.Name = "menuItemMaterialManagement";
-            this.menuItemMaterialManagement.Size = new System.Drawing.Size(122, 22);
+            this.menuItemMaterialManagement.Size = new System.Drawing.Size(180, 22);
             this.menuItemMaterialManagement.Text = "素材管理";
             this.menuItemMaterialManagement.Click += new System.EventHandler(this.OnMaterialManageClicked);
             // 
@@ -242,94 +246,6 @@
             // saveFileDialog
             // 
             this.saveFileDialog.Filter = "設定保存ファイル|*.xml";
-            // 
-            // characterEntryControl8
-            // 
-            this.characterEntryControl8.ButtonName = "キャラクター8";
-            this.characterEntryControl8.FaceImage = null;
-            this.characterEntryControl8.Image = null;
-            this.characterEntryControl8.Location = new System.Drawing.Point(543, 183);
-            this.characterEntryControl8.Name = "characterEntryControl8";
-            this.characterEntryControl8.Size = new System.Drawing.Size(168, 169);
-            this.characterEntryControl8.TabIndex = 7;
-            this.characterEntryControl8.ButtonClick += new System.EventHandler(this.OnCharacterEntryViewButtonClick);
-            // 
-            // characterEntryControl7
-            // 
-            this.characterEntryControl7.ButtonName = "キャラクター7";
-            this.characterEntryControl7.FaceImage = null;
-            this.characterEntryControl7.Image = null;
-            this.characterEntryControl7.Location = new System.Drawing.Point(365, 183);
-            this.characterEntryControl7.Name = "characterEntryControl7";
-            this.characterEntryControl7.Size = new System.Drawing.Size(168, 169);
-            this.characterEntryControl7.TabIndex = 6;
-            this.characterEntryControl7.ButtonClick += new System.EventHandler(this.OnCharacterEntryViewButtonClick);
-            // 
-            // characterEntryControl6
-            // 
-            this.characterEntryControl6.ButtonName = "キャラクター6";
-            this.characterEntryControl6.FaceImage = null;
-            this.characterEntryControl6.Image = null;
-            this.characterEntryControl6.Location = new System.Drawing.Point(187, 183);
-            this.characterEntryControl6.Name = "characterEntryControl6";
-            this.characterEntryControl6.Size = new System.Drawing.Size(168, 169);
-            this.characterEntryControl6.TabIndex = 5;
-            this.characterEntryControl6.ButtonClick += new System.EventHandler(this.OnCharacterEntryViewButtonClick);
-            // 
-            // characterEntryControl5
-            // 
-            this.characterEntryControl5.ButtonName = "キャラクター5";
-            this.characterEntryControl5.FaceImage = null;
-            this.characterEntryControl5.Image = null;
-            this.characterEntryControl5.Location = new System.Drawing.Point(9, 183);
-            this.characterEntryControl5.Name = "characterEntryControl5";
-            this.characterEntryControl5.Size = new System.Drawing.Size(168, 169);
-            this.characterEntryControl5.TabIndex = 4;
-            this.characterEntryControl5.ButtonClick += new System.EventHandler(this.OnCharacterEntryViewButtonClick);
-            // 
-            // characterEntryControl4
-            // 
-            this.characterEntryControl4.ButtonName = "キャラクター4";
-            this.characterEntryControl4.FaceImage = null;
-            this.characterEntryControl4.Image = null;
-            this.characterEntryControl4.Location = new System.Drawing.Point(543, 9);
-            this.characterEntryControl4.Name = "characterEntryControl4";
-            this.characterEntryControl4.Size = new System.Drawing.Size(168, 168);
-            this.characterEntryControl4.TabIndex = 3;
-            this.characterEntryControl4.ButtonClick += new System.EventHandler(this.OnCharacterEntryViewButtonClick);
-            // 
-            // characterEntryControl3
-            // 
-            this.characterEntryControl3.ButtonName = "キャラクター3";
-            this.characterEntryControl3.FaceImage = null;
-            this.characterEntryControl3.Image = null;
-            this.characterEntryControl3.Location = new System.Drawing.Point(365, 9);
-            this.characterEntryControl3.Name = "characterEntryControl3";
-            this.characterEntryControl3.Size = new System.Drawing.Size(168, 168);
-            this.characterEntryControl3.TabIndex = 2;
-            this.characterEntryControl3.ButtonClick += new System.EventHandler(this.OnCharacterEntryViewButtonClick);
-            // 
-            // characterEntryControl2
-            // 
-            this.characterEntryControl2.ButtonName = "キャラクター2";
-            this.characterEntryControl2.FaceImage = null;
-            this.characterEntryControl2.Image = null;
-            this.characterEntryControl2.Location = new System.Drawing.Point(187, 9);
-            this.characterEntryControl2.Name = "characterEntryControl2";
-            this.characterEntryControl2.Size = new System.Drawing.Size(168, 168);
-            this.characterEntryControl2.TabIndex = 1;
-            this.characterEntryControl2.ButtonClick += new System.EventHandler(this.OnCharacterEntryViewButtonClick);
-            // 
-            // characterEntryControl1
-            // 
-            this.characterEntryControl1.ButtonName = "キャラクター1";
-            this.characterEntryControl1.FaceImage = null;
-            this.characterEntryControl1.Image = null;
-            this.characterEntryControl1.Location = new System.Drawing.Point(9, 9);
-            this.characterEntryControl1.Name = "characterEntryControl1";
-            this.characterEntryControl1.Size = new System.Drawing.Size(168, 168);
-            this.characterEntryControl1.TabIndex = 0;
-            this.characterEntryControl1.ButtonClick += new System.EventHandler(this.OnCharacterEntryViewButtonClick);
             // 
             // saveFileDialogExport
             // 
@@ -426,6 +342,127 @@
             this.tableLayoutPanel1.Size = new System.Drawing.Size(727, 361);
             this.tableLayoutPanel1.TabIndex = 1;
             // 
+            // characterEntryControl1
+            // 
+            this.characterEntryControl1.ButtonName = "キャラクター1";
+            this.characterEntryControl1.FaceImage = null;
+            this.characterEntryControl1.Image = null;
+            this.characterEntryControl1.Location = new System.Drawing.Point(9, 9);
+            this.characterEntryControl1.Name = "characterEntryControl1";
+            this.characterEntryControl1.Size = new System.Drawing.Size(168, 168);
+            this.characterEntryControl1.TabIndex = 0;
+            this.characterEntryControl1.ButtonClick += new System.EventHandler(this.OnCharacterEntryViewButtonClick);
+            this.characterEntryControl1.KeyDown += new System.Windows.Forms.KeyEventHandler(this.OnCharacterEntryControlKeyDown);
+            // 
+            // characterEntryControl2
+            // 
+            this.characterEntryControl2.ButtonName = "キャラクター2";
+            this.characterEntryControl2.FaceImage = null;
+            this.characterEntryControl2.Image = null;
+            this.characterEntryControl2.Location = new System.Drawing.Point(187, 9);
+            this.characterEntryControl2.Name = "characterEntryControl2";
+            this.characterEntryControl2.Size = new System.Drawing.Size(168, 168);
+            this.characterEntryControl2.TabIndex = 1;
+            this.characterEntryControl2.ButtonClick += new System.EventHandler(this.OnCharacterEntryViewButtonClick);
+            this.characterEntryControl2.KeyDown += new System.Windows.Forms.KeyEventHandler(this.OnCharacterEntryControlKeyDown);
+            // 
+            // characterEntryControl8
+            // 
+            this.characterEntryControl8.ButtonName = "キャラクター8";
+            this.characterEntryControl8.FaceImage = null;
+            this.characterEntryControl8.Image = null;
+            this.characterEntryControl8.Location = new System.Drawing.Point(543, 183);
+            this.characterEntryControl8.Name = "characterEntryControl8";
+            this.characterEntryControl8.Size = new System.Drawing.Size(168, 169);
+            this.characterEntryControl8.TabIndex = 7;
+            this.characterEntryControl8.ButtonClick += new System.EventHandler(this.OnCharacterEntryViewButtonClick);
+            this.characterEntryControl8.KeyDown += new System.Windows.Forms.KeyEventHandler(this.OnCharacterEntryControlKeyDown);
+            // 
+            // characterEntryControl3
+            // 
+            this.characterEntryControl3.ButtonName = "キャラクター3";
+            this.characterEntryControl3.FaceImage = null;
+            this.characterEntryControl3.Image = null;
+            this.characterEntryControl3.Location = new System.Drawing.Point(365, 9);
+            this.characterEntryControl3.Name = "characterEntryControl3";
+            this.characterEntryControl3.Size = new System.Drawing.Size(168, 168);
+            this.characterEntryControl3.TabIndex = 2;
+            this.characterEntryControl3.ButtonClick += new System.EventHandler(this.OnCharacterEntryViewButtonClick);
+            this.characterEntryControl3.KeyDown += new System.Windows.Forms.KeyEventHandler(this.OnCharacterEntryControlKeyDown);
+            // 
+            // characterEntryControl7
+            // 
+            this.characterEntryControl7.ButtonName = "キャラクター7";
+            this.characterEntryControl7.FaceImage = null;
+            this.characterEntryControl7.Image = null;
+            this.characterEntryControl7.Location = new System.Drawing.Point(365, 183);
+            this.characterEntryControl7.Name = "characterEntryControl7";
+            this.characterEntryControl7.Size = new System.Drawing.Size(168, 169);
+            this.characterEntryControl7.TabIndex = 6;
+            this.characterEntryControl7.ButtonClick += new System.EventHandler(this.OnCharacterEntryViewButtonClick);
+            this.characterEntryControl7.KeyDown += new System.Windows.Forms.KeyEventHandler(this.OnCharacterEntryControlKeyDown);
+            // 
+            // characterEntryControl4
+            // 
+            this.characterEntryControl4.ButtonName = "キャラクター4";
+            this.characterEntryControl4.FaceImage = null;
+            this.characterEntryControl4.Image = null;
+            this.characterEntryControl4.Location = new System.Drawing.Point(543, 9);
+            this.characterEntryControl4.Name = "characterEntryControl4";
+            this.characterEntryControl4.Size = new System.Drawing.Size(168, 168);
+            this.characterEntryControl4.TabIndex = 3;
+            this.characterEntryControl4.ButtonClick += new System.EventHandler(this.OnCharacterEntryViewButtonClick);
+            this.characterEntryControl4.KeyDown += new System.Windows.Forms.KeyEventHandler(this.OnCharacterEntryControlKeyDown);
+            // 
+            // characterEntryControl6
+            // 
+            this.characterEntryControl6.ButtonName = "キャラクター6";
+            this.characterEntryControl6.FaceImage = null;
+            this.characterEntryControl6.Image = null;
+            this.characterEntryControl6.Location = new System.Drawing.Point(187, 183);
+            this.characterEntryControl6.Name = "characterEntryControl6";
+            this.characterEntryControl6.Size = new System.Drawing.Size(168, 169);
+            this.characterEntryControl6.TabIndex = 5;
+            this.characterEntryControl6.ButtonClick += new System.EventHandler(this.OnCharacterEntryViewButtonClick);
+            this.characterEntryControl6.KeyDown += new System.Windows.Forms.KeyEventHandler(this.OnCharacterEntryControlKeyDown);
+            // 
+            // characterEntryControl5
+            // 
+            this.characterEntryControl5.ButtonName = "キャラクター5";
+            this.characterEntryControl5.FaceImage = null;
+            this.characterEntryControl5.Image = null;
+            this.characterEntryControl5.Location = new System.Drawing.Point(9, 183);
+            this.characterEntryControl5.Name = "characterEntryControl5";
+            this.characterEntryControl5.Size = new System.Drawing.Size(168, 169);
+            this.characterEntryControl5.TabIndex = 4;
+            this.characterEntryControl5.ButtonClick += new System.EventHandler(this.OnCharacterEntryViewButtonClick);
+            this.characterEntryControl5.KeyDown += new System.Windows.Forms.KeyEventHandler(this.OnCharacterEntryControlKeyDown);
+            // 
+            // menuItemEdit
+            // 
+            this.menuItemEdit.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] {
+            this.menuItemCopy,
+            this.menuItemPaste});
+            this.menuItemEdit.Name = "menuItemEdit";
+            this.menuItemEdit.Size = new System.Drawing.Size(43, 20);
+            this.menuItemEdit.Text = "編集";
+            // 
+            // menuItemCopy
+            // 
+            this.menuItemCopy.Name = "menuItemCopy";
+            this.menuItemCopy.ShortcutKeys = ((System.Windows.Forms.Keys)((System.Windows.Forms.Keys.Control | System.Windows.Forms.Keys.C)));
+            this.menuItemCopy.Size = new System.Drawing.Size(180, 22);
+            this.menuItemCopy.Text = "コピー";
+            this.menuItemCopy.Click += new System.EventHandler(this.OnMenuItemCopyClick);
+            // 
+            // menuItemPaste
+            // 
+            this.menuItemPaste.Name = "menuItemPaste";
+            this.menuItemPaste.ShortcutKeys = ((System.Windows.Forms.Keys)((System.Windows.Forms.Keys.Control | System.Windows.Forms.Keys.V)));
+            this.menuItemPaste.Size = new System.Drawing.Size(180, 22);
+            this.menuItemPaste.Text = "ペースト";
+            this.menuItemPaste.Click += new System.EventHandler(this.OnMenuItemPasteClick);
+            // 
             // MainForm
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 12F);
@@ -491,6 +528,9 @@
         private System.Windows.Forms.Panel panel2;
         private System.Windows.Forms.Label labelOutputPath;
         private System.Windows.Forms.Label label1;
+        private System.Windows.Forms.ToolStripMenuItem menuItemEdit;
+        private System.Windows.Forms.ToolStripMenuItem menuItemCopy;
+        private System.Windows.Forms.ToolStripMenuItem menuItemPaste;
     }
 }
 

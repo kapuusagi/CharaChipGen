@@ -46,6 +46,9 @@
             this.button.Text = "ButtonName";
             this.button.UseVisualStyleBackColor = true;
             this.button.Click += new System.EventHandler(this.OnButtonClick);
+            this.button.KeyDown += new System.Windows.Forms.KeyEventHandler(this.OnButtonKeyDown);
+            this.button.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.OnButtonKeyPress);
+            this.button.KeyUp += new System.Windows.Forms.KeyEventHandler(this.OnButtonKeyUp);
             // 
             // contextMenuStrip
             // 

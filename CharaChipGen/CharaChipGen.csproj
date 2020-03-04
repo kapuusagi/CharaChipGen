@@ -104,6 +104,9 @@
     </Compile>
     <Compile Include="Model\CharaChipRenderData.cs" />
     <Compile Include="Model\CharaChip\Character.cs" />
+    <Compile Include="Model\CharaChip\CharacterFileDefs.cs" />
+    <Compile Include="Model\CharaChip\CharacterReader.cs" />
+    <Compile Include="Model\CharaChip\CharacterWriter.cs" />
     <Compile Include="Model\GeneratorSetting.cs" />
     <Compile Include="Model\CharaChip\Parts.cs" />
     <Compile Include="Model\CharaChip\PartsChangeEventArgs.cs" />
