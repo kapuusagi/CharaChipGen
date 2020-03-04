@@ -60,11 +60,11 @@ namespace CharaChipGen.ManagementForm
                 listViewMaterials.View = View.Details;
             }
 
-            buttonAdd.Enabled = (materialList != null);
-            buttonEdit.Enabled = (materialList != null);
-            buttonDelete.Enabled = (materialList != null);
             buttonNew.Enabled = (materialList != null);
-            buttonRename.Enabled = (materialList != null);
+            buttonAdd.Enabled = (materialList != null);
+            buttonDelete.Enabled = (listViewMaterials.SelectedItems.Count > 0);
+            buttonEdit.Enabled = (listViewMaterials.SelectedItems.Count == 1);
+            buttonRename.Enabled = (listViewMaterials.SelectedItems.Count == 1);
         }
 
         /// <summary>
@@ -87,6 +87,7 @@ namespace CharaChipGen.ManagementForm
         {
             buttonDelete.Enabled = (listViewMaterials.SelectedItems.Count > 0);
             buttonEdit.Enabled = (listViewMaterials.SelectedItems.Count == 1);
+            buttonRename.Enabled = (listViewMaterials.SelectedItems.Count == 1);
         }
 
         /// <summary>
@@ -183,7 +184,8 @@ namespace CharaChipGen.ManagementForm
         /// <param name="evt">イベントオブジェクト</param>
         private void OnMaterialEditClicked(object sender, EventArgs evt)
         {
-            ListViewItem selectedItem = listViewMaterials.SelectedItems[0];
+            int selectedIndex = listViewMaterials.SelectedIndices[0];
+            ListViewItem selectedItem = listViewMaterials.Items[selectedIndex];
             MaterialList materialList = GetCurrentMaterialList();
             string materialName = selectedItem.SubItems[0].Text;
             Material material = materialList.Get(materialName);
@@ -210,8 +212,10 @@ namespace CharaChipGen.ManagementForm
                 // 編集反映処理
                 ApplyEdit(entryFile);
 
-
                 material.Reload(); // 更新する。
+
+                listViewMaterials.Items.RemoveAt(selectedIndex);
+                listViewMaterials.Items.Insert(selectedIndex, GenerateListViewMaterial(material));
             }
             catch (Exception e)
             {
