@@ -86,8 +86,7 @@ namespace CharaChipGen.Model
             PartsType[] partsTypes = (PartsType[])(Enum.GetValues(typeof(PartsType)));
             foreach (PartsType partsType in partsTypes)
             {
-                string partsTypeName = AppData.Instance.GetMaterialList(partsType).Name;
-                AddCharacterPartsNode(doc, charaElem, partsTypeName, character.GetParts(partsType));
+                AddCharacterPartsNode(doc, charaElem, partsType, character.GetParts(partsType));
             }
 
             parent.AppendChild(charaElem);
@@ -98,13 +97,13 @@ namespace CharaChipGen.Model
         /// </summary>
         /// <param name="doc">XmlDocumentオブジェクト</param>
         /// <param name="parent">親要素</param>
-        /// <param name="partsName">部品名(素材名ではない)</param>
+        /// <param name="partsType">部品種類</param>
         /// <param name="parts">部品</param>
-        private static void AddCharacterPartsNode(XmlDocument doc, XmlElement parent, string partsName, Parts parts)
+        private static void AddCharacterPartsNode(XmlDocument doc, XmlElement parent, PartsType partsType, Parts parts)
         {
             // nodeNameでなく、parts.MaterialNameでも良さそうだが、使うモデルによってはMaterialNameで""が返る事があるのでやらない。
             XmlElement paramElem = doc.CreateElement(GeneratorSettingFileDefs.NodeNameCharacterParts);
-            paramElem.SetAttribute(GeneratorSettingFileDefs.AttrNamePartsName, partsName);
+            paramElem.SetAttribute(GeneratorSettingFileDefs.AttrNamePartsName, partsType.ToString());
             paramElem.SetAttribute(GeneratorSettingFileDefs.AttrNameMaterialName, parts.MaterialName);
             paramElem.SetAttribute(GeneratorSettingFileDefs.AttrNameXOffset, parts.OffsetX.ToString());
             paramElem.SetAttribute(GeneratorSettingFileDefs.AttrNameYOffset, parts.OffsetY.ToString());
