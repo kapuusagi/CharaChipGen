@@ -36,6 +36,19 @@ namespace CharaChipGen.MaterialEditorForm
         }
 
         /// <summary>
+        /// レイヤーの設定が変更された。
+        /// </summary>
+        public event EventHandler LayerChanged;
+
+        /// <summary>
+        /// レイヤーの設定が変更された時に通知する。
+        /// </summary>
+        private void NotifyLayerChanged()
+        {
+            LayerChanged?.Invoke(this, new EventArgs());
+        }
+
+        /// <summary>
         /// レイヤー情報を設定する
         /// </summary>
         /// <param name="entryFile">エントリーファイル</param>
@@ -185,6 +198,7 @@ namespace CharaChipGen.MaterialEditorForm
             {
                 layerInfo.Path = openFileDialog.FileName;
                 ModelToUI();
+                NotifyLayerChanged();
             }
             catch (Exception e)
             {
@@ -208,6 +222,7 @@ namespace CharaChipGen.MaterialEditorForm
             if (comboBox.SelectedItem != null)
             {
                 layerInfo.LayerType = (LayerType)(comboBox.SelectedItem);
+                NotifyLayerChanged();
             }
         }
 
@@ -233,6 +248,7 @@ namespace CharaChipGen.MaterialEditorForm
             {
                 layerInfo.ColorPartsRefs = null;
             }
+            NotifyLayerChanged();
         }
     }
 }
