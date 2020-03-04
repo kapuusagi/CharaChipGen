@@ -77,7 +77,7 @@ namespace CharaChipGen.Model.Material
 
                     try
                     {
-                        MaterialEntryFile entryFile = MaterialEntryFile.LoadFrom(path);
+                        MaterialEntryFile entryFile = new MaterialEntryFile(path);
 
                         string relativePath = System.IO.Path.Combine(SubDirectoryName, fname);
                         Material material = new Material(relativePath, entryFile);
