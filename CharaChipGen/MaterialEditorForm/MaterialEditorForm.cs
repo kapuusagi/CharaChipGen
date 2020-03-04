@@ -28,15 +28,15 @@ namespace CharaChipGen.MaterialEditorForm
             get => entryFile; 
             set {
                 entryFile = value;
-                ReloadMaterial();
+                ModelToUI();
 
             }
         }
 
         /// <summary>
-        /// 素材を再読込する。
+        /// モデルの設定をUIに反映させる。
         /// </summary>
-        private void ReloadMaterial()
+        private void ModelToUI()
         {
             textBoxMaterialName.Text = entryFile?.GetDisplayName() ?? "";
 
@@ -52,6 +52,9 @@ namespace CharaChipGen.MaterialEditorForm
                     listBoxLayers.SelectedIndex = 0;
                 }
             }
+            buttonRenameLayer.Enabled = (listBoxLayers.SelectedIndex >= 0);
+            buttonDeleteLayer.Enabled = (listBoxLayers.SelectedIndex >= 0);
+
         }
 
         /// <summary>
@@ -61,7 +64,7 @@ namespace CharaChipGen.MaterialEditorForm
         /// <param name="e">イベントオブジェクト</param>
         private void OnFormShown(object sender, EventArgs e)
         {
-            ReloadMaterial();
+            ModelToUI();
         }
 
         /// <summary>
@@ -86,6 +89,7 @@ namespace CharaChipGen.MaterialEditorForm
                 MessageBox.Show(this, "素材名が設定されていません。");
                 return;
             }
+            entryFile.SetDisplayName(textBoxMaterialName.Text);
 
             DialogResult = DialogResult.OK;
             Close();
