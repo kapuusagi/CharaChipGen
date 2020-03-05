@@ -62,20 +62,20 @@ namespace CharaChipGen.GeneratorForm
         /// モデルを設定する
         /// </summary>
         /// <param name="model">データモデル</param>
-        public void SetModel(Character model)
+        public void SetCharacter(Character model)
         {
-            charaChipView11.SetDataModel(model);
-            charaChipView21.SetDataModel(model);
-            charaChipView31.SetDataModel(model);
-            charaChipView12.SetDataModel(model);
-            charaChipView22.SetDataModel(model);
-            charaChipView32.SetDataModel(model);
-            charaChipView13.SetDataModel(model);
-            charaChipView23.SetDataModel(model);
-            charaChipView33.SetDataModel(model);
-            charaChipView14.SetDataModel(model);
-            charaChipView24.SetDataModel(model);
-            charaChipView34.SetDataModel(model);
+            charaChipView11.SetCharacter(model);
+            charaChipView21.SetCharacter(model);
+            charaChipView31.SetCharacter(model);
+            charaChipView12.SetCharacter(model);
+            charaChipView22.SetCharacter(model);
+            charaChipView32.SetCharacter(model);
+            charaChipView13.SetCharacter(model);
+            charaChipView23.SetCharacter(model);
+            charaChipView33.SetCharacter(model);
+            charaChipView14.SetCharacter(model);
+            charaChipView24.SetCharacter(model);
+            charaChipView34.SetCharacter(model);
         }
     }
 }

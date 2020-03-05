@@ -59,6 +59,9 @@ namespace CharaChipGen.MainForm
                 = new ManagementForm.MaterialManagementForm();
             // モーダルダイアログとして表示する。
             form.ShowDialog(this);
+
+            // 素材が変更されたかもしれないので、UIの表示を変更する。
+            UpdateAllEntryViews();
         }
 
         /// <summary>
@@ -68,7 +71,7 @@ namespace CharaChipGen.MainForm
         /// <param name="e">イベントオブジェクト</param>
         private void OnCharacterEntryViewButtonClick(object sender, EventArgs e)
         {
-            int index = GetCharacterModelIndex(sender);
+            int index = GetCharacterIndexByView(sender);
             if (index >= 0)
             {
                 CharacterChipEditProc((CharacterEntryView)(sender), index);
@@ -98,7 +101,7 @@ namespace CharaChipGen.MainForm
         /// </summary>
         /// <param name="sender">送信元オブジェクト</param>
         /// <returns>インデックス番号。該当するものがない場合には-1</returns>
-        private int GetCharacterModelIndex(object sender)
+        private int GetCharacterIndexByView(object sender)
         {
             CharacterEntryView[] characterEntryViews = CharacterEntryViews;
 
@@ -126,7 +129,7 @@ namespace CharaChipGen.MainForm
 
             // モデルを設定する。
             AppData appData = AppData.Instance;
-            appData.GeneratorSetting.GetCharacter(index).CopyTo(form.CharaChipDataModel);
+            appData.GeneratorSetting.GetCharacter(index).CopyTo(form.Character);
 
             DialogResult result = form.ShowDialog(this);
             if (result != DialogResult.OK)
@@ -135,7 +138,7 @@ namespace CharaChipGen.MainForm
             }
 
             // 反映処理する。
-            form.CharaChipDataModel.CopyTo(appData.GeneratorSetting.GetCharacter(index));
+            form.Character.CopyTo(appData.GeneratorSetting.GetCharacter(index));
 
             UpdateEntryView(view, appData.GeneratorSetting.GetCharacter(index));
         }
@@ -143,18 +146,14 @@ namespace CharaChipGen.MainForm
         /// <summary>
         /// UIのエントリ表示部分を全て更新する。
         /// </summary>
-        private void UpdateAllEntryView()
+        private void UpdateAllEntryViews()
         {
             GeneratorSetting setting = AppData.Instance.GeneratorSetting;
-
-            UpdateEntryView(characterEntryControl1, setting.GetCharacter(0));
-            UpdateEntryView(characterEntryControl2, setting.GetCharacter(1));
-            UpdateEntryView(characterEntryControl3, setting.GetCharacter(2));
-            UpdateEntryView(characterEntryControl4, setting.GetCharacter(3));
-            UpdateEntryView(characterEntryControl5, setting.GetCharacter(4));
-            UpdateEntryView(characterEntryControl6, setting.GetCharacter(5));
-            UpdateEntryView(characterEntryControl7, setting.GetCharacter(6));
-            UpdateEntryView(characterEntryControl8, setting.GetCharacter(7));
+            CharacterEntryView[] views = CharacterEntryViews;
+            for (int i = 0; i < views.Length; i++)
+            {
+                UpdateEntryView(views[i], setting.GetCharacter(i));
+            }
         }
 
         /// <summary>
@@ -165,13 +164,13 @@ namespace CharaChipGen.MainForm
         private void UpdateEntryView(CharacterEntryView view, Character character)
         {
             // キャラクタチップデータ
-            CharaChipRenderData renderModel = new CharaChipRenderData();
-            character.CopyTo(renderModel.Character);
-            Size cchipPrefSize = renderModel.PreferredSize;
+            CharaChipRenderData renderData = new CharaChipRenderData();
+            character.CopyTo(renderData.Character);
+            Size cchipPrefSize = renderData.PreferredSize;
             if ((cchipPrefSize.Width > 0) && (cchipPrefSize.Height > 0))
             {
                 ImageBuffer charaChipBuffer = ImageBuffer.Create(cchipPrefSize.Width, cchipPrefSize.Height);
-                CharaChipGenerator.Draw(renderModel, charaChipBuffer, 1, 0);
+                CharaChipGenerator.Draw(renderData, charaChipBuffer, 1, 0);
                 view.Image = charaChipBuffer.GetImage();
             }
             else
@@ -255,7 +254,7 @@ namespace CharaChipGen.MainForm
             }
 
             // モデルに合わせてUIの表示更新
-            UpdateAllEntryView();
+            UpdateAllEntryViews();
         }
 
         /// <summary>
@@ -298,9 +297,10 @@ namespace CharaChipGen.MainForm
 
             editFilePath = openFileDialog.FileName;
 
-            // Note: 本当はCharaChipDataModelをViewに設定して
+            // Note: 本当はComponentModelをViewに設定して
+            //       変更があったらViewが自動的に更新されるようにして、
             //       ここに余計なコードを書かない方が美しい。
-            UpdateAllEntryView();
+            UpdateAllEntryViews();
 
             labelOutputPath.Text = setting.ExportSetting.ExportFilePath;
         }
@@ -500,7 +500,7 @@ namespace CharaChipGen.MainForm
         private void OnCharacterEntryControlKeyDown(object sender, KeyEventArgs e)
         {
             CharacterEntryView view = sender as CharacterEntryView;
-            int index = GetCharacterModelIndex(sender);
+            int index = GetCharacterIndexByView(sender);
             if (index < 0)
             {
                 return;
@@ -543,7 +543,7 @@ namespace CharaChipGen.MainForm
             }
             try
             {
-                int index = GetCharacterModelIndex(view);
+                int index = GetCharacterIndexByView(view);
                 Character character = AppData.Instance.GeneratorSetting.GetCharacter(index);
                 CopyCharacter(view, character);
             }
@@ -568,7 +568,7 @@ namespace CharaChipGen.MainForm
             }
             try
             {
-                int index = GetCharacterModelIndex(view);
+                int index = GetCharacterIndexByView(view);
                 Character character = AppData.Instance.GeneratorSetting.GetCharacter(index);
                 PasteCharacter(view, character);
             }

@@ -15,11 +15,11 @@ namespace CharaChipGen.GeneratorForm
         // 未選択を表すコンボボックスのアイテム。
         private const string ItemNoSelect = "<選択なし>";
         // このビューが表すデータのモデル。
-        private Parts model;
-        // modelのデータ変更を受け取るためのハンドラ
+        private Parts parts;
+        // モデルのデータ変更を受け取るためのハンドラ
         private PropertyChangedEventHandler handler;
         // パラメータ編集ビュー
-        private PartsEditView paramEditView;
+        private PartsEditView view;
         // ドロップダウン表示
         private ToolStripDropDown toolStripDropDown;
 
@@ -29,33 +29,33 @@ namespace CharaChipGen.GeneratorForm
         public CharaChipGeneratorPartsView()
         {
             InitializeComponent();
-            model = new Parts(PartsType.Accessory1);
+            parts = new Parts(PartsType.Accessory1);
             handler = new PropertyChangedEventHandler((sender, e) =>
             {
-                ApplyModelToView();
+                ModelToUI();
             });
-            model.PropertyChanged += handler;
+            parts.PropertyChanged += handler;
             toolStripDropDown = new ToolStripDropDown();
-            paramEditView = new PartsEditView();
-            paramEditView.Model = Model;
-            toolStripDropDown.Items.Add(new ToolStripControlHost(paramEditView));
+            view = new PartsEditView();
+            view.Parts = Parts;
+            toolStripDropDown.Items.Add(new ToolStripControlHost(view));
         }
 
         /// <summary>
         /// 格納しているデータのモデル
         /// </summary>
-        public Parts Model {
-            get { return model; }
+        public Parts Parts {
+            get { return parts; }
             set {
-                if ((value == null) || (value == model))
+                if ((value == null) || (value == parts))
                 {
                     return;
                 }
-                model.PropertyChanged -= handler;
-                model = value;
-                model.PropertyChanged += handler;
+                parts.PropertyChanged -= handler;
+                parts = value;
+                parts.PropertyChanged += handler;
 
-                ApplyModelToView();
+                ModelToUI();
             }
         }
 
@@ -63,24 +63,24 @@ namespace CharaChipGen.GeneratorForm
         /// Yオフセット値の表示可否
         /// </summary>
         public bool EditYOffset {
-            get { return paramEditView.EditYOffset; }
-            set { paramEditView.EditYOffset = value; }
+            get { return view.EditYOffset; }
+            set { view.EditYOffset = value; }
         }
 
         /// <summary>
         /// HSVの表示可否
         /// </summary>
         public bool EditHSV {
-            get { return paramEditView.EditHSV; }
-            set { paramEditView.EditHSV = value; }
+            get { return view.EditHSV; }
+            set { view.EditHSV = value; }
         }
 
         /// <summary>
         /// モデルの設定値をビューに反映させる。
         /// </summary>
-        private void ApplyModelToView()
+        private void ModelToUI()
         {
-            if (model.MaterialName == "")
+            if (parts.MaterialName == "")
             {
                 // 0番目のアイテムは未選択アイテムになる。
                 if (comboBoxItem.Items.Count > 0)
@@ -94,7 +94,7 @@ namespace CharaChipGen.GeneratorForm
                 for (int i = 1; i < comboBoxItem.Items.Count; i++)
                 {
                     Material item = (Material)(comboBoxItem.Items[i]);
-                    if (item.Name == model.MaterialName)
+                    if (item.Name == parts.MaterialName)
                     {
                         comboBoxItem.SelectedIndex = i;
                         break;
@@ -102,7 +102,7 @@ namespace CharaChipGen.GeneratorForm
                 }
             }
 
-            paramEditView.Model = model;
+            view.Parts = parts;
         }
 
         /// <summary>
@@ -142,11 +142,11 @@ namespace CharaChipGen.GeneratorForm
             Object selItem = comboBoxItem.SelectedItem;
             if (selItem.Equals(ItemNoSelect))
             {
-                model.MaterialName = "";
+                parts.MaterialName = "";
             }
             else
             {
-                model.MaterialName = (selItem != null) ? selItem.ToString() : "";
+                parts.MaterialName = (selItem != null) ? selItem.ToString() : "";
             }
         }
 

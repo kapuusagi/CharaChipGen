@@ -20,23 +20,23 @@ namespace CharaChipGen.GeneratorForm
             InitializeComponent();
             InitializeComboBoxItems();
 
-            charaChipView.SetModel(character);
+            charaChipView.SetCharacter(character);
 
-            partsViewHead.Model = character.Head;
-            partsViewEye.Model = character.Eye;
-            partsViewHairStyle.Model = character.Hair;
-            partsViewBody.Model = character.Body;
-            partsViewAccessory1.Model = character.Accessory1;
-            partsViewAccessory2.Model = character.Accessory2;
-            partsViewAccessory3.Model = character.Accessory3;
-            partsViewHeadAccessory1.Model = character.HeadAccessory1;
-            partsViewHeadAccessory2.Model = character.HeadAccessory2;
+            partsViewHead.Parts = character.Head;
+            partsViewEye.Parts = character.Eye;
+            partsViewHairStyle.Parts = character.Hair;
+            partsViewBody.Parts = character.Body;
+            partsViewAccessory1.Parts = character.Accessory1;
+            partsViewAccessory2.Parts = character.Accessory2;
+            partsViewAccessory3.Parts = character.Accessory3;
+            partsViewHeadAccessory1.Parts = character.HeadAccessory1;
+            partsViewHeadAccessory2.Parts = character.HeadAccessory2;
         }
 
         /// <summary>
         /// データモデル
         /// </summary>
-        public Character CharaChipDataModel {
+        public Character Character {
             get { return character; }
             set { value.CopyTo(character); }
         }

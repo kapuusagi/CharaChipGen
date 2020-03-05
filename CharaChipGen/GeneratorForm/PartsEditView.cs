@@ -58,7 +58,7 @@ namespace CharaChipGen.GeneratorForm
         /// <summary>
         /// パラメータモデル。
         /// </summary>
-        public Parts Model {
+        public Parts Parts {
             get { return model; }
             set {
                 if ((model == null) || (model == value))
@@ -69,7 +69,7 @@ namespace CharaChipGen.GeneratorForm
                 model.PropertyChanged -= OnPartsPropertyChanged;
                 model = value;
                 model.PropertyChanged += OnPartsPropertyChanged;
-                ApplyModelToView();
+                ModelToUI();
             }
         }
 
@@ -79,13 +79,13 @@ namespace CharaChipGen.GeneratorForm
         /// <param name="sender"></param>
         private void OnPartsPropertyChanged(object sender, PropertyChangedEventArgs e)
         {
-            ApplyModelToView();
+            ModelToUI();
         }
 
         /// <summary>
         /// モデルの設定値をビューに反映させる。
         /// </summary>
-        private void ApplyModelToView()
+        private void ModelToUI()
         {
             // Note: 全部設定するとコストかかるのが課題か。
             //       データバインディング使った方がいい？

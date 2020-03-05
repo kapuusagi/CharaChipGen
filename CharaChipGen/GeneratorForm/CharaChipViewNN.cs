@@ -12,11 +12,16 @@ namespace CharaChipGen.GeneratorForm
     /// </summary>
     public partial class CharaChipViewNN : UserControl
     {
-        private int positionX; // X位置
-        private int positionY; // Y位置
-        private Image renderedImage; // レンダリング完了済みデータ
-        private CharaChipRenderData renderModel; // レンダリングモデル
-        private CharaChipRenderData.ImageChanged handler; // ハンドラ
+        // X位置
+        private int positionX;
+        // Y位置
+        private int positionY;
+        // レンダリング完了済みデータ
+        private Image renderedImage;
+        // レンダリングモデル
+        private CharaChipRenderData renderData;
+        // ハンドラ
+        private CharaChipRenderData.ImageChanged handler;
 
         /// <summary>
         /// 新しいインスタンスを構築する。
@@ -26,7 +31,7 @@ namespace CharaChipGen.GeneratorForm
             positionX = 0;
             positionY = 0;
             renderedImage = null;
-            renderModel = new CharaChipRenderData();
+            renderData = new CharaChipRenderData();
             handler = new CharaChipRenderData.ImageChanged((sender, e) =>
             {
                 // 表示データの変更が入った場合にはイメージを削除して
@@ -34,23 +39,23 @@ namespace CharaChipGen.GeneratorForm
                 renderedImage = null;
                 Invalidate();
             });
-            renderModel.OnImageChanged += handler;
+            renderData.OnImageChanged += handler;
             InitializeComponent();
         }
 
         /// <summary>
         /// データモデルを設定する
         /// </summary>
-        /// <param name="model">データモデル</param>
-        public void SetDataModel(Character model)
+        /// <param name="character">データモデル</param>
+        public void SetCharacter(Character character)
         {
-            renderModel.OnImageChanged -= handler;
+            renderData.OnImageChanged -= handler;
             // データモデルを置き換える。
             // 置き換えたことによってイベントが飛ぶので
             // そちらで更新処理が行われる。
-            renderModel.Character = model;
+            renderData.Character = character;
 
-            renderModel.OnImageChanged += handler;
+            renderData.OnImageChanged += handler;
         }
 
         /// <summary>
@@ -107,7 +112,7 @@ namespace CharaChipGen.GeneratorForm
             // イメージをレンダリング
             if (renderedImage == null)
             {
-                Size prefSize = renderModel.PreferredSize;
+                Size prefSize = renderData.PreferredSize;
                 if ((prefSize.Width > 0) && (prefSize.Height > 0))
                 {
 
@@ -116,7 +121,7 @@ namespace CharaChipGen.GeneratorForm
                     ImageBuffer renderBuffer = ImageBuffer.Create(imageSize.Width, imageSize.Height);
 
                     // レンダリングする。
-                    CharaChipGenerator.Draw(renderModel, renderBuffer, positionX, positionY);
+                    CharaChipGenerator.Draw(renderData, renderBuffer, positionX, positionY);
                     renderedImage = renderBuffer.GetImage();
                 }
             }

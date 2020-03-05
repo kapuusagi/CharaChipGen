@@ -36,9 +36,9 @@ namespace CharaChipGen.Model.CharaChip
             PartsType[] partsTypes = (PartsType[])(Enum.GetValues(typeof(PartsType)));
             foreach (PartsType partsType in partsTypes)
             {
-                Parts partsModel = new Parts(partsType);
-                partsModel.PropertyChanged += handler;
-                charaChipParts.Add(partsType, partsModel);
+                Parts parts = new Parts(partsType);
+                parts.PropertyChanged += handler;
+                charaChipParts.Add(partsType, parts);
             }
         }
 
