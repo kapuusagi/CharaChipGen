@@ -1,5 +1,7 @@
 ﻿using CharaChipGen.Model.Material;
 using System;
+using System.Collections.Generic;
+using System.Linq;
 using System.Windows.Forms;
 
 namespace CharaChipGen.MaterialEditorForm
@@ -42,18 +44,27 @@ namespace CharaChipGen.MaterialEditorForm
             listBoxLayers.Items.Clear();
             if (entryFile != null)
             {
-                foreach (var entry in entryFile.Layers)
-                {
-                    listBoxLayers.Items.Add(entry.Value);
-                }
+                MaterialLayerInfo[] layers = entryFile.Layers.Select((entry) => entry.Value).ToArray();
+                listBoxLayers.Items.AddRange(layers);
                 if (listBoxLayers.Items.Count > 0)
                 {
                     listBoxLayers.SelectedIndex = 0;
                 }
             }
+            UpdateButtonEnables();
+
+        }
+
+        /// <summary>
+        /// 操作ボタンの有効・無効を更新する。
+        /// </summary>
+        private void UpdateButtonEnables()
+        {
             buttonRenameLayer.Enabled = (listBoxLayers.SelectedIndex >= 0);
             buttonDeleteLayer.Enabled = (listBoxLayers.SelectedIndex >= 0);
-
+            buttonUpLayer.Enabled = (listBoxLayers.SelectedIndex > 0);
+            buttonDownLayer.Enabled = (listBoxLayers.SelectedIndex >= 0)
+                && (listBoxLayers.SelectedIndex < (listBoxLayers.Items.Count - 1));
         }
 
         /// <summary>
@@ -147,8 +158,7 @@ namespace CharaChipGen.MaterialEditorForm
             {
                 materialEditorLayerView.SetLayerInfo(entryFile, layer);
             }
-            buttonRenameLayer.Enabled = (layer != null);
-            buttonDeleteLayer.Enabled = (layer != null);
+            UpdateButtonEnables();
         }
 
         /// <summary>
@@ -262,5 +272,100 @@ namespace CharaChipGen.MaterialEditorForm
             return $"layer{entryFile.Layers.Count.ToString("000")}";
         }
 
+        /// <summary>
+        /// 上へ移動ボタンがクリックされた時に通知を受け取る。
+        /// </summary>
+        /// <param name="sender">送信元オブジェクト</param>
+        /// <param name="e">イベントオブジェクト</param>
+        private void OnButtonUpLayerClick(object sender, EventArgs e)
+        {
+            try
+            {
+                ModifyLayerOrder(-1);
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show(this, ex.Message, "エラー");
+            }
+        }
+
+        /// <summary>
+        /// 下へ移動ボタンがクリックされた時に通知を受け取る。
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
+        private void OnButtonDownLayerClick(object sender, EventArgs e)
+        {
+            try
+            {
+                ModifyLayerOrder(1);
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show(this, ex.Message, "エラー");
+            }
+
+        }
+
+        /// <summary>
+        /// レイヤー順を移動させる。
+        /// </summary>
+        /// <param name="moveCount">移動数(負数で前に、正数で後に)</param>
+        private void ModifyLayerOrder(int moveCount)
+        {
+            int selectedIndex = listBoxLayers.SelectedIndex;
+            if (selectedIndex < 0)
+            {
+                return;
+            }
+            int newIndex = selectedIndex + moveCount;
+            if ((newIndex == selectedIndex) || (newIndex < 0) || (newIndex >= listBoxLayers.Items.Count))
+            {
+                // 移動先が範囲外なので移動しない。
+                return;
+            }
+
+            // 並び替え用に配列取得
+            List<MaterialLayerInfo> layers
+                = new List<MaterialLayerInfo>(entryFile.Layers.Select((entry) => entry.Value));
+
+            MaterialLayerInfo targetLayer = layers[selectedIndex];
+            layers.RemoveAt(selectedIndex);
+            layers.Insert(newIndex, targetLayer);
+
+            // Dictionaryを再構築。なんて面倒な！
+            entryFile.Layers.Clear();
+            listBoxLayers.Items.Clear();
+            foreach (MaterialLayerInfo layer in layers)
+            {
+                entryFile.Layers.Add(layer.Name, layer);
+                listBoxLayers.Items.Add(layer);
+            }
+
+            listBoxLayers.SelectedIndex = newIndex;
+        }
+
+        /// <summary>
+        /// レイヤーリストボックスでキーが押された時に通知を受け取る。
+        /// </summary>
+        /// <param name="sender">送信元オブジェクト</param>
+        /// <param name="e">イベントオブジェクト</param>
+        private void OnListBoxLayersKeyDown(object sender, KeyEventArgs e)
+        {
+            if ((e.Modifiers & Keys.Control) == Keys.Control)
+            {
+                switch (e.KeyCode)
+                {
+                    case Keys.Up:
+                        ModifyLayerOrder(-1);
+                        e.Handled = true;
+                        break;
+                    case Keys.Down:
+                        ModifyLayerOrder(1);
+                        e.Handled = true;
+                        break;
+                }
+            }
+        }
     }
 }

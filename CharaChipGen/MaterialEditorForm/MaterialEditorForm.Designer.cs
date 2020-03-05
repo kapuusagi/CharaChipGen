@@ -43,6 +43,8 @@
             this.groupBox1 = new System.Windows.Forms.GroupBox();
             this.listBoxLayers = new System.Windows.Forms.ListBox();
             this.materialEditorLayerView = new CharaChipGen.MaterialEditorForm.MaterialEditorLayerView();
+            this.buttonUpLayer = new System.Windows.Forms.Button();
+            this.buttonDownLayer = new System.Windows.Forms.Button();
             this.panel1.SuspendLayout();
             this.flowLayoutPanel1.SuspendLayout();
             this.flowLayoutPanel2.SuspendLayout();
@@ -130,6 +132,8 @@
             this.flowLayoutPanel2.Controls.Add(this.buttonAddLayer);
             this.flowLayoutPanel2.Controls.Add(this.buttonRenameLayer);
             this.flowLayoutPanel2.Controls.Add(this.buttonDeleteLayer);
+            this.flowLayoutPanel2.Controls.Add(this.buttonUpLayer);
+            this.flowLayoutPanel2.Controls.Add(this.buttonDownLayer);
             this.flowLayoutPanel2.Dock = System.Windows.Forms.DockStyle.Fill;
             this.flowLayoutPanel2.Location = new System.Drawing.Point(0, 350);
             this.flowLayoutPanel2.Name = "flowLayoutPanel2";
@@ -204,6 +208,7 @@
             this.listBoxLayers.TabIndex = 0;
             this.listBoxLayers.DrawItem += new System.Windows.Forms.DrawItemEventHandler(this.OnListBoxLayersDrawItem);
             this.listBoxLayers.SelectedValueChanged += new System.EventHandler(this.OnListBoxLayersSelectedValueChanged);
+            this.listBoxLayers.KeyDown += new System.Windows.Forms.KeyEventHandler(this.OnListBoxLayersKeyDown);
             // 
             // materialEditorLayerView
             // 
@@ -212,6 +217,26 @@
             this.materialEditorLayerView.Name = "materialEditorLayerView";
             this.materialEditorLayerView.Size = new System.Drawing.Size(318, 504);
             this.materialEditorLayerView.TabIndex = 0;
+            // 
+            // buttonUpLayer
+            // 
+            this.buttonUpLayer.Location = new System.Drawing.Point(9, 96);
+            this.buttonUpLayer.Name = "buttonUpLayer";
+            this.buttonUpLayer.Size = new System.Drawing.Size(75, 23);
+            this.buttonUpLayer.TabIndex = 3;
+            this.buttonUpLayer.Text = "上へ移動";
+            this.buttonUpLayer.UseVisualStyleBackColor = true;
+            this.buttonUpLayer.Click += new System.EventHandler(this.OnButtonUpLayerClick);
+            // 
+            // buttonDownLayer
+            // 
+            this.buttonDownLayer.Location = new System.Drawing.Point(90, 96);
+            this.buttonDownLayer.Name = "buttonDownLayer";
+            this.buttonDownLayer.Size = new System.Drawing.Size(75, 23);
+            this.buttonDownLayer.TabIndex = 4;
+            this.buttonDownLayer.Text = "下へ移動";
+            this.buttonDownLayer.UseVisualStyleBackColor = true;
+            this.buttonDownLayer.Click += new System.EventHandler(this.OnButtonDownLayerClick);
             // 
             // MaterialEditorForm
             // 
@@ -252,5 +277,7 @@
         private System.Windows.Forms.Button buttonAddLayer;
         private MaterialEditorLayerView materialEditorLayerView;
         private System.Windows.Forms.Button buttonRenameLayer;
+        private System.Windows.Forms.Button buttonUpLayer;
+        private System.Windows.Forms.Button buttonDownLayer;
     }
 }
