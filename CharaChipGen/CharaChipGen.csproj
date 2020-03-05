@@ -70,6 +70,12 @@
     <Compile Include="GeneratorForm\PartsEditView.designer.cs">
       <DependentUpon>PartsEditView.cs</DependentUpon>
     </Compile>
+    <Compile Include="GeneratorForm\TemplateSelectForm.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="GeneratorForm\TemplateSelectForm.Designer.cs">
+      <DependentUpon>TemplateSelectForm.cs</DependentUpon>
+    </Compile>
     <Compile Include="InputForm\InputForm.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -179,6 +185,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="GeneratorForm\PartsEditView.resx">
       <DependentUpon>PartsEditView.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="GeneratorForm\TemplateSelectForm.resx">
+      <DependentUpon>TemplateSelectForm.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="InputForm\InputForm.resx">
       <DependentUpon>InputForm.cs</DependentUpon>

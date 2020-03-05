@@ -111,16 +111,16 @@ namespace CharaChipGen
         { 
             AppData data = AppData.Instance;
 
-            if ((materialDirectory == null) || !data.LoadMatrialList(materialDirectory))
+            if ((materialDirectory == null) || !data.Initialize(materialDirectory))
             {
                 // マテリアルディレクトリが指定されていないか、
                 // 指定したディレクトリで初期化できない。
-                if (!data.LoadMatrialList(System.IO.Directory.GetCurrentDirectory()))
+                if (!data.Initialize(System.IO.Directory.GetCurrentDirectory()))
                 {
                     // カレントディレクトリで試したが初期化できない。
                     string assemblyLocation = System.Reflection.Assembly.GetExecutingAssembly().Location;
                     string dir = System.IO.Path.GetDirectoryName(assemblyLocation);
-                    if (!data.LoadMatrialList(dir))
+                    if (!data.Initialize(dir))
                     {
                         // アセンブリのディレクトリで試したが初期化できない。
                         throw new Exception("素材ディレクトリが見つかりませんでした");

@@ -45,9 +45,14 @@
             this.flowLayoutPanel1 = new System.Windows.Forms.FlowLayoutPanel();
             this.tableLayoutPanel1 = new System.Windows.Forms.TableLayoutPanel();
             this.charaChipView = new CharaChipGen.GeneratorForm.CharaChipView();
+            this.menuStrip1 = new System.Windows.Forms.MenuStrip();
+            this.fileToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.menuItemSaveAsTemplate = new System.Windows.Forms.ToolStripMenuItem();
+            this.menuItemLoadFromTemplate = new System.Windows.Forms.ToolStripMenuItem();
             this.panelCharaChipParts.SuspendLayout();
             this.flowLayoutPanel1.SuspendLayout();
             this.tableLayoutPanel1.SuspendLayout();
+            this.menuStrip1.SuspendLayout();
             this.SuspendLayout();
             // 
             // panelCharaChipParts
@@ -196,7 +201,7 @@
             this.flowLayoutPanel1.Controls.Add(this.buttonOK);
             this.flowLayoutPanel1.Dock = System.Windows.Forms.DockStyle.Bottom;
             this.flowLayoutPanel1.FlowDirection = System.Windows.Forms.FlowDirection.RightToLeft;
-            this.flowLayoutPanel1.Location = new System.Drawing.Point(0, 416);
+            this.flowLayoutPanel1.Location = new System.Drawing.Point(0, 434);
             this.flowLayoutPanel1.Name = "flowLayoutPanel1";
             this.flowLayoutPanel1.Size = new System.Drawing.Size(706, 29);
             this.flowLayoutPanel1.TabIndex = 1;
@@ -209,11 +214,11 @@
             this.tableLayoutPanel1.Controls.Add(this.charaChipView, 0, 0);
             this.tableLayoutPanel1.Controls.Add(this.panelCharaChipParts, 1, 0);
             this.tableLayoutPanel1.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.tableLayoutPanel1.Location = new System.Drawing.Point(0, 0);
+            this.tableLayoutPanel1.Location = new System.Drawing.Point(0, 24);
             this.tableLayoutPanel1.Name = "tableLayoutPanel1";
             this.tableLayoutPanel1.RowCount = 1;
             this.tableLayoutPanel1.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 80F));
-            this.tableLayoutPanel1.Size = new System.Drawing.Size(706, 416);
+            this.tableLayoutPanel1.Size = new System.Drawing.Size(706, 410);
             this.tableLayoutPanel1.TabIndex = 0;
             // 
             // charaChipView
@@ -221,16 +226,50 @@
             this.charaChipView.Dock = System.Windows.Forms.DockStyle.Fill;
             this.charaChipView.Location = new System.Drawing.Point(3, 3);
             this.charaChipView.Name = "charaChipView";
-            this.charaChipView.Size = new System.Drawing.Size(340, 410);
+            this.charaChipView.Size = new System.Drawing.Size(340, 404);
             this.charaChipView.TabIndex = 0;
+            // 
+            // menuStrip1
+            // 
+            this.menuStrip1.Items.AddRange(new System.Windows.Forms.ToolStripItem[] {
+            this.fileToolStripMenuItem});
+            this.menuStrip1.Location = new System.Drawing.Point(0, 0);
+            this.menuStrip1.Name = "menuStrip1";
+            this.menuStrip1.Size = new System.Drawing.Size(706, 24);
+            this.menuStrip1.TabIndex = 2;
+            this.menuStrip1.Text = "menuStrip1";
+            // 
+            // fileToolStripMenuItem
+            // 
+            this.fileToolStripMenuItem.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] {
+            this.menuItemSaveAsTemplate,
+            this.menuItemLoadFromTemplate});
+            this.fileToolStripMenuItem.Name = "fileToolStripMenuItem";
+            this.fileToolStripMenuItem.Size = new System.Drawing.Size(53, 20);
+            this.fileToolStripMenuItem.Text = "ファイル";
+            // 
+            // menuItemSaveAsTemplate
+            // 
+            this.menuItemSaveAsTemplate.Name = "menuItemSaveAsTemplate";
+            this.menuItemSaveAsTemplate.Size = new System.Drawing.Size(190, 22);
+            this.menuItemSaveAsTemplate.Text = "テンプレートとして保存";
+            this.menuItemSaveAsTemplate.Click += new System.EventHandler(this.OnMenuItemSaveAsTemplateClick);
+            // 
+            // menuItemLoadFromTemplate
+            // 
+            this.menuItemLoadFromTemplate.Name = "menuItemLoadFromTemplate";
+            this.menuItemLoadFromTemplate.Size = new System.Drawing.Size(190, 22);
+            this.menuItemLoadFromTemplate.Text = "テンプレートから読み込む";
+            this.menuItemLoadFromTemplate.Click += new System.EventHandler(this.OnMenuItemLoadFromTemplateClick);
             // 
             // CharaChipGeneratorForm
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 12F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(706, 445);
+            this.ClientSize = new System.Drawing.Size(706, 463);
             this.Controls.Add(this.tableLayoutPanel1);
             this.Controls.Add(this.flowLayoutPanel1);
+            this.Controls.Add(this.menuStrip1);
             this.Name = "CharaChipGeneratorForm";
             this.Text = "キャラチップ設定";
             this.FormClosed += new System.Windows.Forms.FormClosedEventHandler(this.OnFormClosed);
@@ -238,6 +277,8 @@
             this.panelCharaChipParts.ResumeLayout(false);
             this.flowLayoutPanel1.ResumeLayout(false);
             this.tableLayoutPanel1.ResumeLayout(false);
+            this.menuStrip1.ResumeLayout(false);
+            this.menuStrip1.PerformLayout();
             this.ResumeLayout(false);
             this.PerformLayout();
 
@@ -261,5 +302,9 @@
         private System.Windows.Forms.Timer timer;
         private System.Windows.Forms.FlowLayoutPanel flowLayoutPanel1;
         private System.Windows.Forms.TableLayoutPanel tableLayoutPanel1;
+        private System.Windows.Forms.MenuStrip menuStrip1;
+        private System.Windows.Forms.ToolStripMenuItem fileToolStripMenuItem;
+        private System.Windows.Forms.ToolStripMenuItem menuItemSaveAsTemplate;
+        private System.Windows.Forms.ToolStripMenuItem menuItemLoadFromTemplate;
     }
 }

@@ -9,36 +9,36 @@ namespace CharaChipGen.GeneratorForm
     /// </summary>
     public partial class CharaChipGeneratorForm : Form
     {
-        private Character dataModel; // キャラクターチップデータモデル
+        private Character character; // キャラクターチップデータモデル
 
         /// <summary>
         /// コンストラクタ
         /// </summary>
         public CharaChipGeneratorForm()
         {
-            dataModel = new Character();
+            character = new Character();
             InitializeComponent();
             InitializeComboBoxItems();
 
-            charaChipView.SetModel(dataModel);
+            charaChipView.SetModel(character);
 
-            partsViewHead.Model = dataModel.Head;
-            partsViewEye.Model = dataModel.Eye;
-            partsViewHairStyle.Model = dataModel.Hair;
-            partsViewBody.Model = dataModel.Body;
-            partsViewAccessory1.Model = dataModel.Accessory1;
-            partsViewAccessory2.Model = dataModel.Accessory2;
-            partsViewAccessory3.Model = dataModel.Accessory3;
-            partsViewHeadAccessory1.Model = dataModel.HeadAccessory1;
-            partsViewHeadAccessory2.Model = dataModel.HeadAccessory2;
+            partsViewHead.Model = character.Head;
+            partsViewEye.Model = character.Eye;
+            partsViewHairStyle.Model = character.Hair;
+            partsViewBody.Model = character.Body;
+            partsViewAccessory1.Model = character.Accessory1;
+            partsViewAccessory2.Model = character.Accessory2;
+            partsViewAccessory3.Model = character.Accessory3;
+            partsViewHeadAccessory1.Model = character.HeadAccessory1;
+            partsViewHeadAccessory2.Model = character.HeadAccessory2;
         }
 
         /// <summary>
         /// データモデル
         /// </summary>
         public Character CharaChipDataModel {
-            get { return dataModel; }
-            set { value.CopyTo(dataModel); }
+            get { return character; }
+            set { value.CopyTo(character); }
         }
 
         /// <summary>
@@ -108,6 +108,113 @@ namespace CharaChipGen.GeneratorForm
         {
             DialogResult = DialogResult.OK;
             Close();
+        }
+
+        /// <summary>
+        /// テンプレートとして保存がクリックされた
+        /// </summary>
+        /// <param name="sender"><送信元オブジェクト/param>
+        /// <param name="e">イベントオブジェクト</param>
+        private void OnMenuItemSaveAsTemplateClick(object sender, EventArgs e)
+        {
+            string defaultName = GenerateDefaultTemplateName();
+            string templateName = InputForm.InputForm.ShowDialog(this, "テンプレート名を入力", "入力", defaultName);
+            if (templateName == null)
+            {
+                return;
+            }
+
+            try
+            {
+                CheckTemplateName(templateName);
+
+                // テンプレート保存
+                string templateDir = System.IO.Path.Combine(AppData.Instance.MaterialDirectory, "Template");
+                if (!System.IO.Directory.Exists(templateDir))
+                {
+                    System.IO.Directory.CreateDirectory(templateDir);
+                }
+
+                CharacterWriter writer = new CharacterWriter();
+                string path = System.IO.Path.Combine(templateDir, $"{templateName}.ccgtemplate");
+                writer.Write(path, character);
+
+                // テンプレートリストに追加
+                CharacterReader reader = new CharacterReader();
+                Character readCharacter = reader.Read(path);
+                AppData.Instance.CharacterTemplates.Add(templateName, readCharacter);
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show(this, ex.Message, "エラー");
+            }
+        }
+
+        /// <summary>
+        /// デフォルトテンプレート名を生成する
+        /// </summary>
+        /// <returns>テンプレート名</returns>
+        private string GenerateDefaultTemplateName()
+        {
+            string templateDir = System.IO.Path.Combine(AppData.Instance.MaterialDirectory, "Template");
+            if (templateDir == null)
+            {
+                return "template000";
+            }
+
+            for (int i = 0; i < 1000; i++)
+            {
+                string name = $"template{i.ToString("000")}";
+                string path = System.IO.Path.Combine(templateDir, name);
+                if (!System.IO.File.Exists(path))
+                {
+                    return name;
+                }
+            }
+            return "template";
+        }
+
+        /// <summary>
+        /// テンプレート名をチェックする。
+        /// </summary>
+        /// <param name="name">テンプレート名</param>
+        private void CheckTemplateName(string name)
+        {
+            if (name.Length == 0)
+            {
+                throw new Exception("テンプレート名が入力されていません");
+            }
+            char[] invalidChars = System.IO.Path.GetInvalidFileNameChars();
+            if (name.IndexOfAny(invalidChars) >= 0)
+            {
+                throw new Exception("テンプレート名に使用できない文字列が使われています。");
+            }
+        }
+
+        /// <summary>
+        /// テンプレートから読み出すがクリックされた
+        /// </summary>
+        /// <param name="sender">送信元オブジェクト</param>
+        /// <param name="e">イベントオブジェクト</param>
+        private void OnMenuItemLoadFromTemplateClick(object sender, EventArgs e)
+        {
+            // コンボボックスをポップアップして選択してもらう。
+            TemplateSelectForm form = new TemplateSelectForm();
+            if (form.ShowDialog(this) != DialogResult.OK)
+            {
+                return;
+            }
+
+            try
+            {
+                Character template = AppData.Instance.CharacterTemplates[form.TemplateName];
+                template.CopyTo(character);
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show(this, ex.Message, "エラー");
+            }
+
         }
     }
 }

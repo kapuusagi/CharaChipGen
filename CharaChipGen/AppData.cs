@@ -37,6 +37,8 @@ namespace CharaChipGen
         private MaterialList[] materialLists;
 
         private Dictionary<PartsType, MaterialType> materialTable;
+        // テンプレートリスト
+        private Dictionary<string, Character> templates;
 
         /// <summary>
         /// コンストラクタ
@@ -63,15 +65,17 @@ namespace CharaChipGen
             materialTable.Add(PartsType.HeadAccessory2, MaterialType.HeadAccessories);
 
             GeneratorSetting = new GeneratorSetting();
+
+            templates = new Dictionary<string, Character>();
         }
 
         /// <summary>
-        /// マテリアルリストを読み込む。
+        /// マテリアルリストとテンプレートリストを読み込む。
         /// ディレクトリを探索して、所定のディレクトリにあるファイルをリストする。
         /// </summary>
         /// <param name="directory">ディレクトリ</param>
         /// <returns>リストが構築できた場合にはtrue, それ以外はfalse</returns>
-        public bool LoadMatrialList(string directory)
+        public bool Initialize(string directory)
         {
             string dir = System.IO.Path.GetFullPath(directory);
             if (!System.IO.Directory.Exists(dir))
@@ -87,8 +91,37 @@ namespace CharaChipGen
                 }
             }
 
+            // テンプレート読み込み(あれば)
+            string templateDir = System.IO.Path.Combine(dir, "Template");
+            if (System.IO.Directory.Exists(templateDir))
+            {
+                LoadTemplates(templateDir);
+            }
+
             materialDirectory = dir;
             return true;
+        }
+
+        /// <summary>
+        /// templateDirからテンプレートを読み込む。
+        /// </summary>
+        /// <param name="templateDir">テンプレート</param>
+        private void LoadTemplates(string templateDir)
+        {
+            string[] paths = System.IO.Directory.GetFiles(templateDir, "*.ccgtemplate");
+            CharacterReader reader = new CharacterReader();
+            foreach (string path in paths)
+            {
+                try
+                {
+                    string name = System.IO.Path.GetFileNameWithoutExtension(path);
+                    Character character = reader.Read(path);
+                    // テンプレートリストに追加。
+                    templates.Add(name, character);
+
+                }
+                catch { /* ここでの例外は無視 */ }
+            }
         }
 
         /// <summary>
@@ -234,6 +267,11 @@ namespace CharaChipGen
         /// キャラクタチップジェネレータ設定
         /// </summary>
         public GeneratorSetting GeneratorSetting { get; private set; }
+
+        /// <summary>
+        /// キャラクタテンプレート
+        /// </summary>
+        public Dictionary<string, Character> CharacterTemplates { get => templates; }
 
     }
 }
