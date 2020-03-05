@@ -1,11 +1,9 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Collections;
-using CharaChipGen.Model;
+﻿using CharaChipGen.Model;
 using CharaChipGen.Model.CharaChip;
 using CharaChipGen.Model.Material;
+using System;
+using System.Collections.Generic;
+using System.Linq;
 
 namespace CharaChipGen
 {
@@ -20,8 +18,7 @@ namespace CharaChipGen
         /// アプリケーションデータのインスタンスを得る
         /// </summary>
         /// <returns></returns>
-        public static AppData Instance
-        {
+        public static AppData Instance {
             get {
                 if (instance == null)
                 {
@@ -173,7 +170,7 @@ namespace CharaChipGen
         /// </summary>
         /// <param name="name">素材名</param>
         /// <returns>マテリアル</returns>
-        public Material GetHead(string name)=> Heads.Get(name);
+        public Material GetHead(string name) => Heads.Get(name);
 
         /// <summary>
         /// <summary>
@@ -186,7 +183,7 @@ namespace CharaChipGen
         /// </summary>
         /// <param name="name">マテリアル名</param>
         /// <returns>マテリアル</returns>
-        public Material GetBody(string name)=> Bodies.Get(name);
+        public Material GetBody(string name) => Bodies.Get(name);
 
         /// <summary>
         /// ヘッドアクセサリ
@@ -258,8 +255,7 @@ namespace CharaChipGen
         /// <summary>
         /// マテリアルデータのルートディレクトリを表すプロパティ。
         /// </summary>
-        public string MaterialDirectory
-        {
+        public string MaterialDirectory {
             get { return materialDirectory; }
         }
 

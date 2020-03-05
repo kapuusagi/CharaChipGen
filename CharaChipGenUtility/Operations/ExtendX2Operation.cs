@@ -1,9 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-using CGenImaging;
+﻿using CGenImaging;
 
 namespace CharaChipGenUtility.Operations
 {
@@ -47,8 +42,7 @@ namespace CharaChipGenUtility.Operations
         /// 名前を取得する。
         /// </summary>
         /// <returns>文字列</returns>
-        public override string Name
-        {
+        public override string Name {
             get { return "SimpleExtend(x2)"; }
         }
 

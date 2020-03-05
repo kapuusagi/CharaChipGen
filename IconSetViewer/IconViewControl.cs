@@ -1,11 +1,5 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.ComponentModel;
 using System.Drawing;
-using System.Data;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 using System.Windows.Forms;
 
 namespace IconSetViewer
@@ -18,7 +12,7 @@ namespace IconSetViewer
 
         private Size iconSize = new Size(32, 32);
         private Image image = null;
-        private Size imageSize = new Size(0,0); // 画像サイズキャッシュ値
+        private Size imageSize = new Size(0, 0); // 画像サイズキャッシュ値
         private int hIconCount; // 水平アイコン数
         private int vIconCount; // 垂直アイコン数
         private int number = 0;
@@ -130,7 +124,7 @@ namespace IconSetViewer
                 iconSize = value;
                 UpdateIconData();
             }
-        } 
+        }
 
         /// <summary>
         /// アイコン最大数

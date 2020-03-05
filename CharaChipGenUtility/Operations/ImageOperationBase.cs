@@ -1,11 +1,6 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
+﻿using CGenImaging;
 using System.Drawing;
 using System.Drawing.Imaging;
-using CGenImaging;
 
 namespace CharaChipGenUtility.Operations
 {

@@ -1,11 +1,5 @@
 ﻿using System;
-using System.Collections.Generic;
 using System.ComponentModel;
-using System.Drawing;
-using System.Data;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 using System.Windows.Forms;
 
 namespace CharaChipGenUtility.Operations
@@ -75,7 +69,7 @@ namespace CharaChipGenUtility.Operations
         /// </summary>
         /// <param name="sender">送信元オブジェクト</param>
         /// <param name="evt">イベントオブジェクト</param>
-        private void OnControlSelectDirectoryPropertyChanged(object sender, 
+        private void OnControlSelectDirectoryPropertyChanged(object sender,
             PropertyChangedEventArgs evt)
         {
             if (evt.PropertyName.Equals(nameof(SelectDirectoryControl.Directory)))
@@ -85,7 +79,7 @@ namespace CharaChipGenUtility.Operations
                     Model.OutputDirectory = controlSelectDirectory.Directory;
                 }
             }
-            
+
         }
 
         /// <summary>

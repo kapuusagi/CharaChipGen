@@ -74,7 +74,7 @@ namespace CharaChipGen.ManagementForm
         /// <returns>ListViewItemオブジェクト</returns>
         private ListViewItem GenerateListViewMaterial(Material material)
         {
-            return new ListViewItem(new string[] { 
+            return new ListViewItem(new string[] {
                 material.Name, material.GetDisplayName(), material.Path });
         }
 
@@ -284,7 +284,7 @@ namespace CharaChipGen.ManagementForm
                     }
 
                     // リストビューアイテムの1項目目はマテリアル名
-                    materialList.Delete(material.Name); 
+                    materialList.Delete(material.Name);
 
                     // 実際のファイルの削除処理
                     // エントリファイルだけ削除する。
@@ -397,7 +397,7 @@ namespace CharaChipGen.ManagementForm
                 return;
             }
             string newName = intputText.Trim();
-            
+
             try
             {
                 CheckMaterialName(materialList, newName);

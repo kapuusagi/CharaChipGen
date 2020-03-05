@@ -33,7 +33,7 @@ namespace CharaChipGen.Model.Layer
         // 不透明度
         private int opacity;
         // 処理済みデータ
-        private ImageBuffer processedImage; 
+        private ImageBuffer processedImage;
 
         /// <summary>
         /// キャラクターチップ生成のレイヤーを表すモデル

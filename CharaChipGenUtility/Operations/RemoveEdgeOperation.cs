@@ -1,10 +1,5 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
+﻿using CGenImaging;
 using System.Drawing;
-using CGenImaging;
 
 namespace CharaChipGenUtility.Operations
 {
@@ -68,17 +63,17 @@ namespace CharaChipGenUtility.Operations
             // c21     c23
             // c31 c32 c33
             Color c11 = img.GetPixel(x - 1, y - 1);
-            Color c12 = img.GetPixel(x,     y - 1);
+            Color c12 = img.GetPixel(x, y - 1);
             Color c13 = img.GetPixel(x + 1, y - 1);
-            Color c21 = img.GetPixel(x - 1, y    );
-            Color c23 = img.GetPixel(x + 1, y    );
+            Color c21 = img.GetPixel(x - 1, y);
+            Color c23 = img.GetPixel(x + 1, y);
             Color c31 = img.GetPixel(x - 1, y + 1);
-            Color c32 = img.GetPixel(x,     y + 1);
+            Color c32 = img.GetPixel(x, y + 1);
             Color c33 = img.GetPixel(x + 1, y + 1);
 
 
             if ((c11.A == 0) && (c12.A == 0) && (c21.A == 0))
-            { 
+            {
                 return true;
             }
             if ((c12.A == 0) && (c13.A == 0) && (c23.A == 0))

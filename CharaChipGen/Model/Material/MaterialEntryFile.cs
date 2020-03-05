@@ -92,7 +92,7 @@ namespace CharaChipGen.Model.Material
         /// 表示名。
         /// カルチャ名と表示データのペアで構成される。一番先頭はデフォルトのものが格納される。
         /// </summary>
-        public Dictionary<string, string> DisplayNames { 
+        public Dictionary<string, string> DisplayNames {
             get {
                 if (displayNames == null)
                 {

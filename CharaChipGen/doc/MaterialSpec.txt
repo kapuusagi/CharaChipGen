@@ -28,8 +28,8 @@
 		    LayerType 必須
 			レイヤー種別。描画するレイヤーを指定する。
 			以下のいずれか、またはレイヤー番号を記述する。
-			レイヤー番号はAccessory4Frontを0とした場合に
-			Accessory3Frontを1，HeadAccessory2Frontを2というように加算した値。
+			レイヤー番号はExtAccessoryFrontを0とした場合に
+			HeadAccessoryFrontを1，Eyeを2というように加算した値。
 			    ExtAccessoryFront
 				HeadAccessoryFront
 				Eye
@@ -46,7 +46,7 @@
 
 		Layer.{$LayerName}.ColorPartsRefs
 		    PartsType オプション
-			レイヤーに適用する色設定を取得する部品。（オプション）
+			レイヤーに適用する色設定を取得する部品。
 			この素材の部品種別とは
 			異なる部品の設定を適用したい場合に指定する。
 			例えばBodyの衣装部分はBodyの色相パラメータ、
@@ -62,6 +62,6 @@
 				HeadAccessory1
 				HeadAccessory2
 ■レイヤーイメージ仕様
-  ファイル形式：PNG (32bit GBRAが望ましい)
+  ファイル形式：PNG (32bit GBRAが望ましい。透過色有効)
   ヨコ3分割、
   タテ4分割。

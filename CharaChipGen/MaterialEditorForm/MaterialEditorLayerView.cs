@@ -1,9 +1,9 @@
-﻿using System;
+﻿using CharaChipGen.Model.CharaChip;
+using CharaChipGen.Model.Layer;
+using CharaChipGen.Model.Material;
+using System;
 using System.Drawing;
 using System.Windows.Forms;
-using CharaChipGen.Model.Material;
-using CharaChipGen.Model.Layer;
-using CharaChipGen.Model.CharaChip;
 
 namespace CharaChipGen.MaterialEditorForm
 {

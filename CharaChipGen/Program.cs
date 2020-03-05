@@ -1,9 +1,7 @@
-﻿using System;
+﻿using CharaChipGen.Model;
+using System;
 using System.Collections.Generic;
-using System.Linq;
 using System.Windows.Forms;
-using CharaChipGen.MainForm;
-using CharaChipGen.Model;
 
 namespace CharaChipGen
 {
@@ -108,7 +106,7 @@ namespace CharaChipGen
         /// 初期化する。
         /// </summary>
         private static void Initialize()
-        { 
+        {
             AppData data = AppData.Instance;
 
             if ((materialDirectory == null) || !data.Initialize(materialDirectory))

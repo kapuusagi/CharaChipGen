@@ -1,7 +1,6 @@
 ﻿using CharaChipGen.Model.Material;
 using System;
 using System.Windows.Forms;
-using CharaChipGen.Model.CharaChip;
 
 namespace CharaChipGen.MaterialEditorForm
 {
@@ -24,8 +23,8 @@ namespace CharaChipGen.MaterialEditorForm
         /// <summary>
         /// 編集対象の素材
         /// </summary>
-        public MaterialEntryFile MaterialEntryFile { 
-            get => entryFile; 
+        public MaterialEntryFile MaterialEntryFile {
+            get => entryFile;
             set {
                 entryFile = value;
                 ModelToUI();
@@ -213,7 +212,8 @@ namespace CharaChipGen.MaterialEditorForm
                 int selIndex = listBoxLayers.SelectedIndex;
                 listBoxLayers.Items.RemoveAt(selIndex);
 
-                MaterialLayerInfo layerInfo = new MaterialLayerInfo(newLayerName) { 
+                MaterialLayerInfo layerInfo = new MaterialLayerInfo(newLayerName)
+                {
                     Path = targetLayerInfo.Path,
                     LayerType = targetLayerInfo.LayerType,
                     ColorPartsRefs = targetLayerInfo.ColorPartsRefs

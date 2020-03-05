@@ -1,8 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Drawing;
+﻿using System.Drawing;
 using System.Drawing.Imaging;
 
 namespace CGenImaging
@@ -71,15 +67,13 @@ namespace CGenImaging
         /// <summary>
         /// 幅
         /// </summary>
-        public int Width
-        {
+        public int Width {
             get { return this.width; }
         }
         /// <summary>
         /// 高さ
         /// </summary>
-        public int Height
-        {
+        public int Height {
             get { return height; }
         }
         /// <summary>
@@ -221,7 +215,7 @@ namespace CGenImaging
         {
             Bitmap bitmap = new Bitmap(width, height, PixelFormat.Format32bppArgb);
 
-            BitmapData bmpData = bitmap.LockBits(new System.Drawing.Rectangle(0, 0, width, height), 
+            BitmapData bmpData = bitmap.LockBits(new System.Drawing.Rectangle(0, 0, width, height),
                 ImageLockMode.ReadWrite, PixelFormat.Format32bppArgb);
 
             System.Runtime.InteropServices.Marshal.Copy(buffer, 0, bmpData.Scan0, buffer.Length);
@@ -230,6 +224,6 @@ namespace CGenImaging
 
             return bitmap;
         }
-         
+
     }
 }

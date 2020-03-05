@@ -1,11 +1,9 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.ComponentModel;
-using System.Drawing;
 using System.Data;
+using System.Drawing;
 using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 using System.Windows.Forms;
 
 namespace CharaChipGenUtility.Operations
@@ -120,7 +118,7 @@ namespace CharaChipGenUtility.Operations
                 }
                 if (operationType.IsAssignableFrom(type))
                 {
-                    IImageOperation operation 
+                    IImageOperation operation
                         = (IImageOperation)(System.Activator.CreateInstance(type));
                     listBoxTool.Items.Add(operation);
                 }

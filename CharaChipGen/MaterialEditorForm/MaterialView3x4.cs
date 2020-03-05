@@ -12,7 +12,7 @@ namespace CharaChipGen.MaterialEditorForm
         // ピクチャーボックス
         private PictureBox[] pictureBoxes;
         // 表示するイメージ
-        private Bitmap image; 
+        private Bitmap image;
 
         /// <summary>
         /// コンストラクタ

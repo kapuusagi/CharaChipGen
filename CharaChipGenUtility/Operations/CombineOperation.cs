@@ -1,9 +1,5 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-using CGenImaging;
+﻿using CGenImaging;
+using System;
 
 namespace CharaChipGenUtility.Operations
 {
@@ -56,7 +52,7 @@ namespace CharaChipGenUtility.Operations
             while (fileIndex < fileNames.Length)
             {
                 ImageBuffer imageBuffer = null;
-                
+
                 for (int y = 0; y < setting.VerticalCount; y++)
                 {
                     for (int x = 0; x < setting.HorizontalCount; x++)
