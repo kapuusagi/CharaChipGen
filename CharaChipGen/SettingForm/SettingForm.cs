@@ -5,30 +5,34 @@ using System.Windows.Forms;
 
 namespace CharaChipGen.ExportSettingForm
 {
-    public partial class ExportSettingForm : Form
+    /// <summary>
+    /// 設定を行うUI
+    /// </summary>
+    public partial class SettingForm : Form
     {
         /// <summary>
         /// 新しいインスタンスを構築する。
         /// </summary>
-        public ExportSettingForm()
+        public SettingForm()
         {
             InitializeComponent();
         }
 
-
-
         /// <summary>
         /// 設定値をUIに反映させる。
         /// </summary>
-        /// <param name="setting">エクスポート設定</param>
-        public void LoadFromSetting(ExportSetting setting)
+        public void LoadFromSetting()
         {
-            numericUpDownCharaChipWidth.Value = GetLimited(setting.CharaChipSize.Width,
+            AppData data = AppData.Instance;
+            ExportSetting exportSetting = data.GeneratorSetting.ExportSetting;
+            numericUpDownCharaChipWidth.Value = GetLimited(exportSetting.CharaChipSize.Width,
                 (int)(numericUpDownCharaChipWidth.Minimum), (int)(numericUpDownCharaChipWidth.Maximum));
-            numericUpDownCharaChipHeight.Value = GetLimited(setting.CharaChipSize.Height,
+            numericUpDownCharaChipHeight.Value = GetLimited(exportSetting.CharaChipSize.Height,
                 (int)(numericUpDownCharaChipHeight.Minimum), (int)(numericUpDownCharaChipHeight.Maximum));
 
-            textBoxExportFilePath.Text = setting.ExportFilePath;
+            labelMaterialDirectory.Text = data.MaterialDirectory;
+
+            textBoxExportFilePath.Text = exportSetting.ExportFilePath;
         }
 
         /// <summary>
@@ -46,15 +50,18 @@ namespace CharaChipGen.ExportSettingForm
         /// <summary>
         /// UIの値を設定値に格納する
         /// </summary>
-        /// <param name="setting">エクスポート設定</param>
-        public void StoreToSetting(ExportSetting setting)
+        public void StoreToSetting()
         {
-            setting.CharaChipSize = new Size()
+            AppData data = AppData.Instance;
+            ExportSetting exportSetting = data.GeneratorSetting.ExportSetting;
+            exportSetting.CharaChipSize = new Size()
             {
                 Width = (int)(numericUpDownCharaChipWidth.Value),
                 Height = (int)(numericUpDownCharaChipHeight.Value)
             };
-            setting.ExportFilePath = textBoxExportFilePath.Text;
+            exportSetting.ExportFilePath = textBoxExportFilePath.Text;
+
+            data.MaterialDirectory = labelMaterialDirectory.Text;
         }
 
         /// <summary>
@@ -96,6 +103,21 @@ namespace CharaChipGen.ExportSettingForm
                 textBoxExportFilePath.Text = saveFileDialog.FileName;
             }
 
+        }
+
+        /// <summary>
+        /// 素材フォルダ選択ボタンがクリックされた時に通知を受け取る。
+        /// </summary>
+        /// <param name="sender">送信元オブジェクト</param>
+        /// <param name="e">イベントオブジェクト</param>
+        private void OnButtonSelectMaterialFolderClick(object sender, EventArgs e)
+        {
+            folderBrowserDialog.SelectedPath = labelMaterialDirectory.Text;
+            if (folderBrowserDialog.ShowDialog(this) != DialogResult.OK)
+            {
+                return;
+            }
+            labelMaterialDirectory.Text = folderBrowserDialog.SelectedPath;
         }
     }
 }

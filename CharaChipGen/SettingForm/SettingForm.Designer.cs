@@ -1,6 +1,6 @@
 ﻿namespace CharaChipGen.ExportSettingForm
 {
-    partial class ExportSettingForm
+    partial class SettingForm
     {
         /// <summary>
         /// Required designer variable.
@@ -43,12 +43,24 @@
             this.buttonSelectExportFilePath = new System.Windows.Forms.Button();
             this.label2 = new System.Windows.Forms.Label();
             this.saveFileDialog = new System.Windows.Forms.SaveFileDialog();
+            this.tabControl1 = new System.Windows.Forms.TabControl();
+            this.tabPage1 = new System.Windows.Forms.TabPage();
+            this.tabPage2 = new System.Windows.Forms.TabPage();
+            this.tableLayoutPanel2 = new System.Windows.Forms.TableLayoutPanel();
+            this.label4 = new System.Windows.Forms.Label();
+            this.buttonSelectMaterialFolder = new System.Windows.Forms.Button();
+            this.labelMaterialDirectory = new System.Windows.Forms.Label();
+            this.folderBrowserDialog = new System.Windows.Forms.FolderBrowserDialog();
             ((System.ComponentModel.ISupportInitialize)(this.numericUpDownCharaChipWidth)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.numericUpDownCharaChipHeight)).BeginInit();
             this.flowLayoutPanel1.SuspendLayout();
             this.panel1.SuspendLayout();
             this.tableLayoutPanel1.SuspendLayout();
             this.panel2.SuspendLayout();
+            this.tabControl1.SuspendLayout();
+            this.tabPage1.SuspendLayout();
+            this.tabPage2.SuspendLayout();
+            this.tableLayoutPanel2.SuspendLayout();
             this.SuspendLayout();
             // 
             // buttonOK
@@ -84,7 +96,7 @@
             // numericUpDownCharaChipWidth
             // 
             this.numericUpDownCharaChipWidth.Dock = System.Windows.Forms.DockStyle.Right;
-            this.numericUpDownCharaChipWidth.Location = new System.Drawing.Point(279, 4);
+            this.numericUpDownCharaChipWidth.Location = new System.Drawing.Point(265, 4);
             this.numericUpDownCharaChipWidth.Maximum = new decimal(new int[] {
             128,
             0,
@@ -107,7 +119,7 @@
             // numericUpDownCharaChipHeight
             // 
             this.numericUpDownCharaChipHeight.Dock = System.Windows.Forms.DockStyle.Right;
-            this.numericUpDownCharaChipHeight.Location = new System.Drawing.Point(338, 4);
+            this.numericUpDownCharaChipHeight.Location = new System.Drawing.Point(324, 4);
             this.numericUpDownCharaChipHeight.Maximum = new decimal(new int[] {
             128,
             0,
@@ -134,7 +146,7 @@
             this.flowLayoutPanel1.Controls.Add(this.buttonOK);
             this.flowLayoutPanel1.Dock = System.Windows.Forms.DockStyle.Bottom;
             this.flowLayoutPanel1.FlowDirection = System.Windows.Forms.FlowDirection.RightToLeft;
-            this.flowLayoutPanel1.Location = new System.Drawing.Point(0, 137);
+            this.flowLayoutPanel1.Location = new System.Drawing.Point(0, 196);
             this.flowLayoutPanel1.Name = "flowLayoutPanel1";
             this.flowLayoutPanel1.Padding = new System.Windows.Forms.Padding(6);
             this.flowLayoutPanel1.Size = new System.Drawing.Size(408, 41);
@@ -150,14 +162,14 @@
             this.panel1.Location = new System.Drawing.Point(9, 40);
             this.panel1.Name = "panel1";
             this.panel1.Padding = new System.Windows.Forms.Padding(4);
-            this.panel1.Size = new System.Drawing.Size(390, 25);
+            this.panel1.Size = new System.Drawing.Size(376, 25);
             this.panel1.TabIndex = 1;
             // 
             // label3
             // 
             this.label3.AutoSize = true;
             this.label3.Dock = System.Windows.Forms.DockStyle.Right;
-            this.label3.Location = new System.Drawing.Point(327, 4);
+            this.label3.Location = new System.Drawing.Point(313, 4);
             this.label3.Name = "label3";
             this.label3.Size = new System.Drawing.Size(11, 12);
             this.label3.TabIndex = 2;
@@ -171,8 +183,8 @@
             this.tableLayoutPanel1.Controls.Add(this.flowLayoutPanel3, 0, 2);
             this.tableLayoutPanel1.Controls.Add(this.panel1, 0, 1);
             this.tableLayoutPanel1.Controls.Add(this.panel2, 0, 0);
-            this.tableLayoutPanel1.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.tableLayoutPanel1.Location = new System.Drawing.Point(0, 0);
+            this.tableLayoutPanel1.Dock = System.Windows.Forms.DockStyle.Top;
+            this.tableLayoutPanel1.Location = new System.Drawing.Point(3, 3);
             this.tableLayoutPanel1.Name = "tableLayoutPanel1";
             this.tableLayoutPanel1.Padding = new System.Windows.Forms.Padding(6);
             this.tableLayoutPanel1.RowCount = 4;
@@ -180,7 +192,7 @@
             this.tableLayoutPanel1.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 25F));
             this.tableLayoutPanel1.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 25F));
             this.tableLayoutPanel1.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 25F));
-            this.tableLayoutPanel1.Size = new System.Drawing.Size(408, 137);
+            this.tableLayoutPanel1.Size = new System.Drawing.Size(394, 137);
             this.tableLayoutPanel1.TabIndex = 0;
             // 
             // flowLayoutPanel3
@@ -188,7 +200,7 @@
             this.flowLayoutPanel3.Dock = System.Windows.Forms.DockStyle.Fill;
             this.flowLayoutPanel3.Location = new System.Drawing.Point(9, 71);
             this.flowLayoutPanel3.Name = "flowLayoutPanel3";
-            this.flowLayoutPanel3.Size = new System.Drawing.Size(390, 25);
+            this.flowLayoutPanel3.Size = new System.Drawing.Size(376, 25);
             this.flowLayoutPanel3.TabIndex = 2;
             // 
             // panel2
@@ -200,7 +212,7 @@
             this.panel2.Location = new System.Drawing.Point(9, 9);
             this.panel2.Name = "panel2";
             this.panel2.Padding = new System.Windows.Forms.Padding(4);
-            this.panel2.Size = new System.Drawing.Size(390, 25);
+            this.panel2.Size = new System.Drawing.Size(376, 25);
             this.panel2.TabIndex = 0;
             // 
             // textBoxExportFilePath
@@ -208,13 +220,13 @@
             this.textBoxExportFilePath.Dock = System.Windows.Forms.DockStyle.Fill;
             this.textBoxExportFilePath.Location = new System.Drawing.Point(52, 4);
             this.textBoxExportFilePath.Name = "textBoxExportFilePath";
-            this.textBoxExportFilePath.Size = new System.Drawing.Size(259, 19);
+            this.textBoxExportFilePath.Size = new System.Drawing.Size(245, 19);
             this.textBoxExportFilePath.TabIndex = 1;
             // 
             // buttonSelectExportFilePath
             // 
             this.buttonSelectExportFilePath.Dock = System.Windows.Forms.DockStyle.Right;
-            this.buttonSelectExportFilePath.Location = new System.Drawing.Point(311, 4);
+            this.buttonSelectExportFilePath.Location = new System.Drawing.Point(297, 4);
             this.buttonSelectExportFilePath.Name = "buttonSelectExportFilePath";
             this.buttonSelectExportFilePath.Size = new System.Drawing.Size(75, 17);
             this.buttonSelectExportFilePath.TabIndex = 2;
@@ -236,16 +248,100 @@
             // 
             this.saveFileDialog.Filter = "PNGファイル(*.png)|*.png";
             // 
-            // ExportSettingForm
+            // tabControl1
+            // 
+            this.tabControl1.Controls.Add(this.tabPage1);
+            this.tabControl1.Controls.Add(this.tabPage2);
+            this.tabControl1.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.tabControl1.Location = new System.Drawing.Point(0, 0);
+            this.tabControl1.Name = "tabControl1";
+            this.tabControl1.SelectedIndex = 0;
+            this.tabControl1.Size = new System.Drawing.Size(408, 196);
+            this.tabControl1.TabIndex = 2;
+            // 
+            // tabPage1
+            // 
+            this.tabPage1.Controls.Add(this.tableLayoutPanel1);
+            this.tabPage1.Location = new System.Drawing.Point(4, 22);
+            this.tabPage1.Name = "tabPage1";
+            this.tabPage1.Padding = new System.Windows.Forms.Padding(3);
+            this.tabPage1.Size = new System.Drawing.Size(400, 170);
+            this.tabPage1.TabIndex = 0;
+            this.tabPage1.Text = "エクスポート設定";
+            this.tabPage1.UseVisualStyleBackColor = true;
+            // 
+            // tabPage2
+            // 
+            this.tabPage2.Controls.Add(this.tableLayoutPanel2);
+            this.tabPage2.Location = new System.Drawing.Point(4, 22);
+            this.tabPage2.Name = "tabPage2";
+            this.tabPage2.Padding = new System.Windows.Forms.Padding(3);
+            this.tabPage2.Size = new System.Drawing.Size(400, 170);
+            this.tabPage2.TabIndex = 1;
+            this.tabPage2.Text = "アプリケーション設定";
+            this.tabPage2.UseVisualStyleBackColor = true;
+            // 
+            // tableLayoutPanel2
+            // 
+            this.tableLayoutPanel2.ColumnCount = 3;
+            this.tableLayoutPanel2.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle());
+            this.tableLayoutPanel2.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 100F));
+            this.tableLayoutPanel2.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle());
+            this.tableLayoutPanel2.Controls.Add(this.label4, 0, 0);
+            this.tableLayoutPanel2.Controls.Add(this.buttonSelectMaterialFolder, 2, 0);
+            this.tableLayoutPanel2.Controls.Add(this.labelMaterialDirectory, 1, 0);
+            this.tableLayoutPanel2.Dock = System.Windows.Forms.DockStyle.Top;
+            this.tableLayoutPanel2.Location = new System.Drawing.Point(3, 3);
+            this.tableLayoutPanel2.Name = "tableLayoutPanel2";
+            this.tableLayoutPanel2.RowCount = 2;
+            this.tableLayoutPanel2.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 50F));
+            this.tableLayoutPanel2.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 50F));
+            this.tableLayoutPanel2.Size = new System.Drawing.Size(394, 56);
+            this.tableLayoutPanel2.TabIndex = 0;
+            // 
+            // label4
+            // 
+            this.label4.AutoSize = true;
+            this.label4.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.label4.Location = new System.Drawing.Point(3, 0);
+            this.label4.Name = "label4";
+            this.label4.Size = new System.Drawing.Size(64, 28);
+            this.label4.TabIndex = 0;
+            this.label4.Text = "素材フォルダ";
+            this.label4.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
+            // 
+            // buttonSelectMaterialFolder
+            // 
+            this.buttonSelectMaterialFolder.Anchor = System.Windows.Forms.AnchorStyles.Left;
+            this.buttonSelectMaterialFolder.Location = new System.Drawing.Point(316, 3);
+            this.buttonSelectMaterialFolder.Name = "buttonSelectMaterialFolder";
+            this.buttonSelectMaterialFolder.Size = new System.Drawing.Size(75, 22);
+            this.buttonSelectMaterialFolder.TabIndex = 1;
+            this.buttonSelectMaterialFolder.Text = "フォルダ選択";
+            this.buttonSelectMaterialFolder.UseVisualStyleBackColor = true;
+            this.buttonSelectMaterialFolder.Click += new System.EventHandler(this.OnButtonSelectMaterialFolderClick);
+            // 
+            // labelMaterialDirectory
+            // 
+            this.labelMaterialDirectory.AutoSize = true;
+            this.labelMaterialDirectory.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.labelMaterialDirectory.Location = new System.Drawing.Point(73, 0);
+            this.labelMaterialDirectory.Name = "labelMaterialDirectory";
+            this.labelMaterialDirectory.Size = new System.Drawing.Size(237, 28);
+            this.labelMaterialDirectory.TabIndex = 2;
+            this.labelMaterialDirectory.Text = "””";
+            this.labelMaterialDirectory.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
+            // 
+            // SettingForm
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 12F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(408, 178);
-            this.Controls.Add(this.tableLayoutPanel1);
+            this.ClientSize = new System.Drawing.Size(408, 237);
+            this.Controls.Add(this.tabControl1);
             this.Controls.Add(this.flowLayoutPanel1);
             this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.FixedSingle;
-            this.Name = "ExportSettingForm";
-            this.Text = "エクスポート設定";
+            this.Name = "SettingForm";
+            this.Text = "設定";
             ((System.ComponentModel.ISupportInitialize)(this.numericUpDownCharaChipWidth)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.numericUpDownCharaChipHeight)).EndInit();
             this.flowLayoutPanel1.ResumeLayout(false);
@@ -254,6 +350,11 @@
             this.tableLayoutPanel1.ResumeLayout(false);
             this.panel2.ResumeLayout(false);
             this.panel2.PerformLayout();
+            this.tabControl1.ResumeLayout(false);
+            this.tabPage1.ResumeLayout(false);
+            this.tabPage2.ResumeLayout(false);
+            this.tableLayoutPanel2.ResumeLayout(false);
+            this.tableLayoutPanel2.PerformLayout();
             this.ResumeLayout(false);
             this.PerformLayout();
 
@@ -276,5 +377,13 @@
         private System.Windows.Forms.Button buttonSelectExportFilePath;
         private System.Windows.Forms.Label label2;
         private System.Windows.Forms.SaveFileDialog saveFileDialog;
+        private System.Windows.Forms.TabControl tabControl1;
+        private System.Windows.Forms.TabPage tabPage1;
+        private System.Windows.Forms.TabPage tabPage2;
+        private System.Windows.Forms.TableLayoutPanel tableLayoutPanel2;
+        private System.Windows.Forms.Label label4;
+        private System.Windows.Forms.Button buttonSelectMaterialFolder;
+        private System.Windows.Forms.Label labelMaterialDirectory;
+        private System.Windows.Forms.FolderBrowserDialog folderBrowserDialog;
     }
 }

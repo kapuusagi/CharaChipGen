@@ -2,19 +2,13 @@
 <SettingsFile xmlns="http://schemas.microsoft.com/VisualStudio/2004/01/settings" CurrentProfile="(Default)" GeneratedClassNamespace="CharaChipGen.Properties" GeneratedClassName="Settings">
   <Profiles />
   <Settings>
-    <Setting Name="CharacterSize" Type="System.String" Scope="User">
-      <Value Profile="(Default)">32,48</Value>
-    </Setting>
-    <Setting Name="FaceSize" Type="System.String" Scope="User">
-      <Value Profile="(Default)">96,96</Value>
-    </Setting>
-    <Setting Name="IsRenderTwice" Type="System.Boolean" Scope="User">
-      <Value Profile="(Default)">False</Value>
-    </Setting>
     <Setting Name="LastSavePath" Type="System.String" Scope="User">
       <Value Profile="(Default)" />
     </Setting>
     <Setting Name="LastExportPath" Type="System.String" Scope="User">
+      <Value Profile="(Default)" />
+    </Setting>
+    <Setting Name="MaterialDirectory" Type="System.String" Scope="User">
       <Value Profile="(Default)" />
     </Setting>
   </Settings>

@@ -185,7 +185,7 @@
             // 
             this.menuItemCopy.Name = "menuItemCopy";
             this.menuItemCopy.ShortcutKeys = ((System.Windows.Forms.Keys)((System.Windows.Forms.Keys.Control | System.Windows.Forms.Keys.C)));
-            this.menuItemCopy.Size = new System.Drawing.Size(149, 22);
+            this.menuItemCopy.Size = new System.Drawing.Size(180, 22);
             this.menuItemCopy.Text = "コピー";
             this.menuItemCopy.Click += new System.EventHandler(this.OnMenuItemCopyClick);
             // 
@@ -193,7 +193,7 @@
             // 
             this.menuItemPaste.Name = "menuItemPaste";
             this.menuItemPaste.ShortcutKeys = ((System.Windows.Forms.Keys)((System.Windows.Forms.Keys.Control | System.Windows.Forms.Keys.V)));
-            this.menuItemPaste.Size = new System.Drawing.Size(149, 22);
+            this.menuItemPaste.Size = new System.Drawing.Size(180, 22);
             this.menuItemPaste.Text = "ペースト";
             this.menuItemPaste.Click += new System.EventHandler(this.OnMenuItemPasteClick);
             // 
@@ -209,14 +209,14 @@
             // menuItemPreference
             // 
             this.menuItemPreference.Name = "menuItemPreference";
-            this.menuItemPreference.Size = new System.Drawing.Size(122, 22);
+            this.menuItemPreference.Size = new System.Drawing.Size(180, 22);
             this.menuItemPreference.Text = "設定";
             this.menuItemPreference.Click += new System.EventHandler(this.OnPreferenceClick);
             // 
             // menuItemMaterialManagement
             // 
             this.menuItemMaterialManagement.Name = "menuItemMaterialManagement";
-            this.menuItemMaterialManagement.Size = new System.Drawing.Size(122, 22);
+            this.menuItemMaterialManagement.Size = new System.Drawing.Size(180, 22);
             this.menuItemMaterialManagement.Text = "素材管理";
             this.menuItemMaterialManagement.Click += new System.EventHandler(this.OnMaterialManageClicked);
             // 

@@ -95,7 +95,7 @@ namespace CharaChipGen
                 LoadTemplates(templateDir);
             }
 
-            materialDirectory = dir;
+            MaterialDirectory = dir;
             return true;
         }
 
@@ -257,6 +257,15 @@ namespace CharaChipGen
         /// </summary>
         public string MaterialDirectory {
             get { return materialDirectory; }
+            set {
+                if ((materialDirectory == value)
+                    || ((materialDirectory != null) && materialDirectory.Equals(value)))
+                {
+                    return;
+                }
+                Properties.Settings.Default.MaterialDirectory = value;
+                materialDirectory = value;
+            }
         }
 
         /// <summary>

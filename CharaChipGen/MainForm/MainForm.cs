@@ -219,12 +219,11 @@ namespace CharaChipGen.MainForm
         private void OnPreferenceClick(object sender, EventArgs e)
         {
             // 設定ボタンが押されたとき
-            ExportSettingForm.ExportSettingForm form
-                = new ExportSettingForm.ExportSettingForm();
+            ExportSettingForm.SettingForm form
+                = new ExportSettingForm.SettingForm();
 
-            GeneratorSetting setting = AppData.Instance.GeneratorSetting;
 
-            form.LoadFromSetting(setting.ExportSetting);
+            form.LoadFromSetting();
 
             DialogResult res = form.ShowDialog(this);
             if (res != DialogResult.OK)
@@ -232,9 +231,22 @@ namespace CharaChipGen.MainForm
                 return;
             }
 
-            form.StoreToSetting(setting.ExportSetting);
+            string prevMaterialDirectory = AppData.Instance.MaterialDirectory;
+            form.StoreToSetting();
+            string materialDirectory = AppData.Instance.MaterialDirectory;
 
+            GeneratorSetting setting = AppData.Instance.GeneratorSetting;
             labelOutputPath.Text = setting.ExportSetting.ExportFilePath;
+
+            if (!prevMaterialDirectory.Equals(materialDirectory))
+            {
+                MessageBox.Show(this,
+                    "素材フォルダが変更されたため、アプリケーションを再起動します。");
+                // アプリケーション再起動が必要。
+                Properties.Settings.Default.Save();
+                Application.Restart();
+            }
+
         }
 
         /// <summary>

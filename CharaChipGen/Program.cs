@@ -113,7 +113,9 @@ namespace CharaChipGen
             {
                 // マテリアルディレクトリが指定されていないか、
                 // 指定したディレクトリで初期化できない。
-                if (!data.Initialize(System.IO.Directory.GetCurrentDirectory()))
+                string defaultMaterialDirectory = GetDefaultMaterialDirectory();
+
+                if (!data.Initialize(defaultMaterialDirectory))
                 {
                     // カレントディレクトリで試したが初期化できない。
                     string assemblyLocation = System.Reflection.Assembly.GetExecutingAssembly().Location;
@@ -124,6 +126,23 @@ namespace CharaChipGen
                         throw new Exception("素材ディレクトリが見つかりませんでした");
                     }
                 }
+            }
+        }
+
+        /// <summary>
+        /// 素材ディレクトリを得る。
+        /// </summary>
+        /// <returns>素材ディレクトリ</returns>
+        private static string GetDefaultMaterialDirectory()
+        {
+            string dir = Properties.Settings.Default.MaterialDirectory;
+            if (!string.IsNullOrEmpty(dir) && System.IO.Directory.Exists(dir))
+            {
+                return dir;
+            }
+            else
+            {
+                return System.IO.Directory.GetCurrentDirectory();
             }
         }
     }
