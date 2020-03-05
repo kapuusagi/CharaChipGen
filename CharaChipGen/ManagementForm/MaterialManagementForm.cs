@@ -88,6 +88,7 @@ namespace CharaChipGen.ManagementForm
             buttonDelete.Enabled = (listViewMaterials.SelectedItems.Count > 0);
             buttonEdit.Enabled = (listViewMaterials.SelectedItems.Count == 1);
             buttonRename.Enabled = (listViewMaterials.SelectedItems.Count == 1);
+            buttonPreview.Enabled = (listViewMaterials.SelectedItems.Count == 1);
         }
 
         /// <summary>
@@ -462,6 +463,31 @@ namespace CharaChipGen.ManagementForm
                 }
             }
             return "";
+        }
+        
+        /// <summary>
+        /// プレビューボタンが押されたときに通知を受け取る。
+        /// </summary>
+        /// <param name="sender">送信元オブジェクト</param>
+        /// <param name="e">イベントオブジェクト</param>
+        private void OnButtonPreviewClick(object sender, EventArgs e)
+        {
+            int selectedIndex = listViewMaterials.SelectedIndices[0];
+            ListViewItem selectedItem = listViewMaterials.Items[selectedIndex];
+            MaterialList materialList = GetCurrentMaterialList();
+            string materialName = selectedItem.SubItems[0].Text;
+            Material material = materialList.Get(materialName);
+            if (material == null)
+            {
+                return;
+            }
+
+            MaterialViewForm.MaterialViewForm form
+                = new CharaChipGen.MaterialViewForm.MaterialViewForm() {
+                    Text = material.GetDisplayName(),
+                    Material = material
+                };
+            form.ShowDialog();
         }
     }
 }

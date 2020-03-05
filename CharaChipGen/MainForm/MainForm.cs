@@ -170,7 +170,7 @@ namespace CharaChipGen.MainForm
             if ((cchipPrefSize.Width > 0) && (cchipPrefSize.Height > 0))
             {
                 ImageBuffer charaChipBuffer = ImageBuffer.Create(cchipPrefSize.Width, cchipPrefSize.Height);
-                CharaChipGenerator.Draw(renderData, charaChipBuffer, 1, 0);
+                CharaChipRenderer.Draw(renderData, charaChipBuffer, 1, 0);
                 view.Image = charaChipBuffer.GetImage();
             }
             else

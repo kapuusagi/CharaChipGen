@@ -29,7 +29,7 @@
         private void InitializeComponent()
         {
             this.groupBoxLayerName = new System.Windows.Forms.GroupBox();
-            this.materialView4x3 = new CharaChipGen.MaterialEditorForm.MaterialView3x4();
+            this.materialView4x3 = new CharaChipGen.MaterialEditorForm.LayerView3x4();
             this.panel1 = new System.Windows.Forms.Panel();
             this.tableLayoutPanel1 = new System.Windows.Forms.TableLayoutPanel();
             this.flowLayoutPanel1 = new System.Windows.Forms.FlowLayoutPanel();
@@ -233,7 +233,7 @@
         #endregion
 
         private System.Windows.Forms.GroupBox groupBoxLayerName;
-        private MaterialView3x4 materialView4x3;
+        private LayerView3x4 materialView4x3;
         private System.Windows.Forms.Label labelCharaSize;
         private System.Windows.Forms.Label labelPictureSize;
         private System.Windows.Forms.Label label4;

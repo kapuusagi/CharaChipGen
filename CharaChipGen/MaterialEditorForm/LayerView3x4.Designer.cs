@@ -1,6 +1,6 @@
 ﻿namespace CharaChipGen.MaterialEditorForm
 {
-    partial class MaterialView3x4
+    partial class LayerView3x4
     {
         /// <summary> 
         /// 必要なデザイナー変数です。

@@ -88,8 +88,31 @@
     <Compile Include="MainForm\VersionForm.Designer.cs">
       <DependentUpon>VersionForm.cs</DependentUpon>
     </Compile>
+    <Compile Include="MaterialEditorForm\LayerView3x4.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="MaterialEditorForm\LayerView3x4.designer.cs">
+      <DependentUpon>LayerView3x4.cs</DependentUpon>
+    </Compile>
+    <Compile Include="MaterialViewForm\MaterialView.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="MaterialViewForm\MaterialView.Designer.cs">
+      <DependentUpon>MaterialView.cs</DependentUpon>
+    </Compile>
+    <Compile Include="MaterialViewForm\MaterialViewForm.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="MaterialViewForm\MaterialViewForm.Designer.cs">
+      <DependentUpon>MaterialViewForm.cs</DependentUpon>
+    </Compile>
+    <Compile Include="MaterialViewForm\MaterialViewNN.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="MaterialViewForm\MaterialViewNN.Designer.cs">
+      <DependentUpon>MaterialViewNN.cs</DependentUpon>
+    </Compile>
     <Compile Include="Model\CharaChipExporter.cs" />
-    <Compile Include="Model\CharaChipGenerator.cs" />
     <Compile Include="GeneratorForm\CharaChipGeneratorForm.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -109,6 +132,7 @@
       <DependentUpon>CharacterEntryView.cs</DependentUpon>
     </Compile>
     <Compile Include="Model\CharaChipRenderData.cs" />
+    <Compile Include="Model\CharaChipRenderer.cs" />
     <Compile Include="Model\CharaChip\Character.cs" />
     <Compile Include="Model\CharaChip\CharacterFileDefs.cs" />
     <Compile Include="Model\CharaChip\CharacterReader.cs" />
@@ -137,6 +161,8 @@
     <Compile Include="Model\Layer\RenderLayer.cs" />
     <Compile Include="Model\Layer\RenderLayerGroup.cs" />
     <Compile Include="Model\Layer\LayerType.cs" />
+    <Compile Include="Model\MaterialRenderData.cs" />
+    <Compile Include="Model\MaterialRenderer.cs" />
     <Compile Include="Model\Material\Material.cs" />
     <Compile Include="Model\Material\MaterialEntryFile.cs" />
     <Compile Include="ManagementForm\MaterialManagementForm.cs">
@@ -150,12 +176,6 @@
     </Compile>
     <Compile Include="MainForm\MainForm.Designer.cs">
       <DependentUpon>MainForm.cs</DependentUpon>
-    </Compile>
-    <Compile Include="MaterialEditorForm\MaterialView3x4.cs">
-      <SubType>UserControl</SubType>
-    </Compile>
-    <Compile Include="MaterialEditorForm\MaterialView3x4.Designer.cs">
-      <DependentUpon>MaterialView3x4.cs</DependentUpon>
     </Compile>
     <Compile Include="Model\Material\MaterialLayerInfo.cs" />
     <Compile Include="Model\Material\MaterialList.cs" />
@@ -201,6 +221,9 @@
     <EmbeddedResource Include="MainForm\VersionForm.resx">
       <DependentUpon>VersionForm.cs</DependentUpon>
     </EmbeddedResource>
+    <EmbeddedResource Include="MaterialEditorForm\LayerView3x4.resx">
+      <DependentUpon>LayerView3x4.cs</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="MaterialEditorForm\MaterialEditorForm.resx">
       <DependentUpon>MaterialEditorForm.cs</DependentUpon>
     </EmbeddedResource>
@@ -210,8 +233,14 @@
     <EmbeddedResource Include="ManagementForm\MaterialManagementForm.resx">
       <DependentUpon>MaterialManagementForm.cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="MaterialEditorForm\MaterialView3x4.resx">
-      <DependentUpon>MaterialView3x4.cs</DependentUpon>
+    <EmbeddedResource Include="MaterialViewForm\MaterialView.resx">
+      <DependentUpon>MaterialView.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="MaterialViewForm\MaterialViewForm.resx">
+      <DependentUpon>MaterialViewForm.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="MaterialViewForm\MaterialViewNN.resx">
+      <DependentUpon>MaterialViewNN.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Properties\Resources.resx">
       <Generator>ResXFileCodeGenerator</Generator>

@@ -7,15 +7,8 @@ namespace CharaChipGen.Model
     /// <summary>
     /// キャラクタチップを生成するための処理をAPIを提供するクラス。
     /// </summary>
-    public class CharaChipGenerator
+    public static class CharaChipRenderer
     {
-        /// <summary>
-        /// キャラクタチップジェネレータ
-        /// </summary>
-        private CharaChipGenerator()
-        {
-        }
-
         /// <summary>
         /// 描画する
         /// </summary>
@@ -55,8 +48,8 @@ namespace CharaChipGen.Model
         /// レイヤーを描画する
         /// </summary>
         /// <param name="buffer">描画対象のBMP</param>
-        /// <param name="xPos">描画対象の水平位置</param>
-        /// <param name="yPos">描画対象の垂直位置</param>
+        /// <param name="xPos">描画対象の水平位置(0≦xPos＜3) </param>
+        /// <param name="yPos">描画対象の垂直位置(0≦yPos＜4)</param>
         /// <param name="layer">レイヤーモデル</param>
         private static void DrawLayer(ImageBuffer buffer, int xPos, int yPos, RenderLayer layer)
         {

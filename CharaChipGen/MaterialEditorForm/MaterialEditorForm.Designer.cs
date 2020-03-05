@@ -38,13 +38,14 @@
             this.flowLayoutPanel2 = new System.Windows.Forms.FlowLayoutPanel();
             this.buttonAddLayer = new System.Windows.Forms.Button();
             this.buttonRenameLayer = new System.Windows.Forms.Button();
+            this.buttonUpLayer = new System.Windows.Forms.Button();
+            this.buttonDownLayer = new System.Windows.Forms.Button();
             this.tableLayoutPanel1 = new System.Windows.Forms.TableLayoutPanel();
             this.panel3 = new System.Windows.Forms.Panel();
             this.groupBox1 = new System.Windows.Forms.GroupBox();
             this.listBoxLayers = new System.Windows.Forms.ListBox();
             this.materialEditorLayerView = new CharaChipGen.MaterialEditorForm.MaterialEditorLayerView();
-            this.buttonUpLayer = new System.Windows.Forms.Button();
-            this.buttonDownLayer = new System.Windows.Forms.Button();
+            this.buttonPreview = new System.Windows.Forms.Button();
             this.panel1.SuspendLayout();
             this.flowLayoutPanel1.SuspendLayout();
             this.flowLayoutPanel2.SuspendLayout();
@@ -129,16 +130,18 @@
             // 
             // flowLayoutPanel2
             // 
+            this.flowLayoutPanel2.AutoSize = true;
             this.flowLayoutPanel2.Controls.Add(this.buttonAddLayer);
             this.flowLayoutPanel2.Controls.Add(this.buttonRenameLayer);
             this.flowLayoutPanel2.Controls.Add(this.buttonDeleteLayer);
             this.flowLayoutPanel2.Controls.Add(this.buttonUpLayer);
             this.flowLayoutPanel2.Controls.Add(this.buttonDownLayer);
+            this.flowLayoutPanel2.Controls.Add(this.buttonPreview);
             this.flowLayoutPanel2.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.flowLayoutPanel2.Location = new System.Drawing.Point(0, 350);
+            this.flowLayoutPanel2.Location = new System.Drawing.Point(0, 201);
             this.flowLayoutPanel2.Name = "flowLayoutPanel2";
             this.flowLayoutPanel2.Padding = new System.Windows.Forms.Padding(6);
-            this.flowLayoutPanel2.Size = new System.Drawing.Size(174, 154);
+            this.flowLayoutPanel2.Size = new System.Drawing.Size(174, 303);
             this.flowLayoutPanel2.TabIndex = 0;
             // 
             // buttonAddLayer
@@ -160,6 +163,26 @@
             this.buttonRenameLayer.Text = "レイヤー名を変更";
             this.buttonRenameLayer.UseVisualStyleBackColor = true;
             this.buttonRenameLayer.Click += new System.EventHandler(this.OnButtonRenameLayerClick);
+            // 
+            // buttonUpLayer
+            // 
+            this.buttonUpLayer.Location = new System.Drawing.Point(9, 96);
+            this.buttonUpLayer.Name = "buttonUpLayer";
+            this.buttonUpLayer.Size = new System.Drawing.Size(75, 23);
+            this.buttonUpLayer.TabIndex = 3;
+            this.buttonUpLayer.Text = "上へ移動";
+            this.buttonUpLayer.UseVisualStyleBackColor = true;
+            this.buttonUpLayer.Click += new System.EventHandler(this.OnButtonUpLayerClick);
+            // 
+            // buttonDownLayer
+            // 
+            this.buttonDownLayer.Location = new System.Drawing.Point(90, 96);
+            this.buttonDownLayer.Name = "buttonDownLayer";
+            this.buttonDownLayer.Size = new System.Drawing.Size(75, 23);
+            this.buttonDownLayer.TabIndex = 4;
+            this.buttonDownLayer.Text = "下へ移動";
+            this.buttonDownLayer.UseVisualStyleBackColor = true;
+            this.buttonDownLayer.Click += new System.EventHandler(this.OnButtonDownLayerClick);
             // 
             // tableLayoutPanel1
             // 
@@ -192,7 +215,7 @@
             this.groupBox1.Dock = System.Windows.Forms.DockStyle.Top;
             this.groupBox1.Location = new System.Drawing.Point(0, 0);
             this.groupBox1.Name = "groupBox1";
-            this.groupBox1.Size = new System.Drawing.Size(174, 350);
+            this.groupBox1.Size = new System.Drawing.Size(174, 201);
             this.groupBox1.TabIndex = 1;
             this.groupBox1.TabStop = false;
             this.groupBox1.Text = "レイヤー一覧";
@@ -204,7 +227,7 @@
             this.listBoxLayers.FormattingEnabled = true;
             this.listBoxLayers.Location = new System.Drawing.Point(3, 15);
             this.listBoxLayers.Name = "listBoxLayers";
-            this.listBoxLayers.Size = new System.Drawing.Size(168, 332);
+            this.listBoxLayers.Size = new System.Drawing.Size(168, 183);
             this.listBoxLayers.TabIndex = 0;
             this.listBoxLayers.DrawItem += new System.Windows.Forms.DrawItemEventHandler(this.OnListBoxLayersDrawItem);
             this.listBoxLayers.SelectedValueChanged += new System.EventHandler(this.OnListBoxLayersSelectedValueChanged);
@@ -218,25 +241,15 @@
             this.materialEditorLayerView.Size = new System.Drawing.Size(318, 504);
             this.materialEditorLayerView.TabIndex = 0;
             // 
-            // buttonUpLayer
+            // buttonPreview
             // 
-            this.buttonUpLayer.Location = new System.Drawing.Point(9, 96);
-            this.buttonUpLayer.Name = "buttonUpLayer";
-            this.buttonUpLayer.Size = new System.Drawing.Size(75, 23);
-            this.buttonUpLayer.TabIndex = 3;
-            this.buttonUpLayer.Text = "上へ移動";
-            this.buttonUpLayer.UseVisualStyleBackColor = true;
-            this.buttonUpLayer.Click += new System.EventHandler(this.OnButtonUpLayerClick);
-            // 
-            // buttonDownLayer
-            // 
-            this.buttonDownLayer.Location = new System.Drawing.Point(90, 96);
-            this.buttonDownLayer.Name = "buttonDownLayer";
-            this.buttonDownLayer.Size = new System.Drawing.Size(75, 23);
-            this.buttonDownLayer.TabIndex = 4;
-            this.buttonDownLayer.Text = "下へ移動";
-            this.buttonDownLayer.UseVisualStyleBackColor = true;
-            this.buttonDownLayer.Click += new System.EventHandler(this.OnButtonDownLayerClick);
+            this.buttonPreview.Location = new System.Drawing.Point(9, 125);
+            this.buttonPreview.Name = "buttonPreview";
+            this.buttonPreview.Size = new System.Drawing.Size(110, 23);
+            this.buttonPreview.TabIndex = 5;
+            this.buttonPreview.Text = "プレビュー";
+            this.buttonPreview.UseVisualStyleBackColor = true;
+            this.buttonPreview.Click += new System.EventHandler(this.OnButtonPreviewClick);
             // 
             // MaterialEditorForm
             // 
@@ -255,6 +268,7 @@
             this.flowLayoutPanel2.ResumeLayout(false);
             this.tableLayoutPanel1.ResumeLayout(false);
             this.panel3.ResumeLayout(false);
+            this.panel3.PerformLayout();
             this.groupBox1.ResumeLayout(false);
             this.ResumeLayout(false);
             this.PerformLayout();
@@ -279,5 +293,6 @@
         private System.Windows.Forms.Button buttonRenameLayer;
         private System.Windows.Forms.Button buttonUpLayer;
         private System.Windows.Forms.Button buttonDownLayer;
+        private System.Windows.Forms.Button buttonPreview;
     }
 }

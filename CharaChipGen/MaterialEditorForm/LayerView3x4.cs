@@ -7,7 +7,7 @@ namespace CharaChipGen.MaterialEditorForm
     /// <summary>
     /// キャラクターチップのレイヤーを3x4で表示するためのUI。
     /// </summary>
-    public partial class MaterialView3x4 : UserControl
+    public partial class LayerView3x4 : UserControl
     {
         // ピクチャーボックス
         private PictureBox[] pictureBoxes;
@@ -17,7 +17,7 @@ namespace CharaChipGen.MaterialEditorForm
         /// <summary>
         /// コンストラクタ
         /// </summary>
-        public MaterialView3x4()
+        public LayerView3x4()
         {
             InitializeComponent();
 

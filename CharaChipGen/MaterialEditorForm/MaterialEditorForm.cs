@@ -1,8 +1,9 @@
-﻿using CharaChipGen.Model.Material;
-using System;
+﻿using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Windows.Forms;
+using CharaChipGen.Model.Material;
+using CharaChipGen.Model.CharaChip;
 
 namespace CharaChipGen.MaterialEditorForm
 {
@@ -366,6 +367,22 @@ namespace CharaChipGen.MaterialEditorForm
                         break;
                 }
             }
+        }
+
+        /// <summary>
+        /// プレビューボタンがクリックされたときに通知を受け取る。
+        /// </summary>
+        /// <param name="sender">送信元オブジェクト</param>
+        /// <param name="e">イベントオブジェクト</param>
+        private void OnButtonPreviewClick(object sender, EventArgs e)
+        {
+            Material material = new Material("", entryFile);
+            MaterialViewForm.MaterialViewForm form
+                = new MaterialViewForm.MaterialViewForm() { 
+                    Text = textBoxMaterialName.Text, 
+                    Material = material 
+                };
+            form.ShowDialog(this);
         }
     }
 }

@@ -61,6 +61,14 @@ namespace CharaChipGen.Model.Layer
         }
 
         /// <summary>
+        /// このレイヤーグループをすべてクリアする。
+        /// </summary>
+        public void Clear()
+        {
+            layerEntries.Clear();
+        }
+
+        /// <summary>
         /// レイヤーを得る。
         /// </summary>
         /// <param name="index">インデックス番号(0≦index＜Count)</param>
@@ -104,6 +112,15 @@ namespace CharaChipGen.Model.Layer
         }
 
         /// <summary>
+        /// このオブジェクトの文字列表現を得る
+        /// </summary>
+        /// <returns></returns>
+        public override string ToString()
+        {
+            return $"{LayerType} LayerCount={layerEntries.Count}";
+        }
+
+        /// <summary>
         /// レンダリングレイヤーエントリ
         /// </summary>
         private class RenderLayerEntry
@@ -128,6 +145,15 @@ namespace CharaChipGen.Model.Layer
             /// レイヤーデータ
             /// </summary>
             public RenderLayer Layer { get; private set; }
+
+            /// <summary>
+            /// このオブジェクトの文字列表現を得る。
+            /// </summary>
+            /// <returns>文字列</returns>
+            public override string ToString()
+            {
+                return $"{PartsType} {Layer.ToString()}";
+            }
         }
     }
 }

@@ -68,7 +68,7 @@ namespace CharaChipGen.Model
                 for (int x = 0; x < 3; x++)
                 {
                     ImageBuffer buffer = ImageBuffer.Create(chipSize.Width, chipSize.Height);
-                    CharaChipGenerator.Draw(renderModel, buffer, x, y);
+                    CharaChipRenderer.Draw(renderModel, buffer, x, y);
                     imageBuffer.WriteImage(buffer, x * chipSize.Width, y * chipSize.Height);
                 }
             }

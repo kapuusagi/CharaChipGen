@@ -64,13 +64,10 @@ namespace CharaChipGen.Model.Material
         {
             if ((index >= 0) && (index < entryFile.GetLayerCount()))
             {
-                string materialDir = AppData.Instance.MaterialDirectory;
-                string subDirectory = System.IO.Path.GetDirectoryName(Path);
+                string entryFileDir = System.IO.Path.GetDirectoryName(entryFile.Path);
                 var layerInfo = entryFile.GetLayer(index);
 
-                string materialPath = System.IO.Path.Combine(new string[] {
-                    materialDir, subDirectory, layerInfo.Path
-                });
+                string materialPath = System.IO.Path.Combine(entryFileDir, layerInfo.Path);
 
                 if (System.IO.File.Exists(materialPath))
                 {

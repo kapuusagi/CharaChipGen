@@ -1,16 +1,24 @@
-﻿using CGenImaging;
-using CharaChipGen.Model;
-using CharaChipGen.Model.CharaChip;
-using System;
+﻿using System;
+using System.Collections.Generic;
+using System.ComponentModel;
 using System.Drawing;
+using System.Data;
+using System.Linq;
+using System.Text;
+using System.Threading.Tasks;
 using System.Windows.Forms;
+using CharaChipGen.Model.CharaChip;
+using CharaChipGen.Model.Material;
+using CharaChipGen.Model.Layer;
+using CharaChipGen.Model;
+using CGenImaging;
 
-namespace CharaChipGen.GeneratorForm
+namespace CharaChipGen.MaterialViewForm
 {
     /// <summary>
-    /// 3x4のビューの1つを表すビュー。
+    /// 3x4のうち、1つの領域の表示を行うビュー
     /// </summary>
-    public partial class CharaChipViewNN : UserControl
+    public partial class MaterialViewNN : UserControl
     {
         // X位置
         private int positionX;
@@ -19,65 +27,48 @@ namespace CharaChipGen.GeneratorForm
         // レンダリング完了済みデータ
         private Image renderedImage;
         // レンダリングモデル
-        private CharaChipRenderData renderData;
-        // ハンドラ
-        private CharaChipRenderData.ImageChanged handler;
+        private MaterialRenderData renderData;
 
         /// <summary>
         /// 新しいインスタンスを構築する。
         /// </summary>
-        public CharaChipViewNN()
+        public MaterialViewNN()
         {
             positionX = 0;
             positionY = 0;
             renderedImage = null;
-            renderData = new CharaChipRenderData();
-            handler = new CharaChipRenderData.ImageChanged((sender, e) =>
-            {
-                // 表示データの変更が入った場合にはイメージを削除して
-                // 表示の更新が必要であるとマークする。
-                renderedImage = null;
-                Invalidate();
-            });
-            renderData.OnImageChanged += handler;
+            renderData = new MaterialRenderData();
             InitializeComponent();
         }
 
         /// <summary>
-        /// データモデルを設定する
+        /// 描画対象のデータ
         /// </summary>
-        /// <param name="character">データモデル</param>
-        public void SetCharacter(Character character)
-        {
-            renderData.OnImageChanged -= handler;
-            // データモデルを置き換える。
-            // 置き換えたことによってイベントが飛ぶので
-            // そちらで更新処理が行われる。
-            renderData.Character = character;
-
-            renderData.OnImageChanged += handler;
+        [Browsable(false)]
+        public MaterialRenderData MaterialRenderData {
+            get => renderData;
+            set {
+                if ((renderData == value) || ((renderData != null) && renderData.Equals(value)))
+                {
+                    return;
+                }
+                renderData = value;
+                renderedImage = null;
+                Invalidate();
+            }
         }
-
         /// <summary>
         /// 水平位置
         /// </summary>
         public int CharaChipPositionX {
             get { return positionX; }
             set {
-                if ((value >= 0) && (value < 3))
+                if ((value >= 0) && (value < 3) && (positionX != value))
                 {
                     positionX = value;
+                    renderedImage = null;
                 }
             }
-        }
-
-        /// <summary>
-        /// レンダリング済みデータを取得する
-        /// </summary>
-        /// <returns>レンダリング済みデータ</returns>
-        public Image GetRenderedImage()
-        {
-            return renderedImage;
         }
 
         /// <summary>
@@ -86,11 +77,20 @@ namespace CharaChipGen.GeneratorForm
         public int CharaChipPositionY {
             get { return positionY; }
             set {
-                if ((value >= 0) && (value < 4))
+                if ((value >= 0) && (value < 4) && (positionY != value))
                 {
                     positionY = value;
+                    renderedImage = null;
                 }
             }
+        }
+        /// <summary>
+        /// レンダリング済みデータを取得する
+        /// </summary>
+        /// <returns>レンダリング済みデータ</returns>
+        public Image GetRenderedImage()
+        {
+            return renderedImage;
         }
 
         /// <summary>
@@ -110,7 +110,7 @@ namespace CharaChipGen.GeneratorForm
             g.FillRectangle(brush, 0, 0, ClientSize.Width - 1, ClientSize.Height - 1);
 
             // イメージをレンダリング
-            if (renderedImage == null)
+            if ((renderData != null) && (renderedImage == null))
             {
                 Size prefSize = renderData.PreferredSize;
                 if ((prefSize.Width > 0) && (prefSize.Height > 0))
@@ -121,7 +121,7 @@ namespace CharaChipGen.GeneratorForm
                     ImageBuffer renderBuffer = ImageBuffer.Create(imageSize.Width, imageSize.Height);
 
                     // レンダリングする。
-                    CharaChipRenderer.Draw(renderData, renderBuffer, positionX, positionY);
+                    MaterialRenderer.Draw(renderData, renderBuffer, positionX, positionY);
                     renderedImage = renderBuffer.GetImage();
                 }
             }
@@ -154,12 +154,14 @@ namespace CharaChipGen.GeneratorForm
             g.DrawRectangle(pen, 0, 0, ClientSize.Width - 1, ClientSize.Height - 1);
         }
 
+
+
         /// <summary>
-        /// フォームのサイズが変更された時に通知を受け取る。
+        /// コントロールがリサイズされたときに通知を受け取る。
         /// </summary>
         /// <param name="sender">送信元オブジェクト</param>
-        /// <param name="evt">イベントオブジェクト</param>
-        private void OnFormResized(object sender, EventArgs evt)
+        /// <param name="e">イベントオブジェクト</param>
+        private void OnControlResized(object sender, EventArgs e)
         {
             Invalidate();
         }
