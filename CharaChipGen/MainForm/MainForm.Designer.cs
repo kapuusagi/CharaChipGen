@@ -54,10 +54,12 @@
             this.saveFileDialog = new System.Windows.Forms.SaveFileDialog();
             this.saveFileDialogExport = new System.Windows.Forms.SaveFileDialog();
             this.panel1 = new System.Windows.Forms.Panel();
-            this.flowLayoutPanel1 = new System.Windows.Forms.FlowLayoutPanel();
-            this.panel2 = new System.Windows.Forms.Panel();
+            this.panel3 = new System.Windows.Forms.Panel();
+            this.panel4 = new System.Windows.Forms.Panel();
             this.labelOutputPath = new System.Windows.Forms.Label();
             this.label1 = new System.Windows.Forms.Label();
+            this.flowLayoutPanel1 = new System.Windows.Forms.FlowLayoutPanel();
+            this.panel2 = new System.Windows.Forms.Panel();
             this.flowLayoutPanel2 = new System.Windows.Forms.FlowLayoutPanel();
             this.tableLayoutPanel1 = new System.Windows.Forms.TableLayoutPanel();
             this.characterEntryControl1 = new CharaChipGen.MainForm.CharacterEntryView();
@@ -68,16 +70,14 @@
             this.characterEntryControl4 = new CharaChipGen.MainForm.CharacterEntryView();
             this.characterEntryControl6 = new CharaChipGen.MainForm.CharacterEntryView();
             this.characterEntryControl5 = new CharaChipGen.MainForm.CharacterEntryView();
-            this.panel3 = new System.Windows.Forms.Panel();
-            this.panel4 = new System.Windows.Forms.Panel();
             this.menuStripMain.SuspendLayout();
             this.panel1.SuspendLayout();
+            this.panel3.SuspendLayout();
+            this.panel4.SuspendLayout();
             this.flowLayoutPanel1.SuspendLayout();
             this.panel2.SuspendLayout();
             this.flowLayoutPanel2.SuspendLayout();
             this.tableLayoutPanel1.SuspendLayout();
-            this.panel3.SuspendLayout();
-            this.panel4.SuspendLayout();
             this.SuspendLayout();
             // 
             // menuStripMain
@@ -270,11 +270,11 @@
             // 
             // openFileDialog
             // 
-            this.openFileDialog.Filter = "設定保存ファイル|*.xml";
+            this.openFileDialog.Filter = "キャラチップ生成設定ファイル|*.ccgset";
             // 
             // saveFileDialog
             // 
-            this.saveFileDialog.Filter = "設定保存ファイル|*.xml";
+            this.saveFileDialog.Filter = "キャラチップ生成設定ファイル|*.ccgset";
             // 
             // saveFileDialogExport
             // 
@@ -292,6 +292,46 @@
             this.panel1.Name = "panel1";
             this.panel1.Size = new System.Drawing.Size(727, 96);
             this.panel1.TabIndex = 13;
+            // 
+            // panel3
+            // 
+            this.panel3.Controls.Add(this.panel4);
+            this.panel3.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.panel3.Location = new System.Drawing.Point(109, 32);
+            this.panel3.Name = "panel3";
+            this.panel3.Size = new System.Drawing.Size(425, 64);
+            this.panel3.TabIndex = 3;
+            // 
+            // panel4
+            // 
+            this.panel4.Controls.Add(this.labelOutputPath);
+            this.panel4.Controls.Add(this.label1);
+            this.panel4.Dock = System.Windows.Forms.DockStyle.Bottom;
+            this.panel4.Location = new System.Drawing.Point(0, 26);
+            this.panel4.Name = "panel4";
+            this.panel4.Padding = new System.Windows.Forms.Padding(4);
+            this.panel4.Size = new System.Drawing.Size(425, 38);
+            this.panel4.TabIndex = 0;
+            // 
+            // labelOutputPath
+            // 
+            this.labelOutputPath.AutoSize = true;
+            this.labelOutputPath.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.labelOutputPath.Location = new System.Drawing.Point(51, 4);
+            this.labelOutputPath.Name = "labelOutputPath";
+            this.labelOutputPath.Size = new System.Drawing.Size(35, 12);
+            this.labelOutputPath.TabIndex = 1;
+            this.labelOutputPath.Text = "xxxxx";
+            // 
+            // label1
+            // 
+            this.label1.AutoSize = true;
+            this.label1.Dock = System.Windows.Forms.DockStyle.Left;
+            this.label1.Location = new System.Drawing.Point(4, 4);
+            this.label1.Name = "label1";
+            this.label1.Size = new System.Drawing.Size(47, 12);
+            this.label1.TabIndex = 0;
+            this.label1.Text = "出力先：";
             // 
             // flowLayoutPanel1
             // 
@@ -313,26 +353,6 @@
             this.panel2.Padding = new System.Windows.Forms.Padding(6);
             this.panel2.Size = new System.Drawing.Size(618, 32);
             this.panel2.TabIndex = 1;
-            // 
-            // labelOutputPath
-            // 
-            this.labelOutputPath.AutoSize = true;
-            this.labelOutputPath.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.labelOutputPath.Location = new System.Drawing.Point(51, 4);
-            this.labelOutputPath.Name = "labelOutputPath";
-            this.labelOutputPath.Size = new System.Drawing.Size(35, 12);
-            this.labelOutputPath.TabIndex = 1;
-            this.labelOutputPath.Text = "xxxxx";
-            // 
-            // label1
-            // 
-            this.label1.AutoSize = true;
-            this.label1.Dock = System.Windows.Forms.DockStyle.Left;
-            this.label1.Location = new System.Drawing.Point(4, 4);
-            this.label1.Name = "label1";
-            this.label1.Size = new System.Drawing.Size(47, 12);
-            this.label1.TabIndex = 0;
-            this.label1.Text = "出力先：";
             // 
             // flowLayoutPanel2
             // 
@@ -466,26 +486,6 @@
             this.characterEntryControl5.ButtonClick += new System.EventHandler(this.OnCharacterEntryViewButtonClick);
             this.characterEntryControl5.KeyDown += new System.Windows.Forms.KeyEventHandler(this.OnCharacterEntryControlKeyDown);
             // 
-            // panel3
-            // 
-            this.panel3.Controls.Add(this.panel4);
-            this.panel3.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.panel3.Location = new System.Drawing.Point(109, 32);
-            this.panel3.Name = "panel3";
-            this.panel3.Size = new System.Drawing.Size(425, 64);
-            this.panel3.TabIndex = 3;
-            // 
-            // panel4
-            // 
-            this.panel4.Controls.Add(this.labelOutputPath);
-            this.panel4.Controls.Add(this.label1);
-            this.panel4.Dock = System.Windows.Forms.DockStyle.Bottom;
-            this.panel4.Location = new System.Drawing.Point(0, 26);
-            this.panel4.Name = "panel4";
-            this.panel4.Padding = new System.Windows.Forms.Padding(4);
-            this.panel4.Size = new System.Drawing.Size(425, 38);
-            this.panel4.TabIndex = 0;
-            // 
             // MainForm
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 12F);
@@ -503,13 +503,13 @@
             this.menuStripMain.ResumeLayout(false);
             this.menuStripMain.PerformLayout();
             this.panel1.ResumeLayout(false);
+            this.panel3.ResumeLayout(false);
+            this.panel4.ResumeLayout(false);
+            this.panel4.PerformLayout();
             this.flowLayoutPanel1.ResumeLayout(false);
             this.panel2.ResumeLayout(false);
             this.flowLayoutPanel2.ResumeLayout(false);
             this.tableLayoutPanel1.ResumeLayout(false);
-            this.panel3.ResumeLayout(false);
-            this.panel4.ResumeLayout(false);
-            this.panel4.PerformLayout();
             this.ResumeLayout(false);
             this.PerformLayout();
 

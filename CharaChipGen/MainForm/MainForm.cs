@@ -20,7 +20,7 @@ namespace CharaChipGen.MainForm
         /// アプリケーション終了時に保存され、起動時に読み込むために使用される。
         /// 前回作業の続きからやりたいよね。
         /// </remarks>
-        private const string PreviousSavedFileName = "CharaChipGen.tmp.xml";
+        private const string PreviousSavedFileName = "CharaChipGen.tmp.ccgset";
         /// <summary>
         /// 編集中のデータのファイルパス
         /// </summary>
