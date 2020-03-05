@@ -15,28 +15,6 @@ namespace CharaChipGen.ExportSettingForm
             InitializeComponent();
         }
 
-        /// <summary>
-        /// キャラチップサイズ
-        /// </summary>
-        public Size CharaChipSize {
-            get {
-                int width = (int)(numericUpDownCharaChipWidth.Value);
-                int height = (int)(numericUpDownCharaChipHeight.Value);
-                return new Size(width, height);
-            }
-            set {
-                numericUpDownCharaChipWidth.Value = value.Width;
-                numericUpDownCharaChipHeight.Value = value.Height;
-            }
-        }
-
-        /// <summary>
-        /// 出力ファイルパス
-        /// </summary>
-        public string ExportFilePath {
-            get => textBoxExportFilePath.Text;
-            set => textBoxExportFilePath.Text = value;
-        }
 
 
         /// <summary>
@@ -45,18 +23,38 @@ namespace CharaChipGen.ExportSettingForm
         /// <param name="setting">エクスポート設定</param>
         public void LoadFromSetting(ExportSetting setting)
         {
-            CharaChipSize = setting.CharaChipSize;
-            ExportFilePath = setting.ExportFilePath;
+            numericUpDownCharaChipWidth.Value = GetLimited(setting.CharaChipSize.Width,
+                (int)(numericUpDownCharaChipWidth.Minimum), (int)(numericUpDownCharaChipWidth.Maximum));
+            numericUpDownCharaChipHeight.Value = GetLimited(setting.CharaChipSize.Height,
+                (int)(numericUpDownCharaChipHeight.Minimum), (int)(numericUpDownCharaChipHeight.Maximum));
+
+            textBoxExportFilePath.Text = setting.ExportFilePath;
+        }
+
+        /// <summary>
+        /// valueをmin～maxの間に制限した値を取得する。
+        /// </summary>
+        /// <param name="value">値</param>
+        /// <param name="min">下限値</param>
+        /// <param name="max">上限値</param>
+        /// <returns>制限された値</returns>
+        private int GetLimited(int value, int min, int max)
+        {
+            return (value < min) ? min : ((value > max) ? max : value);
         }
 
         /// <summary>
         /// UIの値を設定値に格納する
         /// </summary>
         /// <param name="setting">エクスポート設定</param>
-        public void StorToSetting(ExportSetting setting)
+        public void StoreToSetting(ExportSetting setting)
         {
-            setting.CharaChipSize = CharaChipSize;
-            setting.ExportFilePath = ExportFilePath;
+            setting.CharaChipSize = new Size()
+            {
+                Width = (int)(numericUpDownCharaChipWidth.Value),
+                Height = (int)(numericUpDownCharaChipHeight.Value)
+            };
+            setting.ExportFilePath = textBoxExportFilePath.Text;
         }
 
         /// <summary>

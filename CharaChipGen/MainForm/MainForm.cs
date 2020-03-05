@@ -232,7 +232,7 @@ namespace CharaChipGen.MainForm
                 return;
             }
 
-            form.StorToSetting(setting.ExportSetting);
+            form.StoreToSetting(setting.ExportSetting);
 
             labelOutputPath.Text = setting.ExportSetting.ExportFilePath;
         }
