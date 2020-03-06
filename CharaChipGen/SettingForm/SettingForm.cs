@@ -25,27 +25,13 @@ namespace CharaChipGen.ExportSettingForm
         {
             AppData data = AppData.Instance;
             ExportSetting exportSetting = data.GeneratorSetting.ExportSetting;
-            numericUpDownCharaChipWidth.Value = GetLimited(exportSetting.CharaChipSize.Width,
-                (int)(numericUpDownCharaChipWidth.Minimum), (int)(numericUpDownCharaChipWidth.Maximum));
-            numericUpDownCharaChipHeight.Value = GetLimited(exportSetting.CharaChipSize.Height,
-                (int)(numericUpDownCharaChipHeight.Minimum), (int)(numericUpDownCharaChipHeight.Maximum));
-
+            sizeInputCharaChipSize.Value = exportSetting.CharaChipSize;
             labelMaterialDirectory.Text = data.MaterialDirectory;
 
             textBoxExportFilePath.Text = exportSetting.ExportFilePath;
         }
 
-        /// <summary>
-        /// valueをmin～maxの間に制限した値を取得する。
-        /// </summary>
-        /// <param name="value">値</param>
-        /// <param name="min">下限値</param>
-        /// <param name="max">上限値</param>
-        /// <returns>制限された値</returns>
-        private int GetLimited(int value, int min, int max)
-        {
-            return (value < min) ? min : ((value > max) ? max : value);
-        }
+
 
         /// <summary>
         /// UIの値を設定値に格納する
@@ -54,14 +40,11 @@ namespace CharaChipGen.ExportSettingForm
         {
             AppData data = AppData.Instance;
             ExportSetting exportSetting = data.GeneratorSetting.ExportSetting;
-            exportSetting.CharaChipSize = new Size()
-            {
-                Width = (int)(numericUpDownCharaChipWidth.Value),
-                Height = (int)(numericUpDownCharaChipHeight.Value)
-            };
+            exportSetting.CharaChipSize = sizeInputCharaChipSize.Value;
             exportSetting.ExportFilePath = textBoxExportFilePath.Text;
 
             data.MaterialDirectory = labelMaterialDirectory.Text;
+            data.DefaultCharaChipSize = sizeInputDefaultCharaChipSize.Value;
         }
 
         /// <summary>

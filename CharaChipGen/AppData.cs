@@ -269,6 +269,14 @@ namespace CharaChipGen
         }
 
         /// <summary>
+        /// デフォルトキャラチップサイズ
+        /// </summary>
+        public System.Drawing.Size DefaultCharaChipSize {
+            get => Properties.Settings.Default.CharaChipSize;
+            set => Properties.Settings.Default.CharaChipSize = value;
+        }
+
+        /// <summary>
         /// キャラクタチップジェネレータ設定
         /// </summary>
         public GeneratorSetting GeneratorSetting { get; private set; }

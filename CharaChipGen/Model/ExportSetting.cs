@@ -17,7 +17,7 @@ namespace CharaChipGen.Model
         /// <summary>
         /// キャラクターサイズ
         /// </summary>
-        public Size CharaChipSize { get; set; }
+        public Size CharaChipSize { get; set; } = new Size(32, 32);
 
         /// <summary>
         /// 出力ファイルパス

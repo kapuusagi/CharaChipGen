@@ -31,11 +31,8 @@
             this.buttonOK = new System.Windows.Forms.Button();
             this.buttonCancel = new System.Windows.Forms.Button();
             this.label1 = new System.Windows.Forms.Label();
-            this.numericUpDownCharaChipWidth = new System.Windows.Forms.NumericUpDown();
-            this.numericUpDownCharaChipHeight = new System.Windows.Forms.NumericUpDown();
             this.flowLayoutPanel1 = new System.Windows.Forms.FlowLayoutPanel();
             this.panel1 = new System.Windows.Forms.Panel();
-            this.label3 = new System.Windows.Forms.Label();
             this.tableLayoutPanel1 = new System.Windows.Forms.TableLayoutPanel();
             this.flowLayoutPanel3 = new System.Windows.Forms.FlowLayoutPanel();
             this.panel2 = new System.Windows.Forms.Panel();
@@ -50,9 +47,11 @@
             this.label4 = new System.Windows.Forms.Label();
             this.buttonSelectMaterialFolder = new System.Windows.Forms.Button();
             this.labelMaterialDirectory = new System.Windows.Forms.Label();
+            this.panel3 = new System.Windows.Forms.Panel();
+            this.label5 = new System.Windows.Forms.Label();
             this.folderBrowserDialog = new System.Windows.Forms.FolderBrowserDialog();
-            ((System.ComponentModel.ISupportInitialize)(this.numericUpDownCharaChipWidth)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.numericUpDownCharaChipHeight)).BeginInit();
+            this.sizeInputCharaChipSize = new CharaChipGen.SettingForm.SizeInput();
+            this.sizeInputDefaultCharaChipSize = new CharaChipGen.SettingForm.SizeInput();
             this.flowLayoutPanel1.SuspendLayout();
             this.panel1.SuspendLayout();
             this.tableLayoutPanel1.SuspendLayout();
@@ -61,6 +60,7 @@
             this.tabPage1.SuspendLayout();
             this.tabPage2.SuspendLayout();
             this.tableLayoutPanel2.SuspendLayout();
+            this.panel3.SuspendLayout();
             this.SuspendLayout();
             // 
             // buttonOK
@@ -93,52 +93,6 @@
             this.label1.TabIndex = 0;
             this.label1.Text = "キャラチップサイズ";
             // 
-            // numericUpDownCharaChipWidth
-            // 
-            this.numericUpDownCharaChipWidth.Dock = System.Windows.Forms.DockStyle.Right;
-            this.numericUpDownCharaChipWidth.Location = new System.Drawing.Point(265, 4);
-            this.numericUpDownCharaChipWidth.Maximum = new decimal(new int[] {
-            128,
-            0,
-            0,
-            0});
-            this.numericUpDownCharaChipWidth.Minimum = new decimal(new int[] {
-            1,
-            0,
-            0,
-            0});
-            this.numericUpDownCharaChipWidth.Name = "numericUpDownCharaChipWidth";
-            this.numericUpDownCharaChipWidth.Size = new System.Drawing.Size(48, 19);
-            this.numericUpDownCharaChipWidth.TabIndex = 1;
-            this.numericUpDownCharaChipWidth.Value = new decimal(new int[] {
-            1,
-            0,
-            0,
-            0});
-            // 
-            // numericUpDownCharaChipHeight
-            // 
-            this.numericUpDownCharaChipHeight.Dock = System.Windows.Forms.DockStyle.Right;
-            this.numericUpDownCharaChipHeight.Location = new System.Drawing.Point(324, 4);
-            this.numericUpDownCharaChipHeight.Maximum = new decimal(new int[] {
-            128,
-            0,
-            0,
-            0});
-            this.numericUpDownCharaChipHeight.Minimum = new decimal(new int[] {
-            1,
-            0,
-            0,
-            0});
-            this.numericUpDownCharaChipHeight.Name = "numericUpDownCharaChipHeight";
-            this.numericUpDownCharaChipHeight.Size = new System.Drawing.Size(48, 19);
-            this.numericUpDownCharaChipHeight.TabIndex = 3;
-            this.numericUpDownCharaChipHeight.Value = new decimal(new int[] {
-            1,
-            0,
-            0,
-            0});
-            // 
             // flowLayoutPanel1
             // 
             this.flowLayoutPanel1.AutoSize = true;
@@ -154,26 +108,14 @@
             // 
             // panel1
             // 
-            this.panel1.Controls.Add(this.numericUpDownCharaChipWidth);
-            this.panel1.Controls.Add(this.label3);
+            this.panel1.Controls.Add(this.sizeInputCharaChipSize);
             this.panel1.Controls.Add(this.label1);
-            this.panel1.Controls.Add(this.numericUpDownCharaChipHeight);
             this.panel1.Dock = System.Windows.Forms.DockStyle.Fill;
             this.panel1.Location = new System.Drawing.Point(9, 40);
             this.panel1.Name = "panel1";
             this.panel1.Padding = new System.Windows.Forms.Padding(4);
             this.panel1.Size = new System.Drawing.Size(376, 25);
             this.panel1.TabIndex = 1;
-            // 
-            // label3
-            // 
-            this.label3.AutoSize = true;
-            this.label3.Dock = System.Windows.Forms.DockStyle.Right;
-            this.label3.Location = new System.Drawing.Point(313, 4);
-            this.label3.Name = "label3";
-            this.label3.Size = new System.Drawing.Size(11, 12);
-            this.label3.TabIndex = 2;
-            this.label3.Text = "x";
             // 
             // tableLayoutPanel1
             // 
@@ -290,6 +232,7 @@
             this.tableLayoutPanel2.Controls.Add(this.label4, 0, 0);
             this.tableLayoutPanel2.Controls.Add(this.buttonSelectMaterialFolder, 2, 0);
             this.tableLayoutPanel2.Controls.Add(this.labelMaterialDirectory, 1, 0);
+            this.tableLayoutPanel2.Controls.Add(this.panel3, 0, 1);
             this.tableLayoutPanel2.Dock = System.Windows.Forms.DockStyle.Top;
             this.tableLayoutPanel2.Location = new System.Drawing.Point(3, 3);
             this.tableLayoutPanel2.Name = "tableLayoutPanel2";
@@ -332,6 +275,49 @@
             this.labelMaterialDirectory.Text = "””";
             this.labelMaterialDirectory.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
             // 
+            // panel3
+            // 
+            this.tableLayoutPanel2.SetColumnSpan(this.panel3, 3);
+            this.panel3.Controls.Add(this.sizeInputDefaultCharaChipSize);
+            this.panel3.Controls.Add(this.label5);
+            this.panel3.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.panel3.Location = new System.Drawing.Point(3, 31);
+            this.panel3.Name = "panel3";
+            this.panel3.Size = new System.Drawing.Size(388, 22);
+            this.panel3.TabIndex = 3;
+            // 
+            // label5
+            // 
+            this.label5.Anchor = System.Windows.Forms.AnchorStyles.Left;
+            this.label5.AutoSize = true;
+            this.label5.Location = new System.Drawing.Point(0, 0);
+            this.label5.Name = "label5";
+            this.label5.Size = new System.Drawing.Size(129, 12);
+            this.label5.TabIndex = 1;
+            this.label5.Text = "デフォルトキャラチップサイズ";
+            // 
+            // sizeInputCharaChipSize
+            // 
+            this.sizeInputCharaChipSize.Dock = System.Windows.Forms.DockStyle.Right;
+            this.sizeInputCharaChipSize.Location = new System.Drawing.Point(222, 4);
+            this.sizeInputCharaChipSize.MaximumValue = new System.Drawing.Size(128, 128);
+            this.sizeInputCharaChipSize.MinimumValue = new System.Drawing.Size(1, 1);
+            this.sizeInputCharaChipSize.Name = "sizeInputCharaChipSize";
+            this.sizeInputCharaChipSize.Size = new System.Drawing.Size(150, 17);
+            this.sizeInputCharaChipSize.TabIndex = 1;
+            this.sizeInputCharaChipSize.Value = new System.Drawing.Size(24, 24);
+            // 
+            // sizeInputDefaultCharaChipSize
+            // 
+            this.sizeInputDefaultCharaChipSize.Dock = System.Windows.Forms.DockStyle.Right;
+            this.sizeInputDefaultCharaChipSize.Location = new System.Drawing.Point(238, 0);
+            this.sizeInputDefaultCharaChipSize.MaximumValue = new System.Drawing.Size(128, 128);
+            this.sizeInputDefaultCharaChipSize.MinimumValue = new System.Drawing.Size(1, 1);
+            this.sizeInputDefaultCharaChipSize.Name = "sizeInputDefaultCharaChipSize";
+            this.sizeInputDefaultCharaChipSize.Size = new System.Drawing.Size(150, 22);
+            this.sizeInputDefaultCharaChipSize.TabIndex = 2;
+            this.sizeInputDefaultCharaChipSize.Value = new System.Drawing.Size(32, 32);
+            // 
             // SettingForm
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 12F);
@@ -342,8 +328,6 @@
             this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.FixedSingle;
             this.Name = "SettingForm";
             this.Text = "設定";
-            ((System.ComponentModel.ISupportInitialize)(this.numericUpDownCharaChipWidth)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.numericUpDownCharaChipHeight)).EndInit();
             this.flowLayoutPanel1.ResumeLayout(false);
             this.panel1.ResumeLayout(false);
             this.panel1.PerformLayout();
@@ -355,6 +339,8 @@
             this.tabPage2.ResumeLayout(false);
             this.tableLayoutPanel2.ResumeLayout(false);
             this.tableLayoutPanel2.PerformLayout();
+            this.panel3.ResumeLayout(false);
+            this.panel3.PerformLayout();
             this.ResumeLayout(false);
             this.PerformLayout();
 
@@ -365,11 +351,8 @@
         private System.Windows.Forms.Button buttonOK;
         private System.Windows.Forms.Button buttonCancel;
         private System.Windows.Forms.Label label1;
-        private System.Windows.Forms.NumericUpDown numericUpDownCharaChipWidth;
-        private System.Windows.Forms.NumericUpDown numericUpDownCharaChipHeight;
         private System.Windows.Forms.FlowLayoutPanel flowLayoutPanel1;
         private System.Windows.Forms.Panel panel1;
-        private System.Windows.Forms.Label label3;
         private System.Windows.Forms.TableLayoutPanel tableLayoutPanel1;
         private System.Windows.Forms.FlowLayoutPanel flowLayoutPanel3;
         private System.Windows.Forms.Panel panel2;
@@ -385,5 +368,9 @@
         private System.Windows.Forms.Button buttonSelectMaterialFolder;
         private System.Windows.Forms.Label labelMaterialDirectory;
         private System.Windows.Forms.FolderBrowserDialog folderBrowserDialog;
+        private System.Windows.Forms.Panel panel3;
+        private System.Windows.Forms.Label label5;
+        private CharaChipGen.SettingForm.SizeInput sizeInputCharaChipSize;
+        private CharaChipGen.SettingForm.SizeInput sizeInputDefaultCharaChipSize;
     }
 }

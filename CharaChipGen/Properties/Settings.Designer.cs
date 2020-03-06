@@ -58,5 +58,17 @@ namespace CharaChipGen.Properties {
                 this["MaterialDirectory"] = value;
             }
         }
+        
+        [global::System.Configuration.UserScopedSettingAttribute()]
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.Configuration.DefaultSettingValueAttribute("32, 32")]
+        public global::System.Drawing.Size CharaChipSize {
+            get {
+                return ((global::System.Drawing.Size)(this["CharaChipSize"]));
+            }
+            set {
+                this["CharaChipSize"] = value;
+            }
+        }
     }
 }

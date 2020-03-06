@@ -260,10 +260,8 @@ namespace CharaChipGen.MainForm
             // データをリセットする。
             editFilePath = "";
             GeneratorSetting setting = AppData.Instance.GeneratorSetting;
-            for (int i = 0; i < setting.GetCharacterCount(); i++)
-            {
-                setting.GetCharacter(i).Reset();
-            }
+            setting.Reset();
+            setting.ExportSetting.CharaChipSize = AppData.Instance.DefaultCharaChipSize;
 
             // モデルに合わせてUIの表示更新
             UpdateAllEntryViews();

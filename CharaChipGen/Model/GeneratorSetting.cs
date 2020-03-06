@@ -62,5 +62,17 @@ namespace CharaChipGen.Model
             // エクスポート設定
             ExportSetting.CopyTo(setting.ExportSetting);
         }
+
+        /// <summary>
+        /// この設定をリセットし、初期状態にする。
+        /// </summary>
+        public void Reset()
+        {
+            foreach (Character character in characters)
+            {
+                character.Reset();
+            }
+            ExportSetting = new ExportSetting();
+        }
     }
 }
