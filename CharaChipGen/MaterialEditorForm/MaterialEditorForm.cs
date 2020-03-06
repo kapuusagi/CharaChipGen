@@ -52,15 +52,16 @@ namespace CharaChipGen.MaterialEditorForm
                     listBoxLayers.SelectedIndex = 0;
                 }
             }
-            UpdateButtonEnables();
+            UpdateComponentEnables();
 
         }
 
         /// <summary>
         /// 操作ボタンの有効・無効を更新する。
         /// </summary>
-        private void UpdateButtonEnables()
+        private void UpdateComponentEnables()
         {
+            materialEditorLayerView.Enabled = (listBoxLayers.SelectedIndex >= 0);
             buttonRenameLayer.Enabled = (listBoxLayers.SelectedIndex >= 0);
             buttonDeleteLayer.Enabled = (listBoxLayers.SelectedIndex >= 0);
             buttonUpLayer.Enabled = (listBoxLayers.SelectedIndex > 0);
@@ -159,7 +160,7 @@ namespace CharaChipGen.MaterialEditorForm
             {
                 materialEditorLayerView.SetLayerInfo(entryFile, layer);
             }
-            UpdateButtonEnables();
+            UpdateComponentEnables();
         }
 
         /// <summary>

@@ -40,12 +40,12 @@
             this.buttonRenameLayer = new System.Windows.Forms.Button();
             this.buttonUpLayer = new System.Windows.Forms.Button();
             this.buttonDownLayer = new System.Windows.Forms.Button();
+            this.buttonPreview = new System.Windows.Forms.Button();
             this.tableLayoutPanel1 = new System.Windows.Forms.TableLayoutPanel();
             this.panel3 = new System.Windows.Forms.Panel();
             this.groupBox1 = new System.Windows.Forms.GroupBox();
             this.listBoxLayers = new System.Windows.Forms.ListBox();
             this.materialEditorLayerView = new CharaChipGen.MaterialEditorForm.MaterialEditorLayerView();
-            this.buttonPreview = new System.Windows.Forms.Button();
             this.panel1.SuspendLayout();
             this.flowLayoutPanel1.SuspendLayout();
             this.flowLayoutPanel2.SuspendLayout();
@@ -184,6 +184,16 @@
             this.buttonDownLayer.UseVisualStyleBackColor = true;
             this.buttonDownLayer.Click += new System.EventHandler(this.OnButtonDownLayerClick);
             // 
+            // buttonPreview
+            // 
+            this.buttonPreview.Location = new System.Drawing.Point(9, 125);
+            this.buttonPreview.Name = "buttonPreview";
+            this.buttonPreview.Size = new System.Drawing.Size(110, 23);
+            this.buttonPreview.TabIndex = 5;
+            this.buttonPreview.Text = "プレビュー";
+            this.buttonPreview.UseVisualStyleBackColor = true;
+            this.buttonPreview.Click += new System.EventHandler(this.OnButtonPreviewClick);
+            // 
             // tableLayoutPanel1
             // 
             this.tableLayoutPanel1.ColumnCount = 2;
@@ -236,20 +246,11 @@
             // materialEditorLayerView
             // 
             this.materialEditorLayerView.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.materialEditorLayerView.Enabled = false;
             this.materialEditorLayerView.Location = new System.Drawing.Point(183, 3);
             this.materialEditorLayerView.Name = "materialEditorLayerView";
             this.materialEditorLayerView.Size = new System.Drawing.Size(318, 504);
             this.materialEditorLayerView.TabIndex = 0;
-            // 
-            // buttonPreview
-            // 
-            this.buttonPreview.Location = new System.Drawing.Point(9, 125);
-            this.buttonPreview.Name = "buttonPreview";
-            this.buttonPreview.Size = new System.Drawing.Size(110, 23);
-            this.buttonPreview.TabIndex = 5;
-            this.buttonPreview.Text = "プレビュー";
-            this.buttonPreview.UseVisualStyleBackColor = true;
-            this.buttonPreview.Click += new System.EventHandler(this.OnButtonPreviewClick);
             // 
             // MaterialEditorForm
             // 
