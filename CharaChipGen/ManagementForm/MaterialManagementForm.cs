@@ -75,7 +75,7 @@ namespace CharaChipGen.ManagementForm
         private ListViewItem GenerateListViewMaterial(Material material)
         {
             return new ListViewItem(new string[] {
-                material.Name, material.GetDisplayName(), material.Path });
+                material.Name, material.GetDisplayName(), material.RelativePath });
         }
 
         /// <summary>
@@ -200,7 +200,8 @@ namespace CharaChipGen.ManagementForm
                 MaterialEditorForm.MaterialEditorForm form
                     = new MaterialEditorForm.MaterialEditorForm();
 
-                string entryFilePath = System.IO.Path.Combine(AppData.Instance.MaterialDirectory, material.Path);
+                string entryFilePath = System.IO.Path.Combine(
+                    AppData.Instance.MaterialDirectory, material.RelativePath);
                 MaterialEntryFile entryFile = MaterialEntryFile.LoadFrom(entryFilePath);
 
                 form.MaterialEntryFile = entryFile;
@@ -289,7 +290,8 @@ namespace CharaChipGen.ManagementForm
 
                     // 実際のファイルの削除処理
                     // エントリファイルだけ削除する。
-                    string path = System.IO.Path.Combine(AppData.Instance.MaterialDirectory, material.Path);
+                    string path = System.IO.Path.Combine(
+                        AppData.Instance.MaterialDirectory, material.RelativePath);
                     System.IO.File.Delete(path);
                 }
             }
@@ -362,7 +364,8 @@ namespace CharaChipGen.ManagementForm
                 CheckMaterialName(materialList, newName);
 
                 // エントリファイルのパス名を変更
-                string entryFilePath = System.IO.Path.Combine(AppData.Instance.MaterialDirectory, targetMaterial.Path);
+                string entryFilePath = System.IO.Path.Combine(
+                    AppData.Instance.MaterialDirectory, targetMaterial.RelativePath);
                 string dstRelativePath = System.IO.Path.Combine(materialList.SubDirectoryName,
                     $"{newName}{MaterialEntryFile.EntryFileSuffix}");
                 string dstFilePath = System.IO.Path.Combine(AppData.Instance.MaterialDirectory, dstRelativePath);

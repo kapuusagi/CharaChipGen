@@ -16,11 +16,11 @@ namespace CharaChipGen.Model.Material
         /// <summary>
         /// コンストラクタ
         /// </summary>
-        /// <param name="path">ルートディレクトリを除いたパス名 (Accessories\image.pngなど))</param>
+        /// <param name="relativePath">素材フォルダルートからの相対パス名 (Accessories\image.pngなど))</param>
         /// <param name="entryFile">エントリファイル</param>
-        public Material(string path, MaterialEntryFile entryFile)
+        public Material(string relativePath, MaterialEntryFile entryFile)
         {
-            this.Path = path;
+            this.RelativePath = relativePath;
             this.entryFile = entryFile;
         }
 
@@ -32,7 +32,7 @@ namespace CharaChipGen.Model.Material
         /// <summary>
         /// エントリファイルの相対バス。
         /// </summary>
-        public string Path { get; private set; }
+        public string RelativePath { get; private set; }
 
         /// <summary>
         /// 表示名を得る。
