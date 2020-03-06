@@ -131,5 +131,24 @@ namespace CharaChipGen.InputForm
             DialogResult = DialogResult.Cancel;
             Close();
         }
+
+        /// <summary>
+        /// キーが押されたときに通知を受け取る。
+        /// </summary>
+        /// <param name="sender">送信元オブジェクト</param>
+        /// <param name="e">イベントオブジェクト</param>
+        private void OnTextBoxKeyDown(object sender, KeyEventArgs e)
+        {
+            if ((e.Modifiers == 0) && (e.KeyCode == Keys.Enter) && (textBox.Text.Length > 0))
+            {
+                DialogResult = DialogResult.OK;
+                Close();
+            }
+            else if ((e.Modifiers == 0) && (e.KeyCode == Keys.Escape))
+            {
+                DialogResult = DialogResult.Cancel;
+                Close();
+            }
+        }
     }
 }

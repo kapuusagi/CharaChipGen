@@ -100,6 +100,7 @@
             this.textBox.Name = "textBox";
             this.textBox.Size = new System.Drawing.Size(321, 19);
             this.textBox.TabIndex = 0;
+            this.textBox.KeyDown += new System.Windows.Forms.KeyEventHandler(this.OnTextBoxKeyDown);
             // 
             // panel2
             // 
