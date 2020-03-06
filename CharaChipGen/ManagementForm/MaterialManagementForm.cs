@@ -492,5 +492,16 @@ namespace CharaChipGen.ManagementForm
                 };
             form.ShowDialog();
         }
+
+        /// <summary>
+        /// フォルダ閲覧ボタンがクリックされたときに通知を受け取る。
+        /// </summary>
+        /// <param name="sender">送信元オブジェクト</param>
+        /// <param name="e">イベントオブジェクト</param>
+        private void OnButtonBrowseDirectoryClick(object sender, EventArgs e)
+        {
+            string materialDir = AppData.Instance.MaterialDirectory;
+            System.Diagnostics.Process.Start("EXPLORER.EXE", materialDir);
+        }
     }
 }
