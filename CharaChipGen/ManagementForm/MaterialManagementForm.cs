@@ -244,17 +244,50 @@ namespace CharaChipGen.ManagementForm
                 if (System.IO.Path.IsPathRooted(layer.Path))
                 {
                     // 絶対パス指定になってるので変更されたやつである。
-                    // コピーして相対パスに変更する。
-                    string newFileName = $"{entryFile.Name}.{layer.Name}.png";
-                    string newPath = System.IO.Path.Combine(entryFileDir, newFileName);
-                    System.IO.File.Copy(layer.Path, newPath);
-                    layer.Path = newFileName;
+                    if (layer.Path.StartsWith(entryFileDir))
+                    {
+                        // エントリファイルと同じフォルダかサブフォルダにあるので
+                        // 相対パスに書き換えるだけで良い。
+                        layer.Path = RemoveRootDirectory(layer.Path, entryFileDir);
+                    }
+                    else
+                    {
+                        // コピーして相対パスに変更する。
+                        string newFileName = $"{entryFile.Name}.{layer.Name}.png";
+                        string newPath = System.IO.Path.Combine(entryFileDir, newFileName);
+                        System.IO.File.Copy(layer.Path, newPath);
+                        layer.Path = newFileName;
+                    }
                 }
             }
 
             // 設定変更を書き出す。
             entryFile.Save();
         }
+
+
+        /// <summary>
+        /// pathの先頭にあるrootDirectory部分を削ったサブディレクトリ以下の相対パスを得る。
+        /// </summary>
+        /// <param name="path">パス</param>
+        /// <param name="rootDirectory">ルートディレクトリ</param>
+        /// <returns>相対パス</returns>
+        private string RemoveRootDirectory(string path, string rootDirectory)
+        {
+            int index = rootDirectory.Length;
+            while (index < path.Length)
+            {
+                if (path[index] != System.IO.Path.DirectorySeparatorChar)
+                {
+                    return path.Substring(index);
+                }
+                index++;
+            }
+
+            throw new Exception("path is same to rootDirectory.");
+        }
+
+
 
         /// <summary>
         /// 削除操作が行われたときに通知を受け取る。
