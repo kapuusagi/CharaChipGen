@@ -209,6 +209,7 @@ namespace CharaChipGen.Model
                 RenderLayerGroup group = layerGroups.First((entry) => entry.LayerType == info.LayerType);
                 PartsType colorPartsRefs = info.ColorPartsRefs ?? partsType;
                 RenderLayer layer = new RenderLayer(info.LayerType, partsType, colorPartsRefs);
+                layer.ColorImmutable = info.ColorImmutable;
                 layer.Image = m.LoadLayerImage(i);
                 // レイヤーに設定値適用
                 ApplyLayerOffsets(layer, model);

@@ -46,6 +46,7 @@ namespace CharaChipGen.Model.Layer
             LayerType = layerType;
             PartsType = partsType;
             ColorPartsRefs = colorPartsRefs;
+            ColorImmutable = false;
             this.image = null;
             this.offsetX = 0;
             this.offsetY = 0;
@@ -83,6 +84,14 @@ namespace CharaChipGen.Model.Layer
         /// Hue, Saturation, Value, Opacity を取得する部品種別
         /// </summary>
         public PartsType ColorPartsRefs { get; set; }
+
+        /// <summary>
+        /// 色が不変かどうか
+        /// </summary>
+        /// <remarks>
+        /// trueにすると、HSVによる色変更が適用できなくなる。
+        /// </remarks>
+        public bool ColorImmutable { get; set; }
 
         /// <summary>
         /// レイヤーイメージ
@@ -156,6 +165,10 @@ namespace CharaChipGen.Model.Layer
         public int Hue {
             get { return hue; }
             set {
+                if (ColorImmutable)
+                {
+                    return;
+                }
                 if (hue == value)
                 {
                     return; // 変更なし
@@ -172,6 +185,10 @@ namespace CharaChipGen.Model.Layer
         public int Saturation {
             get { return saturation; }
             set {
+                if (ColorImmutable)
+                {
+                    return;
+                }
                 if (saturation == value)
                 {
                     return; // 変更なし。
@@ -187,6 +204,10 @@ namespace CharaChipGen.Model.Layer
         public int Value {
             get { return value; }
             set {
+                if (ColorImmutable)
+                {
+                    return;
+                }
                 if (this.value == value)
                 {
                     return; // 変更なし。

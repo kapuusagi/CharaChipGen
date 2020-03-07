@@ -18,6 +18,7 @@ namespace CharaChipGen.Model.Material
         {
             Name = name;
             attributeType = null;
+            ColorImmutable = false;
         }
 
         /// <summary>
@@ -41,6 +42,16 @@ namespace CharaChipGen.Model.Material
         public PartsType? ColorPartsRefs {
             get => attributeType;
             set => attributeType = value;
+        }
+
+        /// <summary>
+        /// 色は不変かどうか。
+        /// </summary>
+        /// <remarks>
+        /// trueにすると、HSVによる変更が適用できなくなる。
+        /// </remarks>
+        public bool ColorImmutable {
+            get; set;
         }
 
         /// <summary>

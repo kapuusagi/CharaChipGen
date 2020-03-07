@@ -1,6 +1,7 @@
 ﻿using CharaChipGen.Model.CharaChip;
 using CharaChipGen.Model.Layer;
 using System;
+using System.Text;
 using System.Collections.Generic;
 using System.Linq;
 
@@ -231,7 +232,8 @@ namespace CharaChipGen.Model.Material
                     writer.WriteLine($"Name.default = {name}");
                 }
 
-                // レイヤー名
+
+                // レイヤー
                 if (layers != null)
                 {
                     int no = 1;
@@ -245,9 +247,25 @@ namespace CharaChipGen.Model.Material
                         {
                             writer.WriteLine($"Layer.{layer.Name}.ColorPartsRefs = {layer.ColorPartsRefs.ToString()}");
                         }
+                        writer.WriteLine($"Layer.{layer.Name}.Attribute = {GetAttributeString(layer)}");
                     }
                 }
             }
+        }
+
+        /// <summary>
+        /// レイヤー属性文字列を得る。
+        /// </summary>
+        /// <param name="info">レイヤー情報</param>
+        /// <returns>属性文字列</returns>
+        private string GetAttributeString(MaterialLayerInfo info)
+        {
+            StringBuilder sb = new StringBuilder();
+            if (info.ColorImmutable)
+            {
+                sb.Append(nameof(info.ColorImmutable));
+            }
+            return sb.ToString();
         }
 
         /// <summary>
@@ -351,11 +369,31 @@ namespace CharaChipGen.Model.Material
                                 layer.ColorPartsRefs = attrType;
                             }
                             break;
+                        case "Attribute":
+                            SetAttributeString(layer, value);
+                            break;
                     }
                     break;
-
             }
         }
 
+        /// <summary>
+        /// レイヤー情報に属性を追加する。
+        /// </summary>
+        /// <param name="layer">レイヤー</param>
+        /// <param name="attrString">属性文字列</param>
+        private void SetAttributeString(MaterialLayerInfo layer, string attrString)
+        {
+            string[] attributes = attrString.Split(',');
+            foreach (string str in attributes)
+            {
+                switch (str)
+                {
+                    case nameof(layer.ColorImmutable):
+                        layer.ColorImmutable = true;
+                        break;
+                }
+            }
+        }
     }
 }
