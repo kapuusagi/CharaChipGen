@@ -255,7 +255,7 @@ namespace CharaChipGen.ManagementForm
                         // コピーして相対パスに変更する。
                         string newFileName = $"{entryFile.Name}.{layer.Name}.png";
                         string newPath = System.IO.Path.Combine(entryFileDir, newFileName);
-                        System.IO.File.Copy(layer.Path, newPath);
+                        System.IO.File.Copy(layer.Path, newPath, true);
                         layer.Path = newFileName;
                     }
                 }
