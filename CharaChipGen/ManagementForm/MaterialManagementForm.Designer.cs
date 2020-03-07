@@ -63,19 +63,19 @@
             this.openFileDialog = new System.Windows.Forms.OpenFileDialog();
             this.flowLayoutPanel1 = new System.Windows.Forms.FlowLayoutPanel();
             this.panel1 = new System.Windows.Forms.Panel();
+            this.flowLayoutPanel3 = new System.Windows.Forms.FlowLayoutPanel();
+            this.buttonBrowseMaterialDirectory = new System.Windows.Forms.Button();
             this.panel2 = new System.Windows.Forms.Panel();
             this.panel3 = new System.Windows.Forms.Panel();
-            this.buttonBrowseMaterialDirectory = new System.Windows.Forms.Button();
-            this.flowLayoutPanel3 = new System.Windows.Forms.FlowLayoutPanel();
             this.menuStrip1.SuspendLayout();
             this.groupBoxMaterial.SuspendLayout();
             this.panel4.SuspendLayout();
             this.flowLayoutPanel2.SuspendLayout();
             this.flowLayoutPanel1.SuspendLayout();
             this.panel1.SuspendLayout();
+            this.flowLayoutPanel3.SuspendLayout();
             this.panel2.SuspendLayout();
             this.panel3.SuspendLayout();
-            this.flowLayoutPanel3.SuspendLayout();
             this.SuspendLayout();
             // 
             // buttonClose
@@ -155,6 +155,7 @@
             this.listViewMaterials.UseCompatibleStateImageBehavior = false;
             this.listViewMaterials.View = System.Windows.Forms.View.Details;
             this.listViewMaterials.ItemSelectionChanged += new System.Windows.Forms.ListViewItemSelectionChangedEventHandler(this.OnMaterialListSelectionChanged);
+            this.listViewMaterials.DoubleClick += new System.EventHandler(this.OnMaterialEditClicked);
             // 
             // columnHeaderName
             // 
@@ -312,6 +313,26 @@
             this.panel1.Size = new System.Drawing.Size(613, 32);
             this.panel1.TabIndex = 1;
             // 
+            // flowLayoutPanel3
+            // 
+            this.flowLayoutPanel3.AutoSize = true;
+            this.flowLayoutPanel3.Controls.Add(this.buttonBrowseMaterialDirectory);
+            this.flowLayoutPanel3.Dock = System.Windows.Forms.DockStyle.Right;
+            this.flowLayoutPanel3.Location = new System.Drawing.Point(478, 0);
+            this.flowLayoutPanel3.Name = "flowLayoutPanel3";
+            this.flowLayoutPanel3.Size = new System.Drawing.Size(135, 32);
+            this.flowLayoutPanel3.TabIndex = 2;
+            // 
+            // buttonBrowseMaterialDirectory
+            // 
+            this.buttonBrowseMaterialDirectory.Location = new System.Drawing.Point(3, 3);
+            this.buttonBrowseMaterialDirectory.Name = "buttonBrowseMaterialDirectory";
+            this.buttonBrowseMaterialDirectory.Size = new System.Drawing.Size(129, 23);
+            this.buttonBrowseMaterialDirectory.TabIndex = 1;
+            this.buttonBrowseMaterialDirectory.Text = "エクスプローラーで開く";
+            this.buttonBrowseMaterialDirectory.UseVisualStyleBackColor = true;
+            this.buttonBrowseMaterialDirectory.Click += new System.EventHandler(this.OnButtonBrowseDirectoryClick);
+            // 
             // panel2
             // 
             this.panel2.Controls.Add(this.treeViewMaterials);
@@ -330,26 +351,6 @@
             this.panel3.Name = "panel3";
             this.panel3.Size = new System.Drawing.Size(450, 303);
             this.panel3.TabIndex = 11;
-            // 
-            // buttonBrowseMaterialDirectory
-            // 
-            this.buttonBrowseMaterialDirectory.Location = new System.Drawing.Point(3, 3);
-            this.buttonBrowseMaterialDirectory.Name = "buttonBrowseMaterialDirectory";
-            this.buttonBrowseMaterialDirectory.Size = new System.Drawing.Size(129, 23);
-            this.buttonBrowseMaterialDirectory.TabIndex = 1;
-            this.buttonBrowseMaterialDirectory.Text = "エクスプローラーで開く";
-            this.buttonBrowseMaterialDirectory.UseVisualStyleBackColor = true;
-            this.buttonBrowseMaterialDirectory.Click += new System.EventHandler(this.OnButtonBrowseDirectoryClick);
-            // 
-            // flowLayoutPanel3
-            // 
-            this.flowLayoutPanel3.AutoSize = true;
-            this.flowLayoutPanel3.Controls.Add(this.buttonBrowseMaterialDirectory);
-            this.flowLayoutPanel3.Dock = System.Windows.Forms.DockStyle.Right;
-            this.flowLayoutPanel3.Location = new System.Drawing.Point(478, 0);
-            this.flowLayoutPanel3.Name = "flowLayoutPanel3";
-            this.flowLayoutPanel3.Size = new System.Drawing.Size(135, 32);
-            this.flowLayoutPanel3.TabIndex = 2;
             // 
             // MaterialManagementForm
             // 
@@ -373,9 +374,9 @@
             this.flowLayoutPanel1.ResumeLayout(false);
             this.panel1.ResumeLayout(false);
             this.panel1.PerformLayout();
+            this.flowLayoutPanel3.ResumeLayout(false);
             this.panel2.ResumeLayout(false);
             this.panel3.ResumeLayout(false);
-            this.flowLayoutPanel3.ResumeLayout(false);
             this.ResumeLayout(false);
             this.PerformLayout();
 

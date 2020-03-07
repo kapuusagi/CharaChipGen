@@ -185,18 +185,23 @@ namespace CharaChipGen.ManagementForm
         /// <param name="evt">イベントオブジェクト</param>
         private void OnMaterialEditClicked(object sender, EventArgs evt)
         {
-            int selectedIndex = listViewMaterials.SelectedIndices[0];
-            ListViewItem selectedItem = listViewMaterials.Items[selectedIndex];
-            MaterialList materialList = GetCurrentMaterialList();
-            string materialName = selectedItem.SubItems[0].Text;
-            Material material = materialList.Get(materialName);
-            if (material == null)
+            var selectedIndices = listViewMaterials.SelectedIndices;
+            if (selectedIndices.Count != 1)
             {
                 return;
             }
 
             try
             {
+                int selectedIndex = selectedIndices[0];
+                ListViewItem selectedItem = listViewMaterials.Items[selectedIndex];
+                MaterialList materialList = GetCurrentMaterialList();
+                string materialName = selectedItem.SubItems[0].Text;
+                Material material = materialList.Get(materialName);
+                if (material == null)
+                {
+                    return;
+                }
                 MaterialEditorForm.MaterialEditorForm form
                     = new MaterialEditorForm.MaterialEditorForm();
 
