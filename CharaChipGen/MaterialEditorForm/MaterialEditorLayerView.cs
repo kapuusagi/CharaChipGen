@@ -88,12 +88,12 @@ namespace CharaChipGen.MaterialEditorForm
 
             // レイヤー名
             groupBoxLayerName.Text = layerInfo?.Name ?? "";
-
             // 描画するレイヤー
             SetLayerType(layerInfo?.LayerType ?? null);
-
             // カラー参照
             SetColorRefs(layerInfo?.ColorPartsRefs ?? null);
+            // 色不変設定
+            checkBoxColorImmutable.Checked = layerInfo.ColorImmutable;
         }
 
         /// <summary>
@@ -249,6 +249,16 @@ namespace CharaChipGen.MaterialEditorForm
                 layerInfo.ColorPartsRefs = null;
             }
             NotifyLayerChanged();
+        }
+
+        /// <summary>
+        /// 色不変設定チェックボックスの選択状態が変化したときに通知を受け取る。
+        /// </summary>
+        /// <param name="sender">送信元オブジェクト</param>
+        /// <param name="e">イベントオブジェクト</param>
+        private void OnCheckBoxColorImmutableCheckedChanged(object sender, EventArgs e)
+        {
+            layerInfo.ColorImmutable = checkBoxColorImmutable.Checked;
         }
     }
 }
