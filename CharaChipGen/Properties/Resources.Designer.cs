@@ -61,6 +61,26 @@ namespace CharaChipGen.Properties {
         }
         
         /// <summary>
+        ///   型 System.Drawing.Bitmap のローカライズされたリソースを検索します。
+        /// </summary>
+        internal static System.Drawing.Bitmap CharaChipGen {
+            get {
+                object obj = ResourceManager.GetObject("CharaChipGen", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   (アイコン) に類似した型 System.Drawing.Icon のローカライズされたリソースを検索します。
+        /// </summary>
+        internal static System.Drawing.Icon CharaChipGen1 {
+            get {
+                object obj = ResourceManager.GetObject("CharaChipGen1", resourceCulture);
+                return ((System.Drawing.Icon)(obj));
+            }
+        }
+        
+        /// <summary>
         ///   パーツの設定を使用 に類似しているローカライズされた文字列を検索します。
         /// </summary>
         internal static string ItemNameUsePartsSetting {

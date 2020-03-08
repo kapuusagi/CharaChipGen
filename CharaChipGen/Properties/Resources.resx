@@ -117,25 +117,32 @@
   <resheader name="writer">
     <value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </resheader>
-  <data name="ItemNameUsePartsSetting" xml:space="preserve">
-    <value>パーツの設定を使用</value>
+  <data name="NameEyes" xml:space="preserve">
+    <value>目</value>
   </data>
-  <data name="NameAccessories" xml:space="preserve">
-    <value>アクセサリ</value>
+  <data name="NameHeads" xml:space="preserve">
+    <value>頭</value>
   </data>
   <data name="NameBodies" xml:space="preserve">
     <value>体</value>
   </data>
-  <data name="NameEyes" xml:space="preserve">
-    <value>目</value>
+  <data name="ItemNameUsePartsSetting" xml:space="preserve">
+    <value>パーツの設定を使用</value>
   </data>
   <data name="NameHairStyles" xml:space="preserve">
     <value>髪型</value>
   </data>
+  <data name="NameAccessories" xml:space="preserve">
+    <value>アクセサリ</value>
+  </data>
   <data name="NameHeadAccessories" xml:space="preserve">
     <value>頭部アクセサリ</value>
   </data>
-  <data name="NameHeads" xml:space="preserve">
-    <value>頭</value>
+  <assembly alias="System.Windows.Forms" name="System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089" />
+  <data name="CharaChipGen" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\CharaChipGen.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="CharaChipGen1" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\CharaChipGen.ico;System.Drawing.Icon, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
   </data>
 </root>

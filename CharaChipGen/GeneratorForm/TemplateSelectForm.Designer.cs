@@ -95,10 +95,15 @@
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 12F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(261, 87);
+            this.ControlBox = false;
             this.Controls.Add(this.panel1);
             this.Controls.Add(this.flowLayoutPanel1);
+            this.MaximizeBox = false;
+            this.MinimizeBox = false;
             this.Name = "TemplateSelectForm";
+            this.ShowIcon = false;
             this.Text = "テンプレート選択";
+            this.TopMost = true;
             this.Shown += new System.EventHandler(this.OnFormShown);
             this.flowLayoutPanel1.ResumeLayout(false);
             this.panel1.ResumeLayout(false);

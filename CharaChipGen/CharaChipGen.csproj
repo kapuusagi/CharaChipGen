@@ -33,6 +33,9 @@
     <WarningLevel>4</WarningLevel>
     <Prefer32Bit>false</Prefer32Bit>
   </PropertyGroup>
+  <PropertyGroup>
+    <ApplicationIcon>CharaChipGen.ico</ApplicationIcon>
+  </PropertyGroup>
   <ItemGroup>
     <Reference Include="System" />
     <Reference Include="System.Core" />
@@ -275,6 +278,8 @@
     </ProjectReference>
   </ItemGroup>
   <ItemGroup>
+    <Content Include="CharaChipGen.ico" />
+    <None Include="CharaChipGen.png" />
     <Content Include="doc\MaterialSpec.txt" />
   </ItemGroup>
   <ItemGroup />

@@ -28,19 +28,20 @@
         /// </summary>
         private void InitializeComponent()
         {
-            System.Windows.Forms.TreeNode treeNode8 = new System.Windows.Forms.TreeNode("髪型");
-            System.Windows.Forms.TreeNode treeNode9 = new System.Windows.Forms.TreeNode("頭");
-            System.Windows.Forms.TreeNode treeNode10 = new System.Windows.Forms.TreeNode("目");
-            System.Windows.Forms.TreeNode treeNode11 = new System.Windows.Forms.TreeNode("体");
-            System.Windows.Forms.TreeNode treeNode12 = new System.Windows.Forms.TreeNode("アクセサリ");
-            System.Windows.Forms.TreeNode treeNode13 = new System.Windows.Forms.TreeNode("頭部アクセサリ");
-            System.Windows.Forms.TreeNode treeNode14 = new System.Windows.Forms.TreeNode("キャラチップ素材", new System.Windows.Forms.TreeNode[] {
-            treeNode8,
-            treeNode9,
-            treeNode10,
-            treeNode11,
-            treeNode12,
-            treeNode13});
+            System.Windows.Forms.TreeNode treeNode1 = new System.Windows.Forms.TreeNode("髪型");
+            System.Windows.Forms.TreeNode treeNode2 = new System.Windows.Forms.TreeNode("頭");
+            System.Windows.Forms.TreeNode treeNode3 = new System.Windows.Forms.TreeNode("目");
+            System.Windows.Forms.TreeNode treeNode4 = new System.Windows.Forms.TreeNode("体");
+            System.Windows.Forms.TreeNode treeNode5 = new System.Windows.Forms.TreeNode("アクセサリ");
+            System.Windows.Forms.TreeNode treeNode6 = new System.Windows.Forms.TreeNode("頭部アクセサリ");
+            System.Windows.Forms.TreeNode treeNode7 = new System.Windows.Forms.TreeNode("キャラチップ素材", new System.Windows.Forms.TreeNode[] {
+            treeNode1,
+            treeNode2,
+            treeNode3,
+            treeNode4,
+            treeNode5,
+            treeNode6});
+            System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(MaterialManagementForm));
             this.buttonClose = new System.Windows.Forms.Button();
             this.menuStrip1 = new System.Windows.Forms.MenuStrip();
             this.menuItemFile = new System.Windows.Forms.ToolStripMenuItem();
@@ -119,22 +120,22 @@
             this.treeViewMaterials.Dock = System.Windows.Forms.DockStyle.Fill;
             this.treeViewMaterials.Location = new System.Drawing.Point(8, 8);
             this.treeViewMaterials.Name = "treeViewMaterials";
-            treeNode8.Name = "HairStyles";
-            treeNode8.Text = "髪型";
-            treeNode9.Name = "Heads";
-            treeNode9.Text = "頭";
-            treeNode10.Name = "Eyes";
-            treeNode10.Text = "目";
-            treeNode11.Name = "Bodies";
-            treeNode11.Text = "体";
-            treeNode12.Name = "Accessories";
-            treeNode12.Text = "アクセサリ";
-            treeNode13.Name = "HeadAccessories";
-            treeNode13.Text = "頭部アクセサリ";
-            treeNode14.Name = "CharaChipDirectory";
-            treeNode14.Text = "キャラチップ素材";
+            treeNode1.Name = "HairStyles";
+            treeNode1.Text = "髪型";
+            treeNode2.Name = "Heads";
+            treeNode2.Text = "頭";
+            treeNode3.Name = "Eyes";
+            treeNode3.Text = "目";
+            treeNode4.Name = "Bodies";
+            treeNode4.Text = "体";
+            treeNode5.Name = "Accessories";
+            treeNode5.Text = "アクセサリ";
+            treeNode6.Name = "HeadAccessories";
+            treeNode6.Text = "頭部アクセサリ";
+            treeNode7.Name = "CharaChipDirectory";
+            treeNode7.Text = "キャラチップ素材";
             this.treeViewMaterials.Nodes.AddRange(new System.Windows.Forms.TreeNode[] {
-            treeNode14});
+            treeNode7});
             this.treeViewMaterials.Size = new System.Drawing.Size(147, 287);
             this.treeViewMaterials.TabIndex = 0;
             this.treeViewMaterials.AfterSelect += new System.Windows.Forms.TreeViewEventHandler(this.OnTreeViewItemSelected);
@@ -362,6 +363,7 @@
             this.Controls.Add(this.panel1);
             this.Controls.Add(this.flowLayoutPanel1);
             this.Controls.Add(this.menuStrip1);
+            this.Icon = ((System.Drawing.Icon)(resources.GetObject("$this.Icon")));
             this.MainMenuStrip = this.menuStrip1;
             this.Name = "MaterialManagementForm";
             this.Text = "素材管理";

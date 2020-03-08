@@ -29,6 +29,7 @@
         private void InitializeComponent()
         {
             this.components = new System.ComponentModel.Container();
+            System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(CharaChipGeneratorForm));
             this.panelCharaChipParts = new System.Windows.Forms.Panel();
             this.partsViewHeadAccessory2 = new CharaChipGen.GeneratorForm.CharaChipGeneratorPartsView();
             this.partsViewHeadAccessory1 = new CharaChipGen.GeneratorForm.CharaChipGeneratorPartsView();
@@ -270,6 +271,7 @@
             this.Controls.Add(this.tableLayoutPanel1);
             this.Controls.Add(this.flowLayoutPanel1);
             this.Controls.Add(this.menuStrip1);
+            this.Icon = ((System.Drawing.Icon)(resources.GetObject("$this.Icon")));
             this.Name = "CharaChipGeneratorForm";
             this.Text = "キャラチップ設定";
             this.FormClosed += new System.Windows.Forms.FormClosedEventHandler(this.OnFormClosed);

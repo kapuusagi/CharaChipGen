@@ -29,7 +29,8 @@
         private void InitializeComponent()
         {
             this.components = new System.ComponentModel.Container();
-            CharaChipGen.Model.MaterialRenderData materialRenderData3 = new CharaChipGen.Model.MaterialRenderData();
+            CharaChipGen.Model.MaterialRenderData materialRenderData1 = new CharaChipGen.Model.MaterialRenderData();
+            System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(MaterialViewForm));
             this.flowLayoutPanel1 = new System.Windows.Forms.FlowLayoutPanel();
             this.buttonClose = new System.Windows.Forms.Button();
             this.panel1 = new System.Windows.Forms.Panel();
@@ -74,8 +75,8 @@
             // 
             this.materialView.Dock = System.Windows.Forms.DockStyle.Fill;
             this.materialView.Location = new System.Drawing.Point(8, 8);
-            materialRenderData3.Material = null;
-            this.materialView.MaterialRenderData = materialRenderData3;
+            materialRenderData1.Material = null;
+            this.materialView.MaterialRenderData = materialRenderData1;
             this.materialView.Name = "materialView";
             this.materialView.Size = new System.Drawing.Size(394, 405);
             this.materialView.TabIndex = 0;
@@ -91,6 +92,7 @@
             this.ClientSize = new System.Drawing.Size(410, 450);
             this.Controls.Add(this.panel1);
             this.Controls.Add(this.flowLayoutPanel1);
+            this.Icon = ((System.Drawing.Icon)(resources.GetObject("$this.Icon")));
             this.Name = "MaterialViewForm";
             this.Text = "MaterialViewForm";
             this.FormClosing += new System.Windows.Forms.FormClosingEventHandler(this.OnFormClosing);
