@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Drawing;
 using System.Windows.Forms;
+using System.ComponentModel;
 
 namespace CharaChipGen.MainForm
 {
@@ -9,16 +10,26 @@ namespace CharaChipGen.MainForm
     /// </summary>
     public partial class CharacterEntryView : UserControl
     {
+        /// <summary>
+        /// ボタンがクリックされたときに通知を受け取る。
+        /// </summary>
         public event EventHandler ButtonClick;
-
+        // キャラチップ画像
         private Image charaChipImage;
-        private Image faceImage;
 
+        /// <summary>
+        /// 新しいインスタンスを構築する。
+        /// </summary>
         public CharacterEntryView()
         {
             InitializeComponent();
         }
 
+        /// <summary>
+        /// コンポーネントがリサイズされたときに通知を受け取る。
+        /// </summary>
+        /// <param name="sender">送信元オブジェクト</param>
+        /// <param name="e">イベントオブジェクト</param>
         private void OnResized(object sender, EventArgs e)
         {
             Invalidate();
@@ -27,7 +38,7 @@ namespace CharaChipGen.MainForm
         /// <summary>
         /// UIの描画を行う。
         /// </summary>
-        /// <param name="e"></param>
+        /// <param name="e">イベントオブジェクト</param>
         protected override void OnPaint(PaintEventArgs e)
         {
             base.OnPaint(e);
@@ -40,15 +51,13 @@ namespace CharaChipGen.MainForm
             Graphics g = e.Graphics;
             int x = margin;
             int y = margin;
-            if (faceImage != null)
-            {
-                g.DrawImage(faceImage, new Rectangle(x, y, width, height));
-            }
+
             if (charaChipImage != null)
             {
-                int charaChipX = x + width - charaChipImage.Width;
-                int charaChipY = y + width - charaChipImage.Height;
-                g.DrawImageUnscaled(charaChipImage, charaChipX, charaChipY);
+                int xOffset = (Bounds.Width - charaChipImage.Width) / 2;
+                int yOffset = (Bounds.Height - charaChipImage.Height) / 2;
+
+                g.DrawImageUnscaled(charaChipImage, xOffset, yOffset);
             }
 
             Pen pen = new Pen(Color.Black);
@@ -66,6 +75,7 @@ namespace CharaChipGen.MainForm
         /// <summary>
         /// イメージ
         /// </summary>
+        [Browsable(false)]
         public Image Image {
             get { return charaChipImage; }
             set {
@@ -74,14 +84,9 @@ namespace CharaChipGen.MainForm
             }
         }
 
-        public Image FaceImage {
-            get { return faceImage; }
-            set {
-                faceImage = value;
-                Invalidate();
-            }
-        }
-
+        /// <summary>
+        /// イメージエリアサイズ
+        /// </summary>
         public Size ImageAreaSize {
             get {
                 int inset = 4;

@@ -239,9 +239,16 @@ namespace CharaChipGen.Model.Layer
         /// 推奨する画像の幅
         /// </summary>
         public int PreferredWidth {
+            get => PreferredCharaChipWidth * 3;
+        }
+
+        /// <summary>
+        /// 推奨するキャラチップ画像の1パターンの幅
+        /// </summary>
+        public int PreferredCharaChipWidth {
             get {
-                return (this.image != null)
-                    ? image.Width + Math.Abs(offsetX) : Math.Abs(offsetX);
+                return ((this.image != null)
+                    ? image.Width + Math.Abs(offsetX) : Math.Abs(offsetX)) / 3;
             }
         }
 
@@ -249,9 +256,16 @@ namespace CharaChipGen.Model.Layer
         /// 推奨する画像の高さ
         /// </summary>
         public int PreferredHeight {
+            get => PreferredCharaChipHeight * 4;
+        }
+
+        /// <summary>
+        /// 推奨するキャラチップ画像の1パターンの高さ
+        /// </summary>
+        public int PreferredCharaChipHeight {
             get {
-                return (this.image != null)
-                    ? image.Height + Math.Abs(offsetY) : Math.Abs(offsetY);
+                return ((this.image != null)
+                    ? image.Height + Math.Abs(offsetY) : Math.Abs(offsetY)) / 4;
             }
         }
 

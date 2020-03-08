@@ -166,7 +166,7 @@ namespace CharaChipGen.MainForm
             // キャラクタチップデータ
             CharaChipRenderData renderData = new CharaChipRenderData();
             character.CopyTo(renderData.Character);
-            Size cchipPrefSize = renderData.PreferredSize;
+            Size cchipPrefSize = renderData.PreferredCharaChipSize;
             if ((cchipPrefSize.Width > 0) && (cchipPrefSize.Height > 0))
             {
                 ImageBuffer charaChipBuffer = ImageBuffer.Create(cchipPrefSize.Width, cchipPrefSize.Height);
@@ -436,7 +436,7 @@ namespace CharaChipGen.MainForm
         /// </summary>
         /// <param name="sender">送信元オブジェクト</param>
         /// <param name="evt">イベント。</param>
-        private void MainForm_FormClosing(object sender, FormClosingEventArgs evt)
+        private void OnFormClosing(object sender, FormClosingEventArgs evt)
         {
 
             // 次回起動時、作業を継続できるように現在の設定を保存しておく。

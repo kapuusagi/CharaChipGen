@@ -137,6 +137,29 @@ namespace CharaChipGen.Model
         }
 
         /// <summary>
+        /// キャラチップの1パターンを描画するのに最適なサイズを取得する。
+        /// 1キャラクターの1パターンを描画するサイズ。
+        /// </summary>
+        public Size PreferredCharaChipSize {
+            get {
+                int width = 0;
+                int height = 0;
+                foreach (RenderLayer layer in this)
+                {
+                    if (layer.PreferredCharaChipWidth > width)
+                    {
+                        width = layer.PreferredCharaChipWidth;
+                    }
+                    if (layer.PreferredCharaChipHeight > height)
+                    {
+                        height = layer.PreferredCharaChipHeight;
+                    }
+                }
+                return new Size(width, height);
+            }
+        }
+
+        /// <summary>
         /// 推奨される幅
         /// 
         /// 1キャラクタを表示するために必要な幅が返る。
