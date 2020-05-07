@@ -116,14 +116,14 @@ namespace CharaChipGen.GeneratorForm
         /// <summary>
         /// 選択可能なマテリアルリストを初期化する。
         /// </summary>
-        /// <param name="ml"></param>
-        public void SetMaterialList(MaterialList ml)
+        /// <param name="materialList">マテリアルリスト</param>
+        public void SetMaterialList(MaterialList materialList)
         {
             comboBoxItem.Items.Clear();
             comboBoxItem.Items.Add(ItemNoSelect);
-            foreach (Material m in ml)
+            foreach (Material material in materialList)
             {
-                comboBoxItem.Items.Add(m);
+                comboBoxItem.Items.Add(material);
             }
 
             comboBoxItem.SelectedIndex = 0; // 未選択状態
@@ -155,8 +155,8 @@ namespace CharaChipGen.GeneratorForm
         /// <summary>
         /// 調整ボタンがクリックされた時の処理を行う。
         /// </summary>
-        /// <param name="sender"></param>
-        /// <param name="e"></param>
+        /// <param name="sender">送信元オブジェクト</param>
+        /// <param name="e">イベントオブジェクト</param>
         private void OnButtonAdjustClick(object sender, EventArgs e)
         {
             toolStripDropDown.Show(Cursor.Position);
@@ -166,8 +166,8 @@ namespace CharaChipGen.GeneratorForm
         /// <summary>
         /// コンボボックスで項目が描画されるときに通知を受け取る。
         /// </summary>
-        /// <param name="sender"></param>
-        /// <param name="e"></param>
+        /// <param name="sender">送信元オブジェクト</param>
+        /// <param name="e">イベントオブジェクト</param>
         private void OnComboBoxDrawItem(object sender, DrawItemEventArgs e)
         {
             e.DrawBackground();

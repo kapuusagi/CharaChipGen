@@ -8,7 +8,7 @@
         /// <param name="hue">色差</param>
         /// <param name="saturation">彩度</param>
         /// <param name="value">輝度</param>
-        /// <returns></returns>
+        /// <returns>色</returns>
         public static ColorHSV FromHSV(int hue, int saturation, int value)
         {
             ColorHSV c = new ColorHSV();
@@ -49,6 +49,15 @@
         /// </summary>
         public byte Value {
             get { return value; }
+        }
+
+        /// <summary>
+        /// このオブジェクトの文字列表現を得る。
+        /// </summary>
+        /// <returns>文字列</returns>
+        public override string ToString()
+        {
+            return $"H:{hue} S:{saturation} V:{Value}";
         }
     }
 }

@@ -6,10 +6,10 @@ namespace CGenImaging
     public class ImageBuffer
     {
         /// <summary>
-        /// イメージバッファを作成する
+        /// imageを元にイメージバッファを作成する
         /// </summary>
-        /// <param name="image"></param>
-        /// <returns></returns>
+        /// <param name="image">基にするImageオブジェクト</param>
+        /// <returns>ImageBufferオブジェクト</returns>
         public static ImageBuffer CreateFrom(Image image)
         {
             Bitmap bmp = new Bitmap(image);
@@ -32,9 +32,9 @@ namespace CGenImaging
         /// <summary>
         /// 空のイメージバッファを作成する
         /// </summary>
-        /// <param name="width"></param>
-        /// <param name="height"></param>
-        /// <returns></returns>
+        /// <param name="width">水平方向ピクセル数</param>
+        /// <param name="height">垂直方向ピクセル数</param>
+        /// <returns>ImageBufferオブジェクト</returns>
         public static ImageBuffer Create(int width, int height)
         {
             int stride = width * 4; /* BGRA, PixelFormat.Format32bppArgb */
@@ -44,47 +44,42 @@ namespace CGenImaging
         }
 
 
-        private byte[] buffer;
-        int width;
-        int height;
-        int lineBytes;
+        private byte[] buffer; // バッファ
+        private readonly int lineBytes; // 1行あたりのバイト数
 
         /// <summary>
-        /// コンストラクタ
+        /// bufferをデータバッファとしたイメージバッファを作成する。
         /// </summary>
-        /// <param name="buffer"></param>
-        /// <param name="width"></param>
-        /// <param name="height"></param>
-        /// <param name="lineBytes"></param>
+        /// <param name="buffer">データバッファ</param>
+        /// <param name="width">水平方向ピクセル数</param>
+        /// <param name="height">垂直方向ピクセル数</param>
+        /// <param name="lineBytes">1ラインあたりのバイト数</param>
         private ImageBuffer(byte[] buffer, int width, int height, int lineBytes)
         {
             this.buffer = buffer;
-            this.width = width;
-            this.height = height;
+            this.Width = width;
+            this.Height = height;
             this.lineBytes = lineBytes;
         }
 
         /// <summary>
         /// 幅
         /// </summary>
-        public int Width {
-            get { return this.width; }
-        }
+        public int Width { get; }
         /// <summary>
         /// 高さ
         /// </summary>
-        public int Height {
-            get { return height; }
-        }
+        public int Height { get; }
         /// <summary>
         /// 指定位置のピクセルを取得する。
+        /// X,Yが範囲外の時は透明色が返る。
         /// </summary>
-        /// <param name="x"></param>
-        /// <param name="y"></param>
-        /// <returns></returns>
+        /// <param name="x">X座標</param>
+        /// <param name="y">Y座標</param>
+        /// <returns>ピクセル値</returns>
         public Color GetPixel(int x, int y)
         {
-            if ((x < 0) || (x >= width) || (y < 0) || (y >= height))
+            if ((x < 0) || (x >= Width) || (y < 0) || (y >= Height))
             {
                 return Color.FromArgb(0, 0, 0, 0);
             }
@@ -101,13 +96,14 @@ namespace CGenImaging
 
         /// <summary>
         /// 指定位置のピクセルを設定する。
+        /// X,Yが範囲外の時は何もしない。
         /// </summary>
-        /// <param name="x"></param>
-        /// <param name="y"></param>
-        /// <param name="c"></param>
+        /// <param name="x">X座標</param>
+        /// <param name="y">Y座標</param>
+        /// <param name="c">カラー</param>
         public void SetPixel(int x, int y, Color c)
         {
-            if ((x < 0) || (x >= width) || (y < 0) || (y >= height))
+            if ((x < 0) || (x >= Width) || (y < 0) || (y >= Height))
             {
                 return;
             }
@@ -122,13 +118,13 @@ namespace CGenImaging
         /// <summary>
         /// 指定色で塗りつぶす。
         /// </summary>
-        /// <param name="c"></param>
+        /// <param name="c">色</param>
         public void Fill(Color c)
         {
-            for (int y = 0; y < height; y++)
+            for (int y = 0; y < Height; y++)
             {
                 int pos = y * lineBytes;
-                for (int x = 0; x < width; x++)
+                for (int x = 0; x < Width; x++)
                 {
                     buffer[pos + 0] = c.B;
                     buffer[pos + 1] = c.G;
@@ -144,10 +140,10 @@ namespace CGenImaging
         /// </summary>
         public void Clear()
         {
-            for (int y = 0; y < height; y++)
+            for (int y = 0; y < Height; y++)
             {
                 int pos = y * lineBytes;
-                for (int x = 0; x < width; x++)
+                for (int x = 0; x < Width; x++)
                 {
                     buffer[pos + 0] = 0;
                     buffer[pos + 1] = 0;
@@ -194,10 +190,10 @@ namespace CGenImaging
                     int srcY = srcYOffs + y;
                     int dstX = dstXOffs + x;
                     int dstY = dstYOffs + y;
-                    if ((srcX < 0) || (srcX >= srcImage.width)
-                        || (srcY < 0) || (srcY >= srcImage.height)
-                        || (dstX < 0) || (dstX >= width)
-                        || (dstY < 0) || (dstY >= height))
+                    if ((srcX < 0) || (srcX >= srcImage.Width)
+                        || (srcY < 0) || (srcY >= srcImage.Height)
+                        || (dstX < 0) || (dstX >= Width)
+                        || (dstY < 0) || (dstY >= Height))
                     {
                         continue; // コピーする部分のピクセルが範囲外
                     }
@@ -208,14 +204,14 @@ namespace CGenImaging
         }
 
         /// <summary>
-        /// イメージを取得する
+        /// イメージを取得する。
         /// </summary>
-        /// <returns></returns>
+        /// <returns>Imageオブジェクト</returns>
         public Image GetImage()
         {
-            Bitmap bitmap = new Bitmap(width, height, PixelFormat.Format32bppArgb);
+            Bitmap bitmap = new Bitmap(Width, Height, PixelFormat.Format32bppArgb);
 
-            BitmapData bmpData = bitmap.LockBits(new System.Drawing.Rectangle(0, 0, width, height),
+            BitmapData bmpData = bitmap.LockBits(new System.Drawing.Rectangle(0, 0, Width, Height),
                 ImageLockMode.ReadWrite, PixelFormat.Format32bppArgb);
 
             System.Runtime.InteropServices.Marshal.Copy(buffer, 0, bmpData.Scan0, buffer.Length);

@@ -118,7 +118,8 @@ namespace CharaChipGen.GeneratorForm
         private void OnMenuItemSaveAsTemplateClick(object sender, EventArgs e)
         {
             string defaultName = GenerateDefaultTemplateName();
-            string templateName = InputForm.InputForm.ShowDialog(this, "テンプレート名を入力", "入力", defaultName);
+            string templateName = InputForm.InputForm.ShowDialog(this,
+                "テンプレート名を入力", "入力", defaultName);
             if (templateName == null)
             {
                 return;
@@ -129,7 +130,8 @@ namespace CharaChipGen.GeneratorForm
                 CheckTemplateName(templateName);
 
                 // テンプレート保存
-                string templateDir = System.IO.Path.Combine(AppData.Instance.MaterialDirectory, "Template");
+                string templateDir = System.IO.Path.Combine(
+                    AppData.Instance.MaterialDirectory, "Template");
                 if (!System.IO.Directory.Exists(templateDir))
                 {
                     System.IO.Directory.CreateDirectory(templateDir);
