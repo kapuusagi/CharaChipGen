@@ -67,15 +67,22 @@ namespace CharaChipGen.Model.Material
                 string entryFileDir = System.IO.Path.GetDirectoryName(entryFile.Path);
                 var layerInfo = entryFile.GetLayer(index);
 
-                string materialPath = System.IO.Path.Combine(entryFileDir, layerInfo.Path);
-
-                if (System.IO.File.Exists(materialPath))
+                if (string.IsNullOrEmpty(layerInfo.Path))
                 {
-                    return Bitmap.FromFile(materialPath);
+                    return null;
                 }
                 else
                 {
-                    return null;
+                    string materialPath = System.IO.Path.Combine(entryFileDir, layerInfo.Path);
+
+                    if (System.IO.File.Exists(materialPath))
+                    {
+                        return Bitmap.FromFile(materialPath);
+                    }
+                    else
+                    {
+                        return null;
+                    }
                 }
             }
             else
