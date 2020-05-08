@@ -28,7 +28,7 @@ namespace CGenImaging
             float h = ColorUtility.GetHueWithLimitedRange((srcHSV.Hue + hue) % 360.0f);
 
             float s = ColorUtility.ModifyValueByPercent(srcHSV.Saturation, 0f, 1.0f, saturation / 255.0f);
-            float v = ColorUtility.Restrict(srcHSV.Value * (1.0f + value / 255.0f), 0.0f, 1.0f);
+            float v = ColorUtility.ModifyValueByPercent(srcHSV.Value, 0f, 1.0f, value / 255.0f);
 
             return ColorConverter.ConvertHSVtoRGB(ColorHSV.FromHSV(h, s, v), c.A);
         }
@@ -81,9 +81,9 @@ namespace CGenImaging
             float h = ColorUtility.GetHueWithLimitedRange((srcHSL.Hue + hue) % 360.0f);
 
             float s = ColorUtility.ModifyValueByPercent(srcHSL.Saturation, 0f, 1.0f, saturation / 255.0f);
-            float v = ColorUtility.Restrict(srcHSL.Lightness * (1.0f + lightness / 255.0f), 0.0f, 1.0f);
+            float l = ColorUtility.ModifyValueByPercent(srcHSL.Lightness, 0f, 1.0f, lightness / 255.0f);
 
-            return ColorConverter.ConvertHSLtoRGB(ColorHSL.FromHSL(h, s, v), c.A);
+            return ColorConverter.ConvertHSLtoRGB(ColorHSL.FromHSL(h, s, l), c.A);
         }
         /// <summary>
         /// HSVの色調整を行ったデータを返す。
