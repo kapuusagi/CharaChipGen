@@ -36,9 +36,29 @@ namespace CGenImaging
         /// HSVからRGBへ変換を行う
         /// </summary>
         /// <param name="hsv">HSVカラー</param>
-        /// <param name="arpha">アルファ値</param>
         /// <returns>RGBカラーが返る</returns>
-        public static Color ConvertHSVtoRGB(ColorHSV hsv, byte arpha)
+        public static Color ConvertHSVtoRGB(ColorHSV hsv)
+            => ConvertHSVtoRGB(hsv, hsv.Alpha);
+
+        /// <summary>
+        /// HSVからRGBへ変換を行う
+        /// </summary>
+        /// <param name="hsv">HSVカラー</param>
+        /// <param name="alpha">アルファ値(0≦alpha≦1.0)</param>
+        /// <returns>RGBカラーが返る</returns>
+        public static Color ConvertHSVtoRGB(ColorHSV hsv, float alpha)
+        {
+            float a = ColorUtility.Restrict(alpha * 255.0f, 0.0f, 1.0f);
+            return ConvertHSVtoRGB(hsv, (byte)(a));
+        }
+
+        /// <summary>
+        /// HSVからRGBへ変換を行う
+        /// </summary>
+        /// <param name="hsv">HSVカラー</param>
+        /// <param name="alpha">アルファ値(0≦alpha≦255)</param>
+        /// <returns>RGBカラーが返る</returns>
+        public static Color ConvertHSVtoRGB(ColorHSV hsv, byte alpha)
         {
             int h = (Convert.ToInt32(hsv.Hue) / 60) % 6;
             int v = Convert.ToInt32(hsv.Value * 255.0f);
@@ -48,19 +68,19 @@ namespace CGenImaging
             switch (h)
             {
                 case 0:
-                    return ColorUtility.GetColor(arpha, v, t, p);
+                    return ColorUtility.GetColor(alpha, v, t, p);
                 case 1:
-                    return ColorUtility.GetColor(arpha, q, v, p);
+                    return ColorUtility.GetColor(alpha, q, v, p);
                 case 2:
-                    return ColorUtility.GetColor(arpha, p, v, t);
+                    return ColorUtility.GetColor(alpha, p, v, t);
                 case 3:
-                    return ColorUtility.GetColor(arpha, p, q, v);
+                    return ColorUtility.GetColor(alpha, p, q, v);
                 case 4:
-                    return ColorUtility.GetColor(arpha, t, p, v);
+                    return ColorUtility.GetColor(alpha, t, p, v);
                 case 5:
-                    return ColorUtility.GetColor(arpha, v, p, q);
+                    return ColorUtility.GetColor(alpha, v, p, q);
                 default:
-                    return ColorUtility.GetColor(arpha, 0, 0, 0);
+                    return ColorUtility.GetColor(alpha, 0, 0, 0);
             }
         }
 
@@ -97,9 +117,29 @@ namespace CGenImaging
         /// HSLからRGBへ変換を行う。
         /// </summary>
         /// <param name="hsl">HSL色</param>
-        /// <param name="arpha">アルファ値(0≦arpha≦255)</param>
         /// <returns>RGB色</returns>
-        public static Color ConvertHSLtoRGB(ColorHSL hsl, byte arpha)
+        public static Color ConvertHSLtoRGB(ColorHSL hsl)
+            => ConvertHSLtoRGB(hsl, hsl.Alpha);
+
+        /// <summary>
+        /// HSLからRGBへ変換を行う。
+        /// </summary>
+        /// <param name="hsl">HSL色</param>
+        /// <param name="alpha">アルファ値(0≦alpha≦1.0)</param>
+        /// <returns>RGB色</returns>
+        public static Color ConvertHSLtoRGB(ColorHSL hsl, float alpha)
+        {
+            int a = Convert.ToInt32(ColorUtility.Restrict(alpha * 255.0f, 0.0f, 1.0f));
+            return ConvertHSLtoRGB(hsl, (byte)(a));
+        }
+
+        /// <summary>
+        /// HSLからRGBへ変換を行う。
+        /// </summary>
+        /// <param name="hsl">HSL色</param>
+        /// <param name="alpha">アルファ値(0≦alpha≦255)</param>
+        /// <returns>RGB色</returns>
+        public static Color ConvertHSLtoRGB(ColorHSL hsl, byte alpha)
         {
             int h = (Convert.ToInt32(hsl.Hue) / 60) % 6;
             float min = (hsl.Lightness < 0.5f)
@@ -115,45 +155,45 @@ namespace CGenImaging
                         int r = Convert.ToInt32(max);
                         int g = Convert.ToInt32((hsl.Hue / 60.0f) * (max - min) + min);
                         int b = Convert.ToInt32(min);
-                        return ColorUtility.GetColor(arpha, r, g, b);
+                        return ColorUtility.GetColor(alpha, r, g, b);
                     }
                 case 1:
                     {
                         int r = Convert.ToInt32(((120.0f - hsl.Hue) / 60.0f) * (max - min) + min);
                         int g = Convert.ToInt32(max);
                         int b = Convert.ToInt32(min);
-                        return ColorUtility.GetColor(arpha, r, g, b);
+                        return ColorUtility.GetColor(alpha, r, g, b);
                     }
                 case 2:
                     {
                         int r = Convert.ToInt32(min);
                         int g = Convert.ToInt32(max);
                         int b = Convert.ToInt32(((hsl.Hue - 120.0f) / 60.0f) * (max - min) + min);
-                        return ColorUtility.GetColor(arpha, r, g, b);
+                        return ColorUtility.GetColor(alpha, r, g, b);
                     }
                 case 3:
                     {
                         int r = Convert.ToInt32(min);
                         int g = Convert.ToInt32(((240 - hsl.Hue) / 60.0f) * (max - min) + min);
                         int b = Convert.ToInt32(max);
-                        return ColorUtility.GetColor(arpha, r, g, b);
+                        return ColorUtility.GetColor(alpha, r, g, b);
                     }
                 case 4:
                     {
                         int r = Convert.ToInt32(((hsl.Hue - 240) / 60.0f) * (max - min) + min);
                         int g = Convert.ToInt32(min);
                         int b = Convert.ToInt32(max);
-                        return ColorUtility.GetColor(arpha, r, g, b);
+                        return ColorUtility.GetColor(alpha, r, g, b);
                     }
                 case 5:
                     {
                         int r = Convert.ToInt32(max);
                         int g = Convert.ToInt32(min);
                         int b = Convert.ToInt32(((360 - hsl.Hue) / 60.0f) * (max - min) + min);
-                        return ColorUtility.GetColor(arpha, r, g, b);
+                        return ColorUtility.GetColor(alpha, r, g, b);
                     }
                 default:
-                    return ColorUtility.GetColor(arpha, 0, 0, 0);
+                    return ColorUtility.GetColor(alpha, 0, 0, 0);
             }
         }
 
