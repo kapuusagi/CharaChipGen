@@ -7,34 +7,6 @@ namespace CGenImaging
     /// </summary>
     public class ImageProcessor
     {
-        /// <summary>
-        /// 指定された割合分だけ変化させた値を返す。
-        /// </summary>
-        /// <param name="value">値</param>
-        /// <param name="min">valueの取り得る最小値</param>
-        /// <param name="max">valueの取り得る最大値</param>
-        /// <param name="modifyPercent">変更割合(-1.0≦modifyPercent≦1.0)</param>
-        /// <returns>変化させた値</returns>
-        private static int ModifyValueByPercent(int value, int min, int max, float modifyPercent)
-        {
-            float d;
-            if (modifyPercent > 0)
-            {
-                float diff = (max - value) * modifyPercent;
-                d = value + diff;
-            }
-            else if (modifyPercent < 0)
-            {
-                float diff = (value - min) * (modifyPercent);
-                d = value + diff;
-            }
-            else
-            {
-                d = value;
-            }
-
-            return Clamp(d, min, max);
-        }
 
 
         /// <summary>
@@ -43,7 +15,7 @@ namespace CGenImaging
         /// <param name="c">カラー</param>
         /// <param name="hue">色差加算値(-360≦hue≦360)</param>
         /// <param name="saturation">彩度加割合(-255≦saturation≦255)</param>
-        /// <param name="value">輝度加算割合(-255≦saturation≦255)</param>
+        /// <param name="value">明度加算割合(-255≦value≦255)</param>
         /// <returns></returns>
         public static Color ProcessHSVFilter(Color c, int hue, int saturation, int value)
         {
@@ -53,9 +25,10 @@ namespace CGenImaging
             }
 
             ColorHSV srcHSV = ColorConverter.ConvertRGBtoHSV(c);
-            int h = (srcHSV.Hue + hue) % 360;
-            int s = ModifyValueByPercent(srcHSV.Saturation, 0, 255, saturation / 255.0f);
-            int v = Clamp(srcHSV.Value * (1.0f + value / 255.0f));
+            float h = ColorUtility.GetHueWithLimitedRange((srcHSV.Hue + hue) % 360.0f);
+
+            float s = ColorUtility.ModifyValueByPercent(srcHSV.Saturation, 0f, 1.0f, saturation / 255.0f);
+            float v = ColorUtility.Restrict(srcHSV.Value * (1.0f + value / 255.0f), 0.0f, 1.0f);
 
             return ColorConverter.ConvertHSVtoRGB(ColorHSV.FromHSV(h, s, v), c.A);
         }
@@ -66,7 +39,7 @@ namespace CGenImaging
         /// <param name="image">画像</param>
         /// <param name="hue">色相加算値(-360≦hue≦360)</param>
         /// <param name="saturation">彩度加算割合(-255≦saturation≦255)</param>
-        /// <param name="value">輝度加算割合(-255≦saturation≦255)</param>
+        /// <param name="value">明度加算割合(-255≦value≦255)</param>
         /// <returns>イメージを返す</returns>
         public static ImageBuffer ProcessHSVFilter(ImageBuffer image, int hue, int saturation, int value)
         {
@@ -89,6 +62,57 @@ namespace CGenImaging
             return dst;
         }
 
+        /// <summary>
+        /// HSVの色調整を行ってピクセルデータを返す。
+        /// </summary>
+        /// <param name="c">カラー</param>
+        /// <param name="hue">色差加算値(-360≦hue≦360)</param>
+        /// <param name="saturation">彩度加割合(-255≦saturation≦255)</param>
+        /// <param name="lightness">輝度加算割合(-255≦lightness≦255)</param>
+        /// <returns></returns>
+        public static Color ProcessHSLFilter(Color c, int hue, int saturation, int lightness)
+        {
+            if (((hue == 0) && (saturation == 0) && (lightness == 0)))
+            {
+                return c; // 色変換しない。
+            }
+
+            ColorHSL srcHSL = ColorConverter.ConvertRGBtoHSL(c);
+            float h = ColorUtility.GetHueWithLimitedRange((srcHSL.Hue + hue) % 360.0f);
+
+            float s = ColorUtility.ModifyValueByPercent(srcHSL.Saturation, 0f, 1.0f, saturation / 255.0f);
+            float v = ColorUtility.Restrict(srcHSL.Lightness * (1.0f + lightness / 255.0f), 0.0f, 1.0f);
+
+            return ColorConverter.ConvertHSLtoRGB(ColorHSL.FromHSL(h, s, v), c.A);
+        }
+        /// <summary>
+        /// HSVの色調整を行ったデータを返す。
+        /// </summary>
+        /// <param name="image">画像</param>
+        /// <param name="hue">色相加算値(-360≦hue≦360)</param>
+        /// <param name="saturation">彩度加算割合(-255≦saturation≦255)</param>
+        /// <param name="lightness">輝度加算割合(-255≦lightness≦255)</param>
+        /// <returns>イメージを返す</returns>
+        public static ImageBuffer ProcessHSLFilter(ImageBuffer image, int hue, int saturation, int lightness)
+        {
+            if ((hue == 0) || (saturation == 0) || (lightness == 0))
+            {
+                return image;
+            }
+
+            ImageBuffer dst = ImageBuffer.Create(image.Width, image.Height);
+
+            for (int y = 0; y < image.Height; y++)
+            {
+                for (int x = 0; x < image.Width; x++)
+                {
+                    Color srcColor = image.GetPixel(x, y);
+
+                    dst.SetPixel(x, y, ProcessHSLFilter(srcColor, hue, saturation, lightness));
+                }
+            }
+            return dst;
+        }
         /// <summary>
         /// colorで指定した色相の画像を得る。
         /// </summary>
@@ -138,9 +162,9 @@ namespace CGenImaging
             float v = 0.2126f * color.R / 255.0f
                 + 0.7152f * color.G / 255.0f
                 + 0.0722f * color.B / 255.0f;
-            int r = Clamp(modifyTo.R * v);
-            int g = Clamp(modifyTo.G * v);
-            int b = Clamp(modifyTo.B * v);
+            int r = ColorUtility.Restrict((int)(modifyTo.R * v), 0, 255);
+            int g = ColorUtility.Restrict((int)(modifyTo.G * v), 0, 255);
+            int b = ColorUtility.Restrict((int)(modifyTo.B * v), 0, 255);
             return Color.FromArgb(color.A, r, g, b);
         }
 
@@ -163,42 +187,14 @@ namespace CGenImaging
             {
                 return Color.FromArgb(0, 0, 0, 0);
             }
-            int r = Clamp((a1 * (c1.R + c2.R) / 2 + a2 * c1.R + a3 * c2.R) / alpha);
-            int g = Clamp((a1 * (c1.G + c2.G) / 2 + a2 * c1.G + a3 * c2.G) / alpha);
-            int b = Clamp((a1 * (c1.B + c2.B) / 2 + a2 * c1.B + a3 * c2.B) / alpha);
-            int a = Clamp(alpha * 255);
+            int r = (int)(ColorUtility.Restrict((a1 * (c1.R + c2.R) / 2 + a2 * c1.R + a3 * c2.R) / alpha, 0, 255));
+            int g = (int)(ColorUtility.Restrict((a1 * (c1.G + c2.G) / 2 + a2 * c1.G + a3 * c2.G) / alpha, 0, 255));
+            int b = (int)(ColorUtility.Restrict((a1 * (c1.B + c2.B) / 2 + a2 * c1.B + a3 * c2.B) / alpha, 0, 255));
+            int a = (int)(ColorUtility.Restrict(alpha * 255, 0, 255));
             return Color.FromArgb(a, r, g, b);
         }
 
-        /// <summary>
-        /// クランプする。
-        /// </summary>
-        /// <param name="d">クランプさせる値。</param>
-        /// <returns>クランプした値</returns>
-        private static int Clamp(float d) => Clamp(d, 0, 255);
 
-        /// <summary>
-        /// クランプする。
-        /// </summary>
-        /// <param name="d">クランプさせる値。</param>
-        /// <param name="min">最小値</param>
-        /// <param name="max">最大値</param>
-        /// <returns>クランプした値</returns>
-        private static int Clamp(float d, int min, int max)
-        {
-            if (d < min)
-            {
-                return min;
-            }
-            else if (d > max)
-            {
-                return max;
-            }
-            else
-            {
-                return (int)(d);
-            }
-        }
 
         /// <summary>
         /// 画像をブレンド処理する。

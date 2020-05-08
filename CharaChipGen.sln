@@ -1,7 +1,7 @@
 ﻿
 Microsoft Visual Studio Solution File, Format Version 12.00
-# Visual Studio 15
-VisualStudioVersion = 15.0.27703.2042
+# Visual Studio Version 16
+VisualStudioVersion = 16.0.29806.167
 MinimumVisualStudioVersion = 10.0.40219.1
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "CharaChipGen", "CharaChipGen\CharaChipGen.csproj", "{B420D5D8-F835-459E-99E2-E7D9CAA86C36}"
 EndProject
@@ -10,6 +10,8 @@ EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "IconSetViewer", "IconSetViewer\IconSetViewer.csproj", "{FF88A3C5-044F-4E80-AF0D-BD5D42E762C8}"
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "CGenImaging", "CGenImaging\CGenImaging.csproj", "{B8D39ADA-E6E0-4D88-97EE-A5DC1346AADE}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "CGenImagingTest", "CGenImagingTest\CGenImagingTest.csproj", "{9E03AB7D-8D9A-40F0-B67B-D09453182162}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -33,6 +35,10 @@ Global
 		{B8D39ADA-E6E0-4D88-97EE-A5DC1346AADE}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{B8D39ADA-E6E0-4D88-97EE-A5DC1346AADE}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{B8D39ADA-E6E0-4D88-97EE-A5DC1346AADE}.Release|Any CPU.Build.0 = Release|Any CPU
+		{9E03AB7D-8D9A-40F0-B67B-D09453182162}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{9E03AB7D-8D9A-40F0-B67B-D09453182162}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{9E03AB7D-8D9A-40F0-B67B-D09453182162}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{9E03AB7D-8D9A-40F0-B67B-D09453182162}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
