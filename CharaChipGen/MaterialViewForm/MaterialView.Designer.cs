@@ -151,6 +151,7 @@
             // 
             this.materialView11.CharaChipPositionX = 0;
             this.materialView11.CharaChipPositionY = 0;
+            this.materialView11.Dock = System.Windows.Forms.DockStyle.Fill;
             this.materialView11.Location = new System.Drawing.Point(131, 3);
             materialRenderData1.Material = null;
             this.materialView11.MaterialRenderData = materialRenderData1;
@@ -162,6 +163,7 @@
             // 
             this.materialView21.CharaChipPositionX = 1;
             this.materialView21.CharaChipPositionY = 0;
+            this.materialView21.Dock = System.Windows.Forms.DockStyle.Fill;
             this.materialView21.Location = new System.Drawing.Point(219, 3);
             materialRenderData2.Material = null;
             this.materialView21.MaterialRenderData = materialRenderData2;
@@ -173,6 +175,7 @@
             // 
             this.materialView31.CharaChipPositionX = 2;
             this.materialView31.CharaChipPositionY = 0;
+            this.materialView31.Dock = System.Windows.Forms.DockStyle.Fill;
             this.materialView31.Location = new System.Drawing.Point(307, 3);
             materialRenderData3.Material = null;
             this.materialView31.MaterialRenderData = materialRenderData3;
@@ -184,6 +187,7 @@
             // 
             this.materialView12.CharaChipPositionX = 0;
             this.materialView12.CharaChipPositionY = 1;
+            this.materialView12.Dock = System.Windows.Forms.DockStyle.Fill;
             this.materialView12.Location = new System.Drawing.Point(131, 132);
             materialRenderData4.Material = null;
             this.materialView12.MaterialRenderData = materialRenderData4;
@@ -195,6 +199,7 @@
             // 
             this.materialView22.CharaChipPositionX = 1;
             this.materialView22.CharaChipPositionY = 1;
+            this.materialView22.Dock = System.Windows.Forms.DockStyle.Fill;
             this.materialView22.Location = new System.Drawing.Point(219, 132);
             materialRenderData5.Material = null;
             this.materialView22.MaterialRenderData = materialRenderData5;
@@ -206,6 +211,7 @@
             // 
             this.materialView32.CharaChipPositionX = 2;
             this.materialView32.CharaChipPositionY = 1;
+            this.materialView32.Dock = System.Windows.Forms.DockStyle.Fill;
             this.materialView32.Location = new System.Drawing.Point(307, 132);
             materialRenderData6.Material = null;
             this.materialView32.MaterialRenderData = materialRenderData6;
@@ -217,6 +223,7 @@
             // 
             this.materialView13.CharaChipPositionX = 0;
             this.materialView13.CharaChipPositionY = 1;
+            this.materialView13.Dock = System.Windows.Forms.DockStyle.Fill;
             this.materialView13.Location = new System.Drawing.Point(131, 261);
             materialRenderData7.Material = null;
             this.materialView13.MaterialRenderData = materialRenderData7;
@@ -228,6 +235,7 @@
             // 
             this.materialView23.CharaChipPositionX = 1;
             this.materialView23.CharaChipPositionY = 1;
+            this.materialView23.Dock = System.Windows.Forms.DockStyle.Fill;
             this.materialView23.Location = new System.Drawing.Point(219, 261);
             materialRenderData8.Material = null;
             this.materialView23.MaterialRenderData = materialRenderData8;
@@ -239,6 +247,7 @@
             // 
             this.materialView33.CharaChipPositionX = 2;
             this.materialView33.CharaChipPositionY = 1;
+            this.materialView33.Dock = System.Windows.Forms.DockStyle.Fill;
             this.materialView33.Location = new System.Drawing.Point(307, 261);
             materialRenderData9.Material = null;
             this.materialView33.MaterialRenderData = materialRenderData9;
@@ -250,6 +259,7 @@
             // 
             this.materialView14.CharaChipPositionX = 0;
             this.materialView14.CharaChipPositionY = 1;
+            this.materialView14.Dock = System.Windows.Forms.DockStyle.Fill;
             this.materialView14.Location = new System.Drawing.Point(131, 390);
             materialRenderData10.Material = null;
             this.materialView14.MaterialRenderData = materialRenderData10;
@@ -261,6 +271,7 @@
             // 
             this.materialView24.CharaChipPositionX = 1;
             this.materialView24.CharaChipPositionY = 1;
+            this.materialView24.Dock = System.Windows.Forms.DockStyle.Fill;
             this.materialView24.Location = new System.Drawing.Point(219, 390);
             materialRenderData11.Material = null;
             this.materialView24.MaterialRenderData = materialRenderData11;
@@ -272,6 +283,7 @@
             // 
             this.materialView34.CharaChipPositionX = 2;
             this.materialView34.CharaChipPositionY = 1;
+            this.materialView34.Dock = System.Windows.Forms.DockStyle.Fill;
             this.materialView34.Location = new System.Drawing.Point(307, 390);
             materialRenderData12.Material = null;
             this.materialView34.MaterialRenderData = materialRenderData12;

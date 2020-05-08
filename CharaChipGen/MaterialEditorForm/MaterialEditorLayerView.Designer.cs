@@ -42,8 +42,8 @@
             this.label2 = new System.Windows.Forms.Label();
             this.comboBoxLayerType = new System.Windows.Forms.ComboBox();
             this.comboBoxColorRefs = new System.Windows.Forms.ComboBox();
-            this.openFileDialog = new System.Windows.Forms.OpenFileDialog();
             this.checkBoxColorImmutable = new System.Windows.Forms.CheckBox();
+            this.openFileDialog = new System.Windows.Forms.OpenFileDialog();
             this.groupBoxLayerName.SuspendLayout();
             this.panel1.SuspendLayout();
             this.tableLayoutPanel1.SuspendLayout();
@@ -212,21 +212,22 @@
             this.comboBoxColorRefs.TabIndex = 8;
             this.comboBoxColorRefs.SelectedValueChanged += new System.EventHandler(this.OnComboBoxColorRefsSelectedValueChanged);
             // 
+            // checkBoxColorImmutable
+            // 
+            this.checkBoxColorImmutable.AutoSize = true;
+            this.tableLayoutPanel1.SetColumnSpan(this.checkBoxColorImmutable, 2);
+            this.checkBoxColorImmutable.Location = new System.Drawing.Point(95, 115);
+            this.checkBoxColorImmutable.Name = "checkBoxColorImmutable";
+            this.checkBoxColorImmutable.Size = new System.Drawing.Size(155, 16);
+            this.checkBoxColorImmutable.TabIndex = 9;
+            this.checkBoxColorImmutable.Text = "このレイヤーは色変換しない";
+            this.checkBoxColorImmutable.UseVisualStyleBackColor = true;
+            this.checkBoxColorImmutable.CheckedChanged += new System.EventHandler(this.OnCheckBoxColorImmutableCheckedChanged);
+            // 
             // openFileDialog
             // 
             this.openFileDialog.Filter = "PNGファイル|*.png";
             this.openFileDialog.Title = "開く";
-            // 
-            // checkBoxColorImmutable
-            // 
-            this.checkBoxColorImmutable.AutoSize = true;
-            this.checkBoxColorImmutable.Location = new System.Drawing.Point(95, 115);
-            this.checkBoxColorImmutable.Name = "checkBoxColorImmutable";
-            this.checkBoxColorImmutable.Size = new System.Drawing.Size(95, 16);
-            this.checkBoxColorImmutable.TabIndex = 9;
-            this.checkBoxColorImmutable.Text = "HSV変換無効";
-            this.checkBoxColorImmutable.UseVisualStyleBackColor = true;
-            this.checkBoxColorImmutable.CheckedChanged += new System.EventHandler(this.OnCheckBoxColorImmutableCheckedChanged);
             // 
             // MaterialEditorLayerView
             // 
