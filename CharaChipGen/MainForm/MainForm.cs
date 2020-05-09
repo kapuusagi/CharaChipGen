@@ -604,5 +604,19 @@ namespace CharaChipGen.MainForm
             }
             return null;
         }
+
+        /// <summary>
+        /// キャラクター表示欄がダブルクリックされた時に通知を受け取る。
+        /// </summary>
+        /// <param name="sender">送信元オブジェクト</param>
+        /// <param name="evt">イベントオブジェクト</param>
+        private void OnCharacterEntryControlDoubleClick(object sender, EventArgs evt)
+        {
+            int index = GetCharacterIndexByView(sender);
+            if (index >= 0)
+            {
+                CharacterChipEditProc((CharacterEntryView)(sender), index);
+            }
+        }
     }
 }

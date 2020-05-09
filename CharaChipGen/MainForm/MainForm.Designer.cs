@@ -185,7 +185,7 @@
             // 
             this.menuItemCopy.Name = "menuItemCopy";
             this.menuItemCopy.ShortcutKeys = ((System.Windows.Forms.Keys)((System.Windows.Forms.Keys.Control | System.Windows.Forms.Keys.C)));
-            this.menuItemCopy.Size = new System.Drawing.Size(180, 22);
+            this.menuItemCopy.Size = new System.Drawing.Size(149, 22);
             this.menuItemCopy.Text = "コピー";
             this.menuItemCopy.Click += new System.EventHandler(this.OnMenuItemCopyClick);
             // 
@@ -193,7 +193,7 @@
             // 
             this.menuItemPaste.Name = "menuItemPaste";
             this.menuItemPaste.ShortcutKeys = ((System.Windows.Forms.Keys)((System.Windows.Forms.Keys.Control | System.Windows.Forms.Keys.V)));
-            this.menuItemPaste.Size = new System.Drawing.Size(180, 22);
+            this.menuItemPaste.Size = new System.Drawing.Size(149, 22);
             this.menuItemPaste.Text = "ペースト";
             this.menuItemPaste.Click += new System.EventHandler(this.OnMenuItemPasteClick);
             // 
@@ -209,14 +209,14 @@
             // menuItemPreference
             // 
             this.menuItemPreference.Name = "menuItemPreference";
-            this.menuItemPreference.Size = new System.Drawing.Size(180, 22);
+            this.menuItemPreference.Size = new System.Drawing.Size(122, 22);
             this.menuItemPreference.Text = "設定";
             this.menuItemPreference.Click += new System.EventHandler(this.OnPreferenceClick);
             // 
             // menuItemMaterialManagement
             // 
             this.menuItemMaterialManagement.Name = "menuItemMaterialManagement";
-            this.menuItemMaterialManagement.Size = new System.Drawing.Size(180, 22);
+            this.menuItemMaterialManagement.Size = new System.Drawing.Size(122, 22);
             this.menuItemMaterialManagement.Text = "素材管理";
             this.menuItemMaterialManagement.Click += new System.EventHandler(this.OnMaterialManageClicked);
             // 
@@ -399,6 +399,7 @@
             this.characterEntryControl1.Size = new System.Drawing.Size(168, 168);
             this.characterEntryControl1.TabIndex = 0;
             this.characterEntryControl1.ButtonClick += new System.EventHandler(this.OnCharacterEntryViewButtonClick);
+            this.characterEntryControl1.DoubleClick += new System.EventHandler(this.OnCharacterEntryControlDoubleClick);
             this.characterEntryControl1.KeyDown += new System.Windows.Forms.KeyEventHandler(this.OnCharacterEntryControlKeyDown);
             // 
             // characterEntryControl2
@@ -410,6 +411,7 @@
             this.characterEntryControl2.Size = new System.Drawing.Size(168, 168);
             this.characterEntryControl2.TabIndex = 1;
             this.characterEntryControl2.ButtonClick += new System.EventHandler(this.OnCharacterEntryViewButtonClick);
+            this.characterEntryControl2.DoubleClick += new System.EventHandler(this.OnCharacterEntryControlDoubleClick);
             this.characterEntryControl2.KeyDown += new System.Windows.Forms.KeyEventHandler(this.OnCharacterEntryControlKeyDown);
             // 
             // characterEntryControl8
@@ -421,6 +423,7 @@
             this.characterEntryControl8.Size = new System.Drawing.Size(168, 169);
             this.characterEntryControl8.TabIndex = 7;
             this.characterEntryControl8.ButtonClick += new System.EventHandler(this.OnCharacterEntryViewButtonClick);
+            this.characterEntryControl8.DoubleClick += new System.EventHandler(this.OnCharacterEntryControlDoubleClick);
             this.characterEntryControl8.KeyDown += new System.Windows.Forms.KeyEventHandler(this.OnCharacterEntryControlKeyDown);
             // 
             // characterEntryControl3
@@ -432,6 +435,7 @@
             this.characterEntryControl3.Size = new System.Drawing.Size(168, 168);
             this.characterEntryControl3.TabIndex = 2;
             this.characterEntryControl3.ButtonClick += new System.EventHandler(this.OnCharacterEntryViewButtonClick);
+            this.characterEntryControl3.DoubleClick += new System.EventHandler(this.OnCharacterEntryControlDoubleClick);
             this.characterEntryControl3.KeyDown += new System.Windows.Forms.KeyEventHandler(this.OnCharacterEntryControlKeyDown);
             // 
             // characterEntryControl7
@@ -443,6 +447,7 @@
             this.characterEntryControl7.Size = new System.Drawing.Size(168, 169);
             this.characterEntryControl7.TabIndex = 6;
             this.characterEntryControl7.ButtonClick += new System.EventHandler(this.OnCharacterEntryViewButtonClick);
+            this.characterEntryControl7.DoubleClick += new System.EventHandler(this.OnCharacterEntryControlDoubleClick);
             this.characterEntryControl7.KeyDown += new System.Windows.Forms.KeyEventHandler(this.OnCharacterEntryControlKeyDown);
             // 
             // characterEntryControl4
@@ -454,6 +459,7 @@
             this.characterEntryControl4.Size = new System.Drawing.Size(168, 168);
             this.characterEntryControl4.TabIndex = 3;
             this.characterEntryControl4.ButtonClick += new System.EventHandler(this.OnCharacterEntryViewButtonClick);
+            this.characterEntryControl4.DoubleClick += new System.EventHandler(this.OnCharacterEntryControlDoubleClick);
             this.characterEntryControl4.KeyDown += new System.Windows.Forms.KeyEventHandler(this.OnCharacterEntryControlKeyDown);
             // 
             // characterEntryControl6
@@ -465,6 +471,7 @@
             this.characterEntryControl6.Size = new System.Drawing.Size(168, 169);
             this.characterEntryControl6.TabIndex = 5;
             this.characterEntryControl6.ButtonClick += new System.EventHandler(this.OnCharacterEntryViewButtonClick);
+            this.characterEntryControl6.DoubleClick += new System.EventHandler(this.OnCharacterEntryControlDoubleClick);
             this.characterEntryControl6.KeyDown += new System.Windows.Forms.KeyEventHandler(this.OnCharacterEntryControlKeyDown);
             // 
             // characterEntryControl5
@@ -476,6 +483,7 @@
             this.characterEntryControl5.Size = new System.Drawing.Size(168, 169);
             this.characterEntryControl5.TabIndex = 4;
             this.characterEntryControl5.ButtonClick += new System.EventHandler(this.OnCharacterEntryViewButtonClick);
+            this.characterEntryControl5.DoubleClick += new System.EventHandler(this.OnCharacterEntryControlDoubleClick);
             this.characterEntryControl5.KeyDown += new System.Windows.Forms.KeyEventHandler(this.OnCharacterEntryControlKeyDown);
             // 
             // MainForm
