@@ -1,4 +1,5 @@
-﻿using System.Drawing;
+﻿using System;
+using System.Drawing;
 
 namespace CGenImaging
 {
@@ -138,6 +139,26 @@ namespace CGenImaging
         }
 
         /// <summary>
+        /// セピアカラーフィルタを適用する。
+        /// </summary>
+        /// <param name="image">イメージ</param>
+        /// <returns>セピア調の画像が返る</returns>
+        public static ImageBuffer ProcessSepiaColorFilter(ImageBuffer image)
+        {
+            ImageBuffer dst = ImageBuffer.Create(image.Width, image.Height);
+
+            for (int y = 0; y < image.Height; y++)
+            {
+                for (int x = 0; x < image.Width; x++)
+                {
+                    Color srcColor = image.GetPixel(x, y);
+                    dst.SetPixel(x, y, SepiaColor(srcColor));
+                }
+            }
+            return dst;
+        }
+
+        /// <summary>
         /// 輝度・彩度はそのままで、hueで指定された色相の色を得る。
         /// </summary>
         /// <param name="color">色</param>
@@ -162,9 +183,29 @@ namespace CGenImaging
             float v = 0.2126f * color.R / 255.0f
                 + 0.7152f * color.G / 255.0f
                 + 0.0722f * color.B / 255.0f;
-            int r = ColorUtility.Restrict((int)(modifyTo.R * v), 0, 255);
-            int g = ColorUtility.Restrict((int)(modifyTo.G * v), 0, 255);
-            int b = ColorUtility.Restrict((int)(modifyTo.B * v), 0, 255);
+            int r = ColorUtility.Restrict(Convert.ToInt32(modifyTo.R * v), 0, 255);
+            int g = ColorUtility.Restrict(Convert.ToInt32(modifyTo.G * v), 0, 255);
+            int b = ColorUtility.Restrict(Convert.ToInt32(modifyTo.B * v), 0, 255);
+            return Color.FromArgb(color.A, r, g, b);
+        }
+
+        /// <summary>
+        /// セピア色に変換する
+        /// </summary>
+        /// <param name="color">色</param>
+        /// <returns>セピア調の色</returns>
+        /// <remarks>
+        /// 下記サイトを参考にした。
+        /// http://k-ichikawa.blog.enjoy.jp/etc/HP/htm/imageSepia.html
+        /// </remarks>
+        public static Color SepiaColor(Color color)
+        {
+            float v = 0.2126f * color.R / 255.0f
+                + 0.7152f * color.G / 255.0f
+                + 0.0722f * color.B / 255.0f;
+            int r = ColorUtility.Restrict(Convert.ToInt32(v * 255.0f), 0, 255);
+            int g = ColorUtility.Restrict(Convert.ToInt32(v * 74.0f / 107.0f * 255.0f), 0, 255);
+            int b = ColorUtility.Restrict(Convert.ToInt32(v * 43.0f / 107.0f * 255.0f), 0, 255);
             return Color.FromArgb(color.A, r, g, b);
         }
 
