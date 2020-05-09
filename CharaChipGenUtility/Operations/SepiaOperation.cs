@@ -1,43 +1,47 @@
 ﻿using CGenImaging;
+using System;
+using System.Collections.Generic;
+using System.Linq;
+using System.Text;
+using System.Threading.Tasks;
 
 namespace CharaChipGenUtility.Operations
 {
     /// <summary>
-    /// 単色化処理
+    /// セピア調への変更
     /// </summary>
-    public class MonoColorOperation : ImageOperationBase
+    public class SepiaOperation : ImageOperationBase
     {
-        // 設定
-        private MonoColorOperationSetting setting;
+        private ImageOperationSetting setting;
 
         /// <summary>
         /// 新しいインスタンスを構築する。
         /// </summary>
-        public MonoColorOperation()
+        public SepiaOperation()
         {
-            setting = new MonoColorOperationSetting();
+            setting = new ImageOperationSetting();
         }
 
         /// <summary>
         /// 処理を行う。
         /// </summary>
         /// <param name="buffer">画像バッファ</param>
-        /// <returns>処理結果が返る</returns>
+        /// <returns>処理結果が返る。</returns>
         public override ImageBuffer Process(ImageBuffer buffer)
         {
-            return ImageProcessor.ProcessMonoricColorFilter(buffer, setting.Color);
+            return ImageProcessor.ProcessSepiaColorFilter(buffer);
         }
 
         /// <summary>
         /// 名前を取得する。
         /// </summary>
         /// <returns>文字列</returns>
-        public override string Name { get => "MonoricColor"; }
+        public override string Name { get => "SepiaColor"; }
 
         /// <summary>
         /// 操作の説明
         /// </summary>
-        public override string Description { get => "指定した色と同じ色相に変換して出力します。"; }
+        public override string Description { get => "セピア調に変換する。"; }
 
 
         /// <summary>

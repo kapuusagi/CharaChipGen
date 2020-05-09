@@ -113,6 +113,7 @@
     <Compile Include="Operations\CombineOperation.cs" />
     <Compile Include="Operations\RemoveEdgeOperation.cs" />
     <Compile Include="Operations\ImageOperationSetting.cs" />
+    <Compile Include="Operations\SepiaOperation.cs" />
     <Compile Include="Operations\SequentialOperation.cs" />
     <Compile Include="Operations\SequentialOperationSetting.cs" />
     <Compile Include="Operations\SequentialOperationSettingControl.cs">

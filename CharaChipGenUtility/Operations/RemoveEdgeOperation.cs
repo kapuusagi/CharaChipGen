@@ -21,8 +21,13 @@ namespace CharaChipGenUtility.Operations
         /// <summary>
         /// 操作の名前を得る
         /// </summary>
-        public override string Name {
-            get { return "RemoveEdge"; }
+        public override string Name { get => "RemoveEdge"; }
+
+        /// <summary>
+        /// 操作の説明
+        /// </summary>
+        public override string Description { 
+            get => "透明部分の境界にできるエッジを削除して出力します。";
         }
 
         /// <summary>

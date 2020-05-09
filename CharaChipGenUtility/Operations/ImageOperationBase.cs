@@ -78,6 +78,11 @@ namespace CharaChipGenUtility.Operations
         public abstract string Name { get; }
 
         /// <summary>
+        /// 操作の説明
+        /// </summary>
+        public abstract string Description { get; }
+
+        /// <summary>
         /// 設定
         /// </summary>
         public abstract IOperationSetting Setting { get; }

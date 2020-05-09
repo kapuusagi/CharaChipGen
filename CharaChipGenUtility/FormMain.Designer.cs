@@ -34,8 +34,11 @@
             this.buttonConfig = new System.Windows.Forms.Button();
             this.panelAccept = new System.Windows.Forms.Panel();
             this.label2 = new System.Windows.Forms.Label();
+            this.textBoxDescription = new System.Windows.Forms.TextBox();
+            this.panel1 = new System.Windows.Forms.Panel();
             this.flowLayoutPanel1.SuspendLayout();
             this.panelAccept.SuspendLayout();
+            this.panel1.SuspendLayout();
             this.SuspendLayout();
             // 
             // flowLayoutPanel1
@@ -71,6 +74,7 @@
             this.comboBoxOperation.Name = "comboBoxOperation";
             this.comboBoxOperation.Size = new System.Drawing.Size(190, 20);
             this.comboBoxOperation.TabIndex = 1;
+            this.comboBoxOperation.SelectedValueChanged += new System.EventHandler(this.OnComboBoxOperationSelectedValueChanged);
             // 
             // buttonConfig
             // 
@@ -87,10 +91,10 @@
             this.panelAccept.AllowDrop = true;
             this.panelAccept.Controls.Add(this.label2);
             this.panelAccept.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.panelAccept.Location = new System.Drawing.Point(0, 41);
+            this.panelAccept.Location = new System.Drawing.Point(0, 0);
             this.panelAccept.Name = "panelAccept";
             this.panelAccept.Padding = new System.Windows.Forms.Padding(8);
-            this.panelAccept.Size = new System.Drawing.Size(271, 280);
+            this.panelAccept.Size = new System.Drawing.Size(271, 321);
             this.panelAccept.TabIndex = 1;
             this.panelAccept.DragDrop += new System.Windows.Forms.DragEventHandler(this.OnPanelAcceptDragDrop);
             this.panelAccept.DragEnter += new System.Windows.Forms.DragEventHandler(this.OnPanelAcceptDragEnter);
@@ -100,18 +104,39 @@
             this.label2.Dock = System.Windows.Forms.DockStyle.Fill;
             this.label2.Location = new System.Drawing.Point(8, 8);
             this.label2.Name = "label2";
-            this.label2.Size = new System.Drawing.Size(255, 264);
+            this.label2.Size = new System.Drawing.Size(255, 305);
             this.label2.TabIndex = 0;
             this.label2.Text = "ここにファイルをドラッグ";
             this.label2.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
+            // 
+            // textBoxDescription
+            // 
+            this.textBoxDescription.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.textBoxDescription.Location = new System.Drawing.Point(4, 4);
+            this.textBoxDescription.Multiline = true;
+            this.textBoxDescription.Name = "textBoxDescription";
+            this.textBoxDescription.ReadOnly = true;
+            this.textBoxDescription.Size = new System.Drawing.Size(263, 44);
+            this.textBoxDescription.TabIndex = 0;
+            // 
+            // panel1
+            // 
+            this.panel1.Controls.Add(this.textBoxDescription);
+            this.panel1.Dock = System.Windows.Forms.DockStyle.Top;
+            this.panel1.Location = new System.Drawing.Point(0, 41);
+            this.panel1.Name = "panel1";
+            this.panel1.Padding = new System.Windows.Forms.Padding(4);
+            this.panel1.Size = new System.Drawing.Size(271, 52);
+            this.panel1.TabIndex = 2;
             // 
             // FormMain
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 12F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(271, 321);
-            this.Controls.Add(this.panelAccept);
+            this.Controls.Add(this.panel1);
             this.Controls.Add(this.flowLayoutPanel1);
+            this.Controls.Add(this.panelAccept);
             this.Name = "FormMain";
             this.Text = "Utility";
             this.FormClosed += new System.Windows.Forms.FormClosedEventHandler(this.OnFormClosed);
@@ -119,6 +144,8 @@
             this.flowLayoutPanel1.ResumeLayout(false);
             this.flowLayoutPanel1.PerformLayout();
             this.panelAccept.ResumeLayout(false);
+            this.panel1.ResumeLayout(false);
+            this.panel1.PerformLayout();
             this.ResumeLayout(false);
             this.PerformLayout();
 
@@ -132,6 +159,8 @@
         private System.Windows.Forms.Panel panelAccept;
         private System.Windows.Forms.Label label2;
         private System.Windows.Forms.Button buttonConfig;
+        private System.Windows.Forms.TextBox textBoxDescription;
+        private System.Windows.Forms.Panel panel1;
     }
 }
 

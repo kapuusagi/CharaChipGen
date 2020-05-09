@@ -26,6 +26,11 @@ namespace CharaChipGenUtility.Operations
         public string Name { get { return "Lineup"; } }
 
         /// <summary>
+        /// 操作の説明
+        /// </summary>
+        public string Description { get => "水平（または垂直方向）に入力画像を並べて結合して出力します。"; }
+
+        /// <summary>
         /// 処理設定
         /// </summary>
         public IOperationSetting Setting { get { return setting; } }

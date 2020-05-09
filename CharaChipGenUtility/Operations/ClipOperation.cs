@@ -19,10 +19,13 @@ namespace CharaChipGenUtility.Operations
         /// 名前を取得する。
         /// </summary>
         /// <returns>文字列</returns>
-        public override string Name {
-            get {
-                return "Clip";
-            }
+        public override string Name { get => "Clip"; }
+
+        /// <summary>
+        /// 説明文。
+        /// </summary>
+        public override string Description {
+            get => "ソース画像から指定された位置を切り出します。";
         }
         /// <summary>
         /// 設定

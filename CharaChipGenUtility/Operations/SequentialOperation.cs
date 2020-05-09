@@ -24,6 +24,11 @@ namespace CharaChipGenUtility.Operations
         public string Name { get { return "Sequential"; } }
 
         /// <summary>
+        /// 操作の説明
+        /// </summary>
+        public string Description { get => "複数の操作を連続して適用します。"; }
+
+        /// <summary>
         /// 処理の設定
         /// </summary>
         public IOperationSetting Setting {

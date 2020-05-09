@@ -21,9 +21,12 @@ namespace CharaChipGenUtility.Operations
         /// <summary>
         /// オペレーション名
         /// </summary>
-        public override string Name {
-            get { return "Empty"; }
-        }
+        public override string Name { get => "Empty"; }
+
+        /// <summary>
+        /// 操作の説明
+        /// </summary>
+        public override string Description { get => "空のオペレーション。そのまま入力画像を出力に渡します。"; }
 
         /// <summary>
         /// このオペレーション設定を得る

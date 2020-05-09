@@ -29,6 +29,13 @@ namespace CharaChipGenUtility.Operations
         }
 
         /// <summary>
+        /// このオペレーションの説明
+        /// </summary>
+        public string Description {
+            get { return "設定された水平数/垂直数で、入力画像を結合します。"; }
+        }
+
+        /// <summary>
         /// 処理設定
         /// </summary>
         public IOperationSetting Setting {

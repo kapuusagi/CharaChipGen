@@ -240,5 +240,23 @@ namespace CharaChipGenUtility
             }
 
         }
+
+        /// <summary>
+        /// コンボボックスの選択状態が変更されたときに通知を受け取る。
+        /// </summary>
+        /// <param name="sender">送信元オブジェクト</param>
+        /// <param name="evt">イベントオブジェクト</param>
+        private void OnComboBoxOperationSelectedValueChanged(object sender, EventArgs evt)
+        {
+            ComboBoxItem item = (ComboBoxItem)(comboBoxOperation.SelectedItem);
+            if (item == null)
+            {
+                textBoxDescription.Text = "";
+            }
+            else
+            {
+                textBoxDescription.Text = item.Operation.Description;
+            }
+        }
     }
 }
