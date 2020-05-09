@@ -227,7 +227,7 @@ namespace CharaChipGen.Model.Layer
             {
                 if (image != null)
                 {
-                    processedImage = ImageProcessor.ProcessHSVFilter(
+                    processedImage = ImageProcessor.ProcessHSLFilter(
                         ImageBuffer.CreateFrom(image), hue, saturation, value);
                 }
             }
