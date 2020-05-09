@@ -389,8 +389,8 @@ namespace CharaChipGen.MaterialEditorForm
         /// <summary>
         /// D&Dにてドラッグされてきたときに通知を受け取る。
         /// </summary>
-        /// <param name="sender"></param>
-        /// <param name="evt"></param>
+        /// <param name="sender">送信元オブジェクト</param>
+        /// <param name="evt">イベントオブジェクト</param>
         private void OnListBoxLayersDragEnter(object sender, DragEventArgs evt)
         {
             if (evt.Data.GetDataPresent(DataFormats.FileDrop))
@@ -406,8 +406,8 @@ namespace CharaChipGen.MaterialEditorForm
         /// <summary>
         /// D&Dにて放り込まれた時に通知を受け取る。
         /// </summary>
-        /// <param name="sender"></param>
-        /// <param name="evt"></param>
+        /// <param name="sender">送信元オブジェクト</param>
+        /// <param name="evt">イベントオブジェクト</param>
         private void OnListBoxLayersDragDrop(object sender, DragEventArgs evt)
         {
             try

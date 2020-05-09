@@ -52,6 +52,8 @@
             this.sizeInputDefaultCharaChipSize = new CharaChipGen.SettingForm.SizeInput();
             this.label5 = new System.Windows.Forms.Label();
             this.folderBrowserDialog = new System.Windows.Forms.FolderBrowserDialog();
+            this.flowLayoutPanel2 = new System.Windows.Forms.FlowLayoutPanel();
+            this.panel4 = new System.Windows.Forms.Panel();
             this.flowLayoutPanel1.SuspendLayout();
             this.panel1.SuspendLayout();
             this.tableLayoutPanel1.SuspendLayout();
@@ -61,6 +63,8 @@
             this.tabPage2.SuspendLayout();
             this.tableLayoutPanel2.SuspendLayout();
             this.panel3.SuspendLayout();
+            this.flowLayoutPanel2.SuspendLayout();
+            this.panel4.SuspendLayout();
             this.SuspendLayout();
             // 
             // buttonOK
@@ -100,7 +104,7 @@
             this.flowLayoutPanel1.Controls.Add(this.buttonOK);
             this.flowLayoutPanel1.Dock = System.Windows.Forms.DockStyle.Bottom;
             this.flowLayoutPanel1.FlowDirection = System.Windows.Forms.FlowDirection.RightToLeft;
-            this.flowLayoutPanel1.Location = new System.Drawing.Point(0, 247);
+            this.flowLayoutPanel1.Location = new System.Drawing.Point(0, 259);
             this.flowLayoutPanel1.Name = "flowLayoutPanel1";
             this.flowLayoutPanel1.Padding = new System.Windows.Forms.Padding(6);
             this.flowLayoutPanel1.Size = new System.Drawing.Size(408, 41);
@@ -111,10 +115,10 @@
             this.panel1.Controls.Add(this.sizeInputCharaChipSize);
             this.panel1.Controls.Add(this.label1);
             this.panel1.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.panel1.Location = new System.Drawing.Point(9, 47);
+            this.panel1.Location = new System.Drawing.Point(9, 53);
             this.panel1.Name = "panel1";
             this.panel1.Padding = new System.Windows.Forms.Padding(4);
-            this.panel1.Size = new System.Drawing.Size(376, 32);
+            this.panel1.Size = new System.Drawing.Size(376, 38);
             this.panel1.TabIndex = 1;
             // 
             // sizeInputCharaChipSize
@@ -124,7 +128,7 @@
             this.sizeInputCharaChipSize.MaximumValue = new System.Drawing.Size(128, 128);
             this.sizeInputCharaChipSize.MinimumValue = new System.Drawing.Size(1, 1);
             this.sizeInputCharaChipSize.Name = "sizeInputCharaChipSize";
-            this.sizeInputCharaChipSize.Size = new System.Drawing.Size(150, 24);
+            this.sizeInputCharaChipSize.Size = new System.Drawing.Size(150, 30);
             this.sizeInputCharaChipSize.TabIndex = 1;
             this.sizeInputCharaChipSize.Value = new System.Drawing.Size(24, 24);
             // 
@@ -145,43 +149,42 @@
             this.tableLayoutPanel1.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 25F));
             this.tableLayoutPanel1.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 25F));
             this.tableLayoutPanel1.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 25F));
-            this.tableLayoutPanel1.Size = new System.Drawing.Size(394, 164);
+            this.tableLayoutPanel1.Size = new System.Drawing.Size(394, 189);
             this.tableLayoutPanel1.TabIndex = 0;
             // 
             // flowLayoutPanel3
             // 
             this.flowLayoutPanel3.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.flowLayoutPanel3.Location = new System.Drawing.Point(9, 85);
+            this.flowLayoutPanel3.Location = new System.Drawing.Point(9, 97);
             this.flowLayoutPanel3.Name = "flowLayoutPanel3";
-            this.flowLayoutPanel3.Size = new System.Drawing.Size(376, 32);
+            this.flowLayoutPanel3.Size = new System.Drawing.Size(376, 38);
             this.flowLayoutPanel3.TabIndex = 2;
             // 
             // panel2
             // 
-            this.panel2.Controls.Add(this.textBoxExportFilePath);
-            this.panel2.Controls.Add(this.buttonSelectExportFilePath);
+            this.panel2.Controls.Add(this.panel4);
             this.panel2.Controls.Add(this.label2);
+            this.panel2.Controls.Add(this.flowLayoutPanel2);
             this.panel2.Dock = System.Windows.Forms.DockStyle.Fill;
             this.panel2.Location = new System.Drawing.Point(9, 9);
             this.panel2.Name = "panel2";
             this.panel2.Padding = new System.Windows.Forms.Padding(4);
-            this.panel2.Size = new System.Drawing.Size(376, 32);
+            this.panel2.Size = new System.Drawing.Size(376, 38);
             this.panel2.TabIndex = 0;
             // 
             // textBoxExportFilePath
             // 
             this.textBoxExportFilePath.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.textBoxExportFilePath.Location = new System.Drawing.Point(52, 4);
+            this.textBoxExportFilePath.Location = new System.Drawing.Point(0, 6);
             this.textBoxExportFilePath.Name = "textBoxExportFilePath";
-            this.textBoxExportFilePath.Size = new System.Drawing.Size(245, 19);
+            this.textBoxExportFilePath.Size = new System.Drawing.Size(235, 19);
             this.textBoxExportFilePath.TabIndex = 1;
             // 
             // buttonSelectExportFilePath
             // 
-            this.buttonSelectExportFilePath.Dock = System.Windows.Forms.DockStyle.Right;
-            this.buttonSelectExportFilePath.Location = new System.Drawing.Point(297, 4);
+            this.buttonSelectExportFilePath.Location = new System.Drawing.Point(5, 5);
             this.buttonSelectExportFilePath.Name = "buttonSelectExportFilePath";
-            this.buttonSelectExportFilePath.Size = new System.Drawing.Size(75, 24);
+            this.buttonSelectExportFilePath.Size = new System.Drawing.Size(75, 23);
             this.buttonSelectExportFilePath.TabIndex = 2;
             this.buttonSelectExportFilePath.Text = "選択";
             this.buttonSelectExportFilePath.UseVisualStyleBackColor = true;
@@ -209,7 +212,7 @@
             this.tabControl1.Location = new System.Drawing.Point(0, 0);
             this.tabControl1.Name = "tabControl1";
             this.tabControl1.SelectedIndex = 0;
-            this.tabControl1.Size = new System.Drawing.Size(408, 247);
+            this.tabControl1.Size = new System.Drawing.Size(408, 259);
             this.tabControl1.TabIndex = 2;
             // 
             // tabPage1
@@ -218,7 +221,7 @@
             this.tabPage1.Location = new System.Drawing.Point(4, 22);
             this.tabPage1.Name = "tabPage1";
             this.tabPage1.Padding = new System.Windows.Forms.Padding(3);
-            this.tabPage1.Size = new System.Drawing.Size(400, 221);
+            this.tabPage1.Size = new System.Drawing.Size(400, 233);
             this.tabPage1.TabIndex = 0;
             this.tabPage1.Text = "エクスポート設定";
             this.tabPage1.UseVisualStyleBackColor = true;
@@ -229,7 +232,7 @@
             this.tabPage2.Location = new System.Drawing.Point(4, 22);
             this.tabPage2.Name = "tabPage2";
             this.tabPage2.Padding = new System.Windows.Forms.Padding(3);
-            this.tabPage2.Size = new System.Drawing.Size(400, 170);
+            this.tabPage2.Size = new System.Drawing.Size(400, 233);
             this.tabPage2.TabIndex = 1;
             this.tabPage2.Text = "アプリケーション設定";
             this.tabPage2.UseVisualStyleBackColor = true;
@@ -318,14 +321,34 @@
             this.label5.TabIndex = 1;
             this.label5.Text = "デフォルトキャラチップサイズ";
             // 
+            // flowLayoutPanel2
+            // 
+            this.flowLayoutPanel2.AutoSize = true;
+            this.flowLayoutPanel2.Controls.Add(this.buttonSelectExportFilePath);
+            this.flowLayoutPanel2.Dock = System.Windows.Forms.DockStyle.Right;
+            this.flowLayoutPanel2.Location = new System.Drawing.Point(287, 4);
+            this.flowLayoutPanel2.Name = "flowLayoutPanel2";
+            this.flowLayoutPanel2.Padding = new System.Windows.Forms.Padding(2);
+            this.flowLayoutPanel2.Size = new System.Drawing.Size(85, 30);
+            this.flowLayoutPanel2.TabIndex = 3;
+            // 
+            // panel4
+            // 
+            this.panel4.Controls.Add(this.textBoxExportFilePath);
+            this.panel4.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.panel4.Location = new System.Drawing.Point(52, 4);
+            this.panel4.Name = "panel4";
+            this.panel4.Padding = new System.Windows.Forms.Padding(0, 6, 0, 0);
+            this.panel4.Size = new System.Drawing.Size(235, 30);
+            this.panel4.TabIndex = 4;
+            // 
             // SettingForm
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 12F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(408, 288);
+            this.ClientSize = new System.Drawing.Size(408, 300);
             this.Controls.Add(this.tabControl1);
             this.Controls.Add(this.flowLayoutPanel1);
-            this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.FixedSingle;
             this.Name = "SettingForm";
             this.Text = "設定";
             this.flowLayoutPanel1.ResumeLayout(false);
@@ -341,6 +364,9 @@
             this.tableLayoutPanel2.PerformLayout();
             this.panel3.ResumeLayout(false);
             this.panel3.PerformLayout();
+            this.flowLayoutPanel2.ResumeLayout(false);
+            this.panel4.ResumeLayout(false);
+            this.panel4.PerformLayout();
             this.ResumeLayout(false);
             this.PerformLayout();
 
@@ -372,5 +398,7 @@
         private System.Windows.Forms.Label label5;
         private CharaChipGen.SettingForm.SizeInput sizeInputCharaChipSize;
         private CharaChipGen.SettingForm.SizeInput sizeInputDefaultCharaChipSize;
+        private System.Windows.Forms.Panel panel4;
+        private System.Windows.Forms.FlowLayoutPanel flowLayoutPanel2;
     }
 }
