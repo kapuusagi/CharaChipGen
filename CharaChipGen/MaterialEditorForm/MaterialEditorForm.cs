@@ -385,5 +385,72 @@ namespace CharaChipGen.MaterialEditorForm
                 };
             form.ShowDialog(this);
         }
+
+        /// <summary>
+        /// D&Dにてドラッグされてきたときに通知を受け取る。
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="evt"></param>
+        private void OnListBoxLayersDragEnter(object sender, DragEventArgs evt)
+        {
+            if (evt.Data.GetDataPresent(DataFormats.FileDrop))
+            {
+                evt.Effect = DragDropEffects.Copy;
+            }
+            else
+            {
+                evt.Effect = DragDropEffects.None;
+            }
+        }
+
+        /// <summary>
+        /// D&Dにて放り込まれた時に通知を受け取る。
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="evt"></param>
+        private void OnListBoxLayersDragDrop(object sender, DragEventArgs evt)
+        {
+            try
+            {
+                string[] fileNames = (string[])(evt.Data.GetData(DataFormats.FileDrop, false));
+
+                // ファイルが png ならレイヤーを追加する。
+                foreach (string fileName in fileNames)
+                {
+                    if (fileName.EndsWith(".png"))
+                    {
+                        AddNewLayer(fileName);
+                    }
+                }
+            }
+            catch (Exception e)
+            {
+                System.Diagnostics.Debug.WriteLine(e.Message);
+            }
+        }
+
+        /// <summary>
+        /// pathで指定されたレイヤー画像を持つレイヤーを追加する。
+        /// </summary>
+        /// <param name="path">パス</param>
+        private void AddNewLayer(string path)
+        {
+            string layerName = GenerateDefaultLayerName();
+            CheckLayerName(layerName);
+
+            // 適用可能
+            MaterialLayerInfo layerInfo = new MaterialLayerInfo(layerName);
+            string dirStr = System.IO.Path.GetDirectoryName(entryFile.Path) + System.IO.Path.DirectorySeparatorChar;
+            if (path.StartsWith(dirStr))
+            {
+                layerInfo.Path = path.Substring(dirStr.Length);
+            }
+            else
+            {
+                layerInfo.Path = path;
+            }
+            entryFile.Layers.Add(layerName, layerInfo);
+            listBoxLayers.Items.Add(layerInfo);
+        }
     }
 }

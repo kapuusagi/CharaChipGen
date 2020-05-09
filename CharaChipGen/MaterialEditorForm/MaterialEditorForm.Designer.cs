@@ -232,6 +232,7 @@
             // 
             // listBoxLayers
             // 
+            this.listBoxLayers.AllowDrop = true;
             this.listBoxLayers.Dock = System.Windows.Forms.DockStyle.Fill;
             this.listBoxLayers.DrawMode = System.Windows.Forms.DrawMode.OwnerDrawFixed;
             this.listBoxLayers.FormattingEnabled = true;
@@ -241,6 +242,8 @@
             this.listBoxLayers.TabIndex = 0;
             this.listBoxLayers.DrawItem += new System.Windows.Forms.DrawItemEventHandler(this.OnListBoxLayersDrawItem);
             this.listBoxLayers.SelectedValueChanged += new System.EventHandler(this.OnListBoxLayersSelectedValueChanged);
+            this.listBoxLayers.DragDrop += new System.Windows.Forms.DragEventHandler(this.OnListBoxLayersDragDrop);
+            this.listBoxLayers.DragEnter += new System.Windows.Forms.DragEventHandler(this.OnListBoxLayersDragEnter);
             this.listBoxLayers.KeyDown += new System.Windows.Forms.KeyEventHandler(this.OnListBoxLayersKeyDown);
             // 
             // materialEditorLayerView
