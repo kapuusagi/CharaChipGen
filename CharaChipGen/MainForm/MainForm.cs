@@ -52,8 +52,8 @@ namespace CharaChipGen.MainForm
         /// 素材管理メニュー/素材管理ボタンがクリックされたときに通知を受け取る。
         /// </summary>
         /// <param name="sender">送信元オブジェクト</param>
-        /// <param name="e">イベントオブジェクト</param>
-        private void OnMaterialManageClicked(object sender, EventArgs e)
+        /// <param name="evt">イベントオブジェクト</param>
+        private void OnMaterialManageClicked(object sender, EventArgs evt)
         {
             ManagementForm.MaterialManagementForm form
                 = new ManagementForm.MaterialManagementForm();
@@ -68,13 +68,21 @@ namespace CharaChipGen.MainForm
         /// キャラクターエントリービューのボタンがクリックされたときに通知を受け取る。
         /// </summary>
         /// <param name="sender">送信元オブジェクト</param>
-        /// <param name="e">イベントオブジェクト</param>
-        private void OnCharacterEntryViewButtonClick(object sender, EventArgs e)
+        /// <param name="evt">イベントオブジェクト</param>
+        private void OnCharacterEntryViewButtonClick(object sender, EventArgs evt)
         {
             int index = GetCharacterIndexByView(sender);
-            if (index >= 0)
+            if (index < 0)
+            {
+                return;
+            }
+            try
             {
                 CharacterChipEditProc((CharacterEntryView)(sender), index);
+            }
+            catch (Exception e)
+            {
+                MessageBox.Show(this, e.Message, "エラー");
             }
         }
 
@@ -163,18 +171,28 @@ namespace CharaChipGen.MainForm
         /// <param name="character">対応するデータモデル</param>
         private void UpdateEntryView(CharacterEntryView view, Character character)
         {
-            // キャラクタチップデータ
-            CharaChipRenderData renderData = new CharaChipRenderData();
-            character.CopyTo(renderData.Character);
-            Size cchipPrefSize = renderData.PreferredCharaChipSize;
-            if ((cchipPrefSize.Width > 0) && (cchipPrefSize.Height > 0))
+            try
             {
-                ImageBuffer charaChipBuffer = ImageBuffer.Create(cchipPrefSize.Width, cchipPrefSize.Height);
-                CharaChipRenderer.Draw(renderData, charaChipBuffer, 1, 0);
-                view.Image = charaChipBuffer.GetImage();
+                // キャラクタチップデータ
+                CharaChipRenderData renderData = new CharaChipRenderData();
+                character.CopyTo(renderData.Character);
+
+                Size cchipPrefSize = renderData.PreferredCharaChipSize;
+                if ((cchipPrefSize.Width > 0) && (cchipPrefSize.Height > 0))
+                {
+                    ImageBuffer charaChipBuffer = ImageBuffer.Create(cchipPrefSize.Width, cchipPrefSize.Height);
+                    CharaChipRenderer.Draw(renderData, charaChipBuffer, 1, 0);
+                    view.Image = charaChipBuffer.GetImage();
+                }
+                else
+                {
+                    view.Image = null;
+                }
+                view.ForeColor = Color.Black;
             }
-            else
+            catch 
             {
+                view.ForeColor = Color.Red;
                 view.Image = null;
             }
         }
@@ -613,9 +631,17 @@ namespace CharaChipGen.MainForm
         private void OnCharacterEntryControlDoubleClick(object sender, EventArgs evt)
         {
             int index = GetCharacterIndexByView(sender);
-            if (index >= 0)
+            if (index < 0)
+            {
+                return;
+            }
+            try
             {
                 CharacterChipEditProc((CharacterEntryView)(sender), index);
+            }
+            catch (Exception e)
+            {
+                MessageBox.Show(this, e.Message, "エラー");
             }
         }
     }

@@ -10,7 +10,7 @@ namespace CharaChipGen.Model
     public static class CharaChipRenderer
     {
         /// <summary>
-        /// 描画する
+        /// modelのパターン(x,y)をbufferに描画する
         /// </summary>
         /// <param name="model">レイヤーモデル</param>
         /// <param name="buffer">描画対象バッファ</param>

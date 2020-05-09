@@ -1,4 +1,5 @@
-﻿using System.Drawing;
+﻿using System;
+using System.Drawing;
 using System.Linq;
 
 namespace CharaChipGen.Model.Material
@@ -62,32 +63,30 @@ namespace CharaChipGen.Model.Material
         /// <returns>画像データ。該当インデックスの画像データが無い場合にはnullが返る。</returns>
         public Image LoadLayerImage(int index)
         {
-            if ((index >= 0) && (index < entryFile.GetLayerCount()))
+            if ((index < 0) || (index >= entryFile.GetLayerCount()))
             {
-                string entryFileDir = System.IO.Path.GetDirectoryName(entryFile.Path);
-                var layerInfo = entryFile.GetLayer(index);
+                return null;
+            }
 
-                if (string.IsNullOrEmpty(layerInfo.Path))
-                {
-                    return null;
-                }
-                else
-                {
-                    string materialPath = System.IO.Path.Combine(entryFileDir, layerInfo.Path);
+            string entryFileDir = System.IO.Path.GetDirectoryName(entryFile.Path);
+            var layerInfo = entryFile.GetLayer(index);
 
-                    if (System.IO.File.Exists(materialPath))
-                    {
-                        return Bitmap.FromFile(materialPath);
-                    }
-                    else
-                    {
-                        return null;
-                    }
-                }
+            if (string.IsNullOrEmpty(layerInfo.Path))
+            {
+                return null;
             }
             else
             {
-                return null;
+                string materialPath = System.IO.Path.Combine(entryFileDir, layerInfo.Path);
+
+                try
+                {
+                    return Bitmap.FromFile(materialPath);
+                }
+                catch
+                {
+                    return null;
+                }
             }
         }
 

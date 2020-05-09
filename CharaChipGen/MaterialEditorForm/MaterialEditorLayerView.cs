@@ -66,24 +66,31 @@ namespace CharaChipGen.MaterialEditorForm
         /// </summary>
         private void ModelToUI()
         {
-            if ((entryFile != null) && (layerInfo != null))
+            if ((entryFile == null) || (layerInfo == null))
             {
-                string dir = System.IO.Path.GetDirectoryName(entryFile.Path);
-                if (!string.IsNullOrEmpty(layerInfo.Path))
-                {
-                    // レイヤーにパスが設定されている
-                    string path = System.IO.Path.Combine(dir, layerInfo.Path);
-                    Image image = Bitmap.FromFile(path);
-                    SetImage(image);
-                }
-                else
-                {
-                    SetImage(null);
-                }
+                SetImage(null);
             }
             else
             {
-                SetImage(null);
+                string dir = System.IO.Path.GetDirectoryName(entryFile.Path);
+                if (string.IsNullOrEmpty(layerInfo.Path))
+                {
+                    SetImage(null);
+                }
+                else
+                { 
+                    // レイヤーにパスが設定されている
+                    string path = System.IO.Path.Combine(dir, layerInfo.Path);
+                    try
+                    {
+                        Image image = Bitmap.FromFile(path);
+                        SetImage(image);
+                    }
+                    catch 
+                    {
+                        SetImage(null);
+                    }
+                }
             }
 
             // レイヤー名

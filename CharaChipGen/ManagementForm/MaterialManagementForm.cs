@@ -510,8 +510,8 @@ namespace CharaChipGen.ManagementForm
         /// プレビューボタンが押されたときに通知を受け取る。
         /// </summary>
         /// <param name="sender">送信元オブジェクト</param>
-        /// <param name="e">イベントオブジェクト</param>
-        private void OnButtonPreviewClick(object sender, EventArgs e)
+        /// <param name="evt">イベントオブジェクト</param>
+        private void OnButtonPreviewClick(object sender, EventArgs evt)
         {
             int selectedIndex = listViewMaterials.SelectedIndices[0];
             ListViewItem selectedItem = listViewMaterials.Items[selectedIndex];
@@ -523,12 +523,20 @@ namespace CharaChipGen.ManagementForm
                 return;
             }
 
-            MaterialViewForm.MaterialViewForm form
-                = new CharaChipGen.MaterialViewForm.MaterialViewForm() {
-                    Text = material.GetDisplayName(),
-                    Material = material
-                };
-            form.ShowDialog();
+            try
+            {
+                MaterialViewForm.MaterialViewForm form
+                    = new CharaChipGen.MaterialViewForm.MaterialViewForm()
+                    {
+                        Text = material.GetDisplayName(),
+                        Material = material
+                    };
+                form.ShowDialog();
+            }
+            catch (Exception e)
+            {
+                MessageBox.Show(this, e.Message, "エラー");
+            }
         }
 
         /// <summary>
