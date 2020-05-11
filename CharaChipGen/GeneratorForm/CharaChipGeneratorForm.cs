@@ -1,5 +1,7 @@
 ﻿using CharaChipGen.Model.CharaChip;
 using System;
+using System.Drawing;
+using System.Linq;
 using System.Windows.Forms;
 
 namespace CharaChipGen.GeneratorForm
@@ -10,6 +12,7 @@ namespace CharaChipGen.GeneratorForm
     public partial class CharaChipGeneratorForm : Form
     {
         private Character character; // キャラクターチップデータモデル
+        private bool hasErrored; // エラーがあるかどうかのフラグ
 
         /// <summary>
         /// コンストラクタ
@@ -17,6 +20,7 @@ namespace CharaChipGen.GeneratorForm
         public CharaChipGeneratorForm()
         {
             character = new Character();
+            hasErrored = false;
             InitializeComponent();
             InitializeComboBoxItems();
 
@@ -66,6 +70,42 @@ namespace CharaChipGen.GeneratorForm
         private void OnTimerEvent(object sender, EventArgs e)
         {
             charaChipView.UpdateTick();
+            CheckRenderError();
+        }
+
+        /// <summary>
+        /// レンダリングエラーが発生しているかどうかを調べUIを更新する。
+        /// </summary>
+        private void CheckRenderError()
+        {
+            // レンダリングエラーがないかを調べる。
+            if (!charaChipView.HasError && !hasErrored)
+            {
+                // エラーがなく、エラーがあったフラグも解除されている。
+                return;
+            }
+
+            PartsType[] partsTypes = charaChipView.GetErrorPartsTypes();
+            partsViewHead.ForeColor = partsTypes.Contains(PartsType.Head)
+                ? Color.Red : Color.Black;
+            partsViewEye.ForeColor = partsTypes.Contains(PartsType.Eye)
+                ? Color.Red : Color.Black;
+            partsViewHairStyle.ForeColor = partsTypes.Contains(PartsType.HairStyle)
+                ? Color.Red : Color.Black;
+            partsViewBody.ForeColor = partsTypes.Contains(PartsType.Body)
+                ? Color.Red : Color.Black;
+            partsViewAccessory1.ForeColor = partsTypes.Contains(PartsType.Accessory1)
+                ? Color.Red : Color.Black;
+            partsViewAccessory2.ForeColor = partsTypes.Contains(PartsType.Accessory2)
+                ? Color.Red : Color.Black;
+            partsViewAccessory3.ForeColor = partsTypes.Contains(PartsType.Accessory3)
+                ? Color.Red : Color.Black;
+            partsViewHeadAccessory1.ForeColor = partsTypes.Contains(PartsType.HeadAccessory1)
+                ? Color.Red : Color.Black;
+            partsViewHeadAccessory2.ForeColor = partsTypes.Contains(PartsType.HeadAccessory2)
+                ? Color.Red : Color.Black;
+
+            hasErrored = charaChipView.HasError;
         }
 
         /// <summary>

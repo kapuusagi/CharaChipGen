@@ -4,6 +4,7 @@ using CharaChipGen.Model.Material;
 using System;
 using System.Drawing;
 using System.Windows.Forms;
+using System.Windows.Forms.VisualStyles;
 
 namespace CharaChipGen.MaterialEditorForm
 {
@@ -66,6 +67,8 @@ namespace CharaChipGen.MaterialEditorForm
         /// </summary>
         private void ModelToUI()
         {
+            string fileName = "";
+            Color fileNameColor = Color.Black;
             if ((entryFile == null) || (layerInfo == null))
             {
                 SetImage(null);
@@ -78,8 +81,9 @@ namespace CharaChipGen.MaterialEditorForm
                     SetImage(null);
                 }
                 else
-                { 
+                {
                     // レイヤーにパスが設定されている
+                    fileName = System.IO.Path.GetFileName(layerInfo.Path);
                     string path = System.IO.Path.Combine(dir, layerInfo.Path);
                     try
                     {
@@ -88,11 +92,15 @@ namespace CharaChipGen.MaterialEditorForm
                     }
                     catch 
                     {
+                        fileNameColor = Color.Red;
                         SetImage(null);
                     }
                 }
             }
 
+            // 画像のパス
+            labelFileName.Text = fileName;
+            labelFileName.ForeColor = fileNameColor;
             // レイヤー名
             groupBoxLayerName.Text = layerInfo?.Name ?? "";
             // 描画するレイヤー

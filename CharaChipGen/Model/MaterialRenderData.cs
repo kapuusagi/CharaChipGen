@@ -70,7 +70,16 @@ namespace CharaChipGen.Model
                         Material.MaterialLayerInfo info = material.Layers[i];
                         RenderLayerGroup group = layerGroups.First((entry) => entry.LayerType == info.LayerType);
                         RenderLayer layer = new RenderLayer(info.LayerType, DefaultPartsType, DefaultPartsType);
-                        layer.Image = material.LoadLayerImage(i);
+                        try
+                        {
+                            layer.Image = material.LoadLayerImage(i);
+                            layer.HasError = false;
+                        }
+                        catch
+                        {
+                            layer.HasError = true;
+                            layer.Image = null;
+                        }
                         // レイヤーに設定値適用
                         group.Add(DefaultPartsType, layer);
                     }
@@ -130,6 +139,13 @@ namespace CharaChipGen.Model
                 }
                 return new System.Drawing.Size(width, height);
             }
+        }
+
+        /// <summary>
+        /// エラーがあるかどうかを判定して返す。
+        /// </summary>
+        public bool HasError {
+            get => layerGroups.Any((group) => group.HasError);
         }
         /// <summary>
         /// レイヤーにアクセスするための列挙子を取得する。

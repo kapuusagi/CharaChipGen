@@ -1,5 +1,6 @@
 ﻿using CharaChipGen.Model.CharaChip;
 using System.Collections.Generic;
+using System.Linq;
 
 namespace CharaChipGen.Model.Layer
 {
@@ -91,6 +92,15 @@ namespace CharaChipGen.Model.Layer
         /// レイヤーエントリ数。
         /// </summary>
         public int Count { get => layerEntries.Count; }
+
+        /// <summary>
+        /// エラーがあるかどうかを返す。
+        /// </summary>
+        public bool HasError {
+            get {
+                return layerEntries.Any((layer) => layer.Layer.HasError);
+            }
+        }
 
         /// <summary>
         /// 要素にアクセスするための列挙子を得る

@@ -75,6 +75,10 @@ namespace CharaChipGen.MaterialViewForm
         /// <param name="e">イベントオブジェクト</param>
         private void OnFormShown(object sender, EventArgs e)
         {
+            if (materialView.MaterialRenderData.HasError)
+            {
+                MessageBox.Show(this, "読み出し時にエラーが発生しました。", "エラー");
+            }
             timer.Start();
         }
 

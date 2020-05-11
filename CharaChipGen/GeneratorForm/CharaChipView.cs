@@ -77,5 +77,25 @@ namespace CharaChipGen.GeneratorForm
             charaChipView24.SetCharacter(model);
             charaChipView34.SetCharacter(model);
         }
+
+        /// <summary>
+        /// レンダリングでエラーがあったかどうかを返す。
+        /// </summary>
+        public bool HasError {
+            get {
+                return charaChipView11.HasError;
+            }
+        }
+
+        /// <summary>
+        /// エラーの部品を返す。
+        /// </summary>
+        /// <returns>エラーのパーツ種別</returns>
+        /// <remarks>
+        /// charaChipViewXXは、全て同じパーツの参照を持っているので、
+        /// charaChipView11のエラー部品種別だけ取得すればよい。
+        /// </remarks>
+        public PartsType[] GetErrorPartsTypes()
+            => charaChipView11.GetErrorPartsTypes();
     }
 }

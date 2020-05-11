@@ -269,5 +269,10 @@ namespace CharaChipGen.Model.Layer
             }
         }
 
+        /// <summary>
+        /// エラーの有無
+        /// </summary>
+        public bool HasError { get; set; }
+
     }
 }

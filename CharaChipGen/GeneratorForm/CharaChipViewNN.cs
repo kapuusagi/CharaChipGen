@@ -1,7 +1,9 @@
 ﻿using CGenImaging;
 using CharaChipGen.Model;
 using CharaChipGen.Model.CharaChip;
+using CharaChipGen.Model.Layer;
 using System;
+using System.Collections.Generic;
 using System.Drawing;
 using System.Windows.Forms;
 
@@ -49,13 +51,34 @@ namespace CharaChipGen.GeneratorForm
         /// <param name="character">データモデル</param>
         public void SetCharacter(Character character)
         {
-            renderData.OnImageChanged -= handler;
             // データモデルを置き換える。
             // 置き換えたことによってイベントが飛ぶので
             // そちらで更新処理が行われる。
             renderData.Character = character;
+        }
 
-            renderData.OnImageChanged += handler;
+        /// <summary>
+        /// エラーが発生したかどうかを取得する。
+        /// </summary>
+        public bool HasError {
+            get => renderData.HasError;
+        }
+
+        /// <summary>
+        /// エラーの部品を返す。
+        /// </summary>
+        /// <returns>エラーのパーツ種別</returns>
+        public PartsType[] GetErrorPartsTypes()
+        {
+            List<PartsType> partsTypes = new List<PartsType>();
+            foreach (RenderLayer layer in renderData)
+            {
+                if ((layer.HasError) && !partsTypes.Contains(layer.PartsType))
+                {
+                    partsTypes.Add(layer.PartsType);
+                }
+            }
+            return partsTypes.ToArray();
         }
 
         /// <summary>

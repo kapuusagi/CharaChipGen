@@ -39,10 +39,17 @@ namespace CharaChipGen.Model
             {
                 for (int charaX = 0; charaX < 4; charaX++)
                 {
-                    // キャラクターをレンダリングする。
-                    ImageBuffer charaChipImage = RenderCharaChip(setting.GetCharacter(charaY * 4 + charaX), charaChipSize);
-                    // レンダリングした画像をエクスポートバッファにコピーする。
-                    exportBuffer.WriteImage(charaChipImage, charaX * charaPlaneWidth, charaY * charaPlaneHeight);
+                    try
+                    {
+                        // キャラクターをレンダリングする。
+                        ImageBuffer charaChipImage = RenderCharaChip(setting.GetCharacter(charaY * 4 + charaX), charaChipSize);
+                        // レンダリングした画像をエクスポートバッファにコピーする。
+                        exportBuffer.WriteImage(charaChipImage, charaX * charaPlaneWidth, charaY * charaPlaneHeight);
+                    }
+                    catch (Exception e)
+                    {
+                        throw new Exception($"キャラクター{(charaY * 4 + charaX + 1)}:{e.Message}");
+                    }
                 }
             }
 
@@ -59,8 +66,13 @@ namespace CharaChipGen.Model
         /// <returns>レンダリングしたImageBufferが返る。</returns>
         private static ImageBuffer RenderCharaChip(Character model, Size chipSize)
         {
-            CharaChipRenderData renderModel = new CharaChipRenderData();
-            model.CopyTo(renderModel.Character);
+            CharaChipRenderData renderData = new CharaChipRenderData();
+            model.CopyTo(renderData.Character);
+
+            if (renderData.HasError)
+            {
+                throw new Exception($"書き出し時にエラーが発生しました。");
+            }
 
             ImageBuffer imageBuffer = ImageBuffer.Create(chipSize.Width * 3, chipSize.Height * 4);
             for (int y = 0; y < 4; y++)
@@ -68,14 +80,12 @@ namespace CharaChipGen.Model
                 for (int x = 0; x < 3; x++)
                 {
                     ImageBuffer buffer = ImageBuffer.Create(chipSize.Width, chipSize.Height);
-                    CharaChipRenderer.Draw(renderModel, buffer, x, y);
+                    CharaChipRenderer.Draw(renderData, buffer, x, y);
                     imageBuffer.WriteImage(buffer, x * chipSize.Width, y * chipSize.Height);
                 }
             }
 
             return imageBuffer;
         }
-
-
     }
 }

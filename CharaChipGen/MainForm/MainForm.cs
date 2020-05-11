@@ -171,30 +171,22 @@ namespace CharaChipGen.MainForm
         /// <param name="character">対応するデータモデル</param>
         private void UpdateEntryView(CharacterEntryView view, Character character)
         {
-            try
-            {
-                // キャラクタチップデータ
-                CharaChipRenderData renderData = new CharaChipRenderData();
-                character.CopyTo(renderData.Character);
+            // キャラクタチップデータ
+            CharaChipRenderData renderData = new CharaChipRenderData();
+            character.CopyTo(renderData.Character);
 
-                Size cchipPrefSize = renderData.PreferredCharaChipSize;
-                if ((cchipPrefSize.Width > 0) && (cchipPrefSize.Height > 0))
-                {
-                    ImageBuffer charaChipBuffer = ImageBuffer.Create(cchipPrefSize.Width, cchipPrefSize.Height);
-                    CharaChipRenderer.Draw(renderData, charaChipBuffer, 1, 0);
-                    view.Image = charaChipBuffer.GetImage();
-                }
-                else
-                {
-                    view.Image = null;
-                }
-                view.ForeColor = Color.Black;
-            }
-            catch 
+            Size cchipPrefSize = renderData.PreferredCharaChipSize;
+            if ((cchipPrefSize.Width > 0) && (cchipPrefSize.Height > 0))
             {
-                view.ForeColor = Color.Red;
+                ImageBuffer charaChipBuffer = ImageBuffer.Create(cchipPrefSize.Width, cchipPrefSize.Height);
+                CharaChipRenderer.Draw(renderData, charaChipBuffer, 1, 0);
+                view.Image = charaChipBuffer.GetImage();
+            }
+            else
+            {
                 view.Image = null;
             }
+            view.ForeColor = (renderData.HasError) ? Color.Red : Color.Black;
         }
 
         /// <summary>

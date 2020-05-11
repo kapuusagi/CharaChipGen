@@ -233,7 +233,16 @@ namespace CharaChipGen.Model
                 PartsType colorPartsRefs = info.ColorPartsRefs ?? partsType;
                 RenderLayer layer = new RenderLayer(info.LayerType, partsType, colorPartsRefs);
                 layer.ColorImmutable = info.ColorImmutable;
-                layer.Image = m.LoadLayerImage(i);
+                try
+                {
+                    layer.Image = m.LoadLayerImage(i);
+                    layer.HasError = false;
+                }
+                catch
+                {
+                    layer.Image = null;
+                    layer.HasError = true;
+                }
                 // レイヤーに設定値適用
                 ApplyLayerOffsets(layer, model);
                 ApplyLayerColor(layer, model);
@@ -312,7 +321,14 @@ namespace CharaChipGen.Model
             layer.OffsetY = parts.OffsetY;
         }
 
-
+        /// <summary>
+        /// エラーがあるかどうかを返す。
+        /// </summary>
+        public bool HasError {
+            get {
+                return layerGroups.Any((group) => group.HasError);
+            }
+        }
 
         /// <summary>
         /// レイヤーにアクセスするための列挙子を取得する。

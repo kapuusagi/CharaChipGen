@@ -61,6 +61,7 @@ namespace CharaChipGen.Model.Material
         /// </summary>
         /// <param name="index">インデックス番号</param>
         /// <returns>画像データ。該当インデックスの画像データが無い場合にはnullが返る。</returns>
+        /// <exception cref="Exception">読み出しに失敗した場合</exception>
         public Image LoadLayerImage(int index)
         {
             if ((index < 0) || (index >= entryFile.GetLayerCount()))
@@ -78,15 +79,7 @@ namespace CharaChipGen.Model.Material
             else
             {
                 string materialPath = System.IO.Path.Combine(entryFileDir, layerInfo.Path);
-
-                try
-                {
-                    return Bitmap.FromFile(materialPath);
-                }
-                catch
-                {
-                    return null;
-                }
+                return Bitmap.FromFile(materialPath);
             }
         }
 
