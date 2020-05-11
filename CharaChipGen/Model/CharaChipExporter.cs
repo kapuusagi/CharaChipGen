@@ -8,13 +8,8 @@ namespace CharaChipGen.Model
     /// <summary>
     /// キャラクターチップまたは顔データをファイルにエクスポートするクラス。
     /// </summary>
-    public class CharaChipExporter
+    public static class CharaChipExporter
     {
-        private CharaChipExporter()
-        {
-
-        }
-
         /// <summary>
         /// キャラチップデータをエクスポートする
         /// </summary>
