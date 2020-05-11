@@ -22,11 +22,11 @@ namespace CharaChipGen.Model
         // レンダリング対象のキャラクターチップデータモデル
         private Character character;
         // ハンドラ
-        private PartsChangeEventHandler partsChangeHandler;
+        private PartsChangeEventHandler partsChangedHandler;
         // ハンドラ
-        public delegate void ImageChanged(Object sender, EventArgs e);
+        public delegate void ImageChangedEventHandler(Object sender, EventArgs e);
         // イメージが変更されたときのイベント
-        public event ImageChanged OnImageChanged;
+        public event ImageChangedEventHandler ImageChanged;
 
         /// <summary>
         /// レンダリング用データモデル
@@ -42,12 +42,12 @@ namespace CharaChipGen.Model
 
             character = new Character();
 
-            partsChangeHandler = new PartsChangeEventHandler((sender, e) =>
+            partsChangedHandler = new PartsChangeEventHandler((sender, e) =>
             {
                 OnPartsChanged((Character)(sender), e.PartsType, e.PropertyName);
             });
 
-            character.OnCharaChipPartsChanged += partsChangeHandler;
+            character.PartsChanged += partsChangedHandler;
         }
 
         /// <summary>
@@ -60,9 +60,9 @@ namespace CharaChipGen.Model
                 {
                     return;
                 }
-                character.OnCharaChipPartsChanged -= partsChangeHandler;
+                character.PartsChanged -= partsChangedHandler;
                 character = value;
-                character.OnCharaChipPartsChanged += partsChangeHandler;
+                character.PartsChanged += partsChangedHandler;
 
                 OnCharacterChanged();
             }
@@ -201,7 +201,7 @@ namespace CharaChipGen.Model
                 OnPartsAttributeChanged(model, partsType);
             }
 
-            OnImageChanged?.Invoke(this, new EventArgs());
+            ImageChanged?.Invoke(this, new EventArgs());
         }
 
         /// <summary>

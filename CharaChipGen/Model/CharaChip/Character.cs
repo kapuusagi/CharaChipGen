@@ -12,7 +12,7 @@ namespace CharaChipGen.Model.CharaChip
         /// <summary>
         /// パーツが変更された場合。
         /// </summary>
-        public event PartsChangeEventHandler OnCharaChipPartsChanged;
+        public event PartsChangeEventHandler PartsChanged;
 
         /// <summary>
         /// 部品
@@ -130,7 +130,7 @@ namespace CharaChipGen.Model.CharaChip
             if (charaChipParts.ContainsValue(model))
             {
                 PartsType type = model.PartsType;
-                OnCharaChipPartsChanged?.Invoke(this, new PartsChangeEventArgs(type, propertyName));
+                PartsChanged?.Invoke(this, new PartsChangeEventArgs(type, propertyName));
             }
         }
     }

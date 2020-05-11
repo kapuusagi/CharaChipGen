@@ -23,7 +23,7 @@ namespace CharaChipGen.GeneratorForm
         // レンダリングモデル
         private CharaChipRenderData renderData;
         // ハンドラ
-        private CharaChipRenderData.ImageChanged handler;
+        private CharaChipRenderData.ImageChangedEventHandler handler;
 
         /// <summary>
         /// 新しいインスタンスを構築する。
@@ -34,14 +34,14 @@ namespace CharaChipGen.GeneratorForm
             positionY = 0;
             renderedImage = null;
             renderData = new CharaChipRenderData();
-            handler = new CharaChipRenderData.ImageChanged((sender, e) =>
+            handler = (sender, e) =>
             {
                 // 表示データの変更が入った場合にはイメージを削除して
                 // 表示の更新が必要であるとマークする。
                 renderedImage = null;
                 Invalidate();
-            });
-            renderData.OnImageChanged += handler;
+            };
+            renderData.ImageChanged += handler;
             InitializeComponent();
         }
 
