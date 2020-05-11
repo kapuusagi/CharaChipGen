@@ -10,14 +10,14 @@ namespace CGenImaging
     /// <summary>
     /// ユーティリティメソッドを提供するクラス
     /// </summary>
-    internal static class ColorUtility
+    public static class ColorUtility
     {
         /// <summary>
         /// 色相を0-360の範囲に変換する。
         /// </summary>
         /// <param name="hue">色相</param>
         /// <returns>色相値</returns>
-        internal static float GetHueWithLimitedRange(float hue)
+        public static float GetHueWithLimitedRange(float hue)
         {
             int hueBase = (int)(hue - ((int)(hue) % 360));
             return (hue >= 0.0f) ? (hue - hueBase) : (hue - hueBase + 360.0f);
@@ -31,7 +31,7 @@ namespace CGenImaging
         /// <param name="min">最小値</param>
         /// <param name="max">最大値</param>
         /// <returns>クランプした値</returns>
-        internal static float Restrict(float f, float min, float max)
+        public static float Clamp(float f, float min, float max)
             => (f < min) ? min : ((f > max) ? max : f);
 
         /// <summary>
@@ -41,7 +41,7 @@ namespace CGenImaging
         /// <param name="min"></param>
         /// <param name="max"></param>
         /// <returns></returns>
-        internal static int Restrict(int d, int min, int max)
+        public static int Clamp(int d, int min, int max)
             => (d < min) ? min : ((d > max) ? max : d);
 
         /// <summary>
@@ -73,7 +73,7 @@ namespace CGenImaging
                 f = value;
             }
 
-            return Restrict((int)(f), min, max);
+            return Clamp((int)(f), min, max);
         }
 
         /// <summary>
@@ -105,7 +105,7 @@ namespace CGenImaging
                 f = value;
             }
 
-            return Restrict(f, min, max);
+            return Clamp(f, min, max);
         }
 
         /// <summary>
@@ -119,10 +119,10 @@ namespace CGenImaging
         /// <returns>Colorオブジェクトが返る。</returns>
         internal static Color GetColor(int alpha, int red, int green, int blue)
         {
-            int a = Restrict(alpha, 0, 255);
-            int r = Restrict(red, 0, 255);
-            int g = Restrict(green, 0, 255);
-            int b = Restrict(blue, 0, 255);
+            int a = Clamp(alpha, 0, 255);
+            int r = Clamp(red, 0, 255);
+            int g = Clamp(green, 0, 255);
+            int b = Clamp(blue, 0, 255);
             return Color.FromArgb(a, r, g, b);
         }
     }

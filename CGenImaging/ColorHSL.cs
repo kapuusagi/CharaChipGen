@@ -59,10 +59,10 @@ namespace CGenImaging
         /// <returns>色</returns>
         public static ColorHSL FromAHSL(float alpha, float hue, float saturation, float lightness)
         {
-            float a = ColorUtility.Restrict(alpha, 0.0f, 1.0f);
+            float a = ColorUtility.Clamp(alpha, 0.0f, 1.0f);
             float h = ColorUtility.GetHueWithLimitedRange(hue);
-            float s = ColorUtility.Restrict(saturation, 0.0f, 1.0f);
-            float l = ColorUtility.Restrict(lightness, 0.0f, 1.0f);
+            float s = ColorUtility.Clamp(saturation, 0.0f, 1.0f);
+            float l = ColorUtility.Clamp(lightness, 0.0f, 1.0f);
             return new ColorHSL(a, h, s, l);
         }
 

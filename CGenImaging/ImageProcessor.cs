@@ -183,9 +183,9 @@ namespace CGenImaging
             float v = 0.2126f * color.R / 255.0f
                 + 0.7152f * color.G / 255.0f
                 + 0.0722f * color.B / 255.0f;
-            int r = ColorUtility.Restrict(Convert.ToInt32(modifyTo.R * v), 0, 255);
-            int g = ColorUtility.Restrict(Convert.ToInt32(modifyTo.G * v), 0, 255);
-            int b = ColorUtility.Restrict(Convert.ToInt32(modifyTo.B * v), 0, 255);
+            int r = ColorUtility.Clamp(Convert.ToInt32(modifyTo.R * v), 0, 255);
+            int g = ColorUtility.Clamp(Convert.ToInt32(modifyTo.G * v), 0, 255);
+            int b = ColorUtility.Clamp(Convert.ToInt32(modifyTo.B * v), 0, 255);
             return Color.FromArgb(color.A, r, g, b);
         }
 
@@ -203,9 +203,9 @@ namespace CGenImaging
             float v = 0.2126f * color.R / 255.0f
                 + 0.7152f * color.G / 255.0f
                 + 0.0722f * color.B / 255.0f;
-            int r = ColorUtility.Restrict(Convert.ToInt32(v * 255.0f), 0, 255);
-            int g = ColorUtility.Restrict(Convert.ToInt32(v * 74.0f / 107.0f * 255.0f), 0, 255);
-            int b = ColorUtility.Restrict(Convert.ToInt32(v * 43.0f / 107.0f * 255.0f), 0, 255);
+            int r = ColorUtility.Clamp(Convert.ToInt32(v * 255.0f), 0, 255);
+            int g = ColorUtility.Clamp(Convert.ToInt32(v * 74.0f / 107.0f * 255.0f), 0, 255);
+            int b = ColorUtility.Clamp(Convert.ToInt32(v * 43.0f / 107.0f * 255.0f), 0, 255);
             return Color.FromArgb(color.A, r, g, b);
         }
 
@@ -228,10 +228,10 @@ namespace CGenImaging
             {
                 return Color.FromArgb(0, 0, 0, 0);
             }
-            int r = (int)(ColorUtility.Restrict((a1 * (c1.R + c2.R) / 2 + a2 * c1.R + a3 * c2.R) / alpha, 0, 255));
-            int g = (int)(ColorUtility.Restrict((a1 * (c1.G + c2.G) / 2 + a2 * c1.G + a3 * c2.G) / alpha, 0, 255));
-            int b = (int)(ColorUtility.Restrict((a1 * (c1.B + c2.B) / 2 + a2 * c1.B + a3 * c2.B) / alpha, 0, 255));
-            int a = (int)(ColorUtility.Restrict(alpha * 255, 0, 255));
+            int r = (int)(ColorUtility.Clamp((a1 * (c1.R + c2.R) / 2 + a2 * c1.R + a3 * c2.R) / alpha, 0, 255));
+            int g = (int)(ColorUtility.Clamp((a1 * (c1.G + c2.G) / 2 + a2 * c1.G + a3 * c2.G) / alpha, 0, 255));
+            int b = (int)(ColorUtility.Clamp((a1 * (c1.B + c2.B) / 2 + a2 * c1.B + a3 * c2.B) / alpha, 0, 255));
+            int a = (int)(ColorUtility.Clamp(alpha * 255, 0, 255));
             return Color.FromArgb(a, r, g, b);
         }
 

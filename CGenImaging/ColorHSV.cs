@@ -54,10 +54,10 @@
         public static ColorHSV FromAHSV(float alpha, float hue, float saturation, float value)
         {
             // 値の範囲を補正する。
-            float a = ColorUtility.Restrict(alpha, 0.0f, 1.0f);
+            float a = ColorUtility.Clamp(alpha, 0.0f, 1.0f);
             float h = ColorUtility.GetHueWithLimitedRange(hue);
-            float s = ColorUtility.Restrict(saturation, 0.0f, 1.0f);
-            float v = ColorUtility.Restrict(value, 0.0f, 1.0f);
+            float s = ColorUtility.Clamp(saturation, 0.0f, 1.0f);
+            float v = ColorUtility.Clamp(value, 0.0f, 1.0f);
 
             return new ColorHSV(a, h, s, v);
         }
