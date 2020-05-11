@@ -1,5 +1,6 @@
 ﻿using CGenImaging;
 using System;
+using System.Drawing;
 
 namespace CharaChipGenUtility.Operations
 {
@@ -92,7 +93,7 @@ namespace CharaChipGenUtility.Operations
         /// <returns>バッファが返る。</returns>
         private ImageBuffer CombineImage(string fileName, ImageBuffer buffer, int x, int y)
         {
-            using (System.Drawing.Image image = System.Drawing.Image.FromFile(fileName))
+            using (Image image = ReadImage(fileName))
             {
                 ImageBuffer srcImage = ImageBuffer.CreateFrom(image);
                 if (buffer == null)
@@ -115,6 +116,19 @@ namespace CharaChipGenUtility.Operations
             }
 
             return buffer;
+        }
+
+        /// <summary>
+        /// pathの画像を読み込む。
+        /// </summary>
+        /// <param name="path">ファイルパス</param>
+        /// <returns></returns>
+        private Image ReadImage(string path)
+        {
+            using (System.IO.Stream stream = System.IO.File.OpenRead(path))
+            {
+                return Image.FromStream(stream, false, false);
+            }
         }
 
         /// <summary>

@@ -31,7 +31,7 @@ namespace CharaChipGenUtility.Operations
                 // データを読み出す。
                 // usingブロックをすぐに閉じるのは、
                 // こうしないとファイルをオープンしっぱなしになるため。
-                using (Image srcImage = Image.FromFile(filePath))
+                using (Image srcImage = ReadImage(filePath))
                 {
                     srcBuffer = ImageBuffer.CreateFrom(srcImage);
                     imageFormat = srcImage.RawFormat;
@@ -51,6 +51,19 @@ namespace CharaChipGenUtility.Operations
 
                     dstImage.Save(dstPath, imageFormat);
                 }
+            }
+        }
+
+        /// <summary>
+        /// pathで指定された画像を読み込む。
+        /// </summary>
+        /// <param name="path">ファイルパス</param>
+        /// <returns>Imageオブジェクト</returns>
+        private Image ReadImage(string path)
+        {
+            using (System.IO.Stream stream = System.IO.File.OpenRead(path))
+            {
+                return Image.FromStream(stream, false, false);
             }
         }
 

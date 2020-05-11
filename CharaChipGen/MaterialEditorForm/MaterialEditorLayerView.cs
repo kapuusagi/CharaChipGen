@@ -87,8 +87,10 @@ namespace CharaChipGen.MaterialEditorForm
                     string path = System.IO.Path.Combine(dir, layerInfo.Path);
                     try
                     {
-                        Image image = Bitmap.FromFile(path);
-                        SetImage(image);
+                        using (System.IO.Stream stream = System.IO.File.OpenRead(path))
+                        {
+                            SetImage(Image.FromStream(stream, false, false));
+                        }
                     }
                     catch 
                     {

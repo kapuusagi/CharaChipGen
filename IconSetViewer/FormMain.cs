@@ -128,7 +128,7 @@ namespace IconSetViewer
         /// <param name="filePath">ファイルパス</param>
         private void SetNewIconImage(string filePath)
         {
-            using (Image image = Image.FromFile(filePath))
+            using (Image image = ReadImage(filePath))
             {
                 iconViewControl.Image = (Image)(image.Clone());
                 iconSetViewControl.IconSetImage = iconViewControl.Image;
@@ -154,7 +154,18 @@ namespace IconSetViewer
             }
 
         }
-
+        /// <summary>
+        /// pathで指定された画像を読み込む。
+        /// </summary>
+        /// <param name="path">ファイルパス</param>
+        /// <returns>Imageオブジェクト</returns>
+        private static Image ReadImage(string path)
+        {
+            using (System.IO.Stream stream = System.IO.File.OpenRead(path))
+            {
+                return Image.FromStream(stream, false, false);
+            }
+        }
         /// <summary>
         /// ドロップダウンリストでの番号選択がされたときに通知を受け取る。
         /// </summary>

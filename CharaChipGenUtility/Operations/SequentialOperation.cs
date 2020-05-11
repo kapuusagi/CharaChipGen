@@ -43,7 +43,7 @@ namespace CharaChipGenUtility.Operations
         {
             foreach (string filePath in paths)
             {
-                using (Image srcImage = Image.FromFile(filePath))
+                using (Image srcImage = ReadImage(filePath))
                 {
                     ImageBuffer srcBuffer = ImageBuffer.CreateFrom(srcImage);
                     ImageBuffer dstBuffer = SequentialProcess(srcBuffer);
@@ -81,6 +81,17 @@ namespace CharaChipGenUtility.Operations
             return tmp;
         }
 
-
+        /// <summary>
+        /// pathで指定された画像を読み込む。
+        /// </summary>
+        /// <param name="path">ファイルパス</param>
+        /// <returns>Imageオブジェクト</returns>
+        private static Image ReadImage(string path)
+        {
+            using (System.IO.Stream stream = System.IO.File.OpenRead(path))
+            {
+                return Image.FromStream(stream, false, false);
+            }
+        }
     }
 }

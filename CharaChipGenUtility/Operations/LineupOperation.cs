@@ -2,6 +2,7 @@
 using System;
 using System.Collections.Generic;
 using System.Linq;
+using System.Drawing;
 
 namespace CharaChipGenUtility.Operations
 {
@@ -125,13 +126,25 @@ namespace CharaChipGenUtility.Operations
             List<ImageBuffer> images = new List<ImageBuffer>();
             foreach (string path in paths)
             {
-                using (System.Drawing.Image image = System.Drawing.Image.FromFile(path))
+                using (Image image = ReadImage(path))
                 {
                     images.Add(ImageBuffer.CreateFrom(image));
                 }
             }
 
             return images.ToArray();
+        }
+        /// <summary>
+        /// pathで指定された画像を読み込む。
+        /// </summary>
+        /// <param name="path">ファイルパス</param>
+        /// <returns>Imageオブジェクト</returns>
+        private static Image ReadImage(string path)
+        {
+            using (System.IO.Stream stream = System.IO.File.OpenRead(path))
+            {
+                return Image.FromStream(stream, false, false);
+            }
         }
     }
 }

@@ -79,7 +79,10 @@ namespace CharaChipGen.Model.Material
             else
             {
                 string materialPath = System.IO.Path.Combine(entryFileDir, layerInfo.Path);
-                return Bitmap.FromFile(materialPath);
+                using (System.IO.Stream stream = System.IO.File.OpenRead(materialPath))
+                {
+                    return Image.FromStream(stream, false, false);
+                }
             }
         }
 
