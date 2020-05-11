@@ -390,16 +390,16 @@ namespace CharaChipGen.MaterialEditorForm
         /// D&Dにてドラッグされてきたときに通知を受け取る。
         /// </summary>
         /// <param name="sender">送信元オブジェクト</param>
-        /// <param name="evt">イベントオブジェクト</param>
-        private void OnListBoxLayersDragEnter(object sender, DragEventArgs evt)
+        /// <param name="e">イベントオブジェクト</param>
+        private void OnListBoxLayersDragEnter(object sender, DragEventArgs e)
         {
-            if (evt.Data.GetDataPresent(DataFormats.FileDrop))
+            if (e.Data.GetDataPresent(DataFormats.FileDrop))
             {
-                evt.Effect = DragDropEffects.Copy;
+                e.Effect = DragDropEffects.Copy;
             }
             else
             {
-                evt.Effect = DragDropEffects.None;
+                e.Effect = DragDropEffects.None;
             }
         }
 
@@ -407,12 +407,12 @@ namespace CharaChipGen.MaterialEditorForm
         /// D&Dにて放り込まれた時に通知を受け取る。
         /// </summary>
         /// <param name="sender">送信元オブジェクト</param>
-        /// <param name="evt">イベントオブジェクト</param>
-        private void OnListBoxLayersDragDrop(object sender, DragEventArgs evt)
+        /// <param name="e">イベントオブジェクト</param>
+        private void OnListBoxLayersDragDrop(object sender, DragEventArgs e)
         {
             try
             {
-                string[] fileNames = (string[])(evt.Data.GetData(DataFormats.FileDrop, false));
+                string[] fileNames = (string[])(e.Data.GetData(DataFormats.FileDrop, false));
 
                 // ファイルが png ならレイヤーを追加する。
                 foreach (string fileName in fileNames)
@@ -423,9 +423,9 @@ namespace CharaChipGen.MaterialEditorForm
                     }
                 }
             }
-            catch (Exception e)
+            catch (Exception ex)
             {
-                System.Diagnostics.Debug.WriteLine(e.Message);
+                System.Diagnostics.Debug.WriteLine(ex.Message);
             }
         }
 

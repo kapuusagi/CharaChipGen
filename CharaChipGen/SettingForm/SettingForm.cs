@@ -51,8 +51,8 @@ namespace CharaChipGen.ExportSettingForm
         /// OKボタンがクリックされたときに通知を受け取る。
         /// </summary>
         /// <param name="sender">送信元オブジェクト</param>
-        /// <param name="evt">イベントオブジェクト</param>
-        private void OnOKButtonClick(object sender, EventArgs evt)
+        /// <param name="e">イベントオブジェクト</param>
+        private void OnOKButtonClick(object sender, EventArgs e)
         {
             DialogResult = DialogResult.OK;
         }
@@ -61,8 +61,8 @@ namespace CharaChipGen.ExportSettingForm
         /// キャンセルボタンがクリックされた時に通知を受け取る。
         /// </summary>
         /// <param name="sender">送信元オブジェクト</param>
-        /// <param name="evt">イベントオブジェクト</param>
-        private void OnCancelButtonClick(object sender, EventArgs evt)
+        /// <param name="e">イベントオブジェクト</param>
+        private void OnCancelButtonClick(object sender, EventArgs e)
         {
             DialogResult = DialogResult.Cancel;
         }

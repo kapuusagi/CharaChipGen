@@ -180,8 +180,8 @@ namespace CharaChipGen.MaterialEditorForm
         /// レイヤーファイルを開くボタン
         /// </summary>
         /// <param name="sender">送信元オブジェクト</param>
-        /// <param name="evt">イベントオブジェクト</param>
-        private void OnOpenButtonClicked(object sender, EventArgs evt)
+        /// <param name="e">イベントオブジェクト</param>
+        private void OnOpenButtonClicked(object sender, EventArgs e)
         {
             string entryFileDir = System.IO.Path.GetDirectoryName(entryFile.Path);
             openFileDialog.InitialDirectory = entryFileDir;
@@ -215,9 +215,9 @@ namespace CharaChipGen.MaterialEditorForm
                 ModelToUI();
                 NotifyLayerChanged();
             }
-            catch (Exception e)
+            catch (Exception ex)
             {
-                MessageBox.Show(this, e.Message, "エラー");
+                MessageBox.Show(this, ex.Message, "エラー");
             }
         }
 

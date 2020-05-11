@@ -95,8 +95,8 @@ namespace CharaChipGen.ManagementForm
         /// 追加ボタンがクリックされた時に通知を受け取る。
         /// </summary>
         /// <param name="sender">送信元オブジェクト</param>
-        /// <param name="evt">イベントオブジェクト</param>
-        private void OnMaterialAddClicked(object sender, EventArgs evt)
+        /// <param name="e">イベントオブジェクト</param>
+        private void OnMaterialAddClicked(object sender, EventArgs e)
         {
             // 追加ボタンが押されたとき、外部の素材をコピーしてくる。
             DialogResult res = openFileDialog.ShowDialog(this);
@@ -113,9 +113,9 @@ namespace CharaChipGen.ManagementForm
                     AddMaterial(selectedPath);
                 }
             }
-            catch (Exception e)
+            catch (Exception ex)
             {
-                MessageBox.Show(this, e.Message, "エラー");
+                MessageBox.Show(this, ex.Message, "エラー");
             }
 
             // ビュー更新
@@ -182,8 +182,8 @@ namespace CharaChipGen.ManagementForm
         /// 編集ボタンがクリックされた時に通知を受け取る。
         /// </summary>
         /// <param name="sender">送信元オブジェクト</param>
-        /// <param name="evt">イベントオブジェクト</param>
-        private void OnMaterialEditClicked(object sender, EventArgs evt)
+        /// <param name="e">イベントオブジェクト</param>
+        private void OnMaterialEditClicked(object sender, EventArgs e)
         {
             var selectedIndices = listViewMaterials.SelectedIndices;
             if (selectedIndices.Count != 1)
@@ -224,9 +224,9 @@ namespace CharaChipGen.ManagementForm
                 listViewMaterials.Items.RemoveAt(selectedIndex);
                 listViewMaterials.Items.Insert(selectedIndex, GenerateListViewMaterial(material));
             }
-            catch (Exception e)
+            catch (Exception ex)
             {
-                MessageBox.Show(this, e.Message, "エラー");
+                MessageBox.Show(this, ex.Message, "エラー");
             }
         }
 
@@ -298,8 +298,8 @@ namespace CharaChipGen.ManagementForm
         /// 削除操作が行われたときに通知を受け取る。
         /// </summary>
         /// <param name="sender">送信元オブジェクト</param>
-        /// <param name="evt">イベントオブジェクト</param>
-        private void OnMaterialDeleteClicked(object sender, EventArgs evt)
+        /// <param name="e">イベントオブジェクト</param>
+        private void OnMaterialDeleteClicked(object sender, EventArgs e)
         {
             DialogResult res = MessageBox.Show(this,
                 "選択されている部品を削除してもよろしいですか？",
@@ -333,9 +333,9 @@ namespace CharaChipGen.ManagementForm
                     System.IO.File.Delete(path);
                 }
             }
-            catch (Exception e)
+            catch (Exception ex)
             {
-                MessageBox.Show(this, e.Message, "エラー");
+                MessageBox.Show(this, ex.Message, "エラー");
             }
             UpdateMaterialListView();
         }
@@ -510,8 +510,8 @@ namespace CharaChipGen.ManagementForm
         /// プレビューボタンが押されたときに通知を受け取る。
         /// </summary>
         /// <param name="sender">送信元オブジェクト</param>
-        /// <param name="evt">イベントオブジェクト</param>
-        private void OnButtonPreviewClick(object sender, EventArgs evt)
+        /// <param name="e">イベントオブジェクト</param>
+        private void OnButtonPreviewClick(object sender, EventArgs e)
         {
             int selectedIndex = listViewMaterials.SelectedIndices[0];
             ListViewItem selectedItem = listViewMaterials.Items[selectedIndex];
@@ -533,9 +533,9 @@ namespace CharaChipGen.ManagementForm
                     };
                 form.ShowDialog();
             }
-            catch (Exception e)
+            catch (Exception ex)
             {
-                MessageBox.Show(this, e.Message, "エラー");
+                MessageBox.Show(this, ex.Message, "エラー");
             }
         }
 

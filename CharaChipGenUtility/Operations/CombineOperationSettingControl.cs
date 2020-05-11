@@ -69,8 +69,8 @@ namespace CharaChipGenUtility.Operations
         /// 水平カウント欄の値が変更された時に通知を受け取る。
         /// </summary>
         /// <param name="sender">送信元オブジェクト</param>
-        /// <param name="evt">イベントオブジェクト</param>
-        private void OnNumericUpDownHValueChanged(object sender, EventArgs evt)
+        /// <param name="e">イベントオブジェクト</param>
+        private void OnNumericUpDownHValueChanged(object sender, EventArgs e)
         {
             if (Model != null)
             {
@@ -82,8 +82,8 @@ namespace CharaChipGenUtility.Operations
         /// 垂直カウント欄の値が変更された時に通知を受け取る。
         /// </summary>
         /// <param name="sender">送信元オブジェクト</param>
-        /// <param name="evt">イベントオブジェクト</param>
-        private void OnNumericUpDownVValueChanged(object sender, EventArgs evt)
+        /// <param name="e">イベントオブジェクト</param>
+        private void OnNumericUpDownVValueChanged(object sender, EventArgs e)
         {
             if (Model != null)
             {
@@ -98,11 +98,11 @@ namespace CharaChipGenUtility.Operations
         /// 関数名長い。
         /// </remarks>
         /// <param name="sender">送信元オブジェクト</param>
-        /// <param name="evt">イベントオブジェクト</param>
+        /// <param name="e">イベントオブジェクト</param>
         private void OnControlSelectDirectoryPropertyChanged(object sender,
-            PropertyChangedEventArgs evt)
+            PropertyChangedEventArgs e)
         {
-            if (evt.PropertyName.Equals(nameof(SelectDirectoryControl.Directory)))
+            if (e.PropertyName.Equals(nameof(SelectDirectoryControl.Directory)))
             {
                 if (Model != null)
                 {

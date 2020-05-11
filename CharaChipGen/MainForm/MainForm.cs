@@ -42,8 +42,8 @@ namespace CharaChipGen.MainForm
         /// 閉じるボタンがクリックされたときに通知を受け取る。
         /// </summary>
         /// <param name="sender">送信元オブジェクト</param>
-        /// <param name="evt">イベントオブジェクト</param>
-        private void OnMenuItemExitClick(object sender, EventArgs evt)
+        /// <param name="e">イベントオブジェクト</param>
+        private void OnMenuItemExitClick(object sender, EventArgs e)
         {
             Close();
         }
@@ -52,8 +52,8 @@ namespace CharaChipGen.MainForm
         /// 素材管理メニュー/素材管理ボタンがクリックされたときに通知を受け取る。
         /// </summary>
         /// <param name="sender">送信元オブジェクト</param>
-        /// <param name="evt">イベントオブジェクト</param>
-        private void OnMaterialManageClicked(object sender, EventArgs evt)
+        /// <param name="e">イベントオブジェクト</param>
+        private void OnMaterialManageClicked(object sender, EventArgs e)
         {
             ManagementForm.MaterialManagementForm form
                 = new ManagementForm.MaterialManagementForm();
@@ -68,8 +68,8 @@ namespace CharaChipGen.MainForm
         /// キャラクターエントリービューのボタンがクリックされたときに通知を受け取る。
         /// </summary>
         /// <param name="sender">送信元オブジェクト</param>
-        /// <param name="evt">イベントオブジェクト</param>
-        private void OnCharacterEntryViewButtonClick(object sender, EventArgs evt)
+        /// <param name="e">イベントオブジェクト</param>
+        private void OnCharacterEntryViewButtonClick(object sender, EventArgs e)
         {
             int index = GetCharacterIndexByView(sender);
             if (index < 0)
@@ -80,9 +80,9 @@ namespace CharaChipGen.MainForm
             {
                 CharacterChipEditProc((CharacterEntryView)(sender), index);
             }
-            catch (Exception e)
+            catch (Exception ex)
             {
-                MessageBox.Show(this, e.Message, "エラー");
+                MessageBox.Show(this, ex.Message, "エラー");
             }
         }
 
@@ -193,8 +193,8 @@ namespace CharaChipGen.MainForm
         /// エクスポートメニュー/ボタンが押された時の処理を行う。
         /// </summary>
         /// <param name="sender">送信元オブジェクト</param>
-        /// <param name="evt">イベントオブジェクト</param>
-        private void OnExportButtonClick(object sender, EventArgs evt)
+        /// <param name="e">イベントオブジェクト</param>
+        private void OnExportButtonClick(object sender, EventArgs e)
         {
             // エクスポートボタンが押されたらエクスポート処理する。
             GeneratorSetting setting = AppData.Instance.GeneratorSetting;
@@ -214,9 +214,9 @@ namespace CharaChipGen.MainForm
                 CharaChipExporter.ExportCharaChip(setting);
                 MessageBox.Show(this, $" {setting.ExportSetting.ExportFilePath}", "Export succeed.");
             }
-            catch (Exception e)
+            catch (Exception ex)
             {
-                MessageBox.Show(this, e.Message, "エラー");
+                MessageBox.Show(this, ex.Message, "エラー");
             }
 
         }
@@ -281,8 +281,8 @@ namespace CharaChipGen.MainForm
         /// 開くメニュー項目がクリックされた時に通知を受け取る。
         /// </summary>
         /// <param name="sender">送信元オブジェクト</param>
-        /// <param name="evt">イベントオブジェクト</param>
-        private void OnMenuItemOpenClick(object sender, EventArgs evt)
+        /// <param name="e">イベントオブジェクト</param>
+        private void OnMenuItemOpenClick(object sender, EventArgs e)
         {
             RestoreDialog(openFileDialog, Properties.Settings.Default.LastSavePath);
             DialogResult res = openFileDialog.ShowDialog(this);
@@ -296,9 +296,9 @@ namespace CharaChipGen.MainForm
                 LoadDataProc(fileName);
                 Properties.Settings.Default.LastSavePath = fileName;
             }
-            catch (Exception e)
+            catch (Exception ex)
             {
-                MessageBox.Show(this, e.Message, "エラー");
+                MessageBox.Show(this, ex.Message, "エラー");
             }
 
         }
@@ -339,12 +339,12 @@ namespace CharaChipGen.MainForm
         /// 保存が選択されたときに通知を受け取る。
         /// </summary>
         /// <param name="sender">送信元オブジェクト</param>
-        /// <param name="evt">イベント</param>
-        private void OnSaveClick(object sender, EventArgs evt)
+        /// <param name="e">イベント</param>
+        private void OnSaveClick(object sender, EventArgs e)
         {
             if (editFilePath == "")
             {
-                OnSaveAsClick(sender, evt);
+                OnSaveAsClick(sender, e);
                 return;
             }
             else
@@ -353,9 +353,9 @@ namespace CharaChipGen.MainForm
                 {
                     SaveDataProc(editFilePath);
                 }
-                catch (Exception e)
+                catch (Exception ex)
                 {
-                    MessageBox.Show(this, e.Message, "エラー");
+                    MessageBox.Show(this, ex.Message, "エラー");
                 }
 
             }
@@ -365,8 +365,8 @@ namespace CharaChipGen.MainForm
         /// 名前を付けて保存が選択されたときに通知を受け取る。
         /// </summary>
         /// <param name="sender">送信元オブジェクト</param>
-        /// <param name="evt">イベントオブジェクト</param>
-        private void OnSaveAsClick(object sender, EventArgs evt)
+        /// <param name="e">イベントオブジェクト</param>
+        private void OnSaveAsClick(object sender, EventArgs e)
         {
             RestoreDialog(saveFileDialog, Properties.Settings.Default.LastSavePath);
             DialogResult result = saveFileDialog.ShowDialog(this);
@@ -383,9 +383,9 @@ namespace CharaChipGen.MainForm
                 editFilePath = filePath;
                 Properties.Settings.Default.LastSavePath = filePath;
             }
-            catch (Exception e)
+            catch (Exception ex)
             {
-                MessageBox.Show(this, e.Message, "エラー");
+                MessageBox.Show(this, ex.Message, "エラー");
             }
         }
 
@@ -422,8 +422,8 @@ namespace CharaChipGen.MainForm
         /// 画面が表示されたときに通知を受け取る
         /// </summary>
         /// <param name="sender">送信元オブジェクト</param>
-        /// <param name="evt">イベントオブジェクト</param>
-        private void OnFormShown(object sender, EventArgs evt)
+        /// <param name="e">イベントオブジェクト</param>
+        private void OnFormShown(object sender, EventArgs e)
         {
             string appDir = System.IO.Path.GetDirectoryName(Application.ExecutablePath);
             string workTempPath = System.IO.Path.Combine(appDir, PreviousSavedFileName);
@@ -433,9 +433,9 @@ namespace CharaChipGen.MainForm
                 {
                     LoadDataProc(workTempPath);
                 }
-                catch (Exception e)
+                catch (Exception ex)
                 {
-                    System.Diagnostics.Debug.WriteLine(e);
+                    System.Diagnostics.Debug.WriteLine(ex);
                 }
             }
 
@@ -445,8 +445,8 @@ namespace CharaChipGen.MainForm
         /// フォームがクローズされようとしている時に通知を受け取る。
         /// </summary>
         /// <param name="sender">送信元オブジェクト</param>
-        /// <param name="evt">イベント。</param>
-        private void OnFormClosing(object sender, FormClosingEventArgs evt)
+        /// <param name="e">イベント。</param>
+        private void OnFormClosing(object sender, FormClosingEventArgs e)
         {
 
             // 次回起動時、作業を継続できるように現在の設定を保存しておく。
@@ -456,9 +456,9 @@ namespace CharaChipGen.MainForm
             {
                 SaveDataProc(workTempPath);
             }
-            catch (Exception e)
+            catch (Exception ex)
             {
-                System.Diagnostics.Debug.WriteLine(e);
+                System.Diagnostics.Debug.WriteLine(ex);
             }
         }
 
@@ -619,8 +619,8 @@ namespace CharaChipGen.MainForm
         /// キャラクター表示欄がダブルクリックされた時に通知を受け取る。
         /// </summary>
         /// <param name="sender">送信元オブジェクト</param>
-        /// <param name="evt">イベントオブジェクト</param>
-        private void OnCharacterEntryControlDoubleClick(object sender, EventArgs evt)
+        /// <param name="e">イベントオブジェクト</param>
+        private void OnCharacterEntryControlDoubleClick(object sender, EventArgs e)
         {
             int index = GetCharacterIndexByView(sender);
             if (index < 0)
@@ -631,9 +631,9 @@ namespace CharaChipGen.MainForm
             {
                 CharacterChipEditProc((CharacterEntryView)(sender), index);
             }
-            catch (Exception e)
+            catch (Exception ex)
             {
-                MessageBox.Show(this, e.Message, "エラー");
+                MessageBox.Show(this, ex.Message, "エラー");
             }
         }
     }

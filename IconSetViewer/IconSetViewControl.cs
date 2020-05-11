@@ -116,10 +116,10 @@ namespace IconSetViewer
         /// <summary>
         /// 表示を更新する。
         /// </summary>
-        /// <param name="evt">イベントオブジェクト</param>
-        protected override void OnPaint(PaintEventArgs evt)
+        /// <param name="e">イベントオブジェクト</param>
+        protected override void OnPaint(PaintEventArgs e)
         {
-            Graphics g = evt.Graphics;
+            Graphics g = e.Graphics;
 
             // 背景描画
             using (Brush brush = new SolidBrush(BackColor))
@@ -153,10 +153,10 @@ namespace IconSetViewer
         /// マウスでクリックされたときに通知を受け取る。
         /// </summary>
         /// <param name="sender">送信元オブジェクト</param>
-        /// <param name="evt">イベントオブジェクト</param>
-        private void OnMouseClick(object sender, MouseEventArgs evt)
+        /// <param name="e">イベントオブジェクト</param>
+        private void OnMouseClick(object sender, MouseEventArgs e)
         {
-            Point p = evt.Location;
+            Point p = e.Location;
             int iconIndex = (p.Y / iconSize.Height) * hIconCount + p.X / iconSize.Width;
             if ((iconIndex >= 0) && (iconIndex < MaxIconCount))
             {

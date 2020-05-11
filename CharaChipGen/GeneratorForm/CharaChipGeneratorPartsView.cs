@@ -136,8 +136,8 @@ namespace CharaChipGen.GeneratorForm
         /// 素材名が変更された時に通知を受け取る。
         /// </summary>
         /// <param name="sender">送信元オブジェクト</param>
-        /// <param name="evt">イベントオブジェクト</param>
-        private void OnMaterialNameChanged(object sender, EventArgs evt)
+        /// <param name="e">イベントオブジェクト</param>
+        private void OnMaterialNameChanged(object sender, EventArgs e)
         {
             Object selItem = comboBoxItem.SelectedItem;
             if (selItem.Equals(ItemNoSelect))

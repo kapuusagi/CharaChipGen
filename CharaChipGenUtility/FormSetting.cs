@@ -53,8 +53,8 @@ namespace CharaChipGenUtility
         /// フォームが表示された時の処理を行う。
         /// </summary>
         /// <param name="sender">送信元オブジェクト</param>
-        /// <param name="evt">イベントオブジェクト</param>
-        private void OnFormShown(object sender, EventArgs evt)
+        /// <param name="e">イベントオブジェクト</param>
+        private void OnFormShown(object sender, EventArgs e)
         {
         }
 
@@ -62,8 +62,8 @@ namespace CharaChipGenUtility
         /// 閉じるボタンが押された時に通知を受け取る。
         /// </summary>
         /// <param name="sender">送信元オブジェクト</param>
-        /// <param name="evt">イベントオブジェクト</param>
-        private void OnButtonCloseClick(object sender, EventArgs evt)
+        /// <param name="e">イベントオブジェクト</param>
+        private void OnButtonCloseClick(object sender, EventArgs e)
         {
             Close();
         }

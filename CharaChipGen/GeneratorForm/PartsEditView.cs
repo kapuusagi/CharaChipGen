@@ -32,26 +32,26 @@ namespace CharaChipGen.GeneratorForm
         private void InitHandlers()
         {
             numericUpDownYPos.ValueChanged
-                += (s, evt) => { model.OffsetY = (int)(numericUpDownYPos.Value); };
+                += (s, e) => { model.OffsetY = (int)(numericUpDownYPos.Value); };
             numericUpDownHue.ValueChanged
-                += (s, evt) => { model.Hue = (int)(numericUpDownHue.Value); };
+                += (s, e) => { model.Hue = (int)(numericUpDownHue.Value); };
             numericUpDownSaturation.ValueChanged
-                += (s, evt) => { model.Saturation = (int)(numericUpDownSaturation.Value); };
+                += (s, e) => { model.Saturation = (int)(numericUpDownSaturation.Value); };
             numericUpDownValue.ValueChanged
-                += (s, evt) => { model.Value = (int)(numericUpDownValue.Value); };
+                += (s, e) => { model.Value = (int)(numericUpDownValue.Value); };
             numericUpDownOpacity.ValueChanged
-                += (s, evt) => { model.Opacity = (int)(numericUpDownOpacity.Value); };
+                += (s, e) => { model.Opacity = (int)(numericUpDownOpacity.Value); };
 
             trackBarYPos.ValueChanged
-                += (s, evt) => { model.OffsetY = trackBarYPos.Value; };
+                += (s, e) => { model.OffsetY = trackBarYPos.Value; };
             trackBarHue.ValueChanged
-                += (s, evt) => { model.Hue = trackBarHue.Value; };
+                += (s, e) => { model.Hue = trackBarHue.Value; };
             trackBarSaturation.ValueChanged
-                += (s, evt) => { model.Saturation = trackBarSaturation.Value; };
+                += (s, e) => { model.Saturation = trackBarSaturation.Value; };
             trackBarValue.ValueChanged
-                += (s, evt) => { model.Value = trackBarValue.Value; };
+                += (s, e) => { model.Value = trackBarValue.Value; };
             trackBarOpacity.ValueChanged
-                += (s, evt) => { model.Opacity = trackBarOpacity.Value; };
+                += (s, e) => { model.Opacity = trackBarOpacity.Value; };
         }
 
 
@@ -115,8 +115,8 @@ namespace CharaChipGen.GeneratorForm
         /// リセットボタンがクリックされた時に通知を受け取る。
         /// </summary>
         /// <param name="sender">送信元オブジェクト</param>
-        /// <param name="evt">イベントオブジェクト</param>
-        private void OnButtonResetClick(object sender, EventArgs evt)
+        /// <param name="e">イベントオブジェクト</param>
+        private void OnButtonResetClick(object sender, EventArgs e)
         {
             model.OffsetY = 0;
             model.Hue = 0;

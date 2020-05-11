@@ -28,10 +28,10 @@ namespace IconSetViewer
         /// <summary>
         /// 表示を更新する。
         /// </summary>
-        /// <param name="evt">イベントオブジェクト</param>
-        protected override void OnPaint(PaintEventArgs evt)
+        /// <param name="e">イベントオブジェクト</param>
+        protected override void OnPaint(PaintEventArgs e)
         {
-            Graphics g = evt.Graphics;
+            Graphics g = e.Graphics;
 
             // 背景色でクリア
             Brush brush = new SolidBrush(BackColor);
@@ -146,10 +146,10 @@ namespace IconSetViewer
         /// <summary>
         /// コントロールのサイズが変更された時に通知を受け取る
         /// </summary>
-        /// <param name="evt">イベントオブジェクト</param>
-        protected override void OnResize(EventArgs evt)
+        /// <param name="e">イベントオブジェクト</param>
+        protected override void OnResize(EventArgs e)
         {
-            base.OnResize(evt);
+            base.OnResize(e);
             // 再描画しないとくずれたおかしな画像が表示される。
             Invalidate();
         }

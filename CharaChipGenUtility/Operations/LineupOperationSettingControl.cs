@@ -68,11 +68,11 @@ namespace CharaChipGenUtility.Operations
         /// ディレクトリ選択コントロールのプロパティが変更された時に通知を受け取る。
         /// </summary>
         /// <param name="sender">送信元オブジェクト</param>
-        /// <param name="evt">イベントオブジェクト</param>
+        /// <param name="e">イベントオブジェクト</param>
         private void OnControlSelectDirectoryPropertyChanged(object sender,
-            PropertyChangedEventArgs evt)
+            PropertyChangedEventArgs e)
         {
-            if (evt.PropertyName.Equals(nameof(SelectDirectoryControl.Directory)))
+            if (e.PropertyName.Equals(nameof(SelectDirectoryControl.Directory)))
             {
                 if (Model != null)
                 {
@@ -86,8 +86,8 @@ namespace CharaChipGenUtility.Operations
         /// 方向コンボボックスで選択が変更された時に通知を受け取る。
         /// </summary>
         /// <param name="sender">送信元オブジェクト</param>
-        /// <param name="evt">イベントオブジェクト</param>
-        private void OnComboBoxDirectionSelectedIndexChanged(object sender, EventArgs evt)
+        /// <param name="e">イベントオブジェクト</param>
+        private void OnComboBoxDirectionSelectedIndexChanged(object sender, EventArgs e)
         {
             if (Model != null)
             {

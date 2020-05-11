@@ -181,8 +181,8 @@ namespace CharaChipGen.GeneratorForm
         /// フォームのサイズが変更された時に通知を受け取る。
         /// </summary>
         /// <param name="sender">送信元オブジェクト</param>
-        /// <param name="evt">イベントオブジェクト</param>
-        private void OnFormResized(object sender, EventArgs evt)
+        /// <param name="e">イベントオブジェクト</param>
+        private void OnFormResized(object sender, EventArgs e)
         {
             Invalidate();
         }

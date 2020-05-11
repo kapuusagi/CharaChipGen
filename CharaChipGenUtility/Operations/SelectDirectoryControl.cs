@@ -57,8 +57,8 @@ namespace CharaChipGenUtility.Operations
         /// フォルダ選択ボタンがクリックされた時に通知を受け取る。
         /// </summary>
         /// <param name="sender">送信元オブジェクト</param>
-        /// <param name="evt">イベントオブジェクト</param>
-        private void OnButtonSelectFolderClick(object sender, EventArgs evt)
+        /// <param name="e">イベントオブジェクト</param>
+        private void OnButtonSelectFolderClick(object sender, EventArgs e)
         {
             try
             {
@@ -90,9 +90,9 @@ namespace CharaChipGenUtility.Operations
                 textBoxDirectory.Text = folderSelectDialog.Path;
                 // Note: イベントはtextBoxDirectoryから出されるので特に通知しない。
             }
-            catch (Exception e)
+            catch (Exception ex)
             {
-                MessageBox.Show(e.Message);
+                MessageBox.Show(ex.Message);
             }
         }
 
@@ -100,8 +100,8 @@ namespace CharaChipGenUtility.Operations
         /// テキストボックスの内容が変更された時に通知を受け取る。
         /// </summary>
         /// <param name="sender">送信元オブジェクト</param>
-        /// <param name="evt">イベントオブジェクト</param>
-        private void OnTextBoxTextChanged(object sender, EventArgs evt)
+        /// <param name="e">イベントオブジェクト</param>
+        private void OnTextBoxTextChanged(object sender, EventArgs e)
         {
             NotifyPropertyChange(nameof(Directory));
         }

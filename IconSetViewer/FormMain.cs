@@ -19,8 +19,8 @@ namespace IconSetViewer
         /// アイコンセットビューで項目が選択変更されたときに通知を受け取る。
         /// </summary>
         /// <param name="sender">送信元オブジェクト</param>
-        /// <param name="evt">イベントオブジェクト</param>
-        private void OnIconSetViewControlSelectedIndexChanged(object sender, EventArgs evt)
+        /// <param name="e">イベントオブジェクト</param>
+        private void OnIconSetViewControlSelectedIndexChanged(object sender, EventArgs e)
         {
             comboBoxNumber.SelectedIndex = iconSetViewControl.SelectedIndex;
             iconViewControl.Number = iconSetViewControl.SelectedIndex;
@@ -30,17 +30,17 @@ namespace IconSetViewer
         /// ドラッグ&ドロップされた
         /// </summary>
         /// <param name="sender">送信元オブジェクト</param>
-        /// <param name="evt">イベントオブジェクト</param>
-        private void OnFormDragDrop(object sender, DragEventArgs evt)
+        /// <param name="e">イベントオブジェクト</param>
+        private void OnFormDragDrop(object sender, DragEventArgs e)
         {
-            string[] fileNames = (string[])(evt.Data.GetData(DataFormats.FileDrop, false));
+            string[] fileNames = (string[])(e.Data.GetData(DataFormats.FileDrop, false));
             try
             {
                 SetNewIconImage(fileNames[0]);
             }
-            catch (Exception e)
+            catch (Exception ex)
             {
-                MessageBox.Show(this, e.Message, "エラー");
+                MessageBox.Show(this, ex.Message, "エラー");
             }
         }
 
@@ -48,16 +48,16 @@ namespace IconSetViewer
         /// ドラッグされてきた
         /// </summary>
         /// <param name="sender">送信元オブジェクト</param>
-        /// <param name="evt">イベントオブジェクト</param>
-        private void OnFormDragEnter(object sender, DragEventArgs evt)
+        /// <param name="e">イベントオブジェクト</param>
+        private void OnFormDragEnter(object sender, DragEventArgs e)
         {
-            if (evt.Data.GetDataPresent(DataFormats.FileDrop))
+            if (e.Data.GetDataPresent(DataFormats.FileDrop))
             {
-                evt.Effect = DragDropEffects.Copy;
+                e.Effect = DragDropEffects.Copy;
             }
             else
             {
-                evt.Effect = DragDropEffects.None;
+                e.Effect = DragDropEffects.None;
             }
         }
 
@@ -65,8 +65,8 @@ namespace IconSetViewer
         /// オープンメニューがクリックされた。
         /// </summary>
         /// <param name="sender">送信元オブジェクト</param>
-        /// <param name="evt">イベントオブジェクト</param>
-        private void OnMenuOpenClick(object sender, EventArgs evt)
+        /// <param name="e">イベントオブジェクト</param>
+        private void OnMenuOpenClick(object sender, EventArgs e)
         {
             try
             {
@@ -78,9 +78,9 @@ namespace IconSetViewer
                 string fileName = openFileDialog.FileName;
                 SetNewIconImage(fileName);
             }
-            catch (Exception e)
+            catch (Exception ex)
             {
-                MessageBox.Show(this, e.Message, "エラー");
+                MessageBox.Show(this, ex.Message, "エラー");
             }
         }
 
@@ -88,8 +88,8 @@ namespace IconSetViewer
         /// 終了メニューがクリックされた。
         /// </summary>
         /// <param name="sender">送信元オブジェクト</param>
-        /// <param name="evt">イベントオブジェクト</param>
-        private void OnExitMenuClick(object sender, EventArgs evt)
+        /// <param name="e">イベントオブジェクト</param>
+        private void OnExitMenuClick(object sender, EventArgs e)
         {
             Close();
         }
@@ -98,8 +98,8 @@ namespace IconSetViewer
         /// コンボボックスのテキスト入力が変更された時に通知を受け取る。
         /// </summary>
         /// <param name="sender">送信元オブジェクト</param>
-        /// <param name="evt">イベントオブジェクト</param>
-        private void OnComboBoxNumberTextUpdate(object sender, EventArgs evt)
+        /// <param name="e">イベントオブジェクト</param>
+        private void OnComboBoxNumberTextUpdate(object sender, EventArgs e)
         {
             try
             {
@@ -115,13 +115,17 @@ namespace IconSetViewer
                     iconSetViewControl.SelectedIndex = number - 1;
                 }
             }
-            catch (Exception e)
+            catch (Exception ex)
             {
                 iconViewControl.Number = -1;
-                System.Diagnostics.Debug.WriteLine(e.Message);
+                System.Diagnostics.Debug.WriteLine(ex.Message);
             }
         }
 
+        /// <summary>
+        /// 新しいアイコン画像を設定する。
+        /// </summary>
+        /// <param name="filePath">ファイルパス</param>
         private void SetNewIconImage(string filePath)
         {
             using (Image image = Image.FromFile(filePath))
@@ -155,8 +159,8 @@ namespace IconSetViewer
         /// ドロップダウンリストでの番号選択がされたときに通知を受け取る。
         /// </summary>
         /// <param name="sender">送信元オブジェクト</param>
-        /// <param name="evt">イベントオブジェクト</param>
-        private void OnComboBoxNumberSelectionChangeCommitted(object sender, EventArgs evt)
+        /// <param name="e">イベントオブジェクト</param>
+        private void OnComboBoxNumberSelectionChangeCommitted(object sender, EventArgs e)
         {
             try
             {
@@ -169,10 +173,10 @@ namespace IconSetViewer
                 iconViewControl.Number = (number - 1);
                 iconSetViewControl.SelectedIndex = (number - 1);
             }
-            catch (Exception e)
+            catch (Exception ex)
             {
                 iconViewControl.Number = -1;
-                System.Diagnostics.Debug.WriteLine(e.Message);
+                System.Diagnostics.Debug.WriteLine(ex.Message);
             }
         }
     }

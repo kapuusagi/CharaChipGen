@@ -52,8 +52,8 @@ namespace CharaChipGen.MaterialEditorForm
         /// コントロールのサイズが変更された時に通知を受け取る。
         /// </summary>
         /// <param name="sender">送信元オブジェクト</param>
-        /// <param name="evt">イベントオブジェクト</param>
-        private void OnControlResized(object sender, EventArgs evt)
+        /// <param name="e">イベントオブジェクト</param>
+        private void OnControlResized(object sender, EventArgs e)
         {
             int pictureBoxWidth = (ClientSize.Width - 8) / 3;
             int pictureBoxHeight = (ClientSize.Height - 10) / 4;
