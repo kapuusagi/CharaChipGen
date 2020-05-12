@@ -75,6 +75,7 @@ namespace CGenImaging
         /// <param name="lightness">輝度</param>
         private ColorHSL(float alpha, float hue, float saturation, float lightness)
         {
+            Alpha = alpha;
             Hue = hue;
             Saturation = saturation;
             Lightness = lightness;
