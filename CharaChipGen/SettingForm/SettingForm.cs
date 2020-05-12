@@ -113,7 +113,7 @@ namespace CharaChipGen.ExportSettingForm
         private void OnLabelImageBackgroundClick(object sender, EventArgs e)
         {
             Color defaultColor = labelImageBackground.BackColor;
-            Color selectColor = ColorEditForm.ColorEditForm.ShowDialog(this);
+            Color selectColor = ColorEditForm.ColorEditForm.ShowDialog(this, defaultColor);
             labelImageBackground.BackColor = selectColor;
         }
     }
