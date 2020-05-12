@@ -36,7 +36,7 @@
         /// <returns>色</returns>
         public static ColorHSV FromAHSV(int alpha, int hue, int saturation, int value)
         {
-            float a = alpha / 1.0f;
+            float a = alpha / 255.0f;
             float h = (float)(hue);
             float s = saturation / 255.0f;
             float v = value / 255.0f;
