@@ -48,7 +48,7 @@ namespace CGenImaging
         /// <returns>RGBカラーが返る</returns>
         public static Color ConvertHSVtoRGB(ColorHSV hsv, float alpha)
         {
-            float a = ColorUtility.Clamp(alpha * 255.0f, 0.0f, 1.0f);
+            int a = ColorUtility.Clamp(Convert.ToInt32(alpha * 255.0f), 0, 255);
             return ConvertHSVtoRGB(hsv, (byte)(a));
         }
 
@@ -129,7 +129,7 @@ namespace CGenImaging
         /// <returns>RGB色</returns>
         public static Color ConvertHSLtoRGB(ColorHSL hsl, float alpha)
         {
-            int a = Convert.ToInt32(ColorUtility.Clamp(alpha * 255.0f, 0.0f, 1.0f));
+            int a = Convert.ToInt32(ColorUtility.Clamp(alpha * 255.0f, 0.0f, 255.0f));
             return ConvertHSLtoRGB(hsl, (byte)(a));
         }
 
