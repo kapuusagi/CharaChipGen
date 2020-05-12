@@ -1,4 +1,5 @@
 ﻿using CharaChipGen.Model.CharaChip;
+using System.Drawing;
 using System.Windows.Forms;
 
 namespace CharaChipGen.GeneratorForm
@@ -97,5 +98,31 @@ namespace CharaChipGen.GeneratorForm
         /// </remarks>
         public PartsType[] GetErrorPartsTypes()
             => charaChipView11.GetErrorPartsTypes();
+
+        /// <summary>
+        /// 画像表示領域の背景色
+        /// </summary>
+        public Color ImageBackColor {
+            get => charaChipView11.BackColor; 
+            set {
+                charaChipView11.BackColor = value;
+                charaChipView21.BackColor = value;
+                charaChipView31.BackColor = value;
+                charaChipView12.BackColor = value;
+                charaChipView22.BackColor = value;
+                charaChipView32.BackColor = value;
+                charaChipView13.BackColor = value;
+                charaChipView23.BackColor = value;
+                charaChipView33.BackColor = value;
+                charaChipView14.BackColor = value;
+                charaChipView24.BackColor = value;
+                charaChipView34.BackColor = value;
+
+                pictureBox1.BackColor = value;
+                pictureBox2.BackColor = value;
+                pictureBox3.BackColor = value;
+                pictureBox4.BackColor = value;
+            }
+        }
     }
 }

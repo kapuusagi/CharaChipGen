@@ -27,6 +27,7 @@ namespace CharaChipGen.ExportSettingForm
             ExportSetting exportSetting = data.GeneratorSetting.ExportSetting;
             sizeInputCharaChipSize.Value = exportSetting.CharaChipSize;
             labelMaterialDirectory.Text = data.MaterialDirectory;
+            labelImageBackground.BackColor = data.ImageBackground;
 
             textBoxExportFilePath.Text = exportSetting.ExportFilePath;
         }
@@ -45,6 +46,7 @@ namespace CharaChipGen.ExportSettingForm
 
             data.MaterialDirectory = labelMaterialDirectory.Text;
             data.DefaultCharaChipSize = sizeInputDefaultCharaChipSize.Value;
+            data.ImageBackground = labelImageBackground.BackColor;
         }
 
         /// <summary>
@@ -101,6 +103,18 @@ namespace CharaChipGen.ExportSettingForm
                 return;
             }
             labelMaterialDirectory.Text = folderBrowserDialog.SelectedPath;
+        }
+
+        /// <summary>
+        /// 画像背景色欄がクリックされた時に通知を受け取る。
+        /// </summary>
+        /// <param name="sender">送信元オブジェクト</param>
+        /// <param name="e">イベントオブジェクト</param>
+        private void OnLabelImageBackgroundClick(object sender, EventArgs e)
+        {
+            Color defaultColor = labelImageBackground.BackColor;
+            Color selectColor = ColorEditForm.ColorEditForm.ShowDialog(this);
+            labelImageBackground.BackColor = selectColor;
         }
     }
 }

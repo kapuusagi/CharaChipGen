@@ -224,6 +224,7 @@
             // charaChipView
             // 
             this.charaChipView.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.charaChipView.ImageBackColor = System.Drawing.SystemColors.Control;
             this.charaChipView.Location = new System.Drawing.Point(3, 3);
             this.charaChipView.Name = "charaChipView";
             this.charaChipView.Size = new System.Drawing.Size(340, 404);

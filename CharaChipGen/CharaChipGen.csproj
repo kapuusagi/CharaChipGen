@@ -46,6 +46,18 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="AppData.cs" />
+    <Compile Include="ColorEditForm\ColorEditForm.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="ColorEditForm\ColorEditForm.Designer.cs">
+      <DependentUpon>ColorEditForm.cs</DependentUpon>
+    </Compile>
+    <Compile Include="ColorEditForm\ColorSVSelectView.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="ColorEditForm\ColorSVSelectView.Designer.cs">
+      <DependentUpon>ColorSVSelectView.cs</DependentUpon>
+    </Compile>
     <Compile Include="GeneratorForm\CharaChipGeneratorPartsView.cs">
       <SubType>UserControl</SubType>
     </Compile>
@@ -189,6 +201,12 @@
       <DependentUpon>SizeInput.cs</DependentUpon>
     </Compile>
     <Compile Include="Settings.cs" />
+    <EmbeddedResource Include="ColorEditForm\ColorEditForm.resx">
+      <DependentUpon>ColorEditForm.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="ColorEditForm\ColorSVSelectView.resx">
+      <DependentUpon>ColorSVSelectView.cs</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="GeneratorForm\CharaChipGeneratorForm.resx">
       <DependentUpon>CharaChipGeneratorForm.cs</DependentUpon>
     </EmbeddedResource>

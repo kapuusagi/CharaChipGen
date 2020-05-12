@@ -164,5 +164,18 @@ namespace CharaChipGen.MaterialEditorForm
                 }
             }
         }
+
+        /// <summary>
+        /// 画像の背景色
+        /// </summary>
+        public Color ImageBackground {
+            get => pictureBox1.BackColor;
+            set {
+                foreach (PictureBox pictureBox in pictureBoxes)
+                {
+                    pictureBox.BackColor = value;
+                }
+            }
+        }
     }
 }

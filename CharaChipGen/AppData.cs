@@ -3,6 +3,7 @@ using CharaChipGen.Model.CharaChip;
 using CharaChipGen.Model.Material;
 using System;
 using System.Collections.Generic;
+using System.Drawing;
 using System.Linq;
 
 namespace CharaChipGen
@@ -274,6 +275,14 @@ namespace CharaChipGen
         public System.Drawing.Size DefaultCharaChipSize {
             get => Properties.Settings.Default.CharaChipSize;
             set => Properties.Settings.Default.CharaChipSize = value;
+        }
+
+        /// <summary>
+        /// 背景色
+        /// </summary>
+        public Color ImageBackground {
+            get => Properties.Settings.Default.ImageBackground;
+            set => Properties.Settings.Default.ImageBackground = value;
         }
 
         /// <summary>

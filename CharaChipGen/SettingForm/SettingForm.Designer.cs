@@ -32,7 +32,6 @@
             this.buttonCancel = new System.Windows.Forms.Button();
             this.label1 = new System.Windows.Forms.Label();
             this.flowLayoutPanel1 = new System.Windows.Forms.FlowLayoutPanel();
-            this.sizeInputCharaChipSize = new CharaChipGen.SettingForm.SizeInput();
             this.tableLayoutPanel3 = new System.Windows.Forms.TableLayoutPanel();
             this.buttonSelectExportFilePath = new System.Windows.Forms.Button();
             this.textBoxExportFilePath = new System.Windows.Forms.TextBox();
@@ -45,13 +44,16 @@
             this.tabPage2 = new System.Windows.Forms.TabPage();
             this.tableLayoutPanel8 = new System.Windows.Forms.TableLayoutPanel();
             this.tableLayoutPanel5 = new System.Windows.Forms.TableLayoutPanel();
-            this.sizeInputDefaultCharaChipSize = new CharaChipGen.SettingForm.SizeInput();
             this.tableLayoutPanel2 = new System.Windows.Forms.TableLayoutPanel();
             this.buttonSelectMaterialFolder = new System.Windows.Forms.Button();
             this.labelMaterialDirectory = new System.Windows.Forms.Label();
             this.label4 = new System.Windows.Forms.Label();
             this.label5 = new System.Windows.Forms.Label();
             this.folderBrowserDialog = new System.Windows.Forms.FolderBrowserDialog();
+            this.label3 = new System.Windows.Forms.Label();
+            this.labelImageBackground = new System.Windows.Forms.Label();
+            this.sizeInputCharaChipSize = new CharaChipGen.SettingForm.SizeInput();
+            this.sizeInputDefaultCharaChipSize = new CharaChipGen.SettingForm.SizeInput();
             this.flowLayoutPanel1.SuspendLayout();
             this.tableLayoutPanel3.SuspendLayout();
             this.tableLayoutPanel4.SuspendLayout();
@@ -106,17 +108,6 @@
             this.flowLayoutPanel1.Padding = new System.Windows.Forms.Padding(6);
             this.flowLayoutPanel1.Size = new System.Drawing.Size(464, 41);
             this.flowLayoutPanel1.TabIndex = 1;
-            // 
-            // sizeInputCharaChipSize
-            // 
-            this.sizeInputCharaChipSize.Anchor = System.Windows.Forms.AnchorStyles.Left;
-            this.sizeInputCharaChipSize.Location = new System.Drawing.Point(3, 7);
-            this.sizeInputCharaChipSize.MaximumValue = new System.Drawing.Size(128, 128);
-            this.sizeInputCharaChipSize.MinimumValue = new System.Drawing.Size(1, 1);
-            this.sizeInputCharaChipSize.Name = "sizeInputCharaChipSize";
-            this.sizeInputCharaChipSize.Size = new System.Drawing.Size(150, 30);
-            this.sizeInputCharaChipSize.TabIndex = 1;
-            this.sizeInputCharaChipSize.Value = new System.Drawing.Size(24, 24);
             // 
             // tableLayoutPanel3
             // 
@@ -242,13 +233,16 @@
             this.tableLayoutPanel8.Controls.Add(this.tableLayoutPanel2, 1, 0);
             this.tableLayoutPanel8.Controls.Add(this.label4, 0, 0);
             this.tableLayoutPanel8.Controls.Add(this.label5, 0, 1);
+            this.tableLayoutPanel8.Controls.Add(this.label3, 0, 2);
+            this.tableLayoutPanel8.Controls.Add(this.labelImageBackground, 1, 2);
             this.tableLayoutPanel8.Dock = System.Windows.Forms.DockStyle.Top;
             this.tableLayoutPanel8.Location = new System.Drawing.Point(3, 3);
             this.tableLayoutPanel8.Name = "tableLayoutPanel8";
-            this.tableLayoutPanel8.RowCount = 2;
-            this.tableLayoutPanel8.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 50F));
-            this.tableLayoutPanel8.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 50F));
-            this.tableLayoutPanel8.Size = new System.Drawing.Size(450, 100);
+            this.tableLayoutPanel8.RowCount = 3;
+            this.tableLayoutPanel8.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 33.33333F));
+            this.tableLayoutPanel8.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 33.33333F));
+            this.tableLayoutPanel8.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 33.33333F));
+            this.tableLayoutPanel8.Size = new System.Drawing.Size(450, 129);
             this.tableLayoutPanel8.TabIndex = 3;
             // 
             // tableLayoutPanel5
@@ -259,23 +253,12 @@
             this.tableLayoutPanel5.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Absolute, 20F));
             this.tableLayoutPanel5.Controls.Add(this.sizeInputDefaultCharaChipSize, 0, 0);
             this.tableLayoutPanel5.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.tableLayoutPanel5.Location = new System.Drawing.Point(138, 53);
+            this.tableLayoutPanel5.Location = new System.Drawing.Point(138, 45);
             this.tableLayoutPanel5.Name = "tableLayoutPanel5";
             this.tableLayoutPanel5.RowCount = 1;
             this.tableLayoutPanel5.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 100F));
-            this.tableLayoutPanel5.Size = new System.Drawing.Size(309, 44);
+            this.tableLayoutPanel5.Size = new System.Drawing.Size(309, 36);
             this.tableLayoutPanel5.TabIndex = 1;
-            // 
-            // sizeInputDefaultCharaChipSize
-            // 
-            this.sizeInputDefaultCharaChipSize.Anchor = System.Windows.Forms.AnchorStyles.Left;
-            this.sizeInputDefaultCharaChipSize.Location = new System.Drawing.Point(3, 11);
-            this.sizeInputDefaultCharaChipSize.MaximumValue = new System.Drawing.Size(128, 128);
-            this.sizeInputDefaultCharaChipSize.MinimumValue = new System.Drawing.Size(1, 1);
-            this.sizeInputDefaultCharaChipSize.Name = "sizeInputDefaultCharaChipSize";
-            this.sizeInputDefaultCharaChipSize.Size = new System.Drawing.Size(150, 22);
-            this.sizeInputDefaultCharaChipSize.TabIndex = 2;
-            this.sizeInputDefaultCharaChipSize.Value = new System.Drawing.Size(32, 32);
             // 
             // tableLayoutPanel2
             // 
@@ -290,13 +273,13 @@
             this.tableLayoutPanel2.Name = "tableLayoutPanel2";
             this.tableLayoutPanel2.RowCount = 1;
             this.tableLayoutPanel2.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 100F));
-            this.tableLayoutPanel2.Size = new System.Drawing.Size(309, 44);
+            this.tableLayoutPanel2.Size = new System.Drawing.Size(309, 36);
             this.tableLayoutPanel2.TabIndex = 0;
             // 
             // buttonSelectMaterialFolder
             // 
             this.buttonSelectMaterialFolder.Anchor = System.Windows.Forms.AnchorStyles.Left;
-            this.buttonSelectMaterialFolder.Location = new System.Drawing.Point(231, 11);
+            this.buttonSelectMaterialFolder.Location = new System.Drawing.Point(231, 7);
             this.buttonSelectMaterialFolder.Name = "buttonSelectMaterialFolder";
             this.buttonSelectMaterialFolder.Size = new System.Drawing.Size(75, 22);
             this.buttonSelectMaterialFolder.TabIndex = 1;
@@ -310,7 +293,7 @@
             this.labelMaterialDirectory.Dock = System.Windows.Forms.DockStyle.Fill;
             this.labelMaterialDirectory.Location = new System.Drawing.Point(3, 0);
             this.labelMaterialDirectory.Name = "labelMaterialDirectory";
-            this.labelMaterialDirectory.Size = new System.Drawing.Size(222, 44);
+            this.labelMaterialDirectory.Size = new System.Drawing.Size(222, 36);
             this.labelMaterialDirectory.TabIndex = 2;
             this.labelMaterialDirectory.Text = "””";
             this.labelMaterialDirectory.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
@@ -319,7 +302,7 @@
             // 
             this.label4.Anchor = System.Windows.Forms.AnchorStyles.Left;
             this.label4.AutoSize = true;
-            this.label4.Location = new System.Drawing.Point(3, 19);
+            this.label4.Location = new System.Drawing.Point(3, 15);
             this.label4.Name = "label4";
             this.label4.Size = new System.Drawing.Size(64, 12);
             this.label4.TabIndex = 0;
@@ -330,11 +313,53 @@
             // 
             this.label5.Anchor = System.Windows.Forms.AnchorStyles.Left;
             this.label5.AutoSize = true;
-            this.label5.Location = new System.Drawing.Point(3, 69);
+            this.label5.Location = new System.Drawing.Point(3, 57);
             this.label5.Name = "label5";
             this.label5.Size = new System.Drawing.Size(129, 12);
             this.label5.TabIndex = 1;
             this.label5.Text = "デフォルトキャラチップサイズ";
+            // 
+            // label3
+            // 
+            this.label3.Anchor = System.Windows.Forms.AnchorStyles.Left;
+            this.label3.AutoSize = true;
+            this.label3.Location = new System.Drawing.Point(3, 100);
+            this.label3.Name = "label3";
+            this.label3.Size = new System.Drawing.Size(65, 12);
+            this.label3.TabIndex = 2;
+            this.label3.Text = "表示背景色";
+            // 
+            // labelImageBackground
+            // 
+            this.labelImageBackground.Anchor = System.Windows.Forms.AnchorStyles.Left;
+            this.labelImageBackground.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
+            this.labelImageBackground.Location = new System.Drawing.Point(138, 94);
+            this.labelImageBackground.Name = "labelImageBackground";
+            this.labelImageBackground.Size = new System.Drawing.Size(64, 24);
+            this.labelImageBackground.TabIndex = 3;
+            this.labelImageBackground.Click += new System.EventHandler(this.OnLabelImageBackgroundClick);
+            // 
+            // sizeInputCharaChipSize
+            // 
+            this.sizeInputCharaChipSize.Anchor = System.Windows.Forms.AnchorStyles.Left;
+            this.sizeInputCharaChipSize.Location = new System.Drawing.Point(3, 7);
+            this.sizeInputCharaChipSize.MaximumValue = new System.Drawing.Size(128, 128);
+            this.sizeInputCharaChipSize.MinimumValue = new System.Drawing.Size(1, 1);
+            this.sizeInputCharaChipSize.Name = "sizeInputCharaChipSize";
+            this.sizeInputCharaChipSize.Size = new System.Drawing.Size(150, 30);
+            this.sizeInputCharaChipSize.TabIndex = 1;
+            this.sizeInputCharaChipSize.Value = new System.Drawing.Size(24, 24);
+            // 
+            // sizeInputDefaultCharaChipSize
+            // 
+            this.sizeInputDefaultCharaChipSize.Anchor = System.Windows.Forms.AnchorStyles.Left;
+            this.sizeInputDefaultCharaChipSize.Location = new System.Drawing.Point(3, 7);
+            this.sizeInputDefaultCharaChipSize.MaximumValue = new System.Drawing.Size(128, 128);
+            this.sizeInputDefaultCharaChipSize.MinimumValue = new System.Drawing.Size(1, 1);
+            this.sizeInputDefaultCharaChipSize.Name = "sizeInputDefaultCharaChipSize";
+            this.sizeInputDefaultCharaChipSize.Size = new System.Drawing.Size(150, 22);
+            this.sizeInputDefaultCharaChipSize.TabIndex = 2;
+            this.sizeInputDefaultCharaChipSize.Value = new System.Drawing.Size(32, 32);
             // 
             // SettingForm
             // 
@@ -390,5 +415,7 @@
         private System.Windows.Forms.TableLayoutPanel tableLayoutPanel5;
         private System.Windows.Forms.TableLayoutPanel tableLayoutPanel1;
         private System.Windows.Forms.TableLayoutPanel tableLayoutPanel8;
+        private System.Windows.Forms.Label label3;
+        private System.Windows.Forms.Label labelImageBackground;
     }
 }

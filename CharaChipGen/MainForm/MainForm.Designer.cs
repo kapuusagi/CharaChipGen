@@ -394,6 +394,7 @@
             // 
             this.characterEntryControl1.ButtonName = "キャラクター1";
             this.characterEntryControl1.Image = null;
+            this.characterEntryControl1.ImageBackground = System.Drawing.Color.Transparent;
             this.characterEntryControl1.Location = new System.Drawing.Point(9, 9);
             this.characterEntryControl1.Name = "characterEntryControl1";
             this.characterEntryControl1.Size = new System.Drawing.Size(168, 168);
@@ -406,6 +407,7 @@
             // 
             this.characterEntryControl2.ButtonName = "キャラクター2";
             this.characterEntryControl2.Image = null;
+            this.characterEntryControl2.ImageBackground = System.Drawing.Color.Transparent;
             this.characterEntryControl2.Location = new System.Drawing.Point(187, 9);
             this.characterEntryControl2.Name = "characterEntryControl2";
             this.characterEntryControl2.Size = new System.Drawing.Size(168, 168);
@@ -418,6 +420,7 @@
             // 
             this.characterEntryControl8.ButtonName = "キャラクター8";
             this.characterEntryControl8.Image = null;
+            this.characterEntryControl8.ImageBackground = System.Drawing.Color.Transparent;
             this.characterEntryControl8.Location = new System.Drawing.Point(543, 183);
             this.characterEntryControl8.Name = "characterEntryControl8";
             this.characterEntryControl8.Size = new System.Drawing.Size(168, 169);
@@ -430,6 +433,7 @@
             // 
             this.characterEntryControl3.ButtonName = "キャラクター3";
             this.characterEntryControl3.Image = null;
+            this.characterEntryControl3.ImageBackground = System.Drawing.Color.Transparent;
             this.characterEntryControl3.Location = new System.Drawing.Point(365, 9);
             this.characterEntryControl3.Name = "characterEntryControl3";
             this.characterEntryControl3.Size = new System.Drawing.Size(168, 168);
@@ -442,6 +446,7 @@
             // 
             this.characterEntryControl7.ButtonName = "キャラクター7";
             this.characterEntryControl7.Image = null;
+            this.characterEntryControl7.ImageBackground = System.Drawing.Color.Transparent;
             this.characterEntryControl7.Location = new System.Drawing.Point(365, 183);
             this.characterEntryControl7.Name = "characterEntryControl7";
             this.characterEntryControl7.Size = new System.Drawing.Size(168, 169);
@@ -454,6 +459,7 @@
             // 
             this.characterEntryControl4.ButtonName = "キャラクター4";
             this.characterEntryControl4.Image = null;
+            this.characterEntryControl4.ImageBackground = System.Drawing.Color.Transparent;
             this.characterEntryControl4.Location = new System.Drawing.Point(543, 9);
             this.characterEntryControl4.Name = "characterEntryControl4";
             this.characterEntryControl4.Size = new System.Drawing.Size(168, 168);
@@ -466,6 +472,7 @@
             // 
             this.characterEntryControl6.ButtonName = "キャラクター6";
             this.characterEntryControl6.Image = null;
+            this.characterEntryControl6.ImageBackground = System.Drawing.Color.Transparent;
             this.characterEntryControl6.Location = new System.Drawing.Point(187, 183);
             this.characterEntryControl6.Name = "characterEntryControl6";
             this.characterEntryControl6.Size = new System.Drawing.Size(168, 169);
@@ -478,6 +485,7 @@
             // 
             this.characterEntryControl5.ButtonName = "キャラクター5";
             this.characterEntryControl5.Image = null;
+            this.characterEntryControl5.ImageBackground = System.Drawing.Color.Transparent;
             this.characterEntryControl5.Location = new System.Drawing.Point(9, 183);
             this.characterEntryControl5.Name = "characterEntryControl5";
             this.characterEntryControl5.Size = new System.Drawing.Size(168, 169);

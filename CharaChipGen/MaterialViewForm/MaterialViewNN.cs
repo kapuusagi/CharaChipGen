@@ -28,6 +28,8 @@ namespace CharaChipGen.MaterialViewForm
         private Image renderedImage;
         // レンダリングモデル
         private MaterialRenderData renderData;
+        // 背景色
+        private Color imageBackground;
 
         /// <summary>
         /// 新しいインスタンスを構築する。
@@ -38,6 +40,7 @@ namespace CharaChipGen.MaterialViewForm
             positionY = 0;
             renderedImage = null;
             renderData = new MaterialRenderData();
+            imageBackground = Color.Transparent;
             InitializeComponent();
         }
 
@@ -106,8 +109,10 @@ namespace CharaChipGen.MaterialViewForm
             // すると等倍にできるでしょ？
 
             // 背景色でクリア
-            Brush brush = new SolidBrush(BackColor);
-            g.FillRectangle(brush, 0, 0, ClientSize.Width - 1, ClientSize.Height - 1);
+            using (Brush brush = new SolidBrush(imageBackground))
+            {
+                g.FillRectangle(brush, 0, 0, ClientSize.Width - 1, ClientSize.Height - 1);
+            }
 
             // イメージをレンダリング
             if ((renderData != null) && (renderedImage == null))
@@ -154,6 +159,16 @@ namespace CharaChipGen.MaterialViewForm
             g.DrawRectangle(pen, 0, 0, ClientSize.Width - 1, ClientSize.Height - 1);
         }
 
+        /// <summary>
+        /// 画像の背景色
+        /// </summary>
+        public Color ImageBackground {
+            get => imageBackground;
+            set {
+                imageBackground = value;
+                Invalidate();
+            }
+        }
 
 
         /// <summary>

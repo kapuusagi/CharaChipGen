@@ -14,5 +14,8 @@
     <Setting Name="CharaChipSize" Type="System.Drawing.Size" Scope="User">
       <Value Profile="(Default)">32, 32</Value>
     </Setting>
+    <Setting Name="ImageBackground" Type="System.Drawing.Color" Scope="User">
+      <Value Profile="(Default)">Transparent</Value>
+    </Setting>
   </Settings>
 </SettingsFile>

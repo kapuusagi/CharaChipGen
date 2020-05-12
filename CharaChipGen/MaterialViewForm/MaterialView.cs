@@ -83,5 +83,26 @@ namespace CharaChipGen.MaterialViewForm
                 materialView34.MaterialRenderData = value;
             }
         }
+
+        /// <summary>
+        /// 画像の背景色
+        /// </summary>
+        public Color ImageBackground {
+            get => materialView11.ImageBackground;
+            set {
+                materialView11.ImageBackground = value;
+                materialView21.ImageBackground = value;
+                materialView31.ImageBackground = value;
+                materialView12.ImageBackground = value;
+                materialView22.ImageBackground = value;
+                materialView32.ImageBackground = value;
+                materialView13.ImageBackground = value;
+                materialView23.ImageBackground = value;
+                materialView33.ImageBackground = value;
+                materialView14.ImageBackground = value;
+                materialView24.ImageBackground = value;
+                materialView34.ImageBackground = value;
+            }
+        }
     }
 }
