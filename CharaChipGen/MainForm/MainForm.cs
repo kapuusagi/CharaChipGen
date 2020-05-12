@@ -248,13 +248,22 @@ namespace CharaChipGen.MainForm
             GeneratorSetting setting = AppData.Instance.GeneratorSetting;
             labelOutputPath.Text = setting.ExportSetting.ExportFilePath;
 
-            if (!prevMaterialDirectory.Equals(materialDirectory))
+            try
             {
-                MessageBox.Show(this,
-                    "素材フォルダが変更されたため、アプリケーションを再起動します。");
-                // アプリケーション再起動が必要。
                 Properties.Settings.Default.Save();
-                Application.Restart();
+
+                if (!prevMaterialDirectory.Equals(materialDirectory))
+                {
+                    MessageBox.Show(this,
+                        "素材フォルダが変更されたため、アプリケーションを再起動します。");
+                    // アプリケーション再起動が必要。
+                    Properties.Settings.Default.Save();
+                    Application.Restart();
+                }
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show(this, ex.Message, "エラー");
             }
 
         }
