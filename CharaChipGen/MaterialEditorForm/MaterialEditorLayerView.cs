@@ -92,7 +92,7 @@ namespace CharaChipGen.MaterialEditorForm
                             SetImage(Image.FromStream(stream, false, false));
                         }
                     }
-                    catch 
+                    catch
                     {
                         fileNameColor = Color.Red;
                         SetImage(null);
@@ -276,6 +276,14 @@ namespace CharaChipGen.MaterialEditorForm
         private void OnCheckBoxColorImmutableCheckedChanged(object sender, EventArgs e)
         {
             layerInfo.ColorImmutable = checkBoxColorImmutable.Checked;
+        }
+
+        /// <summary>
+        /// 画像表示背景色
+        /// </summary>
+        public Color ImageBackground {
+            get => materialView4x3.ImageBackground;
+            set => materialView4x3.ImageBackground = value;
         }
     }
 }

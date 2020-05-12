@@ -102,7 +102,7 @@ namespace CharaChipGen.GeneratorForm
         /// <summary>
         /// 画像表示領域の背景色
         /// </summary>
-        public Color ImageBackColor {
+        public Color ImageBackground {
             get => charaChipView11.BackColor; 
             set {
                 charaChipView11.BackColor = value;

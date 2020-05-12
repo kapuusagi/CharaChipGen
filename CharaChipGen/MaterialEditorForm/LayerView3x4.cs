@@ -70,27 +70,6 @@ namespace CharaChipGen.MaterialEditorForm
         }
 
         /// <summary>
-        /// 背景色を設定する。
-        /// </summary>
-        public override Color BackColor {
-            get { return pictureBox1.BackColor; }
-            set {
-                pictureBox1.BackColor = value;
-                pictureBox2.BackColor = value;
-                pictureBox3.BackColor = value;
-                pictureBox4.BackColor = value;
-                pictureBox5.BackColor = value;
-                pictureBox6.BackColor = value;
-                pictureBox7.BackColor = value;
-                pictureBox8.BackColor = value;
-                pictureBox9.BackColor = value;
-                pictureBox10.BackColor = value;
-                pictureBox11.BackColor = value;
-                pictureBox12.BackColor = value;
-            }
-        }
-
-        /// <summary>
         /// レイヤーの画像データ
         /// </summary>
         public Image Image {

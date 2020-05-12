@@ -507,6 +507,7 @@
             this.Name = "MainForm";
             this.Text = "キャラクターチップジェネレータ";
             this.FormClosing += new System.Windows.Forms.FormClosingEventHandler(this.OnFormClosing);
+            this.FormClosed += new System.Windows.Forms.FormClosedEventHandler(this.OnFormClosed);
             this.Shown += new System.EventHandler(this.OnFormShown);
             this.menuStripMain.ResumeLayout(false);
             this.menuStripMain.PerformLayout();

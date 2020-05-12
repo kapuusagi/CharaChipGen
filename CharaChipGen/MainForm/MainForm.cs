@@ -1,6 +1,7 @@
 ﻿using CGenImaging;
 using CharaChipGen.Model;
 using CharaChipGen.Model.CharaChip;
+using CharaChipGen.Properties;
 using System;
 using System.Drawing;
 using System.Windows.Forms;
@@ -36,6 +37,27 @@ namespace CharaChipGen.MainForm
         {
             editFilePath = "";
             InitializeComponent();
+            Settings.Default.PropertyChanged += OnSettingsPropertyChanged;
+            foreach (var view in CharacterEntryViews)
+            {
+                view.ImageBackground = Settings.Default.ImageBackground;
+            }
+        }
+
+        /// <summary>
+        /// 設定が変更されたときに通知を受け取る。
+        /// </summary>
+        /// <param name="sender">送信元オブジェクト</param>
+        /// <param name="e">イベントオブジェクト</param>
+        private void OnSettingsPropertyChanged(object sender, System.ComponentModel.PropertyChangedEventArgs e)
+        {
+            if (e.PropertyName.Equals(nameof(Settings.ImageBackground)))
+            {
+                foreach (var view in CharacterEntryViews)
+                {
+                    view.ImageBackground = Settings.Default.ImageBackground;
+                }
+            }
         }
 
         /// <summary>
@@ -232,7 +254,6 @@ namespace CharaChipGen.MainForm
             ExportSettingForm.SettingForm form
                 = new ExportSettingForm.SettingForm();
 
-
             form.LoadFromSetting();
 
             DialogResult res = form.ShowDialog(this);
@@ -243,14 +264,14 @@ namespace CharaChipGen.MainForm
 
             string prevMaterialDirectory = AppData.Instance.MaterialDirectory;
             form.StoreToSetting();
-            string materialDirectory = AppData.Instance.MaterialDirectory;
+            string materialDirectory = Settings.Default.MaterialDirectory;
 
             GeneratorSetting setting = AppData.Instance.GeneratorSetting;
             labelOutputPath.Text = setting.ExportSetting.ExportFilePath;
 
             try
             {
-                Properties.Settings.Default.Save();
+                Settings.Default.Save();
 
                 if (!prevMaterialDirectory.Equals(materialDirectory))
                 {
@@ -280,7 +301,7 @@ namespace CharaChipGen.MainForm
             editFilePath = "";
             GeneratorSetting setting = AppData.Instance.GeneratorSetting;
             setting.Reset();
-            setting.ExportSetting.CharaChipSize = AppData.Instance.DefaultCharaChipSize;
+            setting.ExportSetting.CharaChipSize = Settings.Default.CharaChipSize;
 
             // モデルに合わせてUIの表示更新
             UpdateAllEntryViews();
@@ -293,7 +314,7 @@ namespace CharaChipGen.MainForm
         /// <param name="e">イベントオブジェクト</param>
         private void OnMenuItemOpenClick(object sender, EventArgs e)
         {
-            RestoreDialog(openFileDialog, Properties.Settings.Default.LastSavePath);
+            RestoreDialog(openFileDialog, Settings.Default.LastSavePath);
             DialogResult res = openFileDialog.ShowDialog(this);
             if (res != DialogResult.OK)
             {
@@ -303,7 +324,7 @@ namespace CharaChipGen.MainForm
             {
                 string fileName = openFileDialog.FileName;
                 LoadDataProc(fileName);
-                Properties.Settings.Default.LastSavePath = fileName;
+                Settings.Default.LastSavePath = fileName;
             }
             catch (Exception ex)
             {
@@ -377,7 +398,7 @@ namespace CharaChipGen.MainForm
         /// <param name="e">イベントオブジェクト</param>
         private void OnSaveAsClick(object sender, EventArgs e)
         {
-            RestoreDialog(saveFileDialog, Properties.Settings.Default.LastSavePath);
+            RestoreDialog(saveFileDialog, Settings.Default.LastSavePath);
             DialogResult result = saveFileDialog.ShowDialog(this);
             if (result != DialogResult.OK)
             {
@@ -390,7 +411,7 @@ namespace CharaChipGen.MainForm
                 GeneratorSettingWriter writer = new GeneratorSettingWriter();
                 writer.Write(filePath, AppData.Instance.GeneratorSetting);
                 editFilePath = filePath;
-                Properties.Settings.Default.LastSavePath = filePath;
+                Settings.Default.LastSavePath = filePath;
             }
             catch (Exception ex)
             {
@@ -643,6 +664,23 @@ namespace CharaChipGen.MainForm
             catch (Exception ex)
             {
                 MessageBox.Show(this, ex.Message, "エラー");
+            }
+        }
+
+        /// <summary>
+        /// フォームが閉じられた時に通知を受け取る。
+        /// </summary>
+        /// <param name="sender">送信元オブジェクト</param>
+        /// <param name="e">イベントオブジェクト</param>
+        private void OnFormClosed(object sender, FormClosedEventArgs e)
+        {
+            try
+            {
+                Settings.Default.PropertyChanged -= OnSettingsPropertyChanged;
+                Settings.Default.Save();
+            }
+            catch
+            {
             }
         }
     }

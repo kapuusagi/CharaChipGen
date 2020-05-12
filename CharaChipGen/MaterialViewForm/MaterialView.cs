@@ -102,6 +102,11 @@ namespace CharaChipGen.MaterialViewForm
                 materialView14.ImageBackground = value;
                 materialView24.ImageBackground = value;
                 materialView34.ImageBackground = value;
+
+                pictureBox1.BackColor = value;
+                pictureBox2.BackColor = value;
+                pictureBox3.BackColor = value;
+                pictureBox4.BackColor = value;
             }
         }
     }

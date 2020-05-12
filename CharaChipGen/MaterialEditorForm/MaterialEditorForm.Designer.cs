@@ -46,17 +46,21 @@
             this.groupBox1 = new System.Windows.Forms.GroupBox();
             this.listBoxLayers = new System.Windows.Forms.ListBox();
             this.materialEditorLayerView = new CharaChipGen.MaterialEditorForm.MaterialEditorLayerView();
+            this.menuStrip1 = new System.Windows.Forms.MenuStrip();
+            this.optionToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.menuItemImageBackground = new System.Windows.Forms.ToolStripMenuItem();
             this.panel1.SuspendLayout();
             this.flowLayoutPanel1.SuspendLayout();
             this.flowLayoutPanel2.SuspendLayout();
             this.tableLayoutPanel1.SuspendLayout();
             this.panel3.SuspendLayout();
             this.groupBox1.SuspendLayout();
+            this.menuStrip1.SuspendLayout();
             this.SuspendLayout();
             // 
             // buttonSave
             // 
-            this.buttonSave.Location = new System.Drawing.Point(333, 9);
+            this.buttonSave.Location = new System.Drawing.Point(294, 9);
             this.buttonSave.Name = "buttonSave";
             this.buttonSave.Size = new System.Drawing.Size(75, 23);
             this.buttonSave.TabIndex = 1;
@@ -66,7 +70,7 @@
             // 
             // buttonCancel
             // 
-            this.buttonCancel.Location = new System.Drawing.Point(414, 9);
+            this.buttonCancel.Location = new System.Drawing.Point(375, 9);
             this.buttonCancel.Name = "buttonCancel";
             this.buttonCancel.Size = new System.Drawing.Size(75, 23);
             this.buttonCancel.TabIndex = 2;
@@ -91,7 +95,7 @@
             this.textBoxMaterialName.Font = new System.Drawing.Font("MS UI Gothic", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(128)));
             this.textBoxMaterialName.Location = new System.Drawing.Point(64, 8);
             this.textBoxMaterialName.Name = "textBoxMaterialName";
-            this.textBoxMaterialName.Size = new System.Drawing.Size(432, 23);
+            this.textBoxMaterialName.Size = new System.Drawing.Size(393, 23);
             this.textBoxMaterialName.TabIndex = 1;
             // 
             // buttonDeleteLayer
@@ -109,10 +113,10 @@
             this.panel1.Controls.Add(this.textBoxMaterialName);
             this.panel1.Controls.Add(this.label1);
             this.panel1.Dock = System.Windows.Forms.DockStyle.Top;
-            this.panel1.Location = new System.Drawing.Point(0, 0);
+            this.panel1.Location = new System.Drawing.Point(0, 24);
             this.panel1.Name = "panel1";
             this.panel1.Padding = new System.Windows.Forms.Padding(8);
-            this.panel1.Size = new System.Drawing.Size(504, 41);
+            this.panel1.Size = new System.Drawing.Size(465, 43);
             this.panel1.TabIndex = 0;
             // 
             // flowLayoutPanel1
@@ -125,7 +129,7 @@
             this.flowLayoutPanel1.Location = new System.Drawing.Point(0, 551);
             this.flowLayoutPanel1.Name = "flowLayoutPanel1";
             this.flowLayoutPanel1.Padding = new System.Windows.Forms.Padding(6);
-            this.flowLayoutPanel1.Size = new System.Drawing.Size(504, 41);
+            this.flowLayoutPanel1.Size = new System.Drawing.Size(465, 41);
             this.flowLayoutPanel1.TabIndex = 11;
             // 
             // flowLayoutPanel2
@@ -141,7 +145,7 @@
             this.flowLayoutPanel2.Location = new System.Drawing.Point(0, 201);
             this.flowLayoutPanel2.Name = "flowLayoutPanel2";
             this.flowLayoutPanel2.Padding = new System.Windows.Forms.Padding(6);
-            this.flowLayoutPanel2.Size = new System.Drawing.Size(174, 303);
+            this.flowLayoutPanel2.Size = new System.Drawing.Size(174, 277);
             this.flowLayoutPanel2.TabIndex = 0;
             // 
             // buttonAddLayer
@@ -202,11 +206,11 @@
             this.tableLayoutPanel1.Controls.Add(this.panel3, 0, 0);
             this.tableLayoutPanel1.Controls.Add(this.materialEditorLayerView, 1, 0);
             this.tableLayoutPanel1.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.tableLayoutPanel1.Location = new System.Drawing.Point(0, 41);
+            this.tableLayoutPanel1.Location = new System.Drawing.Point(0, 67);
             this.tableLayoutPanel1.Name = "tableLayoutPanel1";
             this.tableLayoutPanel1.RowCount = 1;
             this.tableLayoutPanel1.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 100F));
-            this.tableLayoutPanel1.Size = new System.Drawing.Size(504, 510);
+            this.tableLayoutPanel1.Size = new System.Drawing.Size(465, 484);
             this.tableLayoutPanel1.TabIndex = 13;
             // 
             // panel3
@@ -216,7 +220,7 @@
             this.panel3.Dock = System.Windows.Forms.DockStyle.Fill;
             this.panel3.Location = new System.Drawing.Point(3, 3);
             this.panel3.Name = "panel3";
-            this.panel3.Size = new System.Drawing.Size(174, 504);
+            this.panel3.Size = new System.Drawing.Size(174, 478);
             this.panel3.TabIndex = 0;
             // 
             // groupBox1
@@ -250,21 +254,50 @@
             // 
             this.materialEditorLayerView.Dock = System.Windows.Forms.DockStyle.Fill;
             this.materialEditorLayerView.Enabled = false;
+            this.materialEditorLayerView.ImageBackground = System.Drawing.SystemColors.Control;
             this.materialEditorLayerView.Location = new System.Drawing.Point(183, 3);
             this.materialEditorLayerView.Name = "materialEditorLayerView";
-            this.materialEditorLayerView.Size = new System.Drawing.Size(318, 504);
+            this.materialEditorLayerView.Size = new System.Drawing.Size(279, 478);
             this.materialEditorLayerView.TabIndex = 0;
+            // 
+            // menuStrip1
+            // 
+            this.menuStrip1.Items.AddRange(new System.Windows.Forms.ToolStripItem[] {
+            this.optionToolStripMenuItem});
+            this.menuStrip1.Location = new System.Drawing.Point(0, 0);
+            this.menuStrip1.Name = "menuStrip1";
+            this.menuStrip1.Size = new System.Drawing.Size(465, 24);
+            this.menuStrip1.TabIndex = 14;
+            this.menuStrip1.Text = "menuStrip1";
+            // 
+            // optionToolStripMenuItem
+            // 
+            this.optionToolStripMenuItem.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] {
+            this.menuItemImageBackground});
+            this.optionToolStripMenuItem.Name = "optionToolStripMenuItem";
+            this.optionToolStripMenuItem.Size = new System.Drawing.Size(43, 20);
+            this.optionToolStripMenuItem.Text = "設定";
+            // 
+            // menuItemImageBackground
+            // 
+            this.menuItemImageBackground.Name = "menuItemImageBackground";
+            this.menuItemImageBackground.Size = new System.Drawing.Size(180, 22);
+            this.menuItemImageBackground.Text = "表示背景色";
+            this.menuItemImageBackground.Click += new System.EventHandler(this.OnMenuItemImageBackgroundClick);
             // 
             // MaterialEditorForm
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 12F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(504, 592);
+            this.ClientSize = new System.Drawing.Size(465, 592);
             this.Controls.Add(this.tableLayoutPanel1);
             this.Controls.Add(this.flowLayoutPanel1);
             this.Controls.Add(this.panel1);
+            this.Controls.Add(this.menuStrip1);
+            this.MainMenuStrip = this.menuStrip1;
             this.Name = "MaterialEditorForm";
             this.Text = "素材エディタ";
+            this.FormClosed += new System.Windows.Forms.FormClosedEventHandler(this.OnFormClosed);
             this.Shown += new System.EventHandler(this.OnFormShown);
             this.panel1.ResumeLayout(false);
             this.panel1.PerformLayout();
@@ -274,6 +307,8 @@
             this.panel3.ResumeLayout(false);
             this.panel3.PerformLayout();
             this.groupBox1.ResumeLayout(false);
+            this.menuStrip1.ResumeLayout(false);
+            this.menuStrip1.PerformLayout();
             this.ResumeLayout(false);
             this.PerformLayout();
 
@@ -298,5 +333,8 @@
         private System.Windows.Forms.Button buttonUpLayer;
         private System.Windows.Forms.Button buttonDownLayer;
         private System.Windows.Forms.Button buttonPreview;
+        private System.Windows.Forms.MenuStrip menuStrip1;
+        private System.Windows.Forms.ToolStripMenuItem optionToolStripMenuItem;
+        private System.Windows.Forms.ToolStripMenuItem menuItemImageBackground;
     }
 }

@@ -29,7 +29,6 @@
         private void InitializeComponent()
         {
             this.groupBoxLayerName = new System.Windows.Forms.GroupBox();
-            this.materialView4x3 = new CharaChipGen.MaterialEditorForm.LayerView3x4();
             this.panel1 = new System.Windows.Forms.Panel();
             this.tableLayoutPanel1 = new System.Windows.Forms.TableLayoutPanel();
             this.flowLayoutPanel1 = new System.Windows.Forms.FlowLayoutPanel();
@@ -43,9 +42,10 @@
             this.comboBoxLayerType = new System.Windows.Forms.ComboBox();
             this.comboBoxColorRefs = new System.Windows.Forms.ComboBox();
             this.checkBoxColorImmutable = new System.Windows.Forms.CheckBox();
-            this.openFileDialog = new System.Windows.Forms.OpenFileDialog();
             this.label5 = new System.Windows.Forms.Label();
             this.labelFileName = new System.Windows.Forms.Label();
+            this.openFileDialog = new System.Windows.Forms.OpenFileDialog();
+            this.materialView4x3 = new CharaChipGen.MaterialEditorForm.LayerView3x4();
             this.groupBoxLayerName.SuspendLayout();
             this.panel1.SuspendLayout();
             this.tableLayoutPanel1.SuspendLayout();
@@ -63,15 +63,6 @@
             this.groupBoxLayerName.TabIndex = 0;
             this.groupBoxLayerName.TabStop = false;
             this.groupBoxLayerName.Text = "レイヤー";
-            // 
-            // materialView4x3
-            // 
-            this.materialView4x3.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.materialView4x3.Image = null;
-            this.materialView4x3.Location = new System.Drawing.Point(3, 199);
-            this.materialView4x3.Name = "materialView4x3";
-            this.materialView4x3.Size = new System.Drawing.Size(317, 268);
-            this.materialView4x3.TabIndex = 1;
             // 
             // panel1
             // 
@@ -229,11 +220,6 @@
             this.checkBoxColorImmutable.UseVisualStyleBackColor = true;
             this.checkBoxColorImmutable.CheckedChanged += new System.EventHandler(this.OnCheckBoxColorImmutableCheckedChanged);
             // 
-            // openFileDialog
-            // 
-            this.openFileDialog.Filter = "PNGファイル|*.png";
-            this.openFileDialog.Title = "開く";
-            // 
             // label5
             // 
             this.label5.Anchor = System.Windows.Forms.AnchorStyles.Left;
@@ -253,6 +239,21 @@
             this.labelFileName.Size = new System.Drawing.Size(219, 30);
             this.labelFileName.TabIndex = 11;
             this.labelFileName.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
+            // 
+            // openFileDialog
+            // 
+            this.openFileDialog.Filter = "PNGファイル|*.png";
+            this.openFileDialog.Title = "開く";
+            // 
+            // materialView4x3
+            // 
+            this.materialView4x3.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.materialView4x3.Image = null;
+            this.materialView4x3.ImageBackground = System.Drawing.SystemColors.Control;
+            this.materialView4x3.Location = new System.Drawing.Point(3, 199);
+            this.materialView4x3.Name = "materialView4x3";
+            this.materialView4x3.Size = new System.Drawing.Size(317, 268);
+            this.materialView4x3.TabIndex = 1;
             // 
             // MaterialEditorLayerView
             // 

@@ -1,4 +1,5 @@
 ﻿using CharaChipGen.Model;
+using CharaChipGen.Properties;
 using System;
 using System.Drawing;
 using System.Windows.Forms;
@@ -27,7 +28,7 @@ namespace CharaChipGen.ExportSettingForm
             ExportSetting exportSetting = data.GeneratorSetting.ExportSetting;
             sizeInputCharaChipSize.Value = exportSetting.CharaChipSize;
             labelMaterialDirectory.Text = data.MaterialDirectory;
-            labelImageBackground.BackColor = data.ImageBackground;
+            labelImageBackground.BackColor = Settings.Default.ImageBackground;
 
             textBoxExportFilePath.Text = exportSetting.ExportFilePath;
         }
@@ -44,9 +45,9 @@ namespace CharaChipGen.ExportSettingForm
             exportSetting.CharaChipSize = sizeInputCharaChipSize.Value;
             exportSetting.ExportFilePath = textBoxExportFilePath.Text;
 
-            data.MaterialDirectory = labelMaterialDirectory.Text;
-            data.DefaultCharaChipSize = sizeInputDefaultCharaChipSize.Value;
-            data.ImageBackground = labelImageBackground.BackColor;
+            Settings.Default.MaterialDirectory = labelMaterialDirectory.Text;
+            Settings.Default.CharaChipSize = sizeInputDefaultCharaChipSize.Value;
+            Settings.Default.ImageBackground = labelImageBackground.BackColor;
         }
 
         /// <summary>

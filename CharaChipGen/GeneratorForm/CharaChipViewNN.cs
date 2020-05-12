@@ -128,9 +128,13 @@ namespace CharaChipGen.GeneratorForm
             // それに対してレンダリングを行う実装になっている。
             // すると等倍にできるでしょ？
 
+#if false
             // 背景色でクリア
-            Brush brush = new SolidBrush(BackColor);
-            g.FillRectangle(brush, 0, 0, ClientSize.Width - 1, ClientSize.Height - 1);
+            using (Brush brush = new SolidBrush(BackColor))
+            {
+                g.FillRectangle(brush, 0, 0, ClientSize.Width - 1, ClientSize.Height - 1);
+            }
+#endif
 
             // イメージをレンダリング
             if (renderedImage == null)
@@ -173,8 +177,10 @@ namespace CharaChipGen.GeneratorForm
                 }
             }
             // 枠を描画
-            Pen pen = new Pen(Color.Black);
-            g.DrawRectangle(pen, 0, 0, ClientSize.Width - 1, ClientSize.Height - 1);
+            using (Pen pen = new Pen(Color.Black))
+            {
+                g.DrawRectangle(pen, 0, 0, ClientSize.Width - 1, ClientSize.Height - 1);
+            }
         }
 
         /// <summary>

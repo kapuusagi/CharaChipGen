@@ -4,6 +4,8 @@ using System.Linq;
 using System.Windows.Forms;
 using CharaChipGen.Model.Material;
 using CharaChipGen.Model.CharaChip;
+using CharaChipGen.Properties;
+using System.Drawing;
 
 namespace CharaChipGen.MaterialEditorForm
 {
@@ -20,6 +22,8 @@ namespace CharaChipGen.MaterialEditorForm
         public MaterialEditorForm()
         {
             InitializeComponent();
+            materialEditorLayerView.ImageBackground = Properties.Settings.Default.ImageBackground;
+            Settings.Default.PropertyChanged += OnSettingsPropertyChanged;
             DialogResult = DialogResult.Cancel;
         }
 
@@ -451,6 +455,41 @@ namespace CharaChipGen.MaterialEditorForm
             }
             entryFile.Layers.Add(layerName, layerInfo);
             listBoxLayers.Items.Add(layerInfo);
+        }
+
+        /// <summary>
+        /// アプリケーション設定が変更されたときに通知を受け取る。
+        /// </summary>
+        /// <param name="sender">送信元オブジェクト</param>
+        /// <param name="e">イベントオブジェクト</param>
+        private void OnSettingsPropertyChanged(object sender, System.ComponentModel.PropertyChangedEventArgs e)
+        {
+            if (e.PropertyName.Equals(nameof(Settings.ImageBackground)))
+            {
+                materialEditorLayerView.ImageBackground = Settings.Default.ImageBackground;
+            }
+        }
+
+        /// <summary>
+        /// フォームが閉じられた時に通知を受け取る。
+        /// </summary>
+        /// <param name="sender">送信元オブジェクト</param>
+        /// <param name="e">イベントオブジェクト</param>
+        private void OnFormClosed(object sender, FormClosedEventArgs e)
+        {
+            Settings.Default.PropertyChanged -= OnSettingsPropertyChanged;
+        }
+
+        /// <summary>
+        /// 表示背景色メニュー項目が選択されたときに通知を受け取る。
+        /// </summary>
+        /// <param name="sender">送信元オブジェクト</param>
+        /// <param name="e">イベントオブジェクト</param>
+        private void OnMenuItemImageBackgroundClick(object sender, EventArgs e)
+        {
+            Color defaultColor = Settings.Default.ImageBackground;
+            Color selectColor = ColorEditForm.ColorEditForm.ShowDialog(this, defaultColor);
+            Settings.Default.ImageBackground = selectColor;
         }
     }
 }

@@ -36,20 +36,20 @@
             this.label2 = new System.Windows.Forms.Label();
             this.label3 = new System.Windows.Forms.Label();
             this.label4 = new System.Windows.Forms.Label();
+            this.colorSelectBarR = new CharaChipGen.ColorEditForm.ColorSelectBar();
+            this.colorSelectBarG = new CharaChipGen.ColorEditForm.ColorSelectBar();
+            this.colorSelectBarB = new CharaChipGen.ColorEditForm.ColorSelectBar();
+            this.colorSelectBarA = new CharaChipGen.ColorEditForm.ColorSelectBar();
             this.numericUpDownR = new System.Windows.Forms.NumericUpDown();
             this.numericUpDownG = new System.Windows.Forms.NumericUpDown();
             this.numericUpDownB = new System.Windows.Forms.NumericUpDown();
             this.numericUpDownA = new System.Windows.Forms.NumericUpDown();
             this.panel1 = new System.Windows.Forms.Panel();
             this.panel2 = new System.Windows.Forms.Panel();
+            this.colorHSVSelectView = new CharaChipGen.ColorEditForm.ColorHSVSelectView();
             this.tableLayoutPanel2 = new System.Windows.Forms.TableLayoutPanel();
             this.label5 = new System.Windows.Forms.Label();
             this.labelSelectedColor = new System.Windows.Forms.Label();
-            this.colorHSVSelectView = new CharaChipGen.ColorEditForm.ColorHSVSelectView();
-            this.colorSelectBarR = new CharaChipGen.ColorEditForm.ColorSelectBar();
-            this.colorSelectBarG = new CharaChipGen.ColorEditForm.ColorSelectBar();
-            this.colorSelectBarB = new CharaChipGen.ColorEditForm.ColorSelectBar();
-            this.colorSelectBarA = new CharaChipGen.ColorEditForm.ColorSelectBar();
             this.flowLayoutPanel1.SuspendLayout();
             this.tableLayoutPanel1.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.numericUpDownR)).BeginInit();
@@ -68,7 +68,7 @@
             this.flowLayoutPanel1.Controls.Add(this.buttonOK);
             this.flowLayoutPanel1.Dock = System.Windows.Forms.DockStyle.Bottom;
             this.flowLayoutPanel1.FlowDirection = System.Windows.Forms.FlowDirection.RightToLeft;
-            this.flowLayoutPanel1.Location = new System.Drawing.Point(0, 247);
+            this.flowLayoutPanel1.Location = new System.Drawing.Point(0, 231);
             this.flowLayoutPanel1.Name = "flowLayoutPanel1";
             this.flowLayoutPanel1.Size = new System.Drawing.Size(438, 29);
             this.flowLayoutPanel1.TabIndex = 0;
@@ -163,6 +163,61 @@
             this.label4.TabIndex = 5;
             this.label4.Text = "A";
             // 
+            // colorSelectBarR
+            // 
+            this.colorSelectBarR.Anchor = System.Windows.Forms.AnchorStyles.Left;
+            this.colorSelectBarR.BackColor = System.Drawing.Color.Red;
+            this.colorSelectBarR.ForeColor = System.Drawing.Color.White;
+            this.colorSelectBarR.Location = new System.Drawing.Point(26, 14);
+            this.colorSelectBarR.Maximum = 255;
+            this.colorSelectBarR.Minimum = 0;
+            this.colorSelectBarR.Name = "colorSelectBarR";
+            this.colorSelectBarR.Size = new System.Drawing.Size(122, 24);
+            this.colorSelectBarR.TabIndex = 6;
+            this.colorSelectBarR.Value = 0;
+            this.colorSelectBarR.ValueChanged += new System.EventHandler(this.OnColorSelectBarValueChanged);
+            // 
+            // colorSelectBarG
+            // 
+            this.colorSelectBarG.Anchor = System.Windows.Forms.AnchorStyles.Left;
+            this.colorSelectBarG.BackColor = System.Drawing.Color.Lime;
+            this.colorSelectBarG.ForeColor = System.Drawing.Color.White;
+            this.colorSelectBarG.Location = new System.Drawing.Point(26, 59);
+            this.colorSelectBarG.Maximum = 255;
+            this.colorSelectBarG.Minimum = 0;
+            this.colorSelectBarG.Name = "colorSelectBarG";
+            this.colorSelectBarG.Size = new System.Drawing.Size(122, 24);
+            this.colorSelectBarG.TabIndex = 7;
+            this.colorSelectBarG.Value = 0;
+            this.colorSelectBarG.ValueChanged += new System.EventHandler(this.OnColorSelectBarValueChanged);
+            // 
+            // colorSelectBarB
+            // 
+            this.colorSelectBarB.Anchor = System.Windows.Forms.AnchorStyles.Left;
+            this.colorSelectBarB.BackColor = System.Drawing.Color.Blue;
+            this.colorSelectBarB.ForeColor = System.Drawing.Color.White;
+            this.colorSelectBarB.Location = new System.Drawing.Point(26, 104);
+            this.colorSelectBarB.Maximum = 255;
+            this.colorSelectBarB.Minimum = 0;
+            this.colorSelectBarB.Name = "colorSelectBarB";
+            this.colorSelectBarB.Size = new System.Drawing.Size(122, 24);
+            this.colorSelectBarB.TabIndex = 8;
+            this.colorSelectBarB.Value = 0;
+            this.colorSelectBarB.ValueChanged += new System.EventHandler(this.OnColorSelectBarValueChanged);
+            // 
+            // colorSelectBarA
+            // 
+            this.colorSelectBarA.Anchor = System.Windows.Forms.AnchorStyles.Left;
+            this.colorSelectBarA.ForeColor = System.Drawing.Color.White;
+            this.colorSelectBarA.Location = new System.Drawing.Point(26, 151);
+            this.colorSelectBarA.Maximum = 255;
+            this.colorSelectBarA.Minimum = 0;
+            this.colorSelectBarA.Name = "colorSelectBarA";
+            this.colorSelectBarA.Size = new System.Drawing.Size(122, 24);
+            this.colorSelectBarA.TabIndex = 9;
+            this.colorSelectBarA.Value = 255;
+            this.colorSelectBarA.ValueChanged += new System.EventHandler(this.OnColorSelectBarValueChanged);
+            // 
             // numericUpDownR
             // 
             this.numericUpDownR.Anchor = System.Windows.Forms.AnchorStyles.Left;
@@ -234,7 +289,7 @@
             this.panel1.Dock = System.Windows.Forms.DockStyle.Right;
             this.panel1.Location = new System.Drawing.Point(207, 0);
             this.panel1.Name = "panel1";
-            this.panel1.Size = new System.Drawing.Size(231, 247);
+            this.panel1.Size = new System.Drawing.Size(231, 231);
             this.panel1.TabIndex = 3;
             // 
             // panel2
@@ -246,42 +301,6 @@
             this.panel2.Padding = new System.Windows.Forms.Padding(12);
             this.panel2.Size = new System.Drawing.Size(207, 191);
             this.panel2.TabIndex = 4;
-            // 
-            // tableLayoutPanel2
-            // 
-            this.tableLayoutPanel2.ColumnCount = 2;
-            this.tableLayoutPanel2.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle());
-            this.tableLayoutPanel2.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 100F));
-            this.tableLayoutPanel2.Controls.Add(this.label5, 0, 0);
-            this.tableLayoutPanel2.Controls.Add(this.labelSelectedColor, 1, 0);
-            this.tableLayoutPanel2.Dock = System.Windows.Forms.DockStyle.Bottom;
-            this.tableLayoutPanel2.Location = new System.Drawing.Point(0, 191);
-            this.tableLayoutPanel2.Name = "tableLayoutPanel2";
-            this.tableLayoutPanel2.Padding = new System.Windows.Forms.Padding(6);
-            this.tableLayoutPanel2.RowCount = 1;
-            this.tableLayoutPanel2.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 100F));
-            this.tableLayoutPanel2.Size = new System.Drawing.Size(207, 56);
-            this.tableLayoutPanel2.TabIndex = 5;
-            // 
-            // label5
-            // 
-            this.label5.Anchor = System.Windows.Forms.AnchorStyles.Left;
-            this.label5.AutoSize = true;
-            this.label5.Location = new System.Drawing.Point(9, 22);
-            this.label5.Name = "label5";
-            this.label5.Size = new System.Drawing.Size(41, 12);
-            this.label5.TabIndex = 0;
-            this.label5.Text = "選択色";
-            // 
-            // labelSelectedColor
-            // 
-            this.labelSelectedColor.BackColor = System.Drawing.Color.Black;
-            this.labelSelectedColor.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
-            this.labelSelectedColor.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.labelSelectedColor.Location = new System.Drawing.Point(56, 6);
-            this.labelSelectedColor.Name = "labelSelectedColor";
-            this.labelSelectedColor.Size = new System.Drawing.Size(142, 44);
-            this.labelSelectedColor.TabIndex = 1;
             // 
             // colorHSVSelectView
             // 
@@ -297,71 +316,55 @@
             this.colorHSVSelectView.ValueChanged += new System.EventHandler(this.OnColorSLSelectViewValueChanged);
             this.colorHSVSelectView.HueChanged += new System.EventHandler(this.OnColorSLSelectViewValueChanged);
             // 
-            // colorSelectBarR
+            // tableLayoutPanel2
             // 
-            this.colorSelectBarR.Anchor = System.Windows.Forms.AnchorStyles.Left;
-            this.colorSelectBarR.BackColor = System.Drawing.Color.Red;
-            this.colorSelectBarR.ForeColor = System.Drawing.Color.White;
-            this.colorSelectBarR.Location = new System.Drawing.Point(26, 14);
-            this.colorSelectBarR.Maximum = 255;
-            this.colorSelectBarR.Minimum = 0;
-            this.colorSelectBarR.Name = "colorSelectBarR";
-            this.colorSelectBarR.Size = new System.Drawing.Size(122, 24);
-            this.colorSelectBarR.TabIndex = 6;
-            this.colorSelectBarR.Value = 0;
-            this.colorSelectBarR.ValueChanged += new System.EventHandler(this.OnColorSelectBarValueChanged);
+            this.tableLayoutPanel2.ColumnCount = 2;
+            this.tableLayoutPanel2.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle());
+            this.tableLayoutPanel2.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 100F));
+            this.tableLayoutPanel2.Controls.Add(this.label5, 0, 0);
+            this.tableLayoutPanel2.Controls.Add(this.labelSelectedColor, 1, 0);
+            this.tableLayoutPanel2.Dock = System.Windows.Forms.DockStyle.Bottom;
+            this.tableLayoutPanel2.Location = new System.Drawing.Point(0, 191);
+            this.tableLayoutPanel2.Name = "tableLayoutPanel2";
+            this.tableLayoutPanel2.Padding = new System.Windows.Forms.Padding(6);
+            this.tableLayoutPanel2.RowCount = 1;
+            this.tableLayoutPanel2.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 100F));
+            this.tableLayoutPanel2.Size = new System.Drawing.Size(207, 40);
+            this.tableLayoutPanel2.TabIndex = 5;
             // 
-            // colorSelectBarG
+            // label5
             // 
-            this.colorSelectBarG.Anchor = System.Windows.Forms.AnchorStyles.Left;
-            this.colorSelectBarG.BackColor = System.Drawing.Color.Lime;
-            this.colorSelectBarG.ForeColor = System.Drawing.Color.White;
-            this.colorSelectBarG.Location = new System.Drawing.Point(26, 59);
-            this.colorSelectBarG.Maximum = 255;
-            this.colorSelectBarG.Minimum = 0;
-            this.colorSelectBarG.Name = "colorSelectBarG";
-            this.colorSelectBarG.Size = new System.Drawing.Size(122, 24);
-            this.colorSelectBarG.TabIndex = 7;
-            this.colorSelectBarG.Value = 0;
-            this.colorSelectBarG.ValueChanged += new System.EventHandler(this.OnColorSelectBarValueChanged);
+            this.label5.Anchor = System.Windows.Forms.AnchorStyles.Left;
+            this.label5.AutoSize = true;
+            this.label5.Location = new System.Drawing.Point(9, 14);
+            this.label5.Name = "label5";
+            this.label5.Size = new System.Drawing.Size(41, 12);
+            this.label5.TabIndex = 0;
+            this.label5.Text = "選択色";
             // 
-            // colorSelectBarB
+            // labelSelectedColor
             // 
-            this.colorSelectBarB.Anchor = System.Windows.Forms.AnchorStyles.Left;
-            this.colorSelectBarB.BackColor = System.Drawing.Color.Blue;
-            this.colorSelectBarB.ForeColor = System.Drawing.Color.White;
-            this.colorSelectBarB.Location = new System.Drawing.Point(26, 104);
-            this.colorSelectBarB.Maximum = 255;
-            this.colorSelectBarB.Minimum = 0;
-            this.colorSelectBarB.Name = "colorSelectBarB";
-            this.colorSelectBarB.Size = new System.Drawing.Size(122, 24);
-            this.colorSelectBarB.TabIndex = 8;
-            this.colorSelectBarB.Value = 0;
-            this.colorSelectBarB.ValueChanged += new System.EventHandler(this.OnColorSelectBarValueChanged);
-            // 
-            // colorSelectBarA
-            // 
-            this.colorSelectBarA.Anchor = System.Windows.Forms.AnchorStyles.Left;
-            this.colorSelectBarA.ForeColor = System.Drawing.Color.White;
-            this.colorSelectBarA.Location = new System.Drawing.Point(26, 151);
-            this.colorSelectBarA.Maximum = 255;
-            this.colorSelectBarA.Minimum = 0;
-            this.colorSelectBarA.Name = "colorSelectBarA";
-            this.colorSelectBarA.Size = new System.Drawing.Size(122, 24);
-            this.colorSelectBarA.TabIndex = 9;
-            this.colorSelectBarA.Value = 255;
-            this.colorSelectBarA.ValueChanged += new System.EventHandler(this.OnColorSelectBarValueChanged);
+            this.labelSelectedColor.BackColor = System.Drawing.Color.Black;
+            this.labelSelectedColor.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
+            this.labelSelectedColor.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.labelSelectedColor.Location = new System.Drawing.Point(56, 6);
+            this.labelSelectedColor.Name = "labelSelectedColor";
+            this.labelSelectedColor.Size = new System.Drawing.Size(142, 28);
+            this.labelSelectedColor.TabIndex = 1;
             // 
             // ColorEditForm
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 12F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(438, 276);
+            this.ClientSize = new System.Drawing.Size(438, 260);
             this.Controls.Add(this.panel2);
             this.Controls.Add(this.tableLayoutPanel2);
             this.Controls.Add(this.panel1);
             this.Controls.Add(this.flowLayoutPanel1);
+            this.MaximizeBox = false;
+            this.MinimizeBox = false;
             this.Name = "ColorEditForm";
+            this.ShowIcon = false;
             this.Text = "色設定";
             this.flowLayoutPanel1.ResumeLayout(false);
             this.tableLayoutPanel1.ResumeLayout(false);

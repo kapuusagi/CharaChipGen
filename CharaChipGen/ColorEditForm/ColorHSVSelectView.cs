@@ -172,8 +172,6 @@ namespace CharaChipGen.ColorEditForm
                 // 選択されているHueの位置に十字カーソルを書く
                 int x = hueArea.Left + Convert.ToInt32(hue / 360.0f * (hueArea.Width - 2));
                 g.DrawLine(pen, x, hueArea.Top, x, hueArea.Bottom);
-
-                Debug.WriteLine($"hue={hue}, x={x}/{hueArea.Width}");
             }
 
             using (Pen pen = new Pen(Color.Black))

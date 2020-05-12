@@ -1,4 +1,5 @@
 ﻿using CharaChipGen.Model.CharaChip;
+using CharaChipGen.Properties;
 using System;
 using System.Drawing;
 using System.Linq;
@@ -24,7 +25,9 @@ namespace CharaChipGen.GeneratorForm
             InitializeComponent();
             InitializeComboBoxItems();
 
+            charaChipView.ImageBackground = Settings.Default.ImageBackground;
             charaChipView.SetCharacter(character);
+            Settings.Default.PropertyChanged += OnSettingsPropertyChanged;
 
             partsViewHead.Parts = character.Head;
             partsViewEye.Parts = character.Eye;
@@ -126,6 +129,7 @@ namespace CharaChipGen.GeneratorForm
         private void OnFormClosed(object sender, FormClosedEventArgs e)
         {
             timer.Stop();
+            Settings.Default.PropertyChanged -= OnSettingsPropertyChanged;
         }
 
         /// <summary>
@@ -257,6 +261,31 @@ namespace CharaChipGen.GeneratorForm
                 MessageBox.Show(this, ex.Message, "エラー");
             }
 
+        }
+
+        /// <summary>
+        /// アプリケーション設定が変更されたときに通知を受け取る。
+        /// </summary>
+        /// <param name="sender">送信元オブジェクト</param>
+        /// <param name="e">イベントオブジェクト</param>
+        private void OnSettingsPropertyChanged(object sender, System.ComponentModel.PropertyChangedEventArgs e)
+        {
+            if (e.PropertyName.Equals(nameof(Settings.ImageBackground)))
+            {
+                charaChipView.ImageBackground = Settings.Default.ImageBackground;
+            }
+        }
+
+        /// <summary>
+        /// 背景色オプションメニューが選択された
+        /// </summary>
+        /// <param name="sender">送信元オブジェクト</param>
+        /// <param name="e">イベントオブジェクト</param>
+        private void OnMenuItemImageBackgroundClick(object sender, EventArgs e)
+        {
+            Color defaultColor = Settings.Default.ImageBackground;
+            Color selectedColor = ColorEditForm.ColorEditForm.ShowDialog(this, defaultColor);
+            Settings.Default.ImageBackground = selectedColor;
         }
     }
 }

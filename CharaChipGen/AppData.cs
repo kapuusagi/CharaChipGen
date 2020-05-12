@@ -258,31 +258,14 @@ namespace CharaChipGen
         /// </summary>
         public string MaterialDirectory {
             get { return materialDirectory; }
-            set {
+            private set {
                 if ((materialDirectory == value)
                     || ((materialDirectory != null) && materialDirectory.Equals(value)))
                 {
                     return;
                 }
-                Properties.Settings.Default.MaterialDirectory = value;
                 materialDirectory = value;
             }
-        }
-
-        /// <summary>
-        /// デフォルトキャラチップサイズ
-        /// </summary>
-        public System.Drawing.Size DefaultCharaChipSize {
-            get => Properties.Settings.Default.CharaChipSize;
-            set => Properties.Settings.Default.CharaChipSize = value;
-        }
-
-        /// <summary>
-        /// 背景色
-        /// </summary>
-        public Color ImageBackground {
-            get => Properties.Settings.Default.ImageBackground;
-            set => Properties.Settings.Default.ImageBackground = value;
         }
 
         /// <summary>
