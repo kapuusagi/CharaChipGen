@@ -32,6 +32,14 @@ namespace IconSetViewer
         /// <param name="e">イベントオブジェクト</param>
         private void OnIconSetPropertyChanged(object sender, System.ComponentModel.PropertyChangedEventArgs e)
         {
+            if (e.PropertyName.Equals(nameof(IconSet.Image)))
+            {
+                if (AutoSize && (IconSet.Image != null))
+                {
+                    Size = IconSet.Image.Size;
+                }
+            }
+
             SelectedIndex = -1;
             Invalidate();
         }
@@ -55,6 +63,11 @@ namespace IconSetViewer
                 iconSet.PropertyChanged -= OnIconSetPropertyChanged;
                 iconSet = value;
                 iconSet.PropertyChanged += OnIconSetPropertyChanged;
+
+                if (AutoSize && (IconSet.Image != null))
+                {
+                    Size = IconSet.Image.Size;
+                }
 
                 SelectedIndex = -1;
                 Invalidate();
@@ -129,7 +142,94 @@ namespace IconSetViewer
         private void OnMouseClick(object sender, MouseEventArgs e)
         {
             Point p = e.Location;
-            SelectedIndex = iconSet.GetIconIndexAt(p.X, p.Y);
+            int newIndex = iconSet.GetIconIndexAt(p.X, p.Y);
+            if (newIndex >= 0)
+            {
+                SelectedIndex = newIndex;
+            }
+        }
+
+        /// <summary>
+        /// keyDataを入力操作として受け付けるかどうかを判定する。
+        /// </summary>
+        /// <param name="keyData">キーデータ</param>
+        /// <returns>受け付ける場合にはtrue, それ以外はfalse</returns>
+        protected override bool IsInputKey(Keys keyData)
+        {
+            switch (keyData)
+            {
+                case Keys.Up:
+                case Keys.Down:
+                case Keys.Left:
+                case Keys.Right:
+                    return true;
+                default:
+                    return base.IsInputKey(keyData);
+            }
+        }
+
+        /// <summary>
+        /// キーが押されたときに通知を受け取る。
+        /// </summary>
+        /// <param name="sender">送信元オブジェクト</param>
+        /// <param name="e">イベントオブジェクト</param>
+        private void OnKeyDown(object sender, KeyEventArgs e)
+        {
+            if (SelectedIndex == -1)
+            {
+                // 未選択時は処理しない。
+                return;
+            }
+            switch (e.KeyCode)
+            {
+                case Keys.Up:
+                    {
+                        int newIndex = SelectedIndex - iconSet.HorizontalIconCount;
+                        if ((newIndex >= 0) && (newIndex < iconSet.IconCount))
+                        {
+                            SelectedIndex = newIndex;
+                        }
+                    }
+                    break;
+                case Keys.Down:
+                    {
+                        int newIndex = SelectedIndex + iconSet.HorizontalIconCount;
+                        if ((newIndex >= 0) && (newIndex < iconSet.IconCount))
+                        {
+                            SelectedIndex = newIndex;
+                        }
+                    }
+                    break;
+                case Keys.Left:
+                    {
+                        int ypos = SelectedIndex / iconSet.HorizontalIconCount;
+                        int xpos = SelectedIndex - ypos * iconSet.HorizontalIconCount;
+                        if (xpos > 0)
+                        {
+                            int newIndex = ypos * iconSet.HorizontalIconCount + xpos - 1;
+                            if ((newIndex >= 0) && (newIndex < iconSet.IconCount))
+                            {
+                                SelectedIndex = newIndex;
+                            }
+                        }
+                    }
+                    break;
+                case Keys.Right:
+                    {
+                        int ypos = SelectedIndex / iconSet.HorizontalIconCount;
+                        int xpos = SelectedIndex - ypos * iconSet.HorizontalIconCount;
+                        if (xpos < (iconSet.HorizontalIconCount - 1))
+                        {
+                            int newIndex = ypos * iconSet.HorizontalIconCount + xpos + 1;
+                            if ((newIndex >= 0) && (newIndex < iconSet.IconCount))
+                            {
+                                SelectedIndex = newIndex;
+                            }
+                        }
+                    }
+                    break;
+            }
+
         }
     }
 }

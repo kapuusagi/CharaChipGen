@@ -9,8 +9,9 @@ namespace IconSetViewer
     /// </summary>
     public partial class IconViewControl : UserControl
     {
+        // 選択されているインデックス
         private int selectedIndex;
-
+        // アイコンセット
         private IconSet iconSet; 
 
         /// <summary>
@@ -49,8 +50,6 @@ namespace IconSetViewer
                 // 表示元画像部分の座標を計算
                 Rectangle srcRect = iconSet.GetIconRegion(selectedIndex);
 
-                System.Diagnostics.Debug.WriteLine($"{srcRect}");
-
                 // 表示先範囲の座標を計算
                 Rectangle dstRect = CalcIconDisplayRectangel();
 
@@ -60,6 +59,11 @@ namespace IconSetViewer
 
         }
 
+        /// <summary>
+        /// アイコンを描画する対象の矩形領域を得る。
+        /// アスペクト比を維持する最大倍率で描画する領域を返す。
+        /// </summary>
+        /// <returns>矩形領域</returns>
         private Rectangle CalcIconDisplayRectangel()
         {
             Size iconSize = iconSet.IconSize;
@@ -78,6 +82,9 @@ namespace IconSetViewer
             return new Rectangle(dstXOffs, dstYOffs, drawWidth, drawHeight);
         }
 
+        /// <summary>
+        /// アイコンセット
+        /// </summary>
         public IconSet IconSet {
             get => iconSet;
             set {

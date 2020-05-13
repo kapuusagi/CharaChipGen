@@ -29,6 +29,8 @@ namespace IconSetViewer
         {
             comboBoxNumber.SelectedIndex = iconSetViewControl.SelectedIndex;
             iconViewControl.SelectedIndex = iconSetViewControl.SelectedIndex;
+
+            UpdateControlEnables();
         }
 
         /// <summary>
@@ -194,6 +196,17 @@ namespace IconSetViewer
                 iconViewControl.SelectedIndex = -1;
                 System.Diagnostics.Debug.WriteLine(ex.Message);
             }
+            UpdateControlEnables();
+        }
+
+        /// <summary>
+        /// コントロールの有効・無効を設定する。
+        /// </summary>
+        private void UpdateControlEnables()
+        {
+            IconSet iconSet = iconSetViewControl.IconSet;
+
+            // TODO: 有効・無効設定が必要なものをここに書く。
         }
 
         /// <summary>

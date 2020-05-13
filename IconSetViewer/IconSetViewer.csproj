@@ -74,6 +74,9 @@
     <EmbeddedResource Include="IconSetViewControl.resx">
       <DependentUpon>IconSetViewControl.cs</DependentUpon>
     </EmbeddedResource>
+    <EmbeddedResource Include="IconViewControl.resx">
+      <DependentUpon>IconViewControl.cs</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="Properties\Resources.resx">
       <Generator>ResXFileCodeGenerator</Generator>
       <LastGenOutput>Resources.Designer.cs</LastGenOutput>
