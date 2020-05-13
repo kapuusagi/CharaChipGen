@@ -1,4 +1,5 @@
-﻿using System;
+﻿using IconSetViewer.Properties;
+using System;
 using System.Drawing;
 using System.Windows.Forms;
 
@@ -12,6 +13,10 @@ namespace IconSetViewer
         public FormMain()
         {
             InitializeComponent();
+
+            panelScroll.BackColor = Settings.Default.ImageBackground;
+            iconViewControl.BackColor = Settings.Default.ImageBackground;
+            Settings.Default.PropertyChanged += OnSettingsPropertyChanged;
             iconSetViewControl.SelectedIndexChanged += OnIconSetViewControlSelectedIndexChanged;
         }
 
@@ -189,6 +194,46 @@ namespace IconSetViewer
                 iconViewControl.Number = -1;
                 System.Diagnostics.Debug.WriteLine(ex.Message);
             }
+        }
+
+        /// <summary>
+        /// フォームが閉じられた時に通知を受け取る。
+        /// </summary>
+        /// <param name="sender">送信元オブジェクト</param>
+        /// <param name="e">イベントオブジェクト</param>
+        private void OnFormClosed(object sender, FormClosedEventArgs e)
+        {
+            try
+            {
+                Settings.Default.Save();
+            }
+            catch { /* ここでのエラーは無視する */ }
+        }
+
+        /// <summary>
+        /// アプリケーション設定のプロパティが変更されたときに通知を受け取る。
+        /// </summary>
+        /// <param name="sender">送信元オブジェクト</param>
+        /// <param name="e">イベントオブジェクト</param>
+        private void OnSettingsPropertyChanged(object sender, System.ComponentModel.PropertyChangedEventArgs e)
+        {
+            if (e.PropertyName.Equals(nameof(Settings.ImageBackground)))
+            {
+                panelScroll.BackColor = Settings.Default.ImageBackground;
+                iconViewControl.BackColor = Settings.Default.ImageBackground;
+            }
+        }
+
+        /// <summary>
+        /// 表示背景色メニューがクリックされたときに通知を受け取る。
+        /// </summary>
+        /// <param name="sender">送信元オブジェクト</param>
+        /// <param name="e">イベントオブジェクト</param>
+        private void OnMenuItemImageBackgroundClick(object sender, EventArgs e)
+        {
+            Color defaultColor = Settings.Default.ImageBackground;
+            Color selectedColor = CGenImaging.Forms.ColorSelectDialog.ShowDialog(this, defaultColor);
+            Settings.Default.ImageBackground = selectedColor;
         }
     }
 }

@@ -33,10 +33,6 @@ namespace IconSetViewer
         {
             Graphics g = e.Graphics;
 
-            // 背景色でクリア
-            Brush brush = new SolidBrush(BackColor);
-            g.FillRectangle(brush, 0, 0, ClientSize.Width - 1, ClientSize.Height - 1);
-
             // 表示対象がある場合、もりもり描画。
             if ((image != null) && (number >= 0) && (number < MaxIconCount))
             {

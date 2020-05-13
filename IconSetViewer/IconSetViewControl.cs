@@ -121,12 +121,6 @@ namespace IconSetViewer
         {
             Graphics g = e.Graphics;
 
-            // 背景描画
-            using (Brush brush = new SolidBrush(BackColor))
-            {
-                g.FillRectangle(brush, 0, 0, ClientSize.Width, ClientSize.Height);
-            }
-
             if (IconSetImage == null)
             {
                 return;

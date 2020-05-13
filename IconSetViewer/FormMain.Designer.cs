@@ -38,8 +38,10 @@
             this.comboBoxNumber = new System.Windows.Forms.ComboBox();
             this.panel1 = new System.Windows.Forms.Panel();
             this.panelScroll = new System.Windows.Forms.Panel();
-            this.iconSetViewControl = new IconSetViewer.IconSetViewControl();
             this.flowLayoutPanel2 = new System.Windows.Forms.FlowLayoutPanel();
+            this.menuItemOption = new System.Windows.Forms.ToolStripMenuItem();
+            this.menuItemImageBackground = new System.Windows.Forms.ToolStripMenuItem();
+            this.iconSetViewControl = new IconSetViewer.IconSetViewControl();
             this.iconViewControl = new IconSetViewer.IconViewControl();
             this.menuStrip1.SuspendLayout();
             this.flowLayoutPanel1.SuspendLayout();
@@ -51,7 +53,8 @@
             // menuStrip1
             // 
             this.menuStrip1.Items.AddRange(new System.Windows.Forms.ToolStripItem[] {
-            this.ファイルToolStripMenuItem});
+            this.ファイルToolStripMenuItem,
+            this.menuItemOption});
             this.menuStrip1.Location = new System.Drawing.Point(0, 0);
             this.menuStrip1.Name = "menuStrip1";
             this.menuStrip1.Size = new System.Drawing.Size(684, 24);
@@ -141,18 +144,6 @@
             this.panelScroll.Size = new System.Drawing.Size(516, 385);
             this.panelScroll.TabIndex = 1;
             // 
-            // iconSetViewControl
-            // 
-            this.iconSetViewControl.BackColor = System.Drawing.Color.Black;
-            this.iconSetViewControl.CorsorColor = System.Drawing.Color.Red;
-            this.iconSetViewControl.IconSetImage = null;
-            this.iconSetViewControl.IconSize = new System.Drawing.Size(32, 32);
-            this.iconSetViewControl.Location = new System.Drawing.Point(1, 1);
-            this.iconSetViewControl.Name = "iconSetViewControl";
-            this.iconSetViewControl.SelectedIndex = -1;
-            this.iconSetViewControl.Size = new System.Drawing.Size(393, 343);
-            this.iconSetViewControl.TabIndex = 0;
-            // 
             // flowLayoutPanel2
             // 
             this.flowLayoutPanel2.AutoSize = true;
@@ -164,6 +155,33 @@
             this.flowLayoutPanel2.Size = new System.Drawing.Size(86, 385);
             this.flowLayoutPanel2.TabIndex = 2;
             // 
+            // menuItemOption
+            // 
+            this.menuItemOption.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] {
+            this.menuItemImageBackground});
+            this.menuItemOption.Name = "menuItemOption";
+            this.menuItemOption.Size = new System.Drawing.Size(63, 20);
+            this.menuItemOption.Text = "オプション";
+            // 
+            // menuItemImageBackground
+            // 
+            this.menuItemImageBackground.Name = "menuItemImageBackground";
+            this.menuItemImageBackground.Size = new System.Drawing.Size(134, 22);
+            this.menuItemImageBackground.Text = "表示背景色";
+            this.menuItemImageBackground.Click += new System.EventHandler(this.OnMenuItemImageBackgroundClick);
+            // 
+            // iconSetViewControl
+            // 
+            this.iconSetViewControl.BackColor = System.Drawing.Color.Transparent;
+            this.iconSetViewControl.CorsorColor = System.Drawing.Color.Red;
+            this.iconSetViewControl.IconSetImage = null;
+            this.iconSetViewControl.IconSize = new System.Drawing.Size(32, 32);
+            this.iconSetViewControl.Location = new System.Drawing.Point(1, 1);
+            this.iconSetViewControl.Name = "iconSetViewControl";
+            this.iconSetViewControl.SelectedIndex = 0;
+            this.iconSetViewControl.Size = new System.Drawing.Size(393, 343);
+            this.iconSetViewControl.TabIndex = 0;
+            // 
             // iconViewControl
             // 
             this.iconViewControl.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
@@ -171,10 +189,9 @@
             this.iconViewControl.Image = null;
             this.iconViewControl.Location = new System.Drawing.Point(7, 7);
             this.iconViewControl.Name = "iconViewControl";
-            this.iconViewControl.Number = -1;
+            this.iconViewControl.Number = 0;
             this.iconViewControl.Size = new System.Drawing.Size(72, 72);
             this.iconViewControl.TabIndex = 0;
-
             // 
             // FormMain
             // 
@@ -188,6 +205,7 @@
             this.MainMenuStrip = this.menuStrip1;
             this.Name = "FormMain";
             this.Text = "アイコンセットビュー";
+            this.FormClosed += new System.Windows.Forms.FormClosedEventHandler(this.OnFormClosed);
             this.DragDrop += new System.Windows.Forms.DragEventHandler(this.OnFormDragDrop);
             this.DragEnter += new System.Windows.Forms.DragEventHandler(this.OnFormDragEnter);
             this.menuStrip1.ResumeLayout(false);
@@ -218,6 +236,8 @@
         private System.Windows.Forms.Panel panelScroll;
         private System.Windows.Forms.FlowLayoutPanel flowLayoutPanel2;
         private IconSetViewControl iconSetViewControl;
+        private System.Windows.Forms.ToolStripMenuItem menuItemOption;
+        private System.Windows.Forms.ToolStripMenuItem menuItemImageBackground;
     }
 }
 
