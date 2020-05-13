@@ -128,13 +128,11 @@ namespace CharaChipGen.GeneratorForm
             // それに対してレンダリングを行う実装になっている。
             // すると等倍にできるでしょ？
 
-#if false
             // 背景色でクリア
             using (Brush brush = new SolidBrush(BackColor))
             {
                 g.FillRectangle(brush, 0, 0, ClientSize.Width - 1, ClientSize.Height - 1);
             }
-#endif
 
             // イメージをレンダリング
             if (renderedImage == null)
@@ -182,6 +180,13 @@ namespace CharaChipGen.GeneratorForm
                 g.DrawRectangle(pen, 0, 0, ClientSize.Width - 1, ClientSize.Height - 1);
             }
         }
+
+        /// <summary>
+        /// 表示領域背景色
+        /// </summary>
+        public Color ImageBackground {
+            get; set;
+        } = Color.Transparent;
 
         /// <summary>
         /// フォームのサイズが変更された時に通知を受け取る。

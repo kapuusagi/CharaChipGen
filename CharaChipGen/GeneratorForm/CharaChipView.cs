@@ -105,18 +105,18 @@ namespace CharaChipGen.GeneratorForm
         public Color ImageBackground {
             get => charaChipView11.BackColor; 
             set {
-                charaChipView11.BackColor = value;
-                charaChipView21.BackColor = value;
-                charaChipView31.BackColor = value;
-                charaChipView12.BackColor = value;
-                charaChipView22.BackColor = value;
-                charaChipView32.BackColor = value;
-                charaChipView13.BackColor = value;
-                charaChipView23.BackColor = value;
-                charaChipView33.BackColor = value;
-                charaChipView14.BackColor = value;
-                charaChipView24.BackColor = value;
-                charaChipView34.BackColor = value;
+                charaChipView11.ImageBackground = value;
+                charaChipView21.ImageBackground = value;
+                charaChipView31.ImageBackground = value;
+                charaChipView12.ImageBackground = value;
+                charaChipView22.ImageBackground = value;
+                charaChipView32.ImageBackground = value;
+                charaChipView13.ImageBackground = value;
+                charaChipView23.ImageBackground = value;
+                charaChipView33.ImageBackground = value;
+                charaChipView14.ImageBackground = value;
+                charaChipView24.ImageBackground = value;
+                charaChipView34.ImageBackground = value;
 
                 pictureBox1.BackColor = value;
                 pictureBox2.BackColor = value;
