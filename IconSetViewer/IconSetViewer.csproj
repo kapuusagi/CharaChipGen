@@ -52,6 +52,7 @@
     <Compile Include="FormMain.Designer.cs">
       <DependentUpon>FormMain.cs</DependentUpon>
     </Compile>
+    <Compile Include="IconSet.cs" />
     <Compile Include="IconSetViewControl.cs">
       <SubType>UserControl</SubType>
     </Compile>

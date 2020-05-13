@@ -174,8 +174,6 @@
             // 
             this.iconSetViewControl.BackColor = System.Drawing.Color.Transparent;
             this.iconSetViewControl.CorsorColor = System.Drawing.Color.Red;
-            this.iconSetViewControl.IconSetImage = null;
-            this.iconSetViewControl.IconSize = new System.Drawing.Size(32, 32);
             this.iconSetViewControl.Location = new System.Drawing.Point(1, 1);
             this.iconSetViewControl.Name = "iconSetViewControl";
             this.iconSetViewControl.SelectedIndex = 0;
@@ -185,11 +183,9 @@
             // iconViewControl
             // 
             this.iconViewControl.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
-            this.iconViewControl.IconSize = new System.Drawing.Size(32, 32);
-            this.iconViewControl.Image = null;
             this.iconViewControl.Location = new System.Drawing.Point(7, 7);
             this.iconViewControl.Name = "iconViewControl";
-            this.iconViewControl.Number = 0;
+            this.iconViewControl.SelectedIndex = 0;
             this.iconViewControl.Size = new System.Drawing.Size(72, 72);
             this.iconViewControl.TabIndex = 0;
             // 

@@ -9,20 +9,31 @@ namespace IconSetViewer
     /// </summary>
     public partial class IconSetViewControl : UserControl
     {
-        private Size iconSize = new Size(32, 32); // アイコンサイズ
-        private Image iconSetImage; // アイコンセットの画像
-        private int hIconCount; // 水平アイコン数
-        private int vIconCount; // 垂直アイコン数
-        private int selectedIndex = 0; // 選択されているアイコンのインデックス番号
+        // アイコンセット
+        private IconSet iconSet;
+        // 選択されているアイコンのインデックス番号
+        private int selectedIndex = 0; 
 
         /// <summary>
         /// 新しいインスタンスを構築する。
         /// </summary>
         public IconSetViewControl()
         {
-            iconSetImage = null;
+            iconSet = new IconSet();
+            iconSet.PropertyChanged += OnIconSetPropertyChanged;
             InitializeComponent();
 
+        }
+
+        /// <summary>
+        /// アイコンセットのプロパティが変更されたときに通知を受け取る。
+        /// </summary>
+        /// <param name="sender">送信元オブジェクト</param>
+        /// <param name="e">イベントオブジェクト</param>
+        private void OnIconSetPropertyChanged(object sender, System.ComponentModel.PropertyChangedEventArgs e)
+        {
+            SelectedIndex = -1;
+            Invalidate();
         }
 
         /// <summary>
@@ -31,21 +42,22 @@ namespace IconSetViewer
         public event EventHandler SelectedIndexChanged;
 
         /// <summary>
-        /// アイコンセット画像
+        /// アイコンセット
         /// </summary>
-        public Image IconSetImage {
-            get { return iconSetImage; }
+        public IconSet IconSet {
+            get => iconSet;
             set {
-                iconSetImage = value;
-                if (iconSetImage != null)
+                if (iconSet == null)
                 {
-                    Size = iconSetImage.Size;
+                    throw new ArgumentNullException("IconSetにnullは設定できません。");
                 }
-                else
-                {
-                    Size = Size.Empty;
-                }
-                UpdateIconData();
+
+                iconSet.PropertyChanged -= OnIconSetPropertyChanged;
+                iconSet = value;
+                iconSet.PropertyChanged += OnIconSetPropertyChanged;
+
+                SelectedIndex = -1;
+                Invalidate();
             }
         }
 
@@ -55,34 +67,19 @@ namespace IconSetViewer
         public Color CorsorColor { get; set; } = Color.Red;
 
         /// <summary>
-        /// アイコンサイズ
-        /// </summary>
-        public Size IconSize {
-            get { return iconSize; }
-            set {
-                if ((value.Width <= 0) || (value.Height <= 0))
-                {
-                    throw new ArgumentException($"Size is incorrect. ({value.Width},{value.Height})");
-                }
-                iconSize = value;
-                UpdateIconData();
-            }
-        }
-
-        /// <summary>
-        /// アイコンインデックス番号(0, 1, 2, ... (MaxIconCount - 1))
+        /// アイコンインデックス番号(0, 1, 2, ... (IconCount - 1))
         /// </summary>
         public int SelectedIndex {
             get { return selectedIndex; }
             set {
                 int newIndex = value;
-                if (newIndex < 0)
+                if (newIndex < -1)
                 {
-                    newIndex = 0;
+                    newIndex = -1;
                 }
-                else if (newIndex >= MaxIconCount)
+                else if (newIndex >= iconSet.IconCount)
                 {
-                    newIndex = MaxIconCount - 1;
+                    newIndex = iconSet.IconCount - 1;
                 }
 
                 if (newIndex != selectedIndex)
@@ -93,25 +90,7 @@ namespace IconSetViewer
                 }
             }
         }
-        /// <summary>
-        /// アイコン最大数
-        /// </summary>
-        public int MaxIconCount { get; private set; } = 0;
 
-        /// <summary>
-        /// アイコンデータを更新する。
-        /// </summary>
-        private void UpdateIconData()
-        {
-            if (iconSetImage != null)
-            {
-                hIconCount = iconSetImage.Width / iconSize.Width;
-                vIconCount = iconSetImage.Height / iconSize.Height;
-                MaxIconCount = hIconCount * vIconCount;
-            }
-            selectedIndex = -1; // 表示インデックスリセット
-            Invalidate();
-        }
 
         /// <summary>
         /// 表示を更新する。
@@ -121,23 +100,22 @@ namespace IconSetViewer
         {
             Graphics g = e.Graphics;
 
-            if (IconSetImage == null)
+            if (iconSet.Image == null)
             {
                 return;
             }
 
             // アイコンセット描画
-            g.DrawImageUnscaled(IconSetImage, 0, 0);
+            g.DrawImageUnscaled(iconSet.Image, 0, 0);
 
             // さ・ら・に、選択されているアイコンのところを赤枠で囲む。
-            if ((SelectedIndex >= 0) && (MaxIconCount > 0))
+            if ((SelectedIndex >= 0) && (SelectedIndex < iconSet.IconCount))
             {
-                int yOffs = (SelectedIndex / hIconCount) * IconSize.Width;
-                int xOffs = (SelectedIndex % hIconCount) * IconSize.Height;
+                Rectangle r = iconSet.GetIconRegion(SelectedIndex);
 
                 using (Pen pen = new Pen(CorsorColor, 2))
                 {
-                    g.DrawRectangle(pen, xOffs, yOffs, iconSize.Width - 1, iconSize.Height - 1);
+                    g.DrawRectangle(pen, r);
                 }
             }
 
@@ -151,11 +129,7 @@ namespace IconSetViewer
         private void OnMouseClick(object sender, MouseEventArgs e)
         {
             Point p = e.Location;
-            int iconIndex = (p.Y / iconSize.Height) * hIconCount + p.X / iconSize.Width;
-            if ((iconIndex >= 0) && (iconIndex < MaxIconCount))
-            {
-                SelectedIndex = iconIndex;
-            }
+            SelectedIndex = iconSet.GetIconIndexAt(p.X, p.Y);
         }
     }
 }

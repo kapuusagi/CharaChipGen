@@ -9,21 +9,31 @@ namespace IconSetViewer
     /// </summary>
     public partial class IconViewControl : UserControl
     {
+        private int selectedIndex;
 
-        private Size iconSize = new Size(32, 32);
-        private Image image = null;
-        private Size imageSize = new Size(0, 0); // 画像サイズキャッシュ値
-        private int hIconCount; // 水平アイコン数
-        private int vIconCount; // 垂直アイコン数
-        private int number = 0;
+        private IconSet iconSet; 
 
         /// <summary>
         /// 新しいインスタンスを構築する。
         /// </summary>
         public IconViewControl()
         {
+            selectedIndex = -1;
+            iconSet = new IconSet();
+            iconSet.PropertyChanged += OnIconSetPropertyChanged;
             InitializeComponent();
         }
+
+        /// <summary>
+        /// アイコンセットのプロパティが変更されたときに通知を受け取る。
+        /// </summary>
+        /// <param name="sender">送信元オブジェクト</param>
+        /// <param name="e">イベントオブジェクト</param>
+        private void OnIconSetPropertyChanged(object sender, System.ComponentModel.PropertyChangedEventArgs e)
+        {
+            Invalidate();
+        }
+
 
         /// <summary>
         /// 表示を更新する。
@@ -34,109 +44,79 @@ namespace IconSetViewer
             Graphics g = e.Graphics;
 
             // 表示対象がある場合、もりもり描画。
-            if ((image != null) && (number >= 0) && (number < MaxIconCount))
+            if ((iconSet.Image != null) && (selectedIndex >= 0) && (selectedIndex < iconSet.IconCount))
             {
                 // 表示元画像部分の座標を計算
-                int yPos = number / hIconCount;
-                int xPos = number - (hIconCount * yPos);
-                int srcXOffs = xPos * iconSize.Width;
-                int srcYOffs = yPos * iconSize.Height;
-                Rectangle srcRect = new Rectangle(srcXOffs, srcYOffs,
-                    iconSize.Width - 1, iconSize.Height - 1);
+                Rectangle srcRect = iconSet.GetIconRegion(selectedIndex);
 
-                System.Diagnostics.Debug.WriteLine($"{srcRect.ToString()}");
+                System.Diagnostics.Debug.WriteLine($"{srcRect}");
 
                 // 表示先範囲の座標を計算
-                int drawWidth = ClientSize.Width;
-                int drawHeight = (int)(Math.Ceiling(drawWidth
-                    * (double)(iconSize.Height) / (double)(iconSize.Width)));
-                if (drawHeight > ClientSize.Height)
-                {
-                    // アスペクト比を維持して描画に必要な高さが足りない
-                    drawHeight = ClientSize.Height;
-                    drawWidth = (int)(Math.Ceiling(drawHeight
-                        * (double)(iconSize.Width) / (double)(iconSize.Height)));
-                }
-                int dstXOffs = (ClientSize.Width - drawWidth) / 2;
-                int dstYOffs = (ClientSize.Height - drawHeight) / 2;
-                Rectangle dstRect = new Rectangle(dstXOffs, dstYOffs,
-                    drawWidth, drawHeight);
+                Rectangle dstRect = CalcIconDisplayRectangel();
 
                 // 描画
-                g.DrawImage(Image, dstRect, srcRect, GraphicsUnit.Pixel);
+                g.DrawImage(iconSet.Image, dstRect, srcRect, GraphicsUnit.Pixel);
             }
 
         }
 
+        private Rectangle CalcIconDisplayRectangel()
+        {
+            Size iconSize = iconSet.IconSize;
+            int drawWidth = ClientSize.Width;
+            int drawHeight = (int)(Math.Ceiling(drawWidth
+                * (float)(iconSize.Height) / (float)(iconSize.Width)));
+            if (drawHeight > ClientSize.Height)
+            {
+                // アスペクト比を維持して描画に必要な高さが足りない
+                drawHeight = ClientSize.Height;
+                drawWidth = (int)(Math.Ceiling(drawHeight
+                    * (float)(iconSize.Width) / (float)(iconSize.Height)));
+            }
+            int dstXOffs = (ClientSize.Width - drawWidth) / 2;
+            int dstYOffs = (ClientSize.Height - drawHeight) / 2;
+            return new Rectangle(dstXOffs, dstYOffs, drawWidth, drawHeight);
+        }
 
-        /// <summary>
-        /// 画像データ
-        /// </summary>
-        public Image Image {
-            get { return image; }
+        public IconSet IconSet {
+            get => iconSet;
             set {
-                image = value;
-                imageSize.Width = image?.Width ?? 0;
-                imageSize.Height = image?.Height ?? 0;
-                UpdateIconData();
+                if (value == null)
+                {
+                    throw new ArgumentNullException("IconSetにnullは指定できません。");
+                }
+                iconSet.PropertyChanged -= OnIconSetPropertyChanged;
+                iconSet = value;
+                iconSet.PropertyChanged += OnIconSetPropertyChanged;
+
+                SelectedIndex = -1;
+                Invalidate();
             }
         }
 
         /// <summary>
         /// アイコンインデックス番号(0, 1, 2, ... (MaxIconCount - 1))
         /// </summary>
-        public int Number {
-            get { return number; }
+        public int SelectedIndex {
+            get => selectedIndex; 
             set {
-                int newNumber = value;
-                if (newNumber < 0)
+                int newIndex = value;
+                if (newIndex < -1)
                 {
-                    newNumber = 0;
+                    newIndex = -1;
                 }
-                else if (newNumber >= MaxIconCount)
+                else if (newIndex >= iconSet.IconCount)
                 {
-                    newNumber = MaxIconCount - 1;
+                    newIndex = iconSet.IconCount - 1;
                 }
 
-                if (newNumber != number)
+                if (newIndex != selectedIndex)
                 {
-                    number = newNumber;
+                    selectedIndex = newIndex;
                     Invalidate();
                 }
 
             }
-        }
-
-        /// <summary>
-        /// アイコンサイズ
-        /// </summary>
-        public Size IconSize {
-            get { return iconSize; }
-            set {
-                if ((value.Width <= 0) || (value.Height <= 0))
-                {
-                    throw new ArgumentException($"Size is incorrect. ({value.Width},{value.Height})");
-                }
-                iconSize = value;
-                UpdateIconData();
-            }
-        }
-
-        /// <summary>
-        /// アイコン最大数
-        /// </summary>
-        public int MaxIconCount { get; private set; }
-
-        /// <summary>
-        /// アイコンデータを更新する。
-        /// </summary>
-        private void UpdateIconData()
-        {
-            hIconCount = imageSize.Width / iconSize.Width;
-            vIconCount = imageSize.Height / iconSize.Height;
-            MaxIconCount = hIconCount * vIconCount;
-            number = 0; // 表示インデックスリセット
-            Invalidate();
         }
 
         /// <summary>

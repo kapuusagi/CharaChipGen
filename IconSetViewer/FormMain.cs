@@ -13,11 +13,11 @@ namespace IconSetViewer
         public FormMain()
         {
             InitializeComponent();
-
             panelScroll.BackColor = Settings.Default.ImageBackground;
             iconViewControl.BackColor = Settings.Default.ImageBackground;
             Settings.Default.PropertyChanged += OnSettingsPropertyChanged;
             iconSetViewControl.SelectedIndexChanged += OnIconSetViewControlSelectedIndexChanged;
+            iconSetViewControl.IconSet = iconViewControl.IconSet;
         }
 
         /// <summary>
@@ -28,7 +28,7 @@ namespace IconSetViewer
         private void OnIconSetViewControlSelectedIndexChanged(object sender, EventArgs e)
         {
             comboBoxNumber.SelectedIndex = iconSetViewControl.SelectedIndex;
-            iconViewControl.Number = iconSetViewControl.SelectedIndex;
+            iconViewControl.SelectedIndex = iconSetViewControl.SelectedIndex;
         }
 
         /// <summary>
@@ -114,15 +114,15 @@ namespace IconSetViewer
                     return;
                 }
                 int number = Convert.ToInt32(text);
-                if ((number > 0) && (number <= iconViewControl.MaxIconCount))
+                if ((number > 0) && (number <= iconViewControl.IconSet.IconCount))
                 {
-                    iconViewControl.Number = number - 1;
+                    iconViewControl.SelectedIndex = number - 1;
                     iconSetViewControl.SelectedIndex = number - 1;
                 }
             }
             catch (Exception ex)
             {
-                iconViewControl.Number = -1;
+                iconViewControl.SelectedIndex = -1;
                 System.Diagnostics.Debug.WriteLine(ex.Message);
             }
         }
@@ -133,13 +133,13 @@ namespace IconSetViewer
         /// <param name="filePath">ファイルパス</param>
         private void SetNewIconImage(string filePath)
         {
+            IconSet iconSet = iconViewControl.IconSet;
             using (Image image = ReadImage(filePath))
             {
-                iconViewControl.Image = (Image)(image.Clone());
-                iconSetViewControl.IconSetImage = iconViewControl.Image;
+                iconSet.Image = (Image)(image.Clone());
 
                 // イメージがセットできたら最大数(=コンボボックス)を更新
-                int maxIconCount = iconViewControl.MaxIconCount;
+                int maxIconCount = iconSet.IconCount;
                 comboBoxNumber.Items.Clear();
                 for (int i = 0; i < maxIconCount; i++)
                 {
@@ -186,12 +186,12 @@ namespace IconSetViewer
                     return;
                 }
                 int number = Convert.ToInt32(text);
-                iconViewControl.Number = (number - 1);
+                iconViewControl.SelectedIndex = (number - 1);
                 iconSetViewControl.SelectedIndex = (number - 1);
             }
             catch (Exception ex)
             {
-                iconViewControl.Number = -1;
+                iconViewControl.SelectedIndex = -1;
                 System.Diagnostics.Debug.WriteLine(ex.Message);
             }
         }
