@@ -683,5 +683,17 @@ namespace CharaChipGen.MainForm
             {
             }
         }
+
+        /// <summary>
+        /// 表示背景色メニューがクリックされたときに通知を受け取る。
+        /// </summary>
+        /// <param name="sender">送信元オブジェクト</param>
+        /// <param name="e">イベントオブジェクト</param>
+        private void OnMenuItemDisplayBackgroundClick(object sender, EventArgs e)
+        {
+            Color defaultColor = Settings.Default.ImageBackground;
+            Color selectedColor = CGenImaging.Forms.ColorSelectDialog.ShowDialog(this, defaultColor);
+            Settings.Default.ImageBackground = selectedColor;
+        }
     }
 }

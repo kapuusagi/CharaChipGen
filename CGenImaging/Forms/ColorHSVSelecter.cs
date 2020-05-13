@@ -11,16 +11,12 @@ using System.Drawing.Drawing2D;
 using CGenImaging;
 using System.Diagnostics;
 
-namespace CharaChipGen.ColorEditForm
+namespace CGenImaging.Forms
 {
-    public partial class ColorHSVSelectView : UserControl
+    public partial class ColorHSVSelecter : UserControl
     {
-        // 色差
-        private float saturation;
-        // 明度
-        private float value;
-        // 色相
-        private float hue;
+        // データモデル
+        private ColorHSV colorHSV;
         // 表示イメージレンダリング用バッファ。
         // nullにするとOnPaint時にコントロールのサイズから再構築してレンダリングする。
         private ImageBuffer svRenderBuffer;
@@ -40,9 +36,9 @@ namespace CharaChipGen.ColorEditForm
         /// <summary>
         /// 新しいインスタンスを構築する。
         /// </summary>
-        public ColorHSVSelectView()
+        public ColorHSVSelecter()
         {
-            hue = 0.0f;
+            colorHSV = ColorHSV.FromHSV(0.0f, 0.0f, 0.0f);
             svRenderBuffer = null;
             svDisplayImage = null;
             hueRenderBuffer = null;
@@ -54,18 +50,9 @@ namespace CharaChipGen.ColorEditForm
         }
 
         /// <summary>
-        /// 色差選択が変更された。
-        /// </summary>
-        public event EventHandler SaturationChanged;
-        /// <summary>
-        /// 明度が変更された。
+        /// 色が変更された。
         /// </summary>
         public event EventHandler ValueChanged;
-
-        /// <summary>
-        /// 色相が変更された。
-        /// </summary>
-        public event EventHandler HueChanged;
 
         /// <summary>
         /// このコントロールの描画を行う。
@@ -108,12 +95,12 @@ namespace CharaChipGen.ColorEditForm
                     svArea.Width - 2, svArea.Height - 2);
             }
 
-            using (Pen pen = new Pen((value > 0.5f) ? Color.White : Color.Black))
+            using (Pen pen = new Pen((colorHSV.Value > 0.5f) ? Color.White : Color.Black))
             {
                 // 選択されているsaturation, valueの位置に十字カーソルを書く
-                int x = svArea.Left + Convert.ToInt32((1.0f - saturation) * (svArea.Width - 2));
+                int x = svArea.Left + Convert.ToInt32((1.0f - colorHSV.Saturation) * (svArea.Width - 2));
                 g.DrawLine(pen, x, svArea.Top, x, svArea.Bottom);
-                int y = svArea.Top + Convert.ToInt32((1.0f - value) * (svArea.Height - 2));
+                int y = svArea.Top + Convert.ToInt32((1.0f - colorHSV.Value) * (svArea.Height - 2));
                 g.DrawLine(pen, svArea.Left, y, svArea.Right, y);
             }
 
@@ -129,7 +116,7 @@ namespace CharaChipGen.ColorEditForm
         /// </summary>
         private void RenderSVImageBuffer()
         {
-            float hue = Hue;
+            float hue = colorHSV.Hue;
             for (int y = 0; y < svRenderBuffer.Height; y++)
             {
                 float value = 1.0f - (y / (float)(svRenderBuffer.Height - 1));
@@ -170,7 +157,7 @@ namespace CharaChipGen.ColorEditForm
             using (Pen pen = new Pen(Color.Black))
             {
                 // 選択されているHueの位置に十字カーソルを書く
-                int x = hueArea.Left + Convert.ToInt32(hue / 360.0f * (hueArea.Width - 2));
+                int x = hueArea.Left + Convert.ToInt32(colorHSV.Hue / 360.0f * (hueArea.Width - 2));
                 g.DrawLine(pen, x, hueArea.Top, x, hueArea.Bottom);
             }
 
@@ -198,52 +185,20 @@ namespace CharaChipGen.ColorEditForm
         }
 
         /// <summary>
-        /// 色相
+        /// 選択されている色
         /// </summary>
-        public float Hue {
-            get => hue;
+        public ColorHSV ColorHSV {
+            get => colorHSV;
             set {
-                float h = ColorUtility.GetHueWithLimitedRange(value);
-                if (hue == h)
+                if (colorHSV.Equals(value))
                 {
                     return;
                 }
-                hue = value;
-                svDisplayImage = null;
-                Invalidate();
-                HueChanged?.Invoke(this, new EventArgs());
-            }
-        }
-
-        /// <summary>
-        /// 色差(0.0～1.0)
-        /// </summary>
-        public float Saturation {
-            get => saturation;
-            set {
-                float s = ColorUtility.Clamp(value, 0.0f, 1.0f);
-                if (saturation == s)
+                if (colorHSV.Hue != value.Hue)
                 {
-                    return;
+                    svDisplayImage = null;
                 }
-                saturation = s;
-                Invalidate();
-                SaturationChanged?.Invoke(this, new EventArgs());
-            }
-        }
-
-        /// <summary>
-        /// 明度(0.0～1.0)
-        /// </summary>
-        public float Value {
-            get => value;
-            set {
-                float v = ColorUtility.Clamp(value, 0.0f, 1.0f);
-                if (this.value == v)
-                {
-                    return;
-                }
-                this.value = v;
+                colorHSV = value;
                 Invalidate();
                 ValueChanged?.Invoke(this, new EventArgs());
             }
@@ -288,25 +243,21 @@ namespace CharaChipGen.ColorEditForm
         /// </summary>
         /// <param name="point"></param>
         private void SetHSVViaPoint(Point point)
-        { 
+        {
             if ((modifyTarget == svArea) && IsHit(svArea, point))
             {
                 int x = point.X - svArea.Left - 1;
                 int y = point.Y - svArea.Top - 1;
                 float saturation = ColorUtility.Clamp(1.0f - (float)(x) / (float)(svArea.Width - 2), 0.0f, 1.0f);
                 float value = ColorUtility.Clamp(1.0f - (float)(y) / (float)(svArea.Height - 2), 0.0f, 1.0f);
-
-                Saturation = saturation;
-                Value = value;
+                ColorHSV = ColorHSV.FromAHSV(colorHSV.Alpha, colorHSV.Hue, saturation, value);
             }
             else if ((modifyTarget == hueArea) && IsHit(hueArea, point))
             {
                 int x = point.X - hueArea.Left - 1;
                 float hue = ColorUtility.Clamp((float)(x) / (float)(hueArea.Width - 2) * 360.0f, 0.0f, 360.0f);
-                Hue = hue;
+                ColorHSV = ColorHSV.FromAHSV(colorHSV.Alpha, hue, colorHSV.Saturation, colorHSV.Value);
             }
-
-
         }
 
         /// <summary>

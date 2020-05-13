@@ -1,6 +1,6 @@
-﻿namespace CharaChipGen.ColorEditForm
+﻿namespace CGenImaging.Forms
 {
-    partial class ColorHSVSelectView
+    partial class ColorSelectBar
     {
         /// <summary> 
         /// 必要なデザイナー変数です。
@@ -30,12 +30,13 @@
         {
             this.SuspendLayout();
             // 
-            // ColorHSVSelectView
+            // ColorSelectBar
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 12F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.DoubleBuffered = true;
-            this.Name = "ColorHSVSelectView";
+            this.Name = "ColorSelectBar";
+            this.Size = new System.Drawing.Size(150, 32);
             this.MouseDown += new System.Windows.Forms.MouseEventHandler(this.OnMouseDown);
             this.MouseLeave += new System.EventHandler(this.OnMouseLeave);
             this.MouseMove += new System.Windows.Forms.MouseEventHandler(this.OnMouseMove);

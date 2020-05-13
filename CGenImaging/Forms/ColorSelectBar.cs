@@ -11,7 +11,7 @@ using System.Drawing.Drawing2D;
 using System.Xml.Schema;
 using CGenImaging;
 
-namespace CharaChipGen.ColorEditForm
+namespace CGenImaging.Forms
 {
     public partial class ColorSelectBar : UserControl
     {

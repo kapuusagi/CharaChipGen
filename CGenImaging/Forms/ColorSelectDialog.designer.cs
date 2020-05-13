@@ -1,6 +1,6 @@
-﻿namespace CharaChipGen.ColorEditForm
+﻿namespace CGenImaging.Forms
 {
-    partial class ColorEditForm
+    partial class ColorSelectDialog
     {
         /// <summary>
         /// Required designer variable.
@@ -36,17 +36,17 @@
             this.label2 = new System.Windows.Forms.Label();
             this.label3 = new System.Windows.Forms.Label();
             this.label4 = new System.Windows.Forms.Label();
-            this.colorSelectBarR = new CharaChipGen.ColorEditForm.ColorSelectBar();
-            this.colorSelectBarG = new CharaChipGen.ColorEditForm.ColorSelectBar();
-            this.colorSelectBarB = new CharaChipGen.ColorEditForm.ColorSelectBar();
-            this.colorSelectBarA = new CharaChipGen.ColorEditForm.ColorSelectBar();
+            this.colorSelectBarR = new CGenImaging.Forms.ColorSelectBar();
+            this.colorSelectBarG = new CGenImaging.Forms.ColorSelectBar();
+            this.colorSelectBarB = new CGenImaging.Forms.ColorSelectBar();
+            this.colorSelectBarA = new CGenImaging.Forms.ColorSelectBar();
             this.numericUpDownR = new System.Windows.Forms.NumericUpDown();
             this.numericUpDownG = new System.Windows.Forms.NumericUpDown();
             this.numericUpDownB = new System.Windows.Forms.NumericUpDown();
             this.numericUpDownA = new System.Windows.Forms.NumericUpDown();
             this.panel1 = new System.Windows.Forms.Panel();
             this.panel2 = new System.Windows.Forms.Panel();
-            this.colorHSVSelectView = new CharaChipGen.ColorEditForm.ColorHSVSelectView();
+            this.colorHSVSelecter = new CGenImaging.Forms.ColorHSVSelecter();
             this.tableLayoutPanel2 = new System.Windows.Forms.TableLayoutPanel();
             this.label5 = new System.Windows.Forms.Label();
             this.labelSelectedColor = new System.Windows.Forms.Label();
@@ -294,7 +294,7 @@
             // 
             // panel2
             // 
-            this.panel2.Controls.Add(this.colorHSVSelectView);
+            this.panel2.Controls.Add(this.colorHSVSelecter);
             this.panel2.Dock = System.Windows.Forms.DockStyle.Fill;
             this.panel2.Location = new System.Drawing.Point(0, 0);
             this.panel2.Name = "panel2";
@@ -304,17 +304,12 @@
             // 
             // colorHSVSelectView
             // 
-            this.colorHSVSelectView.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.colorHSVSelectView.Hue = 0F;
-            this.colorHSVSelectView.Location = new System.Drawing.Point(12, 12);
-            this.colorHSVSelectView.Name = "colorHSVSelectView";
-            this.colorHSVSelectView.Saturation = 0F;
-            this.colorHSVSelectView.Size = new System.Drawing.Size(183, 167);
-            this.colorHSVSelectView.TabIndex = 1;
-            this.colorHSVSelectView.Value = 0F;
-            this.colorHSVSelectView.SaturationChanged += new System.EventHandler(this.OnColorSLSelectViewValueChanged);
-            this.colorHSVSelectView.ValueChanged += new System.EventHandler(this.OnColorSLSelectViewValueChanged);
-            this.colorHSVSelectView.HueChanged += new System.EventHandler(this.OnColorSLSelectViewValueChanged);
+            this.colorHSVSelecter.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.colorHSVSelecter.Location = new System.Drawing.Point(12, 12);
+            this.colorHSVSelecter.Name = "colorHSVSelectView";
+            this.colorHSVSelecter.Size = new System.Drawing.Size(183, 167);
+            this.colorHSVSelecter.TabIndex = 1;
+            this.colorHSVSelecter.ValueChanged += new System.EventHandler(this.OnColorSLSelectViewValueChanged);
             // 
             // tableLayoutPanel2
             // 
@@ -387,7 +382,7 @@
         private System.Windows.Forms.FlowLayoutPanel flowLayoutPanel1;
         private System.Windows.Forms.Button buttonCancel;
         private System.Windows.Forms.Button buttonOK;
-        private ColorHSVSelectView colorHSVSelectView;
+        private ColorHSVSelecter colorHSVSelecter;
         private System.Windows.Forms.TableLayoutPanel tableLayoutPanel1;
         private System.Windows.Forms.Label label1;
         private System.Windows.Forms.Label label2;

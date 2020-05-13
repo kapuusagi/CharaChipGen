@@ -9,7 +9,7 @@ namespace CGenImaging
     /// <summary>
     /// HSL(色相、彩度、輝度)色空間の色を表すモデル。
     /// </summary>
-    public class ColorHSL
+    public struct ColorHSL
     {
         /// <summary>
         /// 新しいHSL色を得る。
@@ -106,6 +106,69 @@ namespace CGenImaging
         public override string ToString()
         {
             return $"Color [A={Alpha}, H={Hue}, S={Saturation}, L={Lightness}]";
+        }
+
+        /// <summary>
+        /// colorHSVで指定される色と一致しているかどうかを判定する。
+        /// </summary>
+        /// <param name="colorHSL">色</param>
+        /// <returns>同値なものである場合にはtrue, それ以外はfalse</returns>
+        public bool Equals(ColorHSL colorHSL)
+        {
+            return (colorHSL.Hue == Hue) && (colorHSL.Saturation == Saturation) && (colorHSL.Lightness == Lightness);
+        }
+
+        /// <summary>
+        /// objで指定されたオブジェクトが同じものかどうかおｗ判定して返す。
+        /// </summary>
+        /// <param name="obj">オブジェクト</param>
+        /// <returns>同値なものである場合にはtrue, それ以外はfalse</returns>
+        public override bool Equals(object obj)
+        {
+            if (obj is ColorHSL colorHSL)
+            {
+                return Equals(colorHSL);
+            }
+            else
+            {
+                return base.Equals(obj);
+            }
+        }
+
+        /// <summary>
+        /// このオブジェクトのハッシュ値を得る。
+        /// </summary>
+        /// <returns>ハッシュ値</returns>
+        public override int GetHashCode()
+        {
+            int hashCode = -1617763555;
+            hashCode = hashCode * -1521134295 + Alpha.GetHashCode();
+            hashCode = hashCode * -1521134295 + Hue.GetHashCode();
+            hashCode = hashCode * -1521134295 + Saturation.GetHashCode();
+            hashCode = hashCode * -1521134295 + Lightness.GetHashCode();
+            return hashCode;
+        }
+
+        /// <summary>
+        /// 等号演算子オーバーライド
+        /// </summary>
+        /// <param name="left">左辺オブジェクト</param>
+        /// <param name="right">右辺オブジェクト</param>
+        /// <returns>一致しているかどうか</returns>
+        public static bool operator ==(ColorHSL left, ColorHSL right)
+        {
+            return left.Equals(right);
+        }
+
+        /// <summary>
+        /// 不等号演算子オーバーライド
+        /// </summary>
+        /// <param name="left">左辺オブジェクト</param>
+        /// <param name="right">右辺オブジェクト</param>
+        /// <returns>一致しているかどうか</returns>
+        public static bool operator !=(ColorHSL left, ColorHSL right)
+        {
+            return !(left == right);
         }
     }
 }

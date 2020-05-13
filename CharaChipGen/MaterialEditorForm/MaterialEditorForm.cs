@@ -488,7 +488,7 @@ namespace CharaChipGen.MaterialEditorForm
         private void OnMenuItemImageBackgroundClick(object sender, EventArgs e)
         {
             Color defaultColor = Settings.Default.ImageBackground;
-            Color selectColor = ColorEditForm.ColorEditForm.ShowDialog(this, defaultColor);
+            Color selectColor = CGenImaging.Forms.ColorSelectDialog.ShowDialog(this, defaultColor);
             Settings.Default.ImageBackground = selectColor;
         }
     }

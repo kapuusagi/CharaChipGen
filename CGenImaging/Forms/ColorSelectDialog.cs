@@ -9,9 +9,9 @@ using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
 
-namespace CharaChipGen.ColorEditForm
+namespace CGenImaging.Forms
 {
-    public partial class ColorEditForm : Form
+    public partial class ColorSelectDialog : Form
     {
         // デフォルトタイトル
         private const string DefaultTitle = "Color Selection";
@@ -52,7 +52,7 @@ namespace CharaChipGen.ColorEditForm
         /// <returns>選択された色が返る。キャンセルされた場合にはdefaultColorが返る。</returns>
         public static Color ShowDialog(IWin32Window owner, Color defaultColor, string prompt)
         {
-            ColorEditForm form = new ColorEditForm();
+            ColorSelectDialog form = new ColorSelectDialog();
             form.Text = prompt;
             form.Color = defaultColor;
             if (owner != null)
@@ -73,7 +73,7 @@ namespace CharaChipGen.ColorEditForm
         /// <summary>
         /// 新しいインスタンスを構築する。
         /// </summary>
-        public ColorEditForm()
+        public ColorSelectDialog()
         {
             isModifing = false;
             color = Color.Black;
@@ -120,10 +120,7 @@ namespace CharaChipGen.ColorEditForm
                 colorSelectBarB.Value = color.B;
                 colorSelectBarA.Value = color.A;
 
-                ColorHSV hsv = CGenImaging.ColorConverter.ConvertRGBtoHSV(color);
-                colorHSVSelectView.Hue = hsv.Hue;
-                colorHSVSelectView.Saturation = hsv.Saturation;
-                colorHSVSelectView.Value = hsv.Value;
+                colorHSVSelecter.ColorHSV = ColorConverter.ConvertRGBtoHSV(color);
 
                 labelSelectedColor.BackColor = color;
             }
@@ -181,11 +178,7 @@ namespace CharaChipGen.ColorEditForm
                 colorSelectBarB.Value = b;
                 colorSelectBarA.Value = a;
 
-                ColorHSV hsv = CGenImaging.ColorConverter.ConvertRGBtoHSV(color);
-                colorHSVSelectView.Hue = hsv.Hue;
-                colorHSVSelectView.Saturation = hsv.Saturation;
-                colorHSVSelectView.Value = hsv.Value;
-
+                colorHSVSelecter.ColorHSV = ColorConverter.ConvertRGBtoHSV(color);
             }
             finally
             {
@@ -222,10 +215,7 @@ namespace CharaChipGen.ColorEditForm
                 numericUpDownB.Value = b;
                 numericUpDownA.Value = a;
 
-                ColorHSV hsv = CGenImaging.ColorConverter.ConvertRGBtoHSV(color);
-                colorHSVSelectView.Hue = hsv.Hue;
-                colorHSVSelectView.Saturation = hsv.Saturation;
-                colorHSVSelectView.Value = hsv.Value;
+                colorHSVSelecter.ColorHSV = ColorConverter.ConvertRGBtoHSV(color);
             }
             finally
             {
@@ -245,12 +235,9 @@ namespace CharaChipGen.ColorEditForm
                 return;
             }
 
-            float h = colorHSVSelectView.Hue;
-            float s = colorHSVSelectView.Saturation;
-            float v = colorHSVSelectView.Value;
             int a = (int)(numericUpDownA.Value);
 
-            color = CGenImaging.ColorConverter.ConvertHSVtoRGB(ColorHSV.FromHSV(h, s, v), (byte)(a));
+            color = ColorConverter.ConvertHSVtoRGB(colorHSVSelecter.ColorHSV, (byte)(a));
             labelSelectedColor.BackColor = color;
 
             // バーと値入力欄に設定

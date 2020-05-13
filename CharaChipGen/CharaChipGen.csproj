@@ -46,24 +46,6 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="AppData.cs" />
-    <Compile Include="ColorEditForm\ColorEditForm.cs">
-      <SubType>Form</SubType>
-    </Compile>
-    <Compile Include="ColorEditForm\ColorEditForm.Designer.cs">
-      <DependentUpon>ColorEditForm.cs</DependentUpon>
-    </Compile>
-    <Compile Include="ColorEditForm\ColorHSVSelectView.cs">
-      <SubType>UserControl</SubType>
-    </Compile>
-    <Compile Include="ColorEditForm\ColorHSVSelectView.Designer.cs">
-      <DependentUpon>ColorHSVSelectView.cs</DependentUpon>
-    </Compile>
-    <Compile Include="ColorEditForm\ColorSelectBar.cs">
-      <SubType>UserControl</SubType>
-    </Compile>
-    <Compile Include="ColorEditForm\ColorSelectBar.Designer.cs">
-      <DependentUpon>ColorSelectBar.cs</DependentUpon>
-    </Compile>
     <Compile Include="GeneratorForm\CharaChipGeneratorPartsView.cs">
       <SubType>UserControl</SubType>
     </Compile>
@@ -207,15 +189,6 @@
       <DependentUpon>SizeInput.cs</DependentUpon>
     </Compile>
     <Compile Include="Settings.cs" />
-    <EmbeddedResource Include="ColorEditForm\ColorEditForm.resx">
-      <DependentUpon>ColorEditForm.cs</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="ColorEditForm\ColorHSVSelectView.resx">
-      <DependentUpon>ColorHSVSelectView.cs</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="ColorEditForm\ColorSelectBar.resx">
-      <DependentUpon>ColorSelectBar.cs</DependentUpon>
-    </EmbeddedResource>
     <EmbeddedResource Include="GeneratorForm\CharaChipGeneratorForm.resx">
       <DependentUpon>CharaChipGeneratorForm.cs</DependentUpon>
     </EmbeddedResource>

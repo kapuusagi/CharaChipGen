@@ -284,7 +284,7 @@ namespace CharaChipGen.GeneratorForm
         private void OnMenuItemImageBackgroundClick(object sender, EventArgs e)
         {
             Color defaultColor = Settings.Default.ImageBackground;
-            Color selectedColor = ColorEditForm.ColorEditForm.ShowDialog(this, defaultColor);
+            Color selectedColor = CGenImaging.Forms.ColorSelectDialog.ShowDialog(this, defaultColor);
             Settings.Default.ImageBackground = selectedColor;
         }
     }

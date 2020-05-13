@@ -104,6 +104,67 @@
             return $"Color [A={Alpha}, H={Hue}, S={Saturation}, V={Value}]";
         }
 
+        /// <summary>
+        /// colorHSVで指定される色と一致しているかどうかを判定する。
+        /// </summary>
+        /// <param name="colorHSV">色</param>
+        /// <returns>同値なものである場合にはtrue, それ以外はfalse</returns>
+        public bool Equals(ColorHSV colorHSV)
+        {
+            return (colorHSV.Hue == Hue) && (colorHSV.Saturation == Saturation) && (colorHSV.Value == Value);
+        }
 
+        /// <summary>
+        /// objで指定されたオブジェクトが同じものかどうかおｗ判定して返す。
+        /// </summary>
+        /// <param name="obj">オブジェクト</param>
+        /// <returns>同値なものである場合にはtrue, それ以外はfalse</returns>
+        public override bool Equals(object obj)
+        {
+            if (obj is ColorHSV colorHSV)
+            {
+                return Equals(colorHSV);
+            }
+            else
+            {
+                return base.Equals(obj);
+            }
+        }
+
+        /// <summary>
+        /// このオブジェクトのハッシュ値を得る。
+        /// </summary>
+        /// <returns>ハッシュ値</returns>
+        public override int GetHashCode()
+        {
+            int hashCode = -1269385161;
+            hashCode = hashCode * -1521134295 + Alpha.GetHashCode();
+            hashCode = hashCode * -1521134295 + Hue.GetHashCode();
+            hashCode = hashCode * -1521134295 + Saturation.GetHashCode();
+            hashCode = hashCode * -1521134295 + Value.GetHashCode();
+            return hashCode;
+        }
+
+        /// <summary>
+        /// 等号演算子オーバーライド
+        /// </summary>
+        /// <param name="left">左辺オブジェクト</param>
+        /// <param name="right">右辺オブジェクト</param>
+        /// <returns>一致しているかどうか</returns>
+        public static bool operator ==(ColorHSV left, ColorHSV right)
+        {
+            return left.Equals(right);
+        }
+
+        /// <summary>
+        /// 不等号演算子オーバーライド
+        /// </summary>
+        /// <param name="left">左辺オブジェクト</param>
+        /// <param name="right">右辺オブジェクト</param>
+        /// <returns>一致しているかどうか</returns>
+        public static bool operator !=(ColorHSV left, ColorHSV right)
+        {
+            return !(left == right);
+        }
     }
 }

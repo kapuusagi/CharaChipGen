@@ -70,6 +70,8 @@
             this.characterEntryControl4 = new CharaChipGen.MainForm.CharacterEntryView();
             this.characterEntryControl6 = new CharaChipGen.MainForm.CharacterEntryView();
             this.characterEntryControl5 = new CharaChipGen.MainForm.CharacterEntryView();
+            this.menuItemDisplayImage = new System.Windows.Forms.ToolStripMenuItem();
+            this.toolStripSeparator1 = new System.Windows.Forms.ToolStripSeparator();
             this.menuStripMain.SuspendLayout();
             this.panel1.SuspendLayout();
             this.panel3.SuspendLayout();
@@ -200,7 +202,9 @@
             // menuItemOption
             // 
             this.menuItemOption.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] {
+            this.menuItemDisplayImage,
             this.menuItemPreference,
+            this.toolStripSeparator1,
             this.menuItemMaterialManagement});
             this.menuItemOption.Name = "menuItemOption";
             this.menuItemOption.Size = new System.Drawing.Size(63, 20);
@@ -209,14 +213,14 @@
             // menuItemPreference
             // 
             this.menuItemPreference.Name = "menuItemPreference";
-            this.menuItemPreference.Size = new System.Drawing.Size(122, 22);
+            this.menuItemPreference.Size = new System.Drawing.Size(180, 22);
             this.menuItemPreference.Text = "設定";
             this.menuItemPreference.Click += new System.EventHandler(this.OnPreferenceClick);
             // 
             // menuItemMaterialManagement
             // 
             this.menuItemMaterialManagement.Name = "menuItemMaterialManagement";
-            this.menuItemMaterialManagement.Size = new System.Drawing.Size(122, 22);
+            this.menuItemMaterialManagement.Size = new System.Drawing.Size(180, 22);
             this.menuItemMaterialManagement.Text = "素材管理";
             this.menuItemMaterialManagement.Click += new System.EventHandler(this.OnMaterialManageClicked);
             // 
@@ -494,6 +498,18 @@
             this.characterEntryControl5.DoubleClick += new System.EventHandler(this.OnCharacterEntryControlDoubleClick);
             this.characterEntryControl5.KeyDown += new System.Windows.Forms.KeyEventHandler(this.OnCharacterEntryControlKeyDown);
             // 
+            // menuItemDisplayImage
+            // 
+            this.menuItemDisplayImage.Name = "menuItemDisplayImage";
+            this.menuItemDisplayImage.Size = new System.Drawing.Size(180, 22);
+            this.menuItemDisplayImage.Text = "表示背景色";
+            this.menuItemDisplayImage.Click += new System.EventHandler(this.OnMenuItemDisplayBackgroundClick);
+            // 
+            // toolStripSeparator1
+            // 
+            this.toolStripSeparator1.Name = "toolStripSeparator1";
+            this.toolStripSeparator1.Size = new System.Drawing.Size(177, 6);
+            // 
             // MainForm
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 12F);
@@ -567,6 +583,8 @@
         private System.Windows.Forms.ToolStripMenuItem menuItemPaste;
         private System.Windows.Forms.Panel panel3;
         private System.Windows.Forms.Panel panel4;
+        private System.Windows.Forms.ToolStripMenuItem menuItemDisplayImage;
+        private System.Windows.Forms.ToolStripSeparator toolStripSeparator1;
     }
 }
 
