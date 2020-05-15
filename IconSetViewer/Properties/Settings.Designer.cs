@@ -34,5 +34,29 @@ namespace IconSetViewer.Properties {
                 this["ImageBackground"] = value;
             }
         }
+        
+        [global::System.Configuration.UserScopedSettingAttribute()]
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.Configuration.DefaultSettingValueAttribute("")]
+        public string DirectoryIconSet {
+            get {
+                return ((string)(this["DirectoryIconSet"]));
+            }
+            set {
+                this["DirectoryIconSet"] = value;
+            }
+        }
+        
+        [global::System.Configuration.UserScopedSettingAttribute()]
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.Configuration.DefaultSettingValueAttribute("")]
+        public string DirectoryIcon {
+            get {
+                return ((string)(this["DirectoryIcon"]));
+            }
+            set {
+                this["DirectoryIcon"] = value;
+            }
+        }
     }
 }
