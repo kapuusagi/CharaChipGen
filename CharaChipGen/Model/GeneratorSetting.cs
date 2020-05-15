@@ -50,6 +50,10 @@ namespace CharaChipGen.Model
         /// </summary>
         public ExportSetting ExportSetting { get; private set; }
 
+        /// <summary>
+        /// settingsに設定をコピーする。
+        /// </summary>
+        /// <param name="setting">コピー先のオブジェクト</param>
         public void CopyTo(GeneratorSetting setting)
         {
             for (int i = 0; i < setting.GetCharacterCount(); i++)
