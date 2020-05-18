@@ -29,7 +29,7 @@ namespace CharaChipGen
             }
             catch (Exception e)
             {
-                MessageBox.Show(e.Message, "エラー");
+                MessageBox.Show(e.Message, Properties.Resources.DialogTitleError);
                 return;
             }
 
@@ -65,11 +65,12 @@ namespace CharaChipGen
                     GeneratorSetting setting = reader.Read(path);
                     CharaChipExporter.ExportCharaChip(setting);
                 }
-                MessageBox.Show("出力しました。");
+                MessageBox.Show(Properties.Resources.MessageExported,
+                    Properties.Resources.DialogTitleInformation);
             }
             catch (Exception e)
             {
-                MessageBox.Show(e.Message, "Error");
+                MessageBox.Show(e.Message, Properties.Resources.DialogTitleError);
             }
 
         }
@@ -123,7 +124,7 @@ namespace CharaChipGen
                     if (!data.Initialize(dir))
                     {
                         // アセンブリのディレクトリで試したが初期化できない。
-                        throw new Exception("素材ディレクトリが見つかりませんでした");
+                        throw new Exception(Properties.Resources.MessageMaterialDirectoryNotFound);
                     }
                 }
             }

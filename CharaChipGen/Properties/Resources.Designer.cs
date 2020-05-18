@@ -61,7 +61,34 @@ namespace CharaChipGen.Properties {
         }
         
         /// <summary>
-        ///   パーツの設定を使用 に類似しているローカライズされた文字列を検索します。
+        ///   Confirmation に類似しているローカライズされた文字列を検索します。
+        /// </summary>
+        internal static string DialogTitleConfirm {
+            get {
+                return ResourceManager.GetString("DialogTitleConfirm", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Error に類似しているローカライズされた文字列を検索します。
+        /// </summary>
+        internal static string DialogTitleError {
+            get {
+                return ResourceManager.GetString("DialogTitleError", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Information に類似しているローカライズされた文字列を検索します。
+        /// </summary>
+        internal static string DialogTitleInformation {
+            get {
+                return ResourceManager.GetString("DialogTitleInformation", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Use parts setting. に類似しているローカライズされた文字列を検索します。
         /// </summary>
         internal static string ItemNameUsePartsSetting {
             get {
@@ -70,7 +97,25 @@ namespace CharaChipGen.Properties {
         }
         
         /// <summary>
-        ///   アクセサリ に類似しているローカライズされた文字列を検索します。
+        ///   Export successfully completed. に類似しているローカライズされた文字列を検索します。
+        /// </summary>
+        internal static string MessageExported {
+            get {
+                return ResourceManager.GetString("MessageExported", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Material directory not found. に類似しているローカライズされた文字列を検索します。
+        /// </summary>
+        internal static string MessageMaterialDirectoryNotFound {
+            get {
+                return ResourceManager.GetString("MessageMaterialDirectoryNotFound", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Accessory に類似しているローカライズされた文字列を検索します。
         /// </summary>
         internal static string NameAccessories {
             get {
@@ -79,7 +124,7 @@ namespace CharaChipGen.Properties {
         }
         
         /// <summary>
-        ///   体 に類似しているローカライズされた文字列を検索します。
+        ///   Body に類似しているローカライズされた文字列を検索します。
         /// </summary>
         internal static string NameBodies {
             get {
@@ -88,7 +133,7 @@ namespace CharaChipGen.Properties {
         }
         
         /// <summary>
-        ///   目 に類似しているローカライズされた文字列を検索します。
+        ///   Eye に類似しているローカライズされた文字列を検索します。
         /// </summary>
         internal static string NameEyes {
             get {
@@ -97,7 +142,7 @@ namespace CharaChipGen.Properties {
         }
         
         /// <summary>
-        ///   髪型 に類似しているローカライズされた文字列を検索します。
+        ///   HairStyle に類似しているローカライズされた文字列を検索します。
         /// </summary>
         internal static string NameHairStyles {
             get {
@@ -106,7 +151,7 @@ namespace CharaChipGen.Properties {
         }
         
         /// <summary>
-        ///   頭部アクセサリ に類似しているローカライズされた文字列を検索します。
+        ///   HeadAccessory に類似しているローカライズされた文字列を検索します。
         /// </summary>
         internal static string NameHeadAccessories {
             get {
@@ -115,7 +160,7 @@ namespace CharaChipGen.Properties {
         }
         
         /// <summary>
-        ///   頭 に類似しているローカライズされた文字列を検索します。
+        ///   Head に類似しているローカライズされた文字列を検索します。
         /// </summary>
         internal static string NameHeads {
             get {

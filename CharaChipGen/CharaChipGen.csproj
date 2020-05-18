@@ -240,6 +240,7 @@
     <EmbeddedResource Include="MaterialViewForm\MaterialViewNN.resx">
       <DependentUpon>MaterialViewNN.cs</DependentUpon>
     </EmbeddedResource>
+    <EmbeddedResource Include="Properties\Resource.ja-JP.resx" />
     <EmbeddedResource Include="Properties\Resources.resx">
       <Generator>ResXFileCodeGenerator</Generator>
       <LastGenOutput>Resources.Designer.cs</LastGenOutput>

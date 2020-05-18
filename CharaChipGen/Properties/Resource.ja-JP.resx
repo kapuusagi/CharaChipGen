@@ -118,39 +118,39 @@
     <value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </resheader>
   <data name="DialogTitleConfirm" xml:space="preserve">
-    <value>Confirmation</value>
+    <value>確認</value>
   </data>
   <data name="DialogTitleError" xml:space="preserve">
-    <value>Error</value>
+    <value>エラー</value>
   </data>
   <data name="DialogTitleInformation" xml:space="preserve">
-    <value>Information</value>
+    <value>情報</value>
   </data>
   <data name="ItemNameUsePartsSetting" xml:space="preserve">
-    <value>Use parts setting.</value>
+    <value>パーツの設定を使用</value>
   </data>
   <data name="MessageExported" xml:space="preserve">
-    <value>Export successfully completed.</value>
+    <value>出力しました。</value>
   </data>
   <data name="MessageMaterialDirectoryNotFound" xml:space="preserve">
-    <value>Material directory not found.</value>
+    <value>素材ディレクトリが見つかりませんでした。</value>
   </data>
   <data name="NameAccessories" xml:space="preserve">
-    <value>Accessory</value>
+    <value>アクセサリ</value>
   </data>
   <data name="NameBodies" xml:space="preserve">
-    <value>Body</value>
+    <value>体</value>
   </data>
   <data name="NameEyes" xml:space="preserve">
-    <value>Eye</value>
+    <value>目</value>
   </data>
   <data name="NameHairStyles" xml:space="preserve">
-    <value>HairStyle</value>
+    <value>髪型</value>
   </data>
   <data name="NameHeadAccessories" xml:space="preserve">
-    <value>HeadAccessory</value>
+    <value>頭部アクセサリ</value>
   </data>
   <data name="NameHeads" xml:space="preserve">
-    <value>Head</value>
+    <value>頭</value>
   </data>
 </root>
