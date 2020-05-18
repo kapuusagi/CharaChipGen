@@ -61,6 +61,15 @@ namespace CharaChipGen.Properties {
         }
         
         /// <summary>
+        ///   Rename material に類似しているローカライズされた文字列を検索します。
+        /// </summary>
+        internal static string DialogTitleChangeMaterialName {
+            get {
+                return ResourceManager.GetString("DialogTitleChangeMaterialName", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Confirmation に類似しているローカライズされた文字列を検索します。
         /// </summary>
         internal static string DialogTitleConfirm {
@@ -97,6 +106,24 @@ namespace CharaChipGen.Properties {
         }
         
         /// <summary>
+        ///   Materials に類似しているローカライズされた文字列を検索します。
+        /// </summary>
+        internal static string DialogTitleMaterials {
+            get {
+                return ResourceManager.GetString("DialogTitleMaterials", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   New material に類似しているローカライズされた文字列を検索します。
+        /// </summary>
+        internal static string DialogTitleNewMaterial {
+            get {
+                return ResourceManager.GetString("DialogTitleNewMaterial", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Character {0} - Chara Chip Settings に類似しているローカライズされた文字列を検索します。
         /// </summary>
         internal static string FormTitleCharacterNGenerator {
@@ -124,6 +151,15 @@ namespace CharaChipGen.Properties {
         }
         
         /// <summary>
+        ///   Are you sure you want to delete specified parts? に類似しているローカライズされた文字列を検索します。
+        /// </summary>
+        internal static string MessageConfirmRemoveParts {
+            get {
+                return ResourceManager.GetString("MessageConfirmRemoveParts", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Export successfully completed. に類似しているローカライズされた文字列を検索します。
         /// </summary>
         internal static string MessageExported {
@@ -133,11 +169,29 @@ namespace CharaChipGen.Properties {
         }
         
         /// <summary>
+        ///   Type material name. に類似しているローカライズされた文字列を検索します。
+        /// </summary>
+        internal static string MessageInputMaterialName {
+            get {
+                return ResourceManager.GetString("MessageInputMaterialName", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Type template name. に類似しているローカライズされた文字列を検索します。
         /// </summary>
         internal static string MessageInputTemplateName {
             get {
                 return ResourceManager.GetString("MessageInputTemplateName", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Material name has invalid character. に類似しているローカライズされた文字列を検索します。
+        /// </summary>
+        internal static string MessageInvalidMaterialNameCharacter {
+            get {
+                return ResourceManager.GetString("MessageInvalidMaterialNameCharacter", resourceCulture);
             }
         }
         
@@ -160,11 +214,38 @@ namespace CharaChipGen.Properties {
         }
         
         /// <summary>
+        ///   Material name not specified. に類似しているローカライズされた文字列を検索します。
+        /// </summary>
+        internal static string MessageMaterialNameNotSpecified {
+            get {
+                return ResourceManager.GetString("MessageMaterialNameNotSpecified", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Material name is already used. に類似しているローカライズされた文字列を検索します。
+        /// </summary>
+        internal static string MessageMaterialNameUsed {
+            get {
+                return ResourceManager.GetString("MessageMaterialNameUsed", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Empty template name is illegal. に類似しているローカライズされた文字列を検索します。
         /// </summary>
         internal static string MessageNoInputTemplateName {
             get {
                 return ResourceManager.GetString("MessageNoInputTemplateName", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   path is rootDirectory. に類似しているローカライズされた文字列を検索します。
+        /// </summary>
+        internal static string MessagePathIsRootDirectory {
+            get {
+                return ResourceManager.GetString("MessagePathIsRootDirectory", resourceCulture);
             }
         }
         

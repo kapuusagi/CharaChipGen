@@ -117,6 +117,9 @@
   <resheader name="writer">
     <value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </resheader>
+  <data name="DialogTitleChangeMaterialName" xml:space="preserve">
+    <value>Rename material</value>
+  </data>
   <data name="DialogTitleConfirm" xml:space="preserve">
     <value>Confirmation</value>
   </data>
@@ -129,6 +132,12 @@
   <data name="DialogTitleInput" xml:space="preserve">
     <value>Input</value>
   </data>
+  <data name="DialogTitleMaterials" xml:space="preserve">
+    <value>Materials</value>
+  </data>
+  <data name="DialogTitleNewMaterial" xml:space="preserve">
+    <value>New material</value>
+  </data>
   <data name="FormTitleCharacterNGenerator" xml:space="preserve">
     <value>Character {0} - Chara Chip Settings</value>
   </data>
@@ -138,11 +147,20 @@
   <data name="ItemNoSelect" xml:space="preserve">
     <value>&lt;Not selected&gt;</value>
   </data>
+  <data name="MessageConfirmRemoveParts" xml:space="preserve">
+    <value>Are you sure you want to delete specified parts?</value>
+  </data>
   <data name="MessageExported" xml:space="preserve">
     <value>Export successfully completed.</value>
   </data>
+  <data name="MessageInputMaterialName" xml:space="preserve">
+    <value>Type material name.</value>
+  </data>
   <data name="MessageInputTemplateName" xml:space="preserve">
     <value>Type template name.</value>
+  </data>
+  <data name="MessageInvalidMaterialNameCharacter" xml:space="preserve">
+    <value>Material name has invalid character.</value>
   </data>
   <data name="MessageInvalidTemplateNameCharacter" xml:space="preserve">
     <value>Specified template name has unusable character.</value>
@@ -150,8 +168,17 @@
   <data name="MessageMaterialDirectoryNotFound" xml:space="preserve">
     <value>Material directory not found.</value>
   </data>
+  <data name="MessageMaterialNameNotSpecified" xml:space="preserve">
+    <value>Material name not specified.</value>
+  </data>
+  <data name="MessageMaterialNameUsed" xml:space="preserve">
+    <value>Material name is already used.</value>
+  </data>
   <data name="MessageNoInputTemplateName" xml:space="preserve">
     <value>Empty template name is illegal.</value>
+  </data>
+  <data name="MessagePathIsRootDirectory" xml:space="preserve">
+    <value>path is rootDirectory.</value>
   </data>
   <data name="MessageRestartByChangeSettings" xml:space="preserve">
     <value>Restart application by changing material directory.</value>
