@@ -55,9 +55,9 @@
             // 
             // groupBoxLayerName
             // 
+            resources.ApplyResources(this.groupBoxLayerName, "groupBoxLayerName");
             this.groupBoxLayerName.Controls.Add(this.materialView4x3);
             this.groupBoxLayerName.Controls.Add(this.panel1);
-            resources.ApplyResources(this.groupBoxLayerName, "groupBoxLayerName");
             this.groupBoxLayerName.Name = "groupBoxLayerName";
             this.groupBoxLayerName.TabStop = false;
             // 
@@ -70,8 +70,8 @@
             // 
             // panel1
             // 
-            this.panel1.Controls.Add(this.tableLayoutPanel1);
             resources.ApplyResources(this.panel1, "panel1");
+            this.panel1.Controls.Add(this.tableLayoutPanel1);
             this.panel1.Name = "panel1";
             // 
             // tableLayoutPanel1
@@ -93,8 +93,8 @@
             // 
             // flowLayoutPanel1
             // 
-            this.flowLayoutPanel1.Controls.Add(this.buttonOpen);
             resources.ApplyResources(this.flowLayoutPanel1, "flowLayoutPanel1");
+            this.flowLayoutPanel1.Controls.Add(this.buttonOpen);
             this.flowLayoutPanel1.Name = "flowLayoutPanel1";
             this.tableLayoutPanel1.SetRowSpan(this.flowLayoutPanel1, 2);
             // 
@@ -137,8 +137,8 @@
             // 
             // comboBoxLayerType
             // 
-            this.tableLayoutPanel1.SetColumnSpan(this.comboBoxLayerType, 2);
             resources.ApplyResources(this.comboBoxLayerType, "comboBoxLayerType");
+            this.tableLayoutPanel1.SetColumnSpan(this.comboBoxLayerType, 2);
             this.comboBoxLayerType.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
             this.comboBoxLayerType.FormattingEnabled = true;
             this.comboBoxLayerType.Name = "comboBoxLayerType";
@@ -146,8 +146,8 @@
             // 
             // comboBoxColorRefs
             // 
-            this.tableLayoutPanel1.SetColumnSpan(this.comboBoxColorRefs, 2);
             resources.ApplyResources(this.comboBoxColorRefs, "comboBoxColorRefs");
+            this.tableLayoutPanel1.SetColumnSpan(this.comboBoxColorRefs, 2);
             this.comboBoxColorRefs.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
             this.comboBoxColorRefs.FormattingEnabled = true;
             this.comboBoxColorRefs.Name = "comboBoxColorRefs";
@@ -168,8 +168,8 @@
             // 
             // labelFileName
             // 
-            this.tableLayoutPanel1.SetColumnSpan(this.labelFileName, 2);
             resources.ApplyResources(this.labelFileName, "labelFileName");
+            this.tableLayoutPanel1.SetColumnSpan(this.labelFileName, 2);
             this.labelFileName.Name = "labelFileName";
             // 
             // openFileDialog

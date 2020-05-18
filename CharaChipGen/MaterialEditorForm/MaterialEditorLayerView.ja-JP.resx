@@ -134,10 +134,10 @@
     <value>部品サイズ</value>
   </data>
   <data name="labelCharaSize.Location" type="System.Drawing.Point, System.Drawing">
-    <value>98, 69</value>
+    <value>86, 69</value>
   </data>
   <data name="labelPictureSize.Location" type="System.Drawing.Point, System.Drawing">
-    <value>98, 39</value>
+    <value>86, 39</value>
   </data>
   <data name="label1.Size" type="System.Drawing.Size, System.Drawing">
     <value>67, 12</value>
@@ -146,25 +146,25 @@
     <value>描画レイヤー</value>
   </data>
   <data name="label2.Size" type="System.Drawing.Size, System.Drawing">
-    <value>89, 12</value>
+    <value>77, 12</value>
   </data>
   <data name="label2.Text" xml:space="preserve">
-    <value>色変換参照部品</value>
+    <value>色変換参照先</value>
   </data>
   <data name="comboBoxLayerType.Location" type="System.Drawing.Point, System.Drawing">
-    <value>98, 93</value>
+    <value>86, 93</value>
   </data>
   <data name="comboBoxLayerType.Size" type="System.Drawing.Size, System.Drawing">
-    <value>216, 20</value>
+    <value>228, 20</value>
   </data>
   <data name="comboBoxColorRefs.Location" type="System.Drawing.Point, System.Drawing">
-    <value>98, 123</value>
+    <value>86, 123</value>
   </data>
   <data name="comboBoxColorRefs.Size" type="System.Drawing.Size, System.Drawing">
-    <value>216, 20</value>
+    <value>228, 20</value>
   </data>
   <data name="checkBoxColorImmutable.Location" type="System.Drawing.Point, System.Drawing">
-    <value>98, 153</value>
+    <value>86, 153</value>
   </data>
   <data name="checkBoxColorImmutable.Size" type="System.Drawing.Size, System.Drawing">
     <value>172, 16</value>
@@ -179,10 +179,10 @@
     <value>ファイル</value>
   </data>
   <data name="labelFileName.Location" type="System.Drawing.Point, System.Drawing">
-    <value>98, 0</value>
+    <value>86, 0</value>
   </data>
   <data name="labelFileName.Size" type="System.Drawing.Size, System.Drawing">
-    <value>216, 30</value>
+    <value>228, 30</value>
   </data>
   <data name="groupBoxLayerName.Text" xml:space="preserve">
     <value>レイヤー</value>

@@ -22,7 +22,7 @@ namespace CharaChipGen.Properties {
     [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Resources.Tools.StronglyTypedResourceBuilder", "16.0.0.0")]
     [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
     [global::System.Runtime.CompilerServices.CompilerGeneratedAttribute()]
-    internal class Resources {
+    public class Resources {
         
         private static global::System.Resources.ResourceManager resourceMan;
         
@@ -36,7 +36,7 @@ namespace CharaChipGen.Properties {
         ///   このクラスで使用されているキャッシュされた ResourceManager インスタンスを返します。
         /// </summary>
         [global::System.ComponentModel.EditorBrowsableAttribute(global::System.ComponentModel.EditorBrowsableState.Advanced)]
-        internal static global::System.Resources.ResourceManager ResourceManager {
+        public static global::System.Resources.ResourceManager ResourceManager {
             get {
                 if (object.ReferenceEquals(resourceMan, null)) {
                     global::System.Resources.ResourceManager temp = new global::System.Resources.ResourceManager("CharaChipGen.Properties.Resources", typeof(Resources).Assembly);
@@ -51,7 +51,7 @@ namespace CharaChipGen.Properties {
         ///   現在のスレッドの CurrentUICulture プロパティをオーバーライドします。
         /// </summary>
         [global::System.ComponentModel.EditorBrowsableAttribute(global::System.ComponentModel.EditorBrowsableState.Advanced)]
-        internal static global::System.Globalization.CultureInfo Culture {
+        public static global::System.Globalization.CultureInfo Culture {
             get {
                 return resourceCulture;
             }
@@ -63,7 +63,7 @@ namespace CharaChipGen.Properties {
         /// <summary>
         ///   Rename material に類似しているローカライズされた文字列を検索します。
         /// </summary>
-        internal static string DialogTitleChangeMaterialName {
+        public static string DialogTitleChangeMaterialName {
             get {
                 return ResourceManager.GetString("DialogTitleChangeMaterialName", resourceCulture);
             }
@@ -72,7 +72,7 @@ namespace CharaChipGen.Properties {
         /// <summary>
         ///   Confirmation に類似しているローカライズされた文字列を検索します。
         /// </summary>
-        internal static string DialogTitleConfirm {
+        public static string DialogTitleConfirm {
             get {
                 return ResourceManager.GetString("DialogTitleConfirm", resourceCulture);
             }
@@ -81,7 +81,7 @@ namespace CharaChipGen.Properties {
         /// <summary>
         ///   Error に類似しているローカライズされた文字列を検索します。
         /// </summary>
-        internal static string DialogTitleError {
+        public static string DialogTitleError {
             get {
                 return ResourceManager.GetString("DialogTitleError", resourceCulture);
             }
@@ -90,7 +90,7 @@ namespace CharaChipGen.Properties {
         /// <summary>
         ///   Information に類似しているローカライズされた文字列を検索します。
         /// </summary>
-        internal static string DialogTitleInformation {
+        public static string DialogTitleInformation {
             get {
                 return ResourceManager.GetString("DialogTitleInformation", resourceCulture);
             }
@@ -99,7 +99,7 @@ namespace CharaChipGen.Properties {
         /// <summary>
         ///   Input に類似しているローカライズされた文字列を検索します。
         /// </summary>
-        internal static string DialogTitleInput {
+        public static string DialogTitleInput {
             get {
                 return ResourceManager.GetString("DialogTitleInput", resourceCulture);
             }
@@ -108,7 +108,7 @@ namespace CharaChipGen.Properties {
         /// <summary>
         ///   Materials に類似しているローカライズされた文字列を検索します。
         /// </summary>
-        internal static string DialogTitleMaterials {
+        public static string DialogTitleMaterials {
             get {
                 return ResourceManager.GetString("DialogTitleMaterials", resourceCulture);
             }
@@ -117,7 +117,7 @@ namespace CharaChipGen.Properties {
         /// <summary>
         ///   New material に類似しているローカライズされた文字列を検索します。
         /// </summary>
-        internal static string DialogTitleNewMaterial {
+        public static string DialogTitleNewMaterial {
             get {
                 return ResourceManager.GetString("DialogTitleNewMaterial", resourceCulture);
             }
@@ -126,7 +126,7 @@ namespace CharaChipGen.Properties {
         /// <summary>
         ///   Character {0} - Chara Chip Settings に類似しているローカライズされた文字列を検索します。
         /// </summary>
-        internal static string FormTitleCharacterNGenerator {
+        public static string FormTitleCharacterNGenerator {
             get {
                 return ResourceManager.GetString("FormTitleCharacterNGenerator", resourceCulture);
             }
@@ -135,7 +135,7 @@ namespace CharaChipGen.Properties {
         /// <summary>
         ///   Use parts setting. に類似しているローカライズされた文字列を検索します。
         /// </summary>
-        internal static string ItemNameUsePartsSetting {
+        public static string ItemNameUsePartsSetting {
             get {
                 return ResourceManager.GetString("ItemNameUsePartsSetting", resourceCulture);
             }
@@ -144,7 +144,7 @@ namespace CharaChipGen.Properties {
         /// <summary>
         ///   &lt;Not selected&gt; に類似しているローカライズされた文字列を検索します。
         /// </summary>
-        internal static string ItemNoSelect {
+        public static string ItemNoSelect {
             get {
                 return ResourceManager.GetString("ItemNoSelect", resourceCulture);
             }
@@ -153,7 +153,7 @@ namespace CharaChipGen.Properties {
         /// <summary>
         ///   Are you sure you want to delete specified parts? に類似しているローカライズされた文字列を検索します。
         /// </summary>
-        internal static string MessageConfirmRemoveParts {
+        public static string MessageConfirmRemoveParts {
             get {
                 return ResourceManager.GetString("MessageConfirmRemoveParts", resourceCulture);
             }
@@ -162,7 +162,7 @@ namespace CharaChipGen.Properties {
         /// <summary>
         ///   Export successfully completed. に類似しているローカライズされた文字列を検索します。
         /// </summary>
-        internal static string MessageExported {
+        public static string MessageExported {
             get {
                 return ResourceManager.GetString("MessageExported", resourceCulture);
             }
@@ -171,7 +171,7 @@ namespace CharaChipGen.Properties {
         /// <summary>
         ///   Type layer name. に類似しているローカライズされた文字列を検索します。
         /// </summary>
-        internal static string MessageInputLayerName {
+        public static string MessageInputLayerName {
             get {
                 return ResourceManager.GetString("MessageInputLayerName", resourceCulture);
             }
@@ -180,7 +180,7 @@ namespace CharaChipGen.Properties {
         /// <summary>
         ///   Type material name. に類似しているローカライズされた文字列を検索します。
         /// </summary>
-        internal static string MessageInputMaterialName {
+        public static string MessageInputMaterialName {
             get {
                 return ResourceManager.GetString("MessageInputMaterialName", resourceCulture);
             }
@@ -189,7 +189,7 @@ namespace CharaChipGen.Properties {
         /// <summary>
         ///   Type template name. に類似しているローカライズされた文字列を検索します。
         /// </summary>
-        internal static string MessageInputTemplateName {
+        public static string MessageInputTemplateName {
             get {
                 return ResourceManager.GetString("MessageInputTemplateName", resourceCulture);
             }
@@ -198,7 +198,7 @@ namespace CharaChipGen.Properties {
         /// <summary>
         ///   Layer name is invalid. に類似しているローカライズされた文字列を検索します。
         /// </summary>
-        internal static string MessageInvalidLayerName {
+        public static string MessageInvalidLayerName {
             get {
                 return ResourceManager.GetString("MessageInvalidLayerName", resourceCulture);
             }
@@ -207,7 +207,7 @@ namespace CharaChipGen.Properties {
         /// <summary>
         ///   Layer name has invalid chracter. に類似しているローカライズされた文字列を検索します。
         /// </summary>
-        internal static string MessageInvalidLayerNameCharacter {
+        public static string MessageInvalidLayerNameCharacter {
             get {
                 return ResourceManager.GetString("MessageInvalidLayerNameCharacter", resourceCulture);
             }
@@ -216,7 +216,7 @@ namespace CharaChipGen.Properties {
         /// <summary>
         ///   Material name has invalid character. に類似しているローカライズされた文字列を検索します。
         /// </summary>
-        internal static string MessageInvalidMaterialNameCharacter {
+        public static string MessageInvalidMaterialNameCharacter {
             get {
                 return ResourceManager.GetString("MessageInvalidMaterialNameCharacter", resourceCulture);
             }
@@ -225,7 +225,7 @@ namespace CharaChipGen.Properties {
         /// <summary>
         ///   Specified template name has unusable character. に類似しているローカライズされた文字列を検索します。
         /// </summary>
-        internal static string MessageInvalidTemplateNameCharacter {
+        public static string MessageInvalidTemplateNameCharacter {
             get {
                 return ResourceManager.GetString("MessageInvalidTemplateNameCharacter", resourceCulture);
             }
@@ -234,7 +234,7 @@ namespace CharaChipGen.Properties {
         /// <summary>
         ///   Layer name is already used. に類似しているローカライズされた文字列を検索します。
         /// </summary>
-        internal static string MessageLayernameUsed {
+        public static string MessageLayernameUsed {
             get {
                 return ResourceManager.GetString("MessageLayernameUsed", resourceCulture);
             }
@@ -243,7 +243,7 @@ namespace CharaChipGen.Properties {
         /// <summary>
         ///   Material directory not found. に類似しているローカライズされた文字列を検索します。
         /// </summary>
-        internal static string MessageMaterialDirectoryNotFound {
+        public static string MessageMaterialDirectoryNotFound {
             get {
                 return ResourceManager.GetString("MessageMaterialDirectoryNotFound", resourceCulture);
             }
@@ -252,7 +252,7 @@ namespace CharaChipGen.Properties {
         /// <summary>
         ///   Material name not specified. に類似しているローカライズされた文字列を検索します。
         /// </summary>
-        internal static string MessageMaterialNameNotSpecified {
+        public static string MessageMaterialNameNotSpecified {
             get {
                 return ResourceManager.GetString("MessageMaterialNameNotSpecified", resourceCulture);
             }
@@ -261,7 +261,7 @@ namespace CharaChipGen.Properties {
         /// <summary>
         ///   Material name is already used. に類似しているローカライズされた文字列を検索します。
         /// </summary>
-        internal static string MessageMaterialNameUsed {
+        public static string MessageMaterialNameUsed {
             get {
                 return ResourceManager.GetString("MessageMaterialNameUsed", resourceCulture);
             }
@@ -270,7 +270,7 @@ namespace CharaChipGen.Properties {
         /// <summary>
         ///   Empty template name is illegal. に類似しているローカライズされた文字列を検索します。
         /// </summary>
-        internal static string MessageNoInputTemplateName {
+        public static string MessageNoInputTemplateName {
             get {
                 return ResourceManager.GetString("MessageNoInputTemplateName", resourceCulture);
             }
@@ -279,7 +279,7 @@ namespace CharaChipGen.Properties {
         /// <summary>
         ///   path is rootDirectory. に類似しているローカライズされた文字列を検索します。
         /// </summary>
-        internal static string MessagePathIsRootDirectory {
+        public static string MessagePathIsRootDirectory {
             get {
                 return ResourceManager.GetString("MessagePathIsRootDirectory", resourceCulture);
             }
@@ -288,7 +288,7 @@ namespace CharaChipGen.Properties {
         /// <summary>
         ///   An error occurred when reading file. に類似しているローカライズされた文字列を検索します。
         /// </summary>
-        internal static string MessageReadError {
+        public static string MessageReadError {
             get {
                 return ResourceManager.GetString("MessageReadError", resourceCulture);
             }
@@ -297,7 +297,7 @@ namespace CharaChipGen.Properties {
         /// <summary>
         ///   Restart application by changing material directory. に類似しているローカライズされた文字列を検索します。
         /// </summary>
-        internal static string MessageRestartByChangeSettings {
+        public static string MessageRestartByChangeSettings {
             get {
                 return ResourceManager.GetString("MessageRestartByChangeSettings", resourceCulture);
             }
@@ -306,7 +306,7 @@ namespace CharaChipGen.Properties {
         /// <summary>
         ///   Accessory に類似しているローカライズされた文字列を検索します。
         /// </summary>
-        internal static string NameAccessories {
+        public static string NameAccessories {
             get {
                 return ResourceManager.GetString("NameAccessories", resourceCulture);
             }
@@ -315,7 +315,7 @@ namespace CharaChipGen.Properties {
         /// <summary>
         ///   Body に類似しているローカライズされた文字列を検索します。
         /// </summary>
-        internal static string NameBodies {
+        public static string NameBodies {
             get {
                 return ResourceManager.GetString("NameBodies", resourceCulture);
             }
@@ -324,7 +324,7 @@ namespace CharaChipGen.Properties {
         /// <summary>
         ///   Eye に類似しているローカライズされた文字列を検索します。
         /// </summary>
-        internal static string NameEyes {
+        public static string NameEyes {
             get {
                 return ResourceManager.GetString("NameEyes", resourceCulture);
             }
@@ -333,7 +333,7 @@ namespace CharaChipGen.Properties {
         /// <summary>
         ///   HairStyle に類似しているローカライズされた文字列を検索します。
         /// </summary>
-        internal static string NameHairStyles {
+        public static string NameHairStyles {
             get {
                 return ResourceManager.GetString("NameHairStyles", resourceCulture);
             }
@@ -342,7 +342,7 @@ namespace CharaChipGen.Properties {
         /// <summary>
         ///   HeadAccessory に類似しているローカライズされた文字列を検索します。
         /// </summary>
-        internal static string NameHeadAccessories {
+        public static string NameHeadAccessories {
             get {
                 return ResourceManager.GetString("NameHeadAccessories", resourceCulture);
             }
@@ -351,7 +351,7 @@ namespace CharaChipGen.Properties {
         /// <summary>
         ///   Head に類似しているローカライズされた文字列を検索します。
         /// </summary>
-        internal static string NameHeads {
+        public static string NameHeads {
             get {
                 return ResourceManager.GetString("NameHeads", resourceCulture);
             }
