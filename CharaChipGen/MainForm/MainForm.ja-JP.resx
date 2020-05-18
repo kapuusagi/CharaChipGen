@@ -169,8 +169,14 @@
   <data name="menuItemFile.Text" xml:space="preserve">
     <value>ファイル</value>
   </data>
+  <data name="menuItemCopy.Size" type="System.Drawing.Size, System.Drawing">
+    <value>149, 22</value>
+  </data>
   <data name="menuItemCopy.Text" xml:space="preserve">
     <value>コピー</value>
+  </data>
+  <data name="menuItemPaste.Size" type="System.Drawing.Size, System.Drawing">
+    <value>149, 22</value>
   </data>
   <data name="menuItemPaste.Text" xml:space="preserve">
     <value>ペースト</value>
@@ -182,22 +188,22 @@
     <value>編集</value>
   </data>
   <data name="menuItemDisplayImage.Size" type="System.Drawing.Size, System.Drawing">
-    <value>180, 22</value>
+    <value>122, 22</value>
   </data>
   <data name="menuItemDisplayImage.Text" xml:space="preserve">
     <value>背景色</value>
   </data>
   <data name="menuItemPreference.Size" type="System.Drawing.Size, System.Drawing">
-    <value>180, 22</value>
+    <value>122, 22</value>
   </data>
   <data name="menuItemPreference.Text" xml:space="preserve">
     <value>設定</value>
   </data>
   <data name="toolStripSeparator1.Size" type="System.Drawing.Size, System.Drawing">
-    <value>177, 6</value>
+    <value>119, 6</value>
   </data>
   <data name="menuItemMaterialManagement.Size" type="System.Drawing.Size, System.Drawing">
-    <value>180, 22</value>
+    <value>122, 22</value>
   </data>
   <data name="menuItemMaterialManagement.Text" xml:space="preserve">
     <value>素材管理</value>
@@ -207,6 +213,9 @@
   </data>
   <data name="menuItemOption.Text" xml:space="preserve">
     <value>オプション</value>
+  </data>
+  <data name="menuItemVersion.Size" type="System.Drawing.Size, System.Drawing">
+    <value>142, 22</value>
   </data>
   <data name="menuItemVersion.Text" xml:space="preserve">
     <value>バージョン情報</value>
@@ -225,6 +234,24 @@
   </data>
   <data name="buttonConfig.Text" xml:space="preserve">
     <value>設定</value>
+  </data>
+  <data name="openFileDialog.Filter" xml:space="preserve">
+    <value>CCGファイル|*.ccgset</value>
+  </data>
+  <data name="openFileDialog.Title" xml:space="preserve">
+    <value>開く</value>
+  </data>
+  <data name="saveFileDialog.Filter" xml:space="preserve">
+    <value>CCGファイル|*.ccgset</value>
+  </data>
+  <data name="saveFileDialog.Title" xml:space="preserve">
+    <value>保存</value>
+  </data>
+  <data name="saveFileDialogExport.Filter" xml:space="preserve">
+    <value>PNG ファイル|*.png</value>
+  </data>
+  <data name="saveFileDialogExport.Title" xml:space="preserve">
+    <value>エクスポートファイル</value>
   </data>
   <data name="labelOutputPath.Location" type="System.Drawing.Point, System.Drawing">
     <value>51, 4</value>

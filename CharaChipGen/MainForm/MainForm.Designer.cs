@@ -85,16 +85,17 @@
             // 
             // menuStripMain
             // 
+            resources.ApplyResources(this.menuStripMain, "menuStripMain");
             this.menuStripMain.Items.AddRange(new System.Windows.Forms.ToolStripItem[] {
             this.menuItemFile,
             this.menuItemEdit,
             this.menuItemOption,
             this.menuItemHelp});
-            resources.ApplyResources(this.menuStripMain, "menuStripMain");
             this.menuStripMain.Name = "menuStripMain";
             // 
             // menuItemFile
             // 
+            resources.ApplyResources(this.menuItemFile, "menuItemFile");
             this.menuItemFile.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] {
             this.menuItemNew,
             this.menuItemOpen,
@@ -106,123 +107,122 @@
             this.toolStripMenuItem3,
             this.menuItemExit});
             this.menuItemFile.Name = "menuItemFile";
-            resources.ApplyResources(this.menuItemFile, "menuItemFile");
             // 
             // menuItemNew
             // 
-            this.menuItemNew.Name = "menuItemNew";
             resources.ApplyResources(this.menuItemNew, "menuItemNew");
+            this.menuItemNew.Name = "menuItemNew";
             this.menuItemNew.Click += new System.EventHandler(this.OnMenuItemNewClick);
             // 
             // menuItemOpen
             // 
-            this.menuItemOpen.Name = "menuItemOpen";
             resources.ApplyResources(this.menuItemOpen, "menuItemOpen");
+            this.menuItemOpen.Name = "menuItemOpen";
             this.menuItemOpen.Click += new System.EventHandler(this.OnMenuItemOpenClick);
             // 
             // toolStripMenuItem1
             // 
-            this.toolStripMenuItem1.Name = "toolStripMenuItem1";
             resources.ApplyResources(this.toolStripMenuItem1, "toolStripMenuItem1");
+            this.toolStripMenuItem1.Name = "toolStripMenuItem1";
             // 
             // menuItemSave
             // 
-            this.menuItemSave.Name = "menuItemSave";
             resources.ApplyResources(this.menuItemSave, "menuItemSave");
+            this.menuItemSave.Name = "menuItemSave";
             this.menuItemSave.Click += new System.EventHandler(this.OnSaveClick);
             // 
             // menuItemSaveAs
             // 
-            this.menuItemSaveAs.Name = "menuItemSaveAs";
             resources.ApplyResources(this.menuItemSaveAs, "menuItemSaveAs");
+            this.menuItemSaveAs.Name = "menuItemSaveAs";
             this.menuItemSaveAs.Click += new System.EventHandler(this.OnSaveAsClick);
             // 
             // toolStripMenuItem2
             // 
-            this.toolStripMenuItem2.Name = "toolStripMenuItem2";
             resources.ApplyResources(this.toolStripMenuItem2, "toolStripMenuItem2");
+            this.toolStripMenuItem2.Name = "toolStripMenuItem2";
             // 
             // menuItemExport
             // 
-            this.menuItemExport.Name = "menuItemExport";
             resources.ApplyResources(this.menuItemExport, "menuItemExport");
+            this.menuItemExport.Name = "menuItemExport";
             this.menuItemExport.Click += new System.EventHandler(this.OnExportButtonClick);
             // 
             // toolStripMenuItem3
             // 
-            this.toolStripMenuItem3.Name = "toolStripMenuItem3";
             resources.ApplyResources(this.toolStripMenuItem3, "toolStripMenuItem3");
+            this.toolStripMenuItem3.Name = "toolStripMenuItem3";
             // 
             // menuItemExit
             // 
-            this.menuItemExit.Name = "menuItemExit";
             resources.ApplyResources(this.menuItemExit, "menuItemExit");
+            this.menuItemExit.Name = "menuItemExit";
             this.menuItemExit.Click += new System.EventHandler(this.OnMenuItemExitClick);
             // 
             // menuItemEdit
             // 
+            resources.ApplyResources(this.menuItemEdit, "menuItemEdit");
             this.menuItemEdit.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] {
             this.menuItemCopy,
             this.menuItemPaste});
             this.menuItemEdit.Name = "menuItemEdit";
-            resources.ApplyResources(this.menuItemEdit, "menuItemEdit");
             // 
             // menuItemCopy
             // 
-            this.menuItemCopy.Name = "menuItemCopy";
             resources.ApplyResources(this.menuItemCopy, "menuItemCopy");
+            this.menuItemCopy.Name = "menuItemCopy";
             this.menuItemCopy.Click += new System.EventHandler(this.OnMenuItemCopyClick);
             // 
             // menuItemPaste
             // 
-            this.menuItemPaste.Name = "menuItemPaste";
             resources.ApplyResources(this.menuItemPaste, "menuItemPaste");
+            this.menuItemPaste.Name = "menuItemPaste";
             this.menuItemPaste.Click += new System.EventHandler(this.OnMenuItemPasteClick);
             // 
             // menuItemOption
             // 
+            resources.ApplyResources(this.menuItemOption, "menuItemOption");
             this.menuItemOption.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] {
             this.menuItemDisplayImage,
             this.menuItemPreference,
             this.toolStripSeparator1,
             this.menuItemMaterialManagement});
             this.menuItemOption.Name = "menuItemOption";
-            resources.ApplyResources(this.menuItemOption, "menuItemOption");
             // 
             // menuItemDisplayImage
             // 
-            this.menuItemDisplayImage.Name = "menuItemDisplayImage";
             resources.ApplyResources(this.menuItemDisplayImage, "menuItemDisplayImage");
+            this.menuItemDisplayImage.Name = "menuItemDisplayImage";
             this.menuItemDisplayImage.Click += new System.EventHandler(this.OnMenuItemDisplayBackgroundClick);
             // 
             // menuItemPreference
             // 
-            this.menuItemPreference.Name = "menuItemPreference";
             resources.ApplyResources(this.menuItemPreference, "menuItemPreference");
+            this.menuItemPreference.Name = "menuItemPreference";
             this.menuItemPreference.Click += new System.EventHandler(this.OnPreferenceClick);
             // 
             // toolStripSeparator1
             // 
-            this.toolStripSeparator1.Name = "toolStripSeparator1";
             resources.ApplyResources(this.toolStripSeparator1, "toolStripSeparator1");
+            this.toolStripSeparator1.Name = "toolStripSeparator1";
             // 
             // menuItemMaterialManagement
             // 
-            this.menuItemMaterialManagement.Name = "menuItemMaterialManagement";
             resources.ApplyResources(this.menuItemMaterialManagement, "menuItemMaterialManagement");
+            this.menuItemMaterialManagement.Name = "menuItemMaterialManagement";
             this.menuItemMaterialManagement.Click += new System.EventHandler(this.OnMaterialManageClicked);
             // 
             // menuItemHelp
             // 
+            resources.ApplyResources(this.menuItemHelp, "menuItemHelp");
             this.menuItemHelp.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] {
             this.menuItemVersion});
             this.menuItemHelp.Name = "menuItemHelp";
-            resources.ApplyResources(this.menuItemHelp, "menuItemHelp");
             // 
             // menuItemVersion
             // 
-            this.menuItemVersion.Name = "menuItemVersion";
             resources.ApplyResources(this.menuItemVersion, "menuItemVersion");
+            this.menuItemVersion.Name = "menuItemVersion";
             this.menuItemVersion.Click += new System.EventHandler(this.OnMenuItemVersionClick);
             // 
             // buttonExport
@@ -260,24 +260,24 @@
             // 
             // panel1
             // 
+            resources.ApplyResources(this.panel1, "panel1");
             this.panel1.Controls.Add(this.panel3);
             this.panel1.Controls.Add(this.flowLayoutPanel1);
             this.panel1.Controls.Add(this.panel2);
             this.panel1.Controls.Add(this.flowLayoutPanel2);
-            resources.ApplyResources(this.panel1, "panel1");
             this.panel1.Name = "panel1";
             // 
             // panel3
             // 
-            this.panel3.Controls.Add(this.panel4);
             resources.ApplyResources(this.panel3, "panel3");
+            this.panel3.Controls.Add(this.panel4);
             this.panel3.Name = "panel3";
             // 
             // panel4
             // 
+            resources.ApplyResources(this.panel4, "panel4");
             this.panel4.Controls.Add(this.labelOutputPath);
             this.panel4.Controls.Add(this.label1);
-            resources.ApplyResources(this.panel4, "panel4");
             this.panel4.Name = "panel4";
             // 
             // labelOutputPath
@@ -292,20 +292,20 @@
             // 
             // flowLayoutPanel1
             // 
-            this.flowLayoutPanel1.Controls.Add(this.buttonExport);
             resources.ApplyResources(this.flowLayoutPanel1, "flowLayoutPanel1");
+            this.flowLayoutPanel1.Controls.Add(this.buttonExport);
             this.flowLayoutPanel1.Name = "flowLayoutPanel1";
             // 
             // panel2
             // 
-            this.panel2.Controls.Add(this.buttonConfig);
             resources.ApplyResources(this.panel2, "panel2");
+            this.panel2.Controls.Add(this.buttonConfig);
             this.panel2.Name = "panel2";
             // 
             // flowLayoutPanel2
             // 
-            this.flowLayoutPanel2.Controls.Add(this.buttonMaterialManage);
             resources.ApplyResources(this.flowLayoutPanel2, "flowLayoutPanel2");
+            this.flowLayoutPanel2.Controls.Add(this.buttonMaterialManage);
             this.flowLayoutPanel2.Name = "flowLayoutPanel2";
             // 
             // tableLayoutPanel1
@@ -323,10 +323,10 @@
             // 
             // characterEntryControl1
             // 
+            resources.ApplyResources(this.characterEntryControl1, "characterEntryControl1");
             this.characterEntryControl1.ButtonName = "キャラクター1";
             this.characterEntryControl1.Image = null;
             this.characterEntryControl1.ImageBackground = System.Drawing.Color.Transparent;
-            resources.ApplyResources(this.characterEntryControl1, "characterEntryControl1");
             this.characterEntryControl1.Name = "characterEntryControl1";
             this.characterEntryControl1.ButtonClick += new System.EventHandler(this.OnCharacterEntryViewButtonClick);
             this.characterEntryControl1.DoubleClick += new System.EventHandler(this.OnCharacterEntryControlDoubleClick);
@@ -334,10 +334,10 @@
             // 
             // characterEntryControl2
             // 
+            resources.ApplyResources(this.characterEntryControl2, "characterEntryControl2");
             this.characterEntryControl2.ButtonName = "キャラクター2";
             this.characterEntryControl2.Image = null;
             this.characterEntryControl2.ImageBackground = System.Drawing.Color.Transparent;
-            resources.ApplyResources(this.characterEntryControl2, "characterEntryControl2");
             this.characterEntryControl2.Name = "characterEntryControl2";
             this.characterEntryControl2.ButtonClick += new System.EventHandler(this.OnCharacterEntryViewButtonClick);
             this.characterEntryControl2.DoubleClick += new System.EventHandler(this.OnCharacterEntryControlDoubleClick);
@@ -345,10 +345,10 @@
             // 
             // characterEntryControl8
             // 
+            resources.ApplyResources(this.characterEntryControl8, "characterEntryControl8");
             this.characterEntryControl8.ButtonName = "キャラクター8";
             this.characterEntryControl8.Image = null;
             this.characterEntryControl8.ImageBackground = System.Drawing.Color.Transparent;
-            resources.ApplyResources(this.characterEntryControl8, "characterEntryControl8");
             this.characterEntryControl8.Name = "characterEntryControl8";
             this.characterEntryControl8.ButtonClick += new System.EventHandler(this.OnCharacterEntryViewButtonClick);
             this.characterEntryControl8.DoubleClick += new System.EventHandler(this.OnCharacterEntryControlDoubleClick);
@@ -356,10 +356,10 @@
             // 
             // characterEntryControl3
             // 
+            resources.ApplyResources(this.characterEntryControl3, "characterEntryControl3");
             this.characterEntryControl3.ButtonName = "キャラクター3";
             this.characterEntryControl3.Image = null;
             this.characterEntryControl3.ImageBackground = System.Drawing.Color.Transparent;
-            resources.ApplyResources(this.characterEntryControl3, "characterEntryControl3");
             this.characterEntryControl3.Name = "characterEntryControl3";
             this.characterEntryControl3.ButtonClick += new System.EventHandler(this.OnCharacterEntryViewButtonClick);
             this.characterEntryControl3.DoubleClick += new System.EventHandler(this.OnCharacterEntryControlDoubleClick);
@@ -367,10 +367,10 @@
             // 
             // characterEntryControl7
             // 
+            resources.ApplyResources(this.characterEntryControl7, "characterEntryControl7");
             this.characterEntryControl7.ButtonName = "キャラクター7";
             this.characterEntryControl7.Image = null;
             this.characterEntryControl7.ImageBackground = System.Drawing.Color.Transparent;
-            resources.ApplyResources(this.characterEntryControl7, "characterEntryControl7");
             this.characterEntryControl7.Name = "characterEntryControl7";
             this.characterEntryControl7.ButtonClick += new System.EventHandler(this.OnCharacterEntryViewButtonClick);
             this.characterEntryControl7.DoubleClick += new System.EventHandler(this.OnCharacterEntryControlDoubleClick);
@@ -378,10 +378,10 @@
             // 
             // characterEntryControl4
             // 
+            resources.ApplyResources(this.characterEntryControl4, "characterEntryControl4");
             this.characterEntryControl4.ButtonName = "キャラクター4";
             this.characterEntryControl4.Image = null;
             this.characterEntryControl4.ImageBackground = System.Drawing.Color.Transparent;
-            resources.ApplyResources(this.characterEntryControl4, "characterEntryControl4");
             this.characterEntryControl4.Name = "characterEntryControl4";
             this.characterEntryControl4.ButtonClick += new System.EventHandler(this.OnCharacterEntryViewButtonClick);
             this.characterEntryControl4.DoubleClick += new System.EventHandler(this.OnCharacterEntryControlDoubleClick);
@@ -389,10 +389,10 @@
             // 
             // characterEntryControl6
             // 
+            resources.ApplyResources(this.characterEntryControl6, "characterEntryControl6");
             this.characterEntryControl6.ButtonName = "キャラクター6";
             this.characterEntryControl6.Image = null;
             this.characterEntryControl6.ImageBackground = System.Drawing.Color.Transparent;
-            resources.ApplyResources(this.characterEntryControl6, "characterEntryControl6");
             this.characterEntryControl6.Name = "characterEntryControl6";
             this.characterEntryControl6.ButtonClick += new System.EventHandler(this.OnCharacterEntryViewButtonClick);
             this.characterEntryControl6.DoubleClick += new System.EventHandler(this.OnCharacterEntryControlDoubleClick);
@@ -400,10 +400,10 @@
             // 
             // characterEntryControl5
             // 
+            resources.ApplyResources(this.characterEntryControl5, "characterEntryControl5");
             this.characterEntryControl5.ButtonName = "キャラクター5";
             this.characterEntryControl5.Image = null;
             this.characterEntryControl5.ImageBackground = System.Drawing.Color.Transparent;
-            resources.ApplyResources(this.characterEntryControl5, "characterEntryControl5");
             this.characterEntryControl5.Name = "characterEntryControl5";
             this.characterEntryControl5.ButtonClick += new System.EventHandler(this.OnCharacterEntryViewButtonClick);
             this.characterEntryControl5.DoubleClick += new System.EventHandler(this.OnCharacterEntryControlDoubleClick);
