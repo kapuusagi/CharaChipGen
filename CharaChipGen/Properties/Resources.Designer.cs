@@ -169,6 +169,15 @@ namespace CharaChipGen.Properties {
         }
         
         /// <summary>
+        ///   Type layer name. に類似しているローカライズされた文字列を検索します。
+        /// </summary>
+        internal static string MessageInputLayerName {
+            get {
+                return ResourceManager.GetString("MessageInputLayerName", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Type material name. に類似しているローカライズされた文字列を検索します。
         /// </summary>
         internal static string MessageInputMaterialName {
@@ -187,6 +196,24 @@ namespace CharaChipGen.Properties {
         }
         
         /// <summary>
+        ///   Layer name is invalid. に類似しているローカライズされた文字列を検索します。
+        /// </summary>
+        internal static string MessageInvalidLayerName {
+            get {
+                return ResourceManager.GetString("MessageInvalidLayerName", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Layer name has invalid chracter. に類似しているローカライズされた文字列を検索します。
+        /// </summary>
+        internal static string MessageInvalidLayerNameCharacter {
+            get {
+                return ResourceManager.GetString("MessageInvalidLayerNameCharacter", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Material name has invalid character. に類似しているローカライズされた文字列を検索します。
         /// </summary>
         internal static string MessageInvalidMaterialNameCharacter {
@@ -201,6 +228,15 @@ namespace CharaChipGen.Properties {
         internal static string MessageInvalidTemplateNameCharacter {
             get {
                 return ResourceManager.GetString("MessageInvalidTemplateNameCharacter", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Layer name is already used. に類似しているローカライズされた文字列を検索します。
+        /// </summary>
+        internal static string MessageLayernameUsed {
+            get {
+                return ResourceManager.GetString("MessageLayernameUsed", resourceCulture);
             }
         }
         

@@ -117,103 +117,80 @@
   <resheader name="writer">
     <value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </resheader>
-  <data name="DialogTitleChangeMaterialName" xml:space="preserve">
-    <value>素材名変更</value>
+  <data name="buttonOpen.Text" xml:space="preserve">
+    <value>開く</value>
   </data>
-  <data name="DialogTitleConfirm" xml:space="preserve">
-    <value>確認</value>
+  <assembly alias="System.Drawing" name="System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a" />
+  <data name="label3.Size" type="System.Drawing.Size, System.Drawing">
+    <value>58, 12</value>
   </data>
-  <data name="DialogTitleError" xml:space="preserve">
-    <value>エラー</value>
+  <data name="label3.Text" xml:space="preserve">
+    <value>画像サイズ</value>
   </data>
-  <data name="DialogTitleInformation" xml:space="preserve">
-    <value>情報</value>
+  <data name="label4.Size" type="System.Drawing.Size, System.Drawing">
+    <value>58, 12</value>
   </data>
-  <data name="DialogTitleInput" xml:space="preserve">
-    <value>入力</value>
+  <data name="label4.Text" xml:space="preserve">
+    <value>部品サイズ</value>
   </data>
-  <data name="DialogTitleMaterials" xml:space="preserve">
-    <value>素材一覧</value>
+  <data name="labelCharaSize.Location" type="System.Drawing.Point, System.Drawing">
+    <value>98, 69</value>
   </data>
-  <data name="DialogTitleNewMaterial" xml:space="preserve">
-    <value>新規素材追加</value>
+  <data name="labelPictureSize.Location" type="System.Drawing.Point, System.Drawing">
+    <value>98, 39</value>
   </data>
-  <data name="FormTitleCharacterNGenerator" xml:space="preserve">
-    <value>キャラクター {0} - キャラチップ設定</value>
+  <data name="label1.Size" type="System.Drawing.Size, System.Drawing">
+    <value>67, 12</value>
   </data>
-  <data name="ItemNameUsePartsSetting" xml:space="preserve">
-    <value>パーツの設定を使用</value>
+  <data name="label1.Text" xml:space="preserve">
+    <value>描画レイヤー</value>
   </data>
-  <data name="ItemNoSelect" xml:space="preserve">
-    <value>&lt;選択なし&gt;</value>
+  <data name="label2.Size" type="System.Drawing.Size, System.Drawing">
+    <value>89, 12</value>
   </data>
-  <data name="MessageConfirmRemoveParts" xml:space="preserve">
-    <value>選択されている部品を削除してもよろしいですか？</value>
+  <data name="label2.Text" xml:space="preserve">
+    <value>色変換参照部品</value>
   </data>
-  <data name="MessageExported" xml:space="preserve">
-    <value>出力しました。</value>
+  <data name="comboBoxLayerType.Location" type="System.Drawing.Point, System.Drawing">
+    <value>98, 93</value>
   </data>
-  <data name="MessageInputLayerName" xml:space="preserve">
-    <value>レイヤー名を入力してください。</value>
+  <data name="comboBoxLayerType.Size" type="System.Drawing.Size, System.Drawing">
+    <value>216, 20</value>
   </data>
-  <data name="MessageInputMaterialName" xml:space="preserve">
-    <value>素材名を入力</value>
+  <data name="comboBoxColorRefs.Location" type="System.Drawing.Point, System.Drawing">
+    <value>98, 123</value>
   </data>
-  <data name="MessageInputTemplateName" xml:space="preserve">
-    <value>テンプレート名を入力してください。</value>
+  <data name="comboBoxColorRefs.Size" type="System.Drawing.Size, System.Drawing">
+    <value>216, 20</value>
   </data>
-  <data name="MessageInvalidLayerName" xml:space="preserve">
-    <value>レイヤー名が正しくありません。</value>
+  <data name="checkBoxColorImmutable.Location" type="System.Drawing.Point, System.Drawing">
+    <value>98, 153</value>
   </data>
-  <data name="MessageInvalidLayerNameCharacter" xml:space="preserve">
-    <value>レイヤー名として使用できない文字が使用されています。</value>
+  <data name="checkBoxColorImmutable.Size" type="System.Drawing.Size, System.Drawing">
+    <value>172, 16</value>
   </data>
-  <data name="MessageInvalidMaterialNameCharacter" xml:space="preserve">
-    <value>素材名として使用できない文字が使用されています。</value>
+  <data name="checkBoxColorImmutable.Text" xml:space="preserve">
+    <value>このレイヤーは色を変更しない。</value>
   </data>
-  <data name="MessageInvalidTemplateNameCharacter" xml:space="preserve">
-    <value>テンプレート名に使用できない文字列が使われています。</value>
+  <data name="label5.Size" type="System.Drawing.Size, System.Drawing">
+    <value>39, 12</value>
   </data>
-  <data name="MessageLayernameUsed" xml:space="preserve">
-    <value>既に同名のレイヤーが存在します。</value>
+  <data name="label5.Text" xml:space="preserve">
+    <value>ファイル</value>
   </data>
-  <data name="MessageMaterialDirectoryNotFound" xml:space="preserve">
-    <value>素材ディレクトリが見つかりませんでした。</value>
+  <data name="labelFileName.Location" type="System.Drawing.Point, System.Drawing">
+    <value>98, 0</value>
   </data>
-  <data name="MessageMaterialNameNotSpecified" xml:space="preserve">
-    <value>素材名が指定されていません。</value>
+  <data name="labelFileName.Size" type="System.Drawing.Size, System.Drawing">
+    <value>216, 30</value>
   </data>
-  <data name="MessageMaterialNameUsed" xml:space="preserve">
-    <value>同名の素材が既にあります。</value>
+  <data name="groupBoxLayerName.Text" xml:space="preserve">
+    <value>レイヤー</value>
   </data>
-  <data name="MessageNoInputTemplateName" xml:space="preserve">
-    <value>テンプレート名が空です。</value>
+  <data name="openFileDialog.Filter" xml:space="preserve">
+    <value>PNG ファイル|*.png</value>
   </data>
-  <data name="MessagePathIsRootDirectory" xml:space="preserve">
-    <value>パスはルートフォルダと同じです。</value>
-  </data>
-  <data name="MessageReadError" xml:space="preserve">
-    <value>ファイルの読み込み時にエラーが発生しました。</value>
-  </data>
-  <data name="MessageRestartByChangeSettings" xml:space="preserve">
-    <value>素材フォルダが変更されたため、アプリケーションを再起動します。</value>
-  </data>
-  <data name="NameAccessories" xml:space="preserve">
-    <value>アクセサリ</value>
-  </data>
-  <data name="NameBodies" xml:space="preserve">
-    <value>体</value>
-  </data>
-  <data name="NameEyes" xml:space="preserve">
-    <value>目</value>
-  </data>
-  <data name="NameHairStyles" xml:space="preserve">
-    <value>髪型</value>
-  </data>
-  <data name="NameHeadAccessories" xml:space="preserve">
-    <value>頭部アクセサリ</value>
-  </data>
-  <data name="NameHeads" xml:space="preserve">
-    <value>頭</value>
+  <data name="openFileDialog.Title" xml:space="preserve">
+    <value>開く</value>
   </data>
 </root>

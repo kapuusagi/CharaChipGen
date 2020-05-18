@@ -246,8 +246,14 @@
     <EmbeddedResource Include="MaterialEditorForm\LayerView3x4.resx">
       <DependentUpon>LayerView3x4.cs</DependentUpon>
     </EmbeddedResource>
+    <EmbeddedResource Include="MaterialEditorForm\MaterialEditorForm.ja-JP.resx">
+      <DependentUpon>MaterialEditorForm.cs</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="MaterialEditorForm\MaterialEditorForm.resx">
       <DependentUpon>MaterialEditorForm.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="MaterialEditorForm\MaterialEditorLayerView.ja-JP.resx">
+      <DependentUpon>MaterialEditorLayerView.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="MaterialEditorForm\MaterialEditorLayerView.resx">
       <DependentUpon>MaterialEditorLayerView.cs</DependentUpon>

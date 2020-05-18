@@ -153,17 +153,29 @@
   <data name="MessageExported" xml:space="preserve">
     <value>Export successfully completed.</value>
   </data>
+  <data name="MessageInputLayerName" xml:space="preserve">
+    <value>Type layer name.</value>
+  </data>
   <data name="MessageInputMaterialName" xml:space="preserve">
     <value>Type material name.</value>
   </data>
   <data name="MessageInputTemplateName" xml:space="preserve">
     <value>Type template name.</value>
   </data>
+  <data name="MessageInvalidLayerName" xml:space="preserve">
+    <value>Layer name is invalid.</value>
+  </data>
+  <data name="MessageInvalidLayerNameCharacter" xml:space="preserve">
+    <value>Layer name has invalid chracter.</value>
+  </data>
   <data name="MessageInvalidMaterialNameCharacter" xml:space="preserve">
     <value>Material name has invalid character.</value>
   </data>
   <data name="MessageInvalidTemplateNameCharacter" xml:space="preserve">
     <value>Specified template name has unusable character.</value>
+  </data>
+  <data name="MessageLayernameUsed" xml:space="preserve">
+    <value>Layer name is already used.</value>
   </data>
   <data name="MessageMaterialDirectoryNotFound" xml:space="preserve">
     <value>Material directory not found.</value>

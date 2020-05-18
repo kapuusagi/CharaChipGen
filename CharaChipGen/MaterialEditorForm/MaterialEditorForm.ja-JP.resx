@@ -117,103 +117,59 @@
   <resheader name="writer">
     <value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </resheader>
-  <data name="DialogTitleChangeMaterialName" xml:space="preserve">
-    <value>素材名変更</value>
+  <data name="buttonSave.Text" xml:space="preserve">
+    <value>保存</value>
   </data>
-  <data name="DialogTitleConfirm" xml:space="preserve">
-    <value>確認</value>
+  <data name="buttonCancel.Text" xml:space="preserve">
+    <value>キャンセル</value>
   </data>
-  <data name="DialogTitleError" xml:space="preserve">
-    <value>エラー</value>
+  <assembly alias="System.Drawing" name="System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a" />
+  <data name="label1.Size" type="System.Drawing.Size, System.Drawing">
+    <value>56, 16</value>
   </data>
-  <data name="DialogTitleInformation" xml:space="preserve">
-    <value>情報</value>
+  <data name="label1.Text" xml:space="preserve">
+    <value>素材名</value>
   </data>
-  <data name="DialogTitleInput" xml:space="preserve">
-    <value>入力</value>
+  <data name="textBoxMaterialName.Location" type="System.Drawing.Point, System.Drawing">
+    <value>64, 8</value>
   </data>
-  <data name="DialogTitleMaterials" xml:space="preserve">
-    <value>素材一覧</value>
+  <data name="textBoxMaterialName.Size" type="System.Drawing.Size, System.Drawing">
+    <value>393, 23</value>
   </data>
-  <data name="DialogTitleNewMaterial" xml:space="preserve">
-    <value>新規素材追加</value>
+  <data name="buttonDeleteLayer.Text" xml:space="preserve">
+    <value>レイヤーを削除</value>
   </data>
-  <data name="FormTitleCharacterNGenerator" xml:space="preserve">
-    <value>キャラクター {0} - キャラチップ設定</value>
+  <data name="buttonAddLayer.Text" xml:space="preserve">
+    <value>レイヤーを追加</value>
   </data>
-  <data name="ItemNameUsePartsSetting" xml:space="preserve">
-    <value>パーツの設定を使用</value>
+  <data name="buttonRenameLayer.Text" xml:space="preserve">
+    <value>レイヤー名を変更</value>
   </data>
-  <data name="ItemNoSelect" xml:space="preserve">
-    <value>&lt;選択なし&gt;</value>
+  <data name="buttonUpLayer.Text" xml:space="preserve">
+    <value>上へ移動</value>
   </data>
-  <data name="MessageConfirmRemoveParts" xml:space="preserve">
-    <value>選択されている部品を削除してもよろしいですか？</value>
+  <data name="buttonDownLayer.Text" xml:space="preserve">
+    <value>下へ移動</value>
   </data>
-  <data name="MessageExported" xml:space="preserve">
-    <value>出力しました。</value>
+  <data name="buttonPreview.Text" xml:space="preserve">
+    <value>プレビュー</value>
   </data>
-  <data name="MessageInputLayerName" xml:space="preserve">
-    <value>レイヤー名を入力してください。</value>
+  <data name="groupBox1.Text" xml:space="preserve">
+    <value>レイヤー一覧</value>
   </data>
-  <data name="MessageInputMaterialName" xml:space="preserve">
-    <value>素材名を入力</value>
+  <data name="menuItemImageBackground.Size" type="System.Drawing.Size, System.Drawing">
+    <value>110, 22</value>
   </data>
-  <data name="MessageInputTemplateName" xml:space="preserve">
-    <value>テンプレート名を入力してください。</value>
+  <data name="menuItemImageBackground.Text" xml:space="preserve">
+    <value>背景色</value>
   </data>
-  <data name="MessageInvalidLayerName" xml:space="preserve">
-    <value>レイヤー名が正しくありません。</value>
+  <data name="optionToolStripMenuItem.Size" type="System.Drawing.Size, System.Drawing">
+    <value>43, 20</value>
   </data>
-  <data name="MessageInvalidLayerNameCharacter" xml:space="preserve">
-    <value>レイヤー名として使用できない文字が使用されています。</value>
+  <data name="optionToolStripMenuItem.Text" xml:space="preserve">
+    <value>設定</value>
   </data>
-  <data name="MessageInvalidMaterialNameCharacter" xml:space="preserve">
-    <value>素材名として使用できない文字が使用されています。</value>
-  </data>
-  <data name="MessageInvalidTemplateNameCharacter" xml:space="preserve">
-    <value>テンプレート名に使用できない文字列が使われています。</value>
-  </data>
-  <data name="MessageLayernameUsed" xml:space="preserve">
-    <value>既に同名のレイヤーが存在します。</value>
-  </data>
-  <data name="MessageMaterialDirectoryNotFound" xml:space="preserve">
-    <value>素材ディレクトリが見つかりませんでした。</value>
-  </data>
-  <data name="MessageMaterialNameNotSpecified" xml:space="preserve">
-    <value>素材名が指定されていません。</value>
-  </data>
-  <data name="MessageMaterialNameUsed" xml:space="preserve">
-    <value>同名の素材が既にあります。</value>
-  </data>
-  <data name="MessageNoInputTemplateName" xml:space="preserve">
-    <value>テンプレート名が空です。</value>
-  </data>
-  <data name="MessagePathIsRootDirectory" xml:space="preserve">
-    <value>パスはルートフォルダと同じです。</value>
-  </data>
-  <data name="MessageReadError" xml:space="preserve">
-    <value>ファイルの読み込み時にエラーが発生しました。</value>
-  </data>
-  <data name="MessageRestartByChangeSettings" xml:space="preserve">
-    <value>素材フォルダが変更されたため、アプリケーションを再起動します。</value>
-  </data>
-  <data name="NameAccessories" xml:space="preserve">
-    <value>アクセサリ</value>
-  </data>
-  <data name="NameBodies" xml:space="preserve">
-    <value>体</value>
-  </data>
-  <data name="NameEyes" xml:space="preserve">
-    <value>目</value>
-  </data>
-  <data name="NameHairStyles" xml:space="preserve">
-    <value>髪型</value>
-  </data>
-  <data name="NameHeadAccessories" xml:space="preserve">
-    <value>頭部アクセサリ</value>
-  </data>
-  <data name="NameHeads" xml:space="preserve">
-    <value>頭</value>
+  <data name="$this.Text" xml:space="preserve">
+    <value>素材エディタ</value>
   </data>
 </root>
