@@ -126,17 +126,32 @@
   <data name="DialogTitleInformation" xml:space="preserve">
     <value>情報</value>
   </data>
+  <data name="DialogTitleInput" xml:space="preserve">
+    <value>入力</value>
+  </data>
   <data name="FormTitleCharacterNGenerator" xml:space="preserve">
     <value>キャラクター {0} - キャラチップ設定</value>
   </data>
   <data name="ItemNameUsePartsSetting" xml:space="preserve">
     <value>パーツの設定を使用</value>
   </data>
+  <data name="ItemNoSelect" xml:space="preserve">
+    <value>&lt;選択なし&gt;</value>
+  </data>
   <data name="MessageExported" xml:space="preserve">
     <value>出力しました。</value>
   </data>
+  <data name="MessageInputTemplateName" xml:space="preserve">
+    <value>テンプレート名を入力してください。</value>
+  </data>
+  <data name="MessageInvalidTemplateNameCharacter" xml:space="preserve">
+    <value>テンプレート名に使用できない文字列が使われています。</value>
+  </data>
   <data name="MessageMaterialDirectoryNotFound" xml:space="preserve">
     <value>素材ディレクトリが見つかりませんでした。</value>
+  </data>
+  <data name="MessageNoInputTemplateName" xml:space="preserve">
+    <value>テンプレート名が空です。</value>
   </data>
   <data name="MessageRestartByChangeSettings" xml:space="preserve">
     <value>素材フォルダが変更されたため、アプリケーションを再起動します。</value>

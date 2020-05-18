@@ -189,8 +189,14 @@
       <DependentUpon>SizeInput.cs</DependentUpon>
     </Compile>
     <Compile Include="Settings.cs" />
+    <EmbeddedResource Include="GeneratorForm\CharaChipGeneratorForm.ja-JP.resx">
+      <DependentUpon>CharaChipGeneratorForm.cs</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="GeneratorForm\CharaChipGeneratorForm.resx">
       <DependentUpon>CharaChipGeneratorForm.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="GeneratorForm\CharaChipGeneratorPartsView.ja-JP.resx">
+      <DependentUpon>CharaChipGeneratorPartsView.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="GeneratorForm\CharaChipGeneratorPartsView.resx">
       <DependentUpon>CharaChipGeneratorPartsView.cs</DependentUpon>
@@ -201,11 +207,20 @@
     <EmbeddedResource Include="GeneratorForm\CharaChipViewNN.resx">
       <DependentUpon>CharaChipViewNN.cs</DependentUpon>
     </EmbeddedResource>
+    <EmbeddedResource Include="GeneratorForm\PartsEditView.ja-JP.resx">
+      <DependentUpon>PartsEditView.cs</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="GeneratorForm\PartsEditView.resx">
       <DependentUpon>PartsEditView.cs</DependentUpon>
     </EmbeddedResource>
+    <EmbeddedResource Include="GeneratorForm\TemplateSelectForm.ja-JP.resx">
+      <DependentUpon>TemplateSelectForm.cs</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="GeneratorForm\TemplateSelectForm.resx">
       <DependentUpon>TemplateSelectForm.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="InputForm\InputForm.ja-JP.resx">
+      <DependentUpon>InputForm.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="InputForm\InputForm.resx">
       <DependentUpon>InputForm.cs</DependentUpon>
@@ -215,7 +230,6 @@
     </EmbeddedResource>
     <EmbeddedResource Include="MainForm\MainForm.ja-JP.resx">
       <DependentUpon>MainForm.cs</DependentUpon>
-      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </EmbeddedResource>
     <EmbeddedResource Include="MainForm\MainForm.resx">
       <DependentUpon>MainForm.cs</DependentUpon>

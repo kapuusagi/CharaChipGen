@@ -126,17 +126,32 @@
   <data name="DialogTitleInformation" xml:space="preserve">
     <value>Information</value>
   </data>
+  <data name="DialogTitleInput" xml:space="preserve">
+    <value>Input</value>
+  </data>
   <data name="FormTitleCharacterNGenerator" xml:space="preserve">
     <value>Character {0} - Chara Chip Settings</value>
   </data>
   <data name="ItemNameUsePartsSetting" xml:space="preserve">
     <value>Use parts setting.</value>
   </data>
+  <data name="ItemNoSelect" xml:space="preserve">
+    <value>&lt;Not selected&gt;</value>
+  </data>
   <data name="MessageExported" xml:space="preserve">
     <value>Export successfully completed.</value>
   </data>
+  <data name="MessageInputTemplateName" xml:space="preserve">
+    <value>Type template name.</value>
+  </data>
+  <data name="MessageInvalidTemplateNameCharacter" xml:space="preserve">
+    <value>Specified template name has unusable character.</value>
+  </data>
   <data name="MessageMaterialDirectoryNotFound" xml:space="preserve">
     <value>Material directory not found.</value>
+  </data>
+  <data name="MessageNoInputTemplateName" xml:space="preserve">
+    <value>Empty template name is illegal.</value>
   </data>
   <data name="MessageRestartByChangeSettings" xml:space="preserve">
     <value>Restart application by changing material directory.</value>

@@ -1,5 +1,6 @@
 ﻿using CharaChipGen.Model.CharaChip;
 using CharaChipGen.Model.Material;
+using CharaChipGen.Properties;
 using System;
 using System.ComponentModel;
 using System.Drawing;
@@ -13,7 +14,7 @@ namespace CharaChipGen.GeneratorForm
     public partial class CharaChipGeneratorPartsView : UserControl
     {
         // 未選択を表すコンボボックスのアイテム。
-        private const string ItemNoSelect = "<選択なし>";
+        private readonly string ItemNoSelect = Resources.ItemNoSelect;
         // このビューが表すデータのモデル。
         private Parts parts;
         // モデルのデータ変更を受け取るためのハンドラ
@@ -80,7 +81,7 @@ namespace CharaChipGen.GeneratorForm
         /// </summary>
         private void ModelToUI()
         {
-            if (parts.MaterialName == "")
+            if (string.IsNullOrEmpty(parts.MaterialName))
             {
                 // 0番目のアイテムは未選択アイテムになる。
                 if (comboBoxItem.Items.Count > 0)
@@ -146,7 +147,7 @@ namespace CharaChipGen.GeneratorForm
             }
             else
             {
-                parts.MaterialName = (selItem != null) ? selItem.ToString() : "";
+                parts.MaterialName = (selItem != null) ? selItem.ToString() : string.Empty;
             }
         }
 

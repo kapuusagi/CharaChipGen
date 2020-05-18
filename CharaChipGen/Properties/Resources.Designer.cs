@@ -88,6 +88,15 @@ namespace CharaChipGen.Properties {
         }
         
         /// <summary>
+        ///   Input に類似しているローカライズされた文字列を検索します。
+        /// </summary>
+        internal static string DialogTitleInput {
+            get {
+                return ResourceManager.GetString("DialogTitleInput", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Character {0} - Chara Chip Settings に類似しているローカライズされた文字列を検索します。
         /// </summary>
         internal static string FormTitleCharacterNGenerator {
@@ -106,6 +115,15 @@ namespace CharaChipGen.Properties {
         }
         
         /// <summary>
+        ///   &lt;Not selected&gt; に類似しているローカライズされた文字列を検索します。
+        /// </summary>
+        internal static string ItemNoSelect {
+            get {
+                return ResourceManager.GetString("ItemNoSelect", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Export successfully completed. に類似しているローカライズされた文字列を検索します。
         /// </summary>
         internal static string MessageExported {
@@ -115,11 +133,38 @@ namespace CharaChipGen.Properties {
         }
         
         /// <summary>
+        ///   Type template name. に類似しているローカライズされた文字列を検索します。
+        /// </summary>
+        internal static string MessageInputTemplateName {
+            get {
+                return ResourceManager.GetString("MessageInputTemplateName", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Specified template name has unusable character. に類似しているローカライズされた文字列を検索します。
+        /// </summary>
+        internal static string MessageInvalidTemplateNameCharacter {
+            get {
+                return ResourceManager.GetString("MessageInvalidTemplateNameCharacter", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Material directory not found. に類似しているローカライズされた文字列を検索します。
         /// </summary>
         internal static string MessageMaterialDirectoryNotFound {
             get {
                 return ResourceManager.GetString("MessageMaterialDirectoryNotFound", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Empty template name is illegal. に類似しているローカライズされた文字列を検索します。
+        /// </summary>
+        internal static string MessageNoInputTemplateName {
+            get {
+                return ResourceManager.GetString("MessageNoInputTemplateName", resourceCulture);
             }
         }
         

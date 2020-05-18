@@ -163,7 +163,7 @@ namespace CharaChipGen.GeneratorForm
         {
             string defaultName = GenerateDefaultTemplateName();
             string templateName = InputForm.InputForm.ShowDialog(this,
-                "テンプレート名を入力", "入力", defaultName);
+                Resources.MessageInputTemplateName, Resources.DialogTitleInput, defaultName);
             if (templateName == null)
             {
                 return;
@@ -192,7 +192,7 @@ namespace CharaChipGen.GeneratorForm
             }
             catch (Exception ex)
             {
-                MessageBox.Show(this, ex.Message, "エラー");
+                MessageBox.Show(this, ex.Message, Resources.DialogTitleError);
             }
         }
 
@@ -228,12 +228,12 @@ namespace CharaChipGen.GeneratorForm
         {
             if (name.Length == 0)
             {
-                throw new Exception("テンプレート名が入力されていません");
+                throw new Exception(Resources.MessageNoInputTemplateName);
             }
             char[] invalidChars = System.IO.Path.GetInvalidFileNameChars();
             if (name.IndexOfAny(invalidChars) >= 0)
             {
-                throw new Exception("テンプレート名に使用できない文字列が使われています。");
+                throw new Exception(Resources.MessageInvalidTemplateNameCharacter);
             }
         }
 
@@ -258,7 +258,7 @@ namespace CharaChipGen.GeneratorForm
             }
             catch (Exception ex)
             {
-                MessageBox.Show(this, ex.Message, "エラー");
+                MessageBox.Show(this, ex.Message, Resources.DialogTitleError);
             }
 
         }
