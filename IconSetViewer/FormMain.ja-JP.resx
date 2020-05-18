@@ -117,7 +117,50 @@
   <resheader name="writer">
     <value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </resheader>
-  <data name="DialogTitleError" xml:space="preserve">
-    <value>Error</value>
+  <data name="menuItemOpen.Text" xml:space="preserve">
+    <value>開く</value>
+  </data>
+  <data name="menuItemSave.Text" xml:space="preserve">
+    <value>保存</value>
+  </data>
+  <data name="menuItemSaveAs.Text" xml:space="preserve">
+    <value>名前をつけて保存</value>
+  </data>
+  <data name="menuItemClose.Text" xml:space="preserve">
+    <value>終了</value>
+  </data>
+  <assembly alias="System.Drawing" name="System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a" />
+  <data name="menuItemFile.Size" type="System.Drawing.Size, System.Drawing">
+    <value>53, 20</value>
+  </data>
+  <data name="menuItemFile.Text" xml:space="preserve">
+    <value>ファイル</value>
+  </data>
+  <data name="menuItemImageBackground.Text" xml:space="preserve">
+    <value>背景色</value>
+  </data>
+  <data name="menuItemOption.Size" type="System.Drawing.Size, System.Drawing">
+    <value>63, 20</value>
+  </data>
+  <data name="menuItemOption.Text" xml:space="preserve">
+    <value>オプション</value>
+  </data>
+  <data name="openFileDialog.Filter" xml:space="preserve">
+    <value>アイコンセット|*.png</value>
+  </data>
+  <data name="buttonIconSave.Text" xml:space="preserve">
+    <value>アイコンを保存</value>
+  </data>
+  <data name="buttonIconChange.Text" xml:space="preserve">
+    <value>アイコンを変更</value>
+  </data>
+  <data name="saveFileDialog.Filter" xml:space="preserve">
+    <value>PNG ファイル(*.png)|*.png|全てのファイル(*.*)|*.*</value>
+  </data>
+  <data name="saveFileDialog.Title" xml:space="preserve">
+    <value>保存</value>
+  </data>
+  <data name="$this.Text" xml:space="preserve">
+    <value>アイコンセットビューワー</value>
   </data>
 </root>

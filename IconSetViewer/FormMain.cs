@@ -55,7 +55,7 @@ namespace IconSetViewer
             }
             catch (Exception ex)
             {
-                MessageBox.Show(this, ex.Message, "エラー");
+                MessageBox.Show(this, ex.Message, Resources.DialogTitleError);
             }
 
             UpdateControlEnables();
@@ -101,7 +101,7 @@ namespace IconSetViewer
             }
             catch (Exception ex)
             {
-                MessageBox.Show(this, ex.Message, "エラー");
+                MessageBox.Show(this, ex.Message, Resources.DialogTitleError);
             }
 
             UpdateControlEnables();
@@ -302,7 +302,7 @@ namespace IconSetViewer
             }
             catch (Exception ex)
             {
-                MessageBox.Show(this, ex.Message);
+                MessageBox.Show(this, ex.Message, Resources.DialogTitleError);
             }
 
         }
@@ -363,7 +363,7 @@ namespace IconSetViewer
             }
             catch (Exception ex)
             {
-                MessageBox.Show(this, ex.Message);
+                MessageBox.Show(this, ex.Message, Resources.DialogTitleError);
             }
         }
 
@@ -391,7 +391,7 @@ namespace IconSetViewer
             }
             catch (Exception ex)
             {
-                MessageBox.Show(this, ex.Message);
+                MessageBox.Show(this, ex.Message, Resources.DialogTitleError);
             }
         }
 
@@ -410,7 +410,7 @@ namespace IconSetViewer
             }
             catch (Exception ex)
             {
-                MessageBox.Show(this, ex.Message);
+                MessageBox.Show(this, ex.Message, Resources.DialogTitleError);
 
             }
         }
