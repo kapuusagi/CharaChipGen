@@ -250,6 +250,15 @@ namespace CharaChipGen.Properties {
         }
         
         /// <summary>
+        ///   An error occurred when reading file. に類似しているローカライズされた文字列を検索します。
+        /// </summary>
+        internal static string MessageReadError {
+            get {
+                return ResourceManager.GetString("MessageReadError", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Restart application by changing material directory. に類似しているローカライズされた文字列を検索します。
         /// </summary>
         internal static string MessageRestartByChangeSettings {

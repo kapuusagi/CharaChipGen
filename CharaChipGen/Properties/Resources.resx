@@ -180,6 +180,9 @@
   <data name="MessagePathIsRootDirectory" xml:space="preserve">
     <value>path is rootDirectory.</value>
   </data>
+  <data name="MessageReadError" xml:space="preserve">
+    <value>An error occurred when reading file.</value>
+  </data>
   <data name="MessageRestartByChangeSettings" xml:space="preserve">
     <value>Restart application by changing material directory.</value>
   </data>

@@ -258,6 +258,9 @@
     <EmbeddedResource Include="MaterialViewForm\MaterialView.resx">
       <DependentUpon>MaterialView.cs</DependentUpon>
     </EmbeddedResource>
+    <EmbeddedResource Include="MaterialViewForm\MaterialViewForm.ja-JP.resx">
+      <DependentUpon>MaterialViewForm.cs</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="MaterialViewForm\MaterialViewForm.resx">
       <DependentUpon>MaterialViewForm.cs</DependentUpon>
     </EmbeddedResource>

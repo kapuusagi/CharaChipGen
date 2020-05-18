@@ -117,91 +117,17 @@
   <resheader name="writer">
     <value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </resheader>
-  <data name="DialogTitleChangeMaterialName" xml:space="preserve">
-    <value>素材名変更</value>
+  <data name="buttonClose.Text" xml:space="preserve">
+    <value>閉じる</value>
   </data>
-  <data name="DialogTitleConfirm" xml:space="preserve">
-    <value>確認</value>
+  <data name="menuItemImageBackground.Text" xml:space="preserve">
+    <value>背景色</value>
   </data>
-  <data name="DialogTitleError" xml:space="preserve">
-    <value>エラー</value>
+  <assembly alias="System.Drawing" name="System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a" />
+  <data name="optionToolStripMenuItem.Size" type="System.Drawing.Size, System.Drawing">
+    <value>43, 20</value>
   </data>
-  <data name="DialogTitleInformation" xml:space="preserve">
-    <value>情報</value>
-  </data>
-  <data name="DialogTitleInput" xml:space="preserve">
-    <value>入力</value>
-  </data>
-  <data name="DialogTitleMaterials" xml:space="preserve">
-    <value>素材一覧</value>
-  </data>
-  <data name="DialogTitleNewMaterial" xml:space="preserve">
-    <value>新規素材追加</value>
-  </data>
-  <data name="FormTitleCharacterNGenerator" xml:space="preserve">
-    <value>キャラクター {0} - キャラチップ設定</value>
-  </data>
-  <data name="ItemNameUsePartsSetting" xml:space="preserve">
-    <value>パーツの設定を使用</value>
-  </data>
-  <data name="ItemNoSelect" xml:space="preserve">
-    <value>&lt;選択なし&gt;</value>
-  </data>
-  <data name="MessageConfirmRemoveParts" xml:space="preserve">
-    <value>選択されている部品を削除してもよろしいですか？</value>
-  </data>
-  <data name="MessageExported" xml:space="preserve">
-    <value>出力しました。</value>
-  </data>
-  <data name="MessageInputMaterialName" xml:space="preserve">
-    <value>素材名を入力</value>
-  </data>
-  <data name="MessageInputTemplateName" xml:space="preserve">
-    <value>テンプレート名を入力してください。</value>
-  </data>
-  <data name="MessageInvalidMaterialNameCharacter" xml:space="preserve">
-    <value>素材名として使用できない文字が使用されています。</value>
-  </data>
-  <data name="MessageInvalidTemplateNameCharacter" xml:space="preserve">
-    <value>テンプレート名に使用できない文字列が使われています。</value>
-  </data>
-  <data name="MessageMaterialDirectoryNotFound" xml:space="preserve">
-    <value>素材ディレクトリが見つかりませんでした。</value>
-  </data>
-  <data name="MessageMaterialNameNotSpecified" xml:space="preserve">
-    <value>素材名が指定されていません。</value>
-  </data>
-  <data name="MessageMaterialNameUsed" xml:space="preserve">
-    <value>同名の素材が既にあります。</value>
-  </data>
-  <data name="MessageNoInputTemplateName" xml:space="preserve">
-    <value>テンプレート名が空です。</value>
-  </data>
-  <data name="MessagePathIsRootDirectory" xml:space="preserve">
-    <value>パスはルートフォルダと同じです。</value>
-  </data>
-  <data name="MessageReadError" xml:space="preserve">
-    <value>ファイルの読み込み時にエラーが発生しました。</value>
-  </data>
-  <data name="MessageRestartByChangeSettings" xml:space="preserve">
-    <value>素材フォルダが変更されたため、アプリケーションを再起動します。</value>
-  </data>
-  <data name="NameAccessories" xml:space="preserve">
-    <value>アクセサリ</value>
-  </data>
-  <data name="NameBodies" xml:space="preserve">
-    <value>体</value>
-  </data>
-  <data name="NameEyes" xml:space="preserve">
-    <value>目</value>
-  </data>
-  <data name="NameHairStyles" xml:space="preserve">
-    <value>髪型</value>
-  </data>
-  <data name="NameHeadAccessories" xml:space="preserve">
-    <value>頭部アクセサリ</value>
-  </data>
-  <data name="NameHeads" xml:space="preserve">
-    <value>頭</value>
+  <data name="optionToolStripMenuItem.Text" xml:space="preserve">
+    <value>設定</value>
   </data>
 </root>
