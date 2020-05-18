@@ -104,7 +104,7 @@ namespace CharaChipGen.MainForm
             }
             catch (Exception ex)
             {
-                MessageBox.Show(this, ex.Message, "エラー");
+                MessageBox.Show(this, ex.Message, Resources.DialogTitleError);
             }
         }
 
@@ -155,7 +155,7 @@ namespace CharaChipGen.MainForm
         {
             GeneratorForm.CharaChipGeneratorForm form
                 = new GeneratorForm.CharaChipGeneratorForm();
-            form.Text = String.Format("キャラクター {0} - キャラチップ設定", index);
+            form.Text = String.Format(Resources.FormTitleCharacterNGenerator, index);
 
             // モデルを設定する。
             AppData appData = AppData.Instance;
@@ -238,7 +238,7 @@ namespace CharaChipGen.MainForm
             }
             catch (Exception ex)
             {
-                MessageBox.Show(this, ex.Message, "エラー");
+                MessageBox.Show(this, ex.Message, Resources.DialogTitleError);
             }
 
         }
@@ -275,16 +275,15 @@ namespace CharaChipGen.MainForm
 
                 if (!prevMaterialDirectory.Equals(materialDirectory))
                 {
-                    MessageBox.Show(this,
-                        "素材フォルダが変更されたため、アプリケーションを再起動します。");
+                    MessageBox.Show(this, Resources.MessageRestartByChangeSettings, Resources.DialogTitleInformation);
                     // アプリケーション再起動が必要。
-                    Properties.Settings.Default.Save();
+                    Settings.Default.Save();
                     Application.Restart();
                 }
             }
             catch (Exception ex)
             {
-                MessageBox.Show(this, ex.Message, "エラー");
+                MessageBox.Show(this, ex.Message, Resources.DialogTitleError);
             }
 
         }
@@ -328,7 +327,7 @@ namespace CharaChipGen.MainForm
             }
             catch (Exception ex)
             {
-                MessageBox.Show(this, ex.Message, "エラー");
+                MessageBox.Show(this, ex.Message, Resources.DialogTitleError);
             }
 
         }
@@ -385,7 +384,7 @@ namespace CharaChipGen.MainForm
                 }
                 catch (Exception ex)
                 {
-                    MessageBox.Show(this, ex.Message, "エラー");
+                    MessageBox.Show(this, ex.Message, Resources.DialogTitleError);
                 }
 
             }
@@ -415,7 +414,7 @@ namespace CharaChipGen.MainForm
             }
             catch (Exception ex)
             {
-                MessageBox.Show(this, ex.Message, "エラー");
+                MessageBox.Show(this, ex.Message, Resources.DialogTitleError);
             }
         }
 
@@ -575,7 +574,7 @@ namespace CharaChipGen.MainForm
             }
             catch (Exception ex)
             {
-                MessageBox.Show(this, ex.Message, "エラー");
+                MessageBox.Show(this, ex.Message, Resources.DialogTitleError);
             }
         }
 
@@ -599,7 +598,7 @@ namespace CharaChipGen.MainForm
             }
             catch (Exception ex)
             {
-                MessageBox.Show(this, ex.Message, "エラー");
+                MessageBox.Show(this, ex.Message, Resources.DialogTitleError);
             }
 
         }
@@ -624,7 +623,7 @@ namespace CharaChipGen.MainForm
             }
             catch (Exception ex)
             {
-                MessageBox.Show(this, ex.Message, "エラー");
+                MessageBox.Show(this, ex.Message, Resources.DialogTitleError);
             }
         }
 
@@ -663,7 +662,7 @@ namespace CharaChipGen.MainForm
             }
             catch (Exception ex)
             {
-                MessageBox.Show(this, ex.Message, "エラー");
+                MessageBox.Show(this, ex.Message, Resources.DialogTitleError);
             }
         }
 

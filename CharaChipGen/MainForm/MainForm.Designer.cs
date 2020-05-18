@@ -28,6 +28,7 @@
         /// </summary>
         private void InitializeComponent()
         {
+            System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(MainForm));
             this.menuStripMain = new System.Windows.Forms.MenuStrip();
             this.menuItemFile = new System.Windows.Forms.ToolStripMenuItem();
             this.menuItemNew = new System.Windows.Forms.ToolStripMenuItem();
@@ -43,7 +44,9 @@
             this.menuItemCopy = new System.Windows.Forms.ToolStripMenuItem();
             this.menuItemPaste = new System.Windows.Forms.ToolStripMenuItem();
             this.menuItemOption = new System.Windows.Forms.ToolStripMenuItem();
+            this.menuItemDisplayImage = new System.Windows.Forms.ToolStripMenuItem();
             this.menuItemPreference = new System.Windows.Forms.ToolStripMenuItem();
+            this.toolStripSeparator1 = new System.Windows.Forms.ToolStripSeparator();
             this.menuItemMaterialManagement = new System.Windows.Forms.ToolStripMenuItem();
             this.menuItemHelp = new System.Windows.Forms.ToolStripMenuItem();
             this.menuItemVersion = new System.Windows.Forms.ToolStripMenuItem();
@@ -70,8 +73,6 @@
             this.characterEntryControl4 = new CharaChipGen.MainForm.CharacterEntryView();
             this.characterEntryControl6 = new CharaChipGen.MainForm.CharacterEntryView();
             this.characterEntryControl5 = new CharaChipGen.MainForm.CharacterEntryView();
-            this.menuItemDisplayImage = new System.Windows.Forms.ToolStripMenuItem();
-            this.toolStripSeparator1 = new System.Windows.Forms.ToolStripSeparator();
             this.menuStripMain.SuspendLayout();
             this.panel1.SuspendLayout();
             this.panel3.SuspendLayout();
@@ -89,11 +90,8 @@
             this.menuItemEdit,
             this.menuItemOption,
             this.menuItemHelp});
-            this.menuStripMain.Location = new System.Drawing.Point(0, 0);
+            resources.ApplyResources(this.menuStripMain, "menuStripMain");
             this.menuStripMain.Name = "menuStripMain";
-            this.menuStripMain.Size = new System.Drawing.Size(727, 24);
-            this.menuStripMain.TabIndex = 0;
-            this.menuStripMain.Text = "menuStrip1";
             // 
             // menuItemFile
             // 
@@ -108,70 +106,57 @@
             this.toolStripMenuItem3,
             this.menuItemExit});
             this.menuItemFile.Name = "menuItemFile";
-            this.menuItemFile.Size = new System.Drawing.Size(53, 20);
-            this.menuItemFile.Text = "ファイル";
+            resources.ApplyResources(this.menuItemFile, "menuItemFile");
             // 
             // menuItemNew
             // 
             this.menuItemNew.Name = "menuItemNew";
-            this.menuItemNew.ShortcutKeys = ((System.Windows.Forms.Keys)((System.Windows.Forms.Keys.Control | System.Windows.Forms.Keys.N)));
-            this.menuItemNew.Size = new System.Drawing.Size(232, 22);
-            this.menuItemNew.Text = "新規作成";
+            resources.ApplyResources(this.menuItemNew, "menuItemNew");
             this.menuItemNew.Click += new System.EventHandler(this.OnMenuItemNewClick);
             // 
             // menuItemOpen
             // 
             this.menuItemOpen.Name = "menuItemOpen";
-            this.menuItemOpen.ShortcutKeys = ((System.Windows.Forms.Keys)((System.Windows.Forms.Keys.Control | System.Windows.Forms.Keys.O)));
-            this.menuItemOpen.Size = new System.Drawing.Size(232, 22);
-            this.menuItemOpen.Text = "開く";
+            resources.ApplyResources(this.menuItemOpen, "menuItemOpen");
             this.menuItemOpen.Click += new System.EventHandler(this.OnMenuItemOpenClick);
             // 
             // toolStripMenuItem1
             // 
             this.toolStripMenuItem1.Name = "toolStripMenuItem1";
-            this.toolStripMenuItem1.Size = new System.Drawing.Size(229, 6);
+            resources.ApplyResources(this.toolStripMenuItem1, "toolStripMenuItem1");
             // 
             // menuItemSave
             // 
             this.menuItemSave.Name = "menuItemSave";
-            this.menuItemSave.ShortcutKeys = ((System.Windows.Forms.Keys)((System.Windows.Forms.Keys.Control | System.Windows.Forms.Keys.S)));
-            this.menuItemSave.Size = new System.Drawing.Size(232, 22);
-            this.menuItemSave.Text = "上書き保存";
+            resources.ApplyResources(this.menuItemSave, "menuItemSave");
             this.menuItemSave.Click += new System.EventHandler(this.OnSaveClick);
             // 
             // menuItemSaveAs
             // 
             this.menuItemSaveAs.Name = "menuItemSaveAs";
-            this.menuItemSaveAs.ShortcutKeys = ((System.Windows.Forms.Keys)(((System.Windows.Forms.Keys.Control | System.Windows.Forms.Keys.Shift) 
-            | System.Windows.Forms.Keys.S)));
-            this.menuItemSaveAs.Size = new System.Drawing.Size(232, 22);
-            this.menuItemSaveAs.Text = "名前を付けて保存";
+            resources.ApplyResources(this.menuItemSaveAs, "menuItemSaveAs");
             this.menuItemSaveAs.Click += new System.EventHandler(this.OnSaveAsClick);
             // 
             // toolStripMenuItem2
             // 
             this.toolStripMenuItem2.Name = "toolStripMenuItem2";
-            this.toolStripMenuItem2.Size = new System.Drawing.Size(229, 6);
+            resources.ApplyResources(this.toolStripMenuItem2, "toolStripMenuItem2");
             // 
             // menuItemExport
             // 
             this.menuItemExport.Name = "menuItemExport";
-            this.menuItemExport.Size = new System.Drawing.Size(232, 22);
-            this.menuItemExport.Text = "エクスポート";
+            resources.ApplyResources(this.menuItemExport, "menuItemExport");
             this.menuItemExport.Click += new System.EventHandler(this.OnExportButtonClick);
             // 
             // toolStripMenuItem3
             // 
             this.toolStripMenuItem3.Name = "toolStripMenuItem3";
-            this.toolStripMenuItem3.Size = new System.Drawing.Size(229, 6);
+            resources.ApplyResources(this.toolStripMenuItem3, "toolStripMenuItem3");
             // 
             // menuItemExit
             // 
             this.menuItemExit.Name = "menuItemExit";
-            this.menuItemExit.ShortcutKeys = ((System.Windows.Forms.Keys)((System.Windows.Forms.Keys.Alt | System.Windows.Forms.Keys.F4)));
-            this.menuItemExit.Size = new System.Drawing.Size(232, 22);
-            this.menuItemExit.Text = "閉じる";
+            resources.ApplyResources(this.menuItemExit, "menuItemExit");
             this.menuItemExit.Click += new System.EventHandler(this.OnMenuItemExitClick);
             // 
             // menuItemEdit
@@ -180,23 +165,18 @@
             this.menuItemCopy,
             this.menuItemPaste});
             this.menuItemEdit.Name = "menuItemEdit";
-            this.menuItemEdit.Size = new System.Drawing.Size(43, 20);
-            this.menuItemEdit.Text = "編集";
+            resources.ApplyResources(this.menuItemEdit, "menuItemEdit");
             // 
             // menuItemCopy
             // 
             this.menuItemCopy.Name = "menuItemCopy";
-            this.menuItemCopy.ShortcutKeys = ((System.Windows.Forms.Keys)((System.Windows.Forms.Keys.Control | System.Windows.Forms.Keys.C)));
-            this.menuItemCopy.Size = new System.Drawing.Size(149, 22);
-            this.menuItemCopy.Text = "コピー";
+            resources.ApplyResources(this.menuItemCopy, "menuItemCopy");
             this.menuItemCopy.Click += new System.EventHandler(this.OnMenuItemCopyClick);
             // 
             // menuItemPaste
             // 
             this.menuItemPaste.Name = "menuItemPaste";
-            this.menuItemPaste.ShortcutKeys = ((System.Windows.Forms.Keys)((System.Windows.Forms.Keys.Control | System.Windows.Forms.Keys.V)));
-            this.menuItemPaste.Size = new System.Drawing.Size(149, 22);
-            this.menuItemPaste.Text = "ペースト";
+            resources.ApplyResources(this.menuItemPaste, "menuItemPaste");
             this.menuItemPaste.Click += new System.EventHandler(this.OnMenuItemPasteClick);
             // 
             // menuItemOption
@@ -207,21 +187,29 @@
             this.toolStripSeparator1,
             this.menuItemMaterialManagement});
             this.menuItemOption.Name = "menuItemOption";
-            this.menuItemOption.Size = new System.Drawing.Size(63, 20);
-            this.menuItemOption.Text = "オプション";
+            resources.ApplyResources(this.menuItemOption, "menuItemOption");
+            // 
+            // menuItemDisplayImage
+            // 
+            this.menuItemDisplayImage.Name = "menuItemDisplayImage";
+            resources.ApplyResources(this.menuItemDisplayImage, "menuItemDisplayImage");
+            this.menuItemDisplayImage.Click += new System.EventHandler(this.OnMenuItemDisplayBackgroundClick);
             // 
             // menuItemPreference
             // 
             this.menuItemPreference.Name = "menuItemPreference";
-            this.menuItemPreference.Size = new System.Drawing.Size(180, 22);
-            this.menuItemPreference.Text = "設定";
+            resources.ApplyResources(this.menuItemPreference, "menuItemPreference");
             this.menuItemPreference.Click += new System.EventHandler(this.OnPreferenceClick);
+            // 
+            // toolStripSeparator1
+            // 
+            this.toolStripSeparator1.Name = "toolStripSeparator1";
+            resources.ApplyResources(this.toolStripSeparator1, "toolStripSeparator1");
             // 
             // menuItemMaterialManagement
             // 
             this.menuItemMaterialManagement.Name = "menuItemMaterialManagement";
-            this.menuItemMaterialManagement.Size = new System.Drawing.Size(180, 22);
-            this.menuItemMaterialManagement.Text = "素材管理";
+            resources.ApplyResources(this.menuItemMaterialManagement, "menuItemMaterialManagement");
             this.menuItemMaterialManagement.Click += new System.EventHandler(this.OnMaterialManageClicked);
             // 
             // menuItemHelp
@@ -229,61 +217,46 @@
             this.menuItemHelp.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] {
             this.menuItemVersion});
             this.menuItemHelp.Name = "menuItemHelp";
-            this.menuItemHelp.Size = new System.Drawing.Size(48, 20);
-            this.menuItemHelp.Text = "ヘルプ";
+            resources.ApplyResources(this.menuItemHelp, "menuItemHelp");
             // 
             // menuItemVersion
             // 
             this.menuItemVersion.Name = "menuItemVersion";
-            this.menuItemVersion.Size = new System.Drawing.Size(142, 22);
-            this.menuItemVersion.Text = "バージョン情報";
+            resources.ApplyResources(this.menuItemVersion, "menuItemVersion");
             this.menuItemVersion.Click += new System.EventHandler(this.OnMenuItemVersionClick);
             // 
             // buttonExport
             // 
-            this.buttonExport.Font = new System.Drawing.Font("MS UI Gothic", 18F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(128)));
-            this.buttonExport.Location = new System.Drawing.Point(20, 9);
+            resources.ApplyResources(this.buttonExport, "buttonExport");
             this.buttonExport.Name = "buttonExport";
-            this.buttonExport.Size = new System.Drawing.Size(158, 38);
-            this.buttonExport.TabIndex = 0;
-            this.buttonExport.Text = "エクスポート";
             this.buttonExport.UseVisualStyleBackColor = true;
             this.buttonExport.Click += new System.EventHandler(this.OnExportButtonClick);
             // 
             // buttonMaterialManage
             // 
-            this.buttonMaterialManage.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left)));
-            this.buttonMaterialManage.Location = new System.Drawing.Point(9, 58);
+            resources.ApplyResources(this.buttonMaterialManage, "buttonMaterialManage");
             this.buttonMaterialManage.Name = "buttonMaterialManage";
-            this.buttonMaterialManage.Size = new System.Drawing.Size(75, 23);
-            this.buttonMaterialManage.TabIndex = 0;
-            this.buttonMaterialManage.Text = "素材管理";
             this.buttonMaterialManage.UseVisualStyleBackColor = true;
             this.buttonMaterialManage.Click += new System.EventHandler(this.OnMaterialManageClicked);
             // 
             // buttonConfig
             // 
-            this.buttonConfig.Dock = System.Windows.Forms.DockStyle.Right;
-            this.buttonConfig.Location = new System.Drawing.Point(537, 6);
+            resources.ApplyResources(this.buttonConfig, "buttonConfig");
             this.buttonConfig.Name = "buttonConfig";
-            this.buttonConfig.Size = new System.Drawing.Size(75, 20);
-            this.buttonConfig.TabIndex = 2;
-            this.buttonConfig.Text = "設定";
             this.buttonConfig.UseVisualStyleBackColor = true;
             this.buttonConfig.Click += new System.EventHandler(this.OnPreferenceClick);
             // 
             // openFileDialog
             // 
-            this.openFileDialog.Filter = "キャラチップ生成設定ファイル|*.ccgset";
+            resources.ApplyResources(this.openFileDialog, "openFileDialog");
             // 
             // saveFileDialog
             // 
-            this.saveFileDialog.Filter = "キャラチップ生成設定ファイル|*.ccgset";
+            resources.ApplyResources(this.saveFileDialog, "saveFileDialog");
             // 
             // saveFileDialogExport
             // 
-            this.saveFileDialogExport.Filter = "PNGファイル|*.png";
-            this.saveFileDialogExport.Title = "キャラチップ保存設定";
+            resources.ApplyResources(this.saveFileDialogExport, "saveFileDialogExport");
             // 
             // panel1
             // 
@@ -291,91 +264,53 @@
             this.panel1.Controls.Add(this.flowLayoutPanel1);
             this.panel1.Controls.Add(this.panel2);
             this.panel1.Controls.Add(this.flowLayoutPanel2);
-            this.panel1.Dock = System.Windows.Forms.DockStyle.Bottom;
-            this.panel1.Location = new System.Drawing.Point(0, 385);
+            resources.ApplyResources(this.panel1, "panel1");
             this.panel1.Name = "panel1";
-            this.panel1.Size = new System.Drawing.Size(727, 96);
-            this.panel1.TabIndex = 13;
             // 
             // panel3
             // 
             this.panel3.Controls.Add(this.panel4);
-            this.panel3.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.panel3.Location = new System.Drawing.Point(109, 32);
+            resources.ApplyResources(this.panel3, "panel3");
             this.panel3.Name = "panel3";
-            this.panel3.Size = new System.Drawing.Size(425, 64);
-            this.panel3.TabIndex = 3;
             // 
             // panel4
             // 
             this.panel4.Controls.Add(this.labelOutputPath);
             this.panel4.Controls.Add(this.label1);
-            this.panel4.Dock = System.Windows.Forms.DockStyle.Bottom;
-            this.panel4.Location = new System.Drawing.Point(0, 26);
+            resources.ApplyResources(this.panel4, "panel4");
             this.panel4.Name = "panel4";
-            this.panel4.Padding = new System.Windows.Forms.Padding(4);
-            this.panel4.Size = new System.Drawing.Size(425, 38);
-            this.panel4.TabIndex = 0;
             // 
             // labelOutputPath
             // 
-            this.labelOutputPath.AutoSize = true;
-            this.labelOutputPath.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.labelOutputPath.Location = new System.Drawing.Point(51, 4);
+            resources.ApplyResources(this.labelOutputPath, "labelOutputPath");
             this.labelOutputPath.Name = "labelOutputPath";
-            this.labelOutputPath.Size = new System.Drawing.Size(35, 12);
-            this.labelOutputPath.TabIndex = 1;
-            this.labelOutputPath.Text = "xxxxx";
             // 
             // label1
             // 
-            this.label1.AutoSize = true;
-            this.label1.Dock = System.Windows.Forms.DockStyle.Left;
-            this.label1.Location = new System.Drawing.Point(4, 4);
+            resources.ApplyResources(this.label1, "label1");
             this.label1.Name = "label1";
-            this.label1.Size = new System.Drawing.Size(47, 12);
-            this.label1.TabIndex = 0;
-            this.label1.Text = "出力先：";
             // 
             // flowLayoutPanel1
             // 
             this.flowLayoutPanel1.Controls.Add(this.buttonExport);
-            this.flowLayoutPanel1.Dock = System.Windows.Forms.DockStyle.Right;
-            this.flowLayoutPanel1.FlowDirection = System.Windows.Forms.FlowDirection.RightToLeft;
-            this.flowLayoutPanel1.Location = new System.Drawing.Point(534, 32);
+            resources.ApplyResources(this.flowLayoutPanel1, "flowLayoutPanel1");
             this.flowLayoutPanel1.Name = "flowLayoutPanel1";
-            this.flowLayoutPanel1.Padding = new System.Windows.Forms.Padding(6);
-            this.flowLayoutPanel1.Size = new System.Drawing.Size(193, 64);
-            this.flowLayoutPanel1.TabIndex = 2;
             // 
             // panel2
             // 
             this.panel2.Controls.Add(this.buttonConfig);
-            this.panel2.Dock = System.Windows.Forms.DockStyle.Top;
-            this.panel2.Location = new System.Drawing.Point(109, 0);
+            resources.ApplyResources(this.panel2, "panel2");
             this.panel2.Name = "panel2";
-            this.panel2.Padding = new System.Windows.Forms.Padding(6);
-            this.panel2.Size = new System.Drawing.Size(618, 32);
-            this.panel2.TabIndex = 1;
             // 
             // flowLayoutPanel2
             // 
             this.flowLayoutPanel2.Controls.Add(this.buttonMaterialManage);
-            this.flowLayoutPanel2.Dock = System.Windows.Forms.DockStyle.Left;
-            this.flowLayoutPanel2.FlowDirection = System.Windows.Forms.FlowDirection.BottomUp;
-            this.flowLayoutPanel2.Location = new System.Drawing.Point(0, 0);
+            resources.ApplyResources(this.flowLayoutPanel2, "flowLayoutPanel2");
             this.flowLayoutPanel2.Name = "flowLayoutPanel2";
-            this.flowLayoutPanel2.Padding = new System.Windows.Forms.Padding(6);
-            this.flowLayoutPanel2.Size = new System.Drawing.Size(109, 96);
-            this.flowLayoutPanel2.TabIndex = 0;
             // 
             // tableLayoutPanel1
             // 
-            this.tableLayoutPanel1.ColumnCount = 4;
-            this.tableLayoutPanel1.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 25F));
-            this.tableLayoutPanel1.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 25F));
-            this.tableLayoutPanel1.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 25F));
-            this.tableLayoutPanel1.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 25F));
+            resources.ApplyResources(this.tableLayoutPanel1, "tableLayoutPanel1");
             this.tableLayoutPanel1.Controls.Add(this.characterEntryControl1, 0, 0);
             this.tableLayoutPanel1.Controls.Add(this.characterEntryControl2, 1, 0);
             this.tableLayoutPanel1.Controls.Add(this.characterEntryControl8, 3, 1);
@@ -384,25 +319,15 @@
             this.tableLayoutPanel1.Controls.Add(this.characterEntryControl4, 3, 0);
             this.tableLayoutPanel1.Controls.Add(this.characterEntryControl6, 1, 1);
             this.tableLayoutPanel1.Controls.Add(this.characterEntryControl5, 0, 1);
-            this.tableLayoutPanel1.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.tableLayoutPanel1.Location = new System.Drawing.Point(0, 24);
             this.tableLayoutPanel1.Name = "tableLayoutPanel1";
-            this.tableLayoutPanel1.Padding = new System.Windows.Forms.Padding(6);
-            this.tableLayoutPanel1.RowCount = 2;
-            this.tableLayoutPanel1.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 50F));
-            this.tableLayoutPanel1.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 50F));
-            this.tableLayoutPanel1.Size = new System.Drawing.Size(727, 361);
-            this.tableLayoutPanel1.TabIndex = 1;
             // 
             // characterEntryControl1
             // 
             this.characterEntryControl1.ButtonName = "キャラクター1";
             this.characterEntryControl1.Image = null;
             this.characterEntryControl1.ImageBackground = System.Drawing.Color.Transparent;
-            this.characterEntryControl1.Location = new System.Drawing.Point(9, 9);
+            resources.ApplyResources(this.characterEntryControl1, "characterEntryControl1");
             this.characterEntryControl1.Name = "characterEntryControl1";
-            this.characterEntryControl1.Size = new System.Drawing.Size(168, 168);
-            this.characterEntryControl1.TabIndex = 0;
             this.characterEntryControl1.ButtonClick += new System.EventHandler(this.OnCharacterEntryViewButtonClick);
             this.characterEntryControl1.DoubleClick += new System.EventHandler(this.OnCharacterEntryControlDoubleClick);
             this.characterEntryControl1.KeyDown += new System.Windows.Forms.KeyEventHandler(this.OnCharacterEntryControlKeyDown);
@@ -412,10 +337,8 @@
             this.characterEntryControl2.ButtonName = "キャラクター2";
             this.characterEntryControl2.Image = null;
             this.characterEntryControl2.ImageBackground = System.Drawing.Color.Transparent;
-            this.characterEntryControl2.Location = new System.Drawing.Point(187, 9);
+            resources.ApplyResources(this.characterEntryControl2, "characterEntryControl2");
             this.characterEntryControl2.Name = "characterEntryControl2";
-            this.characterEntryControl2.Size = new System.Drawing.Size(168, 168);
-            this.characterEntryControl2.TabIndex = 1;
             this.characterEntryControl2.ButtonClick += new System.EventHandler(this.OnCharacterEntryViewButtonClick);
             this.characterEntryControl2.DoubleClick += new System.EventHandler(this.OnCharacterEntryControlDoubleClick);
             this.characterEntryControl2.KeyDown += new System.Windows.Forms.KeyEventHandler(this.OnCharacterEntryControlKeyDown);
@@ -425,10 +348,8 @@
             this.characterEntryControl8.ButtonName = "キャラクター8";
             this.characterEntryControl8.Image = null;
             this.characterEntryControl8.ImageBackground = System.Drawing.Color.Transparent;
-            this.characterEntryControl8.Location = new System.Drawing.Point(543, 183);
+            resources.ApplyResources(this.characterEntryControl8, "characterEntryControl8");
             this.characterEntryControl8.Name = "characterEntryControl8";
-            this.characterEntryControl8.Size = new System.Drawing.Size(168, 169);
-            this.characterEntryControl8.TabIndex = 7;
             this.characterEntryControl8.ButtonClick += new System.EventHandler(this.OnCharacterEntryViewButtonClick);
             this.characterEntryControl8.DoubleClick += new System.EventHandler(this.OnCharacterEntryControlDoubleClick);
             this.characterEntryControl8.KeyDown += new System.Windows.Forms.KeyEventHandler(this.OnCharacterEntryControlKeyDown);
@@ -438,10 +359,8 @@
             this.characterEntryControl3.ButtonName = "キャラクター3";
             this.characterEntryControl3.Image = null;
             this.characterEntryControl3.ImageBackground = System.Drawing.Color.Transparent;
-            this.characterEntryControl3.Location = new System.Drawing.Point(365, 9);
+            resources.ApplyResources(this.characterEntryControl3, "characterEntryControl3");
             this.characterEntryControl3.Name = "characterEntryControl3";
-            this.characterEntryControl3.Size = new System.Drawing.Size(168, 168);
-            this.characterEntryControl3.TabIndex = 2;
             this.characterEntryControl3.ButtonClick += new System.EventHandler(this.OnCharacterEntryViewButtonClick);
             this.characterEntryControl3.DoubleClick += new System.EventHandler(this.OnCharacterEntryControlDoubleClick);
             this.characterEntryControl3.KeyDown += new System.Windows.Forms.KeyEventHandler(this.OnCharacterEntryControlKeyDown);
@@ -451,10 +370,8 @@
             this.characterEntryControl7.ButtonName = "キャラクター7";
             this.characterEntryControl7.Image = null;
             this.characterEntryControl7.ImageBackground = System.Drawing.Color.Transparent;
-            this.characterEntryControl7.Location = new System.Drawing.Point(365, 183);
+            resources.ApplyResources(this.characterEntryControl7, "characterEntryControl7");
             this.characterEntryControl7.Name = "characterEntryControl7";
-            this.characterEntryControl7.Size = new System.Drawing.Size(168, 169);
-            this.characterEntryControl7.TabIndex = 6;
             this.characterEntryControl7.ButtonClick += new System.EventHandler(this.OnCharacterEntryViewButtonClick);
             this.characterEntryControl7.DoubleClick += new System.EventHandler(this.OnCharacterEntryControlDoubleClick);
             this.characterEntryControl7.KeyDown += new System.Windows.Forms.KeyEventHandler(this.OnCharacterEntryControlKeyDown);
@@ -464,10 +381,8 @@
             this.characterEntryControl4.ButtonName = "キャラクター4";
             this.characterEntryControl4.Image = null;
             this.characterEntryControl4.ImageBackground = System.Drawing.Color.Transparent;
-            this.characterEntryControl4.Location = new System.Drawing.Point(543, 9);
+            resources.ApplyResources(this.characterEntryControl4, "characterEntryControl4");
             this.characterEntryControl4.Name = "characterEntryControl4";
-            this.characterEntryControl4.Size = new System.Drawing.Size(168, 168);
-            this.characterEntryControl4.TabIndex = 3;
             this.characterEntryControl4.ButtonClick += new System.EventHandler(this.OnCharacterEntryViewButtonClick);
             this.characterEntryControl4.DoubleClick += new System.EventHandler(this.OnCharacterEntryControlDoubleClick);
             this.characterEntryControl4.KeyDown += new System.Windows.Forms.KeyEventHandler(this.OnCharacterEntryControlKeyDown);
@@ -477,10 +392,8 @@
             this.characterEntryControl6.ButtonName = "キャラクター6";
             this.characterEntryControl6.Image = null;
             this.characterEntryControl6.ImageBackground = System.Drawing.Color.Transparent;
-            this.characterEntryControl6.Location = new System.Drawing.Point(187, 183);
+            resources.ApplyResources(this.characterEntryControl6, "characterEntryControl6");
             this.characterEntryControl6.Name = "characterEntryControl6";
-            this.characterEntryControl6.Size = new System.Drawing.Size(168, 169);
-            this.characterEntryControl6.TabIndex = 5;
             this.characterEntryControl6.ButtonClick += new System.EventHandler(this.OnCharacterEntryViewButtonClick);
             this.characterEntryControl6.DoubleClick += new System.EventHandler(this.OnCharacterEntryControlDoubleClick);
             this.characterEntryControl6.KeyDown += new System.Windows.Forms.KeyEventHandler(this.OnCharacterEntryControlKeyDown);
@@ -490,38 +403,22 @@
             this.characterEntryControl5.ButtonName = "キャラクター5";
             this.characterEntryControl5.Image = null;
             this.characterEntryControl5.ImageBackground = System.Drawing.Color.Transparent;
-            this.characterEntryControl5.Location = new System.Drawing.Point(9, 183);
+            resources.ApplyResources(this.characterEntryControl5, "characterEntryControl5");
             this.characterEntryControl5.Name = "characterEntryControl5";
-            this.characterEntryControl5.Size = new System.Drawing.Size(168, 169);
-            this.characterEntryControl5.TabIndex = 4;
             this.characterEntryControl5.ButtonClick += new System.EventHandler(this.OnCharacterEntryViewButtonClick);
             this.characterEntryControl5.DoubleClick += new System.EventHandler(this.OnCharacterEntryControlDoubleClick);
             this.characterEntryControl5.KeyDown += new System.Windows.Forms.KeyEventHandler(this.OnCharacterEntryControlKeyDown);
             // 
-            // menuItemDisplayImage
-            // 
-            this.menuItemDisplayImage.Name = "menuItemDisplayImage";
-            this.menuItemDisplayImage.Size = new System.Drawing.Size(180, 22);
-            this.menuItemDisplayImage.Text = "表示背景色";
-            this.menuItemDisplayImage.Click += new System.EventHandler(this.OnMenuItemDisplayBackgroundClick);
-            // 
-            // toolStripSeparator1
-            // 
-            this.toolStripSeparator1.Name = "toolStripSeparator1";
-            this.toolStripSeparator1.Size = new System.Drawing.Size(177, 6);
-            // 
             // MainForm
             // 
-            this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 12F);
+            resources.ApplyResources(this, "$this");
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(727, 481);
             this.Controls.Add(this.tableLayoutPanel1);
             this.Controls.Add(this.panel1);
             this.Controls.Add(this.menuStripMain);
             this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.Fixed3D;
             this.MainMenuStrip = this.menuStripMain;
             this.Name = "MainForm";
-            this.Text = "キャラクターチップジェネレータ";
             this.FormClosing += new System.Windows.Forms.FormClosingEventHandler(this.OnFormClosing);
             this.FormClosed += new System.Windows.Forms.FormClosedEventHandler(this.OnFormClosed);
             this.Shown += new System.EventHandler(this.OnFormShown);

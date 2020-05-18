@@ -88,6 +88,15 @@ namespace CharaChipGen.Properties {
         }
         
         /// <summary>
+        ///   Character {0} - Chara Chip Settings に類似しているローカライズされた文字列を検索します。
+        /// </summary>
+        internal static string FormTitleCharacterNGenerator {
+            get {
+                return ResourceManager.GetString("FormTitleCharacterNGenerator", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Use parts setting. に類似しているローカライズされた文字列を検索します。
         /// </summary>
         internal static string ItemNameUsePartsSetting {
@@ -111,6 +120,15 @@ namespace CharaChipGen.Properties {
         internal static string MessageMaterialDirectoryNotFound {
             get {
                 return ResourceManager.GetString("MessageMaterialDirectoryNotFound", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Restart application by changing material directory. に類似しているローカライズされた文字列を検索します。
+        /// </summary>
+        internal static string MessageRestartByChangeSettings {
+            get {
+                return ResourceManager.GetString("MessageRestartByChangeSettings", resourceCulture);
             }
         }
         

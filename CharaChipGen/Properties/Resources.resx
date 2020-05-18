@@ -126,6 +126,9 @@
   <data name="DialogTitleInformation" xml:space="preserve">
     <value>Information</value>
   </data>
+  <data name="FormTitleCharacterNGenerator" xml:space="preserve">
+    <value>Character {0} - Chara Chip Settings</value>
+  </data>
   <data name="ItemNameUsePartsSetting" xml:space="preserve">
     <value>Use parts setting.</value>
   </data>
@@ -134,6 +137,9 @@
   </data>
   <data name="MessageMaterialDirectoryNotFound" xml:space="preserve">
     <value>Material directory not found.</value>
+  </data>
+  <data name="MessageRestartByChangeSettings" xml:space="preserve">
+    <value>Restart application by changing material directory.</value>
   </data>
   <data name="NameAccessories" xml:space="preserve">
     <value>Accessory</value>
