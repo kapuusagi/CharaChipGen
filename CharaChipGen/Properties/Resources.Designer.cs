@@ -304,6 +304,15 @@ namespace CharaChipGen.Properties {
         }
         
         /// <summary>
+        ///   An error occurred when exporting. に類似しているローカライズされた文字列を検索します。
+        /// </summary>
+        public static string MessageWriteError {
+            get {
+                return ResourceManager.GetString("MessageWriteError", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Accessory に類似しているローカライズされた文字列を検索します。
         /// </summary>
         public static string NameAccessories {

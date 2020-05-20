@@ -198,6 +198,9 @@
   <data name="MessageRestartByChangeSettings" xml:space="preserve">
     <value>Restart application by changing material directory.</value>
   </data>
+  <data name="MessageWriteError" xml:space="preserve">
+    <value>An error occurred when exporting.</value>
+  </data>
   <data name="NameAccessories" xml:space="preserve">
     <value>Accessory</value>
   </data>

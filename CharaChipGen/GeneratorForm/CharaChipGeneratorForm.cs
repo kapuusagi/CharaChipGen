@@ -1,4 +1,5 @@
-﻿using CharaChipGen.Model.CharaChip;
+﻿using CharaChipGen.Model;
+using CharaChipGen.Model.CharaChip;
 using CharaChipGen.Properties;
 using System;
 using System.Drawing;
@@ -286,6 +287,38 @@ namespace CharaChipGen.GeneratorForm
             Color defaultColor = Settings.Default.ImageBackground;
             Color selectedColor = CGenImaging.Forms.ColorSelectDialog.ShowDialog(this, defaultColor);
             Settings.Default.ImageBackground = selectedColor;
+        }
+
+        /// <summary>
+        /// エクスポートメニュー項目がクリックされた時に通を受け取る。
+        /// </summary>
+        /// <param name="sender">送信元オブジェクト</param>
+        /// <param name="e">イベントオブジェクト</param>
+        private void OnMenuItemExportClick(object sender, EventArgs e)
+        {
+            if (saveFileDialog.ShowDialog(this) != DialogResult.OK)
+            {
+                return;
+            }
+
+            try
+            {
+                string path = saveFileDialog.FileName;
+
+                GeneratorSetting setting = new GeneratorSetting(1, 1);
+                setting.ExportSetting.ExportFilePath = saveFileDialog.FileName;
+                setting.ExportSetting.CharaChipSize = AppData.Instance.GeneratorSetting.ExportSetting.CharaChipSize;
+                Character.CopyTo(setting.GetCharacter(0));
+
+                CharaChipExporter.ExportCharaChip(setting);
+
+                MessageBox.Show(this, Resources.MessageExported, Resources.DialogTitleInformation);
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show(this, ex.Message, Resources.DialogTitleError);
+
+            }
         }
     }
 }

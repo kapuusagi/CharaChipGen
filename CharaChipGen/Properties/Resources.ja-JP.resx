@@ -198,6 +198,9 @@
   <data name="MessageRestartByChangeSettings" xml:space="preserve">
     <value>素材フォルダが変更されたため、アプリケーションを再起動します。</value>
   </data>
+  <data name="MessageWriteError" xml:space="preserve">
+    <value>書き出し時にエラーが発生しました。</value>
+  </data>
   <data name="NameAccessories" xml:space="preserve">
     <value>アクセサリ</value>
   </data>

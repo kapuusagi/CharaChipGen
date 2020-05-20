@@ -117,499 +117,523 @@
   <resheader name="writer">
     <value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </resheader>
+  <assembly alias="System.Windows.Forms" name="System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089" />
+  <data name="partsViewHeadAccessory2.Dock" type="System.Windows.Forms.DockStyle, System.Windows.Forms">
+    <value>Top</value>
+  </data>
   <assembly alias="System.Drawing" name="System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a" />
-  <data name="buttonOK.Location" type="System.Drawing.Point, System.Drawing">
-    <value>547, 3</value>
+  <data name="partsViewHeadAccessory2.Location" type="System.Drawing.Point, System.Drawing">
+    <value>0, 352</value>
   </data>
-  <data name="&gt;&gt;menuItemSaveAsTemplate.Name" xml:space="preserve">
-    <value>menuItemSaveAsTemplate</value>
-  </data>
-  <data name="menuItemOption.Size" type="System.Drawing.Size, System.Drawing">
-    <value>61, 20</value>
-  </data>
-  <data name="&gt;&gt;partsViewHeadAccessory1.ZOrder" xml:space="preserve">
-    <value>1</value>
-  </data>
-  <data name="partsViewAccessory3.Location" type="System.Drawing.Point, System.Drawing">
-    <value>0, 264</value>
-  </data>
-  <data name="&gt;&gt;menuItemLoadFromTemplate.Name" xml:space="preserve">
-    <value>menuItemLoadFromTemplate</value>
-  </data>
-  <data name="partsViewHead.Location" type="System.Drawing.Point, System.Drawing">
-    <value>0, 0</value>
-  </data>
-  <data name="flowLayoutPanel1.Size" type="System.Drawing.Size, System.Drawing">
-    <value>706, 29</value>
-  </data>
-  <data name="&gt;&gt;buttonOK.Name" xml:space="preserve">
-    <value>buttonOK</value>
-  </data>
-  <data name="&gt;&gt;partsViewAccessory2.Type" xml:space="preserve">
-    <value>CharaChipGen.GeneratorForm.CharaChipGeneratorPartsView, CharaChipGen, Version=3.0.0.0, Culture=neutral, PublicKeyToken=null</value>
-  </data>
-  <data name="partsViewHeadAccessory1.Location" type="System.Drawing.Point, System.Drawing">
-    <value>0, 308</value>
-  </data>
-  <data name="fileToolStripMenuItem.Size" type="System.Drawing.Size, System.Drawing">
-    <value>37, 20</value>
-  </data>
-  <data name="&gt;&gt;menuStrip1.ZOrder" xml:space="preserve">
-    <value>2</value>
-  </data>
-  <data name="&gt;&gt;partsViewHairStyle.ZOrder" xml:space="preserve">
-    <value>7</value>
-  </data>
-  <data name="panelCharaChipParts.Size" type="System.Drawing.Size, System.Drawing">
-    <value>354, 395</value>
+  <data name="partsViewHeadAccessory2.Size" type="System.Drawing.Size, System.Drawing">
+    <value>354, 44</value>
   </data>
   <assembly alias="mscorlib" name="mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089" />
   <data name="partsViewHeadAccessory2.TabIndex" type="System.Int32, mscorlib">
     <value>8</value>
   </data>
+  <data name="&gt;&gt;partsViewHeadAccessory2.Name" xml:space="preserve">
+    <value>partsViewHeadAccessory2</value>
+  </data>
+  <data name="&gt;&gt;partsViewHeadAccessory2.Type" xml:space="preserve">
+    <value>CharaChipGen.GeneratorForm.CharaChipGeneratorPartsView, CharaChipGen, Version=3.0.0.0, Culture=neutral, PublicKeyToken=null</value>
+  </data>
+  <data name="&gt;&gt;partsViewHeadAccessory2.Parent" xml:space="preserve">
+    <value>panelCharaChipParts</value>
+  </data>
   <data name="&gt;&gt;partsViewHeadAccessory2.ZOrder" xml:space="preserve">
     <value>0</value>
   </data>
-  <data name="buttonCancel.Size" type="System.Drawing.Size, System.Drawing">
-    <value>75, 23</value>
-  </data>
-  <data name="&gt;&gt;partsViewBody.Parent" xml:space="preserve">
-    <value>panelCharaChipParts</value>
-  </data>
-  <data name="menuStrip1.Size" type="System.Drawing.Size, System.Drawing">
-    <value>706, 24</value>
-  </data>
-  <assembly alias="System.Windows.Forms" name="System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089" />
-  <data name="partsViewHeadAccessory2.Dock" type="System.Windows.Forms.DockStyle, System.Windows.Forms">
+  <data name="partsViewHeadAccessory1.Dock" type="System.Windows.Forms.DockStyle, System.Windows.Forms">
     <value>Top</value>
   </data>
-  <data name="partsViewEye.Size" type="System.Drawing.Size, System.Drawing">
+  <data name="partsViewHeadAccessory1.Location" type="System.Drawing.Point, System.Drawing">
+    <value>0, 308</value>
+  </data>
+  <data name="partsViewHeadAccessory1.Size" type="System.Drawing.Size, System.Drawing">
     <value>354, 44</value>
   </data>
-  <data name="&gt;&gt;charaChipView.Name" xml:space="preserve">
-    <value>charaChipView</value>
-  </data>
-  <data name="partsViewAccessory3.TabIndex" type="System.Int32, mscorlib">
-    <value>6</value>
-  </data>
-  <data name="&gt;&gt;charaChipView.Parent" xml:space="preserve">
-    <value>tableLayoutPanel1</value>
-  </data>
-  <data name="&gt;&gt;menuStrip1.Type" xml:space="preserve">
-    <value>System.Windows.Forms.MenuStrip, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
-  </data>
-  <data name="$this.Text" xml:space="preserve">
-    <value>Chara Chip Setting</value>
-  </data>
-  <data name="&gt;&gt;fileToolStripMenuItem.Type" xml:space="preserve">
-    <value>System.Windows.Forms.ToolStripMenuItem, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
-  </data>
-  <data name="&gt;&gt;partsViewBody.ZOrder" xml:space="preserve">
-    <value>5</value>
-  </data>
-  <data name="&gt;&gt;flowLayoutPanel1.Parent" xml:space="preserve">
-    <value>$this</value>
-  </data>
-  <data name="&gt;&gt;menuStrip1.Parent" xml:space="preserve">
-    <value>$this</value>
-  </data>
-  <data name="partsViewBody.Size" type="System.Drawing.Size, System.Drawing">
-    <value>354, 44</value>
-  </data>
-  <data name="partsViewAccessory2.Location" type="System.Drawing.Point, System.Drawing">
-    <value>0, 220</value>
-  </data>
-  <data name="$this.AutoScaleDimensions" type="System.Drawing.SizeF, System.Drawing">
-    <value>6, 12</value>
-  </data>
-  <data name="menuItemLoadFromTemplate.Text" xml:space="preserve">
-    <value>Load from template</value>
+  <data name="partsViewHeadAccessory1.TabIndex" type="System.Int32, mscorlib">
+    <value>7</value>
   </data>
   <data name="&gt;&gt;partsViewHeadAccessory1.Name" xml:space="preserve">
     <value>partsViewHeadAccessory1</value>
   </data>
-  <data name="flowLayoutPanel1.TabIndex" type="System.Int32, mscorlib">
-    <value>1</value>
+  <data name="&gt;&gt;partsViewHeadAccessory1.Type" xml:space="preserve">
+    <value>CharaChipGen.GeneratorForm.CharaChipGeneratorPartsView, CharaChipGen, Version=3.0.0.0, Culture=neutral, PublicKeyToken=null</value>
   </data>
-  <data name="charaChipView.Dock" type="System.Windows.Forms.DockStyle, System.Windows.Forms">
-    <value>Fill</value>
-  </data>
-  <data name="tableLayoutPanel1.ColumnCount" type="System.Int32, mscorlib">
-    <value>2</value>
-  </data>
-  <data name="&gt;&gt;partsViewAccessory3.Parent" xml:space="preserve">
+  <data name="&gt;&gt;partsViewHeadAccessory1.Parent" xml:space="preserve">
     <value>panelCharaChipParts</value>
   </data>
-  <data name="&gt;&gt;buttonCancel.ZOrder" xml:space="preserve">
-    <value>0</value>
-  </data>
-  <data name="menuItemLoadFromTemplate.Size" type="System.Drawing.Size, System.Drawing">
-    <value>180, 22</value>
-  </data>
-  <data name="&gt;&gt;buttonCancel.Parent" xml:space="preserve">
-    <value>flowLayoutPanel1</value>
-  </data>
-  <data name="&gt;&gt;partsViewHeadAccessory2.Name" xml:space="preserve">
-    <value>partsViewHeadAccessory2</value>
-  </data>
-  <data name="&gt;&gt;flowLayoutPanel1.Name" xml:space="preserve">
-    <value>flowLayoutPanel1</value>
-  </data>
-  <data name="&gt;&gt;buttonCancel.Name" xml:space="preserve">
-    <value>buttonCancel</value>
+  <data name="&gt;&gt;partsViewHeadAccessory1.ZOrder" xml:space="preserve">
+    <value>1</value>
   </data>
   <data name="partsViewAccessory3.Dock" type="System.Windows.Forms.DockStyle, System.Windows.Forms">
     <value>Top</value>
   </data>
-  <data name="partsViewHead.TabIndex" type="System.Int32, mscorlib">
-    <value>0</value>
+  <data name="partsViewAccessory3.Location" type="System.Drawing.Point, System.Drawing">
+    <value>0, 264</value>
   </data>
-  <data name="buttonOK.TabIndex" type="System.Int32, mscorlib">
-    <value>0</value>
+  <data name="partsViewAccessory3.Size" type="System.Drawing.Size, System.Drawing">
+    <value>354, 44</value>
   </data>
-  <data name="&gt;&gt;partsViewHead.ZOrder" xml:space="preserve">
-    <value>8</value>
-  </data>
-  <data name="&gt;&gt;panelCharaChipParts.Type" xml:space="preserve">
-    <value>System.Windows.Forms.Panel, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
-  </data>
-  <data name="&gt;&gt;partsViewAccessory1.ZOrder" xml:space="preserve">
-    <value>4</value>
-  </data>
-  <data name="flowLayoutPanel1.Location" type="System.Drawing.Point, System.Drawing">
-    <value>0, 434</value>
-  </data>
-  <data name="&gt;&gt;partsViewEye.ZOrder" xml:space="preserve">
+  <data name="partsViewAccessory3.TabIndex" type="System.Int32, mscorlib">
     <value>6</value>
   </data>
   <data name="&gt;&gt;partsViewAccessory3.Name" xml:space="preserve">
     <value>partsViewAccessory3</value>
   </data>
-  <data name="&gt;&gt;$this.Name" xml:space="preserve">
-    <value>CharaChipGeneratorForm</value>
-  </data>
-  <data name="flowLayoutPanel1.Dock" type="System.Windows.Forms.DockStyle, System.Windows.Forms">
-    <value>Bottom</value>
-  </data>
-  <data name="&gt;&gt;partsViewHeadAccessory1.Parent" xml:space="preserve">
-    <value>panelCharaChipParts</value>
-  </data>
-  <data name="partsViewEye.Dock" type="System.Windows.Forms.DockStyle, System.Windows.Forms">
-    <value>Top</value>
-  </data>
-  <data name="menuItemImageBackground.Text" xml:space="preserve">
-    <value>Background color</value>
-  </data>
-  <data name="partsViewHairStyle.Location" type="System.Drawing.Point, System.Drawing">
-    <value>0, 44</value>
-  </data>
-  <data name="&gt;&gt;partsViewAccessory1.Type" xml:space="preserve">
-    <value>CharaChipGen.GeneratorForm.CharaChipGeneratorPartsView, CharaChipGen, Version=3.0.0.0, Culture=neutral, PublicKeyToken=null</value>
-  </data>
-  <data name="&gt;&gt;fileToolStripMenuItem.Name" xml:space="preserve">
-    <value>fileToolStripMenuItem</value>
-  </data>
-  <data name="buttonOK.Size" type="System.Drawing.Size, System.Drawing">
-    <value>75, 23</value>
-  </data>
-  <data name="&gt;&gt;partsViewHead.Name" xml:space="preserve">
-    <value>partsViewHead</value>
-  </data>
-  <data name="&gt;&gt;partsViewAccessory2.Name" xml:space="preserve">
-    <value>partsViewAccessory2</value>
-  </data>
-  <data name="&gt;&gt;tableLayoutPanel1.Type" xml:space="preserve">
-    <value>System.Windows.Forms.TableLayoutPanel, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
-  </data>
-  <data name="partsViewHeadAccessory2.Location" type="System.Drawing.Point, System.Drawing">
-    <value>0, 352</value>
-  </data>
-  <data name="&gt;&gt;partsViewAccessory2.Parent" xml:space="preserve">
-    <value>panelCharaChipParts</value>
-  </data>
-  <data name="&gt;&gt;tableLayoutPanel1.Parent" xml:space="preserve">
-    <value>$this</value>
-  </data>
-  <data name="&gt;&gt;menuItemImageBackground.Type" xml:space="preserve">
-    <value>System.Windows.Forms.ToolStripMenuItem, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
-  </data>
-  <data name="&gt;&gt;partsViewHeadAccessory2.Parent" xml:space="preserve">
-    <value>panelCharaChipParts</value>
-  </data>
-  <data name="buttonCancel.Location" type="System.Drawing.Point, System.Drawing">
-    <value>628, 3</value>
-  </data>
-  <data name="tableLayoutPanel1.LayoutSettings" type="System.Windows.Forms.TableLayoutSettings, System.Windows.Forms">
-    <value>&lt;?xml version="1.0" encoding="utf-16"?&gt;&lt;TableLayoutSettings&gt;&lt;Controls&gt;&lt;Control Name="charaChipView" Row="0" RowSpan="1" Column="0" ColumnSpan="1" /&gt;&lt;Control Name="panelCharaChipParts" Row="0" RowSpan="1" Column="1" ColumnSpan="1" /&gt;&lt;/Controls&gt;&lt;Columns Styles="Percent,100,Absolute,360" /&gt;&lt;Rows Styles="Percent,80" /&gt;&lt;/TableLayoutSettings&gt;</value>
-  </data>
-  <data name="charaChipView.Location" type="System.Drawing.Point, System.Drawing">
-    <value>3, 3</value>
-  </data>
-  <data name="&gt;&gt;flowLayoutPanel1.Type" xml:space="preserve">
-    <value>System.Windows.Forms.FlowLayoutPanel, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
-  </data>
-  <data name="menuStrip1.TabIndex" type="System.Int32, mscorlib">
-    <value>2</value>
-  </data>
-  <data name="partsViewHairStyle.Dock" type="System.Windows.Forms.DockStyle, System.Windows.Forms">
-    <value>Top</value>
-  </data>
-  <data name="partsViewAccessory2.Dock" type="System.Windows.Forms.DockStyle, System.Windows.Forms">
-    <value>Top</value>
-  </data>
-  <data name="&gt;&gt;panelCharaChipParts.Name" xml:space="preserve">
-    <value>panelCharaChipParts</value>
-  </data>
-  <data name="&gt;&gt;partsViewEye.Type" xml:space="preserve">
-    <value>CharaChipGen.GeneratorForm.CharaChipGeneratorPartsView, CharaChipGen, Version=3.0.0.0, Culture=neutral, PublicKeyToken=null</value>
-  </data>
-  <data name="partsViewHead.Size" type="System.Drawing.Size, System.Drawing">
-    <value>354, 44</value>
-  </data>
-  <data name="flowLayoutPanel1.AutoSize" type="System.Boolean, mscorlib">
-    <value>True</value>
-  </data>
-  <data name="&gt;&gt;charaChipView.Type" xml:space="preserve">
-    <value>CharaChipGen.GeneratorForm.CharaChipView, CharaChipGen, Version=3.0.0.0, Culture=neutral, PublicKeyToken=null</value>
-  </data>
-  <data name="&gt;&gt;partsViewHairStyle.Name" xml:space="preserve">
-    <value>partsViewHairStyle</value>
-  </data>
-  <data name="partsViewAccessory1.Dock" type="System.Windows.Forms.DockStyle, System.Windows.Forms">
-    <value>Top</value>
-  </data>
-  <data name="menuItemSaveAsTemplate.Text" xml:space="preserve">
-    <value>Save as template</value>
-  </data>
-  <data name="&gt;&gt;partsViewAccessory2.ZOrder" xml:space="preserve">
-    <value>3</value>
-  </data>
-  <data name="&gt;&gt;partsViewHairStyle.Parent" xml:space="preserve">
-    <value>panelCharaChipParts</value>
-  </data>
-  <data name="partsViewBody.Location" type="System.Drawing.Point, System.Drawing">
-    <value>0, 132</value>
-  </data>
-  <data name="partsViewHeadAccessory1.Size" type="System.Drawing.Size, System.Drawing">
-    <value>354, 44</value>
-  </data>
-  <data name="partsViewAccessory1.Size" type="System.Drawing.Size, System.Drawing">
-    <value>354, 44</value>
-  </data>
-  <data name="&gt;&gt;charaChipView.ZOrder" xml:space="preserve">
-    <value>0</value>
-  </data>
-  <data name="partsViewAccessory3.Size" type="System.Drawing.Size, System.Drawing">
-    <value>354, 44</value>
-  </data>
-  <data name="partsViewEye.Location" type="System.Drawing.Point, System.Drawing">
-    <value>0, 88</value>
-  </data>
-  <data name="&gt;&gt;buttonOK.ZOrder" xml:space="preserve">
-    <value>1</value>
-  </data>
-  <data name="&gt;&gt;flowLayoutPanel1.ZOrder" xml:space="preserve">
-    <value>1</value>
-  </data>
-  <data name="panelCharaChipParts.Location" type="System.Drawing.Point, System.Drawing">
-    <value>349, 3</value>
-  </data>
-  <data name="partsViewHeadAccessory1.Dock" type="System.Windows.Forms.DockStyle, System.Windows.Forms">
-    <value>Top</value>
-  </data>
-  <data name="partsViewHairStyle.TabIndex" type="System.Int32, mscorlib">
-    <value>1</value>
-  </data>
-  <data name="menuItemImageBackground.Size" type="System.Drawing.Size, System.Drawing">
-    <value>180, 22</value>
-  </data>
-  <data name="fileToolStripMenuItem.Text" xml:space="preserve">
-    <value>File</value>
-  </data>
-  <data name="flowLayoutPanel1.FlowDirection" type="System.Windows.Forms.FlowDirection, System.Windows.Forms">
-    <value>RightToLeft</value>
-  </data>
-  <data name="&gt;&gt;partsViewBody.Type" xml:space="preserve">
-    <value>CharaChipGen.GeneratorForm.CharaChipGeneratorPartsView, CharaChipGen, Version=3.0.0.0, Culture=neutral, PublicKeyToken=null</value>
-  </data>
-  <data name="partsViewAccessory1.TabIndex" type="System.Int32, mscorlib">
-    <value>4</value>
-  </data>
-  <data name="&gt;&gt;buttonCancel.Type" xml:space="preserve">
-    <value>System.Windows.Forms.Button, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
-  </data>
-  <data name="&gt;&gt;buttonOK.Type" xml:space="preserve">
-    <value>System.Windows.Forms.Button, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
-  </data>
-  <data name="&gt;&gt;$this.Type" xml:space="preserve">
-    <value>System.Windows.Forms.Form, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
-  </data>
-  <data name="&gt;&gt;buttonOK.Parent" xml:space="preserve">
-    <value>flowLayoutPanel1</value>
-  </data>
-  <data name="&gt;&gt;partsViewHead.Parent" xml:space="preserve">
-    <value>panelCharaChipParts</value>
-  </data>
-  <data name="&gt;&gt;menuItemLoadFromTemplate.Type" xml:space="preserve">
-    <value>System.Windows.Forms.ToolStripMenuItem, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
-  </data>
-  <data name="&gt;&gt;panelCharaChipParts.ZOrder" xml:space="preserve">
-    <value>1</value>
-  </data>
-  <data name="&gt;&gt;tableLayoutPanel1.ZOrder" xml:space="preserve">
-    <value>0</value>
-  </data>
-  <data name="tableLayoutPanel1.Size" type="System.Drawing.Size, System.Drawing">
-    <value>706, 410</value>
-  </data>
-  <data name="buttonCancel.TabIndex" type="System.Int32, mscorlib">
-    <value>1</value>
-  </data>
-  <data name="tableLayoutPanel1.Dock" type="System.Windows.Forms.DockStyle, System.Windows.Forms">
-    <value>Fill</value>
-  </data>
-  <data name="tableLayoutPanel1.TabIndex" type="System.Int32, mscorlib">
-    <value>0</value>
-  </data>
-  <data name="charaChipView.TabIndex" type="System.Int32, mscorlib">
-    <value>0</value>
-  </data>
-  <data name="&gt;&gt;menuItemSaveAsTemplate.Type" xml:space="preserve">
-    <value>System.Windows.Forms.ToolStripMenuItem, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
-  </data>
-  <data name="partsViewBody.TabIndex" type="System.Int32, mscorlib">
-    <value>3</value>
-  </data>
-  <data name="partsViewBody.Dock" type="System.Windows.Forms.DockStyle, System.Windows.Forms">
-    <value>Top</value>
-  </data>
-  <data name="menuStrip1.Location" type="System.Drawing.Point, System.Drawing">
-    <value>0, 0</value>
-  </data>
-  <data name="buttonCancel.Text" xml:space="preserve">
-    <value>Cancel</value>
-  </data>
-  <data name="menuItemSaveAsTemplate.Size" type="System.Drawing.Size, System.Drawing">
-    <value>180, 22</value>
-  </data>
-  <data name="&gt;&gt;partsViewBody.Name" xml:space="preserve">
-    <value>partsViewBody</value>
-  </data>
-  <data name="partsViewHead.Dock" type="System.Windows.Forms.DockStyle, System.Windows.Forms">
-    <value>Top</value>
-  </data>
-  <data name="partsViewEye.TabIndex" type="System.Int32, mscorlib">
-    <value>2</value>
-  </data>
   <data name="&gt;&gt;partsViewAccessory3.Type" xml:space="preserve">
     <value>CharaChipGen.GeneratorForm.CharaChipGeneratorPartsView, CharaChipGen, Version=3.0.0.0, Culture=neutral, PublicKeyToken=null</value>
   </data>
-  <data name="&gt;&gt;tableLayoutPanel1.Name" xml:space="preserve">
-    <value>tableLayoutPanel1</value>
-  </data>
-  <data name="&gt;&gt;partsViewAccessory1.Name" xml:space="preserve">
-    <value>partsViewAccessory1</value>
-  </data>
-  <data name="&gt;&gt;menuItemOption.Type" xml:space="preserve">
-    <value>System.Windows.Forms.ToolStripMenuItem, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
-  </data>
-  <data name="menuStrip1.Text" xml:space="preserve">
-    <value>menuStrip1</value>
-  </data>
-  <data name="partsViewHeadAccessory1.TabIndex" type="System.Int32, mscorlib">
-    <value>7</value>
-  </data>
-  <data name="&gt;&gt;partsViewAccessory1.Parent" xml:space="preserve">
+  <data name="&gt;&gt;partsViewAccessory3.Parent" xml:space="preserve">
     <value>panelCharaChipParts</value>
-  </data>
-  <data name="&gt;&gt;panelCharaChipParts.Parent" xml:space="preserve">
-    <value>tableLayoutPanel1</value>
-  </data>
-  <data name="$this.ClientSize" type="System.Drawing.Size, System.Drawing">
-    <value>706, 463</value>
-  </data>
-  <data name="menuItemOption.Text" xml:space="preserve">
-    <value>Settings</value>
-  </data>
-  <data name="charaChipView.Size" type="System.Drawing.Size, System.Drawing">
-    <value>340, 404</value>
-  </data>
-  <data name="&gt;&gt;timer.Name" xml:space="preserve">
-    <value>timer</value>
-  </data>
-  <data name="&gt;&gt;partsViewHeadAccessory1.Type" xml:space="preserve">
-    <value>CharaChipGen.GeneratorForm.CharaChipGeneratorPartsView, CharaChipGen, Version=3.0.0.0, Culture=neutral, PublicKeyToken=null</value>
-  </data>
-  <data name="partsViewAccessory2.Size" type="System.Drawing.Size, System.Drawing">
-    <value>354, 44</value>
-  </data>
-  <data name="tableLayoutPanel1.RowCount" type="System.Int32, mscorlib">
-    <value>1</value>
-  </data>
-  <data name="tableLayoutPanel1.Location" type="System.Drawing.Point, System.Drawing">
-    <value>0, 24</value>
   </data>
   <data name="&gt;&gt;partsViewAccessory3.ZOrder" xml:space="preserve">
     <value>2</value>
   </data>
-  <data name="partsViewHeadAccessory2.Size" type="System.Drawing.Size, System.Drawing">
-    <value>354, 44</value>
+  <data name="partsViewAccessory2.Dock" type="System.Windows.Forms.DockStyle, System.Windows.Forms">
+    <value>Top</value>
   </data>
-  <data name="partsViewHairStyle.Size" type="System.Drawing.Size, System.Drawing">
-    <value>354, 44</value>
+  <data name="partsViewAccessory2.Location" type="System.Drawing.Point, System.Drawing">
+    <value>0, 220</value>
   </data>
-  <data name="partsViewAccessory1.Location" type="System.Drawing.Point, System.Drawing">
-    <value>0, 176</value>
+  <data name="partsViewAccessory2.Size" type="System.Drawing.Size, System.Drawing">
+    <value>354, 44</value>
   </data>
   <data name="partsViewAccessory2.TabIndex" type="System.Int32, mscorlib">
     <value>5</value>
   </data>
-  <data name="&gt;&gt;menuStrip1.Name" xml:space="preserve">
-    <value>menuStrip1</value>
+  <data name="&gt;&gt;partsViewAccessory2.Name" xml:space="preserve">
+    <value>partsViewAccessory2</value>
   </data>
-  <data name="&gt;&gt;partsViewHeadAccessory2.Type" xml:space="preserve">
+  <data name="&gt;&gt;partsViewAccessory2.Type" xml:space="preserve">
     <value>CharaChipGen.GeneratorForm.CharaChipGeneratorPartsView, CharaChipGen, Version=3.0.0.0, Culture=neutral, PublicKeyToken=null</value>
   </data>
-  <data name="&gt;&gt;partsViewHairStyle.Type" xml:space="preserve">
-    <value>CharaChipGen.GeneratorForm.CharaChipGeneratorPartsView, CharaChipGen, Version=3.0.0.0, Culture=neutral, PublicKeyToken=null</value>
-  </data>
-  <data name="buttonOK.Text" xml:space="preserve">
-    <value>OK</value>
-  </data>
-  <data name="&gt;&gt;timer.Type" xml:space="preserve">
-    <value>System.Windows.Forms.Timer, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
-  </data>
-  <data name="&gt;&gt;menuItemOption.Name" xml:space="preserve">
-    <value>menuItemOption</value>
-  </data>
-  <data name="&gt;&gt;partsViewHead.Type" xml:space="preserve">
-    <value>CharaChipGen.GeneratorForm.CharaChipGeneratorPartsView, CharaChipGen, Version=3.0.0.0, Culture=neutral, PublicKeyToken=null</value>
-  </data>
-  <data name="&gt;&gt;menuItemImageBackground.Name" xml:space="preserve">
-    <value>menuItemImageBackground</value>
-  </data>
-  <data name="panelCharaChipParts.TabIndex" type="System.Int32, mscorlib">
-    <value>10</value>
-  </data>
-  <data name="&gt;&gt;partsViewEye.Parent" xml:space="preserve">
+  <data name="&gt;&gt;partsViewAccessory2.Parent" xml:space="preserve">
     <value>panelCharaChipParts</value>
+  </data>
+  <data name="&gt;&gt;partsViewAccessory2.ZOrder" xml:space="preserve">
+    <value>3</value>
+  </data>
+  <data name="partsViewAccessory1.Dock" type="System.Windows.Forms.DockStyle, System.Windows.Forms">
+    <value>Top</value>
+  </data>
+  <data name="partsViewAccessory1.Location" type="System.Drawing.Point, System.Drawing">
+    <value>0, 176</value>
+  </data>
+  <data name="partsViewAccessory1.Size" type="System.Drawing.Size, System.Drawing">
+    <value>354, 44</value>
+  </data>
+  <data name="partsViewAccessory1.TabIndex" type="System.Int32, mscorlib">
+    <value>4</value>
+  </data>
+  <data name="&gt;&gt;partsViewAccessory1.Name" xml:space="preserve">
+    <value>partsViewAccessory1</value>
+  </data>
+  <data name="&gt;&gt;partsViewAccessory1.Type" xml:space="preserve">
+    <value>CharaChipGen.GeneratorForm.CharaChipGeneratorPartsView, CharaChipGen, Version=3.0.0.0, Culture=neutral, PublicKeyToken=null</value>
+  </data>
+  <data name="&gt;&gt;partsViewAccessory1.Parent" xml:space="preserve">
+    <value>panelCharaChipParts</value>
+  </data>
+  <data name="&gt;&gt;partsViewAccessory1.ZOrder" xml:space="preserve">
+    <value>4</value>
+  </data>
+  <data name="partsViewBody.Dock" type="System.Windows.Forms.DockStyle, System.Windows.Forms">
+    <value>Top</value>
+  </data>
+  <data name="partsViewBody.Location" type="System.Drawing.Point, System.Drawing">
+    <value>0, 132</value>
+  </data>
+  <data name="partsViewBody.Size" type="System.Drawing.Size, System.Drawing">
+    <value>354, 44</value>
+  </data>
+  <data name="partsViewBody.TabIndex" type="System.Int32, mscorlib">
+    <value>3</value>
+  </data>
+  <data name="&gt;&gt;partsViewBody.Name" xml:space="preserve">
+    <value>partsViewBody</value>
+  </data>
+  <data name="&gt;&gt;partsViewBody.Type" xml:space="preserve">
+    <value>CharaChipGen.GeneratorForm.CharaChipGeneratorPartsView, CharaChipGen, Version=3.0.0.0, Culture=neutral, PublicKeyToken=null</value>
+  </data>
+  <data name="&gt;&gt;partsViewBody.Parent" xml:space="preserve">
+    <value>panelCharaChipParts</value>
+  </data>
+  <data name="&gt;&gt;partsViewBody.ZOrder" xml:space="preserve">
+    <value>5</value>
+  </data>
+  <data name="partsViewEye.Dock" type="System.Windows.Forms.DockStyle, System.Windows.Forms">
+    <value>Top</value>
+  </data>
+  <data name="partsViewEye.Location" type="System.Drawing.Point, System.Drawing">
+    <value>0, 88</value>
+  </data>
+  <data name="partsViewEye.Size" type="System.Drawing.Size, System.Drawing">
+    <value>354, 44</value>
+  </data>
+  <data name="partsViewEye.TabIndex" type="System.Int32, mscorlib">
+    <value>2</value>
   </data>
   <data name="&gt;&gt;partsViewEye.Name" xml:space="preserve">
     <value>partsViewEye</value>
   </data>
-  <metadata name="$this.Language" type="System.Globalization.CultureInfo, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089">
-    <value>ja-JP</value>
+  <data name="&gt;&gt;partsViewEye.Type" xml:space="preserve">
+    <value>CharaChipGen.GeneratorForm.CharaChipGeneratorPartsView, CharaChipGen, Version=3.0.0.0, Culture=neutral, PublicKeyToken=null</value>
+  </data>
+  <data name="&gt;&gt;partsViewEye.Parent" xml:space="preserve">
+    <value>panelCharaChipParts</value>
+  </data>
+  <data name="&gt;&gt;partsViewEye.ZOrder" xml:space="preserve">
+    <value>6</value>
+  </data>
+  <data name="partsViewHairStyle.Dock" type="System.Windows.Forms.DockStyle, System.Windows.Forms">
+    <value>Top</value>
+  </data>
+  <data name="partsViewHairStyle.Location" type="System.Drawing.Point, System.Drawing">
+    <value>0, 44</value>
+  </data>
+  <data name="partsViewHairStyle.Size" type="System.Drawing.Size, System.Drawing">
+    <value>354, 44</value>
+  </data>
+  <data name="partsViewHairStyle.TabIndex" type="System.Int32, mscorlib">
+    <value>1</value>
+  </data>
+  <data name="&gt;&gt;partsViewHairStyle.Name" xml:space="preserve">
+    <value>partsViewHairStyle</value>
+  </data>
+  <data name="&gt;&gt;partsViewHairStyle.Type" xml:space="preserve">
+    <value>CharaChipGen.GeneratorForm.CharaChipGeneratorPartsView, CharaChipGen, Version=3.0.0.0, Culture=neutral, PublicKeyToken=null</value>
+  </data>
+  <data name="&gt;&gt;partsViewHairStyle.Parent" xml:space="preserve">
+    <value>panelCharaChipParts</value>
+  </data>
+  <data name="&gt;&gt;partsViewHairStyle.ZOrder" xml:space="preserve">
+    <value>7</value>
+  </data>
+  <data name="partsViewHead.Dock" type="System.Windows.Forms.DockStyle, System.Windows.Forms">
+    <value>Top</value>
+  </data>
+  <data name="partsViewHead.Location" type="System.Drawing.Point, System.Drawing">
+    <value>0, 0</value>
+  </data>
+  <data name="partsViewHead.Size" type="System.Drawing.Size, System.Drawing">
+    <value>354, 44</value>
+  </data>
+  <data name="partsViewHead.TabIndex" type="System.Int32, mscorlib">
+    <value>0</value>
+  </data>
+  <data name="&gt;&gt;partsViewHead.Name" xml:space="preserve">
+    <value>partsViewHead</value>
+  </data>
+  <data name="&gt;&gt;partsViewHead.Type" xml:space="preserve">
+    <value>CharaChipGen.GeneratorForm.CharaChipGeneratorPartsView, CharaChipGen, Version=3.0.0.0, Culture=neutral, PublicKeyToken=null</value>
+  </data>
+  <data name="&gt;&gt;partsViewHead.Parent" xml:space="preserve">
+    <value>panelCharaChipParts</value>
+  </data>
+  <data name="&gt;&gt;partsViewHead.ZOrder" xml:space="preserve">
+    <value>8</value>
+  </data>
+  <data name="panelCharaChipParts.Location" type="System.Drawing.Point, System.Drawing">
+    <value>349, 3</value>
+  </data>
+  <data name="panelCharaChipParts.Size" type="System.Drawing.Size, System.Drawing">
+    <value>354, 395</value>
+  </data>
+  <data name="panelCharaChipParts.TabIndex" type="System.Int32, mscorlib">
+    <value>10</value>
+  </data>
+  <data name="&gt;&gt;panelCharaChipParts.Name" xml:space="preserve">
+    <value>panelCharaChipParts</value>
+  </data>
+  <data name="&gt;&gt;panelCharaChipParts.Type" xml:space="preserve">
+    <value>System.Windows.Forms.Panel, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="&gt;&gt;panelCharaChipParts.Parent" xml:space="preserve">
+    <value>tableLayoutPanel1</value>
+  </data>
+  <data name="&gt;&gt;panelCharaChipParts.ZOrder" xml:space="preserve">
+    <value>1</value>
+  </data>
+  <data name="buttonOK.Location" type="System.Drawing.Point, System.Drawing">
+    <value>547, 3</value>
+  </data>
+  <data name="buttonOK.Size" type="System.Drawing.Size, System.Drawing">
+    <value>75, 23</value>
+  </data>
+  <data name="buttonOK.TabIndex" type="System.Int32, mscorlib">
+    <value>0</value>
+  </data>
+  <data name="buttonOK.Text" xml:space="preserve">
+    <value>OK</value>
+  </data>
+  <data name="&gt;&gt;buttonOK.Name" xml:space="preserve">
+    <value>buttonOK</value>
+  </data>
+  <data name="&gt;&gt;buttonOK.Type" xml:space="preserve">
+    <value>System.Windows.Forms.Button, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="&gt;&gt;buttonOK.Parent" xml:space="preserve">
+    <value>flowLayoutPanel1</value>
+  </data>
+  <data name="&gt;&gt;buttonOK.ZOrder" xml:space="preserve">
+    <value>1</value>
+  </data>
+  <data name="buttonCancel.Location" type="System.Drawing.Point, System.Drawing">
+    <value>628, 3</value>
+  </data>
+  <data name="buttonCancel.Size" type="System.Drawing.Size, System.Drawing">
+    <value>75, 23</value>
+  </data>
+  <data name="buttonCancel.TabIndex" type="System.Int32, mscorlib">
+    <value>1</value>
+  </data>
+  <data name="buttonCancel.Text" xml:space="preserve">
+    <value>Cancel</value>
+  </data>
+  <data name="&gt;&gt;buttonCancel.Name" xml:space="preserve">
+    <value>buttonCancel</value>
+  </data>
+  <data name="&gt;&gt;buttonCancel.Type" xml:space="preserve">
+    <value>System.Windows.Forms.Button, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="&gt;&gt;buttonCancel.Parent" xml:space="preserve">
+    <value>flowLayoutPanel1</value>
+  </data>
+  <data name="&gt;&gt;buttonCancel.ZOrder" xml:space="preserve">
+    <value>0</value>
+  </data>
+  <metadata name="timer.TrayLocation" type="System.Drawing.Point, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a">
+    <value>17, 17</value>
   </metadata>
+  <data name="flowLayoutPanel1.AutoSize" type="System.Boolean, mscorlib">
+    <value>True</value>
+  </data>
+  <data name="flowLayoutPanel1.Dock" type="System.Windows.Forms.DockStyle, System.Windows.Forms">
+    <value>Bottom</value>
+  </data>
+  <data name="flowLayoutPanel1.FlowDirection" type="System.Windows.Forms.FlowDirection, System.Windows.Forms">
+    <value>RightToLeft</value>
+  </data>
+  <data name="flowLayoutPanel1.Location" type="System.Drawing.Point, System.Drawing">
+    <value>0, 434</value>
+  </data>
+  <data name="flowLayoutPanel1.Size" type="System.Drawing.Size, System.Drawing">
+    <value>706, 29</value>
+  </data>
+  <data name="flowLayoutPanel1.TabIndex" type="System.Int32, mscorlib">
+    <value>1</value>
+  </data>
+  <data name="&gt;&gt;flowLayoutPanel1.Name" xml:space="preserve">
+    <value>flowLayoutPanel1</value>
+  </data>
+  <data name="&gt;&gt;flowLayoutPanel1.Type" xml:space="preserve">
+    <value>System.Windows.Forms.FlowLayoutPanel, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="&gt;&gt;flowLayoutPanel1.Parent" xml:space="preserve">
+    <value>$this</value>
+  </data>
+  <data name="&gt;&gt;flowLayoutPanel1.ZOrder" xml:space="preserve">
+    <value>1</value>
+  </data>
+  <data name="tableLayoutPanel1.ColumnCount" type="System.Int32, mscorlib">
+    <value>2</value>
+  </data>
+  <data name="charaChipView.Dock" type="System.Windows.Forms.DockStyle, System.Windows.Forms">
+    <value>Fill</value>
+  </data>
+  <data name="charaChipView.Location" type="System.Drawing.Point, System.Drawing">
+    <value>3, 3</value>
+  </data>
+  <data name="charaChipView.Size" type="System.Drawing.Size, System.Drawing">
+    <value>340, 404</value>
+  </data>
+  <data name="charaChipView.TabIndex" type="System.Int32, mscorlib">
+    <value>0</value>
+  </data>
+  <data name="&gt;&gt;charaChipView.Name" xml:space="preserve">
+    <value>charaChipView</value>
+  </data>
+  <data name="&gt;&gt;charaChipView.Type" xml:space="preserve">
+    <value>CharaChipGen.GeneratorForm.CharaChipView, CharaChipGen, Version=3.0.0.0, Culture=neutral, PublicKeyToken=null</value>
+  </data>
+  <data name="&gt;&gt;charaChipView.Parent" xml:space="preserve">
+    <value>tableLayoutPanel1</value>
+  </data>
+  <data name="&gt;&gt;charaChipView.ZOrder" xml:space="preserve">
+    <value>0</value>
+  </data>
+  <data name="tableLayoutPanel1.Dock" type="System.Windows.Forms.DockStyle, System.Windows.Forms">
+    <value>Fill</value>
+  </data>
+  <data name="tableLayoutPanel1.Location" type="System.Drawing.Point, System.Drawing">
+    <value>0, 24</value>
+  </data>
+  <data name="tableLayoutPanel1.RowCount" type="System.Int32, mscorlib">
+    <value>1</value>
+  </data>
+  <data name="tableLayoutPanel1.Size" type="System.Drawing.Size, System.Drawing">
+    <value>706, 410</value>
+  </data>
+  <data name="tableLayoutPanel1.TabIndex" type="System.Int32, mscorlib">
+    <value>0</value>
+  </data>
+  <data name="&gt;&gt;tableLayoutPanel1.Name" xml:space="preserve">
+    <value>tableLayoutPanel1</value>
+  </data>
+  <data name="&gt;&gt;tableLayoutPanel1.Type" xml:space="preserve">
+    <value>System.Windows.Forms.TableLayoutPanel, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="&gt;&gt;tableLayoutPanel1.Parent" xml:space="preserve">
+    <value>$this</value>
+  </data>
+  <data name="&gt;&gt;tableLayoutPanel1.ZOrder" xml:space="preserve">
+    <value>0</value>
+  </data>
+  <data name="tableLayoutPanel1.LayoutSettings" type="System.Windows.Forms.TableLayoutSettings, System.Windows.Forms">
+    <value>&lt;?xml version="1.0" encoding="utf-16"?&gt;&lt;TableLayoutSettings&gt;&lt;Controls&gt;&lt;Control Name="charaChipView" Row="0" RowSpan="1" Column="0" ColumnSpan="1" /&gt;&lt;Control Name="panelCharaChipParts" Row="0" RowSpan="1" Column="1" ColumnSpan="1" /&gt;&lt;/Controls&gt;&lt;Columns Styles="Percent,100,Absolute,360" /&gt;&lt;Rows Styles="Percent,80" /&gt;&lt;/TableLayoutSettings&gt;</value>
+  </data>
+  <metadata name="menuStrip1.TrayLocation" type="System.Drawing.Point, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a">
+    <value>97, 17</value>
+  </metadata>
+  <data name="menuItemSaveAsTemplate.Size" type="System.Drawing.Size, System.Drawing">
+    <value>177, 22</value>
+  </data>
+  <data name="menuItemSaveAsTemplate.Text" xml:space="preserve">
+    <value>Save as template</value>
+  </data>
+  <data name="menuItemLoadFromTemplate.Size" type="System.Drawing.Size, System.Drawing">
+    <value>177, 22</value>
+  </data>
+  <data name="menuItemLoadFromTemplate.Text" xml:space="preserve">
+    <value>Load from template</value>
+  </data>
+  <data name="menuItemExport.Size" type="System.Drawing.Size, System.Drawing">
+    <value>177, 22</value>
+  </data>
+  <data name="menuItemExport.Text" xml:space="preserve">
+    <value>Export</value>
+  </data>
+  <data name="fileToolStripMenuItem.Size" type="System.Drawing.Size, System.Drawing">
+    <value>37, 20</value>
+  </data>
+  <data name="fileToolStripMenuItem.Text" xml:space="preserve">
+    <value>File</value>
+  </data>
+  <data name="menuItemImageBackground.Size" type="System.Drawing.Size, System.Drawing">
+    <value>168, 22</value>
+  </data>
+  <data name="menuItemImageBackground.Text" xml:space="preserve">
+    <value>Background color</value>
+  </data>
+  <data name="menuItemOption.Size" type="System.Drawing.Size, System.Drawing">
+    <value>61, 20</value>
+  </data>
+  <data name="menuItemOption.Text" xml:space="preserve">
+    <value>Settings</value>
+  </data>
+  <data name="menuStrip1.Location" type="System.Drawing.Point, System.Drawing">
+    <value>0, 0</value>
+  </data>
+  <data name="menuStrip1.Size" type="System.Drawing.Size, System.Drawing">
+    <value>706, 24</value>
+  </data>
+  <data name="menuStrip1.TabIndex" type="System.Int32, mscorlib">
+    <value>2</value>
+  </data>
+  <data name="menuStrip1.Text" xml:space="preserve">
+    <value>menuStrip1</value>
+  </data>
+  <data name="&gt;&gt;menuStrip1.Name" xml:space="preserve">
+    <value>menuStrip1</value>
+  </data>
+  <data name="&gt;&gt;menuStrip1.Type" xml:space="preserve">
+    <value>System.Windows.Forms.MenuStrip, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="&gt;&gt;menuStrip1.Parent" xml:space="preserve">
+    <value>$this</value>
+  </data>
+  <data name="&gt;&gt;menuStrip1.ZOrder" xml:space="preserve">
+    <value>2</value>
+  </data>
+  <metadata name="saveFileDialog.TrayLocation" type="System.Drawing.Point, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a">
+    <value>212, 17</value>
+  </metadata>
+  <data name="saveFileDialog.Filter" xml:space="preserve">
+    <value>PNG File(*.png)|*.png</value>
+  </data>
+  <data name="saveFileDialog.Title" xml:space="preserve">
+    <value>Export</value>
+  </data>
   <metadata name="$this.Localizable" type="System.Boolean, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089">
     <value>True</value>
   </metadata>
   <metadata name="$this.TrayHeight" type="System.Int32, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089">
     <value>35</value>
   </metadata>
-  <metadata name="timer.TrayLocation" type="System.Drawing.Point, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a">
-    <value>17, 17</value>
-  </metadata>
-  <metadata name="menuStrip1.TrayLocation" type="System.Drawing.Point, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a">
-    <value>97, 17</value>
-  </metadata>
+  <data name="$this.AutoScaleDimensions" type="System.Drawing.SizeF, System.Drawing">
+    <value>6, 12</value>
+  </data>
+  <data name="$this.ClientSize" type="System.Drawing.Size, System.Drawing">
+    <value>706, 463</value>
+  </data>
+  <data name="$this.Text" xml:space="preserve">
+    <value>Chara Chip Setting</value>
+  </data>
+  <data name="&gt;&gt;timer.Name" xml:space="preserve">
+    <value>timer</value>
+  </data>
+  <data name="&gt;&gt;timer.Type" xml:space="preserve">
+    <value>System.Windows.Forms.Timer, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="&gt;&gt;fileToolStripMenuItem.Name" xml:space="preserve">
+    <value>fileToolStripMenuItem</value>
+  </data>
+  <data name="&gt;&gt;fileToolStripMenuItem.Type" xml:space="preserve">
+    <value>System.Windows.Forms.ToolStripMenuItem, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="&gt;&gt;menuItemSaveAsTemplate.Name" xml:space="preserve">
+    <value>menuItemSaveAsTemplate</value>
+  </data>
+  <data name="&gt;&gt;menuItemSaveAsTemplate.Type" xml:space="preserve">
+    <value>System.Windows.Forms.ToolStripMenuItem, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="&gt;&gt;menuItemLoadFromTemplate.Name" xml:space="preserve">
+    <value>menuItemLoadFromTemplate</value>
+  </data>
+  <data name="&gt;&gt;menuItemLoadFromTemplate.Type" xml:space="preserve">
+    <value>System.Windows.Forms.ToolStripMenuItem, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="&gt;&gt;menuItemExport.Name" xml:space="preserve">
+    <value>menuItemExport</value>
+  </data>
+  <data name="&gt;&gt;menuItemExport.Type" xml:space="preserve">
+    <value>System.Windows.Forms.ToolStripMenuItem, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="&gt;&gt;menuItemOption.Name" xml:space="preserve">
+    <value>menuItemOption</value>
+  </data>
+  <data name="&gt;&gt;menuItemOption.Type" xml:space="preserve">
+    <value>System.Windows.Forms.ToolStripMenuItem, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="&gt;&gt;menuItemImageBackground.Name" xml:space="preserve">
+    <value>menuItemImageBackground</value>
+  </data>
+  <data name="&gt;&gt;menuItemImageBackground.Type" xml:space="preserve">
+    <value>System.Windows.Forms.ToolStripMenuItem, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="&gt;&gt;saveFileDialog.Name" xml:space="preserve">
+    <value>saveFileDialog</value>
+  </data>
+  <data name="&gt;&gt;saveFileDialog.Type" xml:space="preserve">
+    <value>System.Windows.Forms.SaveFileDialog, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="&gt;&gt;$this.Name" xml:space="preserve">
+    <value>CharaChipGeneratorForm</value>
+  </data>
+  <data name="&gt;&gt;$this.Type" xml:space="preserve">
+    <value>System.Windows.Forms.Form, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
 </root>

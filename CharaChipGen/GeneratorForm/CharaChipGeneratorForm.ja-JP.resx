@@ -121,6 +121,12 @@
     <value>キャンセル</value>
   </data>
   <assembly alias="System.Drawing" name="System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a" />
+  <data name="fileToolStripMenuItem.Size" type="System.Drawing.Size, System.Drawing">
+    <value>53, 20</value>
+  </data>
+  <data name="fileToolStripMenuItem.Text" xml:space="preserve">
+    <value>ファイル</value>
+  </data>
   <data name="menuItemSaveAsTemplate.Size" type="System.Drawing.Size, System.Drawing">
     <value>191, 22</value>
   </data>
@@ -133,20 +139,29 @@
   <data name="menuItemLoadFromTemplate.Text" xml:space="preserve">
     <value>テンプレートから読み込み</value>
   </data>
-  <data name="fileToolStripMenuItem.Size" type="System.Drawing.Size, System.Drawing">
-    <value>53, 20</value>
+  <data name="menuItemExport.Size" type="System.Drawing.Size, System.Drawing">
+    <value>191, 22</value>
   </data>
-  <data name="fileToolStripMenuItem.Text" xml:space="preserve">
-    <value>ファイル</value>
-  </data>
-  <data name="menuItemImageBackground.Text" xml:space="preserve">
-    <value>背景色</value>
+  <data name="menuItemExport.Text" xml:space="preserve">
+    <value>エクスポート</value>
   </data>
   <data name="menuItemOption.Size" type="System.Drawing.Size, System.Drawing">
     <value>43, 20</value>
   </data>
   <data name="menuItemOption.Text" xml:space="preserve">
     <value>設定</value>
+  </data>
+  <data name="menuItemImageBackground.Size" type="System.Drawing.Size, System.Drawing">
+    <value>110, 22</value>
+  </data>
+  <data name="menuItemImageBackground.Text" xml:space="preserve">
+    <value>背景色</value>
+  </data>
+  <data name="saveFileDialog.Filter" xml:space="preserve">
+    <value>PNG ファイル(*.png)|*.png</value>
+  </data>
+  <data name="saveFileDialog.Title" xml:space="preserve">
+    <value>エクスポート</value>
   </data>
   <data name="$this.Text" xml:space="preserve">
     <value>キャラチップ設定</value>

@@ -25,17 +25,24 @@ namespace CharaChipGen.Model
             int charaPlaneWidth = charaChipSize.Width * 3;
             int charaPlaneHeight = charaChipSize.Height * 4;
 
-            int exportImageWidth = charaPlaneWidth * 4;
-            int exportImageHeight = charaPlaneHeight * 2;
+            int exportImageWidth = charaPlaneWidth * setting.HorizontalCount;
+            int exportImageHeight = charaPlaneHeight * setting.VerticalCount;
 
             ImageBuffer exportBuffer = ImageBuffer.Create(exportImageWidth, exportImageHeight);
 
-            for (int charaY = 0; charaY < 2; charaY++)
+            for (int charaY = 0; charaY < setting.VerticalCount; charaY++)
             {
-                for (int charaX = 0; charaX < 4; charaX++)
+                for (int charaX = 0; charaX < setting.HorizontalCount; charaX++)
                 {
+                    int index = charaY * setting.HorizontalCount + charaX;
+                    if (index >= setting.GetCharacterCount())
+                    {
+                        continue;
+                    }
                     try
                     {
+                        Character character = setting.GetCharacter(index);
+
                         // キャラクターをレンダリングする。
                         ImageBuffer charaChipImage = RenderCharaChip(setting.GetCharacter(charaY * 4 + charaX), charaChipSize);
                         // レンダリングした画像をエクスポートバッファにコピーする。
@@ -43,7 +50,7 @@ namespace CharaChipGen.Model
                     }
                     catch (Exception e)
                     {
-                        throw new Exception($"キャラクター{(charaY * 4 + charaX + 1)}:{e.Message}");
+                        throw new Exception($"Character{(index + 1)}:{e.Message}");
                     }
                 }
             }
@@ -66,7 +73,7 @@ namespace CharaChipGen.Model
 
             if (renderData.HasError)
             {
-                throw new Exception($"書き出し時にエラーが発生しました。");
+                throw new Exception(Properties.Resources.MessageWriteError);
             }
 
             ImageBuffer imageBuffer = ImageBuffer.Create(chipSize.Width * 3, chipSize.Height * 4);

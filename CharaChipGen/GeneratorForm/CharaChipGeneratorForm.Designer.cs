@@ -50,8 +50,10 @@
             this.fileToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.menuItemSaveAsTemplate = new System.Windows.Forms.ToolStripMenuItem();
             this.menuItemLoadFromTemplate = new System.Windows.Forms.ToolStripMenuItem();
+            this.menuItemExport = new System.Windows.Forms.ToolStripMenuItem();
             this.menuItemOption = new System.Windows.Forms.ToolStripMenuItem();
             this.menuItemImageBackground = new System.Windows.Forms.ToolStripMenuItem();
+            this.saveFileDialog = new System.Windows.Forms.SaveFileDialog();
             this.panelCharaChipParts.SuspendLayout();
             this.flowLayoutPanel1.SuspendLayout();
             this.tableLayoutPanel1.SuspendLayout();
@@ -60,7 +62,6 @@
             // 
             // panelCharaChipParts
             // 
-            resources.ApplyResources(this.panelCharaChipParts, "panelCharaChipParts");
             this.panelCharaChipParts.Controls.Add(this.partsViewHeadAccessory2);
             this.panelCharaChipParts.Controls.Add(this.partsViewHeadAccessory1);
             this.panelCharaChipParts.Controls.Add(this.partsViewAccessory3);
@@ -70,6 +71,7 @@
             this.panelCharaChipParts.Controls.Add(this.partsViewEye);
             this.panelCharaChipParts.Controls.Add(this.partsViewHairStyle);
             this.panelCharaChipParts.Controls.Add(this.partsViewHead);
+            resources.ApplyResources(this.panelCharaChipParts, "panelCharaChipParts");
             this.panelCharaChipParts.Name = "panelCharaChipParts";
             // 
             // partsViewHeadAccessory2
@@ -78,7 +80,7 @@
             this.partsViewHeadAccessory2.EditHSV = true;
             this.partsViewHeadAccessory2.EditYOffset = true;
             this.partsViewHeadAccessory2.Name = "partsViewHeadAccessory2";
-            this.partsViewHeadAccessory2.PartsName = "頭部アクセサリ2";
+            this.partsViewHeadAccessory2.PartsName = "HeadAccessory2";
             // 
             // partsViewHeadAccessory1
             // 
@@ -86,7 +88,7 @@
             this.partsViewHeadAccessory1.EditHSV = true;
             this.partsViewHeadAccessory1.EditYOffset = true;
             this.partsViewHeadAccessory1.Name = "partsViewHeadAccessory1";
-            this.partsViewHeadAccessory1.PartsName = "頭部アクセサリ1";
+            this.partsViewHeadAccessory1.PartsName = "HeadAccessory1";
             // 
             // partsViewAccessory3
             // 
@@ -94,7 +96,7 @@
             this.partsViewAccessory3.EditHSV = true;
             this.partsViewAccessory3.EditYOffset = true;
             this.partsViewAccessory3.Name = "partsViewAccessory3";
-            this.partsViewAccessory3.PartsName = "アクセサリ3";
+            this.partsViewAccessory3.PartsName = "Accessory3";
             // 
             // partsViewAccessory2
             // 
@@ -102,7 +104,7 @@
             this.partsViewAccessory2.EditHSV = true;
             this.partsViewAccessory2.EditYOffset = true;
             this.partsViewAccessory2.Name = "partsViewAccessory2";
-            this.partsViewAccessory2.PartsName = "アクセサリ2";
+            this.partsViewAccessory2.PartsName = "Accessory2";
             // 
             // partsViewAccessory1
             // 
@@ -110,7 +112,7 @@
             this.partsViewAccessory1.EditHSV = true;
             this.partsViewAccessory1.EditYOffset = true;
             this.partsViewAccessory1.Name = "partsViewAccessory1";
-            this.partsViewAccessory1.PartsName = "アクセサリ1";
+            this.partsViewAccessory1.PartsName = "Accessory1";
             // 
             // partsViewBody
             // 
@@ -118,7 +120,7 @@
             this.partsViewBody.EditHSV = true;
             this.partsViewBody.EditYOffset = true;
             this.partsViewBody.Name = "partsViewBody";
-            this.partsViewBody.PartsName = "体";
+            this.partsViewBody.PartsName = "Body";
             // 
             // partsViewEye
             // 
@@ -126,7 +128,7 @@
             this.partsViewEye.EditHSV = true;
             this.partsViewEye.EditYOffset = true;
             this.partsViewEye.Name = "partsViewEye";
-            this.partsViewEye.PartsName = "目";
+            this.partsViewEye.PartsName = "Eye";
             // 
             // partsViewHairStyle
             // 
@@ -134,7 +136,7 @@
             this.partsViewHairStyle.EditHSV = true;
             this.partsViewHairStyle.EditYOffset = true;
             this.partsViewHairStyle.Name = "partsViewHairStyle";
-            this.partsViewHairStyle.PartsName = "髪型";
+            this.partsViewHairStyle.PartsName = "HairStyle";
             // 
             // partsViewHead
             // 
@@ -142,7 +144,7 @@
             this.partsViewHead.EditHSV = true;
             this.partsViewHead.EditYOffset = true;
             this.partsViewHead.Name = "partsViewHead";
-            this.partsViewHead.PartsName = "頭";
+            this.partsViewHead.PartsName = "Head";
             // 
             // buttonOK
             // 
@@ -184,44 +186,55 @@
             // 
             // menuStrip1
             // 
-            resources.ApplyResources(this.menuStrip1, "menuStrip1");
             this.menuStrip1.Items.AddRange(new System.Windows.Forms.ToolStripItem[] {
             this.fileToolStripMenuItem,
             this.menuItemOption});
+            resources.ApplyResources(this.menuStrip1, "menuStrip1");
             this.menuStrip1.Name = "menuStrip1";
             // 
             // fileToolStripMenuItem
             // 
-            resources.ApplyResources(this.fileToolStripMenuItem, "fileToolStripMenuItem");
             this.fileToolStripMenuItem.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] {
             this.menuItemSaveAsTemplate,
-            this.menuItemLoadFromTemplate});
+            this.menuItemLoadFromTemplate,
+            this.menuItemExport});
             this.fileToolStripMenuItem.Name = "fileToolStripMenuItem";
+            resources.ApplyResources(this.fileToolStripMenuItem, "fileToolStripMenuItem");
             // 
             // menuItemSaveAsTemplate
             // 
-            resources.ApplyResources(this.menuItemSaveAsTemplate, "menuItemSaveAsTemplate");
             this.menuItemSaveAsTemplate.Name = "menuItemSaveAsTemplate";
+            resources.ApplyResources(this.menuItemSaveAsTemplate, "menuItemSaveAsTemplate");
             this.menuItemSaveAsTemplate.Click += new System.EventHandler(this.OnMenuItemSaveAsTemplateClick);
             // 
             // menuItemLoadFromTemplate
             // 
-            resources.ApplyResources(this.menuItemLoadFromTemplate, "menuItemLoadFromTemplate");
             this.menuItemLoadFromTemplate.Name = "menuItemLoadFromTemplate";
+            resources.ApplyResources(this.menuItemLoadFromTemplate, "menuItemLoadFromTemplate");
             this.menuItemLoadFromTemplate.Click += new System.EventHandler(this.OnMenuItemLoadFromTemplateClick);
+            // 
+            // menuItemExport
+            // 
+            this.menuItemExport.Name = "menuItemExport";
+            resources.ApplyResources(this.menuItemExport, "menuItemExport");
+            this.menuItemExport.Click += new System.EventHandler(this.OnMenuItemExportClick);
             // 
             // menuItemOption
             // 
-            resources.ApplyResources(this.menuItemOption, "menuItemOption");
             this.menuItemOption.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] {
             this.menuItemImageBackground});
             this.menuItemOption.Name = "menuItemOption";
+            resources.ApplyResources(this.menuItemOption, "menuItemOption");
             // 
             // menuItemImageBackground
             // 
-            resources.ApplyResources(this.menuItemImageBackground, "menuItemImageBackground");
             this.menuItemImageBackground.Name = "menuItemImageBackground";
+            resources.ApplyResources(this.menuItemImageBackground, "menuItemImageBackground");
             this.menuItemImageBackground.Click += new System.EventHandler(this.OnMenuItemImageBackgroundClick);
+            // 
+            // saveFileDialog
+            // 
+            resources.ApplyResources(this.saveFileDialog, "saveFileDialog");
             // 
             // CharaChipGeneratorForm
             // 
@@ -267,5 +280,7 @@
         private System.Windows.Forms.ToolStripMenuItem menuItemLoadFromTemplate;
         private System.Windows.Forms.ToolStripMenuItem menuItemOption;
         private System.Windows.Forms.ToolStripMenuItem menuItemImageBackground;
+        private System.Windows.Forms.ToolStripMenuItem menuItemExport;
+        private System.Windows.Forms.SaveFileDialog saveFileDialog;
     }
 }

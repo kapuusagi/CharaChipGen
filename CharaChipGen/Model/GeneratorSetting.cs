@@ -1,5 +1,6 @@
 ﻿using CharaChipGen.Model.CharaChip;
 using System;
+using System.Runtime.InteropServices;
 
 namespace CharaChipGen.Model
 {
@@ -14,15 +15,38 @@ namespace CharaChipGen.Model
         /// <summary>
         /// 新しいインスタンスを構築する。
         /// </summary>
-        public GeneratorSetting()
+        public GeneratorSetting() : this(4, 2)
         {
-            characters = new Character[9];
+        }
+
+        /// <summary>
+        /// 指定したキャラクタ数で新しいインスタンスを構築する。
+        /// </summary>
+        public GeneratorSetting(int horizontalCount, int verticalCount)
+        {
+            int count = horizontalCount * verticalCount;
+            if (count <= 0)
+            {
+                throw new ArgumentException("Character count is invalid.");
+            }
+            HorizontalCount = horizontalCount;
+            VerticalCount = verticalCount;
+            characters = new Character[count];
             for (int i = 0; i < characters.Length; i++)
             {
                 characters[i] = new Character();
             }
             ExportSetting = new ExportSetting();
         }
+
+        /// <summary>
+        /// 横方向キャラクタ数
+        /// </summary>
+        public int HorizontalCount { get; private set; }
+        /// <summary>
+        /// 縦方向キャラクタ数
+        /// </summary>
+        public int VerticalCount { get; private set; }
 
         /// <summary>
         /// キャラクタを得る。
@@ -56,7 +80,8 @@ namespace CharaChipGen.Model
         /// <param name="setting">コピー先のオブジェクト</param>
         public void CopyTo(GeneratorSetting setting)
         {
-            for (int i = 0; i < setting.GetCharacterCount(); i++)
+            int copyCount = Math.Min(GetCharacterCount(), setting.GetCharacterCount());
+            for (int i = 0; i < copyCount; i++)
             {
                 Character src = GetCharacter(i);
                 Character dst = setting.GetCharacter(i);
