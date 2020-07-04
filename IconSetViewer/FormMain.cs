@@ -145,7 +145,7 @@ namespace IconSetViewer
                 comboBoxNumber.Items.Clear();
                 for (int i = 0; i < maxIconCount; i++)
                 {
-                    string item = (i + 1).ToString();
+                    string item = i.ToString();
                     comboBoxNumber.Items.Add(item);
                 }
 
@@ -188,8 +188,8 @@ namespace IconSetViewer
                     return;
                 }
                 int number = Convert.ToInt32(text);
-                iconViewControl.SelectedIndex = (number - 1);
-                iconSetViewControl.SelectedIndex = (number - 1);
+                iconViewControl.SelectedIndex = number;
+                iconSetViewControl.SelectedIndex = number;
             }
             catch (Exception ex)
             {
