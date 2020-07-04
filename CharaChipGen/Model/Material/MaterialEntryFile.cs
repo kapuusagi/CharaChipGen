@@ -215,7 +215,8 @@ namespace CharaChipGen.Model.Material
         /// <param name="path">ファイルパス</param>
         public void SaveAs(string path)
         {
-            using (var writer = new System.IO.StreamWriter(System.IO.File.OpenWrite(path)))
+            using (var writer = new System.IO.StreamWriter(
+                new System.IO.FileStream(path, System.IO.FileMode.Create)))
             {
                 writer.WriteLine("# Material information.");
                 // 表示名
@@ -248,6 +249,7 @@ namespace CharaChipGen.Model.Material
                             writer.WriteLine($"Layer.{layer.Name}.ColorPartsRefs = {layer.ColorPartsRefs.ToString()}");
                         }
                         writer.WriteLine($"Layer.{layer.Name}.Attribute = {GetAttributeString(layer)}");
+                        no++;
                     }
                 }
             }

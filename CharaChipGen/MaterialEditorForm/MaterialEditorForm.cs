@@ -102,7 +102,7 @@ namespace CharaChipGen.MaterialEditorForm
         {
             if (textBoxMaterialName.Text.Length == 0)
             {
-                MessageBox.Show(this, "素材名が設定されていません。");
+                MessageBox.Show(this, Resources.MessageMaterialNameNotSpecified);
                 return;
             }
             entryFile.SetDisplayName(textBoxMaterialName.Text);
@@ -175,7 +175,8 @@ namespace CharaChipGen.MaterialEditorForm
         private void OnButtonAddLayerClick(object sender, EventArgs e)
         {
             string defaultLayerName = GenerateDefaultLayerName();
-            string inputText = InputForm.InputForm.ShowDialog(this, "レイヤー名を入力", "入力", defaultLayerName);
+            string inputText = InputForm.InputForm.ShowDialog(this, Resources.MessageInputLayerName, 
+                Resources.DialogTitleInput, defaultLayerName);
             if (inputText == null)
             {
                 return;
@@ -193,7 +194,7 @@ namespace CharaChipGen.MaterialEditorForm
             }
             catch (Exception ex)
             {
-                MessageBox.Show(this, ex.Message, "エラー");
+                MessageBox.Show(this, ex.Message, Resources.DialogTitleError);
             }
         }
 
@@ -205,7 +206,8 @@ namespace CharaChipGen.MaterialEditorForm
         private void OnButtonRenameLayerClick(object sender, EventArgs e)
         {
             MaterialLayerInfo targetLayerInfo = (MaterialLayerInfo)(listBoxLayers.SelectedItem);
-            string inputText = InputForm.InputForm.ShowDialog(this, "レイヤー名を入力", "入力", targetLayerInfo.Name);
+            string inputText = InputForm.InputForm.ShowDialog(this, Resources.MessageInputLayerName,
+                Resources.DialogTitleInput, targetLayerInfo.Name);
             if (inputText == null)
             {
                 return;
@@ -242,7 +244,7 @@ namespace CharaChipGen.MaterialEditorForm
             }
             catch (Exception ex)
             {
-                MessageBox.Show(this, ex.Message, "エラー");
+                MessageBox.Show(this, ex.Message, Resources.DialogTitleError);
             }
         }
 
@@ -255,17 +257,17 @@ namespace CharaChipGen.MaterialEditorForm
         {
             if (name.Length == 0)
             {
-                throw new Exception("レイヤー名が正しくありません。");
+                throw new Exception(Resources.MessageInvalidLayerName);
             }
             char[] invalidChars = System.IO.Path.GetInvalidPathChars();
             if (!MaterialEntryFile.IsValidName(name))
             {
-                throw new Exception("レイヤー名として使用できない文字が使用されています。");
+                throw new Exception(Resources.MessageInvalidLayerNameCharacter);
             }
 
             if (entryFile.Layers.ContainsKey(name))
             {
-                throw new Exception("既に同名のレイヤーが存在します。");
+                throw new Exception(Resources.MessageLayernameUsed);
             }
         }
 
@@ -291,7 +293,7 @@ namespace CharaChipGen.MaterialEditorForm
             }
             catch (Exception ex)
             {
-                MessageBox.Show(this, ex.Message, "エラー");
+                MessageBox.Show(this, ex.Message, Resources.DialogTitleError);
             }
         }
 
@@ -308,7 +310,7 @@ namespace CharaChipGen.MaterialEditorForm
             }
             catch (Exception ex)
             {
-                MessageBox.Show(this, ex.Message, "エラー");
+                MessageBox.Show(this, ex.Message, Resources.DialogTitleError);
             }
 
         }

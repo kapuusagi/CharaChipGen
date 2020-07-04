@@ -176,6 +176,11 @@
     <Compile Include="Model\Material\MaterialType.cs" />
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="Properties\Resources.ja-JP.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>Resources.ja-JP.resx</DependentUpon>
+    </Compile>
     <Compile Include="SettingForm\SettingForm.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -189,8 +194,14 @@
       <DependentUpon>SizeInput.cs</DependentUpon>
     </Compile>
     <Compile Include="Settings.cs" />
+    <EmbeddedResource Include="GeneratorForm\CharaChipGeneratorForm.ja-JP.resx">
+      <DependentUpon>CharaChipGeneratorForm.cs</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="GeneratorForm\CharaChipGeneratorForm.resx">
       <DependentUpon>CharaChipGeneratorForm.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="GeneratorForm\CharaChipGeneratorPartsView.ja-JP.resx">
+      <DependentUpon>CharaChipGeneratorPartsView.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="GeneratorForm\CharaChipGeneratorPartsView.resx">
       <DependentUpon>CharaChipGeneratorPartsView.cs</DependentUpon>
@@ -201,11 +212,20 @@
     <EmbeddedResource Include="GeneratorForm\CharaChipViewNN.resx">
       <DependentUpon>CharaChipViewNN.cs</DependentUpon>
     </EmbeddedResource>
+    <EmbeddedResource Include="GeneratorForm\PartsEditView.ja-JP.resx">
+      <DependentUpon>PartsEditView.cs</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="GeneratorForm\PartsEditView.resx">
       <DependentUpon>PartsEditView.cs</DependentUpon>
     </EmbeddedResource>
+    <EmbeddedResource Include="GeneratorForm\TemplateSelectForm.ja-JP.resx">
+      <DependentUpon>TemplateSelectForm.cs</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="GeneratorForm\TemplateSelectForm.resx">
       <DependentUpon>TemplateSelectForm.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="InputForm\InputForm.ja-JP.resx">
+      <DependentUpon>InputForm.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="InputForm\InputForm.resx">
       <DependentUpon>InputForm.cs</DependentUpon>
@@ -213,17 +233,32 @@
     <EmbeddedResource Include="MainForm\CharacterEntryView.resx">
       <DependentUpon>CharacterEntryView.cs</DependentUpon>
     </EmbeddedResource>
+    <EmbeddedResource Include="MainForm\MainForm.ja-JP.resx">
+      <DependentUpon>MainForm.cs</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="MainForm\MainForm.resx">
       <DependentUpon>MainForm.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="MainForm\VersionForm.ja-JP.resx">
+      <DependentUpon>VersionForm.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="MainForm\VersionForm.resx">
       <DependentUpon>VersionForm.cs</DependentUpon>
     </EmbeddedResource>
+    <EmbeddedResource Include="ManagementForm\MaterialManagementForm.ja-JP.resx">
+      <DependentUpon>MaterialManagementForm.cs</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="MaterialEditorForm\LayerView3x4.resx">
       <DependentUpon>LayerView3x4.cs</DependentUpon>
     </EmbeddedResource>
+    <EmbeddedResource Include="MaterialEditorForm\MaterialEditorForm.ja-JP.resx">
+      <DependentUpon>MaterialEditorForm.cs</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="MaterialEditorForm\MaterialEditorForm.resx">
       <DependentUpon>MaterialEditorForm.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="MaterialEditorForm\MaterialEditorLayerView.ja-JP.resx">
+      <DependentUpon>MaterialEditorLayerView.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="MaterialEditorForm\MaterialEditorLayerView.resx">
       <DependentUpon>MaterialEditorLayerView.cs</DependentUpon>
@@ -234,14 +269,21 @@
     <EmbeddedResource Include="MaterialViewForm\MaterialView.resx">
       <DependentUpon>MaterialView.cs</DependentUpon>
     </EmbeddedResource>
+    <EmbeddedResource Include="MaterialViewForm\MaterialViewForm.ja-JP.resx">
+      <DependentUpon>MaterialViewForm.cs</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="MaterialViewForm\MaterialViewForm.resx">
       <DependentUpon>MaterialViewForm.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="MaterialViewForm\MaterialViewNN.resx">
       <DependentUpon>MaterialViewNN.cs</DependentUpon>
     </EmbeddedResource>
+    <EmbeddedResource Include="Properties\Resources.ja-JP.resx">
+      <Generator>PublicResXFileCodeGenerator</Generator>
+      <LastGenOutput>Resources.ja-JP.Designer.cs</LastGenOutput>
+    </EmbeddedResource>
     <EmbeddedResource Include="Properties\Resources.resx">
-      <Generator>ResXFileCodeGenerator</Generator>
+      <Generator>PublicResXFileCodeGenerator</Generator>
       <LastGenOutput>Resources.Designer.cs</LastGenOutput>
       <SubType>Designer</SubType>
     </EmbeddedResource>
@@ -250,6 +292,9 @@
       <DependentUpon>Resources.resx</DependentUpon>
       <DesignTime>True</DesignTime>
     </Compile>
+    <EmbeddedResource Include="SettingForm\SettingForm.ja-JP.resx">
+      <DependentUpon>SettingForm.cs</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="SettingForm\SettingForm.resx">
       <DependentUpon>SettingForm.cs</DependentUpon>
     </EmbeddedResource>

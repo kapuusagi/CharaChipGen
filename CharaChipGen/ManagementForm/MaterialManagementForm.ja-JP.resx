@@ -117,130 +117,104 @@
   <resheader name="writer">
     <value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </resheader>
-  <data name="&gt;&gt;buttonAdjust.Parent" xml:space="preserve">
-    <value>flowLayoutPanel1</value>
-  </data>
-  <data name="labelItemName.Text" xml:space="preserve">
-    <value>PartsType</value>
+  <data name="buttonClose.Text" xml:space="preserve">
+    <value>閉じる</value>
   </data>
   <assembly alias="System.Drawing" name="System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a" />
-  <data name="$this.AutoScaleDimensions" type="System.Drawing.SizeF, System.Drawing">
-    <value>6, 12</value>
+  <data name="menuItemClose.Size" type="System.Drawing.Size, System.Drawing">
+    <value>146, 22</value>
   </data>
-  <assembly alias="mscorlib" name="mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089" />
-  <data name="flowLayoutPanel1.AutoSize" type="System.Boolean, mscorlib">
-    <value>True</value>
+  <data name="menuItemClose.Text" xml:space="preserve">
+    <value>閉じる</value>
   </data>
-  <data name="&gt;&gt;buttonAdjust.Name" xml:space="preserve">
-    <value>buttonAdjust</value>
+  <data name="menuItemFile.Size" type="System.Drawing.Size, System.Drawing">
+    <value>53, 20</value>
   </data>
-  <data name="&gt;&gt;buttonAdjust.ZOrder" xml:space="preserve">
-    <value>2</value>
+  <data name="menuItemFile.Text" xml:space="preserve">
+    <value>ファイル</value>
   </data>
-  <data name="comboBoxItem.TabIndex" type="System.Int32, mscorlib">
-    <value>1</value>
+  <data name="treeViewMaterials.Nodes" mimetype="application/x-microsoft.net.object.binary.base64">
+    <value>
+        AAEAAAD/////AQAAAAAAAAAMAgAAAFdTeXN0ZW0uV2luZG93cy5Gb3JtcywgVmVyc2lvbj00LjAuMC4w
+        LCBDdWx0dXJlPW5ldXRyYWwsIFB1YmxpY0tleVRva2VuPWI3N2E1YzU2MTkzNGUwODkFAQAAAB1TeXN0
+        ZW0uV2luZG93cy5Gb3Jtcy5UcmVlTm9kZQ8AAAAEVGV4dAtUb29sVGlwVGV4dAROYW1lCUlzQ2hlY2tl
+        ZApJbWFnZUluZGV4CEltYWdlS2V5ElNlbGVjdGVkSW1hZ2VJbmRleBBTZWxlY3RlZEltYWdlS2V5CkNo
+        aWxkQ291bnQJY2hpbGRyZW4wCWNoaWxkcmVuMQljaGlsZHJlbjIJY2hpbGRyZW4zCWNoaWxkcmVuNAlj
+        aGlsZHJlbjUBAQEAAAEAAQAEBAQEBAQBCAgIHVN5c3RlbS5XaW5kb3dzLkZvcm1zLlRyZWVOb2RlAgAA
+        AB1TeXN0ZW0uV2luZG93cy5Gb3Jtcy5UcmVlTm9kZQIAAAAdU3lzdGVtLldpbmRvd3MuRm9ybXMuVHJl
+        ZU5vZGUCAAAAHVN5c3RlbS5XaW5kb3dzLkZvcm1zLlRyZWVOb2RlAgAAAB1TeXN0ZW0uV2luZG93cy5G
+        b3Jtcy5UcmVlTm9kZQIAAAAdU3lzdGVtLldpbmRvd3MuRm9ybXMuVHJlZU5vZGUCAAAAAgAAAAYDAAAA
+        Bue0oOadkAYEAAAAAAYFAAAAEkNoYXJhQ2hpcERpcmVjdG9yeQD/////CQQAAAD/////CQQAAAAGAAAA
+        CQcAAAAJCAAAAAkJAAAACQoAAAAJCwAAAAkMAAAABQcAAAAdU3lzdGVtLldpbmRvd3MuRm9ybXMuVHJl
+        ZU5vZGUJAAAABFRleHQLVG9vbFRpcFRleHQETmFtZQlJc0NoZWNrZWQKSW1hZ2VJbmRleAhJbWFnZUtl
+        eRJTZWxlY3RlZEltYWdlSW5kZXgQU2VsZWN0ZWRJbWFnZUtleQpDaGlsZENvdW50AQEBAAABAAEAAQgI
+        CAIAAAAGDQAAAAbpq6rlnosJBAAAAAYPAAAACkhhaXJTdHlsZXMA/////wkEAAAA/////wkEAAAAAAAA
+        AAUIAAAAHVN5c3RlbS5XaW5kb3dzLkZvcm1zLlRyZWVOb2RlCQAAAARUZXh0C1Rvb2xUaXBUZXh0BE5h
+        bWUJSXNDaGVja2VkCkltYWdlSW5kZXgISW1hZ2VLZXkSU2VsZWN0ZWRJbWFnZUluZGV4EFNlbGVjdGVk
+        SW1hZ2VLZXkKQ2hpbGRDb3VudAEBAQAAAQABAAEICAgCAAAABhEAAAAD6aCtCQQAAAAGEwAAAAVIZWFk
+        cwD/////CQQAAAD/////CQQAAAAAAAAABQkAAAAdU3lzdGVtLldpbmRvd3MuRm9ybXMuVHJlZU5vZGUJ
+        AAAABFRleHQLVG9vbFRpcFRleHQETmFtZQlJc0NoZWNrZWQKSW1hZ2VJbmRleAhJbWFnZUtleRJTZWxl
+        Y3RlZEltYWdlSW5kZXgQU2VsZWN0ZWRJbWFnZUtleQpDaGlsZENvdW50AQEBAAABAAEAAQgICAIAAAAG
+        FQAAAAPnm64JBAAAAAYXAAAABEV5ZXMA/////wkEAAAA/////wkEAAAAAAAAAAUKAAAAHVN5c3RlbS5X
+        aW5kb3dzLkZvcm1zLlRyZWVOb2RlCQAAAARUZXh0C1Rvb2xUaXBUZXh0BE5hbWUJSXNDaGVja2VkCklt
+        YWdlSW5kZXgISW1hZ2VLZXkSU2VsZWN0ZWRJbWFnZUluZGV4EFNlbGVjdGVkSW1hZ2VLZXkKQ2hpbGRD
+        b3VudAEBAQAAAQABAAEICAgCAAAABhkAAAAD5L2TCQQAAAAGGwAAAAZCb2RpZXMA/////wkEAAAA////
+        /wkEAAAAAAAAAAULAAAAHVN5c3RlbS5XaW5kb3dzLkZvcm1zLlRyZWVOb2RlCQAAAARUZXh0C1Rvb2xU
+        aXBUZXh0BE5hbWUJSXNDaGVja2VkCkltYWdlSW5kZXgISW1hZ2VLZXkSU2VsZWN0ZWRJbWFnZUluZGV4
+        EFNlbGVjdGVkSW1hZ2VLZXkKQ2hpbGRDb3VudAEBAQAAAQABAAEICAgCAAAABh0AAAAP44Ki44Kv44K7
+        44K144OqCQQAAAAGHwAAAAtBY2Nlc3NvcmllcwD/////CQQAAAD/////CQQAAAAAAAAABQwAAAAdU3lz
+        dGVtLldpbmRvd3MuRm9ybXMuVHJlZU5vZGUJAAAABFRleHQLVG9vbFRpcFRleHQETmFtZQlJc0NoZWNr
+        ZWQKSW1hZ2VJbmRleAhJbWFnZUtleRJTZWxlY3RlZEltYWdlSW5kZXgQU2VsZWN0ZWRJbWFnZUtleQpD
+        aGlsZENvdW50AQEBAAABAAEAAQgICAIAAAAGIQAAABXpoK3pg6jjgqLjgq/jgrvjgrXjg6oJBAAAAAYj
+        AAAAD0hlYWRBY2Nlc3NvcmllcwD/////CQQAAAD/////CQQAAAAAAAAACw==
+</value>
   </data>
-  <data name="labelItemName.TextAlign" type="System.Drawing.ContentAlignment, System.Drawing">
-    <value>MiddleCenter</value>
+  <data name="columnHeaderName.Text" xml:space="preserve">
+    <value>ファイル名</value>
   </data>
-  <data name="&gt;&gt;$this.Type" xml:space="preserve">
-    <value>System.Windows.Forms.UserControl, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  <data name="columnHeaderDisplayName.Text" xml:space="preserve">
+    <value>表示名</value>
   </data>
-  <data name="&gt;&gt;labelItemName.Type" xml:space="preserve">
-    <value>System.Windows.Forms.Label, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  <data name="columnHeaderPath.Text" xml:space="preserve">
+    <value>パス</value>
   </data>
-  <data name="&gt;&gt;$this.Name" xml:space="preserve">
-    <value>CharaChipGeneratorPartsView</value>
+  <data name="buttonDelete.Text" xml:space="preserve">
+    <value>削除</value>
   </data>
-  <assembly alias="System.Windows.Forms" name="System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089" />
-  <data name="labelItemName.Dock" type="System.Windows.Forms.DockStyle, System.Windows.Forms">
-    <value>Fill</value>
+  <data name="buttonEdit.Text" xml:space="preserve">
+    <value>編集</value>
   </data>
-  <data name="flowLayoutPanel1.Dock" type="System.Windows.Forms.DockStyle, System.Windows.Forms">
-    <value>Fill</value>
+  <data name="buttonAdd.Text" xml:space="preserve">
+    <value>追加</value>
   </data>
-  <data name="labelItemName.Size" type="System.Drawing.Size, System.Drawing">
-    <value>100, 29</value>
+  <data name="buttonRename.Text" xml:space="preserve">
+    <value>名前変更</value>
   </data>
-  <data name="&gt;&gt;comboBoxItem.Parent" xml:space="preserve">
-    <value>flowLayoutPanel1</value>
+  <data name="buttonNew.Text" xml:space="preserve">
+    <value>新規</value>
   </data>
-  <data name="buttonAdjust.Location" type="System.Drawing.Point, System.Drawing">
-    <value>240, 7</value>
+  <data name="buttonPreview.Text" xml:space="preserve">
+    <value>プレビュー</value>
   </data>
-  <data name="buttonAdjust.Size" type="System.Drawing.Size, System.Drawing">
-    <value>75, 23</value>
+  <data name="groupBoxMaterial.Text" xml:space="preserve">
+    <value>素材一覧</value>
   </data>
-  <data name="&gt;&gt;labelItemName.Parent" xml:space="preserve">
-    <value>flowLayoutPanel1</value>
+  <data name="labelDirectory.Size" type="System.Drawing.Size, System.Drawing">
+    <value>40, 12</value>
   </data>
-  <data name="labelItemName.TabIndex" type="System.Int32, mscorlib">
-    <value>0</value>
+  <data name="labelDirectory.Text" xml:space="preserve">
+    <value>フォルダ</value>
   </data>
-  <data name="&gt;&gt;flowLayoutPanel1.Type" xml:space="preserve">
-    <value>System.Windows.Forms.FlowLayoutPanel, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  <data name="openFileDialog.Filter" xml:space="preserve">
+    <value>素材ファイル|*.ccgmaterial</value>
   </data>
-  <data name="flowLayoutPanel1.Size" type="System.Drawing.Size, System.Drawing">
-    <value>356, 36</value>
+  <data name="openFileDialog.Title" xml:space="preserve">
+    <value>追加</value>
   </data>
-  <data name="flowLayoutPanel1.Location" type="System.Drawing.Point, System.Drawing">
-    <value>0, 0</value>
+  <data name="buttonBrowseMaterialDirectory.Text" xml:space="preserve">
+    <value>エクスプローラで開く</value>
   </data>
-  <data name="&gt;&gt;buttonAdjust.Type" xml:space="preserve">
-    <value>System.Windows.Forms.Button, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  <data name="$this.Text" xml:space="preserve">
+    <value>素材管理</value>
   </data>
-  <data name="buttonAdjust.TabIndex" type="System.Int32, mscorlib">
-    <value>2</value>
-  </data>
-  <data name="&gt;&gt;comboBoxItem.Name" xml:space="preserve">
-    <value>comboBoxItem</value>
-  </data>
-  <data name="&gt;&gt;labelItemName.Name" xml:space="preserve">
-    <value>labelItemName</value>
-  </data>
-  <data name="buttonAdjust.Text" xml:space="preserve">
-    <value>Adjust</value>
-  </data>
-  <data name="comboBoxItem.Location" type="System.Drawing.Point, System.Drawing">
-    <value>113, 7</value>
-  </data>
-  <data name="labelItemName.Location" type="System.Drawing.Point, System.Drawing">
-    <value>7, 4</value>
-  </data>
-  <data name="&gt;&gt;flowLayoutPanel1.ZOrder" xml:space="preserve">
-    <value>0</value>
-  </data>
-  <data name="&gt;&gt;comboBoxItem.Type" xml:space="preserve">
-    <value>System.Windows.Forms.ComboBox, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
-  </data>
-  <data name="&gt;&gt;flowLayoutPanel1.Name" xml:space="preserve">
-    <value>flowLayoutPanel1</value>
-  </data>
-  <data name="flowLayoutPanel1.TabIndex" type="System.Int32, mscorlib">
-    <value>0</value>
-  </data>
-  <data name="&gt;&gt;flowLayoutPanel1.Parent" xml:space="preserve">
-    <value>$this</value>
-  </data>
-  <data name="&gt;&gt;comboBoxItem.ZOrder" xml:space="preserve">
-    <value>1</value>
-  </data>
-  <data name="comboBoxItem.Size" type="System.Drawing.Size, System.Drawing">
-    <value>121, 20</value>
-  </data>
-  <data name="$this.Size" type="System.Drawing.Size, System.Drawing">
-    <value>356, 36</value>
-  </data>
-  <data name="flowLayoutPanel1.Padding" type="System.Windows.Forms.Padding, System.Windows.Forms">
-    <value>4, 4, 4, 4</value>
-  </data>
-  <data name="&gt;&gt;labelItemName.ZOrder" xml:space="preserve">
-    <value>0</value>
-  </data>
-  <metadata name="$this.Localizable" type="System.Boolean, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089">
-    <value>True</value>
-  </metadata>
-  <metadata name="$this.Language" type="System.Globalization.CultureInfo, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089">
-    <value>ja-JP</value>
-  </metadata>
 </root>

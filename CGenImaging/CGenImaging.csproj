@@ -76,6 +76,9 @@
     <EmbeddedResource Include="Forms\ColorSelectBar.resx">
       <DependentUpon>ColorSelectBar.cs</DependentUpon>
     </EmbeddedResource>
+    <EmbeddedResource Include="Forms\ColorSelectDialog.ja-JP.resx">
+      <DependentUpon>ColorSelectDialog.cs</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="Forms\ColorSelectDialog.resx">
       <DependentUpon>ColorSelectDialog.cs</DependentUpon>
     </EmbeddedResource>

@@ -13,16 +13,13 @@ namespace CGenImaging.Forms
 {
     public partial class ColorSelectDialog : Form
     {
-        // デフォルトタイトル
-        private const string DefaultTitle = "Color Selection";
-
         /// <summary>
         /// 色選択ダイアログを表示する。
         /// </summary>
         /// <param name="defaultColor">デフォルト色</param>
         /// <returns>選択された色が返る。キャンセルされた場合にはdefaultColorが返る。</returns>
         public static Color ShowDialog(Color defaultColor)
-            => ShowDialog(null, defaultColor, DefaultTitle);
+            => ShowDialog(null, defaultColor, null);
 
 
         /// <summary>
@@ -41,7 +38,7 @@ namespace CGenImaging.Forms
         /// <param name="defaultColor">デフォルト色</param>
         /// <returns>選択された色が返る。キャンセルされた場合にはdefaultColorが返る。</returns>
         public static Color ShowDialog(IWin32Window owner, Color defaultColor)
-            => ShowDialog(owner, defaultColor, DefaultTitle);
+            => ShowDialog(owner, defaultColor, null);
 
         /// <summary>
         /// 色選択ダイアログを表示する。
@@ -53,7 +50,10 @@ namespace CGenImaging.Forms
         public static Color ShowDialog(IWin32Window owner, Color defaultColor, string prompt)
         {
             ColorSelectDialog form = new ColorSelectDialog();
-            form.Text = prompt;
+            if (!string.IsNullOrEmpty(prompt))
+            {
+                form.Text = prompt;
+            }
             form.Color = defaultColor;
             if (owner != null)
             {

@@ -57,7 +57,7 @@ namespace CGenImaging.Forms
         /// <summary>
         /// このコントロールの描画を行う。
         /// </summary>
-        /// <param name="e"></param>
+        /// <param name="e">イベントオブジェクト</param>
         protected override void OnPaint(PaintEventArgs e)
         {
             base.OnPaint(e);
@@ -95,7 +95,7 @@ namespace CGenImaging.Forms
                     svArea.Width - 2, svArea.Height - 2);
             }
 
-            using (Pen pen = new Pen((colorHSV.Value > 0.5f) ? Color.White : Color.Black))
+            using (Pen pen = new Pen((colorHSV.Value < 0.5f) ? Color.White : Color.Black))
             {
                 // 選択されているsaturation, valueの位置に十字カーソルを書く
                 int x = svArea.Left + Convert.ToInt32((1.0f - colorHSV.Saturation) * (svArea.Width - 2));

@@ -28,19 +28,7 @@
         /// </summary>
         private void InitializeComponent()
         {
-            System.Windows.Forms.TreeNode treeNode8 = new System.Windows.Forms.TreeNode("髪型");
-            System.Windows.Forms.TreeNode treeNode9 = new System.Windows.Forms.TreeNode("頭");
-            System.Windows.Forms.TreeNode treeNode10 = new System.Windows.Forms.TreeNode("目");
-            System.Windows.Forms.TreeNode treeNode11 = new System.Windows.Forms.TreeNode("体");
-            System.Windows.Forms.TreeNode treeNode12 = new System.Windows.Forms.TreeNode("アクセサリ");
-            System.Windows.Forms.TreeNode treeNode13 = new System.Windows.Forms.TreeNode("頭部アクセサリ");
-            System.Windows.Forms.TreeNode treeNode14 = new System.Windows.Forms.TreeNode("キャラチップ素材", new System.Windows.Forms.TreeNode[] {
-            treeNode8,
-            treeNode9,
-            treeNode10,
-            treeNode11,
-            treeNode12,
-            treeNode13});
+            System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(MaterialManagementForm));
             this.buttonClose = new System.Windows.Forms.Button();
             this.menuStrip1 = new System.Windows.Forms.MenuStrip();
             this.menuItemFile = new System.Windows.Forms.ToolStripMenuItem();
@@ -80,78 +68,48 @@
             // 
             // buttonClose
             // 
-            this.buttonClose.Location = new System.Drawing.Point(523, 9);
+            resources.ApplyResources(this.buttonClose, "buttonClose");
             this.buttonClose.Name = "buttonClose";
-            this.buttonClose.Size = new System.Drawing.Size(75, 23);
-            this.buttonClose.TabIndex = 0;
-            this.buttonClose.Text = "閉じる";
             this.buttonClose.UseVisualStyleBackColor = true;
             this.buttonClose.Click += new System.EventHandler(this.OnMenuItemCloseClick);
             // 
             // menuStrip1
             // 
+            resources.ApplyResources(this.menuStrip1, "menuStrip1");
             this.menuStrip1.Items.AddRange(new System.Windows.Forms.ToolStripItem[] {
             this.menuItemFile});
-            this.menuStrip1.Location = new System.Drawing.Point(0, 0);
             this.menuStrip1.Name = "menuStrip1";
-            this.menuStrip1.Size = new System.Drawing.Size(613, 24);
-            this.menuStrip1.TabIndex = 0;
-            this.menuStrip1.Text = "menuStrip1";
             // 
             // menuItemFile
             // 
+            resources.ApplyResources(this.menuItemFile, "menuItemFile");
             this.menuItemFile.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] {
             this.menuItemClose});
             this.menuItemFile.Name = "menuItemFile";
-            this.menuItemFile.Size = new System.Drawing.Size(53, 20);
-            this.menuItemFile.Text = "ファイル";
             // 
             // menuItemClose
             // 
+            resources.ApplyResources(this.menuItemClose, "menuItemClose");
             this.menuItemClose.Name = "menuItemClose";
-            this.menuItemClose.ShortcutKeys = ((System.Windows.Forms.Keys)((System.Windows.Forms.Keys.Alt | System.Windows.Forms.Keys.F4)));
-            this.menuItemClose.Size = new System.Drawing.Size(146, 22);
-            this.menuItemClose.Text = "閉じる";
             this.menuItemClose.Click += new System.EventHandler(this.OnMenuItemCloseClick);
             // 
             // treeViewMaterials
             // 
-            this.treeViewMaterials.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.treeViewMaterials.Location = new System.Drawing.Point(8, 8);
+            resources.ApplyResources(this.treeViewMaterials, "treeViewMaterials");
             this.treeViewMaterials.Name = "treeViewMaterials";
-            treeNode8.Name = "HairStyles";
-            treeNode8.Text = "髪型";
-            treeNode9.Name = "Heads";
-            treeNode9.Text = "頭";
-            treeNode10.Name = "Eyes";
-            treeNode10.Text = "目";
-            treeNode11.Name = "Bodies";
-            treeNode11.Text = "体";
-            treeNode12.Name = "Accessories";
-            treeNode12.Text = "アクセサリ";
-            treeNode13.Name = "HeadAccessories";
-            treeNode13.Text = "頭部アクセサリ";
-            treeNode14.Name = "CharaChipDirectory";
-            treeNode14.Text = "キャラチップ素材";
             this.treeViewMaterials.Nodes.AddRange(new System.Windows.Forms.TreeNode[] {
-            treeNode14});
-            this.treeViewMaterials.Size = new System.Drawing.Size(147, 287);
-            this.treeViewMaterials.TabIndex = 0;
+            ((System.Windows.Forms.TreeNode)(resources.GetObject("treeViewMaterials.Nodes")))});
             this.treeViewMaterials.AfterSelect += new System.Windows.Forms.TreeViewEventHandler(this.OnTreeViewItemSelected);
             // 
             // listViewMaterials
             // 
+            resources.ApplyResources(this.listViewMaterials, "listViewMaterials");
             this.listViewMaterials.Columns.AddRange(new System.Windows.Forms.ColumnHeader[] {
             this.columnHeaderName,
             this.columnHeaderDisplayName,
             this.columnHeaderPath});
-            this.listViewMaterials.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.listViewMaterials.Enabled = false;
             this.listViewMaterials.HideSelection = false;
-            this.listViewMaterials.Location = new System.Drawing.Point(8, 8);
             this.listViewMaterials.Name = "listViewMaterials";
-            this.listViewMaterials.Size = new System.Drawing.Size(428, 211);
-            this.listViewMaterials.TabIndex = 0;
             this.listViewMaterials.UseCompatibleStateImageBehavior = false;
             this.listViewMaterials.View = System.Windows.Forms.View.Details;
             this.listViewMaterials.ItemSelectionChanged += new System.Windows.Forms.ListViewItemSelectionChangedEventHandler(this.OnMaterialListSelectionChanged);
@@ -159,204 +117,135 @@
             // 
             // columnHeaderName
             // 
-            this.columnHeaderName.Text = "素材名";
-            this.columnHeaderName.Width = 120;
+            resources.ApplyResources(this.columnHeaderName, "columnHeaderName");
             // 
             // columnHeaderDisplayName
             // 
-            this.columnHeaderDisplayName.Text = "表示名";
-            this.columnHeaderDisplayName.Width = 120;
+            resources.ApplyResources(this.columnHeaderDisplayName, "columnHeaderDisplayName");
             // 
             // columnHeaderPath
             // 
-            this.columnHeaderPath.Text = "パス";
-            this.columnHeaderPath.Width = 240;
+            resources.ApplyResources(this.columnHeaderPath, "columnHeaderPath");
             // 
             // groupBoxMaterial
             // 
+            resources.ApplyResources(this.groupBoxMaterial, "groupBoxMaterial");
             this.groupBoxMaterial.Controls.Add(this.panel4);
             this.groupBoxMaterial.Controls.Add(this.flowLayoutPanel2);
-            this.groupBoxMaterial.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.groupBoxMaterial.Location = new System.Drawing.Point(0, 0);
             this.groupBoxMaterial.Name = "groupBoxMaterial";
-            this.groupBoxMaterial.Size = new System.Drawing.Size(450, 303);
-            this.groupBoxMaterial.TabIndex = 0;
             this.groupBoxMaterial.TabStop = false;
-            this.groupBoxMaterial.Text = "素材一覧";
             // 
             // panel4
             // 
+            resources.ApplyResources(this.panel4, "panel4");
             this.panel4.Controls.Add(this.listViewMaterials);
-            this.panel4.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.panel4.Location = new System.Drawing.Point(3, 73);
             this.panel4.Name = "panel4";
-            this.panel4.Padding = new System.Windows.Forms.Padding(8);
-            this.panel4.Size = new System.Drawing.Size(444, 227);
-            this.panel4.TabIndex = 1;
             // 
             // flowLayoutPanel2
             // 
-            this.flowLayoutPanel2.AutoSize = true;
+            resources.ApplyResources(this.flowLayoutPanel2, "flowLayoutPanel2");
             this.flowLayoutPanel2.Controls.Add(this.buttonDelete);
             this.flowLayoutPanel2.Controls.Add(this.buttonEdit);
             this.flowLayoutPanel2.Controls.Add(this.buttonAdd);
             this.flowLayoutPanel2.Controls.Add(this.buttonRename);
             this.flowLayoutPanel2.Controls.Add(this.buttonNew);
             this.flowLayoutPanel2.Controls.Add(this.buttonPreview);
-            this.flowLayoutPanel2.Dock = System.Windows.Forms.DockStyle.Top;
-            this.flowLayoutPanel2.FlowDirection = System.Windows.Forms.FlowDirection.RightToLeft;
-            this.flowLayoutPanel2.Location = new System.Drawing.Point(3, 15);
             this.flowLayoutPanel2.Name = "flowLayoutPanel2";
-            this.flowLayoutPanel2.Size = new System.Drawing.Size(444, 58);
-            this.flowLayoutPanel2.TabIndex = 0;
             // 
             // buttonDelete
             // 
-            this.buttonDelete.Enabled = false;
-            this.buttonDelete.Location = new System.Drawing.Point(366, 3);
+            resources.ApplyResources(this.buttonDelete, "buttonDelete");
             this.buttonDelete.Name = "buttonDelete";
-            this.buttonDelete.Size = new System.Drawing.Size(75, 23);
-            this.buttonDelete.TabIndex = 4;
-            this.buttonDelete.Text = "削除";
             this.buttonDelete.UseVisualStyleBackColor = true;
             this.buttonDelete.Click += new System.EventHandler(this.OnMaterialDeleteClicked);
             // 
             // buttonEdit
             // 
-            this.buttonEdit.Enabled = false;
-            this.buttonEdit.Location = new System.Drawing.Point(285, 3);
+            resources.ApplyResources(this.buttonEdit, "buttonEdit");
             this.buttonEdit.Name = "buttonEdit";
-            this.buttonEdit.Size = new System.Drawing.Size(75, 23);
-            this.buttonEdit.TabIndex = 3;
-            this.buttonEdit.Text = "編集";
             this.buttonEdit.UseVisualStyleBackColor = true;
             this.buttonEdit.Click += new System.EventHandler(this.OnMaterialEditClicked);
             // 
             // buttonAdd
             // 
-            this.buttonAdd.Enabled = false;
-            this.buttonAdd.Location = new System.Drawing.Point(204, 3);
+            resources.ApplyResources(this.buttonAdd, "buttonAdd");
             this.buttonAdd.Name = "buttonAdd";
-            this.buttonAdd.Size = new System.Drawing.Size(75, 23);
-            this.buttonAdd.TabIndex = 2;
-            this.buttonAdd.Text = "追加";
             this.buttonAdd.UseVisualStyleBackColor = true;
             this.buttonAdd.Click += new System.EventHandler(this.OnMaterialAddClicked);
             // 
             // buttonRename
             // 
-            this.buttonRename.Enabled = false;
-            this.buttonRename.Location = new System.Drawing.Point(123, 3);
+            resources.ApplyResources(this.buttonRename, "buttonRename");
             this.buttonRename.Name = "buttonRename";
-            this.buttonRename.Size = new System.Drawing.Size(75, 23);
-            this.buttonRename.TabIndex = 1;
-            this.buttonRename.Text = "名前変更";
             this.buttonRename.UseVisualStyleBackColor = true;
             this.buttonRename.Click += new System.EventHandler(this.OnButtonRenameClick);
             // 
             // buttonNew
             // 
-            this.buttonNew.Enabled = false;
-            this.buttonNew.Location = new System.Drawing.Point(42, 3);
+            resources.ApplyResources(this.buttonNew, "buttonNew");
             this.buttonNew.Name = "buttonNew";
-            this.buttonNew.Size = new System.Drawing.Size(75, 23);
-            this.buttonNew.TabIndex = 0;
-            this.buttonNew.Text = "新規";
             this.buttonNew.UseVisualStyleBackColor = true;
             this.buttonNew.Click += new System.EventHandler(this.OnButtonNewClick);
             // 
             // buttonPreview
             // 
-            this.buttonPreview.Enabled = false;
-            this.buttonPreview.Location = new System.Drawing.Point(366, 32);
+            resources.ApplyResources(this.buttonPreview, "buttonPreview");
             this.buttonPreview.Name = "buttonPreview";
-            this.buttonPreview.Size = new System.Drawing.Size(75, 23);
-            this.buttonPreview.TabIndex = 5;
-            this.buttonPreview.Text = "プレビュー";
             this.buttonPreview.UseVisualStyleBackColor = true;
             this.buttonPreview.Click += new System.EventHandler(this.OnButtonPreviewClick);
             // 
             // labelDirectory
             // 
-            this.labelDirectory.AutoSize = true;
-            this.labelDirectory.Location = new System.Drawing.Point(12, 9);
+            resources.ApplyResources(this.labelDirectory, "labelDirectory");
             this.labelDirectory.Name = "labelDirectory";
-            this.labelDirectory.Size = new System.Drawing.Size(54, 12);
-            this.labelDirectory.TabIndex = 0;
-            this.labelDirectory.Text = "ディレクトリ";
             // 
             // openFileDialog
             // 
-            this.openFileDialog.Filter = "素材ファイル|*.ccgmaterial";
+            resources.ApplyResources(this.openFileDialog, "openFileDialog");
             this.openFileDialog.Multiselect = true;
-            this.openFileDialog.Title = "追加";
             // 
             // flowLayoutPanel1
             // 
-            this.flowLayoutPanel1.AutoSize = true;
+            resources.ApplyResources(this.flowLayoutPanel1, "flowLayoutPanel1");
             this.flowLayoutPanel1.Controls.Add(this.buttonClose);
-            this.flowLayoutPanel1.Dock = System.Windows.Forms.DockStyle.Bottom;
-            this.flowLayoutPanel1.FlowDirection = System.Windows.Forms.FlowDirection.RightToLeft;
-            this.flowLayoutPanel1.Location = new System.Drawing.Point(0, 359);
             this.flowLayoutPanel1.Name = "flowLayoutPanel1";
-            this.flowLayoutPanel1.Padding = new System.Windows.Forms.Padding(6);
-            this.flowLayoutPanel1.Size = new System.Drawing.Size(613, 41);
-            this.flowLayoutPanel1.TabIndex = 3;
             // 
             // panel1
             // 
+            resources.ApplyResources(this.panel1, "panel1");
             this.panel1.Controls.Add(this.flowLayoutPanel3);
             this.panel1.Controls.Add(this.labelDirectory);
-            this.panel1.Dock = System.Windows.Forms.DockStyle.Top;
-            this.panel1.Location = new System.Drawing.Point(0, 24);
             this.panel1.Name = "panel1";
-            this.panel1.Size = new System.Drawing.Size(613, 32);
-            this.panel1.TabIndex = 1;
             // 
             // flowLayoutPanel3
             // 
-            this.flowLayoutPanel3.AutoSize = true;
+            resources.ApplyResources(this.flowLayoutPanel3, "flowLayoutPanel3");
             this.flowLayoutPanel3.Controls.Add(this.buttonBrowseMaterialDirectory);
-            this.flowLayoutPanel3.Dock = System.Windows.Forms.DockStyle.Right;
-            this.flowLayoutPanel3.Location = new System.Drawing.Point(478, 0);
             this.flowLayoutPanel3.Name = "flowLayoutPanel3";
-            this.flowLayoutPanel3.Size = new System.Drawing.Size(135, 32);
-            this.flowLayoutPanel3.TabIndex = 2;
             // 
             // buttonBrowseMaterialDirectory
             // 
-            this.buttonBrowseMaterialDirectory.Location = new System.Drawing.Point(3, 3);
+            resources.ApplyResources(this.buttonBrowseMaterialDirectory, "buttonBrowseMaterialDirectory");
             this.buttonBrowseMaterialDirectory.Name = "buttonBrowseMaterialDirectory";
-            this.buttonBrowseMaterialDirectory.Size = new System.Drawing.Size(129, 23);
-            this.buttonBrowseMaterialDirectory.TabIndex = 1;
-            this.buttonBrowseMaterialDirectory.Text = "エクスプローラーで開く";
             this.buttonBrowseMaterialDirectory.UseVisualStyleBackColor = true;
             this.buttonBrowseMaterialDirectory.Click += new System.EventHandler(this.OnButtonBrowseDirectoryClick);
             // 
             // panel2
             // 
+            resources.ApplyResources(this.panel2, "panel2");
             this.panel2.Controls.Add(this.treeViewMaterials);
-            this.panel2.Dock = System.Windows.Forms.DockStyle.Left;
-            this.panel2.Location = new System.Drawing.Point(0, 56);
             this.panel2.Name = "panel2";
-            this.panel2.Padding = new System.Windows.Forms.Padding(8);
-            this.panel2.Size = new System.Drawing.Size(163, 303);
-            this.panel2.TabIndex = 2;
             // 
             // panel3
             // 
+            resources.ApplyResources(this.panel3, "panel3");
             this.panel3.Controls.Add(this.groupBoxMaterial);
-            this.panel3.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.panel3.Location = new System.Drawing.Point(163, 56);
             this.panel3.Name = "panel3";
-            this.panel3.Size = new System.Drawing.Size(450, 303);
-            this.panel3.TabIndex = 11;
             // 
             // MaterialManagementForm
             // 
-            this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 12F);
+            resources.ApplyResources(this, "$this");
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(613, 400);
             this.Controls.Add(this.panel3);
             this.Controls.Add(this.panel2);
             this.Controls.Add(this.panel1);
@@ -364,7 +253,6 @@
             this.Controls.Add(this.menuStrip1);
             this.MainMenuStrip = this.menuStrip1;
             this.Name = "MaterialManagementForm";
-            this.Text = "素材管理";
             this.menuStrip1.ResumeLayout(false);
             this.menuStrip1.PerformLayout();
             this.groupBoxMaterial.ResumeLayout(false);

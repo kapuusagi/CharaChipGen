@@ -1,4 +1,5 @@
-﻿using CharaChipGen.Model.CharaChip;
+﻿using CharaChipGen.Model;
+using CharaChipGen.Model.CharaChip;
 using CharaChipGen.Properties;
 using System;
 using System.Drawing;
@@ -163,7 +164,7 @@ namespace CharaChipGen.GeneratorForm
         {
             string defaultName = GenerateDefaultTemplateName();
             string templateName = InputForm.InputForm.ShowDialog(this,
-                "テンプレート名を入力", "入力", defaultName);
+                Resources.MessageInputTemplateName, Resources.DialogTitleInput, defaultName);
             if (templateName == null)
             {
                 return;
@@ -192,7 +193,7 @@ namespace CharaChipGen.GeneratorForm
             }
             catch (Exception ex)
             {
-                MessageBox.Show(this, ex.Message, "エラー");
+                MessageBox.Show(this, ex.Message, Resources.DialogTitleError);
             }
         }
 
@@ -228,12 +229,12 @@ namespace CharaChipGen.GeneratorForm
         {
             if (name.Length == 0)
             {
-                throw new Exception("テンプレート名が入力されていません");
+                throw new Exception(Resources.MessageNoInputTemplateName);
             }
             char[] invalidChars = System.IO.Path.GetInvalidFileNameChars();
             if (name.IndexOfAny(invalidChars) >= 0)
             {
-                throw new Exception("テンプレート名に使用できない文字列が使われています。");
+                throw new Exception(Resources.MessageInvalidTemplateNameCharacter);
             }
         }
 
@@ -258,7 +259,7 @@ namespace CharaChipGen.GeneratorForm
             }
             catch (Exception ex)
             {
-                MessageBox.Show(this, ex.Message, "エラー");
+                MessageBox.Show(this, ex.Message, Resources.DialogTitleError);
             }
 
         }
@@ -286,6 +287,38 @@ namespace CharaChipGen.GeneratorForm
             Color defaultColor = Settings.Default.ImageBackground;
             Color selectedColor = CGenImaging.Forms.ColorSelectDialog.ShowDialog(this, defaultColor);
             Settings.Default.ImageBackground = selectedColor;
+        }
+
+        /// <summary>
+        /// エクスポートメニュー項目がクリックされた時に通を受け取る。
+        /// </summary>
+        /// <param name="sender">送信元オブジェクト</param>
+        /// <param name="e">イベントオブジェクト</param>
+        private void OnMenuItemExportClick(object sender, EventArgs e)
+        {
+            if (saveFileDialog.ShowDialog(this) != DialogResult.OK)
+            {
+                return;
+            }
+
+            try
+            {
+                string path = saveFileDialog.FileName;
+
+                GeneratorSetting setting = new GeneratorSetting(1, 1);
+                setting.ExportSetting.ExportFilePath = saveFileDialog.FileName;
+                setting.ExportSetting.CharaChipSize = AppData.Instance.GeneratorSetting.ExportSetting.CharaChipSize;
+                Character.CopyTo(setting.GetCharacter(0));
+
+                CharaChipExporter.ExportCharaChip(setting);
+
+                MessageBox.Show(this, Resources.MessageExported, Resources.DialogTitleInformation);
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show(this, ex.Message, Resources.DialogTitleError);
+
+            }
         }
     }
 }

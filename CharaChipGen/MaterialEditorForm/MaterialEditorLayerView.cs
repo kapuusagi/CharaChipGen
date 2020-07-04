@@ -1,6 +1,7 @@
 ﻿using CharaChipGen.Model.CharaChip;
 using CharaChipGen.Model.Layer;
 using CharaChipGen.Model.Material;
+using CharaChipGen.Properties;
 using System;
 using System.Drawing;
 using System.Windows.Forms;
@@ -219,7 +220,7 @@ namespace CharaChipGen.MaterialEditorForm
             }
             catch (Exception ex)
             {
-                MessageBox.Show(this, ex.Message, "エラー");
+                MessageBox.Show(this, ex.Message, Resources.DialogTitleError);
             }
         }
 

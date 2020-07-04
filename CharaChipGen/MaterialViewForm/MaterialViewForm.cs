@@ -80,7 +80,7 @@ namespace CharaChipGen.MaterialViewForm
         {
             if (materialView.MaterialRenderData.HasError)
             {
-                MessageBox.Show(this, "読み出し時にエラーが発生しました。", "エラー");
+                MessageBox.Show(this, Resources.MessageReadError, Resources.DialogTitleError);
             }
             timer.Start();
         }
