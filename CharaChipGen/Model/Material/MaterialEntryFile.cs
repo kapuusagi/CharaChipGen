@@ -248,6 +248,10 @@ namespace CharaChipGen.Model.Material
                         {
                             writer.WriteLine($"Layer.{layer.Name}.ColorPartsRefs = {layer.ColorPartsRefs.ToString()}");
                         }
+                        if (!string.IsNullOrEmpty(layer.ColorPropertyName))
+                        {
+                            writer.WriteLine($"Layer.{layer.Name}.ColorPropertyName = {layer.ColorPropertyName}");
+                        }
                         writer.WriteLine($"Layer.{layer.Name}.Attribute = {GetAttributeString(layer)}");
                         no++;
                     }
@@ -369,6 +373,12 @@ namespace CharaChipGen.Model.Material
                             if (Enum.TryParse(value, out PartsType attrType))
                             {
                                 layer.ColorPartsRefs = attrType;
+                            }
+                            break;
+                        case "ColorPropertyName":
+                            if (Parts.GetColorSettingNames().Contains(value))
+                            {
+                                layer.ColorPropertyName = value;
                             }
                             break;
                         case "Attribute":

@@ -234,7 +234,8 @@ namespace CharaChipGen.MaterialEditorForm
                 {
                     Path = targetLayerInfo.Path,
                     LayerType = targetLayerInfo.LayerType,
-                    ColorPartsRefs = targetLayerInfo.ColorPartsRefs
+                    ColorPartsRefs = targetLayerInfo.ColorPartsRefs,
+                    ColorPropertyName = targetLayerInfo.ColorPropertyName
                 };
 
                 entryFile.Layers.Add(newLayerName, layerInfo);

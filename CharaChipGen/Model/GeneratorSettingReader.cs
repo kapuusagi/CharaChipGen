@@ -165,17 +165,11 @@ namespace CharaChipGen.Model
                         case GeneratorSettingFileDefs.PartsAttrOffsetY:
                             parts.OffsetY = int.Parse(attr.Value);
                             break;
-                        case GeneratorSettingFileDefs.PartsAttrHue:
-                            parts.Hue = int.Parse(attr.Value);
+                        case GeneratorSettingFileDefs.PartsAttrColor1:
+                            parts.Color1 = ColorSetting.Parse(attr.Value);
                             break;
-                        case GeneratorSettingFileDefs.PartsAttrSaturation:
-                            parts.Saturation = int.Parse(attr.Value);
-                            break;
-                        case GeneratorSettingFileDefs.PartsAttrBrightness:
-                            parts.Value = int.Parse(attr.Value);
-                            break;
-                        case GeneratorSettingFileDefs.PartsAttrOpacity:
-                            parts.Opacity = int.Parse(attr.Value);
+                        case GeneratorSettingFileDefs.PartsAttrColor2:
+                            parts.Color2 = ColorSetting.Parse(attr.Value);
                             break;
                     }
                 }

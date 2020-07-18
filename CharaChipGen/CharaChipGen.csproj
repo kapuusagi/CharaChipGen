@@ -58,6 +58,12 @@
     <Compile Include="GeneratorForm\CharaChipView.Designer.cs">
       <DependentUpon>CharaChipView.cs</DependentUpon>
     </Compile>
+    <Compile Include="GeneratorForm\ColorSettingView.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="GeneratorForm\ColorSettingView.Designer.cs">
+      <DependentUpon>ColorSettingView.cs</DependentUpon>
+    </Compile>
     <Compile Include="GeneratorForm\PartsEditView.cs">
       <SubType>UserControl</SubType>
     </Compile>
@@ -131,6 +137,7 @@
     <Compile Include="Model\CharaChip\CharacterFileDefs.cs" />
     <Compile Include="Model\CharaChip\CharacterReader.cs" />
     <Compile Include="Model\CharaChip\CharacterWriter.cs" />
+    <Compile Include="Model\CharaChip\ColorSetting.cs" />
     <Compile Include="Model\GeneratorSetting.cs" />
     <Compile Include="Model\CharaChip\Parts.cs" />
     <Compile Include="Model\CharaChip\PartsChangeEventArgs.cs" />
@@ -211,6 +218,12 @@
     </EmbeddedResource>
     <EmbeddedResource Include="GeneratorForm\CharaChipViewNN.resx">
       <DependentUpon>CharaChipViewNN.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="GeneratorForm\ColorSettingView.ja-JP.resx">
+      <DependentUpon>ColorSettingView.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="GeneratorForm\ColorSettingView.resx">
+      <DependentUpon>ColorSettingView.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="GeneratorForm\PartsEditView.ja-JP.resx">
       <DependentUpon>PartsEditView.cs</DependentUpon>

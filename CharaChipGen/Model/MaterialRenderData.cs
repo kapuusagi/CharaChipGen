@@ -3,16 +3,20 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using CharaChipGen.Model.CharaChip;
 using CharaChipGen.Model.Layer;
 
 namespace CharaChipGen.Model
 {
     /// <summary>
-    /// 素材レンダリング用データモデル。
+    /// 素材レンダリング用の素のデータを扱うモデル。
     /// </summary>
     /// <remarks>
     /// 指定されたマテリアルのレイヤーデータを保持し、
     /// レンダラーが描画とするときに提供する役割を持つ。
+    /// 本クラスが扱うレイヤーデータは色変更が適用される前の、素のデータである。
+    /// 本クラスからレイヤーデータを取得したレンダラーは、
+    /// 色変更をピクセル毎に適用しつつ、描画用バッファに書き出す。
     /// 
     /// なんでこんなモデルがいるかって言うと、
     /// 素直に描画処理を実装すると、
@@ -23,6 +27,8 @@ namespace CharaChipGen.Model
     public class MaterialRenderData : IEnumerable<RenderLayer>
     {
         private const CharaChip.PartsType DefaultPartsType = CharaChip.PartsType.Head;
+
+        private const string DefaultColorPropertyName = Parts.DefaultColorPropertyName;
 
         // レイヤー
         private RenderLayerGroup[] layerGroups;
@@ -64,26 +70,36 @@ namespace CharaChipGen.Model
                 if (material != null)
                 {
                     // 素材のレイヤーを読み込んでグループに追加。
-                    // この部品のレイヤーを得て追加する。
-                    for (int i = 0; i < material.GetLayerCount(); i++)
-                    {
-                        Material.MaterialLayerInfo info = material.Layers[i];
-                        RenderLayerGroup group = layerGroups.First((entry) => entry.LayerType == info.LayerType);
-                        RenderLayer layer = new RenderLayer(info.LayerType, DefaultPartsType, DefaultPartsType);
-                        try
-                        {
-                            layer.Image = material.LoadLayerImage(i);
-                            layer.HasError = false;
-                        }
-                        catch
-                        {
-                            layer.HasError = true;
-                            layer.Image = null;
-                        }
-                        // レイヤーに設定値適用
-                        group.Add(DefaultPartsType, layer);
-                    }
+                    LoadMaterialLayers();
                 }
+            }
+        }
+
+        /// <summary>
+        /// 素材のレイヤーデータを読み込み、グループに追加する。
+        /// </summary>
+        private void LoadMaterialLayers()
+        {
+            // この部品のレイヤーを得て追加する。
+            for (int i = 0; i < material.GetLayerCount(); i++)
+            {
+                Material.MaterialLayerInfo info = material.Layers[i];
+                RenderLayerGroup group = layerGroups.First(
+                    (entry) => entry.LayerType == info.LayerType);
+                RenderLayer layer = new RenderLayer(info.LayerType, DefaultPartsType,
+                    DefaultPartsType, DefaultColorPropertyName);
+                try
+                {
+                    layer.Image = material.LoadLayerImage(i);
+                    layer.HasError = false;
+                }
+                catch
+                {
+                    layer.HasError = true;
+                    layer.Image = null;
+                }
+                // レイヤーに設定値適用
+                group.Add(DefaultPartsType, layer);
             }
         }
 

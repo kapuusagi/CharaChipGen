@@ -47,6 +47,7 @@
             this.label5 = new System.Windows.Forms.Label();
             this.labelFileName = new System.Windows.Forms.Label();
             this.openFileDialog = new System.Windows.Forms.OpenFileDialog();
+            this.comboBoxColorProperty = new System.Windows.Forms.ComboBox();
             this.groupBoxLayerName.SuspendLayout();
             this.panel1.SuspendLayout();
             this.tableLayoutPanel1.SuspendLayout();
@@ -55,9 +56,9 @@
             // 
             // groupBoxLayerName
             // 
-            resources.ApplyResources(this.groupBoxLayerName, "groupBoxLayerName");
             this.groupBoxLayerName.Controls.Add(this.materialView4x3);
             this.groupBoxLayerName.Controls.Add(this.panel1);
+            resources.ApplyResources(this.groupBoxLayerName, "groupBoxLayerName");
             this.groupBoxLayerName.Name = "groupBoxLayerName";
             this.groupBoxLayerName.TabStop = false;
             // 
@@ -70,8 +71,8 @@
             // 
             // panel1
             // 
-            resources.ApplyResources(this.panel1, "panel1");
             this.panel1.Controls.Add(this.tableLayoutPanel1);
+            resources.ApplyResources(this.panel1, "panel1");
             this.panel1.Name = "panel1";
             // 
             // tableLayoutPanel1
@@ -89,12 +90,13 @@
             this.tableLayoutPanel1.Controls.Add(this.checkBoxColorImmutable, 1, 5);
             this.tableLayoutPanel1.Controls.Add(this.label5, 0, 0);
             this.tableLayoutPanel1.Controls.Add(this.labelFileName, 1, 0);
+            this.tableLayoutPanel1.Controls.Add(this.comboBoxColorProperty, 2, 4);
             this.tableLayoutPanel1.Name = "tableLayoutPanel1";
             // 
             // flowLayoutPanel1
             // 
-            resources.ApplyResources(this.flowLayoutPanel1, "flowLayoutPanel1");
             this.flowLayoutPanel1.Controls.Add(this.buttonOpen);
+            resources.ApplyResources(this.flowLayoutPanel1, "flowLayoutPanel1");
             this.flowLayoutPanel1.Name = "flowLayoutPanel1";
             this.tableLayoutPanel1.SetRowSpan(this.flowLayoutPanel1, 2);
             // 
@@ -137,8 +139,8 @@
             // 
             // comboBoxLayerType
             // 
-            resources.ApplyResources(this.comboBoxLayerType, "comboBoxLayerType");
             this.tableLayoutPanel1.SetColumnSpan(this.comboBoxLayerType, 2);
+            resources.ApplyResources(this.comboBoxLayerType, "comboBoxLayerType");
             this.comboBoxLayerType.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
             this.comboBoxLayerType.FormattingEnabled = true;
             this.comboBoxLayerType.Name = "comboBoxLayerType";
@@ -147,7 +149,6 @@
             // comboBoxColorRefs
             // 
             resources.ApplyResources(this.comboBoxColorRefs, "comboBoxColorRefs");
-            this.tableLayoutPanel1.SetColumnSpan(this.comboBoxColorRefs, 2);
             this.comboBoxColorRefs.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
             this.comboBoxColorRefs.FormattingEnabled = true;
             this.comboBoxColorRefs.Name = "comboBoxColorRefs";
@@ -168,13 +169,21 @@
             // 
             // labelFileName
             // 
-            resources.ApplyResources(this.labelFileName, "labelFileName");
             this.tableLayoutPanel1.SetColumnSpan(this.labelFileName, 2);
+            resources.ApplyResources(this.labelFileName, "labelFileName");
             this.labelFileName.Name = "labelFileName";
             // 
             // openFileDialog
             // 
             resources.ApplyResources(this.openFileDialog, "openFileDialog");
+            // 
+            // comboBoxColorProperty
+            // 
+            this.comboBoxColorProperty.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
+            this.comboBoxColorProperty.FormattingEnabled = true;
+            resources.ApplyResources(this.comboBoxColorProperty, "comboBoxColorProperty");
+            this.comboBoxColorProperty.Name = "comboBoxColorProperty";
+            this.comboBoxColorProperty.SelectedIndexChanged += new System.EventHandler(this.OnComboBoxColorPropertySelectedIndexChanged);
             // 
             // MaterialEditorLayerView
             // 
@@ -211,5 +220,6 @@
         private System.Windows.Forms.CheckBox checkBoxColorImmutable;
         private System.Windows.Forms.Label label5;
         private System.Windows.Forms.Label labelFileName;
+        private System.Windows.Forms.ComboBox comboBoxColorProperty;
     }
 }

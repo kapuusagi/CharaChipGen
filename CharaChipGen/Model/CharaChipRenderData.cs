@@ -3,6 +3,7 @@ using CharaChipGen.Model.Layer;
 using CharaChipGen.Model.Material;
 using System;
 using System.Collections.Generic;
+using System.Data;
 using System.Drawing;
 using System.Linq;
 
@@ -198,7 +199,7 @@ namespace CharaChipGen.Model
             else
             {
                 // この部品に関係する画像レイヤーに設定を適用する。
-                OnPartsAttributeChanged(model, partsType);
+                OnPartsAttributeChanged(model, partsType, propertyName);
             }
 
             ImageChanged?.Invoke(this, new EventArgs());
@@ -231,7 +232,9 @@ namespace CharaChipGen.Model
                 MaterialLayerInfo info = m.Layers[i];
                 RenderLayerGroup group = layerGroups.First((entry) => entry.LayerType == info.LayerType);
                 PartsType colorPartsRefs = info.ColorPartsRefs ?? partsType;
-                RenderLayer layer = new RenderLayer(info.LayerType, partsType, colorPartsRefs);
+                string colorPropertyName = info.ColorPropertyName ?? Parts.DefaultColorPropertyName;
+                RenderLayer layer = new RenderLayer(info.LayerType, partsType,
+                    colorPartsRefs, colorPropertyName);
                 layer.ColorImmutable = info.ColorImmutable;
                 try
                 {
@@ -255,7 +258,9 @@ namespace CharaChipGen.Model
         /// </summary>
         /// <param name="model">キャラチップモデル</param>
         /// <param name="partsType">部品タイプ</param>
-        private void OnPartsAttributeChanged(Character model, PartsType partsType)
+        /// <param name="propertyName">プロパティ名</param>
+        private void OnPartsAttributeChanged(Character model, PartsType partsType,
+            string propertyName)
         {
             // 変更対象の部品に関係するレイヤーに設定を適用する。
             Parts parts = model.GetParts(partsType);
@@ -267,9 +272,14 @@ namespace CharaChipGen.Model
                     {
                         ApplyLayerOffsets(layer, parts);
                     }
-                    if (layer.ColorPartsRefs == partsType)
+                    if ((layer.ColorPartsRefs == partsType)
+                        && (layer.ColorPropertyName.Equals(propertyName)))
                     {
-                        ApplyLayerColor(layer, parts);
+                        ColorSetting setting = parts.GetColorSetting(propertyName);
+                        if (setting != null)
+                        {
+                            ApplyLayerColor(layer, setting);
+                        }
                     }
                 }
             }
@@ -283,20 +293,24 @@ namespace CharaChipGen.Model
         private void ApplyLayerColor(RenderLayer layer, Character model)
         {
             Parts parts = model.GetParts(layer.ColorPartsRefs);
-            ApplyLayerColor(layer, parts);
+            ColorSetting setting = parts.GetColorSetting(layer.ColorPropertyName);
+            if (setting != null)
+            {
+                ApplyLayerColor(layer, setting);
+            }
         }
 
         /// <summary>
         /// レイヤーにpartsで指定される部品の設定を適用する。
         /// </summary>
         /// <param name="layer">レイヤー</param>
-        /// <param name="parts">部品</param>
-        private void ApplyLayerColor(RenderLayer layer, Parts parts)
+        /// <param name="setting">色設定</param>
+        private void ApplyLayerColor(RenderLayer layer, ColorSetting setting)
         {
-            layer.Hue = parts.Hue;
-            layer.Saturation = parts.Saturation;
-            layer.Value = parts.Value;
-            layer.Opacity = parts.Opacity;
+            layer.Hue = setting.Hue;
+            layer.Saturation = setting.Saturation;
+            layer.Value = setting.Value;
+            layer.Opacity = setting.Opacity;
         }
 
         /// <summary>

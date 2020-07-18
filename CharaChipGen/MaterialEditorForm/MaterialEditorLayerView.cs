@@ -30,10 +30,17 @@ namespace CharaChipGen.MaterialEditorForm
             {
                 comboBoxLayerType.Items.Add(layerType);
             }
-            comboBoxColorRefs.Items.Add(Properties.Resources.ItemNameUsePartsSetting);
+
+            string[] colorPropertyNames = Parts.GetColorSettingNames();
             foreach (PartsType partsType in Enum.GetValues(typeof(PartsType)))
             {
                 comboBoxColorRefs.Items.Add(partsType);
+            }
+
+            comboBoxColorRefs.Items.Add(Properties.Resources.ItemNameUsePartsSetting);
+            foreach (string colorPropertyName in colorPropertyNames)
+            {
+                comboBoxColorProperty.Items.Add(colorPropertyName);
             }
         }
 
@@ -110,6 +117,7 @@ namespace CharaChipGen.MaterialEditorForm
             SetLayerType(layerInfo?.LayerType ?? null);
             // カラー参照
             SetColorRefs(layerInfo?.ColorPartsRefs ?? null);
+            SetColorPropertyName(layerInfo?.ColorPropertyName ?? null);
             // 色不変設定
             checkBoxColorImmutable.Checked = layerInfo.ColorImmutable;
         }
@@ -154,6 +162,29 @@ namespace CharaChipGen.MaterialEditorForm
                     if (comboBoxColorRefs.Items[i].Equals(selValue))
                     {
                         comboBoxColorRefs.SelectedIndex = i;
+                        break;
+                    }
+                }
+            }
+        }
+
+        /// <summary>
+        /// 色プロパティ名選択をpropertyNameで指定された値に選択状態とする。
+        /// </summary>
+        /// <param name="propertyName">プロパティ名</param>
+        private void SetColorPropertyName(string propertyName)
+        {
+            if (string.IsNullOrEmpty(propertyName))
+            {
+                comboBoxColorProperty.SelectedIndex = 0;
+            }
+            else
+            {
+                for (int i = 0; i < comboBoxColorProperty.Items.Count; i++)
+                {
+                    if (comboBoxColorProperty.Items[i].Equals(propertyName))
+                    {
+                        comboBoxColorProperty.SelectedIndex = i;
                         break;
                     }
                 }
@@ -285,6 +316,31 @@ namespace CharaChipGen.MaterialEditorForm
         public Color ImageBackground {
             get => materialView4x3.ImageBackground;
             set => materialView4x3.ImageBackground = value;
+        }
+
+        /// <summary>
+        /// 色プロパティ名選択コンボボックスの選択状態が変わったときに通知を受け取る。
+        /// </summary>
+        /// <param name="sender">送信元オブジェクト</param>
+        /// <param name="e">イベントオブジェクト</param>
+        private void OnComboBoxColorPropertySelectedIndexChanged(object sender, EventArgs e)
+        {
+            if (layerInfo == null)
+            {
+                return;
+            }
+
+            ComboBox comboBox = (ComboBox)(sender);
+            object selectedItem = comboBox.SelectedItem;
+            if ((selectedItem != null) && (selectedItem is string propertyName))
+            {
+                layerInfo.ColorPropertyName = propertyName;
+            }
+            else
+            {
+                layerInfo.ColorPropertyName = string.Empty;
+            }
+            NotifyLayerChanged();
         }
     }
 }

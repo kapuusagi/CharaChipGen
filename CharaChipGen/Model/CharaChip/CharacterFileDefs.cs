@@ -30,20 +30,12 @@
         /// </summary>
         public const string PartsAttrOffsetY = "y-offset";
         /// <summary>
-        /// 部品属性：色差
+        /// 部品属性：色1
         /// </summary>
-        public const string PartsAttrHue = "hue";
+        public const string PartsAttrColor1 = "color1";
         /// <summary>
-        /// 部品属性：彩度
+        /// 部品属性：色2
         /// </summary>
-        public const string PartsAttrSaturation = "saturation";
-        /// <summary>
-        /// 部品属性：輝度
-        /// </summary>
-        public const string PartsAttrBrightness = "brightness";
-        /// <summary>
-        /// 部品属性：透過度
-        /// </summary>
-        public const string PartsAttrOpacity = "opacity";
+        public const string PartsAttrColor2 = "color2";
     }
 }

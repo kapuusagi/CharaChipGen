@@ -41,12 +41,15 @@ namespace CharaChipGen.Model.Layer
         /// <param name="layerType">レイヤータイプ</param>
         /// <param name="partsType">パラメータを取得する部品タイプ</param>
         /// <param name="colorPartsRefs">色パラメータを取得する部品タイプ</param>
-        public RenderLayer(LayerType layerType, PartsType partsType, PartsType colorPartsRefs)
+        /// <param name="colorPropertyName">色参照プロパティ名</param>
+        public RenderLayer(LayerType layerType, PartsType partsType, PartsType colorPartsRefs,
+            string colorPropertyName)
         {
             LayerType = layerType;
             PartsType = partsType;
             ColorPartsRefs = colorPartsRefs;
             ColorImmutable = false;
+            ColorPropertyName = colorPropertyName;
             this.image = null;
             this.offsetX = 0;
             this.offsetY = 0;
@@ -84,6 +87,10 @@ namespace CharaChipGen.Model.Layer
         /// Hue, Saturation, Value, Opacity を取得する部品種別
         /// </summary>
         public PartsType ColorPartsRefs { get; set; }
+        /// <summary>
+        /// Hue, Saturation, Value, Opacity を取得する色プロパティ名(Color1だとかColor2だとか)
+        /// </summary>
+        public string ColorPropertyName { get; set; }
 
         /// <summary>
         /// 色が不変かどうか

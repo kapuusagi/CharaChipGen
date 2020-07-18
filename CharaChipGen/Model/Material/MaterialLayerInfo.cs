@@ -19,6 +19,7 @@ namespace CharaChipGen.Model.Material
             Name = name;
             attributeType = null;
             ColorImmutable = false;
+            ColorPropertyName = string.Empty;
         }
 
         /// <summary>
@@ -43,6 +44,11 @@ namespace CharaChipGen.Model.Material
             get => attributeType;
             set => attributeType = value;
         }
+
+        /// <summary>
+        /// 色プロパティ名
+        /// </summary>
+        public string ColorPropertyName { get; set; }
 
         /// <summary>
         /// 色は不変かどうか。
@@ -72,7 +78,12 @@ namespace CharaChipGen.Model.Material
             sb.Append(Name).Append(' ');
             if (ColorPartsRefs != null)
             {
-                sb.Append('(').Append(ColorPartsRefs).Append(") ");
+                sb.Append('(').Append(ColorPartsRefs);
+                if (!string.IsNullOrEmpty(ColorPropertyName))
+                {
+                    sb.Append(':').Append(ColorPropertyName);
+                }
+                sb.Append(") ");
             }
             sb.Append("Layer.").Append(LayerType).Append(' ');
             sb.Append(Path);

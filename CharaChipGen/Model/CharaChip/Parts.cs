@@ -7,20 +7,20 @@ namespace CharaChipGen.Model.CharaChip
     /// </summary>
     public class Parts : INotifyPropertyChanged
     {
+        /// <summary>
+        /// デフォルトの色パラメータ名
+        /// </summary>
+        public const string DefaultColorPropertyName = nameof(Color1);
         // パラメータ名
         private string materialName;
         // オフセットX
         private int offsetX;
         // オフセットY
         private int offsetY;
-        // 色相調整値
-        private int hue;
-        //  彩度調整値
-        private int saturation;
-        // 輝度調整値
-        private int value;
-        // 不透明度（高いほど不透明） = アルファチャンネル
-        private int opacity;
+        // 色1
+        private ColorSetting color1;
+        // 色2
+        private ColorSetting color2;
 
         /// <summary>
         /// 新しいインスタンスを構築する。
@@ -32,11 +32,27 @@ namespace CharaChipGen.Model.CharaChip
             materialName = "";
             offsetX = 0;
             offsetY = 0;
-            hue = 0;
-            saturation = 0;
-            value = 0;
-            opacity = 100;
+            color1 = new ColorSetting();
+            color1.PropertyChanged += OnColor1PropertyChanged;
+            color2 = new ColorSetting();
+            color2.PropertyChanged += OnColor2PropertyChanged;
         }
+
+        /// <summary>
+        /// Color1プロパティが変更されたときに通知を受け取る。
+        /// </summary>
+        /// <param name="sender">送信元オブジェクト</param>
+        /// <param name="e">イベントオブジェクト</param>
+        private void OnColor1PropertyChanged(object sender, PropertyChangedEventArgs e)
+            => NotifyPropertyChange(nameof(Color1));
+
+        /// <summary>
+        /// Color2プロパティが変更されたときに通知を受け取る。
+        /// </summary>
+        /// <param name="sender">送信元オブジェクト</param>
+        /// <param name="e">イベントオブジェクト</param>
+        private void OnColor2PropertyChanged(object sender, PropertyChangedEventArgs e)
+            => NotifyPropertyChange(nameof(Color2));
 
 
         /// <summary>
@@ -62,10 +78,8 @@ namespace CharaChipGen.Model.CharaChip
             if ((param.materialName.Equals(materialName))
                 && (param.offsetX == offsetX)
                 && (param.offsetY == offsetY)
-                && (param.hue == hue)
-                && (param.saturation == saturation)
-                && (param.value == value)
-                && (param.opacity == opacity))
+                && param.color1.Equals(color1)
+                && param.color2.Equals(color2))
             {
                 // 同じデータ
                 return;
@@ -74,10 +88,8 @@ namespace CharaChipGen.Model.CharaChip
             param.MaterialName = MaterialName;
             param.OffsetX = OffsetX;
             param.OffsetY = OffsetY;
-            param.Hue = Hue;
-            param.Saturation = Saturation;
-            param.Value = Value;
-            param.Opacity = Opacity;
+            color1.CopyTo(param.Color1);
+            color2.CopyTo(param.Color2);
         }
 
         /// <summary>
@@ -85,23 +97,10 @@ namespace CharaChipGen.Model.CharaChip
         /// </summary>
         public void Reset()
         {
-            if ((this.materialName == "")
-                && (this.offsetX == 0)
-                && (this.offsetY == 0)
-                && (hue == 0)
-                && (saturation == 0)
-                && (value == 0)
-                && (opacity == 100))
-            {
-                return;
-            }
             MaterialName = "";
             OffsetX = 0;
             OffsetY = 0;
-            Hue = 0;
-            Saturation = 0;
-            Value = 0;
-            Opacity = 100;
+            Color1.Reset();
         }
 
         /// <summary>
@@ -161,62 +160,65 @@ namespace CharaChipGen.Model.CharaChip
         }
 
         /// <summary>
-        /// 色相調整値(-180 - 0)
+        /// 色設定1（メインカラー）
         /// </summary>
-        public int Hue {
-            get { return hue; }
+        public ColorSetting Color1 {
+            get {
+                return color1;
+            }
             set {
-                if (hue == value)
+                if (color1.Equals(value))
                 {
                     return; // 同値なので設定変更不要。
                 }
-                hue = value;
-                NotifyPropertyChange(nameof(Hue));
+                value.CopyTo(color1); // 変更入ったパラメータはここでイベントが飛ぶ。
             }
         }
 
         /// <summary>
-        /// 彩度の調整値
+        /// 色設定2（サブカラー）
         /// </summary>
-        public int Saturation {
-            get { return saturation; }
-            set {
-                if (saturation == value)
-                {
-                    return; // 同値なので設定変更不要。
-                }
-                saturation = value;
-                NotifyPropertyChange(nameof(Saturation));
+        public ColorSetting Color2 {
+            get {
+                return color2;
             }
-        }
-        /// <summary>
-        /// 輝度の調整値
-        /// </summary>
-        public int Value {
-            get { return value; }
             set {
-                if (this.value == value)
+                if (color2.Equals(value))
                 {
-                    return;
+                    return; //同値なので設定変更不要。
                 }
-                this.value = value;
-                NotifyPropertyChange(nameof(Value));
+                value.CopyTo(color2); // 変更入ったパラメータはここでイベントが飛ぶ。
             }
         }
 
         /// <summary>
-        /// 不透明度
+        /// 色設定を得る。
         /// </summary>
-        public int Opacity {
-            get { return opacity; }
-            set {
-                if (this.opacity == value)
-                {
-                    return;
-                }
-                this.opacity = value;
-                NotifyPropertyChange(nameof(Opacity));
+        /// <param name="colorPropertyName">色プロパティ名</param>
+        /// <returns>色設定</returns>
+        public ColorSetting GetColorSetting(string colorPropertyName)
+        {
+            switch (colorPropertyName)
+            {
+                case nameof(Color1):
+                    return Color1;
+                case nameof(Color2):
+                    return Color2;
+                default:
+                    return null;
             }
+        }
+
+        /// <summary>
+        /// 指定可能な色設定名を得る。
+        /// </summary>
+        /// <returns>色設定名配列</returns>
+        public static string[] GetColorSettingNames()
+        {
+            return new string[]
+            {
+                nameof(Color1), nameof(Color2)
+            };
         }
     }
 }

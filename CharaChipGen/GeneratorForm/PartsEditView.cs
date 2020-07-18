@@ -33,25 +33,10 @@ namespace CharaChipGen.GeneratorForm
         {
             numericUpDownYPos.ValueChanged
                 += (s, e) => { model.OffsetY = (int)(numericUpDownYPos.Value); };
-            numericUpDownHue.ValueChanged
-                += (s, e) => { model.Hue = (int)(numericUpDownHue.Value); };
-            numericUpDownSaturation.ValueChanged
-                += (s, e) => { model.Saturation = (int)(numericUpDownSaturation.Value); };
-            numericUpDownValue.ValueChanged
-                += (s, e) => { model.Value = (int)(numericUpDownValue.Value); };
-            numericUpDownOpacity.ValueChanged
-                += (s, e) => { model.Opacity = (int)(numericUpDownOpacity.Value); };
-
             trackBarYPos.ValueChanged
                 += (s, e) => { model.OffsetY = trackBarYPos.Value; };
-            trackBarHue.ValueChanged
-                += (s, e) => { model.Hue = trackBarHue.Value; };
-            trackBarSaturation.ValueChanged
-                += (s, e) => { model.Saturation = trackBarSaturation.Value; };
-            trackBarValue.ValueChanged
-                += (s, e) => { model.Value = trackBarValue.Value; };
-            trackBarOpacity.ValueChanged
-                += (s, e) => { model.Opacity = trackBarOpacity.Value; };
+            colorSettingView1.ColorSetting = model.Color1;
+            colorSettingView2.ColorSetting = model.Color2;
         }
 
 
@@ -94,21 +79,8 @@ namespace CharaChipGen.GeneratorForm
             trackBarYPos.Value = model.OffsetY;
             numericUpDownYPos.Value = model.OffsetY;
 
-            // 色相
-            trackBarHue.Value = model.Hue;
-            numericUpDownHue.Value = model.Hue;
-
-            // 彩度
-            trackBarSaturation.Value = model.Saturation;
-            numericUpDownSaturation.Value = model.Saturation;
-
-            // 輝度
-            trackBarValue.Value = model.Value;
-            numericUpDownValue.Value = model.Value;
-
-            // 不当明度
-            trackBarOpacity.Value = model.Opacity;
-            numericUpDownOpacity.Value = model.Opacity;
+            colorSettingView1.ColorSetting = model.Color1;
+            colorSettingView2.ColorSetting = model.Color2;
         }
 
         /// <summary>
@@ -119,10 +91,8 @@ namespace CharaChipGen.GeneratorForm
         private void OnButtonResetClick(object sender, EventArgs e)
         {
             model.OffsetY = 0;
-            model.Hue = 0;
-            model.Saturation = 0;
-            model.Value = 0;
-            model.Opacity = 100;
+            model.Color1.Reset();
+            model.Color2.Reset();
         }
 
         /// <summary>
@@ -140,14 +110,10 @@ namespace CharaChipGen.GeneratorForm
         /// HSVの表示可否
         /// </summary>
         public bool EditHSV {
-            get { return numericUpDownHue.Visible; }
+            get => colorSettingView1.EditHSV;
             set {
-                numericUpDownHue.Visible = value;
-                trackBarHue.Visible = value;
-                numericUpDownSaturation.Visible = value;
-                trackBarSaturation.Visible = value;
-                numericUpDownValue.Visible = value;
-                trackBarValue.Visible = value;
+                colorSettingView1.EditHSV = value;
+                colorSettingView2.EditHSV = value;
             }
         }
     }
