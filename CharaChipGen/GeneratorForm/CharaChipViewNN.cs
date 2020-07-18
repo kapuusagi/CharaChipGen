@@ -5,6 +5,8 @@ using CharaChipGen.Model.Layer;
 using System;
 using System.Collections.Generic;
 using System.Drawing;
+using System.Threading;
+using System.Threading.Tasks;
 using System.Windows.Forms;
 
 namespace CharaChipGen.GeneratorForm
@@ -14,35 +16,100 @@ namespace CharaChipGen.GeneratorForm
     /// </summary>
     public partial class CharaChipViewNN : UserControl
     {
+        enum RenderState
+        {
+            Stop,
+            Requested,
+            Renderring,
+        }
         // X位置
-        private int positionX;
+        private int positionX = 0;
         // Y位置
-        private int positionY;
+        private int positionY = 0;
         // レンダリング完了済みデータ
-        private Image renderedImage;
+        private Image renderedImage = null;
         // レンダリングモデル
-        private CharaChipRenderData renderData;
+        private CharaChipRenderData renderData = new CharaChipRenderData();
         // ハンドラ
         private CharaChipRenderData.ImageChangedEventHandler handler;
+        // 描画処理状態
+        private RenderState renderState = RenderState.Stop;
+        // リクエストミューテックス
+        private readonly object requestMutex = new object();
 
         /// <summary>
         /// 新しいインスタンスを構築する。
         /// </summary>
         public CharaChipViewNN()
         {
-            positionX = 0;
-            positionY = 0;
-            renderedImage = null;
-            renderData = new CharaChipRenderData();
             handler = (sender, e) =>
             {
-                // 表示データの変更が入った場合にはイメージを削除して
-                // 表示の更新が必要であるとマークする。
-                renderedImage = null;
-                Invalidate();
+                RequestRenderImage();
             };
             renderData.ImageChanged += handler;
             InitializeComponent();
+        }
+
+        /// <summary>
+        /// 描画要求を出す。
+        /// </summary>
+        private void RequestRenderImage()
+        {
+            // 表示データの変更が入った場合にはイメージを削除して
+            // 表示の更新が必要であるとマークする。
+            // 更にレンダリングをバックグラウンドで行う。
+            lock (requestMutex)
+            {
+                if (renderState == RenderState.Stop)
+                {
+                    renderState = RenderState.Requested;
+                    System.Diagnostics.Debug.WriteLine($"{positionX}-{positionY}:Start thread. ");
+                    Task.Run(() =>
+                    {
+                        RenderLayerProc();
+                    });
+                }
+                else
+                {
+                    renderState = RenderState.Requested;
+                }
+            }
+        }
+
+        /// <summary>
+        /// レンダリングをする。
+        /// </summary>
+        private void RenderLayerProc()
+        {
+            while (true)
+            {
+                lock (requestMutex)
+                {
+                    if (renderState != RenderState.Requested)
+                    {
+                        renderState = RenderState.Stop;
+                        break;
+                    }
+                    else
+                    {
+                        renderState = RenderState.Renderring;
+                    }
+                }
+                // イメージをレンダリング
+                Size prefSize = renderData.PreferredSize;
+                if ((prefSize.Width > 0) && (prefSize.Height > 0))
+                {
+                    Size imageSize = new Size(prefSize.Width / 3, prefSize.Height / 4);
+
+                    ImageBuffer renderBuffer = ImageBuffer.Create(imageSize.Width, imageSize.Height);
+
+                    // レンダリングする。
+                    CharaChipRenderer.Draw(renderData, renderBuffer, positionX, positionY);
+                    renderedImage = renderBuffer.GetImage();
+                    Invalidate();
+                }
+            }
+            System.Diagnostics.Debug.WriteLine($"{positionX}-{positionY}:Thread exit. ");
         }
 
         /// <summary>
@@ -134,22 +201,6 @@ namespace CharaChipGen.GeneratorForm
                 g.FillRectangle(brush, 0, 0, ClientSize.Width - 1, ClientSize.Height - 1);
             }
 
-            // イメージをレンダリング
-            if (renderedImage == null)
-            {
-                Size prefSize = renderData.PreferredSize;
-                if ((prefSize.Width > 0) && (prefSize.Height > 0))
-                {
-
-                    Size imageSize = new Size(prefSize.Width / 3, prefSize.Height / 4);
-
-                    ImageBuffer renderBuffer = ImageBuffer.Create(imageSize.Width, imageSize.Height);
-
-                    // レンダリングする。
-                    CharaChipRenderer.Draw(renderData, renderBuffer, positionX, positionY);
-                    renderedImage = renderBuffer.GetImage();
-                }
-            }
 
             if (renderedImage != null)
             {
