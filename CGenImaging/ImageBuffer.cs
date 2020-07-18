@@ -1,5 +1,6 @@
 ﻿using System.Drawing;
 using System.Drawing.Imaging;
+using System.Threading.Tasks;
 
 namespace CGenImaging
 {
@@ -121,7 +122,7 @@ namespace CGenImaging
         /// <param name="c">色</param>
         public void Fill(Color c)
         {
-            for (int y = 0; y < Height; y++)
+            Parallel.For(0, Height, y =>
             {
                 int pos = y * lineBytes;
                 for (int x = 0; x < Width; x++)
@@ -132,7 +133,7 @@ namespace CGenImaging
                     buffer[pos + 3] = c.A;
                     pos += 4;
                 }
-            }
+            });
         }
 
         /// <summary>
@@ -140,7 +141,7 @@ namespace CGenImaging
         /// </summary>
         public void Clear()
         {
-            for (int y = 0; y < Height; y++)
+            Parallel.For(0, Height, y =>
             {
                 int pos = y * lineBytes;
                 for (int x = 0; x < Width; x++)
@@ -151,7 +152,7 @@ namespace CGenImaging
                     buffer[pos + 3] = 0;
                     pos += 4;
                 }
-            }
+            });
         }
 
         /// <summary>
@@ -182,7 +183,7 @@ namespace CGenImaging
         /// <param name="copyHeight">高さ</param>
         public void WriteImage(ImageBuffer srcImage, int srcXOffs, int srcYOffs, int dstXOffs, int dstYOffs, int copyWidth, int copyHeight)
         {
-            for (int y = 0; y < copyHeight; y++)
+            Parallel.For(0, copyHeight, y =>
             {
                 for (int x = 0; x < copyWidth; x++)
                 {
@@ -200,7 +201,7 @@ namespace CGenImaging
                     Color c = srcImage.GetPixel(srcX, srcY);
                     SetPixel(dstX, dstY, c);
                 }
-            }
+            });
         }
 
         /// <summary>

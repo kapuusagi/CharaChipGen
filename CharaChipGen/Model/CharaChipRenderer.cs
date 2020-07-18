@@ -1,6 +1,7 @@
 ﻿using CGenImaging;
 using CharaChipGen.Model.Layer;
 using System.Drawing;
+using System.Threading.Tasks;
 
 namespace CharaChipGen.Model
 {
@@ -66,7 +67,7 @@ namespace CharaChipGen.Model
             int yOffset = (buffer.Height - srcHeight) / 2 - layer.OffsetY;
             int opacity = layer.Opacity;
 
-            for (int y = 0; y < srcHeight; y++)
+            Parallel.For(0, srcHeight, y =>
             {
                 for (int x = 0; x < srcWidth; x++)
                 {
@@ -100,7 +101,7 @@ namespace CharaChipGen.Model
                     }
                     buffer.SetPixel(dstX, dstY, dstColor);
                 }
-            }
+            });
         }
     }
 }

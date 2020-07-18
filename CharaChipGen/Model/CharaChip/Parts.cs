@@ -18,9 +18,9 @@ namespace CharaChipGen.Model.CharaChip
         // オフセットY
         private int offsetY;
         // 色1
-        private ColorSetting color1;
+        private readonly ColorSetting color1;
         // 色2
-        private ColorSetting color2;
+        private readonly ColorSetting color2;
 
         /// <summary>
         /// 新しいインスタンスを構築する。
