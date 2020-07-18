@@ -82,8 +82,15 @@ namespace CharaChipGen.MainForm
             // モーダルダイアログとして表示する。
             form.ShowDialog(this);
 
-            // 素材が変更されたかもしれないので、UIの表示を変更する。
-            UpdateAllEntryViews();
+            try
+            {
+                // 素材が変更されたかもしれないので、UIの表示を変更する。
+                UpdateAllEntryViews();
+            }
+            catch (Exception ex)
+            {
+                System.Diagnostics.Debug.WriteLine(ex.Message);
+            }
         }
 
         /// <summary>
@@ -346,10 +353,17 @@ namespace CharaChipGen.MainForm
 
             editFilePath = openFileDialog.FileName;
 
-            // Note: 本当はComponentModelをViewに設定して
-            //       変更があったらViewが自動的に更新されるようにして、
-            //       ここに余計なコードを書かない方が美しい。
-            UpdateAllEntryViews();
+            try
+            {
+                // Note: 本当はComponentModelをViewに設定して
+                //       変更があったらViewが自動的に更新されるようにして、
+                //       ここに余計なコードを書かない方が美しい。
+                UpdateAllEntryViews();
+            }
+            catch (Exception ex)
+            {
+                System.Diagnostics.Debug.WriteLine(ex.Message);
+            }
 
             labelOutputPath.Text = setting.ExportSetting.ExportFilePath;
         }
