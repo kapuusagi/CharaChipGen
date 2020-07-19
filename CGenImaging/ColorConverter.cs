@@ -106,8 +106,8 @@ namespace CGenImaging
             else
             {
                 saturation = (lightness < 0.5)
-                    ? (max - min) / (max + min)
-                    : (max - min) / (2 * 255.0f - max - min);
+                    ? (float)(max - min) / (float)(max + min)
+                    : (float)(max - min) / (2 * 255.0f - max - min);
             }
 
             return ColorHSL.FromHSL(hue, saturation, lightness);
