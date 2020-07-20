@@ -32,6 +32,10 @@ namespace CharaChipGen.Model.Layer
         private int value;
         // 不透明度
         private int opacity;
+        // 画像状態ロック
+        private readonly object renderRequestLock;
+        // 再描画する必要があるか
+        private bool renderRequested;
         // 処理済みデータ
         private ImageBuffer processedImage;
 
@@ -45,6 +49,8 @@ namespace CharaChipGen.Model.Layer
         public RenderLayer(LayerType layerType, PartsType partsType, PartsType colorPartsRefs,
             string colorPropertyName)
         {
+            renderRequestLock = new object();
+            renderRequested = true;
             LayerType = layerType;
             PartsType = partsType;
             ColorPartsRefs = colorPartsRefs;
@@ -114,7 +120,7 @@ namespace CharaChipGen.Model.Layer
                 }
 
                 image = value;
-                processedImage = null;
+                InvalidateProcessedImage();
                 NotifyPropertyChange(nameof(Image));
             }
         }
@@ -181,7 +187,7 @@ namespace CharaChipGen.Model.Layer
                     return; // 変更なし
                 }
                 hue = value;
-                processedImage = null;
+                InvalidateProcessedImage();
                 NotifyPropertyChange(nameof(Opacity));
             }
         }
@@ -201,7 +207,8 @@ namespace CharaChipGen.Model.Layer
                     return; // 変更なし。
                 }
                 this.saturation = value;
-                processedImage = null;
+                InvalidateProcessedImage();
+                NotifyPropertyChange(nameof(Saturation));
             }
         }
 
@@ -220,6 +227,19 @@ namespace CharaChipGen.Model.Layer
                     return; // 変更なし。
                 }
                 this.value = value;
+                InvalidateProcessedImage();
+                NotifyPropertyChange(nameof(Value));
+            }
+        }
+
+        /// <summary>
+        /// 処理済みイメージを無効にし、演算済みデータ取得時の再レンダリングを要求する。
+        /// </summary>
+        private void InvalidateProcessedImage()
+        {
+            lock (renderRequestLock)
+            {
+                renderRequested = true;
                 processedImage = null;
             }
         }
@@ -230,7 +250,13 @@ namespace CharaChipGen.Model.Layer
         /// <returns>ImageBufferオブジェクトが返る。</returns>
         public ImageBuffer GetProcessedImage()
         {
-            if (processedImage == null)
+            bool isNeedRender = false;
+            lock (renderRequestLock)
+            {
+                isNeedRender = renderRequested;
+                renderRequested = false;
+            }
+            if (isNeedRender)
             {
                 if (image != null)
                 {
