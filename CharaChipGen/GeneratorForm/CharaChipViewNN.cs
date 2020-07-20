@@ -63,7 +63,6 @@ namespace CharaChipGen.GeneratorForm
                 if (renderState == RenderState.Stop)
                 {
                     renderState = RenderState.Requested;
-                    System.Diagnostics.Debug.WriteLine($"{positionX}-{positionY}:Start thread. ");
                     Task.Run(() =>
                     {
                         RenderLayerProc();
@@ -109,7 +108,6 @@ namespace CharaChipGen.GeneratorForm
                     Invalidate();
                 }
             }
-            System.Diagnostics.Debug.WriteLine($"{positionX}-{positionY}:Thread exit. ");
         }
 
         /// <summary>
