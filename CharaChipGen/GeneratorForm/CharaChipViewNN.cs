@@ -80,6 +80,7 @@ namespace CharaChipGen.GeneratorForm
         /// </summary>
         private void RenderLayerProc()
         {
+            ImageBuffer renderBuffer = null;
             while (true)
             {
                 lock (requestMutex)
@@ -100,13 +101,33 @@ namespace CharaChipGen.GeneratorForm
                 {
                     Size imageSize = new Size(prefSize.Width / 3, prefSize.Height / 4);
 
-                    ImageBuffer renderBuffer = ImageBuffer.Create(imageSize.Width, imageSize.Height);
+                    renderBuffer = CreateRenderBuffer(renderBuffer, imageSize);
 
                     // レンダリングする。
                     CharaChipRenderer.Draw(renderData, renderBuffer, positionX, positionY);
                     renderedImage = renderBuffer.GetImage();
                     Invalidate();
                 }
+            }
+        }
+
+        /// <summary>
+        /// レンダリング用バッファを作成する。流用可能な場合のみ、bufferを使用する。
+        /// </summary>
+        /// <param name="buffer">既に確保済みのレンダリング用バッファ</param>
+        /// <param name="bufSize">バッファサイズ</param>
+        /// <returns>レンダリング用バッファ</returns>
+        private ImageBuffer CreateRenderBuffer(ImageBuffer buffer, Size bufSize)
+        {
+            if ((buffer != null)
+                && (buffer.Width == bufSize.Width)
+                && (buffer.Height == bufSize.Height))
+            {
+                return buffer;
+            }
+            else
+            {
+                return ImageBuffer.Create(bufSize.Width, bufSize.Height);
             }
         }
 
