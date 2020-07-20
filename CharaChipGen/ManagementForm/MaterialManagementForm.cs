@@ -454,7 +454,8 @@ namespace CharaChipGen.ManagementForm
                     $"{newName}{MaterialEntryFile.EntryFileSuffix}");
                 string newEntryFilePath = System.IO.Path.Combine(AppData.Instance.MaterialDirectory, newRelativePath);
 
-                MaterialEntryFile entryFile = new MaterialEntryFile(newEntryFilePath);
+                MaterialEntryFile entryFile = MaterialUtils.CreateDefaultEntryFile(
+                    newEntryFilePath, materialList.MaterialType);
                 entryFile.Save();
 
                 Material newMaterial = new Material(newRelativePath, entryFile);
@@ -467,6 +468,7 @@ namespace CharaChipGen.ManagementForm
                 MessageBox.Show(this, ex.Message, Resources.DialogTitleError);
             }
         }
+
 
         /// <summary>
         /// 素材名が有効かどうかを確認する。
