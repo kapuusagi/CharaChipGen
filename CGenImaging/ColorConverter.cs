@@ -65,22 +65,33 @@ namespace CGenImaging
             int p = Convert.ToInt32((hsv.Value * (1.0f - hsv.Saturation)) * 255.0f);
             int q = Convert.ToInt32(hsv.Value * (1.0f - hsv.Saturation * (hsv.Hue - h * 60.0f) / 60.0f) * 255.0f);
             int t = Convert.ToInt32(hsv.Value * (1.0f - hsv.Saturation * ((h + 1.0f) * 60.0f - hsv.Hue) / 60.0f) * 255.0f);
-            switch (h)
+            if ((hsv.Hue >= 0) && (hsv.Hue < 60))
             {
-                case 0:
-                    return ColorUtility.GetColor(alpha, v, t, p);
-                case 1:
-                    return ColorUtility.GetColor(alpha, q, v, p);
-                case 2:
-                    return ColorUtility.GetColor(alpha, p, v, t);
-                case 3:
-                    return ColorUtility.GetColor(alpha, p, q, v);
-                case 4:
-                    return ColorUtility.GetColor(alpha, t, p, v);
-                case 5:
-                    return ColorUtility.GetColor(alpha, v, p, q);
-                default:
-                    return ColorUtility.GetColor(alpha, 0, 0, 0);
+                return ColorUtility.GetColor(alpha, v, t, p);
+            }
+            else if ((hsv.Hue >= 60) && (hsv.Hue < 120)) 
+            {
+                return ColorUtility.GetColor(alpha, q, v, p);
+            }
+            else if ((hsv.Hue >= 120) && (hsv.Hue < 180))
+            {
+                return ColorUtility.GetColor(alpha, p, v, t);
+            }
+            else if ((hsv.Hue >= 180) && (hsv.Hue < 240))
+            {
+                return ColorUtility.GetColor(alpha, p, q, v);
+            }
+            else if ((hsv.Hue >= 240) && (hsv.Hue < 300))
+            {
+                return ColorUtility.GetColor(alpha, t, p, v);
+            }
+            else if ((hsv.Hue >= 300) && (hsv.Hue < 360))
+            {
+                return ColorUtility.GetColor(alpha, v, p, q);
+            }
+            else
+            {
+                return ColorUtility.GetColor(alpha, 0, 0, 0);
             }
         }
 
@@ -141,60 +152,57 @@ namespace CGenImaging
         /// <returns>RGB色</returns>
         public static Color ConvertHSLtoRGB(ColorHSL hsl, byte alpha)
         {
-            int h = (Convert.ToInt32(hsl.Hue) / 60) % 6;
             float min = (hsl.Lightness < 0.5f)
                 ? (hsl.Lightness - hsl.Lightness * (hsl.Saturation)) * 255.0f
                 : (hsl.Lightness - (1.0f - hsl.Lightness) * hsl.Saturation) * 255.0f;
             float max = (hsl.Lightness < 0.5f)
                 ? (hsl.Lightness + hsl.Lightness * (hsl.Saturation)) * 255.0f
                 : (hsl.Lightness + (1.0f - hsl.Lightness) * hsl.Saturation) * 255.0f;
-            switch (h)
+
+            int r, g, b;
+            if ((hsl.Hue >= 0) && (hsl.Hue < 60))
             {
-                case 0:
-                    {
-                        int r = Convert.ToInt32(max);
-                        int g = Convert.ToInt32((hsl.Hue / 60.0f) * (max - min) + min);
-                        int b = Convert.ToInt32(min);
-                        return ColorUtility.GetColor(alpha, r, g, b);
-                    }
-                case 1:
-                    {
-                        int r = Convert.ToInt32(((120.0f - hsl.Hue) / 60.0f) * (max - min) + min);
-                        int g = Convert.ToInt32(max);
-                        int b = Convert.ToInt32(min);
-                        return ColorUtility.GetColor(alpha, r, g, b);
-                    }
-                case 2:
-                    {
-                        int r = Convert.ToInt32(min);
-                        int g = Convert.ToInt32(max);
-                        int b = Convert.ToInt32(((hsl.Hue - 120.0f) / 60.0f) * (max - min) + min);
-                        return ColorUtility.GetColor(alpha, r, g, b);
-                    }
-                case 3:
-                    {
-                        int r = Convert.ToInt32(min);
-                        int g = Convert.ToInt32(((240 - hsl.Hue) / 60.0f) * (max - min) + min);
-                        int b = Convert.ToInt32(max);
-                        return ColorUtility.GetColor(alpha, r, g, b);
-                    }
-                case 4:
-                    {
-                        int r = Convert.ToInt32(((hsl.Hue - 240) / 60.0f) * (max - min) + min);
-                        int g = Convert.ToInt32(min);
-                        int b = Convert.ToInt32(max);
-                        return ColorUtility.GetColor(alpha, r, g, b);
-                    }
-                case 5:
-                    {
-                        int r = Convert.ToInt32(max);
-                        int g = Convert.ToInt32(min);
-                        int b = Convert.ToInt32(((360 - hsl.Hue) / 60.0f) * (max - min) + min);
-                        return ColorUtility.GetColor(alpha, r, g, b);
-                    }
-                default:
-                    return ColorUtility.GetColor(alpha, 0, 0, 0);
+                r = Convert.ToInt32(max);
+                g = Convert.ToInt32((hsl.Hue / 60.0f) * (max - min) + min);
+                b = Convert.ToInt32(min);
             }
+            else if ((hsl.Hue >= 60) && (hsl.Hue < 120))
+            {
+                r = Convert.ToInt32(((120.0f - hsl.Hue) / 60.0f) * (max - min) + min);
+                g = Convert.ToInt32(max);
+                b = Convert.ToInt32(min);
+            }
+            else if ((hsl.Hue >= 120) && (hsl.Hue < 180))
+            {
+                r = Convert.ToInt32(min);
+                g = Convert.ToInt32(max);
+                b = Convert.ToInt32(((hsl.Hue - 120.0f) / 60.0f) * (max - min) + min);
+            }
+            else if ((hsl.Hue >= 180) && (hsl.Hue < 240))
+            {
+                r = Convert.ToInt32(min);
+                g = Convert.ToInt32(((240 - hsl.Hue) / 60.0f) * (max - min) + min);
+                b = Convert.ToInt32(max);
+            }
+            else if ((hsl.Hue >= 240) && (hsl.Hue < 300))
+            {
+                r = Convert.ToInt32(((hsl.Hue - 240) / 60.0f) * (max - min) + min);
+                g = Convert.ToInt32(min);
+                b = Convert.ToInt32(max);
+            }
+            else if ((hsl.Hue >= 300) && (hsl.Hue < 360))
+            {
+                r = Convert.ToInt32(max);
+                g = Convert.ToInt32(min);
+                b = Convert.ToInt32(((360 - hsl.Hue) / 60.0f) * (max - min) + min);
+            }
+            else
+            {
+                r = 0;
+                g = 0;
+                b = 0;
+            }
+            return ColorUtility.GetColor(alpha, r, g, b);
         }
 
         /// <summary>
