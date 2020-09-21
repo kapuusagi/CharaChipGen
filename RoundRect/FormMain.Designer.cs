@@ -31,6 +31,9 @@
             this.flowLayoutPanel1 = new System.Windows.Forms.FlowLayoutPanel();
             this.buttonClose = new System.Windows.Forms.Button();
             this.panel1 = new System.Windows.Forms.Panel();
+            this.flowLayoutPanel2 = new System.Windows.Forms.FlowLayoutPanel();
+            this.buttonSave = new System.Windows.Forms.Button();
+            this.buttonCopyTo = new System.Windows.Forms.Button();
             this.tableLayoutPanel1 = new System.Windows.Forms.TableLayoutPanel();
             this.label1 = new System.Windows.Forms.Label();
             this.label2 = new System.Windows.Forms.Label();
@@ -43,19 +46,16 @@
             this.panel2 = new System.Windows.Forms.Panel();
             this.pictureBox = new System.Windows.Forms.PictureBox();
             this.colorDialog = new System.Windows.Forms.ColorDialog();
-            this.flowLayoutPanel2 = new System.Windows.Forms.FlowLayoutPanel();
-            this.buttonSave = new System.Windows.Forms.Button();
-            this.buttonCopyTo = new System.Windows.Forms.Button();
             this.saveFileDialog = new System.Windows.Forms.SaveFileDialog();
             this.flowLayoutPanel1.SuspendLayout();
             this.panel1.SuspendLayout();
+            this.flowLayoutPanel2.SuspendLayout();
             this.tableLayoutPanel1.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.numericUpDownWidth)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.numericUpDownHeight)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.numericUpDownOutline)).BeginInit();
             this.panel2.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox)).BeginInit();
-            this.flowLayoutPanel2.SuspendLayout();
             this.SuspendLayout();
             // 
             // flowLayoutPanel1
@@ -89,6 +89,36 @@
             this.panel1.Padding = new System.Windows.Forms.Padding(6);
             this.panel1.Size = new System.Drawing.Size(143, 244);
             this.panel1.TabIndex = 1;
+            // 
+            // flowLayoutPanel2
+            // 
+            this.flowLayoutPanel2.Controls.Add(this.buttonSave);
+            this.flowLayoutPanel2.Controls.Add(this.buttonCopyTo);
+            this.flowLayoutPanel2.Dock = System.Windows.Forms.DockStyle.Top;
+            this.flowLayoutPanel2.Location = new System.Drawing.Point(6, 154);
+            this.flowLayoutPanel2.Name = "flowLayoutPanel2";
+            this.flowLayoutPanel2.Size = new System.Drawing.Size(131, 100);
+            this.flowLayoutPanel2.TabIndex = 1;
+            // 
+            // buttonSave
+            // 
+            this.buttonSave.Location = new System.Drawing.Point(3, 3);
+            this.buttonSave.Name = "buttonSave";
+            this.buttonSave.Size = new System.Drawing.Size(122, 23);
+            this.buttonSave.TabIndex = 0;
+            this.buttonSave.Text = "Save";
+            this.buttonSave.UseVisualStyleBackColor = true;
+            this.buttonSave.Click += new System.EventHandler(this.OnButtonSaveClick);
+            // 
+            // buttonCopyTo
+            // 
+            this.buttonCopyTo.Location = new System.Drawing.Point(3, 32);
+            this.buttonCopyTo.Name = "buttonCopyTo";
+            this.buttonCopyTo.Size = new System.Drawing.Size(122, 23);
+            this.buttonCopyTo.TabIndex = 1;
+            this.buttonCopyTo.Text = "Copy to Clipboard";
+            this.buttonCopyTo.UseVisualStyleBackColor = true;
+            this.buttonCopyTo.Click += new System.EventHandler(this.OnButtonCopyToCliboardClick);
             // 
             // tableLayoutPanel1
             // 
@@ -172,6 +202,7 @@
             0,
             0,
             0});
+            this.numericUpDownWidth.ValueChanged += new System.EventHandler(this.OnSizeChanged);
             // 
             // numericUpDownHeight
             // 
@@ -190,6 +221,7 @@
             0,
             0,
             0});
+            this.numericUpDownHeight.ValueChanged += new System.EventHandler(this.OnSizeChanged);
             // 
             // numericUpDownOutline
             // 
@@ -241,36 +273,6 @@
             this.pictureBox.TabIndex = 0;
             this.pictureBox.TabStop = false;
             // 
-            // flowLayoutPanel2
-            // 
-            this.flowLayoutPanel2.Controls.Add(this.buttonSave);
-            this.flowLayoutPanel2.Controls.Add(this.buttonCopyTo);
-            this.flowLayoutPanel2.Dock = System.Windows.Forms.DockStyle.Top;
-            this.flowLayoutPanel2.Location = new System.Drawing.Point(6, 154);
-            this.flowLayoutPanel2.Name = "flowLayoutPanel2";
-            this.flowLayoutPanel2.Size = new System.Drawing.Size(131, 100);
-            this.flowLayoutPanel2.TabIndex = 1;
-            // 
-            // buttonSave
-            // 
-            this.buttonSave.Location = new System.Drawing.Point(3, 3);
-            this.buttonSave.Name = "buttonSave";
-            this.buttonSave.Size = new System.Drawing.Size(122, 23);
-            this.buttonSave.TabIndex = 0;
-            this.buttonSave.Text = "Save";
-            this.buttonSave.UseVisualStyleBackColor = true;
-            this.buttonSave.Click += new System.EventHandler(this.OnButtonSaveClick);
-            // 
-            // buttonCopyTo
-            // 
-            this.buttonCopyTo.Location = new System.Drawing.Point(3, 32);
-            this.buttonCopyTo.Name = "buttonCopyTo";
-            this.buttonCopyTo.Size = new System.Drawing.Size(122, 23);
-            this.buttonCopyTo.TabIndex = 1;
-            this.buttonCopyTo.Text = "Copy to Clipboard";
-            this.buttonCopyTo.UseVisualStyleBackColor = true;
-            this.buttonCopyTo.Click += new System.EventHandler(this.OnButtonCopyToCliboardClick);
-            // 
             // FormMain
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 12F);
@@ -284,6 +286,7 @@
             this.Shown += new System.EventHandler(this.OnShown);
             this.flowLayoutPanel1.ResumeLayout(false);
             this.panel1.ResumeLayout(false);
+            this.flowLayoutPanel2.ResumeLayout(false);
             this.tableLayoutPanel1.ResumeLayout(false);
             this.tableLayoutPanel1.PerformLayout();
             ((System.ComponentModel.ISupportInitialize)(this.numericUpDownWidth)).EndInit();
@@ -291,7 +294,6 @@
             ((System.ComponentModel.ISupportInitialize)(this.numericUpDownOutline)).EndInit();
             this.panel2.ResumeLayout(false);
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox)).EndInit();
-            this.flowLayoutPanel2.ResumeLayout(false);
             this.ResumeLayout(false);
             this.PerformLayout();
 

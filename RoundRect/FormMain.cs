@@ -110,7 +110,7 @@ namespace RoundRect
         {
             Point leftTop = new Point(outlineWidth, outlineWidth);
             Point rightTop = new Point(imageBuffer.Width - outlineWidth, outlineWidth);
-            Point leftBottom = new Point(outlineWidth, imageBuffer.Width - outlineWidth);
+            Point leftBottom = new Point(outlineWidth, imageBuffer.Height - outlineWidth);
             Point rightBottom = new Point(imageBuffer.Width - outlineWidth, imageBuffer.Height - outlineWidth);
 
             for (int y = 0; y < outlineWidth; y++)
