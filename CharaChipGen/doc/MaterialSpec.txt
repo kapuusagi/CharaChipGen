@@ -61,6 +61,13 @@
 				Accessory3
 				HeadAccessory1
 				HeadAccessory2
+		Layer.{$LayerName}.ColorPropertyName
+		    string オプション
+			参照する色プロパティ名
+			レイヤーに適用する色設定のプロパティ名を指定する。
+			    Color1 （省略時のデフォルト）
+				Color2
+			
 ■レイヤーイメージ仕様
   ファイル形式：PNG (32bit GBRAが望ましい。透過色有効)
   ヨコ3分割、

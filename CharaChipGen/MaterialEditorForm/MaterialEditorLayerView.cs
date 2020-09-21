@@ -31,13 +31,13 @@ namespace CharaChipGen.MaterialEditorForm
                 comboBoxLayerType.Items.Add(layerType);
             }
 
-            string[] colorPropertyNames = Parts.GetColorSettingNames();
+            comboBoxColorRefs.Items.Add(Properties.Resources.ItemNameUsePartsSetting);
             foreach (PartsType partsType in Enum.GetValues(typeof(PartsType)))
             {
                 comboBoxColorRefs.Items.Add(partsType);
             }
 
-            comboBoxColorRefs.Items.Add(Properties.Resources.ItemNameUsePartsSetting);
+            string[] colorPropertyNames = Parts.GetColorSettingNames();
             foreach (string colorPropertyName in colorPropertyNames)
             {
                 comboBoxColorProperty.Items.Add(colorPropertyName);

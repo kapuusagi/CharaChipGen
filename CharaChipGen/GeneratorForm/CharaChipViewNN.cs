@@ -19,13 +19,13 @@ namespace CharaChipGen.GeneratorForm
         // レンダリングステート
         private enum RendererState { Stop, Requested, Rendering };
         // X位置
-        private int positionX;
+        private int positionX = 0;
         // Y位置
-        private int positionY;
+        private int positionY = 0;
         // レンダリング完了済みデータ
-        private Image renderedImage;
+        private Image renderedImage = null;
         // レンダリングモデル
-        private CharaChipRenderData renderData;
+        private CharaChipRenderData renderData = new CharaChipRenderData();
         // ハンドラ
         private CharaChipRenderData.ImageChangedEventHandler handler;
         // ミューテックス
@@ -120,7 +120,6 @@ namespace CharaChipGen.GeneratorForm
                 return buffer;
             }
             return ImageBuffer.Create(imageSize.Width, imageSize.Height);
-
         }
 
         /// <summary>
