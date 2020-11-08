@@ -29,8 +29,8 @@
         private void InitializeComponent()
         {
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(FormMain));
-            IconSetViewer.IconSet iconSet1 = new IconSetViewer.IconSet();
             IconSetViewer.IconSet iconSet2 = new IconSetViewer.IconSet();
+            IconSetViewer.IconSet iconSet1 = new IconSetViewer.IconSet();
             this.menuStrip1 = new System.Windows.Forms.MenuStrip();
             this.menuItemFile = new System.Windows.Forms.ToolStripMenuItem();
             this.menuItemOpen = new System.Windows.Forms.ToolStripMenuItem();
@@ -42,17 +42,17 @@
             this.openFileDialog = new System.Windows.Forms.OpenFileDialog();
             this.flowLayoutPanel1 = new System.Windows.Forms.FlowLayoutPanel();
             this.panel2 = new System.Windows.Forms.Panel();
-            this.iconViewControl = new IconSetViewer.IconViewControl();
             this.flowLayoutPanel3 = new System.Windows.Forms.FlowLayoutPanel();
             this.label1 = new System.Windows.Forms.Label();
             this.comboBoxNumber = new System.Windows.Forms.ComboBox();
             this.buttonIconSave = new System.Windows.Forms.Button();
             this.buttonIconChange = new System.Windows.Forms.Button();
             this.panel1 = new System.Windows.Forms.Panel();
-            this.panelScroll = new System.Windows.Forms.Panel();
-            this.iconSetViewControl = new IconSetViewer.IconSetViewControl();
+            this.panelScroll = new AutoScrollPanel();
             this.flowLayoutPanel2 = new System.Windows.Forms.FlowLayoutPanel();
             this.saveFileDialog = new System.Windows.Forms.SaveFileDialog();
+            this.iconSetViewControl = new IconSetViewer.IconSetViewControl();
+            this.iconViewControl = new IconSetViewer.IconViewControl();
             this.menuStrip1.SuspendLayout();
             this.flowLayoutPanel1.SuspendLayout();
             this.panel2.SuspendLayout();
@@ -136,16 +136,6 @@
             this.panel2.Controls.Add(this.flowLayoutPanel3);
             this.panel2.Name = "panel2";
             // 
-            // iconViewControl
-            // 
-            resources.ApplyResources(this.iconViewControl, "iconViewControl");
-            this.iconViewControl.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
-            iconSet1.IconSize = new System.Drawing.Size(32, 32);
-            iconSet1.Image = null;
-            this.iconViewControl.IconSet = iconSet1;
-            this.iconViewControl.Name = "iconViewControl";
-            this.iconViewControl.SelectedIndex = -1;
-            // 
             // flowLayoutPanel3
             // 
             resources.ApplyResources(this.flowLayoutPanel3, "flowLayoutPanel3");
@@ -194,6 +184,15 @@
             this.panelScroll.Controls.Add(this.iconSetViewControl);
             this.panelScroll.Name = "panelScroll";
             // 
+            // flowLayoutPanel2
+            // 
+            resources.ApplyResources(this.flowLayoutPanel2, "flowLayoutPanel2");
+            this.flowLayoutPanel2.Name = "flowLayoutPanel2";
+            // 
+            // saveFileDialog
+            // 
+            resources.ApplyResources(this.saveFileDialog, "saveFileDialog");
+            // 
             // iconSetViewControl
             // 
             resources.ApplyResources(this.iconSetViewControl, "iconSetViewControl");
@@ -205,14 +204,15 @@
             this.iconSetViewControl.Name = "iconSetViewControl";
             this.iconSetViewControl.SelectedIndex = -1;
             // 
-            // flowLayoutPanel2
+            // iconViewControl
             // 
-            resources.ApplyResources(this.flowLayoutPanel2, "flowLayoutPanel2");
-            this.flowLayoutPanel2.Name = "flowLayoutPanel2";
-            // 
-            // saveFileDialog
-            // 
-            resources.ApplyResources(this.saveFileDialog, "saveFileDialog");
+            resources.ApplyResources(this.iconViewControl, "iconViewControl");
+            this.iconViewControl.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
+            iconSet1.IconSize = new System.Drawing.Size(32, 32);
+            iconSet1.Image = null;
+            this.iconViewControl.IconSet = iconSet1;
+            this.iconViewControl.Name = "iconViewControl";
+            this.iconViewControl.SelectedIndex = -1;
             // 
             // FormMain
             // 
