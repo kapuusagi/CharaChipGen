@@ -31,6 +31,7 @@ namespace ImageStacker
         {
             this.splitContainer1 = new System.Windows.Forms.SplitContainer();
             this.panelPicture = new System.Windows.Forms.Panel();
+            this.layerSetViewControl = new ImageStacker.LayerSetViewControl();
             this.panel1 = new System.Windows.Forms.Panel();
             this.tableLayoutPanel1 = new System.Windows.Forms.TableLayoutPanel();
             this.label1 = new System.Windows.Forms.Label();
@@ -45,7 +46,7 @@ namespace ImageStacker
             this.exitToolStripMenuItem1 = new System.Windows.Forms.ToolStripMenuItem();
             this.openFileDialog = new System.Windows.Forms.OpenFileDialog();
             this.saveFileDialog = new System.Windows.Forms.SaveFileDialog();
-            this.layerSetViewControl = new ImageStacker.LayerSetViewControl();
+            this.buttonSelectAll = new System.Windows.Forms.Button();
             ((System.ComponentModel.ISupportInitialize)(this.splitContainer1)).BeginInit();
             this.splitContainer1.Panel1.SuspendLayout();
             this.splitContainer1.Panel2.SuspendLayout();
@@ -88,6 +89,19 @@ namespace ImageStacker
             this.panelPicture.TabIndex = 0;
             this.panelPicture.DragDrop += new System.Windows.Forms.DragEventHandler(this.OnPanelPictureDragDrop);
             this.panelPicture.DragEnter += new System.Windows.Forms.DragEventHandler(this.OnPanelPictureDragEnter);
+            // 
+            // layerSetViewControl
+            // 
+            this.layerSetViewControl.AutoSize = true;
+            this.layerSetViewControl.BackgroundImage = global::ImageStacker.Properties.Resources.Background;
+            this.layerSetViewControl.LayerSet = null;
+            this.layerSetViewControl.Location = new System.Drawing.Point(3, 6);
+            this.layerSetViewControl.Name = "layerSetViewControl";
+            this.layerSetViewControl.Size = new System.Drawing.Size(0, 0);
+            this.layerSetViewControl.TabIndex = 0;
+            this.layerSetViewControl.MouseDown += new System.Windows.Forms.MouseEventHandler(this.OnLayerSetViewMouseDown);
+            this.layerSetViewControl.MouseMove += new System.Windows.Forms.MouseEventHandler(this.OnLayerSetViewMouseMove);
+            this.layerSetViewControl.MouseUp += new System.Windows.Forms.MouseEventHandler(this.OnLayerSetViewMouseUp);
             // 
             // panel1
             // 
@@ -142,6 +156,7 @@ namespace ImageStacker
             // 
             this.flowLayoutPanel1.AutoSize = true;
             this.flowLayoutPanel1.Controls.Add(this.buttonAdd);
+            this.flowLayoutPanel1.Controls.Add(this.buttonSelectAll);
             this.flowLayoutPanel1.Dock = System.Windows.Forms.DockStyle.Top;
             this.flowLayoutPanel1.Location = new System.Drawing.Point(0, 0);
             this.flowLayoutPanel1.Name = "flowLayoutPanel1";
@@ -215,18 +230,15 @@ namespace ImageStacker
             // 
             this.openFileDialog.Filter = "PNGファイル(*.png)|*.png|全てのファイル(*.*)|*.*";
             // 
-            // layerSetViewControl
+            // buttonSelectAll
             // 
-            this.layerSetViewControl.AutoSize = true;
-            this.layerSetViewControl.BackgroundImage = global::ImageStacker.Properties.Resources.Background;
-            this.layerSetViewControl.LayerSet = null;
-            this.layerSetViewControl.Location = new System.Drawing.Point(3, 6);
-            this.layerSetViewControl.Name = "layerSetViewControl";
-            this.layerSetViewControl.Size = new System.Drawing.Size(0, 0);
-            this.layerSetViewControl.TabIndex = 0;
-            this.layerSetViewControl.MouseDown += new System.Windows.Forms.MouseEventHandler(this.OnLayerSetViewMouseDown);
-            this.layerSetViewControl.MouseMove += new System.Windows.Forms.MouseEventHandler(this.OnLayerSetViewMouseMove);
-            this.layerSetViewControl.MouseUp += new System.Windows.Forms.MouseEventHandler(this.OnLayerSetViewMouseUp);
+            this.buttonSelectAll.Location = new System.Drawing.Point(84, 3);
+            this.buttonSelectAll.Name = "buttonSelectAll";
+            this.buttonSelectAll.Size = new System.Drawing.Size(145, 23);
+            this.buttonSelectAll.TabIndex = 1;
+            this.buttonSelectAll.Text = "Select/Deselect All";
+            this.buttonSelectAll.UseVisualStyleBackColor = true;
+            this.buttonSelectAll.Click += new System.EventHandler(this.OnButtonSelectAllClick);
             // 
             // FormMain
             // 
@@ -278,6 +290,7 @@ namespace ImageStacker
         private System.Windows.Forms.Panel panelPicture;
         private LayerSetViewControl layerSetViewControl;
         private System.Windows.Forms.SaveFileDialog saveFileDialog;
+        private System.Windows.Forms.Button buttonSelectAll;
     }
 }
 

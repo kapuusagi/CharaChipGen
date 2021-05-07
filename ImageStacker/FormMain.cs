@@ -493,5 +493,29 @@ namespace ImageStacker
             }
         }
 
+        /// <summary>
+        /// 全選択/選択解除ボタンがクリックされたときに通知を受け取る。
+        /// </summary>
+        /// <param name="sender">送信元オブジェクト</param>
+        /// <param name="e">イベントオブジェクト</param>
+        private void OnButtonSelectAllClick(object sender, EventArgs e)
+        {
+            if (layerSet.Any(layer => !layer.Selected))
+            {
+                // 選択されていないレイヤーが1つ以上ある。
+                foreach (var layer in layerSet)
+                {
+                    layer.Selected = true;
+                }
+            }
+            else
+            {
+                // 全部選択された状態
+                foreach (var layer in layerSet)
+                {
+                    layer.Selected = false;
+                }
+            }
+        }
     }
 }
