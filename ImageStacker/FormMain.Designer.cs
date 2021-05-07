@@ -78,6 +78,7 @@ namespace ImageStacker
             // 
             // panelPicture
             // 
+            this.panelPicture.AllowDrop = true;
             this.panelPicture.AutoScroll = true;
             this.panelPicture.Controls.Add(this.layerSetViewControl);
             this.panelPicture.Dock = System.Windows.Forms.DockStyle.Fill;
@@ -85,6 +86,8 @@ namespace ImageStacker
             this.panelPicture.Name = "panelPicture";
             this.panelPicture.Size = new System.Drawing.Size(437, 388);
             this.panelPicture.TabIndex = 0;
+            this.panelPicture.DragDrop += new System.Windows.Forms.DragEventHandler(this.OnPanelPictureDragDrop);
+            this.panelPicture.DragEnter += new System.Windows.Forms.DragEventHandler(this.OnPanelPictureDragEnter);
             // 
             // panel1
             // 
@@ -99,8 +102,8 @@ namespace ImageStacker
             this.panel1.Name = "panel1";
             this.panel1.Size = new System.Drawing.Size(343, 359);
             this.panel1.TabIndex = 4;
-            this.panel1.DragDrop += new System.Windows.Forms.DragEventHandler(this.OnDragDrop);
-            this.panel1.DragEnter += new System.Windows.Forms.DragEventHandler(this.OnDragEnter);
+            this.panel1.DragDrop += new System.Windows.Forms.DragEventHandler(this.OnLayerPanelDragDrop);
+            this.panel1.DragEnter += new System.Windows.Forms.DragEventHandler(this.OnLayerPanelDragEnter);
             // 
             // tableLayoutPanel1
             // 

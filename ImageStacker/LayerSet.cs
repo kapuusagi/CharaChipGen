@@ -76,9 +76,26 @@ namespace ImageStacker
         /// <param name="layer">レイヤー</param>
         public void Add(LayerEntry layer)
         {
-            if (!Contains(layer))
+            Insert(Count, layer);
+        }
+
+        /// <summary>
+        /// レイヤーエントリを追加する。
+        /// </summary>
+        /// <param name="index">挿入するインデックス番号(0≦index≦Count)</param>
+        /// <param name="layer"></param>
+        public void Insert(int index, LayerEntry layer)
+        {
+            if (!Contains(layer) && (index >= 0) && (index <= layers.Count))
             {
-                layers.Add(layer);
+                if (index < layers.Count)
+                {
+                    layers.Insert(index, layer);
+                }
+                else
+                {
+                    layers.Add(layer);
+                }
                 layer.PropertyChanged += OnLayerPropertyChanged;
                 Added?.Invoke(this, new LayerEventArgs(layers.Count - 1, layer));
             }

@@ -173,6 +173,17 @@ namespace ImageStacker
         }
 
         /// <summary>
+        /// 新しいレイヤーを追加する。
+        /// </summary>
+        /// <param name="fileName">ファイル名</param>
+        private void AddNewLayerToFirst(string fileName)
+        {
+            var layer = new LayerEntry();
+            layer.FileName = fileName;
+            layerSet.Insert(0, layer);
+        }
+
+        /// <summary>
         /// レイヤーが追加された
         /// </summary>
         /// <param name="sender">送信元オブジェクト</param>
@@ -285,7 +296,7 @@ namespace ImageStacker
         /// </summary>
         /// <param name="sender">送信元オブジェクト</param>
         /// <param name="e">イベントオブジェクト</param>
-        private void OnDragEnter(object sender, DragEventArgs e)
+        private void OnLayerPanelDragDrop(object sender, DragEventArgs e)
         {
             if (e.Data.GetDataPresent(DataFormats.FileDrop))
             {
@@ -302,12 +313,12 @@ namespace ImageStacker
         /// </summary>
         /// <param name="sender">送信元オブジェクト</param>
         /// <param name="e">イベントオブジェクト</param>
-        private void OnDragDrop(object sender, DragEventArgs e)
+        private void OnLayerPanelDragEnter(object sender, DragEventArgs e)
         {
             if (e.Data.GetDataPresent(DataFormats.FileDrop))
             {
                 var fileNames = (string[])(e.Data.GetData(DataFormats.FileDrop));
-                foreach (string fileName in fileNames)
+                foreach (var fileName in fileNames)
                 {
                     try
                     {
@@ -364,7 +375,6 @@ namespace ImageStacker
                 var location = Cursor.Position;
                 var moveX = location.X - layerSetDragLocation.X;
                 var moveY = location.Y - layerSetDragLocation.Y;
-                System.Diagnostics.Debug.WriteLine($"Cursor=({location.X},{location.Y}) Move=({moveX},{moveY})");
                 if (isLayerSetAdjustMode)
                 {
                     foreach (var layer in layerSet)
@@ -386,7 +396,6 @@ namespace ImageStacker
                     {
                         var scrollH = panelPicture.HorizontalScroll;
                         var newX = Math.Max(scrollH.Minimum, Math.Min(scrollH.Maximum, scrollPosX - moveX));
-                        //System.Diagnostics.Debug.WriteLine($"move={moveX},new={newX},scrollPosX={scrollPosX}");
                         scrollH.Value = newX;
                         scrollPosX = newX;
                     }
@@ -424,5 +433,46 @@ namespace ImageStacker
                 SetBounds(location.X, location.Y, savedSize.Width, savedSize.Height);
             }
         }
+
+        /// <summary>
+        /// ドラッグ操作されてきたときに通知を受け取る。
+        /// </summary>
+        /// <param name="sender">送信元オブジェクト</param>
+        /// <param name="e">イベントオブジェクト</param>
+        private void OnPanelPictureDragEnter(object sender, DragEventArgs e)
+        {
+            if (e.Data.GetDataPresent(DataFormats.FileDrop))
+            {
+                e.Effect = DragDropEffects.Copy;
+            }
+            else
+            {
+                e.Effect = DragDropEffects.None;
+            }
+        }
+        /// <summary>
+        /// ファイルがドロップ操作されたときに通知を受け取る。
+        /// </summary>
+        /// <param name="sender">送信元オブジェクト</param>
+        /// <param name="e">イベントオブジェクト</param>
+        private void OnPanelPictureDragDrop(object sender, DragEventArgs e)
+        {
+            if (e.Data.GetDataPresent(DataFormats.FileDrop))
+            {
+                var fileNames = (string[])(e.Data.GetData(DataFormats.FileDrop));
+                foreach (var fileName in fileNames)
+                {
+                    try
+                    {
+                        AddNewLayerToFirst(fileName);
+                    }
+                    catch (Exception ex)
+                    {
+                        MessageBox.Show(this, ex.Message);
+                    }
+                }
+            }
+        }
+
     }
 }
