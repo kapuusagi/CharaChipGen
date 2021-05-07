@@ -43,6 +43,15 @@ namespace FImageEditor
         /// <param name="e">イベントオブジェクト</param>
         private void OnButtonExitClick(object sender, EventArgs e)
         {
+            Close();
+        }
+        /// <summary>
+        /// フォームがクローズされようとしているときに通知を受け取る。
+        /// </summary>
+        /// <param name="sender">送信元オブジェクト</param>
+        /// <param name="e">イベントオブジェクト</param>
+        private void OnFormClosing(object sender, FormClosingEventArgs e)
+        {
             try
             {
                 Properties.Settings.Default.Save();
@@ -51,8 +60,8 @@ namespace FImageEditor
             {
                 System.Diagnostics.Debug.WriteLine(ex);
             }
-            Close();
         }
+
 
         /// <summary>
         /// 生成ボタンがクリックされた時の処理を行う。
@@ -130,5 +139,6 @@ namespace FImageEditor
                 image.Save(exportFileName);
             }
         }
+
     }
 }

@@ -38,7 +38,6 @@ namespace FImageEditor
             this.optionToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.settingToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.tableLayoutPanel1 = new System.Windows.Forms.TableLayoutPanel();
-            this.panel1 = new System.Windows.Forms.Panel();
             this.faceViewControl8 = new FImageEditor.FaceViewControl();
             this.faceViewControl7 = new FImageEditor.FaceViewControl();
             this.faceViewControl6 = new FImageEditor.FaceViewControl();
@@ -47,6 +46,7 @@ namespace FImageEditor
             this.faceViewControl2 = new FImageEditor.FaceViewControl();
             this.faceViewControl3 = new FImageEditor.FaceViewControl();
             this.faceViewControl4 = new FImageEditor.FaceViewControl();
+            this.panel1 = new System.Windows.Forms.Panel();
             this.saveFileDialog = new System.Windows.Forms.SaveFileDialog();
             this.flowLayoutPanel1.SuspendLayout();
             this.menuStrip1.SuspendLayout();
@@ -97,14 +97,14 @@ namespace FImageEditor
             // saveToolStripMenuItem
             // 
             this.saveToolStripMenuItem.Name = "saveToolStripMenuItem";
-            this.saveToolStripMenuItem.Size = new System.Drawing.Size(180, 22);
+            this.saveToolStripMenuItem.Size = new System.Drawing.Size(121, 22);
             this.saveToolStripMenuItem.Text = "Generate";
             this.saveToolStripMenuItem.Click += new System.EventHandler(this.OnMenuItemGenerateClick);
             // 
             // exitToolStripMenuItem
             // 
             this.exitToolStripMenuItem.Name = "exitToolStripMenuItem";
-            this.exitToolStripMenuItem.Size = new System.Drawing.Size(180, 22);
+            this.exitToolStripMenuItem.Size = new System.Drawing.Size(121, 22);
             this.exitToolStripMenuItem.Text = "Exit";
             this.exitToolStripMenuItem.Click += new System.EventHandler(this.OnButtonExitClick);
             // 
@@ -120,7 +120,7 @@ namespace FImageEditor
             // 
             this.settingToolStripMenuItem.Enabled = false;
             this.settingToolStripMenuItem.Name = "settingToolStripMenuItem";
-            this.settingToolStripMenuItem.Size = new System.Drawing.Size(180, 22);
+            this.settingToolStripMenuItem.Size = new System.Drawing.Size(111, 22);
             this.settingToolStripMenuItem.Text = "Setting";
             // 
             // tableLayoutPanel1
@@ -147,17 +147,9 @@ namespace FImageEditor
             this.tableLayoutPanel1.Size = new System.Drawing.Size(800, 397);
             this.tableLayoutPanel1.TabIndex = 2;
             // 
-            // panel1
-            // 
-            this.panel1.Controls.Add(this.tableLayoutPanel1);
-            this.panel1.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.panel1.Location = new System.Drawing.Point(0, 53);
-            this.panel1.Name = "panel1";
-            this.panel1.Size = new System.Drawing.Size(800, 397);
-            this.panel1.TabIndex = 3;
-            // 
             // faceViewControl8
             // 
+            this.faceViewControl8.AllowDrop = true;
             this.faceViewControl8.Dock = System.Windows.Forms.DockStyle.Fill;
             this.faceViewControl8.FaceImageEntry = null;
             this.faceViewControl8.Location = new System.Drawing.Point(3, 201);
@@ -167,6 +159,7 @@ namespace FImageEditor
             // 
             // faceViewControl7
             // 
+            this.faceViewControl7.AllowDrop = true;
             this.faceViewControl7.Dock = System.Windows.Forms.DockStyle.Fill;
             this.faceViewControl7.FaceImageEntry = null;
             this.faceViewControl7.Location = new System.Drawing.Point(203, 201);
@@ -176,6 +169,7 @@ namespace FImageEditor
             // 
             // faceViewControl6
             // 
+            this.faceViewControl6.AllowDrop = true;
             this.faceViewControl6.Dock = System.Windows.Forms.DockStyle.Fill;
             this.faceViewControl6.FaceImageEntry = null;
             this.faceViewControl6.Location = new System.Drawing.Point(403, 201);
@@ -185,6 +179,7 @@ namespace FImageEditor
             // 
             // faceViewControl5
             // 
+            this.faceViewControl5.AllowDrop = true;
             this.faceViewControl5.Dock = System.Windows.Forms.DockStyle.Fill;
             this.faceViewControl5.FaceImageEntry = null;
             this.faceViewControl5.Location = new System.Drawing.Point(603, 201);
@@ -194,6 +189,7 @@ namespace FImageEditor
             // 
             // faceViewControl1
             // 
+            this.faceViewControl1.AllowDrop = true;
             this.faceViewControl1.Dock = System.Windows.Forms.DockStyle.Fill;
             this.faceViewControl1.FaceImageEntry = null;
             this.faceViewControl1.Location = new System.Drawing.Point(3, 3);
@@ -203,6 +199,7 @@ namespace FImageEditor
             // 
             // faceViewControl2
             // 
+            this.faceViewControl2.AllowDrop = true;
             this.faceViewControl2.Dock = System.Windows.Forms.DockStyle.Fill;
             this.faceViewControl2.FaceImageEntry = null;
             this.faceViewControl2.Location = new System.Drawing.Point(203, 3);
@@ -212,6 +209,7 @@ namespace FImageEditor
             // 
             // faceViewControl3
             // 
+            this.faceViewControl3.AllowDrop = true;
             this.faceViewControl3.Dock = System.Windows.Forms.DockStyle.Fill;
             this.faceViewControl3.FaceImageEntry = null;
             this.faceViewControl3.Location = new System.Drawing.Point(403, 3);
@@ -221,12 +219,22 @@ namespace FImageEditor
             // 
             // faceViewControl4
             // 
+            this.faceViewControl4.AllowDrop = true;
             this.faceViewControl4.Dock = System.Windows.Forms.DockStyle.Fill;
             this.faceViewControl4.FaceImageEntry = null;
             this.faceViewControl4.Location = new System.Drawing.Point(603, 3);
             this.faceViewControl4.Name = "faceViewControl4";
             this.faceViewControl4.Size = new System.Drawing.Size(194, 192);
             this.faceViewControl4.TabIndex = 3;
+            // 
+            // panel1
+            // 
+            this.panel1.Controls.Add(this.tableLayoutPanel1);
+            this.panel1.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.panel1.Location = new System.Drawing.Point(0, 53);
+            this.panel1.Name = "panel1";
+            this.panel1.Size = new System.Drawing.Size(800, 397);
+            this.panel1.TabIndex = 3;
             // 
             // saveFileDialog
             // 
@@ -243,6 +251,7 @@ namespace FImageEditor
             this.MainMenuStrip = this.menuStrip1;
             this.Name = "FormMain";
             this.Text = "Main";
+            this.FormClosing += new System.Windows.Forms.FormClosingEventHandler(this.OnFormClosing);
             this.flowLayoutPanel1.ResumeLayout(false);
             this.menuStrip1.ResumeLayout(false);
             this.menuStrip1.PerformLayout();
