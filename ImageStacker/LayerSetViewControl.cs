@@ -27,7 +27,7 @@ namespace ImageStacker
             renderer = new LayerSetRenderer();
             InitializeComponent();
             renderer.PreferredSizeChanged += OnImageSizeChanged;
-            renderer.NeedRedraw += (sender, e) => Invalidate();
+            renderer.NeedRedraw += OnLayerNeedRedraw;
             DoubleBuffered = true;
         }
         /// <summary> 
@@ -48,26 +48,35 @@ namespace ImageStacker
         }
 
         /// <summary>
-        /// レイヤーセット
+        /// レイヤーセットレンダラー
         /// </summary>
         [Browsable(false)]
-        public LayerSet LayerSet {
-            get => renderer.LayerSet;
+        public LayerSetRenderer LayerSetRenderer {
+            get => renderer;
             set {
-                if (renderer.LayerSet != value)
-                {
-                    renderer.LayerSet = value;
-                    Invalidate();
+                if ((value != null) && (renderer != value)) 
+                { 
+                    if (renderer != null)
+                    {
+                        renderer.PreferredSizeChanged -= OnImageSizeChanged;
+                        renderer.NeedRedraw -= OnLayerNeedRedraw;
+                    }
+                    renderer = value;
+                    if (renderer != null)
+                    {
+                        renderer.PreferredSizeChanged += OnImageSizeChanged;
+                        renderer.NeedRedraw += OnLayerNeedRedraw;
+                    }
                 }
             }
         }
 
         /// <summary>
-        /// レイヤーセットが更新されたときに通知を受け取る。
+        /// レイヤーの再描画が必要な時に通知を受け取る。
         /// </summary>
         /// <param name="sender">送信元オブジェクト</param>
         /// <param name="e">イベントオブジェクト</param>
-        private void OnLayerSetChanged(object sender, LayerEventArgs e)
+        private void OnLayerNeedRedraw(object sender, EventArgs e)
         {
             Invalidate();
         }
@@ -136,15 +145,6 @@ namespace ImageStacker
                     g.FillRectangle(brush, g.ClipBounds);
                 }
             }
-        }
-
-        /// <summary>
-        /// レンダラーを得る。
-        /// </summary>
-        /// <returns>レンダラー</returns>
-        public LayerSetRenderer GetRenderer()
-        {
-            return renderer;
         }
     }
 }

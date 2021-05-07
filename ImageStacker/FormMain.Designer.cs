@@ -94,7 +94,6 @@ namespace ImageStacker
             // 
             this.layerSetViewControl.AutoSize = true;
             this.layerSetViewControl.BackgroundImage = global::ImageStacker.Properties.Resources.Background;
-            this.layerSetViewControl.LayerSet = null;
             this.layerSetViewControl.Location = new System.Drawing.Point(3, 6);
             this.layerSetViewControl.Name = "layerSetViewControl";
             this.layerSetViewControl.Size = new System.Drawing.Size(0, 0);

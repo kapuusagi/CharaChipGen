@@ -14,6 +14,8 @@ namespace ImageStacker
     {
         // レイヤーセット
         private LayerSet layerSet;
+        // レイヤーセットレンダラー
+        private LayerSetRenderer renderer;
         // マウスドラッグしているか
         private bool isLayerSetMouseDragging;
         // レイヤー位置調整モードかどうか。
@@ -31,6 +33,8 @@ namespace ImageStacker
         public FormMain()
         {
             layerSet = new LayerSet();
+            renderer = new LayerSetRenderer();
+            renderer.LayerSet = layerSet;
             isLayerSetMouseDragging = false;
             isLayerSetAdjustMode = false;
             layerSetDragLocation = new Point(0, 0);
@@ -39,7 +43,7 @@ namespace ImageStacker
             InitializeComponent();
             layerSet.Added += OnLayerAdded;
             layerSet.Removed += OnLayerRemoved;
-            layerSetViewControl.LayerSet = layerSet;
+            layerSetViewControl.LayerSetRenderer = renderer;
         }
 
         /// <summary>
@@ -127,7 +131,6 @@ namespace ImageStacker
 
             Properties.Settings.Default.LastSavePath = saveFileDialog.FileName;
 
-            var renderer = layerSetViewControl.GetRenderer();
             var renderImage = renderer.GetRenderImage();
             renderImage.Save(saveFileDialog.FileName);
         }
