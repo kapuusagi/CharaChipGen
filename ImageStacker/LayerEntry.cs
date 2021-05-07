@@ -36,7 +36,7 @@ namespace ImageStacker
         /// </summary>
         public LayerEntry()
         {
-            FileName = string.Empty;
+            fileName = string.Empty;
             offsetX = 0;
             offsetY = 0;
             selected = false;
@@ -62,8 +62,7 @@ namespace ImageStacker
         public string FileName {
             get => fileName;
             set {
-                if (!string.IsNullOrEmpty(value) && (fileName != value)
-                    && (fileName?.Equals(value) ?? true))
+                if (!string.IsNullOrEmpty(value) && !fileName.Equals(value))
                 {
                     fileName = value;
                     NotifyPropertyChanged(nameof(FileName));
