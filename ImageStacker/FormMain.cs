@@ -342,7 +342,8 @@ namespace ImageStacker
             if (e.Button == MouseButtons.Left)
             {
                 isLayerSetMouseDragging = true;
-                isLayerSetAdjustMode = (ModifierKeys & Keys.Control) == Keys.Control;
+                isLayerSetAdjustMode = isLayerSetAdjustTrigger();
+                
                 layerSetDragLocation = Cursor.Position;
                 if (isLayerSetAdjustMode)
                 {
@@ -350,6 +351,24 @@ namespace ImageStacker
                     scrollPosY = panelPicture.VerticalScroll.Value;
                 }
             }
+        }
+
+        /// <summary>
+        /// レイヤー位置調整トリガーかどうかを得る。
+        /// </summary>
+        /// <returns>レイヤー位置調整の場合にはtrue, それ以外はfalse.</returns>
+        private bool isLayerSetAdjustTrigger()
+        {
+            if ((ModifierKeys & Keys.Control) == Keys.Control)
+            {
+                return true;
+            }
+            if (layerSet.Any(layer => layer.Selected))
+            {
+                return true;
+            }
+
+            return false;
         }
 
         /// <summary>
