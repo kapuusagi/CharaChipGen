@@ -282,6 +282,7 @@ namespace ImageStacker
             // 
             // LayerEntryControl
             // 
+            this.AllowDrop = true;
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 12F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.Controls.Add(this.tableLayoutPanel2);
@@ -290,6 +291,8 @@ namespace ImageStacker
             this.Controls.Add(this.flowLayoutPanel1);
             this.Name = "LayerEntryControl";
             this.Size = new System.Drawing.Size(640, 92);
+            this.DragDrop += new System.Windows.Forms.DragEventHandler(this.OnDragDrop);
+            this.DragEnter += new System.Windows.Forms.DragEventHandler(this.OnDragEnter);
             this.panel1.ResumeLayout(false);
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox)).EndInit();
             this.tableLayoutPanel1.ResumeLayout(false);

@@ -203,5 +203,41 @@ namespace ImageStacker
                 }
             }
         }
+
+        /// <summary>
+        /// ドラッグ操作がコントロール領域に入ったときに通知を受け取る。
+        /// </summary>
+        /// <param name="sender">送信元オブジェクト</param>
+        /// <param name="e">イベントオブジェクト</param>
+        private void OnDragEnter(object sender, DragEventArgs e)
+        {
+            if (e.Data.GetDataPresent(DataFormats.FileDrop))
+            {
+                e.Effect = DragDropEffects.Copy;
+            }
+            else
+            {
+                e.Effect = DragDropEffects.None;
+            }
+        }
+
+        /// <summary>
+        /// ドロップ操作を受けたときに通知を受け取る。
+        /// </summary>
+        /// <param name="sender">送信元オブジェクト</param>
+        /// <param name="e">イベントオブジェクト</param>
+        private void OnDragDrop(object sender, DragEventArgs e)
+        {
+            if (e.Data.GetDataPresent(DataFormats.FileDrop))
+            {
+                var fileNames = (string[])(e.Data.GetData(DataFormats.FileDrop));
+                if (layerEntry != null)
+                {
+                    layerEntry.FileName = fileNames[0];
+                }
+            }
+
+
+        }
     }
 }
