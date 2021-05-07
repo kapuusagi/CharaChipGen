@@ -1,4 +1,5 @@
-﻿using System.Drawing;
+﻿using System;
+using System.Drawing;
 
 namespace CGenImaging
 {
@@ -7,8 +8,11 @@ namespace CGenImaging
     /// 
     /// HSV<->RGBの処理は次のURLを参考にした。
     /// https://pokosho.com/t/image/8/
+    /// 
+    /// HSL<->RGBの処理は次のURLを参考にした。
+    /// https://www.peko-step.com/tool/hslrgb.html
     /// </summary>
-    public class ColorConverter
+    public static class ColorConverter
     {
         /// <summary>
         /// RGBからHSVへ変換を行う
@@ -17,92 +21,221 @@ namespace CGenImaging
         /// <returns>HSVカラー</returns>
         public static ColorHSV ConvertRGBtoHSV(Color rgb)
         {
-            byte min = rgb.R;
-            if (min > rgb.G)
-            {
-                min = rgb.G;
-            }
-            if (min > rgb.B)
-            {
-                min = rgb.B;
-            }
-            byte max = rgb.R;
-            if (max < rgb.G)
-            {
-                max = rgb.G;
-            }
-            if (max < rgb.B)
-            {
-                max = rgb.B;
-            }
+            int min = Math.Min(rgb.G, Math.Min(rgb.B, rgb.R));
+            int max = Math.Max(rgb.G, Math.Max(rgb.B, rgb.R));
 
-            int h;
-            if (max != min)
-            {
-                if (rgb.R == max)
-                {
-                    h = 60 * (rgb.G - rgb.B) / (max - min);
-                }
-                else if (rgb.G == max)
-                {
-                    h = 60 * (rgb.B - rgb.R) / (max - min) + 120;
-                }
-                else
-                {
-                    h = 60 * (rgb.R - rgb.G) / (max - min) + 240;
-                }
-            }
-            else
-            {
-                h = 0;
-            }
+            float hue = GetHue(rgb, min, max);
 
-            int s;
-            if (max > 0)
-            {
-                s = ((max - min) * 255) / max;
-            }
-            else
-            {
-                s = 0;
-            }
-            byte v = max;
+            float saturation = (max != 0) ? (float)(max - min) / (float)(max) : 0f;
+            float value = (float)(max) / 255.0f;
 
-            return ColorHSV.FromHSV(h, s, v);
+            return ColorHSV.FromHSV(hue, saturation, value);
         }
 
         /// <summary>
         /// HSVからRGBへ変換を行う
         /// </summary>
         /// <param name="hsv">HSVカラー</param>
-        /// <param name="arpha">アルファ値</param>
         /// <returns>RGBカラーが返る</returns>
-        public static Color ConvertHSVtoRGB(ColorHSV hsv, byte arpha)
+        public static Color ConvertHSVtoRGB(ColorHSV hsv)
+            => ConvertHSVtoRGB(hsv, hsv.Alpha);
+
+        /// <summary>
+        /// HSVからRGBへ変換を行う
+        /// </summary>
+        /// <param name="hsv">HSVカラー</param>
+        /// <param name="alpha">アルファ値(0≦alpha≦1.0)</param>
+        /// <returns>RGBカラーが返る</returns>
+        public static Color ConvertHSVtoRGB(ColorHSV hsv, float alpha)
         {
-            int h = hsv.Hue / 60;
-            int P = (hsv.Value * (255 - hsv.Saturation)) / 255;
-            //int Q = (int)(c.Value * (255 - c.Saturation * (c.Hue / 60.0f - h))) / 255;
-            int Q = (hsv.Value * (255 - hsv.Saturation * (hsv.Hue - h * 60) / 60)) / 255;
-            //int T = (int)(c.Value * (255 - c.Saturation * (1.0f - c.Hue / 60.0f + h))) / 255;
-            int T = (hsv.Value * (255 - hsv.Saturation * ((h + 1) * 60 - hsv.Hue) / 60)) / 255;
-            switch (h)
+            int a = ColorUtility.Clamp(Convert.ToInt32(alpha * 255.0f), 0, 255);
+            return ConvertHSVtoRGB(hsv, (byte)(a));
+        }
+
+        /// <summary>
+        /// HSVからRGBへ変換を行う
+        /// </summary>
+        /// <param name="hsv">HSVカラー</param>
+        /// <param name="alpha">アルファ値(0≦alpha≦255)</param>
+        /// <returns>RGBカラーが返る</returns>
+        public static Color ConvertHSVtoRGB(ColorHSV hsv, byte alpha)
+        {
+            int h = (Convert.ToInt32(hsv.Hue) / 60) % 6;
+            int v = Convert.ToInt32(hsv.Value * 255.0f);
+            int p = Convert.ToInt32((hsv.Value * (1.0f - hsv.Saturation)) * 255.0f);
+            int q = Convert.ToInt32(hsv.Value * (1.0f - hsv.Saturation * (hsv.Hue - h * 60.0f) / 60.0f) * 255.0f);
+            int t = Convert.ToInt32(hsv.Value * (1.0f - hsv.Saturation * ((h + 1.0f) * 60.0f - hsv.Hue) / 60.0f) * 255.0f);
+            if ((hsv.Hue >= 0) && (hsv.Hue < 60))
             {
-                case 0:
-                    return Color.FromArgb(arpha, hsv.Value, T, P);
-                case 1:
-                    return Color.FromArgb(arpha, Q, hsv.Value, P);
-                case 2:
-                    return Color.FromArgb(arpha, P, hsv.Value, T);
-                case 3:
-                    return Color.FromArgb(arpha, P, Q, hsv.Value);
-                case 4:
-                    return Color.FromArgb(arpha, T, P, hsv.Value);
-                case 5:
-                    return Color.FromArgb(arpha, hsv.Value, P, Q);
-                default:
-                    return Color.FromArgb(arpha, 0, 0, 0);
+                return ColorUtility.GetColor(alpha, v, t, p);
+            }
+            else if ((hsv.Hue >= 60) && (hsv.Hue < 120)) 
+            {
+                return ColorUtility.GetColor(alpha, q, v, p);
+            }
+            else if ((hsv.Hue >= 120) && (hsv.Hue < 180))
+            {
+                return ColorUtility.GetColor(alpha, p, v, t);
+            }
+            else if ((hsv.Hue >= 180) && (hsv.Hue < 240))
+            {
+                return ColorUtility.GetColor(alpha, p, q, v);
+            }
+            else if ((hsv.Hue >= 240) && (hsv.Hue < 300))
+            {
+                return ColorUtility.GetColor(alpha, t, p, v);
+            }
+            else if ((hsv.Hue >= 300) && (hsv.Hue < 360))
+            {
+                return ColorUtility.GetColor(alpha, v, p, q);
+            }
+            else
+            {
+                return ColorUtility.GetColor(alpha, 0, 0, 0);
             }
         }
 
+        /// <summary>
+        ///  RGBからHSLへ変換を行う。
+        /// </summary>
+        /// <param name="rgb">RGB色</param>
+        /// <returns>HSL色</returns>
+        public static ColorHSL ConvertRGBtoHSL(Color rgb)
+        {
+            int min = Math.Min(rgb.G, Math.Min(rgb.B, rgb.R));
+            int max = Math.Max(rgb.G, Math.Max(rgb.B, rgb.R));
+
+            float hue = GetHue(rgb, min, max);
+
+            float lightness = ((min + max) / 2.0f) / 255.0f;
+            float saturation;
+
+            if (min == max)
+            {
+                saturation = 0.0f;
+            }
+            else
+            {
+                saturation = (lightness < 0.5)
+                    ? (float)(max - min) / (float)(max + min)
+                    : (float)(max - min) / (2 * 255.0f - max - min);
+            }
+
+            return ColorHSL.FromHSL(hue, saturation, lightness);
+        }
+
+        /// <summary>
+        /// HSLからRGBへ変換を行う。
+        /// </summary>
+        /// <param name="hsl">HSL色</param>
+        /// <returns>RGB色</returns>
+        public static Color ConvertHSLtoRGB(ColorHSL hsl)
+            => ConvertHSLtoRGB(hsl, hsl.Alpha);
+
+        /// <summary>
+        /// HSLからRGBへ変換を行う。
+        /// </summary>
+        /// <param name="hsl">HSL色</param>
+        /// <param name="alpha">アルファ値(0≦alpha≦1.0)</param>
+        /// <returns>RGB色</returns>
+        public static Color ConvertHSLtoRGB(ColorHSL hsl, float alpha)
+        {
+            int a = Convert.ToInt32(ColorUtility.Clamp(alpha * 255.0f, 0.0f, 255.0f));
+            return ConvertHSLtoRGB(hsl, (byte)(a));
+        }
+
+        /// <summary>
+        /// HSLからRGBへ変換を行う。
+        /// </summary>
+        /// <param name="hsl">HSL色</param>
+        /// <param name="alpha">アルファ値(0≦alpha≦255)</param>
+        /// <returns>RGB色</returns>
+        public static Color ConvertHSLtoRGB(ColorHSL hsl, byte alpha)
+        {
+            float min = (hsl.Lightness < 0.5f)
+                ? (hsl.Lightness - hsl.Lightness * (hsl.Saturation)) * 255.0f
+                : (hsl.Lightness - (1.0f - hsl.Lightness) * hsl.Saturation) * 255.0f;
+            float max = (hsl.Lightness < 0.5f)
+                ? (hsl.Lightness + hsl.Lightness * (hsl.Saturation)) * 255.0f
+                : (hsl.Lightness + (1.0f - hsl.Lightness) * hsl.Saturation) * 255.0f;
+
+            int r, g, b;
+            if ((hsl.Hue >= 0) && (hsl.Hue < 60))
+            {
+                r = Convert.ToInt32(max);
+                g = Convert.ToInt32((hsl.Hue / 60.0f) * (max - min) + min);
+                b = Convert.ToInt32(min);
+            }
+            else if ((hsl.Hue >= 60) && (hsl.Hue < 120))
+            {
+                r = Convert.ToInt32(((120.0f - hsl.Hue) / 60.0f) * (max - min) + min);
+                g = Convert.ToInt32(max);
+                b = Convert.ToInt32(min);
+            }
+            else if ((hsl.Hue >= 120) && (hsl.Hue < 180))
+            {
+                r = Convert.ToInt32(min);
+                g = Convert.ToInt32(max);
+                b = Convert.ToInt32(((hsl.Hue - 120.0f) / 60.0f) * (max - min) + min);
+            }
+            else if ((hsl.Hue >= 180) && (hsl.Hue < 240))
+            {
+                r = Convert.ToInt32(min);
+                g = Convert.ToInt32(((240 - hsl.Hue) / 60.0f) * (max - min) + min);
+                b = Convert.ToInt32(max);
+            }
+            else if ((hsl.Hue >= 240) && (hsl.Hue < 300))
+            {
+                r = Convert.ToInt32(((hsl.Hue - 240) / 60.0f) * (max - min) + min);
+                g = Convert.ToInt32(min);
+                b = Convert.ToInt32(max);
+            }
+            else if ((hsl.Hue >= 300) && (hsl.Hue < 360))
+            {
+                r = Convert.ToInt32(max);
+                g = Convert.ToInt32(min);
+                b = Convert.ToInt32(((360 - hsl.Hue) / 60.0f) * (max - min) + min);
+            }
+            else
+            {
+                r = 0;
+                g = 0;
+                b = 0;
+            }
+            return ColorUtility.GetColor(alpha, r, g, b);
+        }
+
+        /// <summary>
+        /// 色相を得る。
+        /// </summary>
+        /// <param name="rgb">RGBカラー</param>
+        /// <param name="min">R,G,Bのうち最小値</param>
+        /// <param name="max">R,G,Bのうち最大値</param>
+        /// <returns>色相が返る</returns>
+        private static float GetHue(Color rgb, int min, int max)
+        {
+            if (max != min)
+            {
+                if (rgb.R == max)
+                {
+                    float h = 60.0f * (rgb.G - rgb.B) / (float)(max - min);
+                    return ColorUtility.GetHueWithLimitedRange(h);
+                }
+                else if (rgb.G == max)
+                {
+                    float h = 60.0f * (rgb.B - rgb.R) / (float)(max - min) + 120.0f;
+                    return ColorUtility.GetHueWithLimitedRange(h);
+                }
+                else
+                {
+                    float h = 60.0f * (rgb.R - rgb.G) / (float)(max - min) + 240.0f;
+                    return ColorUtility.GetHueWithLimitedRange(h);
+                }
+            }
+            else
+            {
+                return 0.0f;
+            }
+        }
     }
 }

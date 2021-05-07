@@ -19,10 +19,10 @@ namespace CharaChipGen.Properties {
     // または Visual Studio のようなツールを使用して自動生成されました。
     // メンバーを追加または削除するには、.ResX ファイルを編集して、/str オプションと共に
     // ResGen を実行し直すか、または VS プロジェクトをビルドし直します。
-    [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Resources.Tools.StronglyTypedResourceBuilder", "16.0.0.0")]
+    [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Resources.Tools.StronglyTypedResourceBuilder", "15.0.0.0")]
     [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
     [global::System.Runtime.CompilerServices.CompilerGeneratedAttribute()]
-    internal class Resources {
+    public class Resources {
         
         private static global::System.Resources.ResourceManager resourceMan;
         
@@ -36,7 +36,7 @@ namespace CharaChipGen.Properties {
         ///   このクラスで使用されているキャッシュされた ResourceManager インスタンスを返します。
         /// </summary>
         [global::System.ComponentModel.EditorBrowsableAttribute(global::System.ComponentModel.EditorBrowsableState.Advanced)]
-        internal static global::System.Resources.ResourceManager ResourceManager {
+        public static global::System.Resources.ResourceManager ResourceManager {
             get {
                 if (object.ReferenceEquals(resourceMan, null)) {
                     global::System.Resources.ResourceManager temp = new global::System.Resources.ResourceManager("CharaChipGen.Properties.Resources", typeof(Resources).Assembly);
@@ -51,7 +51,7 @@ namespace CharaChipGen.Properties {
         ///   現在のスレッドの CurrentUICulture プロパティをオーバーライドします。
         /// </summary>
         [global::System.ComponentModel.EditorBrowsableAttribute(global::System.ComponentModel.EditorBrowsableState.Advanced)]
-        internal static global::System.Globalization.CultureInfo Culture {
+        public static global::System.Globalization.CultureInfo Culture {
             get {
                 return resourceCulture;
             }
@@ -61,83 +61,306 @@ namespace CharaChipGen.Properties {
         }
         
         /// <summary>
-        ///   型 System.Drawing.Bitmap のローカライズされたリソースを検索します。
+        ///   Rename material に類似しているローカライズされた文字列を検索します。
         /// </summary>
-        internal static System.Drawing.Bitmap CharaChipGen {
+        public static string DialogTitleChangeMaterialName {
             get {
-                object obj = ResourceManager.GetObject("CharaChipGen", resourceCulture);
-                return ((System.Drawing.Bitmap)(obj));
+                return ResourceManager.GetString("DialogTitleChangeMaterialName", resourceCulture);
             }
         }
         
         /// <summary>
-        ///   (アイコン) に類似した型 System.Drawing.Icon のローカライズされたリソースを検索します。
+        ///   Confirmation に類似しているローカライズされた文字列を検索します。
         /// </summary>
-        internal static System.Drawing.Icon CharaChipGen1 {
+        public static string DialogTitleConfirm {
             get {
-                object obj = ResourceManager.GetObject("CharaChipGen1", resourceCulture);
-                return ((System.Drawing.Icon)(obj));
+                return ResourceManager.GetString("DialogTitleConfirm", resourceCulture);
             }
         }
         
         /// <summary>
-        ///   パーツの設定を使用 に類似しているローカライズされた文字列を検索します。
+        ///   Error に類似しているローカライズされた文字列を検索します。
         /// </summary>
-        internal static string ItemNameUsePartsSetting {
+        public static string DialogTitleError {
+            get {
+                return ResourceManager.GetString("DialogTitleError", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Information に類似しているローカライズされた文字列を検索します。
+        /// </summary>
+        public static string DialogTitleInformation {
+            get {
+                return ResourceManager.GetString("DialogTitleInformation", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Input に類似しているローカライズされた文字列を検索します。
+        /// </summary>
+        public static string DialogTitleInput {
+            get {
+                return ResourceManager.GetString("DialogTitleInput", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Materials に類似しているローカライズされた文字列を検索します。
+        /// </summary>
+        public static string DialogTitleMaterials {
+            get {
+                return ResourceManager.GetString("DialogTitleMaterials", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   New material に類似しているローカライズされた文字列を検索します。
+        /// </summary>
+        public static string DialogTitleNewMaterial {
+            get {
+                return ResourceManager.GetString("DialogTitleNewMaterial", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Character {0} - Chara Chip Settings に類似しているローカライズされた文字列を検索します。
+        /// </summary>
+        public static string FormTitleCharacterNGenerator {
+            get {
+                return ResourceManager.GetString("FormTitleCharacterNGenerator", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Use parts setting. に類似しているローカライズされた文字列を検索します。
+        /// </summary>
+        public static string ItemNameUsePartsSetting {
             get {
                 return ResourceManager.GetString("ItemNameUsePartsSetting", resourceCulture);
             }
         }
         
         /// <summary>
-        ///   アクセサリ に類似しているローカライズされた文字列を検索します。
+        ///   &lt;Not selected&gt; に類似しているローカライズされた文字列を検索します。
         /// </summary>
-        internal static string NameAccessories {
+        public static string ItemNoSelect {
+            get {
+                return ResourceManager.GetString("ItemNoSelect", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Are you sure you want to delete specified parts? に類似しているローカライズされた文字列を検索します。
+        /// </summary>
+        public static string MessageConfirmRemoveParts {
+            get {
+                return ResourceManager.GetString("MessageConfirmRemoveParts", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Export successfully completed. に類似しているローカライズされた文字列を検索します。
+        /// </summary>
+        public static string MessageExported {
+            get {
+                return ResourceManager.GetString("MessageExported", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Type layer name. に類似しているローカライズされた文字列を検索します。
+        /// </summary>
+        public static string MessageInputLayerName {
+            get {
+                return ResourceManager.GetString("MessageInputLayerName", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Type material name. に類似しているローカライズされた文字列を検索します。
+        /// </summary>
+        public static string MessageInputMaterialName {
+            get {
+                return ResourceManager.GetString("MessageInputMaterialName", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Type template name. に類似しているローカライズされた文字列を検索します。
+        /// </summary>
+        public static string MessageInputTemplateName {
+            get {
+                return ResourceManager.GetString("MessageInputTemplateName", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Layer name is invalid. に類似しているローカライズされた文字列を検索します。
+        /// </summary>
+        public static string MessageInvalidLayerName {
+            get {
+                return ResourceManager.GetString("MessageInvalidLayerName", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Layer name has invalid chracter. に類似しているローカライズされた文字列を検索します。
+        /// </summary>
+        public static string MessageInvalidLayerNameCharacter {
+            get {
+                return ResourceManager.GetString("MessageInvalidLayerNameCharacter", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Material name has invalid character. に類似しているローカライズされた文字列を検索します。
+        /// </summary>
+        public static string MessageInvalidMaterialNameCharacter {
+            get {
+                return ResourceManager.GetString("MessageInvalidMaterialNameCharacter", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Specified template name has unusable character. に類似しているローカライズされた文字列を検索します。
+        /// </summary>
+        public static string MessageInvalidTemplateNameCharacter {
+            get {
+                return ResourceManager.GetString("MessageInvalidTemplateNameCharacter", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Layer name is already used. に類似しているローカライズされた文字列を検索します。
+        /// </summary>
+        public static string MessageLayernameUsed {
+            get {
+                return ResourceManager.GetString("MessageLayernameUsed", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Material directory not found. に類似しているローカライズされた文字列を検索します。
+        /// </summary>
+        public static string MessageMaterialDirectoryNotFound {
+            get {
+                return ResourceManager.GetString("MessageMaterialDirectoryNotFound", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Material name not specified. に類似しているローカライズされた文字列を検索します。
+        /// </summary>
+        public static string MessageMaterialNameNotSpecified {
+            get {
+                return ResourceManager.GetString("MessageMaterialNameNotSpecified", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Material name is already used. に類似しているローカライズされた文字列を検索します。
+        /// </summary>
+        public static string MessageMaterialNameUsed {
+            get {
+                return ResourceManager.GetString("MessageMaterialNameUsed", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Empty template name is illegal. に類似しているローカライズされた文字列を検索します。
+        /// </summary>
+        public static string MessageNoInputTemplateName {
+            get {
+                return ResourceManager.GetString("MessageNoInputTemplateName", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   path is rootDirectory. に類似しているローカライズされた文字列を検索します。
+        /// </summary>
+        public static string MessagePathIsRootDirectory {
+            get {
+                return ResourceManager.GetString("MessagePathIsRootDirectory", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   An error occurred when reading file. に類似しているローカライズされた文字列を検索します。
+        /// </summary>
+        public static string MessageReadError {
+            get {
+                return ResourceManager.GetString("MessageReadError", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Restart application by changing material directory. に類似しているローカライズされた文字列を検索します。
+        /// </summary>
+        public static string MessageRestartByChangeSettings {
+            get {
+                return ResourceManager.GetString("MessageRestartByChangeSettings", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   An error occurred when exporting. に類似しているローカライズされた文字列を検索します。
+        /// </summary>
+        public static string MessageWriteError {
+            get {
+                return ResourceManager.GetString("MessageWriteError", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Accessories に類似しているローカライズされた文字列を検索します。
+        /// </summary>
+        public static string NameAccessories {
             get {
                 return ResourceManager.GetString("NameAccessories", resourceCulture);
             }
         }
         
         /// <summary>
-        ///   体 に類似しているローカライズされた文字列を検索します。
+        ///   Body に類似しているローカライズされた文字列を検索します。
         /// </summary>
-        internal static string NameBodies {
+        public static string NameBodies {
             get {
                 return ResourceManager.GetString("NameBodies", resourceCulture);
             }
         }
         
         /// <summary>
-        ///   目 に類似しているローカライズされた文字列を検索します。
+        ///   Eye に類似しているローカライズされた文字列を検索します。
         /// </summary>
-        internal static string NameEyes {
+        public static string NameEyes {
             get {
                 return ResourceManager.GetString("NameEyes", resourceCulture);
             }
         }
         
         /// <summary>
-        ///   髪型 に類似しているローカライズされた文字列を検索します。
+        ///   HairStyle に類似しているローカライズされた文字列を検索します。
         /// </summary>
-        internal static string NameHairStyles {
+        public static string NameHairStyles {
             get {
                 return ResourceManager.GetString("NameHairStyles", resourceCulture);
             }
         }
         
         /// <summary>
-        ///   頭部アクセサリ に類似しているローカライズされた文字列を検索します。
+        ///   HeadAccessory に類似しているローカライズされた文字列を検索します。
         /// </summary>
-        internal static string NameHeadAccessories {
+        public static string NameHeadAccessories {
             get {
                 return ResourceManager.GetString("NameHeadAccessories", resourceCulture);
             }
         }
         
         /// <summary>
-        ///   頭 に類似しているローカライズされた文字列を検索します。
+        ///   Head に類似しているローカライズされた文字列を検索します。
         /// </summary>
-        internal static string NameHeads {
+        public static string NameHeads {
             get {
                 return ResourceManager.GetString("NameHeads", resourceCulture);
             }

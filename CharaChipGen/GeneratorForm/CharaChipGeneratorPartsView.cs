@@ -1,5 +1,6 @@
 ﻿using CharaChipGen.Model.CharaChip;
 using CharaChipGen.Model.Material;
+using CharaChipGen.Properties;
 using System;
 using System.ComponentModel;
 using System.Drawing;
@@ -13,7 +14,7 @@ namespace CharaChipGen.GeneratorForm
     public partial class CharaChipGeneratorPartsView : UserControl
     {
         // 未選択を表すコンボボックスのアイテム。
-        private const string ItemNoSelect = "<選択なし>";
+        private readonly string ItemNoSelect = Resources.ItemNoSelect;
         // このビューが表すデータのモデル。
         private Parts parts;
         // モデルのデータ変更を受け取るためのハンドラ
@@ -80,7 +81,7 @@ namespace CharaChipGen.GeneratorForm
         /// </summary>
         private void ModelToUI()
         {
-            if (parts.MaterialName == "")
+            if (string.IsNullOrEmpty(parts.MaterialName))
             {
                 // 0番目のアイテムは未選択アイテムになる。
                 if (comboBoxItem.Items.Count > 0)
@@ -116,14 +117,14 @@ namespace CharaChipGen.GeneratorForm
         /// <summary>
         /// 選択可能なマテリアルリストを初期化する。
         /// </summary>
-        /// <param name="ml"></param>
-        public void SetMaterialList(MaterialList ml)
+        /// <param name="materialList">マテリアルリスト</param>
+        public void SetMaterialList(MaterialList materialList)
         {
             comboBoxItem.Items.Clear();
             comboBoxItem.Items.Add(ItemNoSelect);
-            foreach (Material m in ml)
+            foreach (Material material in materialList)
             {
-                comboBoxItem.Items.Add(m);
+                comboBoxItem.Items.Add(material);
             }
 
             comboBoxItem.SelectedIndex = 0; // 未選択状態
@@ -136,8 +137,8 @@ namespace CharaChipGen.GeneratorForm
         /// 素材名が変更された時に通知を受け取る。
         /// </summary>
         /// <param name="sender">送信元オブジェクト</param>
-        /// <param name="evt">イベントオブジェクト</param>
-        private void OnMaterialNameChanged(object sender, EventArgs evt)
+        /// <param name="e">イベントオブジェクト</param>
+        private void OnMaterialNameChanged(object sender, EventArgs e)
         {
             Object selItem = comboBoxItem.SelectedItem;
             if (selItem.Equals(ItemNoSelect))
@@ -146,7 +147,7 @@ namespace CharaChipGen.GeneratorForm
             }
             else
             {
-                parts.MaterialName = (selItem != null) ? selItem.ToString() : "";
+                parts.MaterialName = (selItem != null) ? selItem.ToString() : string.Empty;
             }
         }
 
@@ -155,8 +156,8 @@ namespace CharaChipGen.GeneratorForm
         /// <summary>
         /// 調整ボタンがクリックされた時の処理を行う。
         /// </summary>
-        /// <param name="sender"></param>
-        /// <param name="e"></param>
+        /// <param name="sender">送信元オブジェクト</param>
+        /// <param name="e">イベントオブジェクト</param>
         private void OnButtonAdjustClick(object sender, EventArgs e)
         {
             toolStripDropDown.Show(Cursor.Position);
@@ -166,8 +167,8 @@ namespace CharaChipGen.GeneratorForm
         /// <summary>
         /// コンボボックスで項目が描画されるときに通知を受け取る。
         /// </summary>
-        /// <param name="sender"></param>
-        /// <param name="e"></param>
+        /// <param name="sender">送信元オブジェクト</param>
+        /// <param name="e">イベントオブジェクト</param>
         private void OnComboBoxDrawItem(object sender, DrawItemEventArgs e)
         {
             e.DrawBackground();

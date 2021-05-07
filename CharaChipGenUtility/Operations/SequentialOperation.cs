@@ -24,6 +24,11 @@ namespace CharaChipGenUtility.Operations
         public string Name { get { return "Sequential"; } }
 
         /// <summary>
+        /// 操作の説明
+        /// </summary>
+        public string Description { get => "複数の操作を連続して適用します。"; }
+
+        /// <summary>
         /// 処理の設定
         /// </summary>
         public IOperationSetting Setting {
@@ -38,7 +43,7 @@ namespace CharaChipGenUtility.Operations
         {
             foreach (string filePath in paths)
             {
-                using (Image srcImage = Image.FromFile(filePath))
+                using (Image srcImage = ReadImage(filePath))
                 {
                     ImageBuffer srcBuffer = ImageBuffer.CreateFrom(srcImage);
                     ImageBuffer dstBuffer = SequentialProcess(srcBuffer);
@@ -76,6 +81,17 @@ namespace CharaChipGenUtility.Operations
             return tmp;
         }
 
-
+        /// <summary>
+        /// pathで指定された画像を読み込む。
+        /// </summary>
+        /// <param name="path">ファイルパス</param>
+        /// <returns>Imageオブジェクト</returns>
+        private static Image ReadImage(string path)
+        {
+            using (System.IO.Stream stream = System.IO.File.OpenRead(path))
+            {
+                return Image.FromStream(stream, false, false);
+            }
+        }
     }
 }

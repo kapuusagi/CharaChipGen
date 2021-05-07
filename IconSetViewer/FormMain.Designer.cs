@@ -28,176 +28,216 @@
         /// </summary>
         private void InitializeComponent()
         {
+            System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(FormMain));
+            IconSetViewer.IconSet iconSet2 = new IconSetViewer.IconSet();
+            IconSetViewer.IconSet iconSet1 = new IconSetViewer.IconSet();
             this.menuStrip1 = new System.Windows.Forms.MenuStrip();
-            this.ファイルToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
-            this.開くToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
-            this.終了ToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.menuItemFile = new System.Windows.Forms.ToolStripMenuItem();
+            this.menuItemOpen = new System.Windows.Forms.ToolStripMenuItem();
+            this.menuItemSave = new System.Windows.Forms.ToolStripMenuItem();
+            this.menuItemSaveAs = new System.Windows.Forms.ToolStripMenuItem();
+            this.menuItemClose = new System.Windows.Forms.ToolStripMenuItem();
+            this.menuItemOption = new System.Windows.Forms.ToolStripMenuItem();
+            this.menuItemImageBackground = new System.Windows.Forms.ToolStripMenuItem();
             this.openFileDialog = new System.Windows.Forms.OpenFileDialog();
             this.flowLayoutPanel1 = new System.Windows.Forms.FlowLayoutPanel();
+            this.panel2 = new System.Windows.Forms.Panel();
+            this.flowLayoutPanel3 = new System.Windows.Forms.FlowLayoutPanel();
             this.label1 = new System.Windows.Forms.Label();
             this.comboBoxNumber = new System.Windows.Forms.ComboBox();
+            this.buttonIconSave = new System.Windows.Forms.Button();
+            this.buttonIconChange = new System.Windows.Forms.Button();
             this.panel1 = new System.Windows.Forms.Panel();
-            this.panelScroll = new System.Windows.Forms.Panel();
-            this.iconSetViewControl = new IconSetViewer.IconSetViewControl();
+            this.panelScroll = new AutoScrollPanel();
             this.flowLayoutPanel2 = new System.Windows.Forms.FlowLayoutPanel();
+            this.saveFileDialog = new System.Windows.Forms.SaveFileDialog();
+            this.iconSetViewControl = new IconSetViewer.IconSetViewControl();
             this.iconViewControl = new IconSetViewer.IconViewControl();
             this.menuStrip1.SuspendLayout();
             this.flowLayoutPanel1.SuspendLayout();
+            this.panel2.SuspendLayout();
+            this.flowLayoutPanel3.SuspendLayout();
             this.panel1.SuspendLayout();
             this.panelScroll.SuspendLayout();
-            this.flowLayoutPanel2.SuspendLayout();
             this.SuspendLayout();
             // 
             // menuStrip1
             // 
+            resources.ApplyResources(this.menuStrip1, "menuStrip1");
             this.menuStrip1.Items.AddRange(new System.Windows.Forms.ToolStripItem[] {
-            this.ファイルToolStripMenuItem});
-            this.menuStrip1.Location = new System.Drawing.Point(0, 0);
+            this.menuItemFile,
+            this.menuItemOption});
             this.menuStrip1.Name = "menuStrip1";
-            this.menuStrip1.Size = new System.Drawing.Size(684, 24);
-            this.menuStrip1.TabIndex = 0;
-            this.menuStrip1.Text = "menuStrip1";
             // 
-            // ファイルToolStripMenuItem
+            // menuItemFile
             // 
-            this.ファイルToolStripMenuItem.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] {
-            this.開くToolStripMenuItem,
-            this.終了ToolStripMenuItem});
-            this.ファイルToolStripMenuItem.Name = "ファイルToolStripMenuItem";
-            this.ファイルToolStripMenuItem.Size = new System.Drawing.Size(53, 20);
-            this.ファイルToolStripMenuItem.Text = "ファイル";
+            resources.ApplyResources(this.menuItemFile, "menuItemFile");
+            this.menuItemFile.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] {
+            this.menuItemOpen,
+            this.menuItemSave,
+            this.menuItemSaveAs,
+            this.menuItemClose});
+            this.menuItemFile.Name = "menuItemFile";
             // 
-            // 開くToolStripMenuItem
+            // menuItemOpen
             // 
-            this.開くToolStripMenuItem.Name = "開くToolStripMenuItem";
-            this.開くToolStripMenuItem.Size = new System.Drawing.Size(98, 22);
-            this.開くToolStripMenuItem.Text = "開く";
-            this.開くToolStripMenuItem.Click += new System.EventHandler(this.OnMenuOpenClick);
+            resources.ApplyResources(this.menuItemOpen, "menuItemOpen");
+            this.menuItemOpen.Name = "menuItemOpen";
+            this.menuItemOpen.Click += new System.EventHandler(this.OnMenuOpenClick);
             // 
-            // 終了ToolStripMenuItem
+            // menuItemSave
             // 
-            this.終了ToolStripMenuItem.Name = "終了ToolStripMenuItem";
-            this.終了ToolStripMenuItem.Size = new System.Drawing.Size(98, 22);
-            this.終了ToolStripMenuItem.Text = "終了";
-            this.終了ToolStripMenuItem.Click += new System.EventHandler(this.OnExitMenuClick);
+            resources.ApplyResources(this.menuItemSave, "menuItemSave");
+            this.menuItemSave.Name = "menuItemSave";
+            this.menuItemSave.Click += new System.EventHandler(this.OnButtonSaveClick);
+            // 
+            // menuItemSaveAs
+            // 
+            resources.ApplyResources(this.menuItemSaveAs, "menuItemSaveAs");
+            this.menuItemSaveAs.Name = "menuItemSaveAs";
+            this.menuItemSaveAs.Click += new System.EventHandler(this.OnMenuItemSaveAsClick);
+            // 
+            // menuItemClose
+            // 
+            resources.ApplyResources(this.menuItemClose, "menuItemClose");
+            this.menuItemClose.Name = "menuItemClose";
+            this.menuItemClose.Click += new System.EventHandler(this.OnExitMenuClick);
+            // 
+            // menuItemOption
+            // 
+            resources.ApplyResources(this.menuItemOption, "menuItemOption");
+            this.menuItemOption.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] {
+            this.menuItemImageBackground});
+            this.menuItemOption.Name = "menuItemOption";
+            // 
+            // menuItemImageBackground
+            // 
+            resources.ApplyResources(this.menuItemImageBackground, "menuItemImageBackground");
+            this.menuItemImageBackground.Name = "menuItemImageBackground";
+            this.menuItemImageBackground.Click += new System.EventHandler(this.OnMenuItemImageBackgroundClick);
             // 
             // openFileDialog
             // 
             this.openFileDialog.FileName = "IconSet.png";
-            this.openFileDialog.Filter = "アイコンセット|*.png";
+            resources.ApplyResources(this.openFileDialog, "openFileDialog");
             // 
             // flowLayoutPanel1
             // 
-            this.flowLayoutPanel1.AutoSize = true;
-            this.flowLayoutPanel1.Controls.Add(this.label1);
-            this.flowLayoutPanel1.Controls.Add(this.comboBoxNumber);
-            this.flowLayoutPanel1.Dock = System.Windows.Forms.DockStyle.Right;
-            this.flowLayoutPanel1.FlowDirection = System.Windows.Forms.FlowDirection.TopDown;
-            this.flowLayoutPanel1.Location = new System.Drawing.Point(618, 24);
+            resources.ApplyResources(this.flowLayoutPanel1, "flowLayoutPanel1");
+            this.flowLayoutPanel1.Controls.Add(this.panel2);
+            this.flowLayoutPanel1.Controls.Add(this.buttonIconSave);
+            this.flowLayoutPanel1.Controls.Add(this.buttonIconChange);
             this.flowLayoutPanel1.Name = "flowLayoutPanel1";
-            this.flowLayoutPanel1.Size = new System.Drawing.Size(66, 401);
-            this.flowLayoutPanel1.TabIndex = 1;
+            // 
+            // panel2
+            // 
+            resources.ApplyResources(this.panel2, "panel2");
+            this.panel2.Controls.Add(this.iconViewControl);
+            this.panel2.Controls.Add(this.flowLayoutPanel3);
+            this.panel2.Name = "panel2";
+            // 
+            // flowLayoutPanel3
+            // 
+            resources.ApplyResources(this.flowLayoutPanel3, "flowLayoutPanel3");
+            this.flowLayoutPanel3.Controls.Add(this.label1);
+            this.flowLayoutPanel3.Controls.Add(this.comboBoxNumber);
+            this.flowLayoutPanel3.Name = "flowLayoutPanel3";
             // 
             // label1
             // 
-            this.label1.AutoSize = true;
-            this.label1.Location = new System.Drawing.Point(3, 0);
+            resources.ApplyResources(this.label1, "label1");
             this.label1.Name = "label1";
-            this.label1.Size = new System.Drawing.Size(29, 12);
-            this.label1.TabIndex = 1;
-            this.label1.Text = "番号";
             // 
             // comboBoxNumber
             // 
-            this.comboBoxNumber.Enabled = false;
+            resources.ApplyResources(this.comboBoxNumber, "comboBoxNumber");
             this.comboBoxNumber.FormattingEnabled = true;
-            this.comboBoxNumber.Location = new System.Drawing.Point(3, 15);
             this.comboBoxNumber.Name = "comboBoxNumber";
-            this.comboBoxNumber.Size = new System.Drawing.Size(60, 20);
-            this.comboBoxNumber.TabIndex = 0;
             this.comboBoxNumber.SelectionChangeCommitted += new System.EventHandler(this.OnComboBoxNumberSelectionChangeCommitted);
             this.comboBoxNumber.TextUpdate += new System.EventHandler(this.OnComboBoxNumberTextUpdate);
             // 
+            // buttonIconSave
+            // 
+            resources.ApplyResources(this.buttonIconSave, "buttonIconSave");
+            this.buttonIconSave.Name = "buttonIconSave";
+            this.buttonIconSave.UseVisualStyleBackColor = true;
+            this.buttonIconSave.Click += new System.EventHandler(this.OnButtonIconSaveClick);
+            // 
+            // buttonIconChange
+            // 
+            resources.ApplyResources(this.buttonIconChange, "buttonIconChange");
+            this.buttonIconChange.Name = "buttonIconChange";
+            this.buttonIconChange.UseVisualStyleBackColor = true;
+            this.buttonIconChange.Click += new System.EventHandler(this.OnButtonIconChangeClick);
+            // 
             // panel1
             // 
+            resources.ApplyResources(this.panel1, "panel1");
             this.panel1.Controls.Add(this.panelScroll);
             this.panel1.Controls.Add(this.flowLayoutPanel2);
-            this.panel1.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.panel1.Location = new System.Drawing.Point(0, 24);
             this.panel1.Name = "panel1";
-            this.panel1.Padding = new System.Windows.Forms.Padding(8);
-            this.panel1.Size = new System.Drawing.Size(618, 401);
-            this.panel1.TabIndex = 2;
             // 
             // panelScroll
             // 
-            this.panelScroll.AutoScroll = true;
+            resources.ApplyResources(this.panelScroll, "panelScroll");
             this.panelScroll.BackColor = System.Drawing.Color.Black;
             this.panelScroll.Controls.Add(this.iconSetViewControl);
-            this.panelScroll.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.panelScroll.Location = new System.Drawing.Point(8, 8);
             this.panelScroll.Name = "panelScroll";
-            this.panelScroll.Padding = new System.Windows.Forms.Padding(8);
-            this.panelScroll.Size = new System.Drawing.Size(516, 385);
-            this.panelScroll.TabIndex = 1;
-            // 
-            // iconSetViewControl
-            // 
-            this.iconSetViewControl.BackColor = System.Drawing.Color.Black;
-            this.iconSetViewControl.CorsorColor = System.Drawing.Color.Red;
-            this.iconSetViewControl.IconSetImage = null;
-            this.iconSetViewControl.IconSize = new System.Drawing.Size(32, 32);
-            this.iconSetViewControl.Location = new System.Drawing.Point(1, 1);
-            this.iconSetViewControl.Name = "iconSetViewControl";
-            this.iconSetViewControl.SelectedIndex = -1;
-            this.iconSetViewControl.Size = new System.Drawing.Size(393, 343);
-            this.iconSetViewControl.TabIndex = 0;
             // 
             // flowLayoutPanel2
             // 
-            this.flowLayoutPanel2.AutoSize = true;
-            this.flowLayoutPanel2.Controls.Add(this.iconViewControl);
-            this.flowLayoutPanel2.Dock = System.Windows.Forms.DockStyle.Right;
-            this.flowLayoutPanel2.Location = new System.Drawing.Point(524, 8);
+            resources.ApplyResources(this.flowLayoutPanel2, "flowLayoutPanel2");
             this.flowLayoutPanel2.Name = "flowLayoutPanel2";
-            this.flowLayoutPanel2.Padding = new System.Windows.Forms.Padding(4);
-            this.flowLayoutPanel2.Size = new System.Drawing.Size(86, 385);
-            this.flowLayoutPanel2.TabIndex = 2;
+            // 
+            // saveFileDialog
+            // 
+            resources.ApplyResources(this.saveFileDialog, "saveFileDialog");
+            // 
+            // iconSetViewControl
+            // 
+            resources.ApplyResources(this.iconSetViewControl, "iconSetViewControl");
+            this.iconSetViewControl.BackColor = System.Drawing.Color.Transparent;
+            this.iconSetViewControl.CorsorColor = System.Drawing.Color.Red;
+            iconSet2.IconSize = new System.Drawing.Size(32, 32);
+            iconSet2.Image = null;
+            this.iconSetViewControl.IconSet = iconSet2;
+            this.iconSetViewControl.Name = "iconSetViewControl";
+            this.iconSetViewControl.SelectedIndex = -1;
             // 
             // iconViewControl
             // 
+            resources.ApplyResources(this.iconViewControl, "iconViewControl");
             this.iconViewControl.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
-            this.iconViewControl.IconSize = new System.Drawing.Size(32, 32);
-            this.iconViewControl.Image = null;
-            this.iconViewControl.Location = new System.Drawing.Point(7, 7);
+            iconSet1.IconSize = new System.Drawing.Size(32, 32);
+            iconSet1.Image = null;
+            this.iconViewControl.IconSet = iconSet1;
             this.iconViewControl.Name = "iconViewControl";
-            this.iconViewControl.Number = -1;
-            this.iconViewControl.Size = new System.Drawing.Size(72, 72);
-            this.iconViewControl.TabIndex = 0;
-
+            this.iconViewControl.SelectedIndex = -1;
             // 
             // FormMain
             // 
+            resources.ApplyResources(this, "$this");
             this.AllowDrop = true;
-            this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 12F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(684, 425);
             this.Controls.Add(this.panel1);
             this.Controls.Add(this.flowLayoutPanel1);
             this.Controls.Add(this.menuStrip1);
             this.MainMenuStrip = this.menuStrip1;
             this.Name = "FormMain";
-            this.Text = "アイコンセットビュー";
+            this.FormClosed += new System.Windows.Forms.FormClosedEventHandler(this.OnFormClosed);
             this.DragDrop += new System.Windows.Forms.DragEventHandler(this.OnFormDragDrop);
             this.DragEnter += new System.Windows.Forms.DragEventHandler(this.OnFormDragEnter);
             this.menuStrip1.ResumeLayout(false);
             this.menuStrip1.PerformLayout();
             this.flowLayoutPanel1.ResumeLayout(false);
-            this.flowLayoutPanel1.PerformLayout();
+            this.panel2.ResumeLayout(false);
+            this.panel2.PerformLayout();
+            this.flowLayoutPanel3.ResumeLayout(false);
+            this.flowLayoutPanel3.PerformLayout();
             this.panel1.ResumeLayout(false);
             this.panel1.PerformLayout();
             this.panelScroll.ResumeLayout(false);
-            this.flowLayoutPanel2.ResumeLayout(false);
+            this.panelScroll.PerformLayout();
             this.ResumeLayout(false);
             this.PerformLayout();
 
@@ -206,9 +246,9 @@
         #endregion
 
         private System.Windows.Forms.MenuStrip menuStrip1;
-        private System.Windows.Forms.ToolStripMenuItem ファイルToolStripMenuItem;
-        private System.Windows.Forms.ToolStripMenuItem 開くToolStripMenuItem;
-        private System.Windows.Forms.ToolStripMenuItem 終了ToolStripMenuItem;
+        private System.Windows.Forms.ToolStripMenuItem menuItemFile;
+        private System.Windows.Forms.ToolStripMenuItem menuItemOpen;
+        private System.Windows.Forms.ToolStripMenuItem menuItemClose;
         private System.Windows.Forms.OpenFileDialog openFileDialog;
         private System.Windows.Forms.FlowLayoutPanel flowLayoutPanel1;
         private System.Windows.Forms.Label label1;
@@ -218,6 +258,15 @@
         private System.Windows.Forms.Panel panelScroll;
         private System.Windows.Forms.FlowLayoutPanel flowLayoutPanel2;
         private IconSetViewControl iconSetViewControl;
+        private System.Windows.Forms.ToolStripMenuItem menuItemOption;
+        private System.Windows.Forms.ToolStripMenuItem menuItemImageBackground;
+        private System.Windows.Forms.Panel panel2;
+        private System.Windows.Forms.FlowLayoutPanel flowLayoutPanel3;
+        private System.Windows.Forms.Button buttonIconSave;
+        private System.Windows.Forms.Button buttonIconChange;
+        private System.Windows.Forms.SaveFileDialog saveFileDialog;
+        private System.Windows.Forms.ToolStripMenuItem menuItemSaveAs;
+        private System.Windows.Forms.ToolStripMenuItem menuItemSave;
     }
 }
 

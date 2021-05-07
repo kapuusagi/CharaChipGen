@@ -1,6 +1,7 @@
 ﻿using CGenImaging;
 using CharaChipGen.Model.Layer;
 using System.Drawing;
+using System.Threading.Tasks;
 
 namespace CharaChipGen.Model
 {
@@ -10,7 +11,7 @@ namespace CharaChipGen.Model
     public static class CharaChipRenderer
     {
         /// <summary>
-        /// 描画する
+        /// modelのパターン(x,y)をbufferに描画する
         /// </summary>
         /// <param name="model">レイヤーモデル</param>
         /// <param name="buffer">描画対象バッファ</param>
@@ -66,7 +67,7 @@ namespace CharaChipGen.Model
             int yOffset = (buffer.Height - srcHeight) / 2 - layer.OffsetY;
             int opacity = layer.Opacity;
 
-            for (int y = 0; y < srcHeight; y++)
+            Parallel.For(0, srcHeight, y =>
             {
                 for (int x = 0; x < srcWidth; x++)
                 {
@@ -82,7 +83,7 @@ namespace CharaChipGen.Model
                         // ソースが完全透明なので処理不要。
                         continue;
                     }
-                    srcColor = ImageProcessor.ProcessHSVFilter(srcColor, layer.Hue, layer.Saturation, layer.Value);
+                    srcColor = ImageProcessor.ProcessHSLFilter(srcColor, layer.Hue, layer.Saturation, layer.Value);
                     if (opacity < 100)
                     {
                         int newAlpha = (int)(srcColor.A * opacity / 100.0f);
@@ -100,7 +101,7 @@ namespace CharaChipGen.Model
                     }
                     buffer.SetPixel(dstX, dstY, dstColor);
                 }
-            }
+            });
         }
     }
 }

@@ -4,6 +4,8 @@ using System.Linq;
 using System.Windows.Forms;
 using CharaChipGen.Model.Material;
 using CharaChipGen.Model.CharaChip;
+using CharaChipGen.Properties;
+using System.Drawing;
 
 namespace CharaChipGen.MaterialEditorForm
 {
@@ -20,6 +22,8 @@ namespace CharaChipGen.MaterialEditorForm
         public MaterialEditorForm()
         {
             InitializeComponent();
+            materialEditorLayerView.ImageBackground = Properties.Settings.Default.ImageBackground;
+            Settings.Default.PropertyChanged += OnSettingsPropertyChanged;
             DialogResult = DialogResult.Cancel;
         }
 
@@ -98,7 +102,7 @@ namespace CharaChipGen.MaterialEditorForm
         {
             if (textBoxMaterialName.Text.Length == 0)
             {
-                MessageBox.Show(this, "素材名が設定されていません。");
+                MessageBox.Show(this, Resources.MessageMaterialNameNotSpecified);
                 return;
             }
             entryFile.SetDisplayName(textBoxMaterialName.Text);
@@ -171,7 +175,8 @@ namespace CharaChipGen.MaterialEditorForm
         private void OnButtonAddLayerClick(object sender, EventArgs e)
         {
             string defaultLayerName = GenerateDefaultLayerName();
-            string inputText = InputForm.InputForm.ShowDialog(this, "レイヤー名を入力", "入力", defaultLayerName);
+            string inputText = InputForm.InputForm.ShowDialog(this, Resources.MessageInputLayerName, 
+                Resources.DialogTitleInput, defaultLayerName);
             if (inputText == null)
             {
                 return;
@@ -189,7 +194,7 @@ namespace CharaChipGen.MaterialEditorForm
             }
             catch (Exception ex)
             {
-                MessageBox.Show(this, ex.Message, "エラー");
+                MessageBox.Show(this, ex.Message, Resources.DialogTitleError);
             }
         }
 
@@ -201,7 +206,8 @@ namespace CharaChipGen.MaterialEditorForm
         private void OnButtonRenameLayerClick(object sender, EventArgs e)
         {
             MaterialLayerInfo targetLayerInfo = (MaterialLayerInfo)(listBoxLayers.SelectedItem);
-            string inputText = InputForm.InputForm.ShowDialog(this, "レイヤー名を入力", "入力", targetLayerInfo.Name);
+            string inputText = InputForm.InputForm.ShowDialog(this, Resources.MessageInputLayerName,
+                Resources.DialogTitleInput, targetLayerInfo.Name);
             if (inputText == null)
             {
                 return;
@@ -228,7 +234,8 @@ namespace CharaChipGen.MaterialEditorForm
                 {
                     Path = targetLayerInfo.Path,
                     LayerType = targetLayerInfo.LayerType,
-                    ColorPartsRefs = targetLayerInfo.ColorPartsRefs
+                    ColorPartsRefs = targetLayerInfo.ColorPartsRefs,
+                    ColorPropertyName = targetLayerInfo.ColorPropertyName
                 };
 
                 entryFile.Layers.Add(newLayerName, layerInfo);
@@ -238,7 +245,7 @@ namespace CharaChipGen.MaterialEditorForm
             }
             catch (Exception ex)
             {
-                MessageBox.Show(this, ex.Message, "エラー");
+                MessageBox.Show(this, ex.Message, Resources.DialogTitleError);
             }
         }
 
@@ -251,17 +258,17 @@ namespace CharaChipGen.MaterialEditorForm
         {
             if (name.Length == 0)
             {
-                throw new Exception("レイヤー名が正しくありません。");
+                throw new Exception(Resources.MessageInvalidLayerName);
             }
             char[] invalidChars = System.IO.Path.GetInvalidPathChars();
             if (!MaterialEntryFile.IsValidName(name))
             {
-                throw new Exception("レイヤー名として使用できない文字が使用されています。");
+                throw new Exception(Resources.MessageInvalidLayerNameCharacter);
             }
 
             if (entryFile.Layers.ContainsKey(name))
             {
-                throw new Exception("既に同名のレイヤーが存在します。");
+                throw new Exception(Resources.MessageLayernameUsed);
             }
         }
 
@@ -287,7 +294,7 @@ namespace CharaChipGen.MaterialEditorForm
             }
             catch (Exception ex)
             {
-                MessageBox.Show(this, ex.Message, "エラー");
+                MessageBox.Show(this, ex.Message, Resources.DialogTitleError);
             }
         }
 
@@ -304,7 +311,7 @@ namespace CharaChipGen.MaterialEditorForm
             }
             catch (Exception ex)
             {
-                MessageBox.Show(this, ex.Message, "エラー");
+                MessageBox.Show(this, ex.Message, Resources.DialogTitleError);
             }
 
         }
@@ -384,6 +391,108 @@ namespace CharaChipGen.MaterialEditorForm
                     Material = material 
                 };
             form.ShowDialog(this);
+        }
+
+        /// <summary>
+        /// D&Dにてドラッグされてきたときに通知を受け取る。
+        /// </summary>
+        /// <param name="sender">送信元オブジェクト</param>
+        /// <param name="e">イベントオブジェクト</param>
+        private void OnListBoxLayersDragEnter(object sender, DragEventArgs e)
+        {
+            if (e.Data.GetDataPresent(DataFormats.FileDrop))
+            {
+                e.Effect = DragDropEffects.Copy;
+            }
+            else
+            {
+                e.Effect = DragDropEffects.None;
+            }
+        }
+
+        /// <summary>
+        /// D&Dにて放り込まれた時に通知を受け取る。
+        /// </summary>
+        /// <param name="sender">送信元オブジェクト</param>
+        /// <param name="e">イベントオブジェクト</param>
+        private void OnListBoxLayersDragDrop(object sender, DragEventArgs e)
+        {
+            try
+            {
+                string[] fileNames = (string[])(e.Data.GetData(DataFormats.FileDrop, false));
+
+                // ファイルが png ならレイヤーを追加する。
+                foreach (string fileName in fileNames)
+                {
+                    if (fileName.EndsWith(".png"))
+                    {
+                        AddNewLayer(fileName);
+                    }
+                }
+            }
+            catch (Exception ex)
+            {
+                System.Diagnostics.Debug.WriteLine(ex.Message);
+            }
+        }
+
+        /// <summary>
+        /// pathで指定されたレイヤー画像を持つレイヤーを追加する。
+        /// </summary>
+        /// <param name="path">パス</param>
+        private void AddNewLayer(string path)
+        {
+            string layerName = GenerateDefaultLayerName();
+            CheckLayerName(layerName);
+
+            // 適用可能
+            MaterialLayerInfo layerInfo = new MaterialLayerInfo(layerName);
+            string dirStr = System.IO.Path.GetDirectoryName(entryFile.Path) + System.IO.Path.DirectorySeparatorChar;
+            if (path.StartsWith(dirStr))
+            {
+                layerInfo.Path = path.Substring(dirStr.Length);
+            }
+            else
+            {
+                layerInfo.Path = path;
+            }
+            entryFile.Layers.Add(layerName, layerInfo);
+            listBoxLayers.Items.Add(layerInfo);
+        }
+
+        /// <summary>
+        /// アプリケーション設定が変更されたときに通知を受け取る。
+        /// </summary>
+        /// <param name="sender">送信元オブジェクト</param>
+        /// <param name="e">イベントオブジェクト</param>
+        private void OnSettingsPropertyChanged(object sender, System.ComponentModel.PropertyChangedEventArgs e)
+        {
+            if (e.PropertyName.Equals(nameof(Settings.ImageBackground)))
+            {
+                materialEditorLayerView.ImageBackground = Settings.Default.ImageBackground;
+            }
+        }
+
+        /// <summary>
+        /// フォームが閉じられた時に通知を受け取る。
+        /// </summary>
+        /// <param name="sender">送信元オブジェクト</param>
+        /// <param name="e">イベントオブジェクト</param>
+        private void OnFormClosed(object sender, FormClosedEventArgs e)
+        {
+            Settings.Default.PropertyChanged -= OnSettingsPropertyChanged;
+        }
+
+        /// <summary>
+        /// 表示背景色メニュー項目が選択されたときに通知を受け取る。
+        /// </summary>
+        /// <param name="sender">送信元オブジェクト</param>
+        /// <param name="e">イベントオブジェクト</param>
+        private void OnMenuItemImageBackgroundClick(object sender, EventArgs e)
+        {
+            Color defaultColor = Settings.Default.ImageBackground;
+            Color selectColor = CGenImaging.Forms.ColorSelectDialog.ShowDialog(this, defaultColor);
+            Settings.Default.ImageBackground = selectColor;
         }
     }
 }

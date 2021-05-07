@@ -28,6 +28,7 @@
         /// </summary>
         private void InitializeComponent()
         {
+            System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(CharaChipGeneratorPartsView));
             this.labelItemName = new System.Windows.Forms.Label();
             this.comboBoxItem = new System.Windows.Forms.ComboBox();
             this.flowLayoutPanel1 = new System.Windows.Forms.FlowLayoutPanel();
@@ -37,56 +38,40 @@
             // 
             // labelItemName
             // 
-            this.labelItemName.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.labelItemName.Location = new System.Drawing.Point(7, 4);
+            resources.ApplyResources(this.labelItemName, "labelItemName");
             this.labelItemName.Name = "labelItemName";
-            this.labelItemName.Size = new System.Drawing.Size(100, 29);
-            this.labelItemName.TabIndex = 0;
-            this.labelItemName.Text = "項目名";
-            this.labelItemName.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
             // 
             // comboBoxItem
             // 
+            resources.ApplyResources(this.comboBoxItem, "comboBoxItem");
             this.comboBoxItem.DrawMode = System.Windows.Forms.DrawMode.OwnerDrawFixed;
             this.comboBoxItem.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
             this.comboBoxItem.FormattingEnabled = true;
-            this.comboBoxItem.Location = new System.Drawing.Point(113, 7);
             this.comboBoxItem.Name = "comboBoxItem";
-            this.comboBoxItem.Size = new System.Drawing.Size(121, 20);
-            this.comboBoxItem.TabIndex = 1;
             this.comboBoxItem.DrawItem += new System.Windows.Forms.DrawItemEventHandler(this.OnComboBoxDrawItem);
             this.comboBoxItem.SelectedIndexChanged += new System.EventHandler(this.OnMaterialNameChanged);
             // 
             // flowLayoutPanel1
             // 
-            this.flowLayoutPanel1.AutoSize = true;
+            resources.ApplyResources(this.flowLayoutPanel1, "flowLayoutPanel1");
             this.flowLayoutPanel1.Controls.Add(this.labelItemName);
             this.flowLayoutPanel1.Controls.Add(this.comboBoxItem);
             this.flowLayoutPanel1.Controls.Add(this.buttonAdjust);
-            this.flowLayoutPanel1.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.flowLayoutPanel1.Location = new System.Drawing.Point(0, 0);
             this.flowLayoutPanel1.Name = "flowLayoutPanel1";
-            this.flowLayoutPanel1.Padding = new System.Windows.Forms.Padding(4);
-            this.flowLayoutPanel1.Size = new System.Drawing.Size(356, 36);
-            this.flowLayoutPanel1.TabIndex = 0;
             // 
             // buttonAdjust
             // 
-            this.buttonAdjust.Location = new System.Drawing.Point(240, 7);
+            resources.ApplyResources(this.buttonAdjust, "buttonAdjust");
             this.buttonAdjust.Name = "buttonAdjust";
-            this.buttonAdjust.Size = new System.Drawing.Size(75, 23);
-            this.buttonAdjust.TabIndex = 2;
-            this.buttonAdjust.Text = "調整";
             this.buttonAdjust.UseVisualStyleBackColor = true;
             this.buttonAdjust.Click += new System.EventHandler(this.OnButtonAdjustClick);
             // 
             // CharaChipGeneratorPartsView
             // 
-            this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 12F);
+            resources.ApplyResources(this, "$this");
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.Controls.Add(this.flowLayoutPanel1);
             this.Name = "CharaChipGeneratorPartsView";
-            this.Size = new System.Drawing.Size(356, 36);
             this.flowLayoutPanel1.ResumeLayout(false);
             this.ResumeLayout(false);
             this.PerformLayout();

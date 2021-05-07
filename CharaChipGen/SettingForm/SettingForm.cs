@@ -1,4 +1,5 @@
 ﻿using CharaChipGen.Model;
+using CharaChipGen.Properties;
 using System;
 using System.Drawing;
 using System.Windows.Forms;
@@ -27,6 +28,7 @@ namespace CharaChipGen.ExportSettingForm
             ExportSetting exportSetting = data.GeneratorSetting.ExportSetting;
             sizeInputCharaChipSize.Value = exportSetting.CharaChipSize;
             labelMaterialDirectory.Text = data.MaterialDirectory;
+            labelImageBackground.BackColor = Settings.Default.ImageBackground;
 
             textBoxExportFilePath.Text = exportSetting.ExportFilePath;
         }
@@ -43,16 +45,17 @@ namespace CharaChipGen.ExportSettingForm
             exportSetting.CharaChipSize = sizeInputCharaChipSize.Value;
             exportSetting.ExportFilePath = textBoxExportFilePath.Text;
 
-            data.MaterialDirectory = labelMaterialDirectory.Text;
-            data.DefaultCharaChipSize = sizeInputDefaultCharaChipSize.Value;
+            Settings.Default.MaterialDirectory = labelMaterialDirectory.Text;
+            Settings.Default.CharaChipSize = sizeInputDefaultCharaChipSize.Value;
+            Settings.Default.ImageBackground = labelImageBackground.BackColor;
         }
 
         /// <summary>
         /// OKボタンがクリックされたときに通知を受け取る。
         /// </summary>
         /// <param name="sender">送信元オブジェクト</param>
-        /// <param name="evt">イベントオブジェクト</param>
-        private void OnOKButtonClick(object sender, EventArgs evt)
+        /// <param name="e">イベントオブジェクト</param>
+        private void OnOKButtonClick(object sender, EventArgs e)
         {
             DialogResult = DialogResult.OK;
         }
@@ -61,8 +64,8 @@ namespace CharaChipGen.ExportSettingForm
         /// キャンセルボタンがクリックされた時に通知を受け取る。
         /// </summary>
         /// <param name="sender">送信元オブジェクト</param>
-        /// <param name="evt">イベントオブジェクト</param>
-        private void OnCancelButtonClick(object sender, EventArgs evt)
+        /// <param name="e">イベントオブジェクト</param>
+        private void OnCancelButtonClick(object sender, EventArgs e)
         {
             DialogResult = DialogResult.Cancel;
         }
@@ -101,6 +104,18 @@ namespace CharaChipGen.ExportSettingForm
                 return;
             }
             labelMaterialDirectory.Text = folderBrowserDialog.SelectedPath;
+        }
+
+        /// <summary>
+        /// 画像背景色欄がクリックされた時に通知を受け取る。
+        /// </summary>
+        /// <param name="sender">送信元オブジェクト</param>
+        /// <param name="e">イベントオブジェクト</param>
+        private void OnLabelImageBackgroundClick(object sender, EventArgs e)
+        {
+            Color defaultColor = labelImageBackground.BackColor;
+            Color selectColor = CGenImaging.Forms.ColorSelectDialog.ShowDialog(this, defaultColor);
+            labelImageBackground.BackColor = selectColor;
         }
     }
 }

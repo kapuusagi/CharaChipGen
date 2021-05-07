@@ -46,22 +46,15 @@ namespace CharaChipGen.Model
         /// 部品属性：Yオフセット
         /// </summary>
         public const string PartsAttrOffsetY = CharacterFileDefs.PartsAttrOffsetY;
+
         /// <summary>
-        /// 部品属性：色差
+        /// 部品属性：色1
         /// </summary>
-        public const string PartsAttrHue = CharacterFileDefs.PartsAttrHue;
+        public const string PartsAttrColor1 = CharacterFileDefs.PartsAttrColor1;
         /// <summary>
-        /// 部品属性：彩度
+        /// 部品属性：色2
         /// </summary>
-        public const string PartsAttrSaturation = CharacterFileDefs.PartsAttrSaturation;
-        /// <summary>
-        /// 部品属性：輝度
-        /// </summary>
-        public const string PartsAttrBrightness = CharacterFileDefs.PartsAttrBrightness;
-        /// <summary>
-        /// 部品属性：透過度
-        /// </summary>
-        public const string PartsAttrOpacity = CharacterFileDefs.PartsAttrOpacity;
+        public const string PartsAttrColor2 = CharacterFileDefs.PartsAttrColor2;
         /// <summary>
         /// 出力設定ノードタグ名
         /// </summary>

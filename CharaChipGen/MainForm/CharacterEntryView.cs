@@ -16,12 +16,15 @@ namespace CharaChipGen.MainForm
         public event EventHandler ButtonClick;
         // キャラチップ画像
         private Image charaChipImage;
+        // 背景色
+        private Color imageBackground;
 
         /// <summary>
         /// 新しいインスタンスを構築する。
         /// </summary>
         public CharacterEntryView()
         {
+            imageBackground = Color.Transparent;
             InitializeComponent();
         }
 
@@ -52,6 +55,13 @@ namespace CharaChipGen.MainForm
             int x = margin;
             int y = margin;
 
+
+            using (Brush brush = new SolidBrush(ImageBackground))
+            {
+
+                g.FillRectangle(brush, x, y, width - 1, height - 1);
+            }
+
             if (charaChipImage != null)
             {
                 int xOffset = (Bounds.Width - charaChipImage.Width) / 2;
@@ -60,8 +70,22 @@ namespace CharaChipGen.MainForm
                 g.DrawImageUnscaled(charaChipImage, xOffset, yOffset);
             }
 
-            Pen pen = new Pen(Color.Black);
-            g.DrawRectangle(pen, x, y, width - 1, height - 1);
+            using (Pen pen = new Pen(Color.Black))
+            {
+                g.DrawRectangle(pen, x, y, width - 1, height - 1);
+            }
+        }
+
+        /// <summary>
+        /// 画像背景色
+        /// </summary>
+        public Color ImageBackground {
+            get => imageBackground;
+            set {
+                imageBackground = value;
+                Invalidate();
+            }
+
         }
 
         /// <summary>

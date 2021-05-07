@@ -1,6 +1,7 @@
 ﻿using CGenImaging;
 using CharaChipGen.Model;
 using CharaChipGen.Model.CharaChip;
+using CharaChipGen.Properties;
 using System;
 using System.Drawing;
 using System.Windows.Forms;
@@ -36,14 +37,35 @@ namespace CharaChipGen.MainForm
         {
             editFilePath = "";
             InitializeComponent();
+            Settings.Default.PropertyChanged += OnSettingsPropertyChanged;
+            foreach (var view in CharacterEntryViews)
+            {
+                view.ImageBackground = Settings.Default.ImageBackground;
+            }
+        }
+
+        /// <summary>
+        /// 設定が変更されたときに通知を受け取る。
+        /// </summary>
+        /// <param name="sender">送信元オブジェクト</param>
+        /// <param name="e">イベントオブジェクト</param>
+        private void OnSettingsPropertyChanged(object sender, System.ComponentModel.PropertyChangedEventArgs e)
+        {
+            if (e.PropertyName.Equals(nameof(Settings.ImageBackground)))
+            {
+                foreach (var view in CharacterEntryViews)
+                {
+                    view.ImageBackground = Settings.Default.ImageBackground;
+                }
+            }
         }
 
         /// <summary>
         /// 閉じるボタンがクリックされたときに通知を受け取る。
         /// </summary>
         /// <param name="sender">送信元オブジェクト</param>
-        /// <param name="evt">イベントオブジェクト</param>
-        private void OnMenuItemExitClick(object sender, EventArgs evt)
+        /// <param name="e">イベントオブジェクト</param>
+        private void OnMenuItemExitClick(object sender, EventArgs e)
         {
             Close();
         }
@@ -60,8 +82,15 @@ namespace CharaChipGen.MainForm
             // モーダルダイアログとして表示する。
             form.ShowDialog(this);
 
-            // 素材が変更されたかもしれないので、UIの表示を変更する。
-            UpdateAllEntryViews();
+            try
+            {
+                // 素材が変更されたかもしれないので、UIの表示を変更する。
+                UpdateAllEntryViews();
+            }
+            catch (Exception ex)
+            {
+                System.Diagnostics.Debug.WriteLine(ex.Message);
+            }
         }
 
         /// <summary>
@@ -72,9 +101,17 @@ namespace CharaChipGen.MainForm
         private void OnCharacterEntryViewButtonClick(object sender, EventArgs e)
         {
             int index = GetCharacterIndexByView(sender);
-            if (index >= 0)
+            if (index < 0)
+            {
+                return;
+            }
+            try
             {
                 CharacterChipEditProc((CharacterEntryView)(sender), index);
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show(this, ex.Message, Resources.DialogTitleError);
             }
         }
 
@@ -125,7 +162,7 @@ namespace CharaChipGen.MainForm
         {
             GeneratorForm.CharaChipGeneratorForm form
                 = new GeneratorForm.CharaChipGeneratorForm();
-            form.Text = String.Format("キャラクター {0} - キャラチップ設定", index);
+            form.Text = String.Format(Resources.FormTitleCharacterNGenerator, index);
 
             // モデルを設定する。
             AppData appData = AppData.Instance;
@@ -166,6 +203,7 @@ namespace CharaChipGen.MainForm
             // キャラクタチップデータ
             CharaChipRenderData renderData = new CharaChipRenderData();
             character.CopyTo(renderData.Character);
+
             Size cchipPrefSize = renderData.PreferredCharaChipSize;
             if ((cchipPrefSize.Width > 0) && (cchipPrefSize.Height > 0))
             {
@@ -177,14 +215,15 @@ namespace CharaChipGen.MainForm
             {
                 view.Image = null;
             }
+            view.ForeColor = (renderData.HasError) ? Color.Red : Color.Black;
         }
 
         /// <summary>
         /// エクスポートメニュー/ボタンが押された時の処理を行う。
         /// </summary>
         /// <param name="sender">送信元オブジェクト</param>
-        /// <param name="evt">イベントオブジェクト</param>
-        private void OnExportButtonClick(object sender, EventArgs evt)
+        /// <param name="e">イベントオブジェクト</param>
+        private void OnExportButtonClick(object sender, EventArgs e)
         {
             // エクスポートボタンが押されたらエクスポート処理する。
             GeneratorSetting setting = AppData.Instance.GeneratorSetting;
@@ -204,9 +243,9 @@ namespace CharaChipGen.MainForm
                 CharaChipExporter.ExportCharaChip(setting);
                 MessageBox.Show(this, $" {setting.ExportSetting.ExportFilePath}", "Export succeed.");
             }
-            catch (Exception e)
+            catch (Exception ex)
             {
-                MessageBox.Show(this, e.Message, "エラー");
+                MessageBox.Show(this, ex.Message, Resources.DialogTitleError);
             }
 
         }
@@ -222,7 +261,6 @@ namespace CharaChipGen.MainForm
             ExportSettingForm.SettingForm form
                 = new ExportSettingForm.SettingForm();
 
-
             form.LoadFromSetting();
 
             DialogResult res = form.ShowDialog(this);
@@ -233,18 +271,26 @@ namespace CharaChipGen.MainForm
 
             string prevMaterialDirectory = AppData.Instance.MaterialDirectory;
             form.StoreToSetting();
-            string materialDirectory = AppData.Instance.MaterialDirectory;
+            string materialDirectory = Settings.Default.MaterialDirectory;
 
             GeneratorSetting setting = AppData.Instance.GeneratorSetting;
             labelOutputPath.Text = setting.ExportSetting.ExportFilePath;
 
-            if (!prevMaterialDirectory.Equals(materialDirectory))
+            try
             {
-                MessageBox.Show(this,
-                    "素材フォルダが変更されたため、アプリケーションを再起動します。");
-                // アプリケーション再起動が必要。
-                Properties.Settings.Default.Save();
-                Application.Restart();
+                Settings.Default.Save();
+
+                if (!prevMaterialDirectory.Equals(materialDirectory))
+                {
+                    MessageBox.Show(this, Resources.MessageRestartByChangeSettings, Resources.DialogTitleInformation);
+                    // アプリケーション再起動が必要。
+                    Settings.Default.Save();
+                    Application.Restart();
+                }
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show(this, ex.Message, Resources.DialogTitleError);
             }
 
         }
@@ -261,7 +307,7 @@ namespace CharaChipGen.MainForm
             editFilePath = "";
             GeneratorSetting setting = AppData.Instance.GeneratorSetting;
             setting.Reset();
-            setting.ExportSetting.CharaChipSize = AppData.Instance.DefaultCharaChipSize;
+            setting.ExportSetting.CharaChipSize = Settings.Default.CharaChipSize;
 
             // モデルに合わせてUIの表示更新
             UpdateAllEntryViews();
@@ -271,10 +317,10 @@ namespace CharaChipGen.MainForm
         /// 開くメニュー項目がクリックされた時に通知を受け取る。
         /// </summary>
         /// <param name="sender">送信元オブジェクト</param>
-        /// <param name="evt">イベントオブジェクト</param>
-        private void OnMenuItemOpenClick(object sender, EventArgs evt)
+        /// <param name="e">イベントオブジェクト</param>
+        private void OnMenuItemOpenClick(object sender, EventArgs e)
         {
-            RestoreDialog(openFileDialog, Properties.Settings.Default.LastSavePath);
+            RestoreDialog(openFileDialog, Settings.Default.LastSavePath);
             DialogResult res = openFileDialog.ShowDialog(this);
             if (res != DialogResult.OK)
             {
@@ -284,11 +330,11 @@ namespace CharaChipGen.MainForm
             {
                 string fileName = openFileDialog.FileName;
                 LoadDataProc(fileName);
-                Properties.Settings.Default.LastSavePath = fileName;
+                Settings.Default.LastSavePath = fileName;
             }
-            catch (Exception e)
+            catch (Exception ex)
             {
-                MessageBox.Show(this, e.Message, "エラー");
+                MessageBox.Show(this, ex.Message, Resources.DialogTitleError);
             }
 
         }
@@ -307,10 +353,17 @@ namespace CharaChipGen.MainForm
 
             editFilePath = openFileDialog.FileName;
 
-            // Note: 本当はComponentModelをViewに設定して
-            //       変更があったらViewが自動的に更新されるようにして、
-            //       ここに余計なコードを書かない方が美しい。
-            UpdateAllEntryViews();
+            try
+            {
+                // Note: 本当はComponentModelをViewに設定して
+                //       変更があったらViewが自動的に更新されるようにして、
+                //       ここに余計なコードを書かない方が美しい。
+                UpdateAllEntryViews();
+            }
+            catch (Exception ex)
+            {
+                System.Diagnostics.Debug.WriteLine(ex.Message);
+            }
 
             labelOutputPath.Text = setting.ExportSetting.ExportFilePath;
         }
@@ -329,12 +382,12 @@ namespace CharaChipGen.MainForm
         /// 保存が選択されたときに通知を受け取る。
         /// </summary>
         /// <param name="sender">送信元オブジェクト</param>
-        /// <param name="evt">イベント</param>
-        private void OnSaveClick(object sender, EventArgs evt)
+        /// <param name="e">イベント</param>
+        private void OnSaveClick(object sender, EventArgs e)
         {
             if (editFilePath == "")
             {
-                OnSaveAsClick(sender, evt);
+                OnSaveAsClick(sender, e);
                 return;
             }
             else
@@ -343,9 +396,9 @@ namespace CharaChipGen.MainForm
                 {
                     SaveDataProc(editFilePath);
                 }
-                catch (Exception e)
+                catch (Exception ex)
                 {
-                    MessageBox.Show(this, e.Message, "エラー");
+                    MessageBox.Show(this, ex.Message, Resources.DialogTitleError);
                 }
 
             }
@@ -355,10 +408,10 @@ namespace CharaChipGen.MainForm
         /// 名前を付けて保存が選択されたときに通知を受け取る。
         /// </summary>
         /// <param name="sender">送信元オブジェクト</param>
-        /// <param name="evt">イベントオブジェクト</param>
-        private void OnSaveAsClick(object sender, EventArgs evt)
+        /// <param name="e">イベントオブジェクト</param>
+        private void OnSaveAsClick(object sender, EventArgs e)
         {
-            RestoreDialog(saveFileDialog, Properties.Settings.Default.LastSavePath);
+            RestoreDialog(saveFileDialog, Settings.Default.LastSavePath);
             DialogResult result = saveFileDialog.ShowDialog(this);
             if (result != DialogResult.OK)
             {
@@ -371,11 +424,11 @@ namespace CharaChipGen.MainForm
                 GeneratorSettingWriter writer = new GeneratorSettingWriter();
                 writer.Write(filePath, AppData.Instance.GeneratorSetting);
                 editFilePath = filePath;
-                Properties.Settings.Default.LastSavePath = filePath;
+                Settings.Default.LastSavePath = filePath;
             }
-            catch (Exception e)
+            catch (Exception ex)
             {
-                MessageBox.Show(this, e.Message, "エラー");
+                MessageBox.Show(this, ex.Message, Resources.DialogTitleError);
             }
         }
 
@@ -412,8 +465,8 @@ namespace CharaChipGen.MainForm
         /// 画面が表示されたときに通知を受け取る
         /// </summary>
         /// <param name="sender">送信元オブジェクト</param>
-        /// <param name="evt">イベントオブジェクト</param>
-        private void OnFormShown(object sender, EventArgs evt)
+        /// <param name="e">イベントオブジェクト</param>
+        private void OnFormShown(object sender, EventArgs e)
         {
             string appDir = System.IO.Path.GetDirectoryName(Application.ExecutablePath);
             string workTempPath = System.IO.Path.Combine(appDir, PreviousSavedFileName);
@@ -423,9 +476,9 @@ namespace CharaChipGen.MainForm
                 {
                     LoadDataProc(workTempPath);
                 }
-                catch (Exception e)
+                catch (Exception ex)
                 {
-                    System.Diagnostics.Debug.WriteLine(e);
+                    System.Diagnostics.Debug.WriteLine(ex);
                 }
             }
 
@@ -435,8 +488,8 @@ namespace CharaChipGen.MainForm
         /// フォームがクローズされようとしている時に通知を受け取る。
         /// </summary>
         /// <param name="sender">送信元オブジェクト</param>
-        /// <param name="evt">イベント。</param>
-        private void OnFormClosing(object sender, FormClosingEventArgs evt)
+        /// <param name="e">イベント。</param>
+        private void OnFormClosing(object sender, FormClosingEventArgs e)
         {
 
             // 次回起動時、作業を継続できるように現在の設定を保存しておく。
@@ -446,9 +499,9 @@ namespace CharaChipGen.MainForm
             {
                 SaveDataProc(workTempPath);
             }
-            catch (Exception e)
+            catch (Exception ex)
             {
-                System.Diagnostics.Debug.WriteLine(e);
+                System.Diagnostics.Debug.WriteLine(ex);
             }
         }
 
@@ -535,7 +588,7 @@ namespace CharaChipGen.MainForm
             }
             catch (Exception ex)
             {
-                MessageBox.Show(this, ex.Message, "エラー");
+                MessageBox.Show(this, ex.Message, Resources.DialogTitleError);
             }
         }
 
@@ -559,7 +612,7 @@ namespace CharaChipGen.MainForm
             }
             catch (Exception ex)
             {
-                MessageBox.Show(this, ex.Message, "エラー");
+                MessageBox.Show(this, ex.Message, Resources.DialogTitleError);
             }
 
         }
@@ -584,7 +637,7 @@ namespace CharaChipGen.MainForm
             }
             catch (Exception ex)
             {
-                MessageBox.Show(this, ex.Message, "エラー");
+                MessageBox.Show(this, ex.Message, Resources.DialogTitleError);
             }
         }
 
@@ -603,6 +656,57 @@ namespace CharaChipGen.MainForm
                 }
             }
             return null;
+        }
+
+        /// <summary>
+        /// キャラクター表示欄がダブルクリックされた時に通知を受け取る。
+        /// </summary>
+        /// <param name="sender">送信元オブジェクト</param>
+        /// <param name="e">イベントオブジェクト</param>
+        private void OnCharacterEntryControlDoubleClick(object sender, EventArgs e)
+        {
+            int index = GetCharacterIndexByView(sender);
+            if (index < 0)
+            {
+                return;
+            }
+            try
+            {
+                CharacterChipEditProc((CharacterEntryView)(sender), index);
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show(this, ex.Message, Resources.DialogTitleError);
+            }
+        }
+
+        /// <summary>
+        /// フォームが閉じられた時に通知を受け取る。
+        /// </summary>
+        /// <param name="sender">送信元オブジェクト</param>
+        /// <param name="e">イベントオブジェクト</param>
+        private void OnFormClosed(object sender, FormClosedEventArgs e)
+        {
+            try
+            {
+                Settings.Default.PropertyChanged -= OnSettingsPropertyChanged;
+                Settings.Default.Save();
+            }
+            catch
+            {
+            }
+        }
+
+        /// <summary>
+        /// 表示背景色メニューがクリックされたときに通知を受け取る。
+        /// </summary>
+        /// <param name="sender">送信元オブジェクト</param>
+        /// <param name="e">イベントオブジェクト</param>
+        private void OnMenuItemDisplayBackgroundClick(object sender, EventArgs e)
+        {
+            Color defaultColor = Settings.Default.ImageBackground;
+            Color selectedColor = CGenImaging.Forms.ColorSelectDialog.ShowDialog(this, defaultColor);
+            Settings.Default.ImageBackground = selectedColor;
         }
     }
 }

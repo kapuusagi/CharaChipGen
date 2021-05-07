@@ -115,10 +115,13 @@ namespace CharaChipGenUtility.Operations
         /// 名前を取得する。
         /// </summary>
         /// <returns>文字列</returns>
-        public override string Name {
-            get {
-                return "SmartExtend(x2)";
-            }
+        public override string Name { get => "SmartExtend(x2)"; }
+
+        /// <summary>
+        /// 操作の説明
+        /// </summary>
+        public override string Description {
+            get => "ちょっと改良を試みた2倍化処理";
         }
 
         /// <summary>

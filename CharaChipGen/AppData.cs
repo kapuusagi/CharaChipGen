@@ -3,6 +3,7 @@ using CharaChipGen.Model.CharaChip;
 using CharaChipGen.Model.Material;
 using System;
 using System.Collections.Generic;
+using System.Drawing;
 using System.Linq;
 
 namespace CharaChipGen
@@ -257,23 +258,14 @@ namespace CharaChipGen
         /// </summary>
         public string MaterialDirectory {
             get { return materialDirectory; }
-            set {
+            private set {
                 if ((materialDirectory == value)
                     || ((materialDirectory != null) && materialDirectory.Equals(value)))
                 {
                     return;
                 }
-                Properties.Settings.Default.MaterialDirectory = value;
                 materialDirectory = value;
             }
-        }
-
-        /// <summary>
-        /// デフォルトキャラチップサイズ
-        /// </summary>
-        public System.Drawing.Size DefaultCharaChipSize {
-            get => Properties.Settings.Default.CharaChipSize;
-            set => Properties.Settings.Default.CharaChipSize = value;
         }
 
         /// <summary>

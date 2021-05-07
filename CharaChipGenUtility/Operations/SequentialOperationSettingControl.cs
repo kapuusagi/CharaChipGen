@@ -129,36 +129,36 @@ namespace CharaChipGenUtility.Operations
         /// 項目を描画する必要があるときに通知を受け取る。
         /// </summary>
         /// <param name="sender">送信元オブジェクト</param>
-        /// <param name="evt">イベントオブジェクト</param>
-        private void OnListBoxToolDrawItem(object sender, DrawItemEventArgs evt)
+        /// <param name="e">イベントオブジェクト</param>
+        private void OnListBoxToolDrawItem(object sender, DrawItemEventArgs e)
         {
             ListBox list = (ListBox)(sender);
 
-            evt.DrawBackground();
+            e.DrawBackground();
 
             string text = "";
-            if ((evt.Index >= 0) && (evt.Index < list.Items.Count))
+            if ((e.Index >= 0) && (e.Index < list.Items.Count))
             {
-                IImageOperation item = (IImageOperation)(list.Items[evt.Index]);
+                IImageOperation item = (IImageOperation)(list.Items[e.Index]);
                 text = item.Name;
             }
 
             using (Font font = new Font(text, list.Font.Size))
-            using (Brush brush = new SolidBrush(evt.ForeColor))
+            using (Brush brush = new SolidBrush(e.ForeColor))
             {
-                float ym = (evt.Bounds.Height - evt.Graphics.MeasureString(text, font).Height) / 2;
-                evt.Graphics.DrawString(text, font, brush, evt.Bounds.X, evt.Bounds.Y + ym);
+                float ym = (e.Bounds.Height - e.Graphics.MeasureString(text, font).Height) / 2;
+                e.Graphics.DrawString(text, font, brush, e.Bounds.X, e.Bounds.Y + ym);
             }
 
-            evt.DrawFocusRectangle();
+            e.DrawFocusRectangle();
         }
 
         /// <summary>
         /// ツール欄で選択が変更された時に通知を受け取る。
         /// </summary>
         /// <param name="sender">送信元オブジェクト</param>
-        /// <param name="evt">イベントオブジェクト</param>
-        private void OnListBoxToolSelectedValueChanged(object sender, EventArgs evt)
+        /// <param name="e">イベントオブジェクト</param>
+        private void OnListBoxToolSelectedValueChanged(object sender, EventArgs e)
         {
             ListBox listBox = (ListBox)(sender);
             buttonAdd.Enabled = (listBox.SelectedIndex >= 0);
@@ -168,8 +168,8 @@ namespace CharaChipGenUtility.Operations
         /// 処理欄で選択が変更された時に通知を受け取る。
         /// </summary>
         /// <param name="sender">送信元オブジェクト</param>
-        /// <param name="evt">イベントオブジェクト</param>
-        private void OnListBoxOperationsSelectedValueChanged(object sender, EventArgs evt)
+        /// <param name="e">イベントオブジェクト</param>
+        private void OnListBoxOperationsSelectedValueChanged(object sender, EventArgs e)
         {
             ListBox listBox = (ListBox)(sender);
             buttonRemove.Enabled = (listBox.SelectedIndex >= 0);
@@ -181,8 +181,8 @@ namespace CharaChipGenUtility.Operations
         /// 追加ボタンが押された時に通知を受け取る。
         /// </summary>
         /// <param name="sender">送信元オブジェクト</param>
-        /// <param name="evt">イベントオブジェクト</param>
-        private void OnButtonAddClick(object sender, EventArgs evt)
+        /// <param name="e">イベントオブジェクト</param>
+        private void OnButtonAddClick(object sender, EventArgs e)
         {
             IImageOperation item = (IImageOperation)(listBoxTool.SelectedItem);
 
@@ -204,8 +204,8 @@ namespace CharaChipGenUtility.Operations
         /// 削除ボタンが押された
         /// </summary>
         /// <param name="sender">送信元オブジェクト</param>
-        /// <param name="evt">イベントオブジェクト</param>
-        private void OnButtonRemoveClick(object sender, EventArgs evt)
+        /// <param name="e">イベントオブジェクト</param>
+        private void OnButtonRemoveClick(object sender, EventArgs e)
         {
             int selectedIndex = listBoxOperations.SelectedIndex;
             listBoxOperations.Items.RemoveAt(selectedIndex);
@@ -227,8 +227,8 @@ namespace CharaChipGenUtility.Operations
         /// 上に移動ボタンが押された
         /// </summary>
         /// <param name="sender"></param>
-        /// <param name="evt"></param>
-        private void OnButtonUpClick(object sender, EventArgs evt)
+        /// <param name="e"></param>
+        private void OnButtonUpClick(object sender, EventArgs e)
         {
             int selectedIndex = listBoxOperations.SelectedIndex;
             if (selectedIndex <= 0)
@@ -254,8 +254,8 @@ namespace CharaChipGenUtility.Operations
         /// 下に移動ボタンが押された
         /// </summary>
         /// <param name="sender"></param>
-        /// <param name="evt"></param>
-        private void OnButtonDownClick(object sender, EventArgs evt)
+        /// <param name="e"></param>
+        private void OnButtonDownClick(object sender, EventArgs e)
         {
             int selectedIndex = listBoxOperations.SelectedIndex;
             if (selectedIndex >= (listBoxOperations.Items.Count - 1))
@@ -280,10 +280,10 @@ namespace CharaChipGenUtility.Operations
         /// フォルダ選択コントロールでプロパティが変更された時に通知を受け取る。
         /// </summary>
         /// <param name="sender">送信元オブジェクト</param>
-        /// <param name="evt">イベントオブジェクト</param>
-        private void OnPropertyChanged(object sender, PropertyChangedEventArgs evt)
+        /// <param name="e">イベントオブジェクト</param>
+        private void OnPropertyChanged(object sender, PropertyChangedEventArgs e)
         {
-            switch (evt.PropertyName)
+            switch (e.PropertyName)
             {
                 case nameof(selectDirectoryControl.Directory):
                     if (Model != null)

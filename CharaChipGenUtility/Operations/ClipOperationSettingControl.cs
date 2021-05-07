@@ -71,10 +71,10 @@ namespace CharaChipGenUtility.Operations
         /// コントロールのプロパティが変更されたときに通知を受け取る。
         /// </summary>
         /// <param name="sender">送信元オブジェクト</param>
-        /// <param name="evt">イベントオブジェクト</param>
-        private void OnControlPropertyChanged(object sender, PropertyChangedEventArgs evt)
+        /// <param name="e">イベントオブジェクト</param>
+        private void OnControlPropertyChanged(object sender, PropertyChangedEventArgs e)
         {
-            switch (evt.PropertyName)
+            switch (e.PropertyName)
             {
                 case nameof(selectDirectoryControl.Directory):
                     if (Model != null)
@@ -89,8 +89,8 @@ namespace CharaChipGenUtility.Operations
         /// 数値入力欄の値が変更されたときに通知を受けとる。
         /// </summary>
         /// <param name="sender">送信元オブジェクト</param>
-        /// <param name="evt">イベントオブジェクト</param>
-        private void OnNumericUpDownValueChanged(object sender, EventArgs evt)
+        /// <param name="e">イベントオブジェクト</param>
+        private void OnNumericUpDownValueChanged(object sender, EventArgs e)
         {
             if (Model != null)
             {

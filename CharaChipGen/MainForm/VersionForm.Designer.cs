@@ -28,6 +28,7 @@
         /// </summary>
         private void InitializeComponent()
         {
+            System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(VersionForm));
             this.flowLayoutPanel1 = new System.Windows.Forms.FlowLayoutPanel();
             this.buttonClose = new System.Windows.Forms.Button();
             this.labelApplicationName = new System.Windows.Forms.Label();
@@ -45,71 +46,41 @@
             // 
             // flowLayoutPanel1
             // 
-            this.flowLayoutPanel1.AutoSize = true;
+            resources.ApplyResources(this.flowLayoutPanel1, "flowLayoutPanel1");
             this.flowLayoutPanel1.Controls.Add(this.buttonClose);
-            this.flowLayoutPanel1.Dock = System.Windows.Forms.DockStyle.Bottom;
-            this.flowLayoutPanel1.FlowDirection = System.Windows.Forms.FlowDirection.RightToLeft;
-            this.flowLayoutPanel1.Location = new System.Drawing.Point(0, 75);
             this.flowLayoutPanel1.Name = "flowLayoutPanel1";
-            this.flowLayoutPanel1.Padding = new System.Windows.Forms.Padding(6);
-            this.flowLayoutPanel1.Size = new System.Drawing.Size(230, 41);
-            this.flowLayoutPanel1.TabIndex = 0;
             // 
             // buttonClose
             // 
-            this.buttonClose.Location = new System.Drawing.Point(140, 9);
+            resources.ApplyResources(this.buttonClose, "buttonClose");
             this.buttonClose.Name = "buttonClose";
-            this.buttonClose.Size = new System.Drawing.Size(75, 23);
-            this.buttonClose.TabIndex = 0;
-            this.buttonClose.Text = "閉じる";
             this.buttonClose.UseVisualStyleBackColor = true;
             this.buttonClose.Click += new System.EventHandler(this.OnButtonCloseClick);
             // 
             // labelApplicationName
             // 
-            this.labelApplicationName.AutoSize = true;
-            this.labelApplicationName.Font = new System.Drawing.Font("MS UI Gothic", 15.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(128)));
-            this.labelApplicationName.Location = new System.Drawing.Point(9, 6);
+            resources.ApplyResources(this.labelApplicationName, "labelApplicationName");
             this.labelApplicationName.Name = "labelApplicationName";
-            this.labelApplicationName.Size = new System.Drawing.Size(60, 21);
-            this.labelApplicationName.TabIndex = 1;
-            this.labelApplicationName.Text = "label1";
             // 
             // labelApplicationVersion
             // 
-            this.labelApplicationVersion.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.labelApplicationVersion.Font = new System.Drawing.Font("MS UI Gothic", 15.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(128)));
-            this.labelApplicationVersion.Location = new System.Drawing.Point(6, 6);
+            resources.ApplyResources(this.labelApplicationVersion, "labelApplicationVersion");
             this.labelApplicationVersion.Name = "labelApplicationVersion";
-            this.labelApplicationVersion.Size = new System.Drawing.Size(154, 30);
-            this.labelApplicationVersion.TabIndex = 2;
-            this.labelApplicationVersion.Text = "label2";
-            this.labelApplicationVersion.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
             // 
             // flowLayoutPanel2
             // 
-            this.flowLayoutPanel2.AutoSize = true;
+            resources.ApplyResources(this.flowLayoutPanel2, "flowLayoutPanel2");
             this.flowLayoutPanel2.Controls.Add(this.labelApplicationName);
-            this.flowLayoutPanel2.Dock = System.Windows.Forms.DockStyle.Top;
-            this.flowLayoutPanel2.Location = new System.Drawing.Point(64, 0);
             this.flowLayoutPanel2.Name = "flowLayoutPanel2";
-            this.flowLayoutPanel2.Padding = new System.Windows.Forms.Padding(6);
-            this.flowLayoutPanel2.Size = new System.Drawing.Size(166, 33);
-            this.flowLayoutPanel2.TabIndex = 3;
             // 
             // panel1
             // 
+            resources.ApplyResources(this.panel1, "panel1");
             this.panel1.Controls.Add(this.labelApplicationVersion);
-            this.panel1.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.panel1.Location = new System.Drawing.Point(64, 33);
             this.panel1.Name = "panel1";
-            this.panel1.Padding = new System.Windows.Forms.Padding(6);
-            this.panel1.Size = new System.Drawing.Size(166, 42);
-            this.panel1.TabIndex = 5;
             // 
             // pictureBox1
             // 
-            this.pictureBox1.Image = global::CharaChipGen.Properties.Resources.CharaChipGen;
             this.pictureBox1.Location = new System.Drawing.Point(3, 3);
             this.pictureBox1.Name = "pictureBox1";
             this.pictureBox1.Size = new System.Drawing.Size(47, 55);
@@ -128,9 +99,8 @@
             // 
             // VersionForm
             // 
-            this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 12F);
+            resources.ApplyResources(this, "$this");
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(230, 116);
             this.Controls.Add(this.panel1);
             this.Controls.Add(this.flowLayoutPanel2);
             this.Controls.Add(this.flowLayoutPanel3);
@@ -140,7 +110,6 @@
             this.MinimizeBox = false;
             this.Name = "VersionForm";
             this.ShowIcon = false;
-            this.Text = "バージョン情報";
             this.flowLayoutPanel1.ResumeLayout(false);
             this.flowLayoutPanel2.ResumeLayout(false);
             this.flowLayoutPanel2.PerformLayout();

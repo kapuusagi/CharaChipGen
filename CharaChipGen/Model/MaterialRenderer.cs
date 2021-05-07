@@ -82,7 +82,7 @@ namespace CharaChipGen.Model
                         // ソースが完全透明なので処理不要。
                         continue;
                     }
-                    srcColor = ImageProcessor.ProcessHSVFilter(srcColor, layer.Hue, layer.Saturation, layer.Value);
+                    srcColor = ImageProcessor.ProcessHSLFilter(srcColor, layer.Hue, layer.Saturation, layer.Value);
                     if (opacity < 100)
                     {
                         int newAlpha = (int)(srcColor.A * opacity / 100.0f);

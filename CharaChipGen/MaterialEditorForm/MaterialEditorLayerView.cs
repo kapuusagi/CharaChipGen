@@ -1,9 +1,11 @@
 ﻿using CharaChipGen.Model.CharaChip;
 using CharaChipGen.Model.Layer;
 using CharaChipGen.Model.Material;
+using CharaChipGen.Properties;
 using System;
 using System.Drawing;
 using System.Windows.Forms;
+using System.Windows.Forms.VisualStyles;
 
 namespace CharaChipGen.MaterialEditorForm
 {
@@ -28,10 +30,17 @@ namespace CharaChipGen.MaterialEditorForm
             {
                 comboBoxLayerType.Items.Add(layerType);
             }
+
             comboBoxColorRefs.Items.Add(Properties.Resources.ItemNameUsePartsSetting);
             foreach (PartsType partsType in Enum.GetValues(typeof(PartsType)))
             {
                 comboBoxColorRefs.Items.Add(partsType);
+            }
+
+            string[] colorPropertyNames = Parts.GetColorSettingNames();
+            foreach (string colorPropertyName in colorPropertyNames)
+            {
+                comboBoxColorProperty.Items.Add(colorPropertyName);
             }
         }
 
@@ -66,32 +75,49 @@ namespace CharaChipGen.MaterialEditorForm
         /// </summary>
         private void ModelToUI()
         {
-            if ((entryFile != null) && (layerInfo != null))
-            {
-                string dir = System.IO.Path.GetDirectoryName(entryFile.Path);
-                if (!string.IsNullOrEmpty(layerInfo.Path))
-                {
-                    // レイヤーにパスが設定されている
-                    string path = System.IO.Path.Combine(dir, layerInfo.Path);
-                    Image image = Bitmap.FromFile(path);
-                    SetImage(image);
-                }
-                else
-                {
-                    SetImage(null);
-                }
-            }
-            else
+            string fileName = "";
+            Color fileNameColor = Color.Black;
+            if ((entryFile == null) || (layerInfo == null))
             {
                 SetImage(null);
             }
+            else
+            {
+                string dir = System.IO.Path.GetDirectoryName(entryFile.Path);
+                if (string.IsNullOrEmpty(layerInfo.Path))
+                {
+                    SetImage(null);
+                }
+                else
+                {
+                    // レイヤーにパスが設定されている
+                    fileName = System.IO.Path.GetFileName(layerInfo.Path);
+                    string path = System.IO.Path.Combine(dir, layerInfo.Path);
+                    try
+                    {
+                        using (System.IO.Stream stream = System.IO.File.OpenRead(path))
+                        {
+                            SetImage(Image.FromStream(stream, false, false));
+                        }
+                    }
+                    catch
+                    {
+                        fileNameColor = Color.Red;
+                        SetImage(null);
+                    }
+                }
+            }
 
+            // 画像のパス
+            labelFileName.Text = fileName;
+            labelFileName.ForeColor = fileNameColor;
             // レイヤー名
             groupBoxLayerName.Text = layerInfo?.Name ?? "";
             // 描画するレイヤー
             SetLayerType(layerInfo?.LayerType ?? null);
             // カラー参照
             SetColorRefs(layerInfo?.ColorPartsRefs ?? null);
+            SetColorPropertyName(layerInfo?.ColorPropertyName ?? null);
             // 色不変設定
             checkBoxColorImmutable.Checked = layerInfo.ColorImmutable;
         }
@@ -143,6 +169,29 @@ namespace CharaChipGen.MaterialEditorForm
         }
 
         /// <summary>
+        /// 色プロパティ名選択をpropertyNameで指定された値に選択状態とする。
+        /// </summary>
+        /// <param name="propertyName">プロパティ名</param>
+        private void SetColorPropertyName(string propertyName)
+        {
+            if (string.IsNullOrEmpty(propertyName))
+            {
+                comboBoxColorProperty.SelectedIndex = 0;
+            }
+            else
+            {
+                for (int i = 0; i < comboBoxColorProperty.Items.Count; i++)
+                {
+                    if (comboBoxColorProperty.Items[i].Equals(propertyName))
+                    {
+                        comboBoxColorProperty.SelectedIndex = i;
+                        break;
+                    }
+                }
+            }
+        }
+
+        /// <summary>
         /// イメージを設定する。
         /// </summary>
         /// <param name="image">イメージ</param>
@@ -165,8 +214,8 @@ namespace CharaChipGen.MaterialEditorForm
         /// レイヤーファイルを開くボタン
         /// </summary>
         /// <param name="sender">送信元オブジェクト</param>
-        /// <param name="evt">イベントオブジェクト</param>
-        private void OnOpenButtonClicked(object sender, EventArgs evt)
+        /// <param name="e">イベントオブジェクト</param>
+        private void OnOpenButtonClicked(object sender, EventArgs e)
         {
             string entryFileDir = System.IO.Path.GetDirectoryName(entryFile.Path);
             openFileDialog.InitialDirectory = entryFileDir;
@@ -200,9 +249,9 @@ namespace CharaChipGen.MaterialEditorForm
                 ModelToUI();
                 NotifyLayerChanged();
             }
-            catch (Exception e)
+            catch (Exception ex)
             {
-                MessageBox.Show(this, e.Message, "エラー");
+                MessageBox.Show(this, ex.Message, Resources.DialogTitleError);
             }
         }
 
@@ -259,6 +308,39 @@ namespace CharaChipGen.MaterialEditorForm
         private void OnCheckBoxColorImmutableCheckedChanged(object sender, EventArgs e)
         {
             layerInfo.ColorImmutable = checkBoxColorImmutable.Checked;
+        }
+
+        /// <summary>
+        /// 画像表示背景色
+        /// </summary>
+        public Color ImageBackground {
+            get => materialView4x3.ImageBackground;
+            set => materialView4x3.ImageBackground = value;
+        }
+
+        /// <summary>
+        /// 色プロパティ名選択コンボボックスの選択状態が変わったときに通知を受け取る。
+        /// </summary>
+        /// <param name="sender">送信元オブジェクト</param>
+        /// <param name="e">イベントオブジェクト</param>
+        private void OnComboBoxColorPropertySelectedIndexChanged(object sender, EventArgs e)
+        {
+            if (layerInfo == null)
+            {
+                return;
+            }
+
+            ComboBox comboBox = (ComboBox)(sender);
+            object selectedItem = comboBox.SelectedItem;
+            if ((selectedItem != null) && (selectedItem is string propertyName))
+            {
+                layerInfo.ColorPropertyName = propertyName;
+            }
+            else
+            {
+                layerInfo.ColorPropertyName = string.Empty;
+            }
+            NotifyLayerChanged();
         }
     }
 }

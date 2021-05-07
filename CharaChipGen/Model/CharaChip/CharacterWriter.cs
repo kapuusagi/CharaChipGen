@@ -73,10 +73,8 @@ namespace CharaChipGen.Model.CharaChip
                 partsElem.SetAttribute(CharacterFileDefs.PartsAttrMaterialName, parts.MaterialName);
                 partsElem.SetAttribute(CharacterFileDefs.PartsAttrOffsetX, parts.OffsetX.ToString());
                 partsElem.SetAttribute(CharacterFileDefs.PartsAttrOffsetY, parts.OffsetY.ToString());
-                partsElem.SetAttribute(CharacterFileDefs.PartsAttrHue, parts.Hue.ToString());
-                partsElem.SetAttribute(CharacterFileDefs.PartsAttrSaturation, parts.Saturation.ToString());
-                partsElem.SetAttribute(CharacterFileDefs.PartsAttrBrightness, parts.Value.ToString());
-                partsElem.SetAttribute(CharacterFileDefs.PartsAttrOpacity, parts.Opacity.ToString());
+                partsElem.SetAttribute(CharacterFileDefs.PartsAttrColor1, parts.Color1.ToString());
+                partsElem.SetAttribute(CharacterFileDefs.PartsAttrColor2, parts.Color2.ToString());
 
                 rootNode.AppendChild(partsElem);
             }

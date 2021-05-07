@@ -32,6 +32,10 @@ namespace CharaChipGen.Model.Layer
         private int value;
         // 不透明度
         private int opacity;
+        // 画像状態ロック
+        private readonly object renderRequestLock;
+        // 再描画する必要があるか
+        private bool renderRequested;
         // 処理済みデータ
         private ImageBuffer processedImage;
 
@@ -41,12 +45,17 @@ namespace CharaChipGen.Model.Layer
         /// <param name="layerType">レイヤータイプ</param>
         /// <param name="partsType">パラメータを取得する部品タイプ</param>
         /// <param name="colorPartsRefs">色パラメータを取得する部品タイプ</param>
-        public RenderLayer(LayerType layerType, PartsType partsType, PartsType colorPartsRefs)
+        /// <param name="colorPropertyName">色参照プロパティ名</param>
+        public RenderLayer(LayerType layerType, PartsType partsType, PartsType colorPartsRefs,
+            string colorPropertyName)
         {
+            renderRequestLock = new object();
+            renderRequested = true;
             LayerType = layerType;
             PartsType = partsType;
             ColorPartsRefs = colorPartsRefs;
             ColorImmutable = false;
+            ColorPropertyName = colorPropertyName;
             this.image = null;
             this.offsetX = 0;
             this.offsetY = 0;
@@ -84,6 +93,10 @@ namespace CharaChipGen.Model.Layer
         /// Hue, Saturation, Value, Opacity を取得する部品種別
         /// </summary>
         public PartsType ColorPartsRefs { get; set; }
+        /// <summary>
+        /// Hue, Saturation, Value, Opacity を取得する色プロパティ名(Color1だとかColor2だとか)
+        /// </summary>
+        public string ColorPropertyName { get; set; }
 
         /// <summary>
         /// 色が不変かどうか
@@ -107,7 +120,7 @@ namespace CharaChipGen.Model.Layer
                 }
 
                 image = value;
-                processedImage = null;
+                InvalidateProcessedImage();
                 NotifyPropertyChange(nameof(Image));
             }
         }
@@ -174,7 +187,7 @@ namespace CharaChipGen.Model.Layer
                     return; // 変更なし
                 }
                 hue = value;
-                processedImage = null;
+                InvalidateProcessedImage();
                 NotifyPropertyChange(nameof(Opacity));
             }
         }
@@ -194,7 +207,8 @@ namespace CharaChipGen.Model.Layer
                     return; // 変更なし。
                 }
                 this.saturation = value;
-                processedImage = null;
+                InvalidateProcessedImage();
+                NotifyPropertyChange(nameof(Saturation));
             }
         }
 
@@ -213,6 +227,19 @@ namespace CharaChipGen.Model.Layer
                     return; // 変更なし。
                 }
                 this.value = value;
+                InvalidateProcessedImage();
+                NotifyPropertyChange(nameof(Value));
+            }
+        }
+
+        /// <summary>
+        /// 処理済みイメージを無効にし、演算済みデータ取得時の再レンダリングを要求する。
+        /// </summary>
+        private void InvalidateProcessedImage()
+        {
+            lock (renderRequestLock)
+            {
+                renderRequested = true;
                 processedImage = null;
             }
         }
@@ -223,11 +250,17 @@ namespace CharaChipGen.Model.Layer
         /// <returns>ImageBufferオブジェクトが返る。</returns>
         public ImageBuffer GetProcessedImage()
         {
-            if (processedImage == null)
+            bool isNeedRender = false;
+            lock (renderRequestLock)
+            {
+                isNeedRender = renderRequested;
+                renderRequested = false;
+            }
+            if (isNeedRender)
             {
                 if (image != null)
                 {
-                    processedImage = ImageProcessor.ProcessHSVFilter(
+                    processedImage = ImageProcessor.ProcessHSLFilter(
                         ImageBuffer.CreateFrom(image), hue, saturation, value);
                 }
             }
@@ -268,6 +301,11 @@ namespace CharaChipGen.Model.Layer
                     ? image.Height + Math.Abs(offsetY) : Math.Abs(offsetY)) / 4;
             }
         }
+
+        /// <summary>
+        /// エラーの有無
+        /// </summary>
+        public bool HasError { get; set; }
 
     }
 }

@@ -1,4 +1,5 @@
 ﻿using CharaChipGen.Model.CharaChip;
+using System.Drawing;
 using System.Windows.Forms;
 
 namespace CharaChipGen.GeneratorForm
@@ -76,6 +77,52 @@ namespace CharaChipGen.GeneratorForm
             charaChipView14.SetCharacter(model);
             charaChipView24.SetCharacter(model);
             charaChipView34.SetCharacter(model);
+        }
+
+        /// <summary>
+        /// レンダリングでエラーがあったかどうかを返す。
+        /// </summary>
+        public bool HasError {
+            get {
+                return charaChipView11.HasError;
+            }
+        }
+
+        /// <summary>
+        /// エラーの部品を返す。
+        /// </summary>
+        /// <returns>エラーのパーツ種別</returns>
+        /// <remarks>
+        /// charaChipViewXXは、全て同じパーツの参照を持っているので、
+        /// charaChipView11のエラー部品種別だけ取得すればよい。
+        /// </remarks>
+        public PartsType[] GetErrorPartsTypes()
+            => charaChipView11.GetErrorPartsTypes();
+
+        /// <summary>
+        /// 画像表示領域の背景色
+        /// </summary>
+        public Color ImageBackground {
+            get => charaChipView11.BackColor; 
+            set {
+                charaChipView11.ImageBackground = value;
+                charaChipView21.ImageBackground = value;
+                charaChipView31.ImageBackground = value;
+                charaChipView12.ImageBackground = value;
+                charaChipView22.ImageBackground = value;
+                charaChipView32.ImageBackground = value;
+                charaChipView13.ImageBackground = value;
+                charaChipView23.ImageBackground = value;
+                charaChipView33.ImageBackground = value;
+                charaChipView14.ImageBackground = value;
+                charaChipView24.ImageBackground = value;
+                charaChipView34.ImageBackground = value;
+
+                pictureBox1.BackColor = value;
+                pictureBox2.BackColor = value;
+                pictureBox3.BackColor = value;
+                pictureBox4.BackColor = value;
+            }
         }
     }
 }

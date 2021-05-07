@@ -32,9 +32,12 @@ namespace CharaChipGenUtility.Operations
         /// 名前を取得する。
         /// </summary>
         /// <returns>文字列</returns>
-        public override string Name {
-            get { return "MonoricColor"; }
-        }
+        public override string Name { get => "MonoricColor"; }
+
+        /// <summary>
+        /// 操作の説明
+        /// </summary>
+        public override string Description { get => "指定した色と同じ色相に変換して出力します。"; }
 
 
         /// <summary>

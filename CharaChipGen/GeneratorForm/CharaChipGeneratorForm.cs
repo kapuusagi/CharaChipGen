@@ -1,5 +1,9 @@
-﻿using CharaChipGen.Model.CharaChip;
+﻿using CharaChipGen.Model;
+using CharaChipGen.Model.CharaChip;
+using CharaChipGen.Properties;
 using System;
+using System.Drawing;
+using System.Linq;
 using System.Windows.Forms;
 
 namespace CharaChipGen.GeneratorForm
@@ -10,6 +14,7 @@ namespace CharaChipGen.GeneratorForm
     public partial class CharaChipGeneratorForm : Form
     {
         private Character character; // キャラクターチップデータモデル
+        private bool hasErrored; // エラーがあるかどうかのフラグ
 
         /// <summary>
         /// コンストラクタ
@@ -17,10 +22,13 @@ namespace CharaChipGen.GeneratorForm
         public CharaChipGeneratorForm()
         {
             character = new Character();
+            hasErrored = false;
             InitializeComponent();
             InitializeComboBoxItems();
 
+            charaChipView.ImageBackground = Settings.Default.ImageBackground;
             charaChipView.SetCharacter(character);
+            Settings.Default.PropertyChanged += OnSettingsPropertyChanged;
 
             partsViewHead.Parts = character.Head;
             partsViewEye.Parts = character.Eye;
@@ -66,6 +74,42 @@ namespace CharaChipGen.GeneratorForm
         private void OnTimerEvent(object sender, EventArgs e)
         {
             charaChipView.UpdateTick();
+            CheckRenderError();
+        }
+
+        /// <summary>
+        /// レンダリングエラーが発生しているかどうかを調べUIを更新する。
+        /// </summary>
+        private void CheckRenderError()
+        {
+            // レンダリングエラーがないかを調べる。
+            if (!charaChipView.HasError && !hasErrored)
+            {
+                // エラーがなく、エラーがあったフラグも解除されている。
+                return;
+            }
+
+            PartsType[] partsTypes = charaChipView.GetErrorPartsTypes();
+            partsViewHead.ForeColor = partsTypes.Contains(PartsType.Head)
+                ? Color.Red : Color.Black;
+            partsViewEye.ForeColor = partsTypes.Contains(PartsType.Eye)
+                ? Color.Red : Color.Black;
+            partsViewHairStyle.ForeColor = partsTypes.Contains(PartsType.HairStyle)
+                ? Color.Red : Color.Black;
+            partsViewBody.ForeColor = partsTypes.Contains(PartsType.Body)
+                ? Color.Red : Color.Black;
+            partsViewAccessory1.ForeColor = partsTypes.Contains(PartsType.Accessory1)
+                ? Color.Red : Color.Black;
+            partsViewAccessory2.ForeColor = partsTypes.Contains(PartsType.Accessory2)
+                ? Color.Red : Color.Black;
+            partsViewAccessory3.ForeColor = partsTypes.Contains(PartsType.Accessory3)
+                ? Color.Red : Color.Black;
+            partsViewHeadAccessory1.ForeColor = partsTypes.Contains(PartsType.HeadAccessory1)
+                ? Color.Red : Color.Black;
+            partsViewHeadAccessory2.ForeColor = partsTypes.Contains(PartsType.HeadAccessory2)
+                ? Color.Red : Color.Black;
+
+            hasErrored = charaChipView.HasError;
         }
 
         /// <summary>
@@ -86,6 +130,7 @@ namespace CharaChipGen.GeneratorForm
         private void OnFormClosed(object sender, FormClosedEventArgs e)
         {
             timer.Stop();
+            Settings.Default.PropertyChanged -= OnSettingsPropertyChanged;
         }
 
         /// <summary>
@@ -118,7 +163,8 @@ namespace CharaChipGen.GeneratorForm
         private void OnMenuItemSaveAsTemplateClick(object sender, EventArgs e)
         {
             string defaultName = GenerateDefaultTemplateName();
-            string templateName = InputForm.InputForm.ShowDialog(this, "テンプレート名を入力", "入力", defaultName);
+            string templateName = InputForm.InputForm.ShowDialog(this,
+                Resources.MessageInputTemplateName, Resources.DialogTitleInput, defaultName);
             if (templateName == null)
             {
                 return;
@@ -129,7 +175,8 @@ namespace CharaChipGen.GeneratorForm
                 CheckTemplateName(templateName);
 
                 // テンプレート保存
-                string templateDir = System.IO.Path.Combine(AppData.Instance.MaterialDirectory, "Template");
+                string templateDir = System.IO.Path.Combine(
+                    AppData.Instance.MaterialDirectory, "Template");
                 if (!System.IO.Directory.Exists(templateDir))
                 {
                     System.IO.Directory.CreateDirectory(templateDir);
@@ -146,7 +193,7 @@ namespace CharaChipGen.GeneratorForm
             }
             catch (Exception ex)
             {
-                MessageBox.Show(this, ex.Message, "エラー");
+                MessageBox.Show(this, ex.Message, Resources.DialogTitleError);
             }
         }
 
@@ -182,12 +229,12 @@ namespace CharaChipGen.GeneratorForm
         {
             if (name.Length == 0)
             {
-                throw new Exception("テンプレート名が入力されていません");
+                throw new Exception(Resources.MessageNoInputTemplateName);
             }
             char[] invalidChars = System.IO.Path.GetInvalidFileNameChars();
             if (name.IndexOfAny(invalidChars) >= 0)
             {
-                throw new Exception("テンプレート名に使用できない文字列が使われています。");
+                throw new Exception(Resources.MessageInvalidTemplateNameCharacter);
             }
         }
 
@@ -212,9 +259,66 @@ namespace CharaChipGen.GeneratorForm
             }
             catch (Exception ex)
             {
-                MessageBox.Show(this, ex.Message, "エラー");
+                MessageBox.Show(this, ex.Message, Resources.DialogTitleError);
             }
 
+        }
+
+        /// <summary>
+        /// アプリケーション設定が変更されたときに通知を受け取る。
+        /// </summary>
+        /// <param name="sender">送信元オブジェクト</param>
+        /// <param name="e">イベントオブジェクト</param>
+        private void OnSettingsPropertyChanged(object sender, System.ComponentModel.PropertyChangedEventArgs e)
+        {
+            if (e.PropertyName.Equals(nameof(Settings.ImageBackground)))
+            {
+                charaChipView.ImageBackground = Settings.Default.ImageBackground;
+            }
+        }
+
+        /// <summary>
+        /// 背景色オプションメニューが選択された
+        /// </summary>
+        /// <param name="sender">送信元オブジェクト</param>
+        /// <param name="e">イベントオブジェクト</param>
+        private void OnMenuItemImageBackgroundClick(object sender, EventArgs e)
+        {
+            Color defaultColor = Settings.Default.ImageBackground;
+            Color selectedColor = CGenImaging.Forms.ColorSelectDialog.ShowDialog(this, defaultColor);
+            Settings.Default.ImageBackground = selectedColor;
+        }
+
+        /// <summary>
+        /// エクスポートメニュー項目がクリックされた時に通を受け取る。
+        /// </summary>
+        /// <param name="sender">送信元オブジェクト</param>
+        /// <param name="e">イベントオブジェクト</param>
+        private void OnMenuItemExportClick(object sender, EventArgs e)
+        {
+            if (saveFileDialog.ShowDialog(this) != DialogResult.OK)
+            {
+                return;
+            }
+
+            try
+            {
+                string path = saveFileDialog.FileName;
+
+                GeneratorSetting setting = new GeneratorSetting(1, 1);
+                setting.ExportSetting.ExportFilePath = saveFileDialog.FileName;
+                setting.ExportSetting.CharaChipSize = AppData.Instance.GeneratorSetting.ExportSetting.CharaChipSize;
+                Character.CopyTo(setting.GetCharacter(0));
+
+                CharaChipExporter.ExportCharaChip(setting);
+
+                MessageBox.Show(this, Resources.MessageExported, Resources.DialogTitleInformation);
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show(this, ex.Message, Resources.DialogTitleError);
+
+            }
         }
     }
 }

@@ -9,6 +9,7 @@ using System.Threading.Tasks;
 using System.Windows.Forms;
 using CharaChipGen.Model.Material;
 using CharaChipGen.Model;
+using CharaChipGen.Properties;
 
 namespace CharaChipGen.MaterialViewForm
 {
@@ -27,6 +28,8 @@ namespace CharaChipGen.MaterialViewForm
         {
             material = null;
             InitializeComponent();
+            materialView.ImageBackground = Settings.Default.ImageBackground;
+            Settings.Default.PropertyChanged += OnSettingsPropertyChanged;
         }
 
         /// <summary>
@@ -75,6 +78,10 @@ namespace CharaChipGen.MaterialViewForm
         /// <param name="e">イベントオブジェクト</param>
         private void OnFormShown(object sender, EventArgs e)
         {
+            if (materialView.MaterialRenderData.HasError)
+            {
+                MessageBox.Show(this, Resources.MessageReadError, Resources.DialogTitleError);
+            }
             timer.Start();
         }
 
@@ -86,6 +93,41 @@ namespace CharaChipGen.MaterialViewForm
         private void OnFormClosing(object sender, FormClosingEventArgs e)
         {
             timer.Stop();
+        }
+
+        /// <summary>
+        /// アプリケーション設定の変更があったときに通知を受け取る。
+        /// </summary>
+        /// <param name="sender">送信元オブジェクト</param>
+        /// <param name="e">イベントオブジェクト</param>
+        private void OnSettingsPropertyChanged(object sender, PropertyChangedEventArgs e)
+        {
+            if (e.PropertyName.Equals(nameof(Settings.ImageBackground)))
+            {
+                materialView.ImageBackground = Settings.Default.ImageBackground;
+            }
+        }
+
+        /// <summary>
+        /// フォームが閉じられた時に通知を受け取る。
+        /// </summary>
+        /// <param name="sender">送信元オブジェクト</param>
+        /// <param name="e">イベントオブジェクト</param>
+        private void OnFormClosed(object sender, FormClosedEventArgs e)
+        {
+            Settings.Default.PropertyChanged -= OnSettingsPropertyChanged;
+        }
+
+        /// <summary>
+        /// 画像背景色メニューが選択された時に通知を受け取る。
+        /// </summary>
+        /// <param name="sender">送信元オブジェクト</param>
+        /// <param name="e">イベントオブジェクト</param>
+        private void OnMenuItemImageBackgroundClick(object sender, EventArgs e)
+        {
+            Color defaultColor = Settings.Default.ImageBackground;
+            Color selectedColor = CGenImaging.Forms.ColorSelectDialog.ShowDialog(this, defaultColor);
+            Settings.Default.ImageBackground = selectedColor;
         }
     }
 }

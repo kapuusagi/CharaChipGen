@@ -13,6 +13,11 @@ namespace CharaChipGenUtility.Operations
         string Name { get; }
 
         /// <summary>
+        /// このオペレーションの説明
+        /// </summary>
+        string Description { get; }
+
+        /// <summary>
         /// 画像に処理する
         /// </summary>
         /// <param name="src">画像データ</param>

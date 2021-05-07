@@ -57,7 +57,6 @@ namespace CharaChipGen.Model.Material
 
         // 表示名
         private Dictionary<string, string> displayNames;
-
         // レイヤー
         private Dictionary<string, MaterialLayerInfo> layers;
 
@@ -70,9 +69,11 @@ namespace CharaChipGen.Model.Material
         /// <param name="path">ファイルパス</param>
         public MaterialEntryFile(string path)
         {
+            IsNeedLoad = System.IO.File.Exists(path); // pathのファイルが存在するなら遅延ロード対象。
             Path = path;
-            displayNames = null;
-            layers = null;
+            displayNames = new Dictionary<string, string>();
+            displayNames["default"] = System.IO.Path.GetFileNameWithoutExtension(Path);
+            layers = new Dictionary<string, MaterialLayerInfo>();
         }
 
         /// <summary>
@@ -90,12 +91,17 @@ namespace CharaChipGen.Model.Material
         public string Path { get; private set; }
 
         /// <summary>
+        /// 素材エントリファイルをロードする必要があるかどうかを返す。
+        /// </summary>
+        private bool IsNeedLoad { get; set; }
+
+        /// <summary>
         /// 表示名。
         /// カルチャ名と表示データのペアで構成される。一番先頭はデフォルトのものが格納される。
         /// </summary>
         public Dictionary<string, string> DisplayNames {
             get {
-                if (displayNames == null)
+                if (IsNeedLoad)
                 {
                     Load();
                 }
@@ -109,7 +115,7 @@ namespace CharaChipGen.Model.Material
         /// </summary>
         public Dictionary<string, MaterialLayerInfo> Layers {
             get {
-                if (layers == null)
+                if (IsNeedLoad)
                 {
                     Load();
                 }
@@ -215,7 +221,8 @@ namespace CharaChipGen.Model.Material
         /// <param name="path">ファイルパス</param>
         public void SaveAs(string path)
         {
-            using (var writer = new System.IO.StreamWriter(System.IO.File.OpenWrite(path)))
+            using (var writer = new System.IO.StreamWriter(
+                new System.IO.FileStream(path, System.IO.FileMode.Create)))
             {
                 writer.WriteLine("# Material information.");
                 // 表示名
@@ -247,7 +254,12 @@ namespace CharaChipGen.Model.Material
                         {
                             writer.WriteLine($"Layer.{layer.Name}.ColorPartsRefs = {layer.ColorPartsRefs.ToString()}");
                         }
+                        if (!string.IsNullOrEmpty(layer.ColorPropertyName))
+                        {
+                            writer.WriteLine($"Layer.{layer.Name}.ColorPropertyName = {layer.ColorPropertyName}");
+                        }
                         writer.WriteLine($"Layer.{layer.Name}.Attribute = {GetAttributeString(layer)}");
+                        no++;
                     }
                 }
             }
@@ -273,11 +285,14 @@ namespace CharaChipGen.Model.Material
         /// </summary>
         public void Load()
         {
-            displayNames = new Dictionary<string, string>();
-            layers = new Dictionary<string, MaterialLayerInfo>();
+            IsNeedLoad = false;
 
             using (var reader = new System.IO.StreamReader(System.IO.File.OpenRead(Path)))
             {
+                displayNames.Clear();
+                displayNames["default"] = System.IO.Path.GetFileNameWithoutExtension(Path);
+                layers.Clear();
+
                 string[] lines = reader.ReadToEnd().Split('\n');
                 for (int i = 0; i < lines.Length; i++)
                 {
@@ -304,15 +319,6 @@ namespace CharaChipGen.Model.Material
                     }
                     SetValue(key, value);
                 }
-            }
-
-            // 値チェック
-            if (!DisplayNames.ContainsKey("default"))
-            {
-                // デフォルト名はファイル名からパクっておく。
-                // entyrFileにて明示的な指定があればそちらが使用される。
-                SetDisplayName("default", System.IO.Path.GetFileNameWithoutExtension(Path));
-
             }
         }
 
@@ -367,6 +373,12 @@ namespace CharaChipGen.Model.Material
                             if (Enum.TryParse(value, out PartsType attrType))
                             {
                                 layer.ColorPartsRefs = attrType;
+                            }
+                            break;
+                        case "ColorPropertyName":
+                            if (Parts.GetColorSettingNames().Contains(value))
+                            {
+                                layer.ColorPropertyName = value;
                             }
                             break;
                         case "Attribute":

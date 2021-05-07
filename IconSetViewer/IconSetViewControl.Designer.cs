@@ -38,6 +38,7 @@
             this.DoubleBuffered = true;
             this.Name = "IconSetViewControl";
             this.Size = new System.Drawing.Size(393, 343);
+            this.KeyDown += new System.Windows.Forms.KeyEventHandler(this.OnKeyDown);
             this.MouseClick += new System.Windows.Forms.MouseEventHandler(this.OnMouseClick);
             this.ResumeLayout(false);
 

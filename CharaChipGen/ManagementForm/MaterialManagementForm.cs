@@ -1,4 +1,5 @@
 ﻿using CharaChipGen.Model.Material;
+using CharaChipGen.Properties;
 using System;
 using System.Windows.Forms;
 
@@ -47,7 +48,7 @@ namespace CharaChipGen.ManagementForm
         private void UpdateMaterialListView()
         {
             MaterialList materialList = GetCurrentMaterialList();
-            groupBoxMaterial.Text = materialList?.Name ?? "素材一覧";
+            groupBoxMaterial.Text = materialList?.Name ?? Resources.DialogTitleMaterials;
             listViewMaterials.Enabled = (materialList != null);
             listViewMaterials.Items.Clear();
             if (materialList != null)
@@ -95,8 +96,8 @@ namespace CharaChipGen.ManagementForm
         /// 追加ボタンがクリックされた時に通知を受け取る。
         /// </summary>
         /// <param name="sender">送信元オブジェクト</param>
-        /// <param name="evt">イベントオブジェクト</param>
-        private void OnMaterialAddClicked(object sender, EventArgs evt)
+        /// <param name="e">イベントオブジェクト</param>
+        private void OnMaterialAddClicked(object sender, EventArgs e)
         {
             // 追加ボタンが押されたとき、外部の素材をコピーしてくる。
             DialogResult res = openFileDialog.ShowDialog(this);
@@ -113,9 +114,9 @@ namespace CharaChipGen.ManagementForm
                     AddMaterial(selectedPath);
                 }
             }
-            catch (Exception e)
+            catch (Exception ex)
             {
-                MessageBox.Show(this, e.Message, "エラー");
+                MessageBox.Show(this, ex.Message, Resources.DialogTitleError);
             }
 
             // ビュー更新
@@ -182,8 +183,8 @@ namespace CharaChipGen.ManagementForm
         /// 編集ボタンがクリックされた時に通知を受け取る。
         /// </summary>
         /// <param name="sender">送信元オブジェクト</param>
-        /// <param name="evt">イベントオブジェクト</param>
-        private void OnMaterialEditClicked(object sender, EventArgs evt)
+        /// <param name="e">イベントオブジェクト</param>
+        private void OnMaterialEditClicked(object sender, EventArgs e)
         {
             var selectedIndices = listViewMaterials.SelectedIndices;
             if (selectedIndices.Count != 1)
@@ -224,9 +225,9 @@ namespace CharaChipGen.ManagementForm
                 listViewMaterials.Items.RemoveAt(selectedIndex);
                 listViewMaterials.Items.Insert(selectedIndex, GenerateListViewMaterial(material));
             }
-            catch (Exception e)
+            catch (Exception ex)
             {
-                MessageBox.Show(this, e.Message, "エラー");
+                MessageBox.Show(this, ex.Message, Resources.DialogTitleError);
             }
         }
 
@@ -289,7 +290,7 @@ namespace CharaChipGen.ManagementForm
                 index++;
             }
 
-            throw new Exception("path is same to rootDirectory.");
+            throw new Exception(Resources.MessagePathIsRootDirectory);
         }
 
 
@@ -298,12 +299,12 @@ namespace CharaChipGen.ManagementForm
         /// 削除操作が行われたときに通知を受け取る。
         /// </summary>
         /// <param name="sender">送信元オブジェクト</param>
-        /// <param name="evt">イベントオブジェクト</param>
-        private void OnMaterialDeleteClicked(object sender, EventArgs evt)
+        /// <param name="e">イベントオブジェクト</param>
+        private void OnMaterialDeleteClicked(object sender, EventArgs e)
         {
             DialogResult res = MessageBox.Show(this,
-                "選択されている部品を削除してもよろしいですか？",
-                "確認", MessageBoxButtons.YesNo);
+                Resources.MessageConfirmRemoveParts,
+                Resources.DialogTitleConfirm, MessageBoxButtons.YesNo);
             if (res != DialogResult.Yes)
             {
                 return;
@@ -333,9 +334,9 @@ namespace CharaChipGen.ManagementForm
                     System.IO.File.Delete(path);
                 }
             }
-            catch (Exception e)
+            catch (Exception ex)
             {
-                MessageBox.Show(this, e.Message, "エラー");
+                MessageBox.Show(this, ex.Message, Resources.DialogTitleError);
             }
             UpdateMaterialListView();
         }
@@ -388,7 +389,9 @@ namespace CharaChipGen.ManagementForm
 
             MaterialList materialList = GetCurrentMaterialList();
             Material targetMaterial = materialList.Get(items[0].SubItems[0].Text);
-            string inputText = InputForm.InputForm.ShowDialog(this, "素材名を入力", "素材名変更", targetMaterial.Name);
+            string inputText = InputForm.InputForm.ShowDialog(this,
+                Resources.MessageInputMaterialName, Resources.DialogTitleChangeMaterialName,
+                targetMaterial.Name);
             if ((inputText == null) || inputText.Trim().Equals(targetMaterial.Name))
             {
                 // キャンセルされたか、変更なし。
@@ -406,7 +409,8 @@ namespace CharaChipGen.ManagementForm
                     AppData.Instance.MaterialDirectory, targetMaterial.RelativePath);
                 string dstRelativePath = System.IO.Path.Combine(materialList.SubDirectoryName,
                     $"{newName}{MaterialEntryFile.EntryFileSuffix}");
-                string dstFilePath = System.IO.Path.Combine(AppData.Instance.MaterialDirectory, dstRelativePath);
+                string dstFilePath = System.IO.Path.Combine(AppData.Instance.MaterialDirectory,
+                    dstRelativePath);
                 System.IO.File.Move(entryFilePath, dstFilePath);
 
                 // 素材リストの素材を入れ替え
@@ -419,7 +423,7 @@ namespace CharaChipGen.ManagementForm
             }
             catch (Exception ex)
             {
-                MessageBox.Show(this, ex.Message, "エラー");
+                MessageBox.Show(this, ex.Message, Resources.DialogTitleError);
             }
         }
 
@@ -432,7 +436,9 @@ namespace CharaChipGen.ManagementForm
         {
             MaterialList materialList = GetCurrentMaterialList();
             string defaultName = GenerateName(materialList);
-            string intputText = InputForm.InputForm.ShowDialog(this, "素材名を入力", "素材名変更", defaultName);
+            string intputText = InputForm.InputForm.ShowDialog(this,
+                Resources.MessageInputMaterialName,
+                Resources.DialogTitleNewMaterial, defaultName);
             if (intputText == null)
             {
                 // キャンセルされた。
@@ -448,7 +454,8 @@ namespace CharaChipGen.ManagementForm
                     $"{newName}{MaterialEntryFile.EntryFileSuffix}");
                 string newEntryFilePath = System.IO.Path.Combine(AppData.Instance.MaterialDirectory, newRelativePath);
 
-                MaterialEntryFile entryFile = new MaterialEntryFile(newEntryFilePath);
+                MaterialEntryFile entryFile = MaterialUtils.CreateDefaultEntryFile(
+                    newEntryFilePath, materialList.MaterialType);
                 entryFile.Save();
 
                 Material newMaterial = new Material(newRelativePath, entryFile);
@@ -458,9 +465,10 @@ namespace CharaChipGen.ManagementForm
             }
             catch (Exception ex)
             {
-                MessageBox.Show(this, ex.Message, "エラー");
+                MessageBox.Show(this, ex.Message, Resources.DialogTitleError);
             }
         }
+
 
         /// <summary>
         /// 素材名が有効かどうかを確認する。
@@ -472,18 +480,18 @@ namespace CharaChipGen.ManagementForm
         {
             if (name.Length == 0)
             {
-                throw new Exception("素材名が指定されていません。");
+                throw new Exception(Resources.MessageMaterialNameNotSpecified);
             }
             // 使用不可能な文字が使われていないか？
             if (!MaterialEntryFile.IsValidName(name))
             {
-                throw new Exception("素材名として使用できない文字が使用されています。");
+                throw new Exception(Resources.MessageInvalidMaterialNameCharacter);
             }
 
             // 同名のファイルが存在しないか？
             if (materialList.Contains(name))
             {
-                throw new Exception("同名の素材が既にあります。");
+                throw new Exception(Resources.MessageMaterialNameUsed);
             }
         }
 
@@ -523,12 +531,20 @@ namespace CharaChipGen.ManagementForm
                 return;
             }
 
-            MaterialViewForm.MaterialViewForm form
-                = new CharaChipGen.MaterialViewForm.MaterialViewForm() {
-                    Text = material.GetDisplayName(),
-                    Material = material
-                };
-            form.ShowDialog();
+            try
+            {
+                MaterialViewForm.MaterialViewForm form
+                    = new CharaChipGen.MaterialViewForm.MaterialViewForm()
+                    {
+                        Text = material.GetDisplayName(),
+                        Material = material
+                    };
+                form.ShowDialog();
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show(this, ex.Message, Resources.DialogTitleError);
+            }
         }
 
         /// <summary>

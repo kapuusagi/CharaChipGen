@@ -52,8 +52,8 @@ namespace CharaChipGen.MaterialEditorForm
         /// コントロールのサイズが変更された時に通知を受け取る。
         /// </summary>
         /// <param name="sender">送信元オブジェクト</param>
-        /// <param name="evt">イベントオブジェクト</param>
-        private void OnControlResized(object sender, EventArgs evt)
+        /// <param name="e">イベントオブジェクト</param>
+        private void OnControlResized(object sender, EventArgs e)
         {
             int pictureBoxWidth = (ClientSize.Width - 8) / 3;
             int pictureBoxHeight = (ClientSize.Height - 10) / 4;
@@ -66,27 +66,6 @@ namespace CharaChipGen.MaterialEditorForm
                     int xpos = 2 + (2 + pictureBoxWidth) * x;
                     pictureBoxes[y * 3 + x].SetBounds(xpos, ypos, pictureBoxWidth, pictureBoxHeight);
                 }
-            }
-        }
-
-        /// <summary>
-        /// 背景色を設定する。
-        /// </summary>
-        public override Color BackColor {
-            get { return pictureBox1.BackColor; }
-            set {
-                pictureBox1.BackColor = value;
-                pictureBox2.BackColor = value;
-                pictureBox3.BackColor = value;
-                pictureBox4.BackColor = value;
-                pictureBox5.BackColor = value;
-                pictureBox6.BackColor = value;
-                pictureBox7.BackColor = value;
-                pictureBox8.BackColor = value;
-                pictureBox9.BackColor = value;
-                pictureBox10.BackColor = value;
-                pictureBox11.BackColor = value;
-                pictureBox12.BackColor = value;
             }
         }
 
@@ -161,6 +140,19 @@ namespace CharaChipGen.MaterialEditorForm
                         subImageWidth, subImageHeight);
                     pictureBoxes[x + y * 3].Image
                         = image.Clone(clipArea, System.Drawing.Imaging.PixelFormat.Format32bppPArgb);
+                }
+            }
+        }
+
+        /// <summary>
+        /// 画像の背景色
+        /// </summary>
+        public Color ImageBackground {
+            get => pictureBox1.BackColor;
+            set {
+                foreach (PictureBox pictureBox in pictureBoxes)
+                {
+                    pictureBox.BackColor = value;
                 }
             }
         }

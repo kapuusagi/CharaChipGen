@@ -27,16 +27,16 @@ namespace CharaChipGenUtility
         /// D&Dにてドラッグされてきたときに通知を受け取る。
         /// </summary>
         /// <param name="sender">送信元オブジェクト</param>
-        /// <param name="evt">イベントオブジェクト</param>
-        private void OnPanelAcceptDragEnter(object sender, DragEventArgs evt)
+        /// <param name="e">イベントオブジェクト</param>
+        private void OnPanelAcceptDragEnter(object sender, DragEventArgs e)
         {
-            if (evt.Data.GetDataPresent(DataFormats.FileDrop))
+            if (e.Data.GetDataPresent(DataFormats.FileDrop))
             {
-                evt.Effect = DragDropEffects.Copy;
+                e.Effect = DragDropEffects.Copy;
             }
             else
             {
-                evt.Effect = DragDropEffects.None;
+                e.Effect = DragDropEffects.None;
             }
 
         }
@@ -45,12 +45,12 @@ namespace CharaChipGenUtility
         /// D&Dにて放り込まれた時に通知を受け取る。
         /// </summary>
         /// <param name="sender">送信元オブジェクト</param>
-        /// <param name="evt">イベントオブジェクト</param>
-        private void OnPanelAcceptDragDrop(object sender, DragEventArgs evt)
+        /// <param name="e">イベントオブジェクト</param>
+        private void OnPanelAcceptDragDrop(object sender, DragEventArgs e)
         {
             try
             {
-                string[] fileNames = (string[])(evt.Data.GetData(DataFormats.FileDrop, false));
+                string[] fileNames = (string[])(e.Data.GetData(DataFormats.FileDrop, false));
 
                 ComboBoxItem item = (ComboBoxItem)(comboBoxOperation.SelectedItem);
                 if (item == null)
@@ -60,14 +60,14 @@ namespace CharaChipGenUtility
                 IOperation operation = item.Operation;
                 Task.Run(() => operation.Process(fileNames));
             }
-            catch (AggregateException ae)
+            catch (AggregateException aex)
             {
-                MessageBox.Show(this, ae.InnerException.Message, "エラー");
-                System.Diagnostics.Debug.WriteLine(ae.Message);
+                MessageBox.Show(this, aex.InnerException.Message, "エラー");
+                System.Diagnostics.Debug.WriteLine(aex.Message);
             }
-            catch (Exception e)
+            catch (Exception ex)
             {
-                System.Diagnostics.Debug.WriteLine(e.Message);
+                System.Diagnostics.Debug.WriteLine(ex.Message);
             }
         }
 
@@ -75,8 +75,8 @@ namespace CharaChipGenUtility
         /// メニューボタンがクリックされた時に通知を受け取る。
         /// </summary>
         /// <param name="sender">送信元オブジェクト</param>
-        /// <param name="evt">イベントオブジェクト</param>
-        private void OnButtonMenuClick(object sender, EventArgs evt)
+        /// <param name="e">イベントオブジェクト</param>
+        private void OnButtonMenuClick(object sender, EventArgs e)
         {
             try
             {
@@ -90,9 +90,9 @@ namespace CharaChipGenUtility
                 formSetting.Setting = operation.Setting;
                 formSetting.ShowDialog(this);
             }
-            catch (Exception e)
+            catch (Exception ex)
             {
-                MessageBox.Show(this, e.Message);
+                MessageBox.Show(this, ex.Message);
             }
         }
 
@@ -100,16 +100,16 @@ namespace CharaChipGenUtility
         /// 画面が表示された時に通知を受け取る。
         /// </summary>
         /// <param name="sender">送信元オブジェクト</param>
-        /// <param name="evt">イベントオブジェクト</param>
-        private void OnFormShown(object sender, EventArgs evt)
+        /// <param name="e">イベントオブジェクト</param>
+        private void OnFormShown(object sender, EventArgs e)
         {
             try
             {
                 LoadOperations();
             }
-            catch (Exception e)
+            catch (Exception ex)
             {
-                System.Diagnostics.Debug.WriteLine(e.Message);
+                System.Diagnostics.Debug.WriteLine(ex.Message);
             }
 
             // オペレーションを更新
@@ -126,9 +126,9 @@ namespace CharaChipGenUtility
                 }
 
             }
-            catch (Exception e)
+            catch (Exception ex)
             {
-                System.Diagnostics.Debug.WriteLine(e.Message);
+                System.Diagnostics.Debug.WriteLine(ex.Message);
             }
         }
 
@@ -224,8 +224,8 @@ namespace CharaChipGenUtility
         /// フォームがクローズされた時の処理を行う。
         /// </summary>
         /// <param name="sender">送信元オブジェクト</param>
-        /// <param name="evt">イベントオブジェクト</param>
-        private void OnFormClosed(object sender, FormClosedEventArgs evt)
+        /// <param name="e">イベントオブジェクト</param>
+        private void OnFormClosed(object sender, FormClosedEventArgs e)
         {
             try
             {
@@ -234,11 +234,29 @@ namespace CharaChipGenUtility
                 string path = System.IO.Path.Combine(dir, fileName);
                 OperationSettingUtility.Save(path, operationList.ToArray());
             }
-            catch (Exception e)
+            catch (Exception ex)
             {
-                System.Diagnostics.Debug.Write(e);
+                System.Diagnostics.Debug.Write(ex);
             }
 
+        }
+
+        /// <summary>
+        /// コンボボックスの選択状態が変更されたときに通知を受け取る。
+        /// </summary>
+        /// <param name="sender">送信元オブジェクト</param>
+        /// <param name="e">イベントオブジェクト</param>
+        private void OnComboBoxOperationSelectedValueChanged(object sender, EventArgs e)
+        {
+            ComboBoxItem item = (ComboBoxItem)(comboBoxOperation.SelectedItem);
+            if (item == null)
+            {
+                textBoxDescription.Text = "";
+            }
+            else
+            {
+                textBoxDescription.Text = item.Operation.Description;
+            }
         }
     }
 }
