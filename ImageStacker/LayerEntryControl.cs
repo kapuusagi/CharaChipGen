@@ -79,13 +79,31 @@ namespace ImageStacker
         /// </summary>
         private void UpdateView()
         {
-            // TODO : 表示を更新する。
+            // 表示を更新する。
+            if (layerEntry != null)
+            {
+                labelFileName.Text = System.IO.Path.GetFileName(layerEntry.FileName);
+                if ((layerEntry.OffsetX < numericUpDownX.Minimum) || (layerEntry.OffsetX > numericUpDownX.Maximum))
+                {
+                    System.Diagnostics.Debug.WriteLine("layerOffsetX illegal. " + layerEntry.OffsetX);
+                }
+                if ((layerEntry.OffsetY < numericUpDownY.Minimum) || (layerEntry.OffsetY > numericUpDownY.Maximum))
+                {
+                    System.Diagnostics.Debug.WriteLine("layerOffsetY illegal. " + layerEntry.OffsetY);
+                }
 
-            labelFileName.Text = (layerEntry != null) ? System.IO.Path.GetFileName(layerEntry.FileName) : string.Empty;
-            numericUpDownX.Value = (layerEntry != null) ? layerEntry.OffsetX : 0;
-            numericUpDownY.Value = (layerEntry != null) ? layerEntry.OffsetY : 0;
-            checkBoxSelect.Checked = (layerEntry != null) ? layerEntry.Selected : false;
 
+                numericUpDownX.Value = Math.Max(numericUpDownX.Minimum, Math.Min(numericUpDownX.Maximum, layerEntry.OffsetX));
+                numericUpDownY.Value = Math.Max(numericUpDownY.Minimum, Math.Min(numericUpDownY.Maximum, layerEntry.OffsetY));
+                checkBoxSelect.Checked = layerEntry.Selected;
+            }
+            else
+            {
+                labelFileName.Text = string.Empty;
+                numericUpDownX.Value = 0;
+                numericUpDownY.Value = 0;
+                checkBoxSelect.Checked = false;
+            }
 
             try
             {

@@ -130,7 +130,8 @@ namespace ImageStacker
         {
             if (layerSet != null)
             {
-                foreach (string fileName in images.Keys)
+                var keys = images.Keys.ToArray();
+                foreach (string fileName in keys)
                 {
                     if (!IsUsingImage(fileName))
                     {
@@ -252,46 +253,50 @@ namespace ImageStacker
         /// <summary>
         /// レイヤーを描画する。
         /// </summary>
-        /// <param name="layer"></param>
+        /// <param name="layer">レイヤー</param>
         private void RenderLayer(LayerEntry layer)
         {
             var srcImage = images[layer.FileName];
 
-            int dstY = layer.OffsetY;
-            for (int y = 0; y < srcImage.Height; y++)
+            Parallel.For(0, srcImage.Height, y =>
             {
+                int dstY = layer.OffsetY + y;
                 if ((dstY >= 0) && (dstY < renderBuf.Height))
                 {
-                    int dstX = layer.OffsetX;
-                    for (int x = 0; x < srcImage.Width; x++)
+                    int srcX, dstX;
+                    if (layer.OffsetX >= 0)
                     {
-                        if ((dstX >= 0) && (dstX < renderBuf.Width))
+                        srcX = 0;
+                        dstX = layer.OffsetX;
+                    }
+                    else
+                    {
+                        srcX = -layer.OffsetX;
+                        dstX = 0;
+                    }
+
+                    while ((srcX < srcImage.Width) && (dstX < renderBuf.Width))
+                    {
+                        var srcColor = srcImage.GetPixel(srcX, y);
+                        if (srcColor.A > 0)
                         {
-                            var srcColor = srcImage.GetPixel(x, y);
-                            if (srcColor.A > 0)
+                            Color writeColor;
+                            if (srcColor.A >= 255)
                             {
-                                Color writeColor;
-                                if (srcColor.A >= 255)
-                                {
-                                    // 塗りつぶし
-                                    writeColor = srcColor;
-                                }
-                                else
-                                {
-                                    writeColor = ImageProcessor.Blend(srcColor, renderBuf.GetPixel(dstX, dstY));
-                                }
-                                renderBuf.SetPixel(dstX, dstY, writeColor);
+                                // 塗りつぶし
+                                writeColor = srcColor;
                             }
+                            else
+                            {
+                                writeColor = ImageProcessor.Blend(srcColor, renderBuf.GetPixel(dstX, dstY));
+                            }
+                            renderBuf.SetPixel(dstX, dstY, writeColor);
                         }
+                        srcX++;
                         dstX++;
                     }
                 }
-                dstY++;
-                if (dstY >= renderBuf.Height)
-                {
-                    return;
-                }
-            }
+            });
         }
 
     }

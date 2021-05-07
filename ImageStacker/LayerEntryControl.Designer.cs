@@ -223,12 +223,12 @@ namespace ImageStacker
             this.numericUpDownX.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Left | System.Windows.Forms.AnchorStyles.Right)));
             this.numericUpDownX.Location = new System.Drawing.Point(21, 10);
             this.numericUpDownX.Maximum = new decimal(new int[] {
-            2000,
+            10000,
             0,
             0,
             0});
             this.numericUpDownX.Minimum = new decimal(new int[] {
-            2000,
+            10000,
             0,
             0,
             -2147483648});

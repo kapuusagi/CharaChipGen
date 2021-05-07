@@ -14,6 +14,15 @@ namespace ImageStacker
     /// </summary>
     public class LayerEntry : INotifyPropertyChanged
     {
+        /// <summary>
+        /// オフセット最小値
+        /// </summary>
+        public const int OFFSET_MIN = -10000;
+        /// <summary>
+        /// オフセット最大値
+        /// </summary>
+        public const int OFFSET_MAX = 10000;
+
         // ファイル名
         private string fileName;
         // Xオフセット
@@ -69,9 +78,10 @@ namespace ImageStacker
         public int OffsetX {
             get => offsetX;
             set {
-                if (offsetX != value)
+                var d = Math.Min(OFFSET_MAX, Math.Max(OFFSET_MIN, value));
+                if (offsetX != d)
                 {
-                    offsetX = value;
+                    offsetX = d;
                     NotifyPropertyChanged(nameof(OffsetX));
                 }
             }
@@ -82,9 +92,10 @@ namespace ImageStacker
         public int OffsetY {
             get => offsetY;
             set {
-                if (offsetY != value)
+                var d = Math.Min(OFFSET_MAX, Math.Max(OFFSET_MIN, value));
+                if (offsetY != d)
                 {
-                    offsetY = value;
+                    offsetY = d;
                     NotifyPropertyChanged(nameof(OffsetY));
                 }
             }

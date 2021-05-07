@@ -20,6 +20,10 @@ namespace ImageStacker
         private bool isLayerSetAdjustMode;
         // レイヤードラッグ開始位置
         private Point layerSetDragLocation;
+        // スクロール位置x
+        private int scrollPosX;
+        // スクロール位置y
+        private int scrollPosY;
 
         /// <summary>
         /// 新しいFormMainを構築する。
@@ -30,6 +34,8 @@ namespace ImageStacker
             isLayerSetMouseDragging = false;
             isLayerSetAdjustMode = false;
             layerSetDragLocation = new Point(0, 0);
+            scrollPosX = 0;
+            scrollPosY = 0;
             InitializeComponent();
             layerSet.Added += OnLayerAdded;
             layerSet.Removed += OnLayerRemoved;
@@ -55,6 +61,7 @@ namespace ImageStacker
         {
             try
             {
+                Properties.Settings.Default.WindowSize = Size;
                 Properties.Settings.Default.Save();
             }
             catch (Exception ex)
@@ -314,6 +321,11 @@ namespace ImageStacker
             }
         }
 
+        /// <summary>
+        /// レイヤーセット表示コントロールでマウスボタンが押された時に通知を受け取る
+        /// </summary>
+        /// <param name="sender">送信元オブジェクト</param>
+        /// <param name="e">イベントオブジェクト</param>
         private void OnLayerSetViewMouseDown(object sender, MouseEventArgs e)
         {
             if (e.Button == MouseButtons.Left)
@@ -321,53 +333,95 @@ namespace ImageStacker
                 isLayerSetMouseDragging = true;
                 isLayerSetAdjustMode = (ModifierKeys & Keys.Control) == Keys.Control;
                 layerSetDragLocation = Cursor.Position;
-
+                if (isLayerSetAdjustMode)
+                {
+                    scrollPosX = panelPicture.HorizontalScroll.Value;
+                    scrollPosY = panelPicture.VerticalScroll.Value;
+                }
             }
         }
 
+        /// <summary>
+        /// レイヤーセット表示コントロールでマウスボタンが放されたときに通知を受け取る。
+        /// </summary>
+        /// <param name="sender">送信元オブジェクト</param>
+        /// <param name="e">イベントオブジェクト</param>
         private void OnLayerSetViewMouseUp(object sender, MouseEventArgs e)
         {
             isLayerSetMouseDragging = false;
             isLayerSetAdjustMode = false;
         }
 
-        private void OnLayerSetViewMoseMove(object sender, MouseEventArgs e)
+        /// <summary>
+        /// レイヤーセット表示でマウスカーソルが動いた場合に通知を受け取る。
+        /// </summary>
+        /// <param name="sender">送信元オブジェクト</param>
+        /// <param name="e">イベントオブジェクト</param>
+        private void OnLayerSetViewMouseMove(object sender, MouseEventArgs e)
         {
             if (isLayerSetMouseDragging)
             {
                 var location = Cursor.Position;
                 var moveX = location.X - layerSetDragLocation.X;
                 var moveY = location.Y - layerSetDragLocation.Y;
+                System.Diagnostics.Debug.WriteLine($"Cursor=({location.X},{location.Y}) Move=({moveX},{moveY})");
                 if (isLayerSetAdjustMode)
                 {
-
+                    foreach (var layer in layerSet)
+                    {
+                        if (layer.Selected)
+                        {
+                            layer.OffsetX += moveX;
+                            layer.OffsetY += moveY;
+                        }
+                    }
                 }
                 else
                 {
                     // スクロールさせる。
+                    // Scroll.Valueは設定した直後に反映されないようなので、
+                    // 移動先の値を保存し(scrollPosX, scrollPosY)、
+                    // それに対して移動先座標設定する必要があるみたい。
                     if (moveX != 0)
                     {
                         var scrollH = panelPicture.HorizontalScroll;
-                        var newX = scrollH.Value + moveX;
-                        if (newX < scrollH.Minimum)
-                        {
-                            newX = scrollH.Minimum;
-                        }
-                        else if (newX > scrollH.Maximum)
-                        {
-                            newX = scrollH.Maximum;
-                        }
-                        //                        scrollH.Value = (newX < scrollH.Minimum) ? scrollH.Minimum : ((newX > scrollH.Maximum) ? scrollH.Maximum : newX);
+                        var newX = Math.Max(scrollH.Minimum, Math.Min(scrollH.Maximum, scrollPosX - moveX));
+                        //System.Diagnostics.Debug.WriteLine($"move={moveX},new={newX},scrollPosX={scrollPosX}");
                         scrollH.Value = newX;
-                        System.Diagnostics.Debug.WriteLine($"move=({moveX},{scrollH.Value})");
+                        scrollPosX = newX;
                     }
-                    //var scrollV = panelPicture.VerticalScroll;
-                    //var newY = scrollV.Value - offsetY;
-                    //scrollV.Value = (newY < scrollV.Minimum) ? scrollV.Minimum : ((newY > scrollV.Maximum) ? scrollV.Maximum : newY);
-
-
+                    else
+                    {
+                        scrollPosX = panelPicture.HorizontalScroll.Value;
+                    }
+                    if (moveY != 0)
+                    {
+                        var scrollV = panelPicture.VerticalScroll;
+                        var newY = Math.Max(scrollV.Minimum, Math.Min(scrollV.Maximum, scrollPosY - moveY));
+                        scrollV.Value = newY;
+                        scrollPosY = newY;
+                    }
+                    else
+                    {
+                        scrollPosY = panelPicture.VerticalScroll.Value;
+                    }
                 }
                 layerSetDragLocation = location;
+            }
+        }
+
+        /// <summary>
+        /// フォームが表示されたときに通知を受け取る。
+        /// </summary>
+        /// <param name="sender">送信元オブジェクト</param>
+        /// <param name="e">イベントオブジェクト</param>
+        private void OnFormShown(object sender, EventArgs e)
+        {
+            var savedSize = Properties.Settings.Default.WindowSize;
+            if ((savedSize.Width > 100) && (savedSize.Height > 100))
+            {
+                var location = Location;
+                SetBounds(location.X, location.Y, savedSize.Width, savedSize.Height);
             }
         }
     }

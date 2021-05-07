@@ -8,5 +8,8 @@
     <Setting Name="LastSavePath" Type="System.String" Scope="User">
       <Value Profile="(Default)" />
     </Setting>
+    <Setting Name="WindowSize" Type="System.Drawing.Size" Scope="User">
+      <Value Profile="(Default)">800, 480</Value>
+    </Setting>
   </Settings>
 </SettingsFile>

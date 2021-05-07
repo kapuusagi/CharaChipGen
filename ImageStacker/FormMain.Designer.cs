@@ -72,8 +72,8 @@ namespace ImageStacker
             // 
             this.splitContainer1.Panel2.Controls.Add(this.panel1);
             this.splitContainer1.Panel2.Controls.Add(this.flowLayoutPanel1);
-            this.splitContainer1.Size = new System.Drawing.Size(800, 397);
-            this.splitContainer1.SplitterDistance = 446;
+            this.splitContainer1.Size = new System.Drawing.Size(784, 388);
+            this.splitContainer1.SplitterDistance = 437;
             this.splitContainer1.TabIndex = 0;
             // 
             // panelPicture
@@ -83,7 +83,7 @@ namespace ImageStacker
             this.panelPicture.Dock = System.Windows.Forms.DockStyle.Fill;
             this.panelPicture.Location = new System.Drawing.Point(0, 0);
             this.panelPicture.Name = "panelPicture";
-            this.panelPicture.Size = new System.Drawing.Size(446, 397);
+            this.panelPicture.Size = new System.Drawing.Size(437, 388);
             this.panelPicture.TabIndex = 0;
             // 
             // panel1
@@ -97,7 +97,7 @@ namespace ImageStacker
             this.panel1.Dock = System.Windows.Forms.DockStyle.Fill;
             this.panel1.Location = new System.Drawing.Point(0, 29);
             this.panel1.Name = "panel1";
-            this.panel1.Size = new System.Drawing.Size(350, 368);
+            this.panel1.Size = new System.Drawing.Size(343, 359);
             this.panel1.TabIndex = 4;
             this.panel1.DragDrop += new System.Windows.Forms.DragEventHandler(this.OnDragDrop);
             this.panel1.DragEnter += new System.Windows.Forms.DragEventHandler(this.OnDragEnter);
@@ -113,7 +113,7 @@ namespace ImageStacker
             this.tableLayoutPanel1.Padding = new System.Windows.Forms.Padding(4);
             this.tableLayoutPanel1.RowCount = 1;
             this.tableLayoutPanel1.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 50F));
-            this.tableLayoutPanel1.Size = new System.Drawing.Size(348, 366);
+            this.tableLayoutPanel1.Size = new System.Drawing.Size(341, 357);
             this.tableLayoutPanel1.TabIndex = 2;
             // 
             // label1
@@ -121,7 +121,7 @@ namespace ImageStacker
             this.label1.Dock = System.Windows.Forms.DockStyle.Fill;
             this.label1.Location = new System.Drawing.Point(7, 4);
             this.label1.Name = "label1";
-            this.label1.Size = new System.Drawing.Size(334, 358);
+            this.label1.Size = new System.Drawing.Size(327, 349);
             this.label1.TabIndex = 0;
             this.label1.Text = "Drag image file to here.";
             this.label1.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
@@ -132,7 +132,7 @@ namespace ImageStacker
             this.panelLayerParent.Dock = System.Windows.Forms.DockStyle.Top;
             this.panelLayerParent.Location = new System.Drawing.Point(0, 0);
             this.panelLayerParent.Name = "panelLayerParent";
-            this.panelLayerParent.Size = new System.Drawing.Size(348, 0);
+            this.panelLayerParent.Size = new System.Drawing.Size(341, 0);
             this.panelLayerParent.TabIndex = 3;
             // 
             // flowLayoutPanel1
@@ -142,7 +142,7 @@ namespace ImageStacker
             this.flowLayoutPanel1.Dock = System.Windows.Forms.DockStyle.Top;
             this.flowLayoutPanel1.Location = new System.Drawing.Point(0, 0);
             this.flowLayoutPanel1.Name = "flowLayoutPanel1";
-            this.flowLayoutPanel1.Size = new System.Drawing.Size(350, 29);
+            this.flowLayoutPanel1.Size = new System.Drawing.Size(343, 29);
             this.flowLayoutPanel1.TabIndex = 0;
             // 
             // buttonAdd
@@ -162,7 +162,7 @@ namespace ImageStacker
             this.flowLayoutPanel2.Dock = System.Windows.Forms.DockStyle.Top;
             this.flowLayoutPanel2.Location = new System.Drawing.Point(0, 24);
             this.flowLayoutPanel2.Name = "flowLayoutPanel2";
-            this.flowLayoutPanel2.Size = new System.Drawing.Size(800, 29);
+            this.flowLayoutPanel2.Size = new System.Drawing.Size(784, 29);
             this.flowLayoutPanel2.TabIndex = 1;
             // 
             // buttonExport
@@ -181,7 +181,7 @@ namespace ImageStacker
             this.fileToolStripMenuItem});
             this.menuStrip1.Location = new System.Drawing.Point(0, 0);
             this.menuStrip1.Name = "menuStrip1";
-            this.menuStrip1.Size = new System.Drawing.Size(800, 24);
+            this.menuStrip1.Size = new System.Drawing.Size(784, 24);
             this.menuStrip1.TabIndex = 2;
             this.menuStrip1.Text = "menuStrip1";
             // 
@@ -222,20 +222,21 @@ namespace ImageStacker
             this.layerSetViewControl.Size = new System.Drawing.Size(0, 0);
             this.layerSetViewControl.TabIndex = 0;
             this.layerSetViewControl.MouseDown += new System.Windows.Forms.MouseEventHandler(this.OnLayerSetViewMouseDown);
-            this.layerSetViewControl.MouseMove += new System.Windows.Forms.MouseEventHandler(this.OnLayerSetViewMoseMove);
+            this.layerSetViewControl.MouseMove += new System.Windows.Forms.MouseEventHandler(this.OnLayerSetViewMouseMove);
             this.layerSetViewControl.MouseUp += new System.Windows.Forms.MouseEventHandler(this.OnLayerSetViewMouseUp);
             // 
             // FormMain
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 12F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(800, 450);
+            this.ClientSize = new System.Drawing.Size(784, 441);
             this.Controls.Add(this.splitContainer1);
             this.Controls.Add(this.flowLayoutPanel2);
             this.Controls.Add(this.menuStrip1);
             this.Name = "FormMain";
-            this.Text = "Form1";
+            this.Text = "ImageStacker";
             this.FormClosing += new System.Windows.Forms.FormClosingEventHandler(this.OnFormClosing);
+            this.Shown += new System.EventHandler(this.OnFormShown);
             this.splitContainer1.Panel1.ResumeLayout(false);
             this.splitContainer1.Panel2.ResumeLayout(false);
             this.splitContainer1.Panel2.PerformLayout();

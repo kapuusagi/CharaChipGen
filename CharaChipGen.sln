@@ -15,6 +15,10 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "CGenImagingTest", "CGenImag
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "RoundRect", "RoundRect\RoundRect.csproj", "{8886A840-3E3C-4EFE-8939-C8F64C2287CB}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ImageStacker", "ImageStacker\ImageStacker.csproj", "{DD880E4D-374D-4982-876F-A308F5C7CB69}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "FImageEditor", "FImageEditor\FImageEditor.csproj", "{C7ABBB7E-36AF-4391-A6C4-962CF1D9B01D}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -45,6 +49,14 @@ Global
 		{8886A840-3E3C-4EFE-8939-C8F64C2287CB}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{8886A840-3E3C-4EFE-8939-C8F64C2287CB}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{8886A840-3E3C-4EFE-8939-C8F64C2287CB}.Release|Any CPU.Build.0 = Release|Any CPU
+		{DD880E4D-374D-4982-876F-A308F5C7CB69}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{DD880E4D-374D-4982-876F-A308F5C7CB69}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{DD880E4D-374D-4982-876F-A308F5C7CB69}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{DD880E4D-374D-4982-876F-A308F5C7CB69}.Release|Any CPU.Build.0 = Release|Any CPU
+		{C7ABBB7E-36AF-4391-A6C4-962CF1D9B01D}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{C7ABBB7E-36AF-4391-A6C4-962CF1D9B01D}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{C7ABBB7E-36AF-4391-A6C4-962CF1D9B01D}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{C7ABBB7E-36AF-4391-A6C4-962CF1D9B01D}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
