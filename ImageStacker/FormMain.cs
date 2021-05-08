@@ -520,5 +520,18 @@ namespace ImageStacker
                 }
             }
         }
+
+        /// <summary>
+        /// Newボタンがクリックされた時に通知を受けとる
+        /// </summary>
+        /// <param name="sender">送信元オブジェクト</param>
+        /// <param name="e">イベントオブジェクト</param>
+        private void OnMenuItemNewClick(object sender, EventArgs e)
+        {
+            while (layerSet.Count > 0)
+            {
+                layerSet.Remove(layerSet.Count - 1);
+            }
+        }
     }
 }

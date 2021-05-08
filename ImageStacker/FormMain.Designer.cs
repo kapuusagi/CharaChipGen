@@ -29,6 +29,7 @@ namespace ImageStacker
         /// </summary>
         private void InitializeComponent()
         {
+            ImageStacker.LayerSetRenderer layerSetRenderer1 = new ImageStacker.LayerSetRenderer();
             this.splitContainer1 = new System.Windows.Forms.SplitContainer();
             this.panelPicture = new System.Windows.Forms.Panel();
             this.layerSetViewControl = new ImageStacker.LayerSetViewControl();
@@ -38,6 +39,7 @@ namespace ImageStacker
             this.panelLayerParent = new System.Windows.Forms.Panel();
             this.flowLayoutPanel1 = new System.Windows.Forms.FlowLayoutPanel();
             this.buttonAdd = new System.Windows.Forms.Button();
+            this.buttonSelectAll = new System.Windows.Forms.Button();
             this.flowLayoutPanel2 = new System.Windows.Forms.FlowLayoutPanel();
             this.buttonExport = new System.Windows.Forms.Button();
             this.menuStrip1 = new System.Windows.Forms.MenuStrip();
@@ -46,7 +48,7 @@ namespace ImageStacker
             this.exitToolStripMenuItem1 = new System.Windows.Forms.ToolStripMenuItem();
             this.openFileDialog = new System.Windows.Forms.OpenFileDialog();
             this.saveFileDialog = new System.Windows.Forms.SaveFileDialog();
-            this.buttonSelectAll = new System.Windows.Forms.Button();
+            this.newToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             ((System.ComponentModel.ISupportInitialize)(this.splitContainer1)).BeginInit();
             this.splitContainer1.Panel1.SuspendLayout();
             this.splitContainer1.Panel2.SuspendLayout();
@@ -94,6 +96,8 @@ namespace ImageStacker
             // 
             this.layerSetViewControl.AutoSize = true;
             this.layerSetViewControl.BackgroundImage = global::ImageStacker.Properties.Resources.Background;
+            layerSetRenderer1.LayerSet = null;
+            this.layerSetViewControl.LayerSetRenderer = layerSetRenderer1;
             this.layerSetViewControl.Location = new System.Drawing.Point(3, 6);
             this.layerSetViewControl.Name = "layerSetViewControl";
             this.layerSetViewControl.Size = new System.Drawing.Size(0, 0);
@@ -172,6 +176,16 @@ namespace ImageStacker
             this.buttonAdd.UseVisualStyleBackColor = true;
             this.buttonAdd.Click += new System.EventHandler(this.OnButtonAddClick);
             // 
+            // buttonSelectAll
+            // 
+            this.buttonSelectAll.Location = new System.Drawing.Point(84, 3);
+            this.buttonSelectAll.Name = "buttonSelectAll";
+            this.buttonSelectAll.Size = new System.Drawing.Size(145, 23);
+            this.buttonSelectAll.TabIndex = 1;
+            this.buttonSelectAll.Text = "Select/Deselect All";
+            this.buttonSelectAll.UseVisualStyleBackColor = true;
+            this.buttonSelectAll.Click += new System.EventHandler(this.OnButtonSelectAllClick);
+            // 
             // flowLayoutPanel2
             // 
             this.flowLayoutPanel2.AutoSize = true;
@@ -205,6 +219,7 @@ namespace ImageStacker
             // fileToolStripMenuItem
             // 
             this.fileToolStripMenuItem.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] {
+            this.newToolStripMenuItem,
             this.exitToolStripMenuItem,
             this.exitToolStripMenuItem1});
             this.fileToolStripMenuItem.Name = "fileToolStripMenuItem";
@@ -214,14 +229,14 @@ namespace ImageStacker
             // exitToolStripMenuItem
             // 
             this.exitToolStripMenuItem.Name = "exitToolStripMenuItem";
-            this.exitToolStripMenuItem.Size = new System.Drawing.Size(108, 22);
+            this.exitToolStripMenuItem.Size = new System.Drawing.Size(180, 22);
             this.exitToolStripMenuItem.Text = "Export";
             this.exitToolStripMenuItem.Click += new System.EventHandler(this.OnMenuItemExportClick);
             // 
             // exitToolStripMenuItem1
             // 
             this.exitToolStripMenuItem1.Name = "exitToolStripMenuItem1";
-            this.exitToolStripMenuItem1.Size = new System.Drawing.Size(108, 22);
+            this.exitToolStripMenuItem1.Size = new System.Drawing.Size(180, 22);
             this.exitToolStripMenuItem1.Text = "Exit";
             this.exitToolStripMenuItem1.Click += new System.EventHandler(this.OnMenuItemExitClick);
             // 
@@ -229,15 +244,12 @@ namespace ImageStacker
             // 
             this.openFileDialog.Filter = "PNGファイル(*.png)|*.png|全てのファイル(*.*)|*.*";
             // 
-            // buttonSelectAll
+            // newToolStripMenuItem
             // 
-            this.buttonSelectAll.Location = new System.Drawing.Point(84, 3);
-            this.buttonSelectAll.Name = "buttonSelectAll";
-            this.buttonSelectAll.Size = new System.Drawing.Size(145, 23);
-            this.buttonSelectAll.TabIndex = 1;
-            this.buttonSelectAll.Text = "Select/Deselect All";
-            this.buttonSelectAll.UseVisualStyleBackColor = true;
-            this.buttonSelectAll.Click += new System.EventHandler(this.OnButtonSelectAllClick);
+            this.newToolStripMenuItem.Name = "newToolStripMenuItem";
+            this.newToolStripMenuItem.Size = new System.Drawing.Size(180, 22);
+            this.newToolStripMenuItem.Text = "New";
+            this.newToolStripMenuItem.Click += new System.EventHandler(this.OnMenuItemNewClick);
             // 
             // FormMain
             // 
@@ -290,6 +302,7 @@ namespace ImageStacker
         private LayerSetViewControl layerSetViewControl;
         private System.Windows.Forms.SaveFileDialog saveFileDialog;
         private System.Windows.Forms.Button buttonSelectAll;
+        private System.Windows.Forms.ToolStripMenuItem newToolStripMenuItem;
     }
 }
 
