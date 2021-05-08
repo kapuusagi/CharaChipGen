@@ -19,14 +19,37 @@ namespace ImageStacker
         private LayerEntry layerEntry;
         // 画像ファイル名
         private string imageFileName;
+        // 選択状態での背景色
+        private Color selectedBackColor;
         /// <summary>
         /// 新しいLayerEntryControlを構築する。
         /// </summary>
         public LayerEntryControl()
         {
             layerEntry = null;
+            selectedBackColor = Color.Aqua;
             imageFileName = string.Empty;
             InitializeComponent();
+        }
+
+        public override Color BackColor { 
+            get => base.BackColor;
+            set {
+                base.BackColor = value;
+                panelBackground.BackColor = (checkBoxSelect.Checked) ? SelectedBackColor : BackColor;
+            }
+        }
+
+        
+        public Color SelectedBackColor {
+            get => selectedBackColor;
+            set {
+                if (!selectedBackColor.Equals(value))
+                {
+                    selectedBackColor = value;
+                    panelBackground.BackColor = (checkBoxSelect.Checked) ? SelectedBackColor : BackColor;
+                }
+            }
         }
 
         /// <summary>
@@ -96,6 +119,7 @@ namespace ImageStacker
                 numericUpDownX.Value = Math.Max(numericUpDownX.Minimum, Math.Min(numericUpDownX.Maximum, layerEntry.OffsetX));
                 numericUpDownY.Value = Math.Max(numericUpDownY.Minimum, Math.Min(numericUpDownY.Maximum, layerEntry.OffsetY));
                 checkBoxSelect.Checked = layerEntry.Selected;
+                panelBackground.BackColor = (checkBoxSelect.Checked) ? SelectedBackColor : BackColor;
             }
             else
             {
@@ -103,6 +127,7 @@ namespace ImageStacker
                 numericUpDownX.Value = 0;
                 numericUpDownY.Value = 0;
                 checkBoxSelect.Checked = false;
+                panelBackground.BackColor = BackColor;
             }
 
             try
@@ -121,30 +146,30 @@ namespace ImageStacker
         }
 
         /// <summary>
-        /// 
+        /// 削除ボタンがクリックされたときに通知を受け取る。
         /// </summary>
-        /// <param name="sender"></param>
-        /// <param name="e"></param>
+        /// <param name="sender">送信元オブジェクト</param>
+        /// <param name="e">イベントオブジェクト</param>
         private void OnButtonDeleteClick(object sender, EventArgs e)
         {
             DeleteButtonClick?.Invoke(this, e);
         }
 
         /// <summary>
-        /// 
+        /// 下へボタンがクリックされたときに通知を受け取る。
         /// </summary>
-        /// <param name="sender"></param>
-        /// <param name="e"></param>
+        /// <param name="sender">送信元オブジェクト</param>
+        /// <param name="e">イベントオブジェクト</param>
         private void OnButtonDownClick(object sender, EventArgs e)
         {
             DownButtonClick?.Invoke(this, e);
         }
 
         /// <summary>
-        /// 
+        /// 上へボタンがクリックされたときに通知を受け取る。
         /// </summary>
-        /// <param name="sender"></param>
-        /// <param name="e"></param>
+        /// <param name="sender">送信元オブジェクト</param>
+        /// <param name="e">イベントオブジェクト</param>
         private void OnButtonUpperClick(object sender, EventArgs e)
         {
             UpButtonClick?.Invoke(this, e);
@@ -189,6 +214,11 @@ namespace ImageStacker
             }
         }
 
+        /// <summary>
+        /// 数値入力ボックスの値が変更されたときに通知を受け取る。
+        /// </summary>
+        /// <param name="sender">送信元オブジェクト</param>
+        /// <param name="e">イベントオブジェクト</param>
         private void OnNumericUpDownValueChanged(object sender, EventArgs e)
         {
             if (LayerEntry != null)
@@ -237,7 +267,19 @@ namespace ImageStacker
                 }
             }
 
+        }
 
+        /// <summary>
+        /// パネルがクリックされたときに通知を受け取る。
+        /// </summary>
+        /// <param name="sender">送信元オブジェクト</param>
+        /// <param name="e">イベントオブジェクト</param>
+        private void OnClick(object sender, EventArgs e)
+        {
+            if (layerEntry != null)
+            {
+                layerEntry.Selected = !layerEntry.Selected;
+            }
         }
     }
 }
