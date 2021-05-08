@@ -227,7 +227,9 @@ namespace ImageStacker
             var controls = panelLayerParent.Controls;
             if (e.Index < controls.Count)
             {
+                var control = controls[e.Index];
                 controls.RemoveAt(e.Index);
+                control.Dispose();
             }
             UpdateLayerButtonEnable();
         }

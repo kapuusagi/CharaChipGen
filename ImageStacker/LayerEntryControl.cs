@@ -32,6 +32,25 @@ namespace ImageStacker
             InitializeComponent();
         }
 
+        /// <summary> 
+        /// 使用中のリソースをすべてクリーンアップします。
+        /// </summary>
+        /// <param name="disposing">マネージド リソースを破棄する場合は true を指定し、その他の場合は false を指定します。</param>
+        protected override void Dispose(bool disposing)
+        {
+            if (disposing && (pictureBox.Image != null))
+            {
+                pictureBox.Image.Dispose();
+            }
+            if (disposing && (components != null))
+            {
+                components.Dispose();
+            }
+            base.Dispose(disposing);
+        }
+        /// <summary>
+        /// 背景色
+        /// </summary>
         public override Color BackColor { 
             get => base.BackColor;
             set {
@@ -40,7 +59,9 @@ namespace ImageStacker
             }
         }
 
-        
+        /// <summary>
+        /// 選択中の背景色
+        /// </summary>
         public Color SelectedBackColor {
             get => selectedBackColor;
             set {
@@ -134,8 +155,18 @@ namespace ImageStacker
             {
                 if (!imageFileName.Equals(layerEntry.FileName))
                 {
-                    pictureBox.Image = Image.FromFile(layerEntry.FileName);
-                    imageFileName = layerEntry.FileName;
+                    if (pictureBox.Image != null)
+                    {
+                        var image = pictureBox.Image;
+                        pictureBox.Image = null;
+                        image.Dispose();
+                    }
+
+                    using (var image = Image.FromFile(layerEntry.FileName))
+                    {
+                        pictureBox.Image = (Image)(image.Clone());
+                        imageFileName = layerEntry.FileName;
+                    }
                 }
             }
             catch (Exception ex)
