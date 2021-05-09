@@ -301,7 +301,7 @@ namespace ImageStacker
         /// </summary>
         /// <param name="sender">送信元オブジェクト</param>
         /// <param name="e">イベントオブジェクト</param>
-        private void OnLayerPanelDragDrop(object sender, DragEventArgs e)
+        private void OnLayerPanelDragEnter(object sender, DragEventArgs e)
         {
             if (e.Data.GetDataPresent(DataFormats.FileDrop))
             {
@@ -318,7 +318,7 @@ namespace ImageStacker
         /// </summary>
         /// <param name="sender">送信元オブジェクト</param>
         /// <param name="e">イベントオブジェクト</param>
-        private void OnLayerPanelDragEnter(object sender, DragEventArgs e)
+        private void OnLayerPanelDragDrop(object sender, DragEventArgs e)
         {
             if (e.Data.GetDataPresent(DataFormats.FileDrop))
             {
