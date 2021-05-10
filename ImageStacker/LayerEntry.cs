@@ -29,6 +29,14 @@ namespace ImageStacker
         private int offsetX;
         // Yオフセット
         private int offsetY;
+        // 色相調整値
+        private int hue;
+        //  彩度調整値
+        private int saturation;
+        // 輝度調整値
+        private int value;
+        // 不透明度（高いほど不透明） = アルファチャンネル
+        private int opacity;
         // 選択されているかどうか
         private bool selected;
         /// <summary>
@@ -39,6 +47,10 @@ namespace ImageStacker
             fileName = string.Empty;
             offsetX = 0;
             offsetY = 0;
+            hue = 0;
+            saturation = 0;
+            value = 0;
+            opacity = 100;
             selected = false;
         }
 
@@ -100,6 +112,68 @@ namespace ImageStacker
             }
 
         }
+        /// <summary>
+        /// 色相調整値(-180 ～ 180)
+        /// </summary>
+        public int Hue {
+            get { return hue; }
+            set {
+                var setHue = Math.Max(-180, Math.Min(180, value));
+                if (hue == setHue)
+                {
+                    return; // 同値なので設定変更不要。
+                }
+                hue = setHue;
+                NotifyPropertyChanged(nameof(Hue));
+            }
+        }
+
+        /// <summary>
+        /// 彩度の調整値(-255～255)
+        /// </summary>
+        public int Saturation {
+            get { return saturation; }
+            set {
+                var setSaturation = Math.Max(-255, Math.Min(255, value));
+                if (saturation == setSaturation)
+                {
+                    return; // 同値なので設定変更不要。
+                }
+                saturation = setSaturation;
+                NotifyPropertyChanged(nameof(Saturation));
+            }
+        }
+        /// <summary>
+        /// 輝度の調整値(-255～255)
+        /// </summary>
+        public int Value {
+            get { return value; }
+            set {
+                var setValue = Math.Max(-255, Math.Min(255, value));
+                if (this.value == setValue)
+                {
+                    return;
+                }
+                this.value = setValue;
+                NotifyPropertyChanged(nameof(Value));
+            }
+        }
+
+        /// <summary>
+        /// 不透明度(0-100)
+        /// </summary>
+        public int Opacity {
+            get { return opacity; }
+            set {
+                var setOpacity = Math.Min(100, Math.Max(0, value));
+                if (this.opacity == setOpacity)
+                {
+                    return;
+                }
+                opacity = setOpacity;
+                NotifyPropertyChanged(nameof(Opacity));
+            }
+        }
 
         /// <summary>
         /// 選択状態
@@ -125,6 +199,10 @@ namespace ImageStacker
             sb.Append('\"').Append(nameof(FileName)).Append("\"=\"").Append(FileName).Append("\",");
             sb.Append('\"').Append(nameof(OffsetX)).Append("\"=\"").Append(OffsetX).Append("\",");
             sb.Append('\"').Append(nameof(OffsetY)).Append("\"=\"").Append(OffsetY).Append("\",");
+            sb.Append('\"').Append(nameof(Hue)).Append("\"=\"").Append(Hue).Append("\",");
+            sb.Append('\"').Append(nameof(Saturation)).Append("\"=\"").Append(Saturation).Append("\",");
+            sb.Append('\"').Append(nameof(Value)).Append("\"=\"").Append(Value).Append("\",");
+            sb.Append('\"').Append(nameof(Opacity)).Append("\"=\"").Append(Opacity).Append("\",");
             return sb.ToString();
         }
 
@@ -155,6 +233,18 @@ namespace ImageStacker
                             break;
                         case nameof(OffsetY):
                             layer.OffsetY = int.Parse(value);
+                            break;
+                        case nameof(Hue):
+                            layer.Hue = int.Parse(value);
+                            break;
+                        case nameof(Saturation):
+                            layer.Saturation = int.Parse(value);
+                            break;
+                        case nameof(Value):
+                            layer.Value = int.Parse(value);
+                            break;
+                        case nameof(Opacity):
+                            layer.Opacity = int.Parse(value);
                             break;
                     }
                 }

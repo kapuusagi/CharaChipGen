@@ -21,6 +21,10 @@ namespace ImageStacker
         private string imageFileName;
         // 選択状態での背景色
         private Color selectedBackColor;
+        // 色設定コントロール
+        private ColorSettingControl colorSettingControl;
+        // ドロップダウン表示
+        private ToolStripDropDown toolStripDropDown;
         /// <summary>
         /// 新しいLayerEntryControlを構築する。
         /// </summary>
@@ -30,6 +34,10 @@ namespace ImageStacker
             selectedBackColor = Color.Aqua;
             imageFileName = string.Empty;
             InitializeComponent();
+            toolStripDropDown = new ToolStripDropDown();
+            colorSettingControl = new ColorSettingControl();
+            colorSettingControl.LayerEntry = layerEntry;
+            toolStripDropDown.Items.Add(new ToolStripControlHost(colorSettingControl));
         }
 
         /// <summary> 
@@ -45,6 +53,14 @@ namespace ImageStacker
             if (disposing && (components != null))
             {
                 components.Dispose();
+            }
+            if (disposing && (toolStripDropDown != null))
+            {
+                toolStripDropDown.Dispose();
+            }
+            if (disposing && (colorSettingControl != null))
+            {
+                colorSettingControl.Dispose();
             }
             base.Dispose(disposing);
         }
@@ -104,6 +120,7 @@ namespace ImageStacker
                     {
                         layerEntry.PropertyChanged += OnPropertyChanged;
                     }
+                    colorSettingControl.LayerEntry = layerEntry;
                     UpdateView();
                 }
             }
@@ -311,6 +328,16 @@ namespace ImageStacker
             {
                 layerEntry.Selected = !layerEntry.Selected;
             }
+        }
+
+        /// <summary>
+        /// 設定ボタンがクリックされた
+        /// </summary>
+        /// <param name="sender">送信元オブジェクト</param>
+        /// <param name="e">イベントオブジェクト</param>
+        private void OnButtonSettingClick(object sender, EventArgs e)
+        {
+            toolStripDropDown.Show(Cursor.Position);
         }
     }
 }

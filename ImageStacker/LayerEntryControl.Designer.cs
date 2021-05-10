@@ -36,6 +36,7 @@ namespace ImageStacker
             this.flowLayoutPanel1 = new System.Windows.Forms.FlowLayoutPanel();
             this.checkBoxSelect = new System.Windows.Forms.CheckBox();
             this.panelBackground = new System.Windows.Forms.Panel();
+            this.buttonSetting = new System.Windows.Forms.Button();
             this.panel1.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox)).BeginInit();
             this.tableLayoutPanel1.SuspendLayout();
@@ -173,16 +174,18 @@ namespace ImageStacker
             // 
             // tableLayoutPanel4
             // 
-            this.tableLayoutPanel4.ColumnCount = 5;
+            this.tableLayoutPanel4.ColumnCount = 6;
             this.tableLayoutPanel4.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle());
             this.tableLayoutPanel4.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 50F));
             this.tableLayoutPanel4.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Absolute, 20F));
             this.tableLayoutPanel4.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle());
             this.tableLayoutPanel4.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 50F));
+            this.tableLayoutPanel4.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle());
             this.tableLayoutPanel4.Controls.Add(this.label2, 0, 0);
             this.tableLayoutPanel4.Controls.Add(this.label3, 3, 0);
             this.tableLayoutPanel4.Controls.Add(this.numericUpDownX, 1, 0);
             this.tableLayoutPanel4.Controls.Add(this.numericUpDownY, 4, 0);
+            this.tableLayoutPanel4.Controls.Add(this.buttonSetting, 5, 0);
             this.tableLayoutPanel4.Dock = System.Windows.Forms.DockStyle.Fill;
             this.tableLayoutPanel4.Location = new System.Drawing.Point(3, 40);
             this.tableLayoutPanel4.Name = "tableLayoutPanel4";
@@ -206,7 +209,7 @@ namespace ImageStacker
             // 
             this.label3.Anchor = System.Windows.Forms.AnchorStyles.Left;
             this.label3.AutoSize = true;
-            this.label3.Location = new System.Drawing.Point(134, 9);
+            this.label3.Location = new System.Drawing.Point(121, 9);
             this.label3.Name = "label3";
             this.label3.Size = new System.Drawing.Size(12, 12);
             this.label3.TabIndex = 1;
@@ -227,7 +230,7 @@ namespace ImageStacker
             0,
             -2147483648});
             this.numericUpDownX.Name = "numericUpDownX";
-            this.numericUpDownX.Size = new System.Drawing.Size(87, 19);
+            this.numericUpDownX.Size = new System.Drawing.Size(74, 19);
             this.numericUpDownX.TabIndex = 2;
             this.numericUpDownX.TextAlign = System.Windows.Forms.HorizontalAlignment.Right;
             this.numericUpDownX.ValueChanged += new System.EventHandler(this.OnNumericUpDownValueChanged);
@@ -235,7 +238,7 @@ namespace ImageStacker
             // numericUpDownY
             // 
             this.numericUpDownY.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Left | System.Windows.Forms.AnchorStyles.Right)));
-            this.numericUpDownY.Location = new System.Drawing.Point(152, 6);
+            this.numericUpDownY.Location = new System.Drawing.Point(139, 6);
             this.numericUpDownY.Maximum = new decimal(new int[] {
             2000,
             0,
@@ -247,7 +250,7 @@ namespace ImageStacker
             0,
             -2147483648});
             this.numericUpDownY.Name = "numericUpDownY";
-            this.numericUpDownY.Size = new System.Drawing.Size(88, 19);
+            this.numericUpDownY.Size = new System.Drawing.Size(74, 19);
             this.numericUpDownY.TabIndex = 3;
             this.numericUpDownY.TextAlign = System.Windows.Forms.HorizontalAlignment.Right;
             this.numericUpDownY.ValueChanged += new System.EventHandler(this.OnNumericUpDownValueChanged);
@@ -275,7 +278,7 @@ namespace ImageStacker
             this.checkBoxSelect.UseVisualStyleBackColor = true;
             this.checkBoxSelect.Click += new System.EventHandler(this.OnCheckBoxClick);
             // 
-            // panelAll
+            // panelBackground
             // 
             this.panelBackground.BackColor = System.Drawing.SystemColors.Control;
             this.panelBackground.Controls.Add(this.tableLayoutPanel2);
@@ -284,9 +287,19 @@ namespace ImageStacker
             this.panelBackground.Controls.Add(this.tableLayoutPanel1);
             this.panelBackground.Dock = System.Windows.Forms.DockStyle.Fill;
             this.panelBackground.Location = new System.Drawing.Point(0, 0);
-            this.panelBackground.Name = "panelAll";
+            this.panelBackground.Name = "panelBackground";
             this.panelBackground.Size = new System.Drawing.Size(434, 74);
             this.panelBackground.TabIndex = 4;
+            // 
+            // buttonSetting
+            // 
+            this.buttonSetting.Location = new System.Drawing.Point(219, 3);
+            this.buttonSetting.Name = "buttonSetting";
+            this.buttonSetting.Size = new System.Drawing.Size(21, 23);
+            this.buttonSetting.TabIndex = 4;
+            this.buttonSetting.Text = "...";
+            this.buttonSetting.UseVisualStyleBackColor = true;
+            this.buttonSetting.Click += new System.EventHandler(this.OnButtonSettingClick);
             // 
             // LayerEntryControl
             // 
@@ -337,5 +350,6 @@ namespace ImageStacker
         private System.Windows.Forms.FlowLayoutPanel flowLayoutPanel1;
         private System.Windows.Forms.CheckBox checkBoxSelect;
         private System.Windows.Forms.Panel panelBackground;
+        private System.Windows.Forms.Button buttonSetting;
     }
 }

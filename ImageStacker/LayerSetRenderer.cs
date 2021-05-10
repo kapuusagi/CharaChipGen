@@ -298,8 +298,17 @@ namespace ImageStacker
                     while ((srcX < srcImage.Width) && (dstX < renderBuf.Width))
                     {
                         var srcColor = srcImage.GetPixel(srcX, y);
+                        if (layer.Opacity < 100)
+                        {
+                            int newAlpha = (int)(srcColor.A * layer.Opacity / 100.0f);
+                            srcColor = Color.FromArgb(newAlpha, srcColor.R, srcColor.G, srcColor.B);
+                        }
+
                         if (srcColor.A > 0)
                         {
+                            srcColor = ImageProcessor.ProcessHSLFilter(srcColor,
+                                layer.Hue, layer.Saturation, layer.Value);
+
                             Color writeColor;
                             if (srcColor.A >= 255)
                             {
