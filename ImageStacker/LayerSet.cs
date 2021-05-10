@@ -211,7 +211,7 @@ namespace ImageStacker
         /// </remarks>
         public void SaveTo(string fileName)
         {
-            using (FileStream fs = new FileStream(fileName, FileMode.CreateNew, FileAccess.Write))
+            using (FileStream fs = new FileStream(fileName, FileMode.Create, FileAccess.Write))
             {
                 SaveTo(fs);
             }
@@ -245,9 +245,9 @@ namespace ImageStacker
         }
 
         /// <summary>
-        /// 
+        /// streamで指定されるストリームから読み出す。
         /// </summary>
-        /// <param name="stream"></param>
+        /// <param name="stream">ストリーム</param>
         public void LoadFrom(Stream stream)
         {
             var newLayers = new List<LayerEntry>();

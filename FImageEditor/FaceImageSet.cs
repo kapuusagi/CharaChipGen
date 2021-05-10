@@ -76,13 +76,21 @@ namespace FImageEditor
             }
         }
 
+        /// <summary>
+        /// fileNameで指定されるファイルに保存する。
+        /// </summary>
+        /// <param name="fileName"></param>
         public void SaveTo(string fileName)
         {
-            using (var fs = new System.IO.FileStream(fileName, System.IO.FileMode.CreateNew, System.IO.FileAccess.Write))
+            using (var fs = new System.IO.FileStream(fileName, System.IO.FileMode.Create, System.IO.FileAccess.Write))
             {
                 SaveTo(fs);
             }
         }
+        /// <summary>
+        /// streamで指定されるストリームに保存する。
+        /// </summary>
+        /// <param name="stream">ストリーム</param>
         public void SaveTo(System.IO.Stream stream)
         {
             using (var sw = new System.IO.StreamWriter(stream))
@@ -94,6 +102,10 @@ namespace FImageEditor
             }
         }
 
+        /// <summary>
+        /// fileNameで指定されるファイルから読み出す。
+        /// </summary>
+        /// <param name="fileName">ファイル名</param>
         public void LoadFrom(string fileName)
         {
             using (var fs = new System.IO.FileStream(fileName, System.IO.FileMode.Open, System.IO.FileAccess.Read))
@@ -102,6 +114,10 @@ namespace FImageEditor
             }
         }
 
+        /// <summary>
+        /// streamで指定されるストリームから読み出す。
+        /// </summary>
+        /// <param name="stream">ストリーム</param>
         public void LoadFrom(System.IO.Stream stream)
         {
             var newEntries = new List<FaceImageEntry>();
