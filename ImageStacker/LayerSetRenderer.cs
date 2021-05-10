@@ -96,6 +96,7 @@ namespace ImageStacker
                         layerSet.Added -= OnLayerSetChanged;
                         layerSet.Removed -= OnLayerSetChanged;
                         layerSet.Modifired -= OnLayerSetChanged;
+                        layerSet.DataChanged -= OnLayerSetDataChanged;
                     }
                     layerSet = value;
                     if (layerSet != null)
@@ -103,6 +104,7 @@ namespace ImageStacker
                         layerSet.Added += OnLayerSetChanged;
                         layerSet.Removed += OnLayerSetChanged;
                         layerSet.Modifired += OnLayerSetChanged;
+                        layerSet.DataChanged += OnLayerSetDataChanged;
                     }
                     LoadImageResources();
                     UpdatePreferredSize();
@@ -117,6 +119,24 @@ namespace ImageStacker
         /// <param name="sender">送信元オブジェクト</param>
         /// <param name="e">イベントオブジェクト</param>
         private void OnLayerSetChanged(object sender, LayerEventArgs e)
+        {
+            LayerSetChangedProc();
+        }
+
+        /// <summary>
+        /// レイヤーセットのデータが変更された時に通知を受け取る。
+        /// </summary>
+        /// <param name="sender">送信元オブジェクト</param>
+        /// <param name="e">イベントオブジェクト</param>
+        private void OnLayerSetDataChanged(object sender, EventArgs e)
+        {
+            LayerSetChangedProc();
+        }
+
+        /// <summary>
+        /// レイヤーセット変更処理
+        /// </summary>
+        private void LayerSetChangedProc()
         {
             LoadImageResources();
             UpdatePreferredSize();

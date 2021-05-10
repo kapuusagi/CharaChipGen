@@ -29,10 +29,9 @@ namespace ImageStacker
         /// </summary>
         private void InitializeComponent()
         {
-            ImageStacker.LayerSetRenderer layerSetRenderer1 = new ImageStacker.LayerSetRenderer();
+            ImageStacker.LayerSetRenderer layerSetRenderer2 = new ImageStacker.LayerSetRenderer();
             this.splitContainer1 = new System.Windows.Forms.SplitContainer();
             this.panelPicture = new System.Windows.Forms.Panel();
-            this.layerSetViewControl = new ImageStacker.LayerSetViewControl();
             this.panel1 = new System.Windows.Forms.Panel();
             this.tableLayoutPanel1 = new System.Windows.Forms.TableLayoutPanel();
             this.label1 = new System.Windows.Forms.Label();
@@ -44,11 +43,17 @@ namespace ImageStacker
             this.buttonExport = new System.Windows.Forms.Button();
             this.menuStrip1 = new System.Windows.Forms.MenuStrip();
             this.fileToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.newToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.exitToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.exitToolStripMenuItem1 = new System.Windows.Forms.ToolStripMenuItem();
             this.openFileDialog = new System.Windows.Forms.OpenFileDialog();
             this.saveFileDialog = new System.Windows.Forms.SaveFileDialog();
-            this.newToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.saveToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.openToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.toolStripSeparator1 = new System.Windows.Forms.ToolStripSeparator();
+            this.toolStripSeparator2 = new System.Windows.Forms.ToolStripSeparator();
+            this.toolStripSeparator3 = new System.Windows.Forms.ToolStripSeparator();
+            this.layerSetViewControl = new ImageStacker.LayerSetViewControl();
             ((System.ComponentModel.ISupportInitialize)(this.splitContainer1)).BeginInit();
             this.splitContainer1.Panel1.SuspendLayout();
             this.splitContainer1.Panel2.SuspendLayout();
@@ -91,20 +96,6 @@ namespace ImageStacker
             this.panelPicture.TabIndex = 0;
             this.panelPicture.DragDrop += new System.Windows.Forms.DragEventHandler(this.OnPanelPictureDragDrop);
             this.panelPicture.DragEnter += new System.Windows.Forms.DragEventHandler(this.OnPanelPictureDragEnter);
-            // 
-            // layerSetViewControl
-            // 
-            this.layerSetViewControl.AutoSize = true;
-            this.layerSetViewControl.BackgroundImage = global::ImageStacker.Properties.Resources.Background;
-            layerSetRenderer1.LayerSet = null;
-            this.layerSetViewControl.LayerSetRenderer = layerSetRenderer1;
-            this.layerSetViewControl.Location = new System.Drawing.Point(3, 6);
-            this.layerSetViewControl.Name = "layerSetViewControl";
-            this.layerSetViewControl.Size = new System.Drawing.Size(0, 0);
-            this.layerSetViewControl.TabIndex = 0;
-            this.layerSetViewControl.MouseDown += new System.Windows.Forms.MouseEventHandler(this.OnLayerSetViewMouseDown);
-            this.layerSetViewControl.MouseMove += new System.Windows.Forms.MouseEventHandler(this.OnLayerSetViewMouseMove);
-            this.layerSetViewControl.MouseUp += new System.Windows.Forms.MouseEventHandler(this.OnLayerSetViewMouseUp);
             // 
             // panel1
             // 
@@ -220,11 +211,23 @@ namespace ImageStacker
             // 
             this.fileToolStripMenuItem.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] {
             this.newToolStripMenuItem,
+            this.toolStripSeparator1,
+            this.saveToolStripMenuItem,
+            this.openToolStripMenuItem,
+            this.toolStripSeparator2,
             this.exitToolStripMenuItem,
+            this.toolStripSeparator3,
             this.exitToolStripMenuItem1});
             this.fileToolStripMenuItem.Name = "fileToolStripMenuItem";
             this.fileToolStripMenuItem.Size = new System.Drawing.Size(37, 20);
             this.fileToolStripMenuItem.Text = "File";
+            // 
+            // newToolStripMenuItem
+            // 
+            this.newToolStripMenuItem.Name = "newToolStripMenuItem";
+            this.newToolStripMenuItem.Size = new System.Drawing.Size(180, 22);
+            this.newToolStripMenuItem.Text = "New";
+            this.newToolStripMenuItem.Click += new System.EventHandler(this.OnMenuItemNewClick);
             // 
             // exitToolStripMenuItem
             // 
@@ -244,12 +247,48 @@ namespace ImageStacker
             // 
             this.openFileDialog.Filter = "PNGファイル(*.png)|*.png|全てのファイル(*.*)|*.*";
             // 
-            // newToolStripMenuItem
+            // saveToolStripMenuItem
             // 
-            this.newToolStripMenuItem.Name = "newToolStripMenuItem";
-            this.newToolStripMenuItem.Size = new System.Drawing.Size(180, 22);
-            this.newToolStripMenuItem.Text = "New";
-            this.newToolStripMenuItem.Click += new System.EventHandler(this.OnMenuItemNewClick);
+            this.saveToolStripMenuItem.Name = "saveToolStripMenuItem";
+            this.saveToolStripMenuItem.Size = new System.Drawing.Size(180, 22);
+            this.saveToolStripMenuItem.Text = "Save";
+            this.saveToolStripMenuItem.Click += new System.EventHandler(this.OnMenuItemSaveClick);
+            // 
+            // openToolStripMenuItem
+            // 
+            this.openToolStripMenuItem.Name = "openToolStripMenuItem";
+            this.openToolStripMenuItem.Size = new System.Drawing.Size(180, 22);
+            this.openToolStripMenuItem.Text = "Open";
+            this.openToolStripMenuItem.Click += new System.EventHandler(this.OnMenuItemOpenClick);
+            // 
+            // toolStripSeparator1
+            // 
+            this.toolStripSeparator1.Name = "toolStripSeparator1";
+            this.toolStripSeparator1.Size = new System.Drawing.Size(177, 6);
+            // 
+            // toolStripSeparator2
+            // 
+            this.toolStripSeparator2.Name = "toolStripSeparator2";
+            this.toolStripSeparator2.Size = new System.Drawing.Size(177, 6);
+            // 
+            // toolStripSeparator3
+            // 
+            this.toolStripSeparator3.Name = "toolStripSeparator3";
+            this.toolStripSeparator3.Size = new System.Drawing.Size(177, 6);
+            // 
+            // layerSetViewControl
+            // 
+            this.layerSetViewControl.AutoSize = true;
+            this.layerSetViewControl.BackgroundImage = global::ImageStacker.Properties.Resources.Background;
+            layerSetRenderer2.LayerSet = null;
+            this.layerSetViewControl.LayerSetRenderer = layerSetRenderer2;
+            this.layerSetViewControl.Location = new System.Drawing.Point(3, 6);
+            this.layerSetViewControl.Name = "layerSetViewControl";
+            this.layerSetViewControl.Size = new System.Drawing.Size(0, 0);
+            this.layerSetViewControl.TabIndex = 0;
+            this.layerSetViewControl.MouseDown += new System.Windows.Forms.MouseEventHandler(this.OnLayerSetViewMouseDown);
+            this.layerSetViewControl.MouseMove += new System.Windows.Forms.MouseEventHandler(this.OnLayerSetViewMouseMove);
+            this.layerSetViewControl.MouseUp += new System.Windows.Forms.MouseEventHandler(this.OnLayerSetViewMouseUp);
             // 
             // FormMain
             // 
@@ -303,6 +342,11 @@ namespace ImageStacker
         private System.Windows.Forms.SaveFileDialog saveFileDialog;
         private System.Windows.Forms.Button buttonSelectAll;
         private System.Windows.Forms.ToolStripMenuItem newToolStripMenuItem;
+        private System.Windows.Forms.ToolStripSeparator toolStripSeparator1;
+        private System.Windows.Forms.ToolStripMenuItem saveToolStripMenuItem;
+        private System.Windows.Forms.ToolStripMenuItem openToolStripMenuItem;
+        private System.Windows.Forms.ToolStripSeparator toolStripSeparator2;
+        private System.Windows.Forms.ToolStripSeparator toolStripSeparator3;
     }
 }
 

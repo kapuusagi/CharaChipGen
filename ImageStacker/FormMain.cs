@@ -44,6 +44,7 @@ namespace ImageStacker
             layerSet.Added += OnLayerAdded;
             layerSet.Removed += OnLayerRemoved;
             layerSetViewControl.LayerSetRenderer = renderer;
+            layerSet.DataChanged += OnLayerSetDataChanged;
         }
 
         /// <summary>
@@ -106,6 +107,17 @@ namespace ImageStacker
             }
         }
 
+        /// <summary>
+        /// ファイル選択ダイアログ用の、画像ファイル選択用ファイルフィルタを得る。
+        /// </summary>
+        /// <returns>ファイルフィルタ文字列</returns>
+        private string GetFIleFilterImages()
+        {
+            var sb = new StringBuilder();
+            sb.Append(Properties.Resources.FILEFILTER_PNG).Append('|');
+            sb.Append(Properties.Resources.FILEFILTER_ALL);
+            return sb.ToString();
+        }
 
         /// <summary>
         /// エクスポート操作されたときの処理を行う。
@@ -124,6 +136,8 @@ namespace ImageStacker
                 saveFileDialog.InitialDirectory = System.IO.Path.GetDirectoryName(lastSaveFileName);
                 saveFileDialog.FileName = lastSaveFileName;
             }
+            saveFileDialog.Filter = GetFIleFilterImages();
+            saveFileDialog.FilterIndex = 0;
             if (saveFileDialog.ShowDialog(this) != DialogResult.OK)
             {
                 return;
@@ -150,6 +164,8 @@ namespace ImageStacker
                     openFileDialog.InitialDirectory = System.IO.Path.GetDirectoryName(lastOpenedFileName);
                     openFileDialog.FileName = lastOpenedFileName;
                 }
+                openFileDialog.Filter = GetFIleFilterImages();
+                openFileDialog.FilterIndex = 0;
                 if (openFileDialog.ShowDialog(this) != DialogResult.OK)
                 {
                     return;
@@ -204,17 +220,41 @@ namespace ImageStacker
                 }
                 else
                 {
-                    var control = new LayerEntryControl();
-                    control.UpButtonClick += OnLayerUpButtonClick;
-                    control.DownButtonClick += OnLayerDownButtonClick;
-                    control.DeleteButtonClick += OnLayerDeleteButtonClick;
-                    control.LayerEntry = layerSet.Get(i);
-                    control.BorderStyle = BorderStyle.FixedSingle;
-                    controls.Add(control);
-                    control.Dock = DockStyle.Bottom;
+                    CreateLayerControl(layerSet.Get(i));
+
                 }
             }
             UpdateLayerButtonEnable();
+        }
+
+        /// <summary>
+        /// レイヤーコントロールを作成する。
+        /// </summary>
+        /// <param name="layer">設定するレイヤー</param>
+        private void CreateLayerControl(LayerEntry layer)
+        {
+            var control = new LayerEntryControl();
+            control.UpButtonClick += OnLayerUpButtonClick;
+            control.DownButtonClick += OnLayerDownButtonClick;
+            control.DeleteButtonClick += OnLayerDeleteButtonClick;
+            control.LayerEntry = layer;
+            control.BorderStyle = BorderStyle.FixedSingle;
+            panelLayerParent.Controls.Add(control);
+            control.Dock = DockStyle.Bottom;
+        }
+
+        /// <summary>
+        /// レイヤーエントリコントロールを削除する。
+        /// </summary>
+        /// <param name="index">インデックス番号</param>
+        private void DeleteLayerControl(int index)
+        {
+            var control = (LayerEntryControl)(panelLayerParent.Controls[index]);
+            control.UpButtonClick -= OnLayerUpButtonClick;
+            control.DownButtonClick -= OnLayerDownButtonClick;
+            control.DeleteButtonClick -= OnLayerDeleteButtonClick;
+            panelLayerParent.Controls.RemoveAt(index);
+            control.Dispose();
         }
 
         /// <summary>
@@ -227,11 +267,40 @@ namespace ImageStacker
             var controls = panelLayerParent.Controls;
             if (e.Index < controls.Count)
             {
-                var control = controls[e.Index];
-                controls.RemoveAt(e.Index);
-                control.Dispose();
+                DeleteLayerControl(e.Index);
             }
             UpdateLayerButtonEnable();
+        }
+
+        /// <summary>
+        /// レイヤーセットのデータが変更された時に通知を受け取る。
+        /// </summary>
+        /// <param name="sender">送信元オブジェクト</param>
+        /// <param name="e">イベントオブジェクト</param>
+        private void OnLayerSetDataChanged(object sender, EventArgs e)
+        {
+            var controls = panelLayerParent.Controls;
+            int index = 0;
+
+            while (index < layerSet.Count)
+            {
+                var layer = layerSet.Get(index);
+                if (index < controls.Count)
+                {
+                    var control = (LayerEntryControl)(controls[index]);
+                    control.LayerEntry = layer;
+                }
+                else
+                {
+                    CreateLayerControl(layer);
+                }
+                index++;
+            }
+            // 余計なコントロールは削除
+            while (controls.Count > index)
+            {
+                DeleteLayerControl(controls.Count - 1);
+            }
         }
 
         /// <summary>
@@ -530,9 +599,80 @@ namespace ImageStacker
         /// <param name="e">イベントオブジェクト</param>
         private void OnMenuItemNewClick(object sender, EventArgs e)
         {
-            while (layerSet.Count > 0)
+            layerSet.Clear();
+        }
+
+        /// <summary>
+        /// 設定ファイルのファイルフィルタを得る。
+        /// </summary>
+        /// <returns>ファイルフィルタ文字列</returns>
+        private string GetFilterFileSetting()
+        {
+            var sb = new StringBuilder();
+            sb.Append(Properties.Resources.FILEFILTER_SETTING).Append('|');
+            sb.Append(Properties.Resources.FILEFILTER_ALL);
+            return sb.ToString();
+        }
+
+        /// <summary>
+        /// 保存メニュー項目がクリックされた
+        /// </summary>
+        /// <param name="sender">送信元オブジェクト</param>
+        /// <param name="e">イベントオブジェクト</param>
+        private void OnMenuItemSaveClick(object sender, EventArgs e)
+        {
+            try
             {
-                layerSet.Remove(layerSet.Count - 1);
+                var lastPath = Properties.Settings.Default.LastSaveSettingPath;
+                if (System.IO.File.Exists(lastPath))
+                {
+                    saveFileDialog.InitialDirectory = System.IO.Path.GetDirectoryName(lastPath);
+                    saveFileDialog.FileName = lastPath;
+                }
+                saveFileDialog.Filter = GetFilterFileSetting();
+                saveFileDialog.FilterIndex = 0;
+                if (saveFileDialog.ShowDialog(this) != DialogResult.OK)
+                {
+                    return;
+                }
+
+                Properties.Settings.Default.LastSaveSettingPath = saveFileDialog.FileName;
+                layerSet.SaveTo(saveFileDialog.FileName);
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show(this, ex.Message);
+            }
+        }
+
+        /// <summary>
+        /// 開くメニュー項目がクリックされた
+        /// </summary>
+        /// <param name="sender">送信元オブジェクト</param>
+        /// <param name="e">イベントオブジェクト</param>
+        private void OnMenuItemOpenClick(object sender, EventArgs e)
+        {
+            try
+            {
+                var lastPath = Properties.Settings.Default.LastSaveSettingPath;
+                if (System.IO.File.Exists(lastPath))
+                {
+                    openFileDialog.InitialDirectory = System.IO.Path.GetDirectoryName(lastPath);
+                    openFileDialog.FileName = lastPath;
+                }
+                openFileDialog.Filter = GetFilterFileSetting();
+                openFileDialog.FilterIndex = 0;
+                if (openFileDialog.ShowDialog(this) != DialogResult.OK)
+                {
+                    return;
+                }
+
+                Properties.Settings.Default.LastSaveSettingPath = openFileDialog.FileName;
+                layerSet.LoadFrom(openFileDialog.FileName);
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show(this, ex.Message);
             }
         }
     }

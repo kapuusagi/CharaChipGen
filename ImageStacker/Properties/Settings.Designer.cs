@@ -58,5 +58,17 @@ namespace ImageStacker.Properties {
                 this["WindowSize"] = value;
             }
         }
+        
+        [global::System.Configuration.UserScopedSettingAttribute()]
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.Configuration.DefaultSettingValueAttribute("")]
+        public string LastSaveSettingPath {
+            get {
+                return ((string)(this["LastSaveSettingPath"]));
+            }
+            set {
+                this["LastSaveSettingPath"] = value;
+            }
+        }
     }
 }

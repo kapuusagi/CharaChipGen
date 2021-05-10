@@ -69,5 +69,32 @@ namespace ImageStacker.Properties {
                 return ((System.Drawing.Bitmap)(obj));
             }
         }
+        
+        /// <summary>
+        ///   All File(*.*)|*.* に類似しているローカライズされた文字列を検索します。
+        /// </summary>
+        internal static string FILEFILTER_ALL {
+            get {
+                return ResourceManager.GetString("FILEFILTER_ALL", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   PNG File(*.png)|*.png に類似しているローカライズされた文字列を検索します。
+        /// </summary>
+        internal static string FILEFILTER_PNG {
+            get {
+                return ResourceManager.GetString("FILEFILTER_PNG", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Setting File(*.istack)|*.istack に類似しているローカライズされた文字列を検索します。
+        /// </summary>
+        internal static string FILEFILTER_SETTING {
+            get {
+                return ResourceManager.GetString("FILEFILTER_SETTING", resourceCulture);
+            }
+        }
     }
 }

@@ -4,6 +4,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using System.ComponentModel;
+using System.IO;
 
 namespace ImageStacker
 {
@@ -35,6 +36,19 @@ namespace ImageStacker
         /// レイヤーが変更された
         /// </summary>
         public event LayerEventHandler Modifired;
+        /// <summary>
+        /// データ全体が変更された
+        /// </summary>
+        public event EventHandler DataChanged;
+
+        /// <summary>
+        /// データを全て消去する。
+        /// </summary>
+        public void Clear()
+        {
+            layers.Clear();
+            DataChanged?.Invoke(this, new EventArgs());
+        }
 
         /// <summary>
         /// レイヤー数を得る。
@@ -187,5 +201,87 @@ namespace ImageStacker
         /// <returns>列挙子</returns>
         public IEnumerator<LayerEntry> GetEnumerator()
             => layers.GetEnumerator();
+
+        /// <summary>
+        /// レイヤー設定をファイルに保存する。
+        /// </summary>
+        /// <param name="fileName">ファイル名</param>
+        /// <remarks>
+        /// 画像レンダリングではない。
+        /// </remarks>
+        public void SaveTo(string fileName)
+        {
+            using (FileStream fs = new FileStream(fileName, FileMode.CreateNew, FileAccess.Write))
+            {
+                SaveTo(fs);
+            }
+        }
+
+        /// <summary>
+        /// ストリームに書き出す。
+        /// </summary>
+        /// <param name="stream">ストリーム</param>
+        public void SaveTo(Stream stream)
+        {
+            using (StreamWriter sw = new StreamWriter(stream))
+            {
+                foreach (var layer in layers)
+                {
+                    sw.WriteLine(layer.ToString());
+                }
+            }
+        }
+
+        /// <summary>
+        /// レイヤー設定をファイルから読み出す。
+        /// </summary>
+        /// <param name="fileName"></param>
+        public void LoadFrom(string fileName)
+        {
+            using (FileStream fs = new FileStream(fileName, FileMode.Open, FileAccess.Read))
+            {
+                LoadFrom(fs);
+            }
+        }
+
+        /// <summary>
+        /// 
+        /// </summary>
+        /// <param name="stream"></param>
+        public void LoadFrom(Stream stream)
+        {
+            var newLayers = new List<LayerEntry>();
+            using (StreamReader sr = new StreamReader(stream))
+            {
+                int lineNo = 1;
+                try
+                {
+                    while (!sr.EndOfStream)
+                    {
+                        var line = sr.ReadLine();
+                        LayerEntry entry = LayerEntry.FromString(line);
+                        newLayers.Add(entry);
+                        lineNo++;
+                    }
+                }
+                catch (Exception e)
+                {
+                    throw new Exception($"Index{lineNo}:{e.Message}");
+                }
+            }
+
+            // 既存レイヤーからイベントハンドラを削除
+            foreach (var layer in layers)
+            {
+                layer.PropertyChanged -= OnLayerPropertyChanged;
+            }
+            layers = newLayers;
+            // 新しいレイヤーセットにイベントハンドラを登録
+            foreach (var layer in layers)
+            {
+                layer.PropertyChanged += OnLayerPropertyChanged;
+            }
+            DataChanged?.Invoke(this, new EventArgs());
+        }
     }
 }
