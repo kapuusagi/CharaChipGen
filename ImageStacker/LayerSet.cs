@@ -259,14 +259,14 @@ namespace ImageStacker
                     while (!sr.EndOfStream)
                     {
                         var line = sr.ReadLine();
-                        LayerEntry entry = LayerEntry.FromString(line);
+                        LayerEntry entry = LayerEntry.Parse(line);
                         newLayers.Add(entry);
                         lineNo++;
                     }
                 }
-                catch (Exception e)
+                catch (Exception ex)
                 {
-                    throw new Exception($"Index{lineNo}:{e.Message}");
+                    throw new Exception($"Line{lineNo}:{ex.Message}");
                 }
             }
 

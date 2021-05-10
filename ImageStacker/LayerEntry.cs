@@ -133,7 +133,7 @@ namespace ImageStacker
         /// </summary>
         /// <param name="str">文字列</param>
         /// <returns>LayerEntryオブジェクト。解析エラーが発生した場合には例外が飛ぶ</returns>
-        public static LayerEntry FromString(string str)
+        public static LayerEntry Parse(string str)
         {
             var layer = new LayerEntry();
             var tokens = TextUtility.Split(str, new char[] { ',' });
