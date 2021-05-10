@@ -50,7 +50,7 @@ namespace ImageStacker
             hue = 0;
             saturation = 0;
             value = 0;
-            opacity = 100;
+            opacity = 255;
             selected = false;
         }
 
@@ -160,12 +160,12 @@ namespace ImageStacker
         }
 
         /// <summary>
-        /// 不透明度(0-100)
+        /// 不透明度(0-255)
         /// </summary>
         public int Opacity {
             get { return opacity; }
             set {
-                var setOpacity = Math.Min(100, Math.Max(0, value));
+                var setOpacity = Math.Min(255, Math.Max(0, value));
                 if (this.opacity == setOpacity)
                 {
                     return;

@@ -298,9 +298,9 @@ namespace ImageStacker
                     while ((srcX < srcImage.Width) && (dstX < renderBuf.Width))
                     {
                         var srcColor = srcImage.GetPixel(srcX, y);
-                        if (layer.Opacity < 100)
+                        if (layer.Opacity < 255)
                         {
-                            int newAlpha = (int)(srcColor.A * layer.Opacity / 100.0f);
+                            int newAlpha = (int)(srcColor.A * layer.Opacity / 255.0f);
                             srcColor = Color.FromArgb(newAlpha, srcColor.R, srcColor.G, srcColor.B);
                         }
 

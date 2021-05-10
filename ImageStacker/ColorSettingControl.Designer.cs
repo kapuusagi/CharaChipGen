@@ -141,9 +141,14 @@
             // numericUpDownOpacity
             // 
             resources.ApplyResources(this.numericUpDownOpacity, "numericUpDownOpacity");
+            this.numericUpDownOpacity.Maximum = new decimal(new int[] {
+            255,
+            0,
+            0,
+            0});
             this.numericUpDownOpacity.Name = "numericUpDownOpacity";
             this.numericUpDownOpacity.Value = new decimal(new int[] {
-            100,
+            255,
             0,
             0,
             0});
@@ -179,10 +184,10 @@
             // trackBarOpacity
             // 
             resources.ApplyResources(this.trackBarOpacity, "trackBarOpacity");
-            this.trackBarOpacity.Maximum = 100;
+            this.trackBarOpacity.Maximum = 255;
             this.trackBarOpacity.Name = "trackBarOpacity";
             this.trackBarOpacity.TickFrequency = 10;
-            this.trackBarOpacity.Value = 100;
+            this.trackBarOpacity.Value = 255;
             this.trackBarOpacity.ValueChanged += new System.EventHandler(this.OnTrackBarValueChanged);
             // 
             // ColorSettingControl
