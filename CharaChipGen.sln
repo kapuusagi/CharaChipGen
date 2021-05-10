@@ -1,7 +1,7 @@
 ﻿
 Microsoft Visual Studio Solution File, Format Version 12.00
-# Visual Studio 15
-VisualStudioVersion = 15.0.28307.1259
+# Visual Studio Version 16
+VisualStudioVersion = 16.0.31112.23
 MinimumVisualStudioVersion = 10.0.40219.1
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "CharaChipGen", "CharaChipGen\CharaChipGen.csproj", "{B420D5D8-F835-459E-99E2-E7D9CAA86C36}"
 EndProject
@@ -18,6 +18,11 @@ EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ImageStacker", "ImageStacker\ImageStacker.csproj", "{DD880E4D-374D-4982-876F-A308F5C7CB69}"
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "FImageEditor", "FImageEditor\FImageEditor.csproj", "{C7ABBB7E-36AF-4391-A6C4-962CF1D9B01D}"
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Common", "Common", "{5B219472-D958-44A0-AC62-1BC746147011}"
+	ProjectSection(SolutionItems) = preProject
+		Common\TextUtility.cs = Common\TextUtility.cs
+	EndProjectSection
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution

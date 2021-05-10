@@ -47,6 +47,9 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="..\Common\TextUtility.cs">
+      <Link>TextUtility.cs</Link>
+    </Compile>
     <Compile Include="ColorSettingControl.cs">
       <SubType>UserControl</SubType>
     </Compile>
@@ -79,7 +82,6 @@
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Settings.cs" />
-    <Compile Include="TextUtility.cs" />
     <EmbeddedResource Include="ColorSettingControl.resx">
       <DependentUpon>ColorSettingControl.cs</DependentUpon>
     </EmbeddedResource>

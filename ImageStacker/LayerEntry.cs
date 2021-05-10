@@ -214,7 +214,7 @@ namespace ImageStacker
         public static LayerEntry Parse(string str)
         {
             var layer = new LayerEntry();
-            var tokens = TextUtility.Split(str, new char[] { ',' });
+            var tokens = Common.TextUtility.Split(str, new char[] { ',' });
             foreach (var token in tokens)
             {
                 // '='もファイル名に使えるが、キーワードに=が含まれないから、最初に出現した=で分割して良い。
