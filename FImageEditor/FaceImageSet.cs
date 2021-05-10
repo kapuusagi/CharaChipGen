@@ -64,5 +64,72 @@ namespace FImageEditor
         public int VerticalEntryCount {
             get => 2;
         }
+
+        /// <summary>
+        /// 設定をクリアする。
+        /// </summary>
+        public void Clear()
+        {
+            foreach (var entry in entries)
+            {
+                entry.Reset();
+            }
+        }
+
+        public void SaveTo(string fileName)
+        {
+            using (var fs = new System.IO.FileStream(fileName, System.IO.FileMode.CreateNew, System.IO.FileAccess.Write))
+            {
+                SaveTo(fs);
+            }
+        }
+        public void SaveTo(System.IO.Stream stream)
+        {
+            using (var sw = new System.IO.StreamWriter(stream))
+            {
+                foreach (var entry in entries)
+                {
+                    sw.WriteLine(entry.ToString());
+                }
+            }
+        }
+
+        public void LoadFrom(string fileName)
+        {
+            using (var fs = new System.IO.FileStream(fileName, System.IO.FileMode.Open, System.IO.FileAccess.Read))
+            {
+                LoadFrom(fs);
+            }
+        }
+
+        public void LoadFrom(System.IO.Stream stream)
+        {
+            var newEntries = new List<FaceImageEntry>();
+            using (var sr = new System.IO.StreamReader(stream))
+            {
+                int lineNo = 1;
+                try
+                {
+                    while (!sr.EndOfStream)
+                    {
+                        string line = sr.ReadLine();
+                        var entry = FaceImageEntry.Parse(line);
+                        newEntries.Add(entry);
+                    }
+                }
+                catch (Exception ex)
+                {
+                    throw new Exception($"Line{lineNo}:{ex.Message}");
+                }
+            }
+
+            for (int index = 0; (index < entries.Length) && (index < newEntries.Count); index++)
+            {
+                entries[index].FileName = newEntries[index].FileName;
+                entries[index].X = newEntries[index].X;
+                entries[index].Y = newEntries[index].Y;
+            }
+
+        }
     }
 }

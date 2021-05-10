@@ -39,7 +39,7 @@ namespace FImageEditor
             this.buttonSelect = new System.Windows.Forms.Button();
             this.groupBox1 = new System.Windows.Forms.GroupBox();
             this.panelPictureParent = new System.Windows.Forms.Panel();
-            this.facePictureControl1 = new FImageEditor.FacePictureControl();
+            this.facePictureControl = new FImageEditor.FacePictureControl();
             this.openFileDialog = new System.Windows.Forms.OpenFileDialog();
             this.tableLayoutPanel1.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.numericUpDownX)).BeginInit();
@@ -162,7 +162,7 @@ namespace FImageEditor
             // 
             this.panelPictureParent.BackColor = System.Drawing.Color.Black;
             this.panelPictureParent.BorderStyle = System.Windows.Forms.BorderStyle.Fixed3D;
-            this.panelPictureParent.Controls.Add(this.facePictureControl1);
+            this.panelPictureParent.Controls.Add(this.facePictureControl);
             this.panelPictureParent.Dock = System.Windows.Forms.DockStyle.Fill;
             this.panelPictureParent.Location = new System.Drawing.Point(0, 0);
             this.panelPictureParent.Name = "panelPictureParent";
@@ -171,18 +171,18 @@ namespace FImageEditor
             this.panelPictureParent.TabIndex = 2;
             this.panelPictureParent.Resize += new System.EventHandler(this.OnPanelResized);
             // 
-            // facePictureControl1
+            // facePictureControl
             // 
-            this.facePictureControl1.BackgroundImage = global::FImageEditor.Properties.Resources.Background;
-            this.facePictureControl1.Image = null;
-            this.facePictureControl1.ImageRect = new System.Drawing.Rectangle(0, 0, 0, 0);
-            this.facePictureControl1.Location = new System.Drawing.Point(11, 16);
-            this.facePictureControl1.Name = "facePictureControl1";
-            this.facePictureControl1.Size = new System.Drawing.Size(113, 118);
-            this.facePictureControl1.TabIndex = 0;
-            this.facePictureControl1.MouseDown += new System.Windows.Forms.MouseEventHandler(this.OnPictureBoxMouseDown);
-            this.facePictureControl1.MouseMove += new System.Windows.Forms.MouseEventHandler(this.OnPictureBoxMouseMove);
-            this.facePictureControl1.MouseUp += new System.Windows.Forms.MouseEventHandler(this.OnPictureBoxMouseUp);
+            this.facePictureControl.BackgroundImage = global::FImageEditor.Properties.Resources.Background;
+            this.facePictureControl.Image = null;
+            this.facePictureControl.ImageRect = new System.Drawing.Rectangle(0, 0, 0, 0);
+            this.facePictureControl.Location = new System.Drawing.Point(11, 16);
+            this.facePictureControl.Name = "facePictureControl";
+            this.facePictureControl.Size = new System.Drawing.Size(113, 118);
+            this.facePictureControl.TabIndex = 0;
+            this.facePictureControl.MouseDown += new System.Windows.Forms.MouseEventHandler(this.OnPictureBoxMouseDown);
+            this.facePictureControl.MouseMove += new System.Windows.Forms.MouseEventHandler(this.OnPictureBoxMouseMove);
+            this.facePictureControl.MouseUp += new System.Windows.Forms.MouseEventHandler(this.OnPictureBoxMouseUp);
             // 
             // openFileDialog
             // 
@@ -222,7 +222,7 @@ namespace FImageEditor
         private System.Windows.Forms.Panel panelPictureParent;
         private System.Windows.Forms.TableLayoutPanel tableLayoutPanel2;
         private System.Windows.Forms.Button buttonSelect;
-        private FacePictureControl facePictureControl1;
+        private FacePictureControl facePictureControl;
         private System.Windows.Forms.OpenFileDialog openFileDialog;
     }
 }

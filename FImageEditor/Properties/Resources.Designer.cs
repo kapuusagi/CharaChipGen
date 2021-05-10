@@ -69,5 +69,23 @@ namespace FImageEditor.Properties {
                 return ((System.Drawing.Bitmap)(obj));
             }
         }
+        
+        /// <summary>
+        ///   PNG File(*.png)|*.png|All File(*.*)|*.* に類似しているローカライズされた文字列を検索します。
+        /// </summary>
+        internal static string FILEFILTER_IMAGE {
+            get {
+                return ResourceManager.GetString("FILEFILTER_IMAGE", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Setting File(*.fiset)|*.fiset|All File(*.*)|*.* に類似しているローカライズされた文字列を検索します。
+        /// </summary>
+        internal static string FILEFILTER_SETTING {
+            get {
+                return ResourceManager.GetString("FILEFILTER_SETTING", resourceCulture);
+            }
+        }
     }
 }

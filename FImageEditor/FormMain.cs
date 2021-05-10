@@ -108,6 +108,8 @@ namespace FImageEditor
                 saveFileDialog.InitialDirectory = System.IO.Path.GetDirectoryName(lastFileName);
                 saveFileDialog.FileName = System.IO.Path.GetDirectoryName(lastFileName);
             }
+            saveFileDialog.Filter = Properties.Resources.FILEFILTER_IMAGE;
+            saveFileDialog.FilterIndex = 0;
             if (saveFileDialog.ShowDialog(this) != DialogResult.OK)
             {
                 return;
@@ -140,5 +142,76 @@ namespace FImageEditor
             }
         }
 
+        /// <summary>
+        /// Newメニュー項目がクリックされた
+        /// </summary>
+        /// <param name="sender">送信元オブジェクト</param>
+        /// <param name="e">イベントオブジェクト</param>
+        private void OnMenuItemNewClick(object sender, EventArgs e)
+        {
+            faceImageEntrySet.Clear();
+        }
+
+        /// <summary>
+        /// 保存メニューがクリックされた
+        /// </summary>
+        /// <param name="sender">送信元オブジェクト</param>
+        /// <param name="e">イベントオブジェクト</param>
+        private void OnMenuItemSaveClick(object sender, EventArgs e)
+        {
+            try
+            {
+                var lastFileName = Properties.Settings.Default.LastSaveSettingPath;
+                if (System.IO.File.Exists(lastFileName))
+                {
+                    saveFileDialog.InitialDirectory = System.IO.Path.GetDirectoryName(lastFileName);
+                    saveFileDialog.FileName = System.IO.Path.GetDirectoryName(lastFileName);
+                }
+                saveFileDialog.Filter = Properties.Resources.FILEFILTER_SETTING;
+                saveFileDialog.FilterIndex = 0;
+                if (saveFileDialog.ShowDialog(this) != DialogResult.OK)
+                {
+                    return;
+                }
+                Properties.Settings.Default.LastSaveSettingPath = saveFileDialog.FileName;
+
+                faceImageEntrySet.SaveTo(saveFileDialog.FileName);
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show(this, ex.Message);
+            }
+        }
+
+        /// <summary>
+        /// 開くメニューがクリックされた
+        /// </summary>
+        /// <param name="sender">送信元オブジェクト</param>
+        /// <param name="e">イベントオブジェクト</param>
+        private void OnMenuItemOpenClick(object sender, EventArgs e)
+        {
+            try
+            {
+                var lastFileName = Properties.Settings.Default.LastSaveSettingPath;
+                if (System.IO.File.Exists(lastFileName))
+                {
+                    openFileDialog.InitialDirectory = System.IO.Path.GetDirectoryName(lastFileName);
+                    openFileDialog.FileName = System.IO.Path.GetDirectoryName(lastFileName);
+                }
+                openFileDialog.Filter = Properties.Resources.FILEFILTER_SETTING;
+                openFileDialog.FilterIndex = 0;
+                if (openFileDialog.ShowDialog(this) != DialogResult.OK)
+                {
+                    return;
+                }
+                Properties.Settings.Default.LastSaveSettingPath = openFileDialog.FileName;
+
+                faceImageEntrySet.LoadFrom(openFileDialog.FileName);
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show(this, ex.Message);
+            }
+        }
     }
 }

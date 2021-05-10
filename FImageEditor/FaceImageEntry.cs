@@ -128,5 +128,56 @@ namespace FImageEditor
                 }
             }
         }
+
+        /// <summary>
+        /// このオブジェクトの文字列表現を得る。
+        /// </summary>
+        /// <returns>文字列</returns>
+        public override string ToString()
+        {
+            var sb = new StringBuilder();
+            sb.Append('\"').Append(nameof(FileName)).Append("\"=\"").Append(FileName).Append("\",");
+            sb.Append('\"').Append(nameof(X)).Append("\"=\"").Append(X).Append("\",");
+            sb.Append('\"').Append(nameof(Y)).Append("\"=\"").Append(Y).Append("\",");
+
+            return sb.ToString();
+        }
+
+        /// <summary>
+        /// strをパースしてFaceImageEntryオブジェクトを構築する。
+        /// </summary>
+        /// <param name="str">文字列</param>
+        /// <returns>LayerEntryオブジェクト。解析エラーが発生した場合には例外が飛ぶ</returns>
+        public static FaceImageEntry Parse(string str)
+        {
+            var entry = new FaceImageEntry();
+
+            var tokens = TextUtility.Split(str, new char[] { ',' });
+            foreach (var token in tokens)
+            {
+                // '='もファイル名に使えるが、キーワードに=が含まれないから、最初に出現した=で分割して良い。
+                var index = token.IndexOf('=');
+                if (index >= 0)
+                {
+                    var key = token.Substring(0, index).Trim(new char[] { '\"' });
+                    var value = token.Substring(index + 1).Trim(new char[] { '\"' });
+                    switch (key)
+                    {
+                        case nameof(FileName):
+                            entry.FileName = value;
+                            break;
+                        case nameof(X):
+                            entry.X = int.Parse(value);
+                            break;
+                        case nameof(Y):
+                            entry.Y = int.Parse(value);
+                            break;
+                    }
+                }
+
+            }
+            return entry;
+        }
+
     }
 }

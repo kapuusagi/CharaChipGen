@@ -92,7 +92,7 @@ namespace FImageEditor
                     }
                     else
                     {
-                        facePictureControl1.ImageRect = new Rectangle(entry.X, entry.Y, entry.Width, entry.Height);
+                        facePictureControl.ImageRect = new Rectangle(entry.X, entry.Y, entry.Width, entry.Height);
                         numericUpDownX.Value = entry.X;
                         numericUpDownY.Value = entry.Y;
                     }
@@ -129,7 +129,7 @@ namespace FImageEditor
             var pictureSize = Math.Min(innerWidth, innerHeight); // 正方形にする。
             var x = padding.Left + (innerWidth - pictureSize) / 2;
             var y = padding.Top + (innerHeight - pictureSize) / 2;
-            facePictureControl1.SetBounds(x, y, pictureSize, pictureSize);
+            facePictureControl.SetBounds(x, y, pictureSize, pictureSize);
         }
 
         /// <summary>
@@ -178,7 +178,7 @@ namespace FImageEditor
             if (string.IsNullOrEmpty(fileName))
             {
                 imageFileName = string.Empty;
-                facePictureControl1.Image = null;
+                facePictureControl.Image = null;
             }
             else
             { 
@@ -200,11 +200,17 @@ namespace FImageEditor
                 numericUpDownX.Value = entry.X;
                 numericUpDownY.Value = entry.Y;
 
-                facePictureControl1.Image = image;
-                facePictureControl1.ImageRect = new Rectangle(entry.X, entry.Y, entry.Width, entry.Height);
+                if (facePictureControl.Image != null)
+                {
+                    var prevImage = facePictureControl.Image;
+                    facePictureControl.Image = null;
+                    prevImage.Dispose();
+                }
+                facePictureControl.Image = image;
+                facePictureControl.ImageRect = new Rectangle(entry.X, entry.Y, entry.Width, entry.Height);
             }
-            numericUpDownX.Enabled = facePictureControl1.Image != null;
-            numericUpDownY.Enabled = facePictureControl1.Image != null;
+            numericUpDownX.Enabled = facePictureControl.Image != null;
+            numericUpDownY.Enabled = facePictureControl.Image != null;
         }
 
         /// <summary>
