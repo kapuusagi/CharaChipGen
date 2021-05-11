@@ -16,7 +16,10 @@ namespace ImageStacker
     /// </summary>
     public partial class ColorSettingControl : UserControl
     {
+        // レイヤーエントリ
         private LayerEntry entry;
+        // 色選択ダイアログ
+        private CGenImaging.Forms.ColorSelectDialog colorDialog;
 
         /// <summary>
         /// 新しいインスタンスを構築する。
@@ -24,7 +27,24 @@ namespace ImageStacker
         public ColorSettingControl()
         {
             entry = null;
+            colorDialog = null;
             InitializeComponent();
+        }
+        /// <summary> 
+        /// 使用中のリソースをすべてクリーンアップします。
+        /// </summary>
+        /// <param name="disposing">マネージド リソースを破棄する場合は true を指定し、その他の場合は false を指定します。</param>
+        protected override void Dispose(bool disposing)
+        {
+            if (disposing && (components != null))
+            {
+                components.Dispose();
+            }
+            if (disposing && (colorDialog != null))
+            {
+                colorDialog.Dispose();
+            }
+            base.Dispose(disposing);
         }
 
         /// <summary>
@@ -70,6 +90,8 @@ namespace ImageStacker
                     numericUpDownValue.Value = entry.Value;
                     trackBarOpacity.Value = entry.Opacity;
                     numericUpDownOpacity.Value = entry.Opacity;
+                    checkBoxEnableMonoric.Checked = entry.MonoricConversionEnabled;
+                    labelMonoricColor.BackColor = entry.MonoricConvertColor;
                 }
                 else
                 {
@@ -81,6 +103,8 @@ namespace ImageStacker
                     numericUpDownValue.Value = 0;
                     trackBarOpacity.Value = 0;
                     numericUpDownOpacity.Value = 0;
+                    checkBoxEnableMonoric.Checked = false;
+                    labelMonoricColor.BackColor = Color.Black;
                 }
             }
         }
@@ -113,6 +137,12 @@ namespace ImageStacker
                 case nameof(LayerEntry.Opacity):
                     trackBarOpacity.Value = entry.Opacity;
                     numericUpDownOpacity.Value = entry.Opacity;
+                    break;
+                case nameof(LayerEntry.MonoricConversionEnabled):
+                    checkBoxEnableMonoric.Checked = LayerEntry.MonoricConversionEnabled;
+                    break;
+                case nameof(LayerEntry.MonoricConvertColor):
+                    labelMonoricColor.BackColor = LayerEntry.MonoricConvertColor;
                     break;
             }
         }
@@ -190,6 +220,52 @@ namespace ImageStacker
                 trackBarSaturation.Visible = value;
                 numericUpDownValue.Visible = value;
                 trackBarValue.Visible = value;
+            }
+        }
+
+        /// <summary>
+        /// 単色フィルタ有効無効チェックボックスがクリックされた時の処理を行う。
+        /// </summary>
+        /// <param name="sender">送信元オブジェクト</param>
+        /// <param name="e">イベントオブジェクト</param>
+        private void OnCheckBoxEnableMonoricChecked(object sender, EventArgs e)
+        {
+            if (entry == null)
+            {
+                return;
+            }
+            var enabled = !((CheckBox)(sender)).Checked;
+            entry.MonoricConversionEnabled = enabled;
+        }
+
+        /// <summary>
+        /// 単色化カラーがクリックされた
+        /// </summary>
+        /// <param name="sender">送信元オブジェクト</param>
+        /// <param name="e">イベントオブジェクト</param>
+        private void OnLabelMonoricColorClick(object sender, EventArgs e)
+        {
+            if (entry == null)
+            {
+                return;
+            }
+
+            try
+            {
+                if (colorDialog == null)
+                {
+                    colorDialog = new CGenImaging.Forms.ColorSelectDialog();
+                }
+                colorDialog.Color = entry.MonoricConvertColor;
+                if (colorDialog.ShowDialog(this) != DialogResult.OK)
+                {
+                    return;
+                }
+                entry.MonoricConvertColor = colorDialog.Color;
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show(FindForm(), ex.Message);
             }
         }
     }

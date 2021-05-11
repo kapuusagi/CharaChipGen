@@ -4,6 +4,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using System.ComponentModel;
+using System.Drawing;
 
 namespace ImageStacker
 {
@@ -37,6 +38,11 @@ namespace ImageStacker
         private int value;
         // 不透明度（高いほど不透明） = アルファチャンネル
         private int opacity;
+        // 単色
+        private bool monoricConversionEnabled;
+        // カラー
+        private Color monoricConvertColor;
+
         // 選択されているかどうか
         private bool selected;
         /// <summary>
@@ -51,6 +57,8 @@ namespace ImageStacker
             saturation = 0;
             value = 0;
             opacity = 255;
+            monoricConversionEnabled = false;
+            monoricConvertColor = Color.Black;
             selected = false;
         }
 
@@ -174,6 +182,33 @@ namespace ImageStacker
                 NotifyPropertyChanged(nameof(Opacity));
             }
         }
+        /// <summary>
+        /// 単色変換を行うかどうか
+        /// </summary>
+        public bool MonoricConversionEnabled {
+            get => monoricConversionEnabled;
+            set {
+                if (monoricConversionEnabled != value)
+                {
+                    monoricConversionEnabled = value;
+                    NotifyPropertyChanged(nameof(MonoricConversionEnabled));
+                }
+            }
+        }
+
+        /// <summary>
+        /// 単色変換指定色
+        /// </summary>
+        public Color MonoricConvertColor {
+            get => monoricConvertColor;
+            set {
+                if (!monoricConvertColor.Equals(value))
+                {
+                    monoricConvertColor = value;
+                    NotifyPropertyChanged(nameof(MonoricConvertColor));
+                }
+            }
+        }
 
         /// <summary>
         /// 選択状態
@@ -203,6 +238,8 @@ namespace ImageStacker
             sb.Append('\"').Append(nameof(Saturation)).Append("\"=\"").Append(Saturation).Append("\",");
             sb.Append('\"').Append(nameof(Value)).Append("\"=\"").Append(Value).Append("\",");
             sb.Append('\"').Append(nameof(Opacity)).Append("\"=\"").Append(Opacity).Append("\",");
+            sb.Append('\"').Append(nameof(MonoricConversionEnabled)).Append("\"=\"").Append(MonoricConversionEnabled).Append("\",");
+            sb.Append('\"').Append(nameof(MonoricConvertColor)).Append("\"=\"").Append(MonoricConvertColor.ToArgb()).Append("\",");
             return sb.ToString();
         }
 
@@ -245,6 +282,12 @@ namespace ImageStacker
                             break;
                         case nameof(Opacity):
                             layer.Opacity = int.Parse(value);
+                            break;
+                        case nameof(MonoricConversionEnabled):
+                            layer.MonoricConversionEnabled = bool.Parse(value);
+                            break;
+                        case nameof(MonoricConvertColor):
+                            layer.MonoricConvertColor = Color.FromArgb(int.Parse(value));
                             break;
                     }
                 }

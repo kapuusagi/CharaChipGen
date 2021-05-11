@@ -7,18 +7,7 @@
         /// </summary>
         private System.ComponentModel.IContainer components = null;
 
-        /// <summary> 
-        /// 使用中のリソースをすべてクリーンアップします。
-        /// </summary>
-        /// <param name="disposing">マネージド リソースを破棄する場合は true を指定し、その他の場合は false を指定します。</param>
-        protected override void Dispose(bool disposing)
-        {
-            if (disposing && (components != null))
-            {
-                components.Dispose();
-            }
-            base.Dispose(disposing);
-        }
+
 
         #region コンポーネント デザイナーで生成されたコード
 
@@ -42,6 +31,9 @@
             this.trackBarSaturation = new System.Windows.Forms.TrackBar();
             this.trackBarValue = new System.Windows.Forms.TrackBar();
             this.trackBarOpacity = new System.Windows.Forms.TrackBar();
+            this.groupBox1 = new System.Windows.Forms.GroupBox();
+            this.checkBoxEnableMonoric = new System.Windows.Forms.CheckBox();
+            this.labelMonoricColor = new System.Windows.Forms.Label();
             this.tableLayoutPanel1.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.numericUpDownHue)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.numericUpDownSaturation)).BeginInit();
@@ -51,6 +43,7 @@
             ((System.ComponentModel.ISupportInitialize)(this.trackBarSaturation)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.trackBarValue)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.trackBarOpacity)).BeginInit();
+            this.groupBox1.SuspendLayout();
             this.SuspendLayout();
             // 
             // tableLayoutPanel1
@@ -68,6 +61,8 @@
             this.tableLayoutPanel1.Controls.Add(this.trackBarSaturation, 1, 1);
             this.tableLayoutPanel1.Controls.Add(this.trackBarValue, 1, 2);
             this.tableLayoutPanel1.Controls.Add(this.trackBarOpacity, 1, 3);
+            this.tableLayoutPanel1.Controls.Add(this.checkBoxEnableMonoric, 0, 4);
+            this.tableLayoutPanel1.Controls.Add(this.labelMonoricColor, 2, 4);
             this.tableLayoutPanel1.Name = "tableLayoutPanel1";
             // 
             // label2
@@ -190,11 +185,35 @@
             this.trackBarOpacity.Value = 255;
             this.trackBarOpacity.ValueChanged += new System.EventHandler(this.OnTrackBarValueChanged);
             // 
+            // groupBox1
+            // 
+            this.groupBox1.Controls.Add(this.tableLayoutPanel1);
+            resources.ApplyResources(this.groupBox1, "groupBox1");
+            this.groupBox1.Name = "groupBox1";
+            this.groupBox1.TabStop = false;
+            // 
+            // checkBoxEnableMonoric
+            // 
+            resources.ApplyResources(this.checkBoxEnableMonoric, "checkBoxEnableMonoric");
+            this.checkBoxEnableMonoric.AutoCheck = false;
+            this.tableLayoutPanel1.SetColumnSpan(this.checkBoxEnableMonoric, 2);
+            this.checkBoxEnableMonoric.Name = "checkBoxEnableMonoric";
+            this.checkBoxEnableMonoric.UseVisualStyleBackColor = true;
+            this.checkBoxEnableMonoric.Click += new System.EventHandler(this.OnCheckBoxEnableMonoricChecked);
+            // 
+            // labelMonoricColor
+            // 
+            resources.ApplyResources(this.labelMonoricColor, "labelMonoricColor");
+            this.labelMonoricColor.BackColor = System.Drawing.Color.Black;
+            this.labelMonoricColor.BorderStyle = System.Windows.Forms.BorderStyle.Fixed3D;
+            this.labelMonoricColor.Name = "labelMonoricColor";
+            this.labelMonoricColor.Click += new System.EventHandler(this.OnLabelMonoricColorClick);
+            // 
             // ColorSettingControl
             // 
             resources.ApplyResources(this, "$this");
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.Controls.Add(this.tableLayoutPanel1);
+            this.Controls.Add(this.groupBox1);
             this.Name = "ColorSettingControl";
             this.tableLayoutPanel1.ResumeLayout(false);
             this.tableLayoutPanel1.PerformLayout();
@@ -206,6 +225,7 @@
             ((System.ComponentModel.ISupportInitialize)(this.trackBarSaturation)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.trackBarValue)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.trackBarOpacity)).EndInit();
+            this.groupBox1.ResumeLayout(false);
             this.ResumeLayout(false);
 
         }
@@ -225,5 +245,8 @@
         private System.Windows.Forms.TrackBar trackBarSaturation;
         private System.Windows.Forms.TrackBar trackBarValue;
         private System.Windows.Forms.TrackBar trackBarOpacity;
+        private System.Windows.Forms.GroupBox groupBox1;
+        private System.Windows.Forms.CheckBox checkBoxEnableMonoric;
+        private System.Windows.Forms.Label labelMonoricColor;
     }
 }

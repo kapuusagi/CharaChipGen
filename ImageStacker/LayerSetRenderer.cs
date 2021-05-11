@@ -306,6 +306,11 @@ namespace ImageStacker
 
                         if (srcColor.A > 0)
                         {
+                            if (layer.MonoricConversionEnabled)
+                            {
+                                srcColor = ImageProcessor.MonoricColor(srcColor, layer.MonoricConvertColor);
+                            }
+
                             srcColor = ImageProcessor.ProcessHSLFilter(srcColor,
                                 layer.Hue, layer.Saturation, layer.Value);
 

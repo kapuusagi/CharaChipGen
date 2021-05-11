@@ -136,7 +136,7 @@
     <value>9, 4</value>
   </data>
   <data name="label2.Size" type="System.Drawing.Size, System.Drawing">
-    <value>75, 43</value>
+    <value>68, 45</value>
   </data>
   <data name="label2.TabIndex" type="System.Int32, mscorlib">
     <value>3</value>
@@ -169,10 +169,10 @@
     <value>NoControl</value>
   </data>
   <data name="label3.Location" type="System.Drawing.Point, System.Drawing">
-    <value>9, 47</value>
+    <value>9, 49</value>
   </data>
   <data name="label3.Size" type="System.Drawing.Size, System.Drawing">
-    <value>75, 43</value>
+    <value>68, 45</value>
   </data>
   <data name="label3.TabIndex" type="System.Int32, mscorlib">
     <value>6</value>
@@ -205,10 +205,10 @@
     <value>NoControl</value>
   </data>
   <data name="label4.Location" type="System.Drawing.Point, System.Drawing">
-    <value>9, 90</value>
+    <value>9, 94</value>
   </data>
   <data name="label4.Size" type="System.Drawing.Size, System.Drawing">
-    <value>75, 43</value>
+    <value>68, 45</value>
   </data>
   <data name="label4.TabIndex" type="System.Int32, mscorlib">
     <value>9</value>
@@ -241,10 +241,10 @@
     <value>NoControl</value>
   </data>
   <data name="label5.Location" type="System.Drawing.Point, System.Drawing">
-    <value>9, 133</value>
+    <value>9, 139</value>
   </data>
   <data name="label5.Size" type="System.Drawing.Size, System.Drawing">
-    <value>75, 43</value>
+    <value>68, 45</value>
   </data>
   <data name="label5.TabIndex" type="System.Int32, mscorlib">
     <value>12</value>
@@ -267,11 +267,14 @@
   <data name="&gt;&gt;label5.ZOrder" xml:space="preserve">
     <value>3</value>
   </data>
+  <data name="numericUpDownHue.Anchor" type="System.Windows.Forms.AnchorStyles, System.Windows.Forms">
+    <value>Left, Right</value>
+  </data>
   <data name="numericUpDownHue.Location" type="System.Drawing.Point, System.Drawing">
-    <value>171, 7</value>
+    <value>157, 17</value>
   </data>
   <data name="numericUpDownHue.Size" type="System.Drawing.Size, System.Drawing">
-    <value>55, 19</value>
+    <value>57, 19</value>
   </data>
   <data name="numericUpDownHue.TabIndex" type="System.Int32, mscorlib">
     <value>5</value>
@@ -288,11 +291,14 @@
   <data name="&gt;&gt;numericUpDownHue.ZOrder" xml:space="preserve">
     <value>4</value>
   </data>
+  <data name="numericUpDownSaturation.Anchor" type="System.Windows.Forms.AnchorStyles, System.Windows.Forms">
+    <value>Left, Right</value>
+  </data>
   <data name="numericUpDownSaturation.Location" type="System.Drawing.Point, System.Drawing">
-    <value>171, 50</value>
+    <value>157, 62</value>
   </data>
   <data name="numericUpDownSaturation.Size" type="System.Drawing.Size, System.Drawing">
-    <value>55, 19</value>
+    <value>57, 19</value>
   </data>
   <data name="numericUpDownSaturation.TabIndex" type="System.Int32, mscorlib">
     <value>8</value>
@@ -309,11 +315,14 @@
   <data name="&gt;&gt;numericUpDownSaturation.ZOrder" xml:space="preserve">
     <value>5</value>
   </data>
+  <data name="numericUpDownValue.Anchor" type="System.Windows.Forms.AnchorStyles, System.Windows.Forms">
+    <value>Left, Right</value>
+  </data>
   <data name="numericUpDownValue.Location" type="System.Drawing.Point, System.Drawing">
-    <value>171, 93</value>
+    <value>157, 107</value>
   </data>
   <data name="numericUpDownValue.Size" type="System.Drawing.Size, System.Drawing">
-    <value>55, 19</value>
+    <value>57, 19</value>
   </data>
   <data name="numericUpDownValue.TabIndex" type="System.Int32, mscorlib">
     <value>11</value>
@@ -330,11 +339,14 @@
   <data name="&gt;&gt;numericUpDownValue.ZOrder" xml:space="preserve">
     <value>6</value>
   </data>
+  <data name="numericUpDownOpacity.Anchor" type="System.Windows.Forms.AnchorStyles, System.Windows.Forms">
+    <value>Left, Right</value>
+  </data>
   <data name="numericUpDownOpacity.Location" type="System.Drawing.Point, System.Drawing">
-    <value>171, 136</value>
+    <value>157, 152</value>
   </data>
   <data name="numericUpDownOpacity.Size" type="System.Drawing.Size, System.Drawing">
-    <value>55, 19</value>
+    <value>57, 19</value>
   </data>
   <data name="numericUpDownOpacity.TabIndex" type="System.Int32, mscorlib">
     <value>14</value>
@@ -351,14 +363,17 @@
   <data name="&gt;&gt;numericUpDownOpacity.ZOrder" xml:space="preserve">
     <value>7</value>
   </data>
+  <data name="trackBarHue.Anchor" type="System.Windows.Forms.AnchorStyles, System.Windows.Forms">
+    <value>Left, Right</value>
+  </data>
   <data name="trackBarHue.ImeMode" type="System.Windows.Forms.ImeMode, System.Windows.Forms">
     <value>NoControl</value>
   </data>
   <data name="trackBarHue.Location" type="System.Drawing.Point, System.Drawing">
-    <value>90, 7</value>
+    <value>83, 7</value>
   </data>
   <data name="trackBarHue.Size" type="System.Drawing.Size, System.Drawing">
-    <value>75, 37</value>
+    <value>68, 39</value>
   </data>
   <data name="trackBarHue.TabIndex" type="System.Int32, mscorlib">
     <value>4</value>
@@ -375,14 +390,17 @@
   <data name="&gt;&gt;trackBarHue.ZOrder" xml:space="preserve">
     <value>8</value>
   </data>
+  <data name="trackBarSaturation.Anchor" type="System.Windows.Forms.AnchorStyles, System.Windows.Forms">
+    <value>Left, Right</value>
+  </data>
   <data name="trackBarSaturation.ImeMode" type="System.Windows.Forms.ImeMode, System.Windows.Forms">
     <value>NoControl</value>
   </data>
   <data name="trackBarSaturation.Location" type="System.Drawing.Point, System.Drawing">
-    <value>90, 50</value>
+    <value>83, 52</value>
   </data>
   <data name="trackBarSaturation.Size" type="System.Drawing.Size, System.Drawing">
-    <value>75, 37</value>
+    <value>68, 39</value>
   </data>
   <data name="trackBarSaturation.TabIndex" type="System.Int32, mscorlib">
     <value>7</value>
@@ -399,14 +417,17 @@
   <data name="&gt;&gt;trackBarSaturation.ZOrder" xml:space="preserve">
     <value>9</value>
   </data>
+  <data name="trackBarValue.Anchor" type="System.Windows.Forms.AnchorStyles, System.Windows.Forms">
+    <value>Left, Right</value>
+  </data>
   <data name="trackBarValue.ImeMode" type="System.Windows.Forms.ImeMode, System.Windows.Forms">
     <value>NoControl</value>
   </data>
   <data name="trackBarValue.Location" type="System.Drawing.Point, System.Drawing">
-    <value>90, 93</value>
+    <value>83, 97</value>
   </data>
   <data name="trackBarValue.Size" type="System.Drawing.Size, System.Drawing">
-    <value>75, 37</value>
+    <value>68, 39</value>
   </data>
   <data name="trackBarValue.TabIndex" type="System.Int32, mscorlib">
     <value>10</value>
@@ -423,14 +444,17 @@
   <data name="&gt;&gt;trackBarValue.ZOrder" xml:space="preserve">
     <value>10</value>
   </data>
+  <data name="trackBarOpacity.Anchor" type="System.Windows.Forms.AnchorStyles, System.Windows.Forms">
+    <value>Left, Right</value>
+  </data>
   <data name="trackBarOpacity.ImeMode" type="System.Windows.Forms.ImeMode, System.Windows.Forms">
     <value>NoControl</value>
   </data>
   <data name="trackBarOpacity.Location" type="System.Drawing.Point, System.Drawing">
-    <value>90, 136</value>
+    <value>83, 142</value>
   </data>
   <data name="trackBarOpacity.Size" type="System.Drawing.Size, System.Drawing">
-    <value>75, 37</value>
+    <value>68, 39</value>
   </data>
   <data name="trackBarOpacity.TabIndex" type="System.Int32, mscorlib">
     <value>13</value>
@@ -447,17 +471,74 @@
   <data name="&gt;&gt;trackBarOpacity.ZOrder" xml:space="preserve">
     <value>11</value>
   </data>
+  <data name="checkBoxEnableMonoric.Anchor" type="System.Windows.Forms.AnchorStyles, System.Windows.Forms">
+    <value>Left, Right</value>
+  </data>
+  <data name="checkBoxEnableMonoric.AutoSize" type="System.Boolean, mscorlib">
+    <value>True</value>
+  </data>
+  <data name="checkBoxEnableMonoric.Location" type="System.Drawing.Point, System.Drawing">
+    <value>9, 199</value>
+  </data>
+  <data name="checkBoxEnableMonoric.Size" type="System.Drawing.Size, System.Drawing">
+    <value>142, 16</value>
+  </data>
+  <data name="checkBoxEnableMonoric.TabIndex" type="System.Int32, mscorlib">
+    <value>15</value>
+  </data>
+  <data name="checkBoxEnableMonoric.Text" xml:space="preserve">
+    <value>Tone</value>
+  </data>
+  <data name="&gt;&gt;checkBoxEnableMonoric.Name" xml:space="preserve">
+    <value>checkBoxEnableMonoric</value>
+  </data>
+  <data name="&gt;&gt;checkBoxEnableMonoric.Type" xml:space="preserve">
+    <value>System.Windows.Forms.CheckBox, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="&gt;&gt;checkBoxEnableMonoric.Parent" xml:space="preserve">
+    <value>tableLayoutPanel1</value>
+  </data>
+  <data name="&gt;&gt;checkBoxEnableMonoric.ZOrder" xml:space="preserve">
+    <value>12</value>
+  </data>
+  <data name="labelMonoricColor.Anchor" type="System.Windows.Forms.AnchorStyles, System.Windows.Forms">
+    <value>Left, Right</value>
+  </data>
+  <data name="labelMonoricColor.Location" type="System.Drawing.Point, System.Drawing">
+    <value>157, 196</value>
+  </data>
+  <data name="labelMonoricColor.Size" type="System.Drawing.Size, System.Drawing">
+    <value>57, 23</value>
+  </data>
+  <data name="labelMonoricColor.TabIndex" type="System.Int32, mscorlib">
+    <value>16</value>
+  </data>
+  <data name="&gt;&gt;labelMonoricColor.Name" xml:space="preserve">
+    <value>labelMonoricColor</value>
+  </data>
+  <data name="&gt;&gt;labelMonoricColor.Type" xml:space="preserve">
+    <value>System.Windows.Forms.Label, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="&gt;&gt;labelMonoricColor.Parent" xml:space="preserve">
+    <value>tableLayoutPanel1</value>
+  </data>
+  <data name="&gt;&gt;labelMonoricColor.ZOrder" xml:space="preserve">
+    <value>13</value>
+  </data>
+  <data name="tableLayoutPanel1.Dock" type="System.Windows.Forms.DockStyle, System.Windows.Forms">
+    <value>Fill</value>
+  </data>
   <data name="tableLayoutPanel1.Location" type="System.Drawing.Point, System.Drawing">
-    <value>3, 3</value>
+    <value>3, 15</value>
   </data>
   <data name="tableLayoutPanel1.Padding" type="System.Windows.Forms.Padding, System.Windows.Forms">
     <value>6, 4, 6, 4</value>
   </data>
   <data name="tableLayoutPanel1.RowCount" type="System.Int32, mscorlib">
-    <value>4</value>
+    <value>5</value>
   </data>
   <data name="tableLayoutPanel1.Size" type="System.Drawing.Size, System.Drawing">
-    <value>237, 180</value>
+    <value>223, 235</value>
   </data>
   <data name="tableLayoutPanel1.TabIndex" type="System.Int32, mscorlib">
     <value>1</value>
@@ -469,13 +550,37 @@
     <value>System.Windows.Forms.TableLayoutPanel, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </data>
   <data name="&gt;&gt;tableLayoutPanel1.Parent" xml:space="preserve">
-    <value>$this</value>
+    <value>groupBox1</value>
   </data>
   <data name="&gt;&gt;tableLayoutPanel1.ZOrder" xml:space="preserve">
     <value>0</value>
   </data>
   <data name="tableLayoutPanel1.LayoutSettings" type="System.Windows.Forms.TableLayoutSettings, System.Windows.Forms">
-    <value>&lt;?xml version="1.0" encoding="utf-16"?&gt;&lt;TableLayoutSettings&gt;&lt;Controls&gt;&lt;Control Name="label2" Row="0" RowSpan="1" Column="0" ColumnSpan="1" /&gt;&lt;Control Name="label3" Row="1" RowSpan="1" Column="0" ColumnSpan="1" /&gt;&lt;Control Name="label4" Row="2" RowSpan="1" Column="0" ColumnSpan="1" /&gt;&lt;Control Name="label5" Row="3" RowSpan="1" Column="0" ColumnSpan="1" /&gt;&lt;Control Name="numericUpDownHue" Row="0" RowSpan="1" Column="2" ColumnSpan="1" /&gt;&lt;Control Name="numericUpDownSaturation" Row="1" RowSpan="1" Column="2" ColumnSpan="1" /&gt;&lt;Control Name="numericUpDownValue" Row="2" RowSpan="1" Column="2" ColumnSpan="1" /&gt;&lt;Control Name="numericUpDownOpacity" Row="3" RowSpan="1" Column="2" ColumnSpan="1" /&gt;&lt;Control Name="trackBarHue" Row="0" RowSpan="1" Column="1" ColumnSpan="1" /&gt;&lt;Control Name="trackBarSaturation" Row="1" RowSpan="1" Column="1" ColumnSpan="1" /&gt;&lt;Control Name="trackBarValue" Row="2" RowSpan="1" Column="1" ColumnSpan="1" /&gt;&lt;Control Name="trackBarOpacity" Row="3" RowSpan="1" Column="1" ColumnSpan="1" /&gt;&lt;/Controls&gt;&lt;Columns Styles="Percent,50,Percent,50,Absolute,63" /&gt;&lt;Rows Styles="Percent,25,Percent,25,Percent,25,Percent,25,Absolute,20" /&gt;&lt;/TableLayoutSettings&gt;</value>
+    <value>&lt;?xml version="1.0" encoding="utf-16"?&gt;&lt;TableLayoutSettings&gt;&lt;Controls&gt;&lt;Control Name="label2" Row="0" RowSpan="1" Column="0" ColumnSpan="1" /&gt;&lt;Control Name="label3" Row="1" RowSpan="1" Column="0" ColumnSpan="1" /&gt;&lt;Control Name="label4" Row="2" RowSpan="1" Column="0" ColumnSpan="1" /&gt;&lt;Control Name="label5" Row="3" RowSpan="1" Column="0" ColumnSpan="1" /&gt;&lt;Control Name="numericUpDownHue" Row="0" RowSpan="1" Column="2" ColumnSpan="1" /&gt;&lt;Control Name="numericUpDownSaturation" Row="1" RowSpan="1" Column="2" ColumnSpan="1" /&gt;&lt;Control Name="numericUpDownValue" Row="2" RowSpan="1" Column="2" ColumnSpan="1" /&gt;&lt;Control Name="numericUpDownOpacity" Row="3" RowSpan="1" Column="2" ColumnSpan="1" /&gt;&lt;Control Name="trackBarHue" Row="0" RowSpan="1" Column="1" ColumnSpan="1" /&gt;&lt;Control Name="trackBarSaturation" Row="1" RowSpan="1" Column="1" ColumnSpan="1" /&gt;&lt;Control Name="trackBarValue" Row="2" RowSpan="1" Column="1" ColumnSpan="1" /&gt;&lt;Control Name="trackBarOpacity" Row="3" RowSpan="1" Column="1" ColumnSpan="1" /&gt;&lt;Control Name="checkBoxEnableMonoric" Row="4" RowSpan="1" Column="0" ColumnSpan="2" /&gt;&lt;Control Name="labelMonoricColor" Row="4" RowSpan="1" Column="2" ColumnSpan="1" /&gt;&lt;/Controls&gt;&lt;Columns Styles="Percent,50,Percent,50,Absolute,63" /&gt;&lt;Rows Styles="Percent,20,Percent,20,Percent,20,Percent,20,Percent,20" /&gt;&lt;/TableLayoutSettings&gt;</value>
+  </data>
+  <data name="groupBox1.Location" type="System.Drawing.Point, System.Drawing">
+    <value>3, 3</value>
+  </data>
+  <data name="groupBox1.Size" type="System.Drawing.Size, System.Drawing">
+    <value>229, 253</value>
+  </data>
+  <data name="groupBox1.TabIndex" type="System.Int32, mscorlib">
+    <value>2</value>
+  </data>
+  <data name="groupBox1.Text" xml:space="preserve">
+    <value>Option</value>
+  </data>
+  <data name="&gt;&gt;groupBox1.Name" xml:space="preserve">
+    <value>groupBox1</value>
+  </data>
+  <data name="&gt;&gt;groupBox1.Type" xml:space="preserve">
+    <value>System.Windows.Forms.GroupBox, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="&gt;&gt;groupBox1.Parent" xml:space="preserve">
+    <value>$this</value>
+  </data>
+  <data name="&gt;&gt;groupBox1.ZOrder" xml:space="preserve">
+    <value>0</value>
   </data>
   <metadata name="$this.Localizable" type="System.Boolean, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089">
     <value>True</value>
@@ -484,7 +589,7 @@
     <value>6, 12</value>
   </data>
   <data name="$this.Size" type="System.Drawing.Size, System.Drawing">
-    <value>240, 180</value>
+    <value>240, 264</value>
   </data>
   <data name="&gt;&gt;$this.Name" xml:space="preserve">
     <value>ColorSettingControl</value>
