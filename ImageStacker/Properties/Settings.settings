@@ -5,7 +5,7 @@
     <Setting Name="LastOpenPath" Type="System.String" Scope="User">
       <Value Profile="(Default)" />
     </Setting>
-    <Setting Name="LastSavePath" Type="System.String" Scope="User">
+    <Setting Name="LastExportPath" Type="System.String" Scope="User">
       <Value Profile="(Default)" />
     </Setting>
     <Setting Name="WindowSize" Type="System.Drawing.Size" Scope="User">

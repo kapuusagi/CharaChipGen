@@ -130,7 +130,7 @@ namespace ImageStacker
                 return;
             }
 
-            var lastSaveFileName = Properties.Settings.Default.LastSavePath;
+            var lastSaveFileName = Properties.Settings.Default.LastExportPath;
             if (System.IO.File.Exists(lastSaveFileName))
             {
                 saveFileDialog.InitialDirectory = System.IO.Path.GetDirectoryName(lastSaveFileName);
@@ -143,7 +143,7 @@ namespace ImageStacker
                 return;
             }
 
-            Properties.Settings.Default.LastSavePath = saveFileDialog.FileName;
+            Properties.Settings.Default.LastExportPath = saveFileDialog.FileName;
 
             var renderImage = renderer.GetRenderImage();
             renderImage.Save(saveFileDialog.FileName);

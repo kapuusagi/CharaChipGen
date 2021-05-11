@@ -38,12 +38,12 @@ namespace ImageStacker.Properties {
         [global::System.Configuration.UserScopedSettingAttribute()]
         [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
         [global::System.Configuration.DefaultSettingValueAttribute("")]
-        public string LastSavePath {
+        public string LastExportPath {
             get {
-                return ((string)(this["LastSavePath"]));
+                return ((string)(this["LastExportPath"]));
             }
             set {
-                this["LastSavePath"] = value;
+                this["LastExportPath"] = value;
             }
         }
         
