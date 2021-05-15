@@ -315,14 +315,15 @@ namespace ImageStacker
                                 layer.Hue, layer.Saturation, layer.Value);
 
                             Color writeColor;
-                            if (srcColor.A >= 255)
+                            Color dstColor = renderBuf.GetPixel(dstX, dstY);
+                            if ((srcColor.A >= 255) || (dstColor.A == 0))
                             {
                                 // 塗りつぶし
                                 writeColor = srcColor;
                             }
                             else
                             {
-                                writeColor = ImageProcessor.Blend(srcColor, renderBuf.GetPixel(dstX, dstY));
+                                writeColor = ImageProcessor.Blend(srcColor, dstColor);
                             }
                             renderBuf.SetPixel(dstX, dstY, writeColor);
                         }
