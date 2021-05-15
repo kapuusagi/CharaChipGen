@@ -131,7 +131,7 @@ namespace FImageEditor
                         var writeImage = ImageBuffer.CreateFrom(srcImage);
                         int dstXOffs = entry.Width * (i % faceImageEntrySet.HorizontalEntryCount);
                         int dstYOffs = entry.Height * (i / faceImageEntrySet.HorizontalEntryCount);
-                        imageBuffer.WriteImage(writeImage, 0, 0, dstXOffs, dstYOffs, entry.Width, entry.Height);
+                        imageBuffer.WriteImage(writeImage, entry.X, entry.Y, dstXOffs, dstYOffs, entry.Width, entry.Height);
                     }
                 }
             }
