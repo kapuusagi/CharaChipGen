@@ -211,12 +211,13 @@ namespace CGenImaging
 
         /// <summary>
         /// 色のブレンディング処理を行う。
+        /// 通常のブレンドモード(Nrmal, c1)
         /// 
         /// ブレンディング処理については以下のURLを参考にした。
         /// http://d.hatena.ne.jp/yus_iri/20110921/1316610121
         /// </summary>
-        /// <param name="c1">色1</param>
-        /// <param name="c2">色2</param>
+        /// <param name="c1">色1(前景色)</param>
+        /// <param name="c2">色2(背景色)</param>
         /// <returns>ブレンディングされた色</returns>
         public static Color Blend(Color c1, Color c2)
         {
@@ -228,9 +229,10 @@ namespace CGenImaging
             {
                 return Color.FromArgb(0, 0, 0, 0);
             }
-            int r = (int)(ColorUtility.Clamp((a1 * (c1.R + c2.R) / 2 + a2 * c1.R + a3 * c2.R) / alpha, 0, 255));
-            int g = (int)(ColorUtility.Clamp((a1 * (c1.G + c2.G) / 2 + a2 * c1.G + a3 * c2.G) / alpha, 0, 255));
-            int b = (int)(ColorUtility.Clamp((a1 * (c1.B + c2.B) / 2 + a2 * c1.B + a3 * c2.B) / alpha, 0, 255));
+            // Note: ブレンドモードがNormalじゃないなら、a1に乗算する対象を変える必要がある。
+            int r = (int)(ColorUtility.Clamp((a1 * c1.R + a2 * c1.R + a3 * c2.R) / alpha, 0, 255));
+            int g = (int)(ColorUtility.Clamp((a1 * c1.G + a2 * c1.G + a3 * c2.G) / alpha, 0, 255));
+            int b = (int)(ColorUtility.Clamp((a1 * c1.B + a2 * c1.B + a3 * c2.B) / alpha, 0, 255));
             int a = (int)(ColorUtility.Clamp(alpha * 255, 0, 255));
             return Color.FromArgb(a, r, g, b);
         }
