@@ -49,6 +49,12 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="AppData.cs" />
+    <Compile Include="CommonControl\ImageViewControl.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="CommonControl\ImageViewControl.Designer.cs">
+      <DependentUpon>ImageViewControl.cs</DependentUpon>
+    </Compile>
     <Compile Include="GeneratorForm\CharaChipGeneratorPartsView.cs">
       <SubType>UserControl</SubType>
     </Compile>
@@ -205,6 +211,9 @@
       <DependentUpon>SizeInput.cs</DependentUpon>
     </Compile>
     <Compile Include="Settings.cs" />
+    <EmbeddedResource Include="CommonControl\ImageViewControl.resx">
+      <DependentUpon>ImageViewControl.cs</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="GeneratorForm\CharaChipGeneratorForm.ja-JP.resx">
       <DependentUpon>CharaChipGeneratorForm.cs</DependentUpon>
     </EmbeddedResource>
@@ -341,6 +350,7 @@
   </ItemGroup>
   <ItemGroup>
     <Content Include="CharaChipGen.ico" />
+    <None Include="Resources\background.png" />
     <None Include="CharaChipGen.png" />
     <Content Include="doc\MaterialSpec.txt" />
   </ItemGroup>
