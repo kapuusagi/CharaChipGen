@@ -1,6 +1,12 @@
-﻿using CharaChipGen.Model.CharaChip;
+﻿using System;
 using System.Drawing;
 using System.Windows.Forms;
+using System.Collections.Generic;
+
+using CharaChipGen.Model;
+using CharaChipGen.Model.Layer;
+using CharaChipGen.Model.CharaChip;
+using CGenImaging;
 
 namespace CharaChipGen.GeneratorForm
 {
@@ -11,13 +17,141 @@ namespace CharaChipGen.GeneratorForm
     {
         private int viewCounter;
 
+        // アニメーションさせるコントロール
+        private CommonControl.ImageViewControl[] animationControls;
+        // プレビューコントロール
+        private CommonControl.ImageViewControl[,] previewControls;
+        // レンダリングデータ
+        private CharaChipRenderData renderData;
+        // レンダリングデータを書き込むバッファ
+        private ImageBuffer imageBuffer;
+        // ワークバッファ
+        private ImageBuffer workBuffer;
+        // レンダリングイメージ
+        private Image image;
+
         /// <summary>
         /// 新しいインスタンスを構築する。
         /// </summary>
         public CharaChipView()
         {
             viewCounter = 0;
+            renderData = new CharaChipRenderData();
+            renderData.ImageChanged += OnImageChanged;
+
             InitializeComponent();
+
+            animationControls = new CommonControl.ImageViewControl[4]
+            {   imageViewControl1_0, imageViewControl2_0, imageViewControl3_0,imageViewControl4_0,};
+            previewControls = new CommonControl.ImageViewControl[4, 3]
+            {
+                { imageViewControl1_1, imageViewControl1_2, imageViewControl1_3 },
+                { imageViewControl2_1, imageViewControl2_2, imageViewControl2_3 },
+                { imageViewControl3_1, imageViewControl3_2, imageViewControl3_3 },
+                { imageViewControl4_1, imageViewControl4_2, imageViewControl4_3 }
+            };
+        }
+        /// <summary> 
+        /// 使用中のリソースをすべてクリーンアップします。
+        /// </summary>
+        /// <param name="disposing">マネージ リソースを破棄する場合は true を指定し、その他の場合は false を指定します。</param>
+        protected override void Dispose(bool disposing)
+        {
+            if (disposing && (components != null))
+            {
+                components.Dispose();
+            }
+            if (disposing && (image != null))
+            {
+                foreach (var control in animationControls)
+                {
+                    control.Image = null;
+                }
+                foreach (var control in previewControls)
+                {
+                    control.Image = null;
+                }
+                image.Dispose();
+                image = null;
+            }
+
+            base.Dispose(disposing);
+        }
+
+        /// <summary>
+        /// レンダリングイメージが変更されたときに通知を受け取る。
+        /// </summary>
+        /// <param name="sender">送信元オブジェクト</param>
+        /// <param name="e">イベントオブジェクト</param>
+        private void OnImageChanged(object sender, EventArgs e)
+        {
+            // 再レンダリング
+            Size prefSize = renderData.PreferredCharaChipSize;
+            if ((prefSize.Width > 0) && (prefSize.Height > 0))
+            {
+                int imageWidth = prefSize.Width * 3;
+                int imageHeight = prefSize.Height * 4;
+                if ((imageBuffer == null) || (imageBuffer.Width != imageWidth) || (imageBuffer.Height != imageHeight))
+                {
+                    imageBuffer = ImageBuffer.Create(imageWidth, imageHeight);
+                    workBuffer = ImageBuffer.Create(prefSize.Width, prefSize.Height);
+                }
+
+                for (int y = 0; y < 4; y++)
+                {
+                    for (int x = 0; x < 3; x++)
+                    {
+                        int xoffs = workBuffer.Width * x;
+                        int yoffs = workBuffer.Height * y;
+                        CharaChipRenderer.Draw(renderData, workBuffer, x, y);
+                        imageBuffer.WriteImage(workBuffer, xoffs, yoffs);
+                    }
+                }
+
+                if (image != null)
+                {
+                    image.Dispose();
+                }
+                image = imageBuffer.GetImage();
+            }
+            else
+            {
+                imageBuffer = null;
+                workBuffer = null;
+                if (image != null)
+                {
+                    image.Dispose();
+                    image = null;
+                }
+            }
+
+            ApplyRenderedImage();
+        }
+
+        /// <summary>
+        /// レンダリングしたイメージを適用する。
+        /// </summary>
+        private void ApplyRenderedImage()
+        { 
+
+            foreach (var control in animationControls)
+            {
+                control.Image = image;
+            }
+
+            int charaChipWidth = (imageBuffer != null) ? imageBuffer.Width / 3 : 0;
+            int charaChipHeight = (imageBuffer != null) ? imageBuffer.Height / 4 : 0;
+            for (int y = 0; y < 4; y++)
+            {
+                for (int x = 0; x< 3; x++)
+                {
+                    var control = previewControls[y, x];
+                    control.Image = image;
+                    control.ImageRect = new Rectangle(x * charaChipWidth, y * charaChipHeight, charaChipWidth, charaChipHeight);
+                }
+            }
+
+            UpdateTick();
         }
 
         /// <summary>
@@ -25,33 +159,36 @@ namespace CharaChipGen.GeneratorForm
         /// </summary>
         public void UpdateTick()
         {
+            int x;
+            int charaChipWidth = (imageBuffer != null) ? imageBuffer.Width / 3 : 0;
+
             switch (viewCounter)
             {
-                case 0:
-                    pictureBox1.Image = charaChipView11.GetRenderedImage();
-                    pictureBox2.Image = charaChipView12.GetRenderedImage();
-                    pictureBox3.Image = charaChipView13.GetRenderedImage();
-                    pictureBox4.Image = charaChipView14.GetRenderedImage();
+                case 0: // 左
+                    x = 0;
                     break;
-                case 1:
-                    pictureBox1.Image = charaChipView21.GetRenderedImage();
-                    pictureBox2.Image = charaChipView22.GetRenderedImage();
-                    pictureBox3.Image = charaChipView23.GetRenderedImage();
-                    pictureBox4.Image = charaChipView24.GetRenderedImage();
+                case 1: // 真ん中
+                    x = charaChipWidth;
                     break;
-                case 2:
-                    pictureBox1.Image = charaChipView31.GetRenderedImage();
-                    pictureBox2.Image = charaChipView32.GetRenderedImage();
-                    pictureBox3.Image = charaChipView33.GetRenderedImage();
-                    pictureBox4.Image = charaChipView34.GetRenderedImage();
+                case 2: // 右
+                    x = charaChipWidth * 2;
                     break;
-                case 3:
-                    pictureBox1.Image = charaChipView21.GetRenderedImage();
-                    pictureBox2.Image = charaChipView22.GetRenderedImage();
-                    pictureBox3.Image = charaChipView23.GetRenderedImage();
-                    pictureBox4.Image = charaChipView24.GetRenderedImage();
+                case 3: // 真ん中
+                    x = charaChipWidth;
+                    break;
+                default:
+                    x = 0;
                     break;
             }
+
+            int charaChipHeight = (imageBuffer != null) ? imageBuffer.Height / 4 : 0;
+            int y = 0;
+            for (int i = 0; i < animationControls.Length; i++)
+            {
+                animationControls[i].ImageRect = new Rectangle(x, y, charaChipWidth, charaChipHeight);
+                y += charaChipHeight;
+            }
+
             viewCounter++;
             if (viewCounter >= 4)
             {
@@ -65,18 +202,7 @@ namespace CharaChipGen.GeneratorForm
         /// <param name="model">データモデル</param>
         public void SetCharacter(Character model)
         {
-            charaChipView11.SetCharacter(model);
-            charaChipView21.SetCharacter(model);
-            charaChipView31.SetCharacter(model);
-            charaChipView12.SetCharacter(model);
-            charaChipView22.SetCharacter(model);
-            charaChipView32.SetCharacter(model);
-            charaChipView13.SetCharacter(model);
-            charaChipView23.SetCharacter(model);
-            charaChipView33.SetCharacter(model);
-            charaChipView14.SetCharacter(model);
-            charaChipView24.SetCharacter(model);
-            charaChipView34.SetCharacter(model);
+            renderData.Character = model;
         }
 
         /// <summary>
@@ -84,7 +210,7 @@ namespace CharaChipGen.GeneratorForm
         /// </summary>
         public bool HasError {
             get {
-                return charaChipView11.HasError;
+                return renderData.HasError;
             }
         }
 
@@ -97,31 +223,32 @@ namespace CharaChipGen.GeneratorForm
         /// charaChipView11のエラー部品種別だけ取得すればよい。
         /// </remarks>
         public PartsType[] GetErrorPartsTypes()
-            => charaChipView11.GetErrorPartsTypes();
+        {
+            List<PartsType> partsTypes = new List<PartsType>();
+            foreach (RenderLayer layer in renderData)
+            {
+                if ((layer.HasError) && !partsTypes.Contains(layer.PartsType))
+                {
+                    partsTypes.Add(layer.PartsType);
+                }
+            }
+            return partsTypes.ToArray();
+        }
 
         /// <summary>
         /// 画像表示領域の背景色
         /// </summary>
         public Color ImageBackground {
-            get => charaChipView11.BackColor; 
+            get => imageViewControl1_0.BackColor;
             set {
-                charaChipView11.ImageBackground = value;
-                charaChipView21.ImageBackground = value;
-                charaChipView31.ImageBackground = value;
-                charaChipView12.ImageBackground = value;
-                charaChipView22.ImageBackground = value;
-                charaChipView32.ImageBackground = value;
-                charaChipView13.ImageBackground = value;
-                charaChipView23.ImageBackground = value;
-                charaChipView33.ImageBackground = value;
-                charaChipView14.ImageBackground = value;
-                charaChipView24.ImageBackground = value;
-                charaChipView34.ImageBackground = value;
-
-                pictureBox1.BackColor = value;
-                pictureBox2.BackColor = value;
-                pictureBox3.BackColor = value;
-                pictureBox4.BackColor = value;
+                foreach (var control in animationControls)
+                {
+                    control.BackColor = value;
+                }
+                foreach (var control in previewControls)
+                {
+                    control.BackColor = value;
+                }
             }
         }
     }

@@ -128,12 +128,6 @@
     <Compile Include="GeneratorForm\CharaChipGeneratorForm.Designer.cs">
       <DependentUpon>CharaChipGeneratorForm.cs</DependentUpon>
     </Compile>
-    <Compile Include="GeneratorForm\CharaChipViewNN.cs">
-      <SubType>UserControl</SubType>
-    </Compile>
-    <Compile Include="GeneratorForm\CharaChipViewNN.Designer.cs">
-      <DependentUpon>CharaChipViewNN.cs</DependentUpon>
-    </Compile>
     <Compile Include="MainForm\CharacterEntryView.cs">
       <SubType>UserControl</SubType>
     </Compile>
@@ -229,9 +223,6 @@
     </EmbeddedResource>
     <EmbeddedResource Include="GeneratorForm\CharaChipView.resx">
       <DependentUpon>CharaChipView.cs</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="GeneratorForm\CharaChipViewNN.resx">
-      <DependentUpon>CharaChipViewNN.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="GeneratorForm\ColorSettingView.ja-JP.resx">
       <DependentUpon>ColorSettingView.cs</DependentUpon>
