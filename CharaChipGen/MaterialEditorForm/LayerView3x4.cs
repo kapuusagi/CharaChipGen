@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Drawing;
 using System.Windows.Forms;
+using CharaChipGen.CommonControl;
 
 namespace CharaChipGen.MaterialEditorForm
 {
@@ -10,9 +11,9 @@ namespace CharaChipGen.MaterialEditorForm
     public partial class LayerView3x4 : UserControl
     {
         // ピクチャーボックス
-        private PictureBox[] pictureBoxes;
+        private ImageViewControl[,] imageViewControls;
         // 表示するイメージ
-        private Bitmap image;
+        private Image image;
 
         /// <summary>
         /// コンストラクタ
@@ -21,12 +22,12 @@ namespace CharaChipGen.MaterialEditorForm
         {
             InitializeComponent();
 
-            pictureBoxes = new PictureBox[]
+            imageViewControls = new ImageViewControl[4,3]
             {
-                pictureBox1, pictureBox2, pictureBox3,
-                pictureBox4, pictureBox5, pictureBox6,
-                pictureBox7, pictureBox8, pictureBox9,
-                pictureBox10, pictureBox11, pictureBox12
+                { imageViewControl1_1, imageViewControl1_2, imageViewControl1_3 },
+                { imageViewControl2_1, imageViewControl2_2, imageViewControl2_3 },
+                { imageViewControl3_1, imageViewControl3_2, imageViewControl3_3 },
+                { imageViewControl4_1, imageViewControl4_2, imageViewControl4_3 }
             };
         }
 
@@ -47,72 +48,24 @@ namespace CharaChipGen.MaterialEditorForm
             base.Dispose(disposing);
         }
 
-
-        /// <summary>
-        /// コントロールのサイズが変更された時に通知を受け取る。
-        /// </summary>
-        /// <param name="sender">送信元オブジェクト</param>
-        /// <param name="e">イベントオブジェクト</param>
-        private void OnControlResized(object sender, EventArgs e)
-        {
-            int pictureBoxWidth = (ClientSize.Width - 8) / 3;
-            int pictureBoxHeight = (ClientSize.Height - 10) / 4;
-
-            for (int y = 0; y < 4; y++)
-            {
-                int ypos = 2 + (2 + pictureBoxHeight) * y;
-                for (int x = 0; x < 3; x++)
-                {
-                    int xpos = 2 + (2 + pictureBoxWidth) * x;
-                    pictureBoxes[y * 3 + x].SetBounds(xpos, ypos, pictureBoxWidth, pictureBoxHeight);
-                }
-            }
-        }
-
         /// <summary>
         /// レイヤーの画像データ
         /// </summary>
         public Image Image {
             get { return image; }
             set {
-                if (value == null)
+                if (image != value)
                 {
-                    image = null;
-                    pictureBox1.Image = null;
-                    pictureBox2.Image = null;
-                    pictureBox3.Image = null;
-                    pictureBox4.Image = null;
-                    pictureBox5.Image = null;
-                    pictureBox6.Image = null;
-                    pictureBox7.Image = null;
-                    pictureBox8.Image = null;
-                    pictureBox9.Image = null;
-                    pictureBox10.Image = null;
-                    pictureBox11.Image = null;
-                    pictureBox12.Image = null;
-                }
-                else
-                {
-                    image = new Bitmap(value);
+                    if (image != null)
+                    {
+                        image.Dispose();
+                    }
+                    image = value;
                     // 必要ならここでPixelFormatを変更する事。
                     UpdateImageView();
+
                 }
             }
-        }
-
-        /// <summary>
-        /// 3ｘ4ビューのそれぞれに表示されているイメージを取得する。
-        /// </summary>
-        /// <param name="x">水平方向位置(0<=x<3)</param>
-        /// <param name="y">垂直方向位置(0<=y<4)</param>
-        /// <returns></returns>
-        public Image GetSubImage(int x, int y)
-        {
-            if ((x < 0) || (x > 2) || (y < 0) || (y > 3))
-            {
-                return null;
-            }
-            return pictureBoxes[x + y * 3].Image;
         }
 
         /// <summary>
@@ -120,26 +73,18 @@ namespace CharaChipGen.MaterialEditorForm
         /// </summary>
         private void UpdateImageView()
         {
-            if (image == null)
-            {
-                foreach (PictureBox pb in pictureBoxes)
-                {
-                    pb.Image = null;
-                }
-            }
-
-            int subImageWidth = image.Width / 3;
-            int subImageHeight = image.Height / 4;
+            int subImageWidth = (image != null) ? image.Width / 3 : 0;
+            int subImageHeight = (image != null) ? image.Height / 4 : 0;
 
             for (int y = 0; y < 4; y++)
             {
                 for (int x = 0; x < 3; x++)
                 {
-                    Rectangle clipArea = new Rectangle(
-                        x * subImageWidth, y * subImageHeight,
-                        subImageWidth, subImageHeight);
-                    pictureBoxes[x + y * 3].Image
-                        = image.Clone(clipArea, System.Drawing.Imaging.PixelFormat.Format32bppPArgb);
+                    int xoffs = x * subImageWidth;
+                    int yoffs = y * subImageHeight;
+
+                    imageViewControls[y, x].Image = image;
+                    imageViewControls[y, x].ImageRect = new Rectangle(xoffs, yoffs, subImageWidth, subImageHeight);
                 }
             }
         }
@@ -148,11 +93,11 @@ namespace CharaChipGen.MaterialEditorForm
         /// 画像の背景色
         /// </summary>
         public Color ImageBackground {
-            get => pictureBox1.BackColor;
+            get => imageViewControl1_1.BackColor;
             set {
-                foreach (PictureBox pictureBox in pictureBoxes)
+                foreach (var control in imageViewControls)
                 {
-                    pictureBox.BackColor = value;
+                    control.BackColor = value;
                 }
             }
         }

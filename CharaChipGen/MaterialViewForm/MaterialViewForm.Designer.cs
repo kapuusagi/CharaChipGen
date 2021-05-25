@@ -28,14 +28,12 @@
         /// </summary>
         private void InitializeComponent()
         {
-            this.components = new System.ComponentModel.Container();
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(MaterialViewForm));
             CharaChipGen.Model.MaterialRenderData materialRenderData1 = new CharaChipGen.Model.MaterialRenderData();
             this.flowLayoutPanel1 = new System.Windows.Forms.FlowLayoutPanel();
             this.buttonClose = new System.Windows.Forms.Button();
             this.panel1 = new System.Windows.Forms.Panel();
             this.materialView = new CharaChipGen.MaterialViewForm.MaterialView();
-            this.timer = new System.Windows.Forms.Timer(this.components);
             this.menuStrip1 = new System.Windows.Forms.MenuStrip();
             this.optionToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.menuItemImageBackground = new System.Windows.Forms.ToolStripMenuItem();
@@ -59,8 +57,8 @@
             // 
             // panel1
             // 
-            resources.ApplyResources(this.panel1, "panel1");
             this.panel1.Controls.Add(this.materialView);
+            resources.ApplyResources(this.panel1, "panel1");
             this.panel1.Name = "panel1";
             // 
             // materialView
@@ -68,31 +66,26 @@
             resources.ApplyResources(this.materialView, "materialView");
             this.materialView.ImageBackground = System.Drawing.Color.Transparent;
             materialRenderData1.Material = null;
-            this.materialView.MaterialRenderData = materialRenderData1;
             this.materialView.Name = "materialView";
-            // 
-            // timer
-            // 
-            this.timer.Tick += new System.EventHandler(this.OnTimerTick);
             // 
             // menuStrip1
             // 
-            resources.ApplyResources(this.menuStrip1, "menuStrip1");
             this.menuStrip1.Items.AddRange(new System.Windows.Forms.ToolStripItem[] {
             this.optionToolStripMenuItem});
+            resources.ApplyResources(this.menuStrip1, "menuStrip1");
             this.menuStrip1.Name = "menuStrip1";
             // 
             // optionToolStripMenuItem
             // 
-            resources.ApplyResources(this.optionToolStripMenuItem, "optionToolStripMenuItem");
             this.optionToolStripMenuItem.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] {
             this.menuItemImageBackground});
             this.optionToolStripMenuItem.Name = "optionToolStripMenuItem";
+            resources.ApplyResources(this.optionToolStripMenuItem, "optionToolStripMenuItem");
             // 
             // menuItemImageBackground
             // 
-            resources.ApplyResources(this.menuItemImageBackground, "menuItemImageBackground");
             this.menuItemImageBackground.Name = "menuItemImageBackground";
+            resources.ApplyResources(this.menuItemImageBackground, "menuItemImageBackground");
             this.menuItemImageBackground.Click += new System.EventHandler(this.OnMenuItemImageBackgroundClick);
             // 
             // MaterialViewForm
@@ -101,7 +94,6 @@
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.Controls.Add(this.panel1);
             this.Controls.Add(this.flowLayoutPanel1);
-            this.Icon = ((System.Drawing.Icon)(resources.GetObject("$this.Icon")));
             this.Controls.Add(this.menuStrip1);
             this.MainMenuStrip = this.menuStrip1;
             this.Name = "MaterialViewForm";
@@ -123,7 +115,6 @@
         private System.Windows.Forms.Button buttonClose;
         private System.Windows.Forms.Panel panel1;
         private MaterialView materialView;
-        private System.Windows.Forms.Timer timer;
         private System.Windows.Forms.MenuStrip menuStrip1;
         private System.Windows.Forms.ToolStripMenuItem optionToolStripMenuItem;
         private System.Windows.Forms.ToolStripMenuItem menuItemImageBackground;

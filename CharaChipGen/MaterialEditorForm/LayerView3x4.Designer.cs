@@ -16,201 +16,221 @@
         /// </summary>
         private void InitializeComponent()
         {
-            this.pictureBox1 = new System.Windows.Forms.PictureBox();
-            this.pictureBox2 = new System.Windows.Forms.PictureBox();
-            this.pictureBox3 = new System.Windows.Forms.PictureBox();
-            this.pictureBox4 = new System.Windows.Forms.PictureBox();
-            this.pictureBox5 = new System.Windows.Forms.PictureBox();
-            this.pictureBox6 = new System.Windows.Forms.PictureBox();
-            this.pictureBox7 = new System.Windows.Forms.PictureBox();
-            this.pictureBox8 = new System.Windows.Forms.PictureBox();
-            this.pictureBox9 = new System.Windows.Forms.PictureBox();
-            this.pictureBox10 = new System.Windows.Forms.PictureBox();
-            this.pictureBox11 = new System.Windows.Forms.PictureBox();
-            this.pictureBox12 = new System.Windows.Forms.PictureBox();
-            ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.pictureBox2)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.pictureBox3)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.pictureBox4)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.pictureBox5)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.pictureBox6)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.pictureBox7)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.pictureBox8)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.pictureBox9)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.pictureBox10)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.pictureBox11)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.pictureBox12)).BeginInit();
+            this.tableLayoutPanel1 = new System.Windows.Forms.TableLayoutPanel();
+            this.imageViewControl1_1 = new CharaChipGen.CommonControl.ImageViewControl();
+            this.imageViewControl1_2 = new CharaChipGen.CommonControl.ImageViewControl();
+            this.imageViewControl1_3 = new CharaChipGen.CommonControl.ImageViewControl();
+            this.imageViewControl2_1 = new CharaChipGen.CommonControl.ImageViewControl();
+            this.imageViewControl2_2 = new CharaChipGen.CommonControl.ImageViewControl();
+            this.imageViewControl2_3 = new CharaChipGen.CommonControl.ImageViewControl();
+            this.imageViewControl3_1 = new CharaChipGen.CommonControl.ImageViewControl();
+            this.imageViewControl3_2 = new CharaChipGen.CommonControl.ImageViewControl();
+            this.imageViewControl3_3 = new CharaChipGen.CommonControl.ImageViewControl();
+            this.imageViewControl4_1 = new CharaChipGen.CommonControl.ImageViewControl();
+            this.imageViewControl4_2 = new CharaChipGen.CommonControl.ImageViewControl();
+            this.imageViewControl4_3 = new CharaChipGen.CommonControl.ImageViewControl();
+            this.tableLayoutPanel1.SuspendLayout();
             this.SuspendLayout();
             // 
-            // pictureBox1
+            // tableLayoutPanel1
             // 
-            this.pictureBox1.BackColor = System.Drawing.SystemColors.Control;
-            this.pictureBox1.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
-            this.pictureBox1.Location = new System.Drawing.Point(3, 3);
-            this.pictureBox1.Name = "pictureBox1";
-            this.pictureBox1.Size = new System.Drawing.Size(80, 120);
-            this.pictureBox1.SizeMode = System.Windows.Forms.PictureBoxSizeMode.CenterImage;
-            this.pictureBox1.TabIndex = 0;
-            this.pictureBox1.TabStop = false;
+            this.tableLayoutPanel1.ColumnCount = 3;
+            this.tableLayoutPanel1.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 33.33333F));
+            this.tableLayoutPanel1.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 33.33333F));
+            this.tableLayoutPanel1.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 33.33333F));
+            this.tableLayoutPanel1.Controls.Add(this.imageViewControl4_3, 2, 3);
+            this.tableLayoutPanel1.Controls.Add(this.imageViewControl4_2, 1, 3);
+            this.tableLayoutPanel1.Controls.Add(this.imageViewControl4_1, 0, 3);
+            this.tableLayoutPanel1.Controls.Add(this.imageViewControl3_3, 2, 2);
+            this.tableLayoutPanel1.Controls.Add(this.imageViewControl3_2, 1, 2);
+            this.tableLayoutPanel1.Controls.Add(this.imageViewControl3_1, 0, 2);
+            this.tableLayoutPanel1.Controls.Add(this.imageViewControl2_3, 2, 1);
+            this.tableLayoutPanel1.Controls.Add(this.imageViewControl2_2, 1, 1);
+            this.tableLayoutPanel1.Controls.Add(this.imageViewControl2_1, 0, 1);
+            this.tableLayoutPanel1.Controls.Add(this.imageViewControl1_3, 2, 0);
+            this.tableLayoutPanel1.Controls.Add(this.imageViewControl1_2, 1, 0);
+            this.tableLayoutPanel1.Controls.Add(this.imageViewControl1_1, 0, 0);
+            this.tableLayoutPanel1.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.tableLayoutPanel1.Location = new System.Drawing.Point(0, 0);
+            this.tableLayoutPanel1.Name = "tableLayoutPanel1";
+            this.tableLayoutPanel1.RowCount = 4;
+            this.tableLayoutPanel1.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 25F));
+            this.tableLayoutPanel1.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 25F));
+            this.tableLayoutPanel1.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 25F));
+            this.tableLayoutPanel1.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 25F));
+            this.tableLayoutPanel1.Size = new System.Drawing.Size(262, 491);
+            this.tableLayoutPanel1.TabIndex = 0;
             // 
-            // pictureBox2
+            // imageViewControl1_1
             // 
-            this.pictureBox2.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
-            this.pictureBox2.Location = new System.Drawing.Point(89, 3);
-            this.pictureBox2.Name = "pictureBox2";
-            this.pictureBox2.Size = new System.Drawing.Size(80, 120);
-            this.pictureBox2.SizeMode = System.Windows.Forms.PictureBoxSizeMode.CenterImage;
-            this.pictureBox2.TabIndex = 0;
-            this.pictureBox2.TabStop = false;
+            this.imageViewControl1_1.BackgroundImage = global::CharaChipGen.Properties.Resources.Background;
+            this.imageViewControl1_1.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
+            this.imageViewControl1_1.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.imageViewControl1_1.Image = null;
+            this.imageViewControl1_1.ImageRect = new System.Drawing.Rectangle(0, 0, 0, 0);
+            this.imageViewControl1_1.Location = new System.Drawing.Point(3, 3);
+            this.imageViewControl1_1.Name = "imageViewControl1_1";
+            this.imageViewControl1_1.Size = new System.Drawing.Size(81, 116);
+            this.imageViewControl1_1.TabIndex = 0;
             // 
-            // pictureBox3
+            // imageViewControl1_2
             // 
-            this.pictureBox3.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
-            this.pictureBox3.Location = new System.Drawing.Point(175, 3);
-            this.pictureBox3.Name = "pictureBox3";
-            this.pictureBox3.Size = new System.Drawing.Size(80, 120);
-            this.pictureBox3.SizeMode = System.Windows.Forms.PictureBoxSizeMode.CenterImage;
-            this.pictureBox3.TabIndex = 0;
-            this.pictureBox3.TabStop = false;
+            this.imageViewControl1_2.BackgroundImage = global::CharaChipGen.Properties.Resources.Background;
+            this.imageViewControl1_2.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
+            this.imageViewControl1_2.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.imageViewControl1_2.Image = null;
+            this.imageViewControl1_2.ImageRect = new System.Drawing.Rectangle(0, 0, 0, 0);
+            this.imageViewControl1_2.Location = new System.Drawing.Point(90, 3);
+            this.imageViewControl1_2.Name = "imageViewControl1_2";
+            this.imageViewControl1_2.Size = new System.Drawing.Size(81, 116);
+            this.imageViewControl1_2.TabIndex = 1;
             // 
-            // pictureBox4
+            // imageViewControl1_3
             // 
-            this.pictureBox4.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
-            this.pictureBox4.Location = new System.Drawing.Point(3, 129);
-            this.pictureBox4.Name = "pictureBox4";
-            this.pictureBox4.Size = new System.Drawing.Size(80, 120);
-            this.pictureBox4.SizeMode = System.Windows.Forms.PictureBoxSizeMode.CenterImage;
-            this.pictureBox4.TabIndex = 0;
-            this.pictureBox4.TabStop = false;
+            this.imageViewControl1_3.BackgroundImage = global::CharaChipGen.Properties.Resources.Background;
+            this.imageViewControl1_3.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
+            this.imageViewControl1_3.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.imageViewControl1_3.Image = null;
+            this.imageViewControl1_3.ImageRect = new System.Drawing.Rectangle(0, 0, 0, 0);
+            this.imageViewControl1_3.Location = new System.Drawing.Point(177, 3);
+            this.imageViewControl1_3.Name = "imageViewControl1_3";
+            this.imageViewControl1_3.Size = new System.Drawing.Size(82, 116);
+            this.imageViewControl1_3.TabIndex = 2;
             // 
-            // pictureBox5
+            // imageViewControl2_1
             // 
-            this.pictureBox5.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
-            this.pictureBox5.Location = new System.Drawing.Point(89, 129);
-            this.pictureBox5.Name = "pictureBox5";
-            this.pictureBox5.Size = new System.Drawing.Size(80, 120);
-            this.pictureBox5.SizeMode = System.Windows.Forms.PictureBoxSizeMode.CenterImage;
-            this.pictureBox5.TabIndex = 0;
-            this.pictureBox5.TabStop = false;
+            this.imageViewControl2_1.BackgroundImage = global::CharaChipGen.Properties.Resources.Background;
+            this.imageViewControl2_1.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
+            this.imageViewControl2_1.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.imageViewControl2_1.Image = null;
+            this.imageViewControl2_1.ImageRect = new System.Drawing.Rectangle(0, 0, 0, 0);
+            this.imageViewControl2_1.Location = new System.Drawing.Point(3, 125);
+            this.imageViewControl2_1.Name = "imageViewControl2_1";
+            this.imageViewControl2_1.Size = new System.Drawing.Size(81, 116);
+            this.imageViewControl2_1.TabIndex = 3;
             // 
-            // pictureBox6
+            // imageViewControl2_2
             // 
-            this.pictureBox6.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
-            this.pictureBox6.Location = new System.Drawing.Point(175, 129);
-            this.pictureBox6.Name = "pictureBox6";
-            this.pictureBox6.Size = new System.Drawing.Size(80, 120);
-            this.pictureBox6.SizeMode = System.Windows.Forms.PictureBoxSizeMode.CenterImage;
-            this.pictureBox6.TabIndex = 0;
-            this.pictureBox6.TabStop = false;
+            this.imageViewControl2_2.BackgroundImage = global::CharaChipGen.Properties.Resources.Background;
+            this.imageViewControl2_2.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
+            this.imageViewControl2_2.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.imageViewControl2_2.Image = null;
+            this.imageViewControl2_2.ImageRect = new System.Drawing.Rectangle(0, 0, 0, 0);
+            this.imageViewControl2_2.Location = new System.Drawing.Point(90, 125);
+            this.imageViewControl2_2.Name = "imageViewControl2_2";
+            this.imageViewControl2_2.Size = new System.Drawing.Size(81, 116);
+            this.imageViewControl2_2.TabIndex = 4;
             // 
-            // pictureBox7
+            // imageViewControl2_3
             // 
-            this.pictureBox7.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
-            this.pictureBox7.Location = new System.Drawing.Point(3, 255);
-            this.pictureBox7.Name = "pictureBox7";
-            this.pictureBox7.Size = new System.Drawing.Size(80, 120);
-            this.pictureBox7.SizeMode = System.Windows.Forms.PictureBoxSizeMode.CenterImage;
-            this.pictureBox7.TabIndex = 0;
-            this.pictureBox7.TabStop = false;
+            this.imageViewControl2_3.BackgroundImage = global::CharaChipGen.Properties.Resources.Background;
+            this.imageViewControl2_3.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
+            this.imageViewControl2_3.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.imageViewControl2_3.Image = null;
+            this.imageViewControl2_3.ImageRect = new System.Drawing.Rectangle(0, 0, 0, 0);
+            this.imageViewControl2_3.Location = new System.Drawing.Point(177, 125);
+            this.imageViewControl2_3.Name = "imageViewControl2_3";
+            this.imageViewControl2_3.Size = new System.Drawing.Size(82, 116);
+            this.imageViewControl2_3.TabIndex = 5;
             // 
-            // pictureBox8
+            // imageViewControl3_1
             // 
-            this.pictureBox8.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
-            this.pictureBox8.Location = new System.Drawing.Point(89, 255);
-            this.pictureBox8.Name = "pictureBox8";
-            this.pictureBox8.Size = new System.Drawing.Size(80, 120);
-            this.pictureBox8.SizeMode = System.Windows.Forms.PictureBoxSizeMode.CenterImage;
-            this.pictureBox8.TabIndex = 0;
-            this.pictureBox8.TabStop = false;
+            this.imageViewControl3_1.BackgroundImage = global::CharaChipGen.Properties.Resources.Background;
+            this.imageViewControl3_1.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
+            this.imageViewControl3_1.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.imageViewControl3_1.Image = null;
+            this.imageViewControl3_1.ImageRect = new System.Drawing.Rectangle(0, 0, 0, 0);
+            this.imageViewControl3_1.Location = new System.Drawing.Point(3, 247);
+            this.imageViewControl3_1.Name = "imageViewControl3_1";
+            this.imageViewControl3_1.Size = new System.Drawing.Size(81, 116);
+            this.imageViewControl3_1.TabIndex = 6;
             // 
-            // pictureBox9
+            // imageViewControl3_2
             // 
-            this.pictureBox9.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
-            this.pictureBox9.Location = new System.Drawing.Point(175, 255);
-            this.pictureBox9.Name = "pictureBox9";
-            this.pictureBox9.Size = new System.Drawing.Size(80, 120);
-            this.pictureBox9.SizeMode = System.Windows.Forms.PictureBoxSizeMode.CenterImage;
-            this.pictureBox9.TabIndex = 0;
-            this.pictureBox9.TabStop = false;
+            this.imageViewControl3_2.BackgroundImage = global::CharaChipGen.Properties.Resources.Background;
+            this.imageViewControl3_2.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
+            this.imageViewControl3_2.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.imageViewControl3_2.Image = null;
+            this.imageViewControl3_2.ImageRect = new System.Drawing.Rectangle(0, 0, 0, 0);
+            this.imageViewControl3_2.Location = new System.Drawing.Point(90, 247);
+            this.imageViewControl3_2.Name = "imageViewControl3_2";
+            this.imageViewControl3_2.Size = new System.Drawing.Size(81, 116);
+            this.imageViewControl3_2.TabIndex = 7;
             // 
-            // pictureBox10
+            // imageViewControl3_3
             // 
-            this.pictureBox10.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
-            this.pictureBox10.Location = new System.Drawing.Point(3, 381);
-            this.pictureBox10.Name = "pictureBox10";
-            this.pictureBox10.Size = new System.Drawing.Size(80, 120);
-            this.pictureBox10.SizeMode = System.Windows.Forms.PictureBoxSizeMode.CenterImage;
-            this.pictureBox10.TabIndex = 0;
-            this.pictureBox10.TabStop = false;
+            this.imageViewControl3_3.BackgroundImage = global::CharaChipGen.Properties.Resources.Background;
+            this.imageViewControl3_3.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
+            this.imageViewControl3_3.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.imageViewControl3_3.Image = null;
+            this.imageViewControl3_3.ImageRect = new System.Drawing.Rectangle(0, 0, 0, 0);
+            this.imageViewControl3_3.Location = new System.Drawing.Point(177, 247);
+            this.imageViewControl3_3.Name = "imageViewControl3_3";
+            this.imageViewControl3_3.Size = new System.Drawing.Size(82, 116);
+            this.imageViewControl3_3.TabIndex = 8;
             // 
-            // pictureBox11
+            // imageViewControl4_1
             // 
-            this.pictureBox11.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
-            this.pictureBox11.Location = new System.Drawing.Point(89, 381);
-            this.pictureBox11.Name = "pictureBox11";
-            this.pictureBox11.Size = new System.Drawing.Size(80, 120);
-            this.pictureBox11.SizeMode = System.Windows.Forms.PictureBoxSizeMode.CenterImage;
-            this.pictureBox11.TabIndex = 0;
-            this.pictureBox11.TabStop = false;
+            this.imageViewControl4_1.BackgroundImage = global::CharaChipGen.Properties.Resources.Background;
+            this.imageViewControl4_1.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
+            this.imageViewControl4_1.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.imageViewControl4_1.Image = null;
+            this.imageViewControl4_1.ImageRect = new System.Drawing.Rectangle(0, 0, 0, 0);
+            this.imageViewControl4_1.Location = new System.Drawing.Point(3, 369);
+            this.imageViewControl4_1.Name = "imageViewControl4_1";
+            this.imageViewControl4_1.Size = new System.Drawing.Size(81, 119);
+            this.imageViewControl4_1.TabIndex = 9;
             // 
-            // pictureBox12
+            // imageViewControl4_2
             // 
-            this.pictureBox12.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
-            this.pictureBox12.Location = new System.Drawing.Point(175, 381);
-            this.pictureBox12.Name = "pictureBox12";
-            this.pictureBox12.Size = new System.Drawing.Size(80, 120);
-            this.pictureBox12.SizeMode = System.Windows.Forms.PictureBoxSizeMode.CenterImage;
-            this.pictureBox12.TabIndex = 0;
-            this.pictureBox12.TabStop = false;
+            this.imageViewControl4_2.BackgroundImage = global::CharaChipGen.Properties.Resources.Background;
+            this.imageViewControl4_2.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
+            this.imageViewControl4_2.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.imageViewControl4_2.Image = null;
+            this.imageViewControl4_2.ImageRect = new System.Drawing.Rectangle(0, 0, 0, 0);
+            this.imageViewControl4_2.Location = new System.Drawing.Point(90, 369);
+            this.imageViewControl4_2.Name = "imageViewControl4_2";
+            this.imageViewControl4_2.Size = new System.Drawing.Size(81, 119);
+            this.imageViewControl4_2.TabIndex = 10;
             // 
-            // MaterialView4x3
+            // imageViewControl4_3
+            // 
+            this.imageViewControl4_3.BackgroundImage = global::CharaChipGen.Properties.Resources.Background;
+            this.imageViewControl4_3.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
+            this.imageViewControl4_3.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.imageViewControl4_3.Image = null;
+            this.imageViewControl4_3.ImageRect = new System.Drawing.Rectangle(0, 0, 0, 0);
+            this.imageViewControl4_3.Location = new System.Drawing.Point(177, 369);
+            this.imageViewControl4_3.Name = "imageViewControl4_3";
+            this.imageViewControl4_3.Size = new System.Drawing.Size(82, 119);
+            this.imageViewControl4_3.TabIndex = 11;
+            // 
+            // LayerView3x4
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 12F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.Controls.Add(this.pictureBox12);
-            this.Controls.Add(this.pictureBox11);
-            this.Controls.Add(this.pictureBox10);
-            this.Controls.Add(this.pictureBox9);
-            this.Controls.Add(this.pictureBox8);
-            this.Controls.Add(this.pictureBox7);
-            this.Controls.Add(this.pictureBox6);
-            this.Controls.Add(this.pictureBox5);
-            this.Controls.Add(this.pictureBox4);
-            this.Controls.Add(this.pictureBox3);
-            this.Controls.Add(this.pictureBox2);
-            this.Controls.Add(this.pictureBox1);
-            this.Name = "MaterialView4x3";
-            this.Size = new System.Drawing.Size(264, 508);
-            this.Resize += new System.EventHandler(this.OnControlResized);
-            ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.pictureBox2)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.pictureBox3)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.pictureBox4)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.pictureBox5)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.pictureBox6)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.pictureBox7)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.pictureBox8)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.pictureBox9)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.pictureBox10)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.pictureBox11)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.pictureBox12)).EndInit();
+            this.Controls.Add(this.tableLayoutPanel1);
+            this.Name = "LayerView3x4";
+            this.Size = new System.Drawing.Size(262, 491);
+            this.tableLayoutPanel1.ResumeLayout(false);
             this.ResumeLayout(false);
 
         }
 
         #endregion
 
-        private System.Windows.Forms.PictureBox pictureBox1;
-        private System.Windows.Forms.PictureBox pictureBox2;
-        private System.Windows.Forms.PictureBox pictureBox3;
-        private System.Windows.Forms.PictureBox pictureBox4;
-        private System.Windows.Forms.PictureBox pictureBox5;
-        private System.Windows.Forms.PictureBox pictureBox6;
-        private System.Windows.Forms.PictureBox pictureBox7;
-        private System.Windows.Forms.PictureBox pictureBox8;
-        private System.Windows.Forms.PictureBox pictureBox9;
-        private System.Windows.Forms.PictureBox pictureBox10;
-        private System.Windows.Forms.PictureBox pictureBox11;
-        private System.Windows.Forms.PictureBox pictureBox12;
+        private System.Windows.Forms.TableLayoutPanel tableLayoutPanel1;
+        private CommonControl.ImageViewControl imageViewControl4_3;
+        private CommonControl.ImageViewControl imageViewControl4_2;
+        private CommonControl.ImageViewControl imageViewControl4_1;
+        private CommonControl.ImageViewControl imageViewControl3_3;
+        private CommonControl.ImageViewControl imageViewControl3_2;
+        private CommonControl.ImageViewControl imageViewControl3_1;
+        private CommonControl.ImageViewControl imageViewControl2_3;
+        private CommonControl.ImageViewControl imageViewControl2_2;
+        private CommonControl.ImageViewControl imageViewControl2_1;
+        private CommonControl.ImageViewControl imageViewControl1_3;
+        private CommonControl.ImageViewControl imageViewControl1_2;
+        private CommonControl.ImageViewControl imageViewControl1_1;
     }
 }

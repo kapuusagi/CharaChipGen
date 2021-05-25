@@ -49,6 +49,11 @@ namespace CharaChipGen.Model
         }
 
         /// <summary>
+        /// 画像が変更された
+        /// </summary>
+        public event EventHandler ImageChanged;
+
+        /// <summary>
         /// 描画対象の素材データ
         /// </summary>
         public Material.Material Material {
@@ -72,6 +77,8 @@ namespace CharaChipGen.Model
                     // 素材のレイヤーを読み込んでグループに追加。
                     LoadMaterialLayers();
                 }
+
+                ImageChanged?.Invoke(this, new EventArgs());
             }
         }
 

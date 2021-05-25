@@ -28,6 +28,7 @@ namespace CharaChipGen.MaterialViewForm
         {
             material = null;
             InitializeComponent();
+            materialView.ImageRendered += OnImageRendered;
             materialView.ImageBackground = Settings.Default.ImageBackground;
             Settings.Default.PropertyChanged += OnSettingsPropertyChanged;
         }
@@ -45,8 +46,7 @@ namespace CharaChipGen.MaterialViewForm
                 }
 
                 material = value;
-                MaterialRenderData renderData = new MaterialRenderData() { Material = material };
-                materialView.MaterialRenderData = renderData;
+                materialView.SetMaterial(material);
             }
         }
 
@@ -61,15 +61,6 @@ namespace CharaChipGen.MaterialViewForm
             Close();
         }
 
-        /// <summary>
-        /// タイマーにより、所定の時間経過毎に通知を受け取る。
-        /// </summary>
-        /// <param name="sender">送信元オブジェクト</param>
-        /// <param name="e">イベントオブジェクト</param>
-        private void OnTimerTick(object sender, EventArgs e)
-        {
-            materialView.UpdateTick();
-        }
 
         /// <summary>
         /// フォームが最初に表示されたときに通知を受け取る。
@@ -78,11 +69,15 @@ namespace CharaChipGen.MaterialViewForm
         /// <param name="e">イベントオブジェクト</param>
         private void OnFormShown(object sender, EventArgs e)
         {
-            if (materialView.MaterialRenderData.HasError)
+            materialView.OnShown();
+        }
+
+        private void OnImageRendered(object sender, EventArgs e)
+        {
+            if (materialView.HasError)
             {
                 MessageBox.Show(this, Resources.MessageReadError, Resources.DialogTitleError);
             }
-            timer.Start();
         }
 
         /// <summary>
@@ -92,7 +87,7 @@ namespace CharaChipGen.MaterialViewForm
         /// <param name="e">イベントオブジェクト</param>
         private void OnFormClosing(object sender, FormClosingEventArgs e)
         {
-            timer.Stop();
+            materialView.OnClosed();
         }
 
         /// <summary>

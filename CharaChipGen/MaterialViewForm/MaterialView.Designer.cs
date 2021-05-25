@@ -7,18 +7,7 @@
         /// </summary>
         private System.ComponentModel.IContainer components = null;
 
-        /// <summary> 
-        /// 使用中のリソースをすべてクリーンアップします。
-        /// </summary>
-        /// <param name="disposing">マネージド リソースを破棄する場合は true を指定し、その他の場合は false を指定します。</param>
-        protected override void Dispose(bool disposing)
-        {
-            if (disposing && (components != null))
-            {
-                components.Dispose();
-            }
-            base.Dispose(disposing);
-        }
+
 
         #region コンポーネント デザイナーで生成されたコード
 
@@ -28,40 +17,26 @@
         /// </summary>
         private void InitializeComponent()
         {
-            CharaChipGen.Model.MaterialRenderData materialRenderData1 = new CharaChipGen.Model.MaterialRenderData();
-            CharaChipGen.Model.MaterialRenderData materialRenderData2 = new CharaChipGen.Model.MaterialRenderData();
-            CharaChipGen.Model.MaterialRenderData materialRenderData3 = new CharaChipGen.Model.MaterialRenderData();
-            CharaChipGen.Model.MaterialRenderData materialRenderData4 = new CharaChipGen.Model.MaterialRenderData();
-            CharaChipGen.Model.MaterialRenderData materialRenderData5 = new CharaChipGen.Model.MaterialRenderData();
-            CharaChipGen.Model.MaterialRenderData materialRenderData6 = new CharaChipGen.Model.MaterialRenderData();
-            CharaChipGen.Model.MaterialRenderData materialRenderData7 = new CharaChipGen.Model.MaterialRenderData();
-            CharaChipGen.Model.MaterialRenderData materialRenderData8 = new CharaChipGen.Model.MaterialRenderData();
-            CharaChipGen.Model.MaterialRenderData materialRenderData9 = new CharaChipGen.Model.MaterialRenderData();
-            CharaChipGen.Model.MaterialRenderData materialRenderData10 = new CharaChipGen.Model.MaterialRenderData();
-            CharaChipGen.Model.MaterialRenderData materialRenderData11 = new CharaChipGen.Model.MaterialRenderData();
-            CharaChipGen.Model.MaterialRenderData materialRenderData12 = new CharaChipGen.Model.MaterialRenderData();
+            this.components = new System.ComponentModel.Container();
             this.tableLayoutPanel1 = new System.Windows.Forms.TableLayoutPanel();
-            this.pictureBox4 = new System.Windows.Forms.PictureBox();
-            this.pictureBox3 = new System.Windows.Forms.PictureBox();
-            this.pictureBox2 = new System.Windows.Forms.PictureBox();
-            this.pictureBox1 = new System.Windows.Forms.PictureBox();
-            this.materialView11 = new CharaChipGen.MaterialViewForm.MaterialViewNN();
-            this.materialView21 = new CharaChipGen.MaterialViewForm.MaterialViewNN();
-            this.materialView31 = new CharaChipGen.MaterialViewForm.MaterialViewNN();
-            this.materialView12 = new CharaChipGen.MaterialViewForm.MaterialViewNN();
-            this.materialView22 = new CharaChipGen.MaterialViewForm.MaterialViewNN();
-            this.materialView32 = new CharaChipGen.MaterialViewForm.MaterialViewNN();
-            this.materialView13 = new CharaChipGen.MaterialViewForm.MaterialViewNN();
-            this.materialView23 = new CharaChipGen.MaterialViewForm.MaterialViewNN();
-            this.materialView33 = new CharaChipGen.MaterialViewForm.MaterialViewNN();
-            this.materialView14 = new CharaChipGen.MaterialViewForm.MaterialViewNN();
-            this.materialView24 = new CharaChipGen.MaterialViewForm.MaterialViewNN();
-            this.materialView34 = new CharaChipGen.MaterialViewForm.MaterialViewNN();
+            this.imageViewControl4_0 = new CharaChipGen.CommonControl.ImageViewControl();
+            this.imageViewControl3_3 = new CharaChipGen.CommonControl.ImageViewControl();
+            this.imageViewControl3_2 = new CharaChipGen.CommonControl.ImageViewControl();
+            this.imageViewControl3_1 = new CharaChipGen.CommonControl.ImageViewControl();
+            this.imageViewControl3_0 = new CharaChipGen.CommonControl.ImageViewControl();
+            this.imageViewControl2_3 = new CharaChipGen.CommonControl.ImageViewControl();
+            this.imageViewControl2_2 = new CharaChipGen.CommonControl.ImageViewControl();
+            this.imageViewControl2_1 = new CharaChipGen.CommonControl.ImageViewControl();
+            this.imageViewControl2_0 = new CharaChipGen.CommonControl.ImageViewControl();
+            this.imageViewControl1_0 = new CharaChipGen.CommonControl.ImageViewControl();
+            this.imageViewControl1_1 = new CharaChipGen.CommonControl.ImageViewControl();
+            this.imageViewControl1_2 = new CharaChipGen.CommonControl.ImageViewControl();
+            this.imageViewControl1_3 = new CharaChipGen.CommonControl.ImageViewControl();
+            this.imageViewControl4_3 = new CharaChipGen.CommonControl.ImageViewControl();
+            this.imageViewControl4_2 = new CharaChipGen.CommonControl.ImageViewControl();
+            this.imageViewControl4_1 = new CharaChipGen.CommonControl.ImageViewControl();
+            this.timer = new System.Windows.Forms.Timer(this.components);
             this.tableLayoutPanel1.SuspendLayout();
-            ((System.ComponentModel.ISupportInitialize)(this.pictureBox4)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.pictureBox3)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.pictureBox2)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).BeginInit();
             this.SuspendLayout();
             // 
             // tableLayoutPanel1
@@ -72,22 +47,22 @@
             this.tableLayoutPanel1.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 25F));
             this.tableLayoutPanel1.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 25F));
             this.tableLayoutPanel1.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 25F));
-            this.tableLayoutPanel1.Controls.Add(this.pictureBox4, 0, 3);
-            this.tableLayoutPanel1.Controls.Add(this.pictureBox3, 0, 2);
-            this.tableLayoutPanel1.Controls.Add(this.pictureBox2, 0, 1);
-            this.tableLayoutPanel1.Controls.Add(this.pictureBox1, 0, 0);
-            this.tableLayoutPanel1.Controls.Add(this.materialView11, 2, 0);
-            this.tableLayoutPanel1.Controls.Add(this.materialView21, 3, 0);
-            this.tableLayoutPanel1.Controls.Add(this.materialView31, 4, 0);
-            this.tableLayoutPanel1.Controls.Add(this.materialView12, 2, 1);
-            this.tableLayoutPanel1.Controls.Add(this.materialView22, 3, 1);
-            this.tableLayoutPanel1.Controls.Add(this.materialView32, 4, 1);
-            this.tableLayoutPanel1.Controls.Add(this.materialView13, 2, 2);
-            this.tableLayoutPanel1.Controls.Add(this.materialView23, 3, 2);
-            this.tableLayoutPanel1.Controls.Add(this.materialView33, 4, 2);
-            this.tableLayoutPanel1.Controls.Add(this.materialView14, 2, 3);
-            this.tableLayoutPanel1.Controls.Add(this.materialView24, 3, 3);
-            this.tableLayoutPanel1.Controls.Add(this.materialView34, 4, 3);
+            this.tableLayoutPanel1.Controls.Add(this.imageViewControl4_0, 0, 3);
+            this.tableLayoutPanel1.Controls.Add(this.imageViewControl3_3, 4, 2);
+            this.tableLayoutPanel1.Controls.Add(this.imageViewControl3_2, 3, 2);
+            this.tableLayoutPanel1.Controls.Add(this.imageViewControl3_1, 2, 2);
+            this.tableLayoutPanel1.Controls.Add(this.imageViewControl3_0, 0, 2);
+            this.tableLayoutPanel1.Controls.Add(this.imageViewControl2_3, 4, 1);
+            this.tableLayoutPanel1.Controls.Add(this.imageViewControl2_2, 3, 1);
+            this.tableLayoutPanel1.Controls.Add(this.imageViewControl2_1, 2, 1);
+            this.tableLayoutPanel1.Controls.Add(this.imageViewControl2_0, 0, 1);
+            this.tableLayoutPanel1.Controls.Add(this.imageViewControl1_0, 0, 0);
+            this.tableLayoutPanel1.Controls.Add(this.imageViewControl1_1, 2, 0);
+            this.tableLayoutPanel1.Controls.Add(this.imageViewControl1_2, 3, 0);
+            this.tableLayoutPanel1.Controls.Add(this.imageViewControl1_3, 4, 0);
+            this.tableLayoutPanel1.Controls.Add(this.imageViewControl4_3, 4, 3);
+            this.tableLayoutPanel1.Controls.Add(this.imageViewControl4_2, 3, 3);
+            this.tableLayoutPanel1.Controls.Add(this.imageViewControl4_1, 2, 3);
             this.tableLayoutPanel1.Dock = System.Windows.Forms.DockStyle.Fill;
             this.tableLayoutPanel1.Location = new System.Drawing.Point(0, 0);
             this.tableLayoutPanel1.Name = "tableLayoutPanel1";
@@ -99,197 +74,201 @@
             this.tableLayoutPanel1.Size = new System.Drawing.Size(394, 517);
             this.tableLayoutPanel1.TabIndex = 0;
             // 
-            // pictureBox4
+            // imageViewControl4_0
             // 
-            this.pictureBox4.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Center;
-            this.pictureBox4.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
-            this.pictureBox4.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.pictureBox4.Location = new System.Drawing.Point(3, 390);
-            this.pictureBox4.Name = "pictureBox4";
-            this.pictureBox4.Size = new System.Drawing.Size(82, 124);
-            this.pictureBox4.SizeMode = System.Windows.Forms.PictureBoxSizeMode.CenterImage;
-            this.pictureBox4.TabIndex = 3;
-            this.pictureBox4.TabStop = false;
+            this.imageViewControl4_0.BackgroundImage = global::CharaChipGen.Properties.Resources.Background;
+            this.imageViewControl4_0.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
+            this.imageViewControl4_0.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.imageViewControl4_0.Image = null;
+            this.imageViewControl4_0.ImageRect = new System.Drawing.Rectangle(0, 0, 0, 0);
+            this.imageViewControl4_0.Location = new System.Drawing.Point(3, 390);
+            this.imageViewControl4_0.Name = "imageViewControl4_0";
+            this.imageViewControl4_0.Size = new System.Drawing.Size(82, 124);
+            this.imageViewControl4_0.TabIndex = 15;
             // 
-            // pictureBox3
+            // imageViewControl3_3
             // 
-            this.pictureBox3.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Center;
-            this.pictureBox3.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
-            this.pictureBox3.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.pictureBox3.Location = new System.Drawing.Point(3, 261);
-            this.pictureBox3.Name = "pictureBox3";
-            this.pictureBox3.Size = new System.Drawing.Size(82, 123);
-            this.pictureBox3.SizeMode = System.Windows.Forms.PictureBoxSizeMode.CenterImage;
-            this.pictureBox3.TabIndex = 2;
-            this.pictureBox3.TabStop = false;
+            this.imageViewControl3_3.BackgroundImage = global::CharaChipGen.Properties.Resources.Background;
+            this.imageViewControl3_3.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
+            this.imageViewControl3_3.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.imageViewControl3_3.Image = null;
+            this.imageViewControl3_3.ImageRect = new System.Drawing.Rectangle(0, 0, 0, 0);
+            this.imageViewControl3_3.Location = new System.Drawing.Point(307, 261);
+            this.imageViewControl3_3.Name = "imageViewControl3_3";
+            this.imageViewControl3_3.Size = new System.Drawing.Size(84, 123);
+            this.imageViewControl3_3.TabIndex = 14;
             // 
-            // pictureBox2
+            // imageViewControl3_2
             // 
-            this.pictureBox2.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Center;
-            this.pictureBox2.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
-            this.pictureBox2.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.pictureBox2.Location = new System.Drawing.Point(3, 132);
-            this.pictureBox2.Name = "pictureBox2";
-            this.pictureBox2.Size = new System.Drawing.Size(82, 123);
-            this.pictureBox2.SizeMode = System.Windows.Forms.PictureBoxSizeMode.CenterImage;
-            this.pictureBox2.TabIndex = 1;
-            this.pictureBox2.TabStop = false;
+            this.imageViewControl3_2.BackgroundImage = global::CharaChipGen.Properties.Resources.Background;
+            this.imageViewControl3_2.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
+            this.imageViewControl3_2.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.imageViewControl3_2.Image = null;
+            this.imageViewControl3_2.ImageRect = new System.Drawing.Rectangle(0, 0, 0, 0);
+            this.imageViewControl3_2.Location = new System.Drawing.Point(219, 261);
+            this.imageViewControl3_2.Name = "imageViewControl3_2";
+            this.imageViewControl3_2.Size = new System.Drawing.Size(82, 123);
+            this.imageViewControl3_2.TabIndex = 13;
             // 
-            // pictureBox1
+            // imageViewControl3_1
             // 
-            this.pictureBox1.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Center;
-            this.pictureBox1.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
-            this.pictureBox1.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.pictureBox1.Location = new System.Drawing.Point(3, 3);
-            this.pictureBox1.Name = "pictureBox1";
-            this.pictureBox1.Size = new System.Drawing.Size(82, 123);
-            this.pictureBox1.SizeMode = System.Windows.Forms.PictureBoxSizeMode.CenterImage;
-            this.pictureBox1.TabIndex = 0;
-            this.pictureBox1.TabStop = false;
+            this.imageViewControl3_1.BackgroundImage = global::CharaChipGen.Properties.Resources.Background;
+            this.imageViewControl3_1.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
+            this.imageViewControl3_1.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.imageViewControl3_1.Image = null;
+            this.imageViewControl3_1.ImageRect = new System.Drawing.Rectangle(0, 0, 0, 0);
+            this.imageViewControl3_1.Location = new System.Drawing.Point(131, 261);
+            this.imageViewControl3_1.Name = "imageViewControl3_1";
+            this.imageViewControl3_1.Size = new System.Drawing.Size(82, 123);
+            this.imageViewControl3_1.TabIndex = 12;
             // 
-            // materialView11
+            // imageViewControl3_0
             // 
-            this.materialView11.CharaChipPositionX = 0;
-            this.materialView11.CharaChipPositionY = 0;
-            this.materialView11.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.materialView11.Location = new System.Drawing.Point(131, 3);
-            materialRenderData1.Material = null;
-            this.materialView11.MaterialRenderData = materialRenderData1;
-            this.materialView11.Name = "materialView11";
-            this.materialView11.Size = new System.Drawing.Size(82, 123);
-            this.materialView11.TabIndex = 4;
+            this.imageViewControl3_0.BackgroundImage = global::CharaChipGen.Properties.Resources.Background;
+            this.imageViewControl3_0.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
+            this.imageViewControl3_0.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.imageViewControl3_0.Image = null;
+            this.imageViewControl3_0.ImageRect = new System.Drawing.Rectangle(0, 0, 0, 0);
+            this.imageViewControl3_0.Location = new System.Drawing.Point(3, 261);
+            this.imageViewControl3_0.Name = "imageViewControl3_0";
+            this.imageViewControl3_0.Size = new System.Drawing.Size(82, 123);
+            this.imageViewControl3_0.TabIndex = 10;
             // 
-            // materialView21
+            // imageViewControl2_3
             // 
-            this.materialView21.CharaChipPositionX = 1;
-            this.materialView21.CharaChipPositionY = 0;
-            this.materialView21.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.materialView21.Location = new System.Drawing.Point(219, 3);
-            materialRenderData2.Material = null;
-            this.materialView21.MaterialRenderData = materialRenderData2;
-            this.materialView21.Name = "materialView21";
-            this.materialView21.Size = new System.Drawing.Size(82, 123);
-            this.materialView21.TabIndex = 5;
+            this.imageViewControl2_3.BackgroundImage = global::CharaChipGen.Properties.Resources.Background;
+            this.imageViewControl2_3.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
+            this.imageViewControl2_3.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.imageViewControl2_3.Image = null;
+            this.imageViewControl2_3.ImageRect = new System.Drawing.Rectangle(0, 0, 0, 0);
+            this.imageViewControl2_3.Location = new System.Drawing.Point(307, 132);
+            this.imageViewControl2_3.Name = "imageViewControl2_3";
+            this.imageViewControl2_3.Size = new System.Drawing.Size(84, 123);
+            this.imageViewControl2_3.TabIndex = 9;
             // 
-            // materialView31
+            // imageViewControl2_2
             // 
-            this.materialView31.CharaChipPositionX = 2;
-            this.materialView31.CharaChipPositionY = 0;
-            this.materialView31.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.materialView31.Location = new System.Drawing.Point(307, 3);
-            materialRenderData3.Material = null;
-            this.materialView31.MaterialRenderData = materialRenderData3;
-            this.materialView31.Name = "materialView31";
-            this.materialView31.Size = new System.Drawing.Size(84, 123);
-            this.materialView31.TabIndex = 6;
+            this.imageViewControl2_2.BackgroundImage = global::CharaChipGen.Properties.Resources.Background;
+            this.imageViewControl2_2.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
+            this.imageViewControl2_2.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.imageViewControl2_2.Image = null;
+            this.imageViewControl2_2.ImageRect = new System.Drawing.Rectangle(0, 0, 0, 0);
+            this.imageViewControl2_2.Location = new System.Drawing.Point(219, 132);
+            this.imageViewControl2_2.Name = "imageViewControl2_2";
+            this.imageViewControl2_2.Size = new System.Drawing.Size(82, 123);
+            this.imageViewControl2_2.TabIndex = 8;
             // 
-            // materialView12
+            // imageViewControl2_1
             // 
-            this.materialView12.CharaChipPositionX = 0;
-            this.materialView12.CharaChipPositionY = 1;
-            this.materialView12.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.materialView12.Location = new System.Drawing.Point(131, 132);
-            materialRenderData4.Material = null;
-            this.materialView12.MaterialRenderData = materialRenderData4;
-            this.materialView12.Name = "materialView12";
-            this.materialView12.Size = new System.Drawing.Size(82, 123);
-            this.materialView12.TabIndex = 7;
+            this.imageViewControl2_1.BackgroundImage = global::CharaChipGen.Properties.Resources.Background;
+            this.imageViewControl2_1.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
+            this.imageViewControl2_1.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.imageViewControl2_1.Image = null;
+            this.imageViewControl2_1.ImageRect = new System.Drawing.Rectangle(0, 0, 0, 0);
+            this.imageViewControl2_1.Location = new System.Drawing.Point(131, 132);
+            this.imageViewControl2_1.Name = "imageViewControl2_1";
+            this.imageViewControl2_1.Size = new System.Drawing.Size(82, 123);
+            this.imageViewControl2_1.TabIndex = 7;
             // 
-            // materialView22
+            // imageViewControl2_0
             // 
-            this.materialView22.CharaChipPositionX = 1;
-            this.materialView22.CharaChipPositionY = 1;
-            this.materialView22.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.materialView22.Location = new System.Drawing.Point(219, 132);
-            materialRenderData5.Material = null;
-            this.materialView22.MaterialRenderData = materialRenderData5;
-            this.materialView22.Name = "materialView22";
-            this.materialView22.Size = new System.Drawing.Size(82, 123);
-            this.materialView22.TabIndex = 8;
+            this.imageViewControl2_0.BackgroundImage = global::CharaChipGen.Properties.Resources.Background;
+            this.imageViewControl2_0.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
+            this.imageViewControl2_0.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.imageViewControl2_0.Image = null;
+            this.imageViewControl2_0.ImageRect = new System.Drawing.Rectangle(0, 0, 0, 0);
+            this.imageViewControl2_0.Location = new System.Drawing.Point(3, 132);
+            this.imageViewControl2_0.Name = "imageViewControl2_0";
+            this.imageViewControl2_0.Size = new System.Drawing.Size(82, 123);
+            this.imageViewControl2_0.TabIndex = 5;
             // 
-            // materialView32
+            // imageViewControl1_0
             // 
-            this.materialView32.CharaChipPositionX = 2;
-            this.materialView32.CharaChipPositionY = 1;
-            this.materialView32.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.materialView32.Location = new System.Drawing.Point(307, 132);
-            materialRenderData6.Material = null;
-            this.materialView32.MaterialRenderData = materialRenderData6;
-            this.materialView32.Name = "materialView32";
-            this.materialView32.Size = new System.Drawing.Size(84, 123);
-            this.materialView32.TabIndex = 9;
+            this.imageViewControl1_0.BackgroundImage = global::CharaChipGen.Properties.Resources.Background;
+            this.imageViewControl1_0.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
+            this.imageViewControl1_0.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.imageViewControl1_0.Image = null;
+            this.imageViewControl1_0.ImageRect = new System.Drawing.Rectangle(0, 0, 0, 0);
+            this.imageViewControl1_0.Location = new System.Drawing.Point(3, 3);
+            this.imageViewControl1_0.Name = "imageViewControl1_0";
+            this.imageViewControl1_0.Size = new System.Drawing.Size(82, 123);
+            this.imageViewControl1_0.TabIndex = 0;
             // 
-            // materialView13
+            // imageViewControl1_1
             // 
-            this.materialView13.CharaChipPositionX = 0;
-            this.materialView13.CharaChipPositionY = 1;
-            this.materialView13.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.materialView13.Location = new System.Drawing.Point(131, 261);
-            materialRenderData7.Material = null;
-            this.materialView13.MaterialRenderData = materialRenderData7;
-            this.materialView13.Name = "materialView13";
-            this.materialView13.Size = new System.Drawing.Size(82, 123);
-            this.materialView13.TabIndex = 10;
+            this.imageViewControl1_1.BackgroundImage = global::CharaChipGen.Properties.Resources.Background;
+            this.imageViewControl1_1.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
+            this.imageViewControl1_1.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.imageViewControl1_1.Image = null;
+            this.imageViewControl1_1.ImageRect = new System.Drawing.Rectangle(0, 0, 0, 0);
+            this.imageViewControl1_1.Location = new System.Drawing.Point(131, 3);
+            this.imageViewControl1_1.Name = "imageViewControl1_1";
+            this.imageViewControl1_1.Size = new System.Drawing.Size(82, 123);
+            this.imageViewControl1_1.TabIndex = 1;
             // 
-            // materialView23
+            // imageViewControl1_2
             // 
-            this.materialView23.CharaChipPositionX = 1;
-            this.materialView23.CharaChipPositionY = 1;
-            this.materialView23.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.materialView23.Location = new System.Drawing.Point(219, 261);
-            materialRenderData8.Material = null;
-            this.materialView23.MaterialRenderData = materialRenderData8;
-            this.materialView23.Name = "materialView23";
-            this.materialView23.Size = new System.Drawing.Size(82, 123);
-            this.materialView23.TabIndex = 11;
+            this.imageViewControl1_2.BackgroundImage = global::CharaChipGen.Properties.Resources.Background;
+            this.imageViewControl1_2.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
+            this.imageViewControl1_2.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.imageViewControl1_2.Image = null;
+            this.imageViewControl1_2.ImageRect = new System.Drawing.Rectangle(0, 0, 0, 0);
+            this.imageViewControl1_2.Location = new System.Drawing.Point(219, 3);
+            this.imageViewControl1_2.Name = "imageViewControl1_2";
+            this.imageViewControl1_2.Size = new System.Drawing.Size(82, 123);
+            this.imageViewControl1_2.TabIndex = 2;
             // 
-            // materialView33
+            // imageViewControl1_3
             // 
-            this.materialView33.CharaChipPositionX = 2;
-            this.materialView33.CharaChipPositionY = 1;
-            this.materialView33.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.materialView33.Location = new System.Drawing.Point(307, 261);
-            materialRenderData9.Material = null;
-            this.materialView33.MaterialRenderData = materialRenderData9;
-            this.materialView33.Name = "materialView33";
-            this.materialView33.Size = new System.Drawing.Size(84, 123);
-            this.materialView33.TabIndex = 12;
+            this.imageViewControl1_3.BackgroundImage = global::CharaChipGen.Properties.Resources.Background;
+            this.imageViewControl1_3.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
+            this.imageViewControl1_3.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.imageViewControl1_3.Image = null;
+            this.imageViewControl1_3.ImageRect = new System.Drawing.Rectangle(0, 0, 0, 0);
+            this.imageViewControl1_3.Location = new System.Drawing.Point(307, 3);
+            this.imageViewControl1_3.Name = "imageViewControl1_3";
+            this.imageViewControl1_3.Size = new System.Drawing.Size(84, 123);
+            this.imageViewControl1_3.TabIndex = 3;
             // 
-            // materialView14
+            // imageViewControl4_3
             // 
-            this.materialView14.CharaChipPositionX = 0;
-            this.materialView14.CharaChipPositionY = 1;
-            this.materialView14.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.materialView14.Location = new System.Drawing.Point(131, 390);
-            materialRenderData10.Material = null;
-            this.materialView14.MaterialRenderData = materialRenderData10;
-            this.materialView14.Name = "materialView14";
-            this.materialView14.Size = new System.Drawing.Size(82, 124);
-            this.materialView14.TabIndex = 13;
+            this.imageViewControl4_3.BackgroundImage = global::CharaChipGen.Properties.Resources.Background;
+            this.imageViewControl4_3.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
+            this.imageViewControl4_3.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.imageViewControl4_3.Image = null;
+            this.imageViewControl4_3.ImageRect = new System.Drawing.Rectangle(0, 0, 0, 0);
+            this.imageViewControl4_3.Location = new System.Drawing.Point(307, 390);
+            this.imageViewControl4_3.Name = "imageViewControl4_3";
+            this.imageViewControl4_3.Size = new System.Drawing.Size(84, 124);
+            this.imageViewControl4_3.TabIndex = 11;
             // 
-            // materialView24
+            // imageViewControl4_2
             // 
-            this.materialView24.CharaChipPositionX = 1;
-            this.materialView24.CharaChipPositionY = 1;
-            this.materialView24.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.materialView24.Location = new System.Drawing.Point(219, 390);
-            materialRenderData11.Material = null;
-            this.materialView24.MaterialRenderData = materialRenderData11;
-            this.materialView24.Name = "materialView24";
-            this.materialView24.Size = new System.Drawing.Size(82, 124);
-            this.materialView24.TabIndex = 14;
+            this.imageViewControl4_2.BackgroundImage = global::CharaChipGen.Properties.Resources.Background;
+            this.imageViewControl4_2.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
+            this.imageViewControl4_2.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.imageViewControl4_2.Image = null;
+            this.imageViewControl4_2.ImageRect = new System.Drawing.Rectangle(0, 0, 0, 0);
+            this.imageViewControl4_2.Location = new System.Drawing.Point(219, 390);
+            this.imageViewControl4_2.Name = "imageViewControl4_2";
+            this.imageViewControl4_2.Size = new System.Drawing.Size(82, 124);
+            this.imageViewControl4_2.TabIndex = 6;
             // 
-            // materialView34
+            // imageViewControl4_1
             // 
-            this.materialView34.CharaChipPositionX = 2;
-            this.materialView34.CharaChipPositionY = 1;
-            this.materialView34.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.materialView34.Location = new System.Drawing.Point(307, 390);
-            materialRenderData12.Material = null;
-            this.materialView34.MaterialRenderData = materialRenderData12;
-            this.materialView34.Name = "materialView34";
-            this.materialView34.Size = new System.Drawing.Size(84, 124);
-            this.materialView34.TabIndex = 15;
+            this.imageViewControl4_1.BackgroundImage = global::CharaChipGen.Properties.Resources.Background;
+            this.imageViewControl4_1.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
+            this.imageViewControl4_1.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.imageViewControl4_1.Image = null;
+            this.imageViewControl4_1.ImageRect = new System.Drawing.Rectangle(0, 0, 0, 0);
+            this.imageViewControl4_1.Location = new System.Drawing.Point(131, 390);
+            this.imageViewControl4_1.Name = "imageViewControl4_1";
+            this.imageViewControl4_1.Size = new System.Drawing.Size(82, 124);
+            this.imageViewControl4_1.TabIndex = 4;
+            // 
+            // timer
+            // 
+            this.timer.Tick += new System.EventHandler(this.OnTimerTick);
             // 
             // MaterialView
             // 
@@ -299,10 +278,6 @@
             this.Name = "MaterialView";
             this.Size = new System.Drawing.Size(394, 517);
             this.tableLayoutPanel1.ResumeLayout(false);
-            ((System.ComponentModel.ISupportInitialize)(this.pictureBox4)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.pictureBox3)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.pictureBox2)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).EndInit();
             this.ResumeLayout(false);
 
         }
@@ -310,21 +285,22 @@
         #endregion
 
         private System.Windows.Forms.TableLayoutPanel tableLayoutPanel1;
-        private System.Windows.Forms.PictureBox pictureBox1;
-        private System.Windows.Forms.PictureBox pictureBox4;
-        private System.Windows.Forms.PictureBox pictureBox3;
-        private System.Windows.Forms.PictureBox pictureBox2;
-        private MaterialViewNN materialView11;
-        private MaterialViewNN materialView21;
-        private MaterialViewNN materialView31;
-        private MaterialViewNN materialView12;
-        private MaterialViewNN materialView22;
-        private MaterialViewNN materialView32;
-        private MaterialViewNN materialView13;
-        private MaterialViewNN materialView23;
-        private MaterialViewNN materialView33;
-        private MaterialViewNN materialView14;
-        private MaterialViewNN materialView24;
-        private MaterialViewNN materialView34;
+        private CommonControl.ImageViewControl imageViewControl4_0;
+        private CommonControl.ImageViewControl imageViewControl3_3;
+        private CommonControl.ImageViewControl imageViewControl3_2;
+        private CommonControl.ImageViewControl imageViewControl3_1;
+        private CommonControl.ImageViewControl imageViewControl3_0;
+        private CommonControl.ImageViewControl imageViewControl2_3;
+        private CommonControl.ImageViewControl imageViewControl2_2;
+        private CommonControl.ImageViewControl imageViewControl2_1;
+        private CommonControl.ImageViewControl imageViewControl2_0;
+        private CommonControl.ImageViewControl imageViewControl1_0;
+        private CommonControl.ImageViewControl imageViewControl1_1;
+        private CommonControl.ImageViewControl imageViewControl1_2;
+        private CommonControl.ImageViewControl imageViewControl1_3;
+        private CommonControl.ImageViewControl imageViewControl4_3;
+        private CommonControl.ImageViewControl imageViewControl4_2;
+        private CommonControl.ImageViewControl imageViewControl4_1;
+        private System.Windows.Forms.Timer timer;
     }
 }

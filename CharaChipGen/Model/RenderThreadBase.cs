@@ -2,31 +2,26 @@
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
+using System.Drawing;
 using System.Threading;
 using System.Threading.Tasks;
-using System.Drawing;
-using CGenImaging;
-using CharaChipGen.Model;
-using CharaChipGen.Model.Layer;
-using CharaChipGen.Model.CharaChip;
 
-namespace CharaChipGen.GeneratorForm
+namespace CharaChipGen.Model
 {
     /// <summary>
-    /// ウラで描画を行うスレッド
+    /// レンダリングスレッドの既定クラス。
     /// </summary>
-    public class RenderThread : IDisposable
+    /// <remarks>
+    /// スレッドの開始/要求発行/レンダリング処理/スレッドの停止を提供する。
+    /// </remarks>
+    public abstract class RenderThreadBase : IDisposable
     {
-        // レンダリングキャッシュ
-        private CharaChipRenderData renderData;
         // タスク
         private Task task;
         // 再レンダリング要求が出ているか
         private bool isRenderRequested;
         // 中止要求が出ているか
         private bool isAbortRequested;
-        // レンダリングするためのイメージバッファ
-        private ImageBuffer imageBuffer;
         // イベント
         private readonly EventWaitHandle eventWaitHandle;
         // オブジェクトが破棄されたかどうか
@@ -37,10 +32,8 @@ namespace CharaChipGen.GeneratorForm
         /// <summary>
         /// レンダリングスレッドを構築する。
         /// </summary>
-        public RenderThread()
+        public RenderThreadBase()
         {
-            renderData = new CharaChipRenderData();
-            renderData.ImageChanged += OnImageChanged;
             isRenderRequested = false;
             isAbortRequested = false;
             task = null;
@@ -51,7 +44,7 @@ namespace CharaChipGen.GeneratorForm
         /// <summary>
         /// GCがオブジェクトのリソースを破棄するために呼び出す。
         /// </summary>
-        ~RenderThread()
+        ~RenderThreadBase()
         {
             Dispose(false);
         }
@@ -101,41 +94,14 @@ namespace CharaChipGen.GeneratorForm
         public event EventHandler Rendered;
 
         /// <summary>
-        /// レンダリングデータを設定する。
-        /// </summary>
-        public CharaChipRenderData RenderData {
-            get => renderData;
-            set {
-                if (renderData != null)
-                {
-                    renderData.ImageChanged -= OnImageChanged;
-                }
-                renderData = value;
-                if (renderData != null)
-                {
-                    renderData.ImageChanged += OnImageChanged;
-                }
-                RequestRender();
-            }
-        }
-
-        /// <summary>
-        /// 再描画が必要であると通知を受け取る
-        /// </summary>
-        /// <param name="sender">送信元オブジェクト</param>
-        /// <param name="e">イベントオブジェクト</param>
-        private void OnImageChanged(object sender, EventArgs e)
-        {
-            RequestRender();
-        }
-        /// <summary>
         /// レンダリング要求を出す。
         /// </summary>
-        private void RequestRender()
+        protected void RequestRender()
         {
             isRenderRequested = true;
             eventWaitHandle.Set();
         }
+
 
         /// <summary>
         /// スレッドを開始する。
@@ -197,7 +163,13 @@ namespace CharaChipGen.GeneratorForm
                 {
                     isRenderRequested = false;
                     // レンダリングする。
-                    RenderingProc();
+                    var renderedImage = RenderingProc();
+                    if (image != null)
+                    {
+                        image.Dispose();
+                    }
+                    image = renderedImage;
+
                     // レンダリング完了通知
                     Rendered?.Invoke(this, new EventArgs());
                 }
@@ -215,45 +187,7 @@ namespace CharaChipGen.GeneratorForm
         /// <summary>
         /// レンダリングする
         /// </summary>
-        private void RenderingProc()
-        {
-            Size prefSize = renderData.PreferredCharaChipSize;
-            if ((prefSize.Width <= 0) || (prefSize.Height <= 0))
-            {
-                imageBuffer = null;
-                if (image != null)
-                {
-                    image.Dispose();
-                    image = null;
-                }
-            }
-            else
-            {
-                int imageWidth = prefSize.Width * 3;
-                int imageHeight = prefSize.Height * 4;
-                if ((imageBuffer == null) || (imageBuffer.Width != imageWidth) || (imageBuffer.Height != imageHeight))
-                {
-                    imageBuffer = ImageBuffer.Create(imageWidth, imageHeight);
-                }
+        protected abstract Image RenderingProc();
 
-                Parallel.For(0, 4, y =>
-                {
-                    ImageBuffer workBuffer = ImageBuffer.Create(prefSize.Width, prefSize.Height);
-                    for (int x = 0; x < 3; x++)
-                    {
-                        int xoffs = workBuffer.Width * x;
-                        int yoffs = workBuffer.Height * y;
-                        CharaChipRenderer.Draw(renderData, workBuffer, x, y);
-                        imageBuffer.WriteImage(workBuffer, xoffs, yoffs);
-                    }
-                });
-
-                if (image != null)
-                {
-                    image.Dispose();
-                }
-                image = imageBuffer.GetImage();
-            }
-        }
     }
 }

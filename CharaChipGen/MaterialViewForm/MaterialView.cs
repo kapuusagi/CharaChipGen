@@ -8,6 +8,8 @@ using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
 using CharaChipGen.Model;
+using CharaChipGen.CommonControl;
+using CharaChipGen.Model.Material;
 
 namespace CharaChipGen.MaterialViewForm
 {
@@ -16,7 +18,19 @@ namespace CharaChipGen.MaterialViewForm
     /// </summary>
     public partial class MaterialView : UserControl
     {
+        // 表示カウンタ
         private int viewCounter;
+        // アニメーションコントロール
+        private ImageViewControl[] animationControls;
+        // プレビューコントロール
+        private ImageViewControl[,] previewControls;
+        // レンダリングスレッド
+        private MaterialRenderThread renderThread;
+        // 素材チップ幅
+        private int mateChipWidth;
+        // 素材チップ高さ
+        private int mateChipHeight;
+
         /// <summary>
         /// 新しいインスタンスを構築する
         /// </summary>
@@ -24,37 +38,128 @@ namespace CharaChipGen.MaterialViewForm
         {
             viewCounter = 0;
             InitializeComponent();
+            animationControls = new ImageViewControl[4]
+            {
+                imageViewControl1_0, imageViewControl2_0, imageViewControl3_0, imageViewControl4_0
+            };
+            previewControls = new ImageViewControl[4, 3]
+            {
+                { imageViewControl1_1, imageViewControl1_2, imageViewControl1_3 },
+                { imageViewControl2_1, imageViewControl2_2, imageViewControl2_3 },
+                { imageViewControl3_1, imageViewControl3_2, imageViewControl3_3 },
+                { imageViewControl4_1, imageViewControl4_2, imageViewControl4_3 }
+            };
+
+            renderThread = new MaterialRenderThread();
+            renderThread.Rendered += OnImageRendered;
+
+        }
+        /// <summary> 
+        /// 使用中のリソースをすべてクリーンアップします。
+        /// </summary>
+        /// <param name="disposing">マネージド リソースを破棄する場合は true を指定し、その他の場合は false を指定します。</param>
+        protected override void Dispose(bool disposing)
+        {
+            renderThread.Stop();
+            if (disposing && (components != null))
+            {
+                components.Dispose();
+            }
+            if (disposing && (renderThread != null))
+            {
+                renderThread.Dispose();
+            }
+            base.Dispose(disposing);
         }
 
-        public void UpdateTick()
+        /// <summary>
+        /// レンダリングが完了したときに通知を受け取る。
+        /// </summary>
+        public event EventHandler ImageRendered;
+
+        /// <summary>
+        /// コントロールが最初に表示されたときの処理を行う。
+        /// </summary>
+        public void OnShown()
         {
-            switch (viewCounter)
+            renderThread.Start();
+            timer.Start();
+        }
+
+        /// <summary>
+        /// 閉じたときの処理を行う。
+        /// </summary>
+        public void OnClosed()
+        {
+            timer.Stop();
+            renderThread.Stop();
+            renderThread.Dispose();
+        }
+
+        /// <summary>
+        /// イメージがレンダリングされたときに処理を行う。
+        /// </summary>
+        /// <param name="sender">送信元オブジェクト</param>
+        /// <param name="e">イベントオブジェクト</param>
+        private void OnImageRendered(object sender, EventArgs e)
+        {
+            // イメージと矩形領域を設定する。
+            if (InvokeRequired)
             {
-                case 0:
-                    pictureBox1.Image = materialView11.GetRenderedImage();
-                    pictureBox2.Image = materialView12.GetRenderedImage();
-                    pictureBox3.Image = materialView13.GetRenderedImage();
-                    pictureBox4.Image = materialView14.GetRenderedImage();
-                    break;
-                case 1:
-                    pictureBox1.Image = materialView21.GetRenderedImage();
-                    pictureBox2.Image = materialView22.GetRenderedImage();
-                    pictureBox3.Image = materialView23.GetRenderedImage();
-                    pictureBox4.Image = materialView24.GetRenderedImage();
-                    break;
-                case 2:
-                    pictureBox1.Image = materialView31.GetRenderedImage();
-                    pictureBox2.Image = materialView32.GetRenderedImage();
-                    pictureBox3.Image = materialView33.GetRenderedImage();
-                    pictureBox4.Image = materialView34.GetRenderedImage();
-                    break;
-                case 3:
-                    pictureBox1.Image = materialView21.GetRenderedImage();
-                    pictureBox2.Image = materialView22.GetRenderedImage();
-                    pictureBox3.Image = materialView23.GetRenderedImage();
-                    pictureBox4.Image = materialView24.GetRenderedImage();
-                    break;
+                Invoke((MethodInvoker)(ApplyRenderedImage));
             }
+            else
+            {
+                ApplyRenderedImage();
+            }
+
+
+            ImageRendered?.Invoke(this, new EventArgs());
+        }
+
+        /// <summary>
+        /// レンダリングされたイメージを適用する。
+        /// </summary>
+        private void ApplyRenderedImage()
+        {
+            var image = renderThread.RenderedImage;
+            mateChipWidth = (image != null) ? image.Width / 3 : 0;
+            mateChipHeight = (image != null) ? image.Height / 4 : 0;
+
+            foreach (var control in animationControls)
+            {
+                control.Image = image;
+            }
+            for (int y = 0; y < 4; y++)
+            {
+                for (int x = 0; x < 3; x++)
+                {
+                    var control = previewControls[y, x];
+                    control.Image = image;
+                    control.ImageRect = new Rectangle(x * mateChipWidth, y * mateChipHeight, mateChipWidth, mateChipHeight);
+                }
+                viewCounter = 1;
+            }
+
+            UpdateAnimationRect();
+
+        }
+
+        /// <summary>
+        /// レンダリングエラーがあったかどうかを得る。
+        /// </summary>
+        /// <returns>エラーがある場合にはtrue, 無い場合にはfalse</returns>
+        public bool HasError
+        {
+            get => renderThread.RenderData.HasError;
+        }
+
+        /// <summary>
+        /// タイマーTICKを更新する。
+        /// </summary>
+        private void UpdateTick()
+        {
+            UpdateAnimationRect();
             viewCounter++;
             if (viewCounter >= 4)
             {
@@ -63,51 +168,75 @@ namespace CharaChipGen.MaterialViewForm
         }
 
         /// <summary>
-        /// 描画するデータ
+        /// アニメーションするための表示領域更新処理を行う。
         /// </summary>
-        [Browsable(false)]
-        public MaterialRenderData MaterialRenderData {
-            get => materialView11.MaterialRenderData;
-            set {
-                materialView11.MaterialRenderData = value;
-                materialView21.MaterialRenderData = value;
-                materialView31.MaterialRenderData = value;
-                materialView12.MaterialRenderData = value;
-                materialView22.MaterialRenderData = value;
-                materialView32.MaterialRenderData = value;
-                materialView13.MaterialRenderData = value;
-                materialView23.MaterialRenderData = value;
-                materialView33.MaterialRenderData = value;
-                materialView14.MaterialRenderData = value;
-                materialView24.MaterialRenderData = value;
-                materialView34.MaterialRenderData = value;
+        private void UpdateAnimationRect()
+        {
+            int x;
+
+            switch (viewCounter)
+            {
+                case 0: // 左
+                    x = 0;
+                    break;
+                case 1: // 真ん中
+                    x = mateChipWidth;
+                    break;
+                case 2: // 右
+                    x = mateChipWidth * 2;
+                    break;
+                case 3: // 真ん中
+                    x = mateChipWidth;
+                    break;
+                default:
+                    x = 0;
+                    break;
+            }
+
+            int y = 0;
+            for (int i = 0; i < animationControls.Length; i++)
+            {
+                animationControls[i].ImageRect = new Rectangle(x, y, mateChipWidth, mateChipHeight);
+                y += mateChipHeight;
             }
         }
+
+        /// <summary>
+        /// 描画する素材を設定する。
+        /// </summary>
+        /// <param name="material"></param>
+        public void SetMaterial(Material material)
+        {
+            renderThread.RenderData.Material = material;
+        }
+
+
 
         /// <summary>
         /// 画像の背景色
         /// </summary>
         public Color ImageBackground {
-            get => materialView11.ImageBackground;
+            get => imageViewControl1_0.BackColor;
             set {
-                materialView11.ImageBackground = value;
-                materialView21.ImageBackground = value;
-                materialView31.ImageBackground = value;
-                materialView12.ImageBackground = value;
-                materialView22.ImageBackground = value;
-                materialView32.ImageBackground = value;
-                materialView13.ImageBackground = value;
-                materialView23.ImageBackground = value;
-                materialView33.ImageBackground = value;
-                materialView14.ImageBackground = value;
-                materialView24.ImageBackground = value;
-                materialView34.ImageBackground = value;
-
-                pictureBox1.BackColor = value;
-                pictureBox2.BackColor = value;
-                pictureBox3.BackColor = value;
-                pictureBox4.BackColor = value;
+                foreach (var control in animationControls)
+                {
+                    control.BackColor = value;
+                }
+                foreach (var control in previewControls)
+                {
+                    control.BackColor = value;
+                }
             }
+        }
+
+        /// <summary>
+        /// タイマー処理
+        /// </summary>
+        /// <param name="sender">送信元オブジェクト</param>
+        /// <param name="e">イベントオブジェクト</param>
+        private void OnTimerTick(object sender, EventArgs e)
+        {
+            UpdateTick();
         }
     }
 }
