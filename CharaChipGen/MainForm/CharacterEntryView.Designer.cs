@@ -29,7 +29,6 @@
         private void InitializeComponent()
         {
             this.components = new System.ComponentModel.Container();
-            System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(CharacterEntryView));
             this.button = new System.Windows.Forms.Button();
             this.contextMenuStrip = new System.Windows.Forms.ContextMenuStrip(this.components);
             this.編集ToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
@@ -74,16 +73,16 @@
             this.削除ToolStripMenuItem.Size = new System.Drawing.Size(98, 22);
             this.削除ToolStripMenuItem.Text = "削除";
             // 
-            // imageViewControl1
+            // imageViewControl
             // 
             this.imageViewControl.BackColor = System.Drawing.Color.Transparent;
-            this.imageViewControl.BackgroundImage = ((System.Drawing.Image)(resources.GetObject("imageViewControl1.BackgroundImage")));
+            this.imageViewControl.BackgroundImage = global::CharaChipGen.Properties.Resources.Background;
             this.imageViewControl.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
             this.imageViewControl.Dock = System.Windows.Forms.DockStyle.Fill;
             this.imageViewControl.Image = null;
             this.imageViewControl.ImageRect = new System.Drawing.Rectangle(0, 0, 0, 0);
             this.imageViewControl.Location = new System.Drawing.Point(7, 7);
-            this.imageViewControl.Name = "imageViewControl1";
+            this.imageViewControl.Name = "imageViewControl";
             this.imageViewControl.Padding = new System.Windows.Forms.Padding(24, 4, 4, 4);
             this.imageViewControl.Size = new System.Drawing.Size(154, 145);
             this.imageViewControl.TabIndex = 2;
