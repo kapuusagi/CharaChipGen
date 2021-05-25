@@ -79,7 +79,7 @@
     <Compile Include="GeneratorForm\PartsEditView.designer.cs">
       <DependentUpon>PartsEditView.cs</DependentUpon>
     </Compile>
-    <Compile Include="GeneratorForm\RenderThread.cs" />
+    <Compile Include="GeneratorForm\CharaChipRenderThread.cs" />
     <Compile Include="GeneratorForm\TemplateSelectForm.cs">
       <SubType>Form</SubType>
     </Compile>

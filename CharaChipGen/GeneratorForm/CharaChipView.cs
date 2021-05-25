@@ -22,7 +22,7 @@ namespace CharaChipGen.GeneratorForm
         // プレビューコントロール
         private CommonControl.ImageViewControl[,] previewControls;
         // レンダリングスレッド
-        private RenderThread renderThread;
+        private CharaChipRenderThread renderThread;
         // 幅(キャッシュ)
         private int charaChipWidth;
         // 高さ(キャッシュ)
@@ -37,7 +37,7 @@ namespace CharaChipGen.GeneratorForm
             viewCounter = 0;
             charaChipWidth = 0;
             charaChipHeight = 0;
-            renderThread = new RenderThread();
+            renderThread = new CharaChipRenderThread();
             renderThread.Rendered += OnImageChanged;
 
             InitializeComponent();
