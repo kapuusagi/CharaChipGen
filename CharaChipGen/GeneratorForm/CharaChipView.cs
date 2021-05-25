@@ -15,20 +15,19 @@ namespace CharaChipGen.GeneratorForm
     /// </summary>
     public partial class CharaChipView : UserControl
     {
+        // 表示カウンタ
         private int viewCounter;
-
         // アニメーションさせるコントロール
         private CommonControl.ImageViewControl[] animationControls;
         // プレビューコントロール
         private CommonControl.ImageViewControl[,] previewControls;
-        // レンダリングデータ
-        private CharaChipRenderData renderData;
-        // レンダリングデータを書き込むバッファ
-        private ImageBuffer imageBuffer;
-        // ワークバッファ
-        private ImageBuffer workBuffer;
-        // レンダリングイメージ
-        private Image image;
+        // レンダリングスレッド
+        private RenderThread renderThread;
+        // 幅(キャッシュ)
+        private int charaChipWidth;
+        // 高さ(キャッシュ)
+        private int charaChipHeight;
+
 
         /// <summary>
         /// 新しいインスタンスを構築する。
@@ -36,8 +35,10 @@ namespace CharaChipGen.GeneratorForm
         public CharaChipView()
         {
             viewCounter = 0;
-            renderData = new CharaChipRenderData();
-            renderData.ImageChanged += OnImageChanged;
+            charaChipWidth = 0;
+            charaChipHeight = 0;
+            renderThread = new RenderThread();
+            renderThread.Rendered += OnImageChanged;
 
             InitializeComponent();
 
@@ -57,11 +58,7 @@ namespace CharaChipGen.GeneratorForm
         /// <param name="disposing">マネージ リソースを破棄する場合は true を指定し、その他の場合は false を指定します。</param>
         protected override void Dispose(bool disposing)
         {
-            if (disposing && (components != null))
-            {
-                components.Dispose();
-            }
-            if (disposing && (image != null))
+            if (disposing && (renderThread != null))
             {
                 foreach (var control in animationControls)
                 {
@@ -71,12 +68,21 @@ namespace CharaChipGen.GeneratorForm
                 {
                     control.Image = null;
                 }
-                image.Dispose();
-                image = null;
+                renderThread.Dispose();
+                renderThread = null;
+            }
+            if (disposing && (components != null))
+            {
+                components.Dispose();
             }
 
             base.Dispose(disposing);
         }
+
+        /// <summary>
+        /// レンダリングが完了したときに通知を受け取る。
+        /// </summary>
+        public event EventHandler ImageRendered;
 
         /// <summary>
         /// レンダリングイメージが変更されたときに通知を受け取る。
@@ -85,62 +91,32 @@ namespace CharaChipGen.GeneratorForm
         /// <param name="e">イベントオブジェクト</param>
         private void OnImageChanged(object sender, EventArgs e)
         {
-            // 再レンダリング
-            Size prefSize = renderData.PreferredCharaChipSize;
-            if ((prefSize.Width > 0) && (prefSize.Height > 0))
+            ImageRendered?.Invoke(this, new EventArgs());
+            if (InvokeRequired)
             {
-                int imageWidth = prefSize.Width * 3;
-                int imageHeight = prefSize.Height * 4;
-                if ((imageBuffer == null) || (imageBuffer.Width != imageWidth) || (imageBuffer.Height != imageHeight))
-                {
-                    imageBuffer = ImageBuffer.Create(imageWidth, imageHeight);
-                    workBuffer = ImageBuffer.Create(prefSize.Width, prefSize.Height);
-                }
-
-                for (int y = 0; y < 4; y++)
-                {
-                    for (int x = 0; x < 3; x++)
-                    {
-                        int xoffs = workBuffer.Width * x;
-                        int yoffs = workBuffer.Height * y;
-                        CharaChipRenderer.Draw(renderData, workBuffer, x, y);
-                        imageBuffer.WriteImage(workBuffer, xoffs, yoffs);
-                    }
-                }
-
-                if (image != null)
-                {
-                    image.Dispose();
-                }
-                image = imageBuffer.GetImage();
+                Invoke((MethodInvoker)(ApplyRenderedImage));
             }
             else
             {
-                imageBuffer = null;
-                workBuffer = null;
-                if (image != null)
-                {
-                    image.Dispose();
-                    image = null;
-                }
+                ApplyRenderedImage();
             }
-
-            ApplyRenderedImage();
         }
 
         /// <summary>
         /// レンダリングしたイメージを適用する。
         /// </summary>
         private void ApplyRenderedImage()
-        { 
+        {
+            var image = renderThread.RenderedImage;
+
+            charaChipWidth = (image != null) ? image.Width / 3 : 0;
+            charaChipHeight = (image != null) ? image.Height / 4 : 0;
+
 
             foreach (var control in animationControls)
             {
                 control.Image = image;
             }
-
-            int charaChipWidth = (imageBuffer != null) ? imageBuffer.Width / 3 : 0;
-            int charaChipHeight = (imageBuffer != null) ? imageBuffer.Height / 4 : 0;
             for (int y = 0; y < 4; y++)
             {
                 for (int x = 0; x< 3; x++)
@@ -149,18 +125,37 @@ namespace CharaChipGen.GeneratorForm
                     control.Image = image;
                     control.ImageRect = new Rectangle(x * charaChipWidth, y * charaChipHeight, charaChipWidth, charaChipHeight);
                 }
+                viewCounter = 1;
             }
 
-            UpdateTick();
+            UpdateAnimationRect();
         }
 
         /// <summary>
-        /// 更新する。
+        /// 最初に表示されたときの処理を行う。
         /// </summary>
-        public void UpdateTick()
+        public void OnShown()
+        {
+            renderThread.Start();
+            timer.Start();
+        }
+
+        /// <summary>
+        /// 終了するときの処理を行う。
+        /// </summary>
+        public void OnClosed()
+        {
+            timer.Stop();
+            renderThread.Stop();
+        }
+
+        /// <summary>
+        /// アニメーションするための表示領域を更新する。
+        /// viewCounterの値を元に表示領域を更新する。
+        /// </summary>
+        private void UpdateAnimationRect()
         {
             int x;
-            int charaChipWidth = (imageBuffer != null) ? imageBuffer.Width / 3 : 0;
 
             switch (viewCounter)
             {
@@ -181,14 +176,21 @@ namespace CharaChipGen.GeneratorForm
                     break;
             }
 
-            int charaChipHeight = (imageBuffer != null) ? imageBuffer.Height / 4 : 0;
             int y = 0;
             for (int i = 0; i < animationControls.Length; i++)
             {
                 animationControls[i].ImageRect = new Rectangle(x, y, charaChipWidth, charaChipHeight);
                 y += charaChipHeight;
             }
+        }
 
+
+        /// <summary>
+        /// 更新する。
+        /// </summary>
+        private void UpdateTick()
+        {
+            UpdateAnimationRect();
             viewCounter++;
             if (viewCounter >= 4)
             {
@@ -202,7 +204,7 @@ namespace CharaChipGen.GeneratorForm
         /// <param name="model">データモデル</param>
         public void SetCharacter(Character model)
         {
-            renderData.Character = model;
+            renderThread.RenderData.Character = model;
         }
 
         /// <summary>
@@ -210,7 +212,7 @@ namespace CharaChipGen.GeneratorForm
         /// </summary>
         public bool HasError {
             get {
-                return renderData.HasError;
+                return renderThread.RenderData.HasError;
             }
         }
 
@@ -225,7 +227,7 @@ namespace CharaChipGen.GeneratorForm
         public PartsType[] GetErrorPartsTypes()
         {
             List<PartsType> partsTypes = new List<PartsType>();
-            foreach (RenderLayer layer in renderData)
+            foreach (RenderLayer layer in renderThread.RenderData)
             {
                 if ((layer.HasError) && !partsTypes.Contains(layer.PartsType))
                 {
@@ -250,6 +252,16 @@ namespace CharaChipGen.GeneratorForm
                     control.BackColor = value;
                 }
             }
+        }
+
+        /// <summary>
+        /// タイマーインターバル処理をする。
+        /// </summary>
+        /// <param name="sender">送信元オブジェクト</param>
+        /// <param name="e">イベントオブジェクト</param>
+        private void OnTimerTick(object sender, EventArgs e)
+        {
+            UpdateTick();
         }
     }
 }

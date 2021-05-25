@@ -176,6 +176,7 @@ namespace CharaChipGen.MainForm
 
             // 反映処理する。
             form.Character.CopyTo(appData.GeneratorSetting.GetCharacter(index));
+            form.Dispose();
 
             UpdateEntryView(view, appData.GeneratorSetting.GetCharacter(index));
         }

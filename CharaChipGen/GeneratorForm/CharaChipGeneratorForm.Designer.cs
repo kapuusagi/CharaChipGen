@@ -28,7 +28,6 @@
         /// </summary>
         private void InitializeComponent()
         {
-            this.components = new System.ComponentModel.Container();
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(CharaChipGeneratorForm));
             this.panelCharaChipParts = new System.Windows.Forms.Panel();
             this.partsViewHeadAccessory2 = new CharaChipGen.GeneratorForm.CharaChipGeneratorPartsView();
@@ -42,7 +41,6 @@
             this.partsViewHead = new CharaChipGen.GeneratorForm.CharaChipGeneratorPartsView();
             this.buttonOK = new System.Windows.Forms.Button();
             this.buttonCancel = new System.Windows.Forms.Button();
-            this.timer = new System.Windows.Forms.Timer(this.components);
             this.flowLayoutPanel1 = new System.Windows.Forms.FlowLayoutPanel();
             this.tableLayoutPanel1 = new System.Windows.Forms.TableLayoutPanel();
             this.charaChipView = new CharaChipGen.GeneratorForm.CharaChipView();
@@ -77,7 +75,7 @@
             // partsViewHeadAccessory2
             // 
             resources.ApplyResources(this.partsViewHeadAccessory2, "partsViewHeadAccessory2");
-            this.partsViewHeadAccessory2.EditHSV = true;
+            this.partsViewHeadAccessory2.EditHSV = false;
             this.partsViewHeadAccessory2.EditYOffset = true;
             this.partsViewHeadAccessory2.Name = "partsViewHeadAccessory2";
             this.partsViewHeadAccessory2.PartsName = "HeadAccessory2";
@@ -85,7 +83,7 @@
             // partsViewHeadAccessory1
             // 
             resources.ApplyResources(this.partsViewHeadAccessory1, "partsViewHeadAccessory1");
-            this.partsViewHeadAccessory1.EditHSV = true;
+            this.partsViewHeadAccessory1.EditHSV = false;
             this.partsViewHeadAccessory1.EditYOffset = true;
             this.partsViewHeadAccessory1.Name = "partsViewHeadAccessory1";
             this.partsViewHeadAccessory1.PartsName = "HeadAccessory1";
@@ -93,7 +91,7 @@
             // partsViewAccessory3
             // 
             resources.ApplyResources(this.partsViewAccessory3, "partsViewAccessory3");
-            this.partsViewAccessory3.EditHSV = true;
+            this.partsViewAccessory3.EditHSV = false;
             this.partsViewAccessory3.EditYOffset = true;
             this.partsViewAccessory3.Name = "partsViewAccessory3";
             this.partsViewAccessory3.PartsName = "Accessory3";
@@ -101,7 +99,7 @@
             // partsViewAccessory2
             // 
             resources.ApplyResources(this.partsViewAccessory2, "partsViewAccessory2");
-            this.partsViewAccessory2.EditHSV = true;
+            this.partsViewAccessory2.EditHSV = false;
             this.partsViewAccessory2.EditYOffset = true;
             this.partsViewAccessory2.Name = "partsViewAccessory2";
             this.partsViewAccessory2.PartsName = "Accessory2";
@@ -109,7 +107,7 @@
             // partsViewAccessory1
             // 
             resources.ApplyResources(this.partsViewAccessory1, "partsViewAccessory1");
-            this.partsViewAccessory1.EditHSV = true;
+            this.partsViewAccessory1.EditHSV = false;
             this.partsViewAccessory1.EditYOffset = true;
             this.partsViewAccessory1.Name = "partsViewAccessory1";
             this.partsViewAccessory1.PartsName = "Accessory1";
@@ -117,7 +115,7 @@
             // partsViewBody
             // 
             resources.ApplyResources(this.partsViewBody, "partsViewBody");
-            this.partsViewBody.EditHSV = true;
+            this.partsViewBody.EditHSV = false;
             this.partsViewBody.EditYOffset = true;
             this.partsViewBody.Name = "partsViewBody";
             this.partsViewBody.PartsName = "Body";
@@ -125,7 +123,7 @@
             // partsViewEye
             // 
             resources.ApplyResources(this.partsViewEye, "partsViewEye");
-            this.partsViewEye.EditHSV = true;
+            this.partsViewEye.EditHSV = false;
             this.partsViewEye.EditYOffset = true;
             this.partsViewEye.Name = "partsViewEye";
             this.partsViewEye.PartsName = "Eye";
@@ -133,7 +131,7 @@
             // partsViewHairStyle
             // 
             resources.ApplyResources(this.partsViewHairStyle, "partsViewHairStyle");
-            this.partsViewHairStyle.EditHSV = true;
+            this.partsViewHairStyle.EditHSV = false;
             this.partsViewHairStyle.EditYOffset = true;
             this.partsViewHairStyle.Name = "partsViewHairStyle";
             this.partsViewHairStyle.PartsName = "HairStyle";
@@ -141,7 +139,7 @@
             // partsViewHead
             // 
             resources.ApplyResources(this.partsViewHead, "partsViewHead");
-            this.partsViewHead.EditHSV = true;
+            this.partsViewHead.EditHSV = false;
             this.partsViewHead.EditYOffset = true;
             this.partsViewHead.Name = "partsViewHead";
             this.partsViewHead.PartsName = "Head";
@@ -159,10 +157,6 @@
             this.buttonCancel.Name = "buttonCancel";
             this.buttonCancel.UseVisualStyleBackColor = true;
             this.buttonCancel.Click += new System.EventHandler(this.OnCancelButtonClicked);
-            // 
-            // timer
-            // 
-            this.timer.Tick += new System.EventHandler(this.OnTimerEvent);
             // 
             // flowLayoutPanel1
             // 
@@ -243,7 +237,6 @@
             this.Controls.Add(this.tableLayoutPanel1);
             this.Controls.Add(this.flowLayoutPanel1);
             this.Controls.Add(this.menuStrip1);
-            this.Icon = ((System.Drawing.Icon)(resources.GetObject("$this.Icon")));
             this.Name = "CharaChipGeneratorForm";
             this.FormClosed += new System.Windows.Forms.FormClosedEventHandler(this.OnFormClosed);
             this.Shown += new System.EventHandler(this.OnFormShown);
@@ -272,7 +265,6 @@
         private System.Windows.Forms.Button buttonOK;
         private System.Windows.Forms.Button buttonCancel;
         private GeneratorForm.CharaChipView charaChipView;
-        private System.Windows.Forms.Timer timer;
         private System.Windows.Forms.FlowLayoutPanel flowLayoutPanel1;
         private System.Windows.Forms.TableLayoutPanel tableLayoutPanel1;
         private System.Windows.Forms.MenuStrip menuStrip1;

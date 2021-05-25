@@ -17,7 +17,9 @@
         /// </summary>
         private void InitializeComponent()
         {
+            this.components = new System.ComponentModel.Container();
             this.tableLayoutPanel1 = new System.Windows.Forms.TableLayoutPanel();
+            this.timer = new System.Windows.Forms.Timer(this.components);
             this.imageViewControl1_0 = new CharaChipGen.CommonControl.ImageViewControl();
             this.imageViewControl2_0 = new CharaChipGen.CommonControl.ImageViewControl();
             this.imageViewControl3_0 = new CharaChipGen.CommonControl.ImageViewControl();
@@ -72,6 +74,10 @@
             this.tableLayoutPanel1.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 25F));
             this.tableLayoutPanel1.Size = new System.Drawing.Size(470, 646);
             this.tableLayoutPanel1.TabIndex = 2;
+            // 
+            // timer
+            // 
+            this.timer.Tick += new System.EventHandler(this.OnTimerTick);
             // 
             // imageViewControl1_0
             // 
@@ -279,5 +285,6 @@
         private CommonControl.ImageViewControl imageViewControl2_3;
         private CommonControl.ImageViewControl imageViewControl3_3;
         private CommonControl.ImageViewControl imageViewControl4_3;
+        private System.Windows.Forms.Timer timer;
     }
 }

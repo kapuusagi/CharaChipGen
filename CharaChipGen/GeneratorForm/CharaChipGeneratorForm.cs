@@ -28,6 +28,7 @@ namespace CharaChipGen.GeneratorForm
 
             charaChipView.ImageBackground = Settings.Default.ImageBackground;
             charaChipView.SetCharacter(character);
+            charaChipView.ImageRendered += OnImageRendered;
             Settings.Default.PropertyChanged += OnSettingsPropertyChanged;
 
             partsViewHead.Parts = character.Head;
@@ -67,14 +68,20 @@ namespace CharaChipGen.GeneratorForm
         }
 
         /// <summary>
-        /// タイマーイベントの通知を受け取る。
+        /// イメージのレンダリングが完了したときに通知を受け取る。
         /// </summary>
         /// <param name="sender">送信元オブジェクト</param>
         /// <param name="e">イベントオブジェクト</param>
-        private void OnTimerEvent(object sender, EventArgs e)
+        private void OnImageRendered(object sender, EventArgs e)
         {
-            charaChipView.UpdateTick();
-            CheckRenderError();
+            if (InvokeRequired)
+            {
+                Invoke((MethodInvoker)(CheckRenderError));
+            }
+            else
+            {
+                CheckRenderError();
+            }
         }
 
         /// <summary>
@@ -119,7 +126,7 @@ namespace CharaChipGen.GeneratorForm
         /// <param name="e">イベントオブジェクト</param>
         private void OnFormShown(object sender, EventArgs e)
         {
-            timer.Start();
+            charaChipView.OnShown();
         }
 
         /// <summary>
@@ -129,7 +136,7 @@ namespace CharaChipGen.GeneratorForm
         /// <param name="e">イベントオブジェクト</param>
         private void OnFormClosed(object sender, FormClosedEventArgs e)
         {
-            timer.Stop();
+            charaChipView.OnClosed();
             Settings.Default.PropertyChanged -= OnSettingsPropertyChanged;
         }
 
