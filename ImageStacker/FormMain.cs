@@ -45,6 +45,7 @@ namespace ImageStacker
             layerSet.Removed += OnLayerRemoved;
             layerSetViewControl.LayerSetRenderer = renderer;
             layerSet.DataChanged += OnLayerSetDataChanged;
+            layerSet.PropertyChanged += OnLayerSetPropertyChanged;
         }
 
         /// <summary>
@@ -300,6 +301,27 @@ namespace ImageStacker
             while (controls.Count > index)
             {
                 DeleteLayerControl(controls.Count - 1);
+            }
+
+            numericUpDownRenderWidth.Value = Math.Max(numericUpDownRenderWidth.Minimum, Math.Min(numericUpDownRenderWidth.Maximum, layerSet.RenderWidth));
+            numericUpDownRenderHeight.Value = Math.Max(numericUpDownRenderHeight.Minimum, Math.Min(numericUpDownRenderHeight.Maximum, layerSet.RenderHeight));
+        }
+
+        /// <summary>
+        /// レイヤーセットのプロパティが変更された時に通知を受け取る。
+        /// </summary>
+        /// <param name="sender">送信元オブジェクト</param>
+        /// <param name="e">イベントオブジェクト</param>
+        private void OnLayerSetPropertyChanged(object sender, PropertyChangedEventArgs e)
+        {
+            switch (e.PropertyName)
+            {
+                case nameof(LayerSet.RenderWidth):
+                    numericUpDownRenderWidth.Value = Math.Max(numericUpDownRenderWidth.Minimum, Math.Min(numericUpDownRenderWidth.Maximum, layerSet.RenderWidth));
+                    break;
+                case nameof(LayerSet.RenderHeight):
+                    numericUpDownRenderHeight.Value = Math.Max(numericUpDownRenderHeight.Minimum, Math.Min(numericUpDownRenderHeight.Maximum, layerSet.RenderHeight));
+                    break;
             }
         }
 
@@ -673,6 +695,23 @@ namespace ImageStacker
             catch (Exception ex)
             {
                 MessageBox.Show(this, ex.Message);
+            }
+        }
+
+        /// <summary>
+        /// 数値入力欄の値が変更されたときに通知を受け取る。
+        /// </summary>
+        /// <param name="sender">送信元オブジェクト</param>
+        /// <param name="e">イベントオブジェクト</param>
+        private void OnNumericUpDownRenderSizeValueChanged(object sender, EventArgs e)
+        {
+            if (sender == numericUpDownRenderWidth)
+            {
+                layerSet.RenderWidth = (int)(numericUpDownRenderWidth.Value);
+            }
+            else if (sender == numericUpDownRenderHeight)
+            {
+                layerSet.RenderHeight = (int)(numericUpDownRenderHeight.Value);
             }
         }
     }

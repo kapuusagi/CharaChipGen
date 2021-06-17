@@ -5,6 +5,7 @@ using System.Text;
 using System.Threading.Tasks;
 using CGenImaging;
 using System.Drawing;
+using System.ComponentModel;
 
 namespace ImageStacker
 {
@@ -36,6 +37,7 @@ namespace ImageStacker
             isNeedRedraw = false;
             images = new Dictionary<string, ImageBuffer>();
             PreferredSize = new Size(0, 0);
+            RenderSize = new Size(0, 0);
         }
 
         /// <summary>
@@ -46,9 +48,9 @@ namespace ImageStacker
             Dispose(false);
         }
         /// <summary>
-        /// 最適サイズが変更された
+        /// 描画サイズが変更された
         /// </summary>
-        public event EventHandler PreferredSizeChanged;
+        public event EventHandler RenderSizeChanged;
         /// <summary>
         /// 再描画が必要になった
         /// </summary>
@@ -97,6 +99,7 @@ namespace ImageStacker
                         layerSet.Removed -= OnLayerSetChanged;
                         layerSet.Modifired -= OnLayerSetChanged;
                         layerSet.DataChanged -= OnLayerSetDataChanged;
+                        layerSet.PropertyChanged -= OnLayerSetPropertyChanged;
                     }
                     layerSet = value;
                     if (layerSet != null)
@@ -105,6 +108,7 @@ namespace ImageStacker
                         layerSet.Removed += OnLayerSetChanged;
                         layerSet.Modifired += OnLayerSetChanged;
                         layerSet.DataChanged += OnLayerSetDataChanged;
+                        layerSet.PropertyChanged += OnLayerSetPropertyChanged;
                     }
                     LoadImageResources();
                     UpdatePreferredSize();
@@ -134,12 +138,25 @@ namespace ImageStacker
         }
 
         /// <summary>
+        /// レイヤーセットのプロパティが変更された時に通知を受け取る。
+        /// </summary>
+        /// <param name="sender">送信元オブジェクト</param>
+        /// <param name="e">イベントオブジェクト</param>
+        private void OnLayerSetPropertyChanged(object sender, PropertyChangedEventArgs e)
+        {
+            isNeedRedraw = true;
+            UpdateRenderSize();
+            NeedRedraw?.Invoke(this, new EventArgs());
+        }
+
+        /// <summary>
         /// レイヤーセット変更処理
         /// </summary>
         private void LayerSetChangedProc()
         {
             LoadImageResources();
             UpdatePreferredSize();
+            UpdateRenderSize();
             isNeedRedraw = true;
             NeedRedraw?.Invoke(this, new EventArgs());
         }
@@ -194,7 +211,7 @@ namespace ImageStacker
         /// <summary>
         /// 最適サイズ
         /// </summary>
-        public Size PreferredSize { get; private set; }
+        private Size PreferredSize { get; set; }
 
         /// <summary>
         /// 最適サイズを更新する。
@@ -214,10 +231,24 @@ namespace ImageStacker
                     height = imageBuf.Height;
                 }
             }
-            if ((PreferredSize.Width != width) || (PreferredSize.Height != height))
+            PreferredSize = new Size(width, height);
+        }
+        /// <summary>
+        /// レンダリングサイズ
+        /// </summary>
+        public Size RenderSize { get; private set; }
+
+        /// <summary>
+        /// レンダリングサイズを更新する。
+        /// </summary>
+        private void UpdateRenderSize()
+        {
+            var width = (layerSet.RenderWidth > 0) ? layerSet.RenderWidth : PreferredSize.Width;
+            var height = (layerSet.RenderHeight > 0) ? layerSet.RenderHeight : PreferredSize.Height;
+            if ((width != RenderSize.Width) || (height != RenderSize.Height))
             {
-                PreferredSize = new Size(width, height);
-                PreferredSizeChanged?.Invoke(this, new EventArgs());
+                RenderSize = new Size(width, height);
+                RenderSizeChanged?.Invoke(this, new EventArgs());
             }
         }
 
@@ -245,13 +276,13 @@ namespace ImageStacker
                 renderImage.Dispose();
                 renderImage = null;
             }
-            Size prefSize = PreferredSize;
-            if ((prefSize.Width > 0) && (prefSize.Height > 0))
+            Size renderSize = RenderSize;
+            if ((renderSize.Width > 0) && (renderSize.Height > 0))
             {
                 if ((renderBuf == null)
-                    || ((renderBuf.Width != prefSize.Width) || (renderBuf.Height != prefSize.Height)))
+                    || ((renderBuf.Width != renderSize.Width) || (renderBuf.Height != renderSize.Height)))
                 {
-                    renderBuf = ImageBuffer.Create(prefSize.Width, prefSize.Height);
+                    renderBuf = ImageBuffer.Create(renderSize.Width, renderSize.Height);
                 }
                 else
                 {

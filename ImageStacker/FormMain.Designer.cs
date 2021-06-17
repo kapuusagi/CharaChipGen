@@ -29,9 +29,10 @@ namespace ImageStacker
         /// </summary>
         private void InitializeComponent()
         {
-            ImageStacker.LayerSetRenderer layerSetRenderer2 = new ImageStacker.LayerSetRenderer();
+            ImageStacker.LayerSetRenderer layerSetRenderer3 = new ImageStacker.LayerSetRenderer();
             this.splitContainer1 = new System.Windows.Forms.SplitContainer();
             this.panelPicture = new System.Windows.Forms.Panel();
+            this.layerSetViewControl = new ImageStacker.LayerSetViewControl();
             this.panel1 = new System.Windows.Forms.Panel();
             this.label1 = new System.Windows.Forms.Label();
             this.panelLayerParent = new System.Windows.Forms.Panel();
@@ -52,7 +53,11 @@ namespace ImageStacker
             this.exitToolStripMenuItem1 = new System.Windows.Forms.ToolStripMenuItem();
             this.openFileDialog = new System.Windows.Forms.OpenFileDialog();
             this.saveFileDialog = new System.Windows.Forms.SaveFileDialog();
-            this.layerSetViewControl = new ImageStacker.LayerSetViewControl();
+            this.tableLayoutPanel1 = new System.Windows.Forms.TableLayoutPanel();
+            this.label2 = new System.Windows.Forms.Label();
+            this.label3 = new System.Windows.Forms.Label();
+            this.numericUpDownRenderWidth = new System.Windows.Forms.NumericUpDown();
+            this.numericUpDownRenderHeight = new System.Windows.Forms.NumericUpDown();
             ((System.ComponentModel.ISupportInitialize)(this.splitContainer1)).BeginInit();
             this.splitContainer1.Panel1.SuspendLayout();
             this.splitContainer1.Panel2.SuspendLayout();
@@ -62,12 +67,15 @@ namespace ImageStacker
             this.flowLayoutPanel1.SuspendLayout();
             this.flowLayoutPanel2.SuspendLayout();
             this.menuStrip1.SuspendLayout();
+            this.tableLayoutPanel1.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.numericUpDownRenderWidth)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.numericUpDownRenderHeight)).BeginInit();
             this.SuspendLayout();
             // 
             // splitContainer1
             // 
             this.splitContainer1.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.splitContainer1.Location = new System.Drawing.Point(0, 53);
+            this.splitContainer1.Location = new System.Drawing.Point(0, 60);
             this.splitContainer1.Name = "splitContainer1";
             // 
             // splitContainer1.Panel1
@@ -78,7 +86,7 @@ namespace ImageStacker
             // 
             this.splitContainer1.Panel2.Controls.Add(this.panel1);
             this.splitContainer1.Panel2.Controls.Add(this.flowLayoutPanel1);
-            this.splitContainer1.Size = new System.Drawing.Size(784, 388);
+            this.splitContainer1.Size = new System.Drawing.Size(784, 381);
             this.splitContainer1.SplitterDistance = 437;
             this.splitContainer1.TabIndex = 0;
             // 
@@ -90,10 +98,24 @@ namespace ImageStacker
             this.panelPicture.Dock = System.Windows.Forms.DockStyle.Fill;
             this.panelPicture.Location = new System.Drawing.Point(0, 0);
             this.panelPicture.Name = "panelPicture";
-            this.panelPicture.Size = new System.Drawing.Size(437, 388);
+            this.panelPicture.Size = new System.Drawing.Size(437, 381);
             this.panelPicture.TabIndex = 0;
             this.panelPicture.DragDrop += new System.Windows.Forms.DragEventHandler(this.OnPanelPictureDragDrop);
             this.panelPicture.DragEnter += new System.Windows.Forms.DragEventHandler(this.OnPanelPictureDragEnter);
+            // 
+            // layerSetViewControl
+            // 
+            this.layerSetViewControl.AutoSize = true;
+            this.layerSetViewControl.BackgroundImage = global::ImageStacker.Properties.Resources.Background;
+            layerSetRenderer3.LayerSet = null;
+            this.layerSetViewControl.LayerSetRenderer = layerSetRenderer3;
+            this.layerSetViewControl.Location = new System.Drawing.Point(3, 6);
+            this.layerSetViewControl.Name = "layerSetViewControl";
+            this.layerSetViewControl.Size = new System.Drawing.Size(0, 0);
+            this.layerSetViewControl.TabIndex = 0;
+            this.layerSetViewControl.MouseDown += new System.Windows.Forms.MouseEventHandler(this.OnLayerSetViewMouseDown);
+            this.layerSetViewControl.MouseMove += new System.Windows.Forms.MouseEventHandler(this.OnLayerSetViewMouseMove);
+            this.layerSetViewControl.MouseUp += new System.Windows.Forms.MouseEventHandler(this.OnLayerSetViewMouseUp);
             // 
             // panel1
             // 
@@ -106,7 +128,7 @@ namespace ImageStacker
             this.panel1.Dock = System.Windows.Forms.DockStyle.Fill;
             this.panel1.Location = new System.Drawing.Point(0, 29);
             this.panel1.Name = "panel1";
-            this.panel1.Size = new System.Drawing.Size(343, 359);
+            this.panel1.Size = new System.Drawing.Size(343, 352);
             this.panel1.TabIndex = 4;
             this.panel1.DragDrop += new System.Windows.Forms.DragEventHandler(this.OnLayerPanelDragDrop);
             this.panel1.DragEnter += new System.Windows.Forms.DragEventHandler(this.OnLayerPanelDragEnter);
@@ -165,15 +187,17 @@ namespace ImageStacker
             // 
             this.flowLayoutPanel2.AutoSize = true;
             this.flowLayoutPanel2.Controls.Add(this.buttonExport);
+            this.flowLayoutPanel2.Controls.Add(this.tableLayoutPanel1);
             this.flowLayoutPanel2.Dock = System.Windows.Forms.DockStyle.Top;
             this.flowLayoutPanel2.Location = new System.Drawing.Point(0, 24);
             this.flowLayoutPanel2.Name = "flowLayoutPanel2";
-            this.flowLayoutPanel2.Size = new System.Drawing.Size(784, 29);
+            this.flowLayoutPanel2.Size = new System.Drawing.Size(784, 36);
             this.flowLayoutPanel2.TabIndex = 1;
             // 
             // buttonExport
             // 
-            this.buttonExport.Location = new System.Drawing.Point(3, 3);
+            this.buttonExport.Anchor = System.Windows.Forms.AnchorStyles.Left;
+            this.buttonExport.Location = new System.Drawing.Point(3, 6);
             this.buttonExport.Name = "buttonExport";
             this.buttonExport.Size = new System.Drawing.Size(75, 23);
             this.buttonExport.TabIndex = 0;
@@ -209,66 +233,120 @@ namespace ImageStacker
             // newToolStripMenuItem
             // 
             this.newToolStripMenuItem.Name = "newToolStripMenuItem";
-            this.newToolStripMenuItem.Size = new System.Drawing.Size(108, 22);
+            this.newToolStripMenuItem.Size = new System.Drawing.Size(180, 22);
             this.newToolStripMenuItem.Text = "New";
             this.newToolStripMenuItem.Click += new System.EventHandler(this.OnMenuItemNewClick);
             // 
             // toolStripSeparator1
             // 
             this.toolStripSeparator1.Name = "toolStripSeparator1";
-            this.toolStripSeparator1.Size = new System.Drawing.Size(105, 6);
+            this.toolStripSeparator1.Size = new System.Drawing.Size(177, 6);
             // 
             // saveToolStripMenuItem
             // 
             this.saveToolStripMenuItem.Name = "saveToolStripMenuItem";
-            this.saveToolStripMenuItem.Size = new System.Drawing.Size(108, 22);
+            this.saveToolStripMenuItem.Size = new System.Drawing.Size(180, 22);
             this.saveToolStripMenuItem.Text = "Save";
             this.saveToolStripMenuItem.Click += new System.EventHandler(this.OnMenuItemSaveClick);
             // 
             // openToolStripMenuItem
             // 
             this.openToolStripMenuItem.Name = "openToolStripMenuItem";
-            this.openToolStripMenuItem.Size = new System.Drawing.Size(108, 22);
+            this.openToolStripMenuItem.Size = new System.Drawing.Size(180, 22);
             this.openToolStripMenuItem.Text = "Open";
             this.openToolStripMenuItem.Click += new System.EventHandler(this.OnMenuItemOpenClick);
             // 
             // toolStripSeparator2
             // 
             this.toolStripSeparator2.Name = "toolStripSeparator2";
-            this.toolStripSeparator2.Size = new System.Drawing.Size(105, 6);
+            this.toolStripSeparator2.Size = new System.Drawing.Size(177, 6);
             // 
             // exitToolStripMenuItem
             // 
             this.exitToolStripMenuItem.Name = "exitToolStripMenuItem";
-            this.exitToolStripMenuItem.Size = new System.Drawing.Size(108, 22);
+            this.exitToolStripMenuItem.Size = new System.Drawing.Size(180, 22);
             this.exitToolStripMenuItem.Text = "Export";
             this.exitToolStripMenuItem.Click += new System.EventHandler(this.OnMenuItemExportClick);
             // 
             // toolStripSeparator3
             // 
             this.toolStripSeparator3.Name = "toolStripSeparator3";
-            this.toolStripSeparator3.Size = new System.Drawing.Size(105, 6);
+            this.toolStripSeparator3.Size = new System.Drawing.Size(177, 6);
             // 
             // exitToolStripMenuItem1
             // 
             this.exitToolStripMenuItem1.Name = "exitToolStripMenuItem1";
-            this.exitToolStripMenuItem1.Size = new System.Drawing.Size(108, 22);
+            this.exitToolStripMenuItem1.Size = new System.Drawing.Size(180, 22);
             this.exitToolStripMenuItem1.Text = "Exit";
             this.exitToolStripMenuItem1.Click += new System.EventHandler(this.OnMenuItemExitClick);
             // 
-            // layerSetViewControl
+            // tableLayoutPanel1
             // 
-            this.layerSetViewControl.AutoSize = true;
-            this.layerSetViewControl.BackgroundImage = global::ImageStacker.Properties.Resources.Background;
-            layerSetRenderer2.LayerSet = null;
-            this.layerSetViewControl.LayerSetRenderer = layerSetRenderer2;
-            this.layerSetViewControl.Location = new System.Drawing.Point(3, 6);
-            this.layerSetViewControl.Name = "layerSetViewControl";
-            this.layerSetViewControl.Size = new System.Drawing.Size(0, 0);
-            this.layerSetViewControl.TabIndex = 0;
-            this.layerSetViewControl.MouseDown += new System.Windows.Forms.MouseEventHandler(this.OnLayerSetViewMouseDown);
-            this.layerSetViewControl.MouseMove += new System.Windows.Forms.MouseEventHandler(this.OnLayerSetViewMouseMove);
-            this.layerSetViewControl.MouseUp += new System.Windows.Forms.MouseEventHandler(this.OnLayerSetViewMouseUp);
+            this.tableLayoutPanel1.ColumnCount = 4;
+            this.tableLayoutPanel1.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle());
+            this.tableLayoutPanel1.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 50F));
+            this.tableLayoutPanel1.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle());
+            this.tableLayoutPanel1.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 50F));
+            this.tableLayoutPanel1.Controls.Add(this.label2, 0, 0);
+            this.tableLayoutPanel1.Controls.Add(this.label3, 2, 0);
+            this.tableLayoutPanel1.Controls.Add(this.numericUpDownRenderWidth, 1, 0);
+            this.tableLayoutPanel1.Controls.Add(this.numericUpDownRenderHeight, 3, 0);
+            this.tableLayoutPanel1.Location = new System.Drawing.Point(84, 3);
+            this.tableLayoutPanel1.Name = "tableLayoutPanel1";
+            this.tableLayoutPanel1.RowCount = 1;
+            this.tableLayoutPanel1.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 100F));
+            this.tableLayoutPanel1.Size = new System.Drawing.Size(288, 30);
+            this.tableLayoutPanel1.TabIndex = 1;
+            // 
+            // label2
+            // 
+            this.label2.Anchor = System.Windows.Forms.AnchorStyles.Left;
+            this.label2.AutoSize = true;
+            this.label2.Location = new System.Drawing.Point(3, 9);
+            this.label2.Name = "label2";
+            this.label2.Size = new System.Drawing.Size(33, 12);
+            this.label2.TabIndex = 0;
+            this.label2.Text = "Width";
+            // 
+            // label3
+            // 
+            this.label3.Anchor = System.Windows.Forms.AnchorStyles.Left;
+            this.label3.AutoSize = true;
+            this.label3.Location = new System.Drawing.Point(144, 9);
+            this.label3.Name = "label3";
+            this.label3.Size = new System.Drawing.Size(38, 12);
+            this.label3.TabIndex = 1;
+            this.label3.Text = "Height";
+            // 
+            // numericUpDownRenderWidth
+            // 
+            this.numericUpDownRenderWidth.Anchor = System.Windows.Forms.AnchorStyles.Left;
+            this.numericUpDownRenderWidth.Location = new System.Drawing.Point(42, 5);
+            this.numericUpDownRenderWidth.Maximum = new decimal(new int[] {
+            3840,
+            0,
+            0,
+            0});
+            this.numericUpDownRenderWidth.Name = "numericUpDownRenderWidth";
+            this.numericUpDownRenderWidth.Size = new System.Drawing.Size(96, 19);
+            this.numericUpDownRenderWidth.TabIndex = 2;
+            this.numericUpDownRenderWidth.TextAlign = System.Windows.Forms.HorizontalAlignment.Right;
+            this.numericUpDownRenderWidth.ValueChanged += new System.EventHandler(this.OnNumericUpDownRenderSizeValueChanged);
+            // 
+            // numericUpDownRenderHeight
+            // 
+            this.numericUpDownRenderHeight.Anchor = System.Windows.Forms.AnchorStyles.Left;
+            this.numericUpDownRenderHeight.Location = new System.Drawing.Point(188, 5);
+            this.numericUpDownRenderHeight.Maximum = new decimal(new int[] {
+            2160,
+            0,
+            0,
+            0});
+            this.numericUpDownRenderHeight.Name = "numericUpDownRenderHeight";
+            this.numericUpDownRenderHeight.Size = new System.Drawing.Size(97, 19);
+            this.numericUpDownRenderHeight.TabIndex = 3;
+            this.numericUpDownRenderHeight.TextAlign = System.Windows.Forms.HorizontalAlignment.Right;
+            this.numericUpDownRenderHeight.ValueChanged += new System.EventHandler(this.OnNumericUpDownRenderSizeValueChanged);
             // 
             // FormMain
             // 
@@ -295,6 +373,10 @@ namespace ImageStacker
             this.flowLayoutPanel2.ResumeLayout(false);
             this.menuStrip1.ResumeLayout(false);
             this.menuStrip1.PerformLayout();
+            this.tableLayoutPanel1.ResumeLayout(false);
+            this.tableLayoutPanel1.PerformLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.numericUpDownRenderWidth)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.numericUpDownRenderHeight)).EndInit();
             this.ResumeLayout(false);
             this.PerformLayout();
 
@@ -325,6 +407,11 @@ namespace ImageStacker
         private System.Windows.Forms.ToolStripMenuItem openToolStripMenuItem;
         private System.Windows.Forms.ToolStripSeparator toolStripSeparator2;
         private System.Windows.Forms.ToolStripSeparator toolStripSeparator3;
+        private System.Windows.Forms.TableLayoutPanel tableLayoutPanel1;
+        private System.Windows.Forms.Label label2;
+        private System.Windows.Forms.Label label3;
+        private System.Windows.Forms.NumericUpDown numericUpDownRenderWidth;
+        private System.Windows.Forms.NumericUpDown numericUpDownRenderHeight;
     }
 }
 

@@ -11,8 +11,17 @@ namespace ImageStacker
     /// <summary>
     /// 一枚の画像データを構成するレイヤーの集まりモデル
     /// </summary>
-    public class LayerSet : IEnumerable<LayerEntry>
+    public class LayerSet : IEnumerable<LayerEntry>, INotifyPropertyChanged
     {
+        // 保存時レイヤーデータキー
+        private const string PrefixLayerData = "Layer:";
+        // 保存時レンダリングサイズキー
+        private const string PrefixRenderSize = "RenderSize:";
+
+        // レンダリング幅
+        private int renderWidth;
+        // レンダリング高さ
+        private int renderHeight;
         // レイヤー
         private List<LayerEntry> layers;
 
@@ -22,6 +31,8 @@ namespace ImageStacker
         public LayerSet()
         {
             layers = new List<LayerEntry>();
+            renderWidth = 0;
+            renderHeight = 0;
         }
 
         /// <summary>
@@ -40,12 +51,55 @@ namespace ImageStacker
         /// データ全体が変更された
         /// </summary>
         public event EventHandler DataChanged;
+        /// <summary>
+        /// プロパティが変更された
+        /// </summary>
+        public event PropertyChangedEventHandler PropertyChanged;
+
+        /// <summary>
+        /// プロパティが変更されたことを通知する。
+        /// </summary>
+        /// <param name="propertyName"></param>
+        private void NotifyPropertyChanged(string propertyName)
+        {
+            PropertyChanged?.Invoke(this, new PropertyChangedEventArgs(propertyName));
+        }
+
+        /// <summary>
+        /// 描画する幅を得る。(1以上で有効)
+        /// </summary>
+        public int RenderWidth {
+            get => renderWidth;
+            set {
+                if (renderWidth != value)
+                {
+                    renderWidth = value;
+                    NotifyPropertyChanged(nameof(RenderWidth));
+                }
+            }
+        }
+
+        /// <summary>
+        /// 描画する高さを得る。(1以上で有効)
+        /// </summary>
+        public int RenderHeight {
+            get => renderHeight;
+            set {
+                if (renderHeight != value)
+                {
+                    renderHeight = value;
+                    NotifyPropertyChanged(nameof(RenderHeight));
+                }
+            }
+        }
 
         /// <summary>
         /// データを全て消去する。
         /// </summary>
         public void Clear()
         {
+            renderWidth = 0;
+            renderHeight = 0;
             layers.Clear();
             DataChanged?.Invoke(this, new EventArgs());
         }
@@ -225,9 +279,10 @@ namespace ImageStacker
         {
             using (StreamWriter sw = new StreamWriter(stream))
             {
+                sw.WriteLine($"{PrefixRenderSize}{renderWidth}x{renderHeight}");
                 foreach (var layer in layers)
                 {
-                    sw.WriteLine(layer.ToString());
+                    sw.WriteLine(PrefixLayerData + layer.ToString());
                 }
             }
         }
@@ -250,6 +305,8 @@ namespace ImageStacker
         /// <param name="stream">ストリーム</param>
         public void LoadFrom(Stream stream)
         {
+            int width = 0;
+            int height = 0;
             var newLayers = new List<LayerEntry>();
             using (StreamReader sr = new StreamReader(stream))
             {
@@ -259,8 +316,20 @@ namespace ImageStacker
                     while (!sr.EndOfStream)
                     {
                         var line = sr.ReadLine();
-                        LayerEntry entry = LayerEntry.Parse(line);
-                        newLayers.Add(entry);
+                        if (line.StartsWith(PrefixRenderSize))
+                        {
+                            ParseRenderSize(line.Substring(PrefixRenderSize.Length), out width, out height);
+                        }
+                        else if (line.StartsWith(PrefixLayerData))
+                        {
+                            LayerEntry entry = LayerEntry.Parse(line.Substring(PrefixLayerData.Length));
+                            newLayers.Add(entry);
+                        }
+                        else
+                        {
+                            LayerEntry entry = LayerEntry.Parse(line);
+                            newLayers.Add(entry);
+                        }
                         lineNo++;
                     }
                 }
@@ -281,7 +350,22 @@ namespace ImageStacker
             {
                 layer.PropertyChanged += OnLayerPropertyChanged;
             }
+            renderWidth = width;
+            renderHeight = height;
             DataChanged?.Invoke(this, new EventArgs());
+        }
+
+        /// <summary>
+        /// レンダリングサイズをパースする。
+        /// </summary>
+        /// <param name="line">行</param>
+        /// <param name="width">幅</param>
+        /// <param name="height">高さ</param>
+        private void ParseRenderSize(string line, out int width, out int height)
+        {
+            var numbers = line.Split('x').Select(token => int.Parse(token)).ToArray();
+            width = (numbers.Length >= 2) ? numbers[0] : 0;
+            height = (numbers.Length >= 2) ? numbers[1] : 0;
         }
     }
 }

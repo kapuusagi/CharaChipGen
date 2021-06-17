@@ -26,7 +26,7 @@ namespace ImageStacker
         {
             renderer = new LayerSetRenderer();
             InitializeComponent();
-            renderer.PreferredSizeChanged += OnImageSizeChanged;
+            renderer.RenderSizeChanged += OnImageSizeChanged;
             renderer.NeedRedraw += OnLayerNeedRedraw;
             DoubleBuffered = true;
         }
@@ -58,13 +58,13 @@ namespace ImageStacker
                 { 
                     if (renderer != null)
                     {
-                        renderer.PreferredSizeChanged -= OnImageSizeChanged;
+                        renderer.RenderSizeChanged -= OnImageSizeChanged;
                         renderer.NeedRedraw -= OnLayerNeedRedraw;
                     }
                     renderer = value;
                     if (renderer != null)
                     {
-                        renderer.PreferredSizeChanged += OnImageSizeChanged;
+                        renderer.RenderSizeChanged += OnImageSizeChanged;
                         renderer.NeedRedraw += OnLayerNeedRedraw;
                     }
                 }
@@ -94,7 +94,7 @@ namespace ImageStacker
             }
 
             var location = Location;
-            var size = renderer.PreferredSize;
+            var size = renderer.RenderSize;
             SetBounds(location.X, location.Y, size.Width, size.Height);
         }
 
@@ -105,7 +105,7 @@ namespace ImageStacker
         /// <returns>最適なサイズ</returns>
         public override Size GetPreferredSize(Size proposedSize)
         {
-            return renderer.PreferredSize;
+            return renderer.RenderSize;
         }
 
 
