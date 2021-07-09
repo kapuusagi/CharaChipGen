@@ -145,6 +145,10 @@ namespace ImageStacker
         private void OnLayerSetPropertyChanged(object sender, PropertyChangedEventArgs e)
         {
             isNeedRedraw = true;
+            if (e.PropertyName.Equals(nameof(LayerSet.RenderScale)))
+            {
+                UpdatePreferredSize();
+            }
             UpdateRenderSize();
             NeedRedraw?.Invoke(this, new EventArgs());
         }
@@ -231,6 +235,9 @@ namespace ImageStacker
                     height = imageBuf.Height;
                 }
             }
+            // レンダリングスケールを考慮する。
+            width = (int)(width * layerSet.RenderScale + 0.5);
+            height = (int)(height * layerSet.RenderScale + 0.5);
             PreferredSize = new Size(width, height);
         }
         /// <summary>
@@ -277,7 +284,7 @@ namespace ImageStacker
                 renderImage = null;
             }
             Size renderSize = RenderSize;
-            if ((renderSize.Width > 0) && (renderSize.Height > 0))
+            if ((renderSize.Width > 0) && (renderSize.Height > 0) && (layerSet.RenderScale > 0))
             {
                 if ((renderBuf == null)
                     || ((renderBuf.Width != renderSize.Width) || (renderBuf.Height != renderSize.Height)))
@@ -295,7 +302,7 @@ namespace ImageStacker
                     var layer = layerSet.Get(index);
                     if (images.ContainsKey(layer.FileName))
                     {
-                        RenderLayer(layer);
+                        RenderLayer(layer, layerSet.RenderScale);
                     }
                 }
                 renderImage = renderBuf.GetImage();
@@ -305,64 +312,43 @@ namespace ImageStacker
         /// レイヤーを描画する。
         /// </summary>
         /// <param name="layer">レイヤー</param>
-        private void RenderLayer(LayerEntry layer)
+        /// <param name="scale">レンダリングスケール</param>
+        private void RenderLayer(LayerEntry layer, double scale)
         {
             var srcImage = images[layer.FileName];
 
-            Parallel.For(0, srcImage.Height, y =>
-            {
-                int dstY = layer.OffsetY + y;
-                if ((dstY >= 0) && (dstY < renderBuf.Height))
+            double rev_scale = 1.0 / scale;
+
+            // ほんとはバイキュービックとかやった方がいいんだけど、面倒なのでやらない。
+            Parallel.For(0, renderBuf.Height, (dstY) => {
+                for (int dstX = 0; dstX < renderBuf.Width; dstX++)
                 {
-                    int srcX, dstX;
-                    if (layer.OffsetX >= 0)
+                    var srcX = (int)((dstX - layer.OffsetX) * rev_scale + 0.5);
+                    var srcY = (int)((dstY - layer.OffsetY) * rev_scale + 0.5);
+                    var srcColor = srcImage.GetPixel(srcX, srcY);
+                    if (layer.Opacity < 255)
                     {
-                        srcX = 0;
-                        dstX = layer.OffsetX;
-                    }
-                    else
-                    {
-                        srcX = -layer.OffsetX;
-                        dstX = 0;
+                        int newAlpha = (int)(srcColor.A * layer.Opacity / 255.0f);
+                        srcColor = Color.FromArgb(newAlpha, srcColor.R, srcColor.G, srcColor.B);
                     }
 
-                    while ((srcX < srcImage.Width) && (dstX < renderBuf.Width))
+                    if (srcColor.A > 0)
                     {
-                        var srcColor = srcImage.GetPixel(srcX, y);
-                        if (layer.Opacity < 255)
+                        // 色があるのでレンダリングバッファへの書き込みが必要。
+                        if (layer.MonoricConversionEnabled)
                         {
-                            int newAlpha = (int)(srcColor.A * layer.Opacity / 255.0f);
-                            srcColor = Color.FromArgb(newAlpha, srcColor.R, srcColor.G, srcColor.B);
+                            srcColor = ImageProcessor.MonoricColor(srcColor, layer.MonoricConvertColor);
                         }
-
-                        if (srcColor.A > 0)
-                        {
-                            if (layer.MonoricConversionEnabled)
-                            {
-                                srcColor = ImageProcessor.MonoricColor(srcColor, layer.MonoricConvertColor);
-                            }
-
-                            srcColor = ImageProcessor.ProcessHSLFilter(srcColor,
-                                layer.Hue, layer.Saturation, layer.Value);
-
-                            Color writeColor;
-                            Color dstColor = renderBuf.GetPixel(dstX, dstY);
-                            if ((srcColor.A >= 255) || (dstColor.A == 0))
-                            {
-                                // 塗りつぶし
-                                writeColor = srcColor;
-                            }
-                            else
-                            {
-                                writeColor = ImageProcessor.Blend(srcColor, dstColor);
-                            }
-                            renderBuf.SetPixel(dstX, dstY, writeColor);
-                        }
-                        srcX++;
-                        dstX++;
+                        // レイヤーに設定されているHSL変換を適用
+                        srcColor = ImageProcessor.ProcessHSLFilter(srcColor, layer.Hue, layer.Saturation, layer.Value);
+                        Color writeColor;
+                        Color dstColor = renderBuf.GetPixel(dstX, dstY);
+                        writeColor = ImageProcessor.Blend(srcColor, dstColor);
+                        renderBuf.SetPixel(dstX, dstY, writeColor);
                     }
                 }
             });
+
         }
 
     }

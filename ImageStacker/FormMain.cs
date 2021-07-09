@@ -46,6 +46,9 @@ namespace ImageStacker
             layerSetViewControl.LayerSetRenderer = renderer;
             layerSet.DataChanged += OnLayerSetDataChanged;
             layerSet.PropertyChanged += OnLayerSetPropertyChanged;
+
+            numericUpDownRenderingScale.Minimum = (decimal)(LayerSet.MinRenderScale);
+            numericUpDownRenderingScale.Maximum = (decimal)(LayerSet.MaxRenderScale);
         }
 
         /// <summary>
@@ -305,6 +308,7 @@ namespace ImageStacker
 
             numericUpDownRenderWidth.Value = Math.Max(numericUpDownRenderWidth.Minimum, Math.Min(numericUpDownRenderWidth.Maximum, layerSet.RenderWidth));
             numericUpDownRenderHeight.Value = Math.Max(numericUpDownRenderHeight.Minimum, Math.Min(numericUpDownRenderHeight.Maximum, layerSet.RenderHeight));
+            numericUpDownRenderingScale.Value = Math.Max(numericUpDownRenderingScale.Minimum, Math.Min(numericUpDownRenderingScale.Maximum, (decimal)(layerSet.RenderScale)));
         }
 
         /// <summary>
@@ -321,6 +325,9 @@ namespace ImageStacker
                     break;
                 case nameof(LayerSet.RenderHeight):
                     numericUpDownRenderHeight.Value = Math.Max(numericUpDownRenderHeight.Minimum, Math.Min(numericUpDownRenderHeight.Maximum, layerSet.RenderHeight));
+                    break;
+                case nameof(LayerSet.RenderScale):
+                    numericUpDownRenderingScale.Value = Math.Max(numericUpDownRenderingScale.Minimum, Math.Min(numericUpDownRenderingScale.Maximum, (decimal)(layerSet.RenderScale)));
                     break;
             }
         }
@@ -713,6 +720,16 @@ namespace ImageStacker
             {
                 layerSet.RenderHeight = (int)(numericUpDownRenderHeight.Value);
             }
+        }
+
+        /// <summary>
+        /// レンダリングスケール入力欄が変更された時に通知を受け取る。
+        /// </summary>
+        /// <param name="sender">送信元オブジェクト</param>
+        /// <param name="e">イベントオブジェクト</param>
+        private void OnNumericUpDownRenderScaleValueChanged(object sender, EventArgs e)
+        {
+            layerSet.RenderScale = (double)(numericUpDownRenderingScale.Value);
         }
     }
 }

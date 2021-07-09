@@ -90,15 +90,7 @@ namespace CharaChipGen.Model
                         srcColor = Color.FromArgb(newAlpha, srcColor.R, srcColor.G, srcColor.B);
                     }
 
-                    Color dstColor;
-                    if (srcColor.A == 0xff)
-                    {
-                        dstColor = srcColor;　// 上のレイヤーのアルファ値が0xffなのでブレンディング処理不要。
-                    }
-                    else
-                    {
-                        dstColor = ImageProcessor.Blend(srcColor, buffer.GetPixel(dstX, dstY));
-                    }
+                    var dstColor = ImageProcessor.Blend(srcColor, buffer.GetPixel(dstX, dstY));
                     buffer.SetPixel(dstX, dstY, dstColor);
                 }
             });

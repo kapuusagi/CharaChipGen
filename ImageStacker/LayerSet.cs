@@ -17,11 +17,20 @@ namespace ImageStacker
         private const string PrefixLayerData = "Layer:";
         // 保存時レンダリングサイズキー
         private const string PrefixRenderSize = "RenderSize:";
+        // 保存時レンダリングスケール
+        private const string PrefixRenderScale = "RenderScale:";
+
+        // 最小レンダリング倍率
+        public const double MinRenderScale = 0.1;
+        // 最大レンダリング倍率
+        public const double MaxRenderScale = 4.0;
 
         // レンダリング幅
         private int renderWidth;
         // レンダリング高さ
         private int renderHeight;
+        // レンダリングスケール
+        private double renderScale;
         // レイヤー
         private List<LayerEntry> layers;
 
@@ -33,6 +42,7 @@ namespace ImageStacker
             layers = new List<LayerEntry>();
             renderWidth = 0;
             renderHeight = 0;
+            renderScale = 1.0;
         }
 
         /// <summary>
@@ -89,6 +99,21 @@ namespace ImageStacker
                 {
                     renderHeight = value;
                     NotifyPropertyChanged(nameof(RenderHeight));
+                }
+            }
+        }
+
+        /// <summary>
+        /// レンダリングスケール
+        /// </summary>
+        public double RenderScale {
+            get => renderScale;
+            set {
+                double d = Math.Max(MinRenderScale, Math.Min(MaxRenderScale, value));
+                if (renderScale != d)
+                {
+                    renderScale = d;
+                    NotifyPropertyChanged(nameof(RenderScale));
                 }
             }
         }
@@ -280,6 +305,7 @@ namespace ImageStacker
             using (StreamWriter sw = new StreamWriter(stream))
             {
                 sw.WriteLine($"{PrefixRenderSize}{renderWidth}x{renderHeight}");
+                sw.WriteLine($"{PrefixRenderScale} {renderScale}");
                 foreach (var layer in layers)
                 {
                     sw.WriteLine(PrefixLayerData + layer.ToString());
@@ -307,6 +333,7 @@ namespace ImageStacker
         {
             int width = 0;
             int height = 0;
+            double scale = 1.0;
             var newLayers = new List<LayerEntry>();
             using (StreamReader sr = new StreamReader(stream))
             {
@@ -319,6 +346,10 @@ namespace ImageStacker
                         if (line.StartsWith(PrefixRenderSize))
                         {
                             ParseRenderSize(line.Substring(PrefixRenderSize.Length), out width, out height);
+                        }
+                        else if (line.StartsWith(PrefixRenderScale))
+                        {
+                            scale = ParseRenderScale(line.Substring(PrefixRenderScale.Length));
                         }
                         else if (line.StartsWith(PrefixLayerData))
                         {
@@ -352,6 +383,7 @@ namespace ImageStacker
             }
             renderWidth = width;
             renderHeight = height;
+            renderScale = scale;
             DataChanged?.Invoke(this, new EventArgs());
         }
 
@@ -366,6 +398,22 @@ namespace ImageStacker
             var numbers = line.Split('x').Select(token => int.Parse(token)).ToArray();
             width = (numbers.Length >= 2) ? numbers[0] : 0;
             height = (numbers.Length >= 2) ? numbers[1] : 0;
+        }
+
+        /// <summary>
+        /// レンダリング倍率をパースする。
+        /// </summary>
+        /// <param name="line">行</param>
+        /// <returns>レンダリング倍率</returns>
+        private double ParseRenderScale(string line)
+        {
+            double d;
+            if (!double.TryParse(line.Trim(), out d))
+            {
+                d = 1.0;
+            }
+            // 範囲を4.0～0.1におさめる。
+            return Math.Max(MinRenderScale, Math.Min(MaxRenderScale, d));
         }
     }
 }

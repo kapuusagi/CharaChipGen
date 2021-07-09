@@ -221,6 +221,13 @@ namespace CGenImaging
         /// <returns>ブレンディングされた色</returns>
         public static Color Blend(Color c1, Color c2)
         {
+            if ((c1.A >= 255) || (c2.A == 0))
+            {
+                // c1.Aが255(不透明)または c2.Aが透過(A=0)だと、
+                // 計算結果がc1になるのでそのまま返す。
+                return c1;
+            }
+
             float a1 = (c1.A * c2.A) / (float)(255 * 255);
             float a2 = (c1.A * (255 - c2.A)) / (float)(255 * 255);
             float a3 = ((255 - c1.A) * c2.A) / (float)(255 * 255);
