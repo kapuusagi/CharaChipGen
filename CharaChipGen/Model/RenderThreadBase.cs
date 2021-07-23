@@ -118,7 +118,7 @@ namespace CharaChipGen.Model
             }
             isAbortRequested = false;
             isRenderRequested = true;
-            task = Task.Run(RenderThreadProc);
+            task = Task.Run(() => RenderThreadProc());
         }
 
         /// <summary>
