@@ -731,5 +731,22 @@ namespace ImageStacker
         {
             layerSet.RenderScale = (double)(numericUpDownRenderingScale.Value);
         }
+
+        /// <summary>
+        /// グリッド表示ON/OFFチェックボックスの状態が変わったときに通知を受け取る。
+        /// </summary>
+        /// <param name="sender">送信元オブジェクト</param>
+        /// <param name="e">イベントオブジェクト</param>
+        private void OnCheckBoxRenderGridCheckedChanged(object sender, EventArgs e)
+        {
+            try
+            {
+                layerSetViewControl.RenderCenterLine = ((CheckBox)(sender)).Checked;
+            }
+            catch (Exception ex)
+            {
+                System.Diagnostics.Debug.WriteLine(ex);
+            }
+        }
     }
 }

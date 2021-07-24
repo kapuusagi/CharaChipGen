@@ -29,7 +29,7 @@ namespace ImageStacker
         /// </summary>
         private void InitializeComponent()
         {
-            ImageStacker.LayerSetRenderer layerSetRenderer1 = new ImageStacker.LayerSetRenderer();
+            ImageStacker.LayerSetRenderer layerSetRenderer2 = new ImageStacker.LayerSetRenderer();
             this.splitContainer1 = new System.Windows.Forms.SplitContainer();
             this.panelPicture = new System.Windows.Forms.Panel();
             this.panel1 = new System.Windows.Forms.Panel();
@@ -45,6 +45,9 @@ namespace ImageStacker
             this.label3 = new System.Windows.Forms.Label();
             this.numericUpDownRenderWidth = new System.Windows.Forms.NumericUpDown();
             this.numericUpDownRenderHeight = new System.Windows.Forms.NumericUpDown();
+            this.tableLayoutPanel2 = new System.Windows.Forms.TableLayoutPanel();
+            this.label4 = new System.Windows.Forms.Label();
+            this.numericUpDownRenderingScale = new System.Windows.Forms.NumericUpDown();
             this.menuStrip1 = new System.Windows.Forms.MenuStrip();
             this.fileToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.newToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
@@ -57,10 +60,8 @@ namespace ImageStacker
             this.exitToolStripMenuItem1 = new System.Windows.Forms.ToolStripMenuItem();
             this.openFileDialog = new System.Windows.Forms.OpenFileDialog();
             this.saveFileDialog = new System.Windows.Forms.SaveFileDialog();
-            this.tableLayoutPanel2 = new System.Windows.Forms.TableLayoutPanel();
-            this.label4 = new System.Windows.Forms.Label();
-            this.numericUpDownRenderingScale = new System.Windows.Forms.NumericUpDown();
             this.layerSetViewControl = new ImageStacker.LayerSetViewControl();
+            this.checkBoxRenderGrid = new System.Windows.Forms.CheckBox();
             ((System.ComponentModel.ISupportInitialize)(this.splitContainer1)).BeginInit();
             this.splitContainer1.Panel1.SuspendLayout();
             this.splitContainer1.Panel2.SuspendLayout();
@@ -72,9 +73,9 @@ namespace ImageStacker
             this.tableLayoutPanel1.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.numericUpDownRenderWidth)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.numericUpDownRenderHeight)).BeginInit();
-            this.menuStrip1.SuspendLayout();
             this.tableLayoutPanel2.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.numericUpDownRenderingScale)).BeginInit();
+            this.menuStrip1.SuspendLayout();
             this.SuspendLayout();
             // 
             // splitContainer1
@@ -265,6 +266,63 @@ namespace ImageStacker
             this.numericUpDownRenderHeight.TextAlign = System.Windows.Forms.HorizontalAlignment.Right;
             this.numericUpDownRenderHeight.ValueChanged += new System.EventHandler(this.OnNumericUpDownRenderSizeValueChanged);
             // 
+            // tableLayoutPanel2
+            // 
+            this.tableLayoutPanel2.ColumnCount = 3;
+            this.tableLayoutPanel2.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle());
+            this.tableLayoutPanel2.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 100F));
+            this.tableLayoutPanel2.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle());
+            this.tableLayoutPanel2.Controls.Add(this.label4, 0, 0);
+            this.tableLayoutPanel2.Controls.Add(this.numericUpDownRenderingScale, 1, 0);
+            this.tableLayoutPanel2.Controls.Add(this.checkBoxRenderGrid, 2, 0);
+            this.tableLayoutPanel2.Location = new System.Drawing.Point(378, 3);
+            this.tableLayoutPanel2.Name = "tableLayoutPanel2";
+            this.tableLayoutPanel2.RowCount = 1;
+            this.tableLayoutPanel2.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 100F));
+            this.tableLayoutPanel2.Size = new System.Drawing.Size(299, 30);
+            this.tableLayoutPanel2.TabIndex = 2;
+            // 
+            // label4
+            // 
+            this.label4.Anchor = System.Windows.Forms.AnchorStyles.Left;
+            this.label4.AutoSize = true;
+            this.label4.Location = new System.Drawing.Point(3, 9);
+            this.label4.Name = "label4";
+            this.label4.Size = new System.Drawing.Size(88, 12);
+            this.label4.TabIndex = 0;
+            this.label4.Text = "Rendering Scale";
+            // 
+            // numericUpDownRenderingScale
+            // 
+            this.numericUpDownRenderingScale.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Left | System.Windows.Forms.AnchorStyles.Right)));
+            this.numericUpDownRenderingScale.DecimalPlaces = 2;
+            this.numericUpDownRenderingScale.Increment = new decimal(new int[] {
+            1,
+            0,
+            0,
+            65536});
+            this.numericUpDownRenderingScale.Location = new System.Drawing.Point(97, 5);
+            this.numericUpDownRenderingScale.Maximum = new decimal(new int[] {
+            4,
+            0,
+            0,
+            0});
+            this.numericUpDownRenderingScale.Minimum = new decimal(new int[] {
+            1,
+            0,
+            0,
+            65536});
+            this.numericUpDownRenderingScale.Name = "numericUpDownRenderingScale";
+            this.numericUpDownRenderingScale.Size = new System.Drawing.Size(73, 19);
+            this.numericUpDownRenderingScale.TabIndex = 1;
+            this.numericUpDownRenderingScale.TextAlign = System.Windows.Forms.HorizontalAlignment.Right;
+            this.numericUpDownRenderingScale.Value = new decimal(new int[] {
+            1,
+            0,
+            0,
+            0});
+            this.numericUpDownRenderingScale.ValueChanged += new System.EventHandler(this.OnNumericUpDownRenderScaleValueChanged);
+            // 
             // menuStrip1
             // 
             this.menuStrip1.Items.AddRange(new System.Windows.Forms.ToolStripItem[] {
@@ -340,74 +398,32 @@ namespace ImageStacker
             this.exitToolStripMenuItem1.Text = "Exit";
             this.exitToolStripMenuItem1.Click += new System.EventHandler(this.OnMenuItemExitClick);
             // 
-            // tableLayoutPanel2
-            // 
-            this.tableLayoutPanel2.ColumnCount = 2;
-            this.tableLayoutPanel2.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle());
-            this.tableLayoutPanel2.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 100F));
-            this.tableLayoutPanel2.Controls.Add(this.label4, 0, 0);
-            this.tableLayoutPanel2.Controls.Add(this.numericUpDownRenderingScale, 1, 0);
-            this.tableLayoutPanel2.Location = new System.Drawing.Point(378, 3);
-            this.tableLayoutPanel2.Name = "tableLayoutPanel2";
-            this.tableLayoutPanel2.RowCount = 1;
-            this.tableLayoutPanel2.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 100F));
-            this.tableLayoutPanel2.Size = new System.Drawing.Size(156, 30);
-            this.tableLayoutPanel2.TabIndex = 2;
-            // 
-            // label4
-            // 
-            this.label4.Anchor = System.Windows.Forms.AnchorStyles.Left;
-            this.label4.AutoSize = true;
-            this.label4.Location = new System.Drawing.Point(3, 9);
-            this.label4.Name = "label4";
-            this.label4.Size = new System.Drawing.Size(88, 12);
-            this.label4.TabIndex = 0;
-            this.label4.Text = "Rendering Scale";
-            // 
-            // numericUpDownRenderingScale
-            // 
-            this.numericUpDownRenderingScale.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Left | System.Windows.Forms.AnchorStyles.Right)));
-            this.numericUpDownRenderingScale.DecimalPlaces = 2;
-            this.numericUpDownRenderingScale.Increment = new decimal(new int[] {
-            1,
-            0,
-            0,
-            65536});
-            this.numericUpDownRenderingScale.Location = new System.Drawing.Point(97, 5);
-            this.numericUpDownRenderingScale.Maximum = new decimal(new int[] {
-            4,
-            0,
-            0,
-            0});
-            this.numericUpDownRenderingScale.Minimum = new decimal(new int[] {
-            1,
-            0,
-            0,
-            65536});
-            this.numericUpDownRenderingScale.Name = "numericUpDownRenderingScale";
-            this.numericUpDownRenderingScale.Size = new System.Drawing.Size(56, 19);
-            this.numericUpDownRenderingScale.TabIndex = 1;
-            this.numericUpDownRenderingScale.TextAlign = System.Windows.Forms.HorizontalAlignment.Right;
-            this.numericUpDownRenderingScale.Value = new decimal(new int[] {
-            1,
-            0,
-            0,
-            0});
-            this.numericUpDownRenderingScale.ValueChanged += new System.EventHandler(this.OnNumericUpDownRenderScaleValueChanged);
-            // 
             // layerSetViewControl
             // 
             this.layerSetViewControl.AutoSize = true;
             this.layerSetViewControl.BackgroundImage = global::ImageStacker.Properties.Resources.Background;
-            layerSetRenderer1.LayerSet = null;
-            this.layerSetViewControl.LayerSetRenderer = layerSetRenderer1;
+            layerSetRenderer2.LayerSet = null;
+            this.layerSetViewControl.LayerSetRenderer = layerSetRenderer2;
             this.layerSetViewControl.Location = new System.Drawing.Point(3, 6);
             this.layerSetViewControl.Name = "layerSetViewControl";
+            this.layerSetViewControl.RenderCenterLine = false;
             this.layerSetViewControl.Size = new System.Drawing.Size(0, 0);
             this.layerSetViewControl.TabIndex = 0;
             this.layerSetViewControl.MouseDown += new System.Windows.Forms.MouseEventHandler(this.OnLayerSetViewMouseDown);
             this.layerSetViewControl.MouseMove += new System.Windows.Forms.MouseEventHandler(this.OnLayerSetViewMouseMove);
             this.layerSetViewControl.MouseUp += new System.Windows.Forms.MouseEventHandler(this.OnLayerSetViewMouseUp);
+            // 
+            // checkBoxRenderGrid
+            // 
+            this.checkBoxRenderGrid.Anchor = System.Windows.Forms.AnchorStyles.Left;
+            this.checkBoxRenderGrid.AutoSize = true;
+            this.checkBoxRenderGrid.Location = new System.Drawing.Point(176, 7);
+            this.checkBoxRenderGrid.Name = "checkBoxRenderGrid";
+            this.checkBoxRenderGrid.Size = new System.Drawing.Size(120, 16);
+            this.checkBoxRenderGrid.TabIndex = 2;
+            this.checkBoxRenderGrid.Text = "Display center line";
+            this.checkBoxRenderGrid.UseVisualStyleBackColor = true;
+            this.checkBoxRenderGrid.CheckedChanged += new System.EventHandler(this.OnCheckBoxRenderGridCheckedChanged);
             // 
             // FormMain
             // 
@@ -436,11 +452,11 @@ namespace ImageStacker
             this.tableLayoutPanel1.PerformLayout();
             ((System.ComponentModel.ISupportInitialize)(this.numericUpDownRenderWidth)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.numericUpDownRenderHeight)).EndInit();
-            this.menuStrip1.ResumeLayout(false);
-            this.menuStrip1.PerformLayout();
             this.tableLayoutPanel2.ResumeLayout(false);
             this.tableLayoutPanel2.PerformLayout();
             ((System.ComponentModel.ISupportInitialize)(this.numericUpDownRenderingScale)).EndInit();
+            this.menuStrip1.ResumeLayout(false);
+            this.menuStrip1.PerformLayout();
             this.ResumeLayout(false);
             this.PerformLayout();
 
@@ -479,6 +495,7 @@ namespace ImageStacker
         private System.Windows.Forms.TableLayoutPanel tableLayoutPanel2;
         private System.Windows.Forms.Label label4;
         private System.Windows.Forms.NumericUpDown numericUpDownRenderingScale;
+        private System.Windows.Forms.CheckBox checkBoxRenderGrid;
     }
 }
 

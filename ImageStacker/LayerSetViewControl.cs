@@ -18,6 +18,8 @@ namespace ImageStacker
     {
         // レンダラー
         private LayerSetRenderer renderer;
+        // センターラインを描画するかどうか
+        private bool renderCenterLine;
 
         /// <summary>
         /// 新しいLayerSetViewControlを構築する。
@@ -25,6 +27,7 @@ namespace ImageStacker
         public LayerSetViewControl()
         {
             renderer = new LayerSetRenderer();
+            renderCenterLine = false;
             InitializeComponent();
             renderer.RenderSizeChanged += OnImageSizeChanged;
             renderer.NeedRedraw += OnLayerNeedRedraw;
@@ -67,6 +70,21 @@ namespace ImageStacker
                         renderer.RenderSizeChanged += OnImageSizeChanged;
                         renderer.NeedRedraw += OnLayerNeedRedraw;
                     }
+                }
+            }
+        }
+
+        /// <summary>
+        /// センターラインを描画するかどうか
+        /// </summary>
+        public bool RenderCenterLine {
+            get => renderCenterLine;
+            set
+            {
+                if (renderCenterLine != value)
+                {
+                    renderCenterLine = value;
+                    Invalidate();
                 }
             }
         }
@@ -118,6 +136,10 @@ namespace ImageStacker
             var g = e.Graphics;
             // 背景描画
             PaintBackground(g);
+            if (renderCenterLine)
+            {
+                PaintCenterLine(g);
+            }
             // 面描画
             Image renderImage = renderer.GetRenderImage();
             if (renderImage != null)
@@ -125,6 +147,21 @@ namespace ImageStacker
                 g.DrawImage(renderImage, 0, 0);
             }
         }
+
+        /// <summary>
+        /// センターラインを描画する。
+        /// </summary>
+        /// <param name="g">グラフィクスオブジェクト</param>
+        private void PaintCenterLine(Graphics g)
+        {
+            using (var pen = new Pen(Color.Cyan, 3))
+            {
+                var center = new Point((int)(Width / 2), (int)(Height / 2));
+                g.DrawLine(pen, center.X, 0, center.X, Height - 1);
+                g.DrawLine(pen, 0, center.Y, Width - 1, center.Y);
+            }
+        }
+
         /// <summary>
         /// 背景を描画する
         /// </summary>
