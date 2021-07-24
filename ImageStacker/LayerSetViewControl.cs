@@ -136,15 +136,15 @@ namespace ImageStacker
             var g = e.Graphics;
             // 背景描画
             PaintBackground(g);
-            if (renderCenterLine)
-            {
-                PaintCenterLine(g);
-            }
             // 面描画
             Image renderImage = renderer.GetRenderImage();
             if (renderImage != null)
             {
                 g.DrawImage(renderImage, 0, 0);
+            }
+            if (renderCenterLine)
+            {
+                PaintCenterLine(g);
             }
         }
 
