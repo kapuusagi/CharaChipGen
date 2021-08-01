@@ -123,30 +123,38 @@ namespace CharaChipGen.CommonControl
         /// <param name="e">イベントオブジェクト</param>
         protected override void OnPaint(PaintEventArgs e)
         {
-            var g = e.Graphics;
-            if ((image == null) || (imageRect.Width <= 0) || (imageRect.Height <= 0))
+            try
             {
-                return;
-            }
-            var paintRect = GetPaintRect();
-            if ((paintRect.Width <= 0) || (paintRect.Height <= 0))
-            {
-                return;
-            }
+                var g = e.Graphics;
+                if ((image == null) || (imageRect.Width <= 0) || (imageRect.Height <= 0))
+                {
+                    return;
+                }
+                var paintRect = GetPaintRect();
+                if ((paintRect.Width <= 0) || (paintRect.Height <= 0))
+                {
+                    return;
+                }
 
-            var drawableWidth = Math.Min(image.Width - imageRect.X, imageRect.Width);
-            var drawableHeight = Math.Min(image.Height - imageRect.Y, imageRect.Height);
-            if ((drawableWidth <= 0) || (drawableHeight <= 0))
-            {
-                return;
-            }
-            var drawWidth = Math.Min(drawableWidth, paintRect.Width);
-            var drawHeight = Math.Min(drawableHeight, paintRect.Height);
-            var dstXOffset = paintRect.X + (paintRect.Width - drawWidth) / 2;
-            var dstYOffset = paintRect.Y + (paintRect.Height - drawHeight) / 2;
-            var srcRect = new Rectangle(imageRect.X, imageRect.Y, drawWidth, drawHeight);
+                var drawableWidth = Math.Min(image.Width - imageRect.X, imageRect.Width);
+                var drawableHeight = Math.Min(image.Height - imageRect.Y, imageRect.Height);
+                if ((drawableWidth <= 0) || (drawableHeight <= 0))
+                {
+                    return;
+                }
+                var drawWidth = Math.Min(drawableWidth, paintRect.Width);
+                var drawHeight = Math.Min(drawableHeight, paintRect.Height);
+                var dstXOffset = paintRect.X + (paintRect.Width - drawWidth) / 2;
+                var dstYOffset = paintRect.Y + (paintRect.Height - drawHeight) / 2;
+                var srcRect = new Rectangle(imageRect.X, imageRect.Y, drawWidth, drawHeight);
 
-            g.DrawImage(image, dstXOffset, dstYOffset, srcRect, GraphicsUnit.Pixel);
+                g.DrawImage(image, dstXOffset, dstYOffset, srcRect, GraphicsUnit.Pixel);
+            }
+            catch (Exception ex)
+            {
+                // パラメータが不正になることがある。
+                System.Diagnostics.Debug.WriteLine(ex.Message);
+            }
 
         }
 
