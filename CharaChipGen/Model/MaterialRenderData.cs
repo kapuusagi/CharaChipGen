@@ -143,6 +143,7 @@ namespace CharaChipGen.Model
         /// <summary>
         /// 素材をレンダリングするのに最適サイズを取得する。
         /// 1キャラクタをレンダリングするために必要なサイズが返る。
+        /// 例えば1パターンが48x48だとすると、Size(48x3, 48x4)が返ることになる。
         /// 1キャラクターの1パターンを描画するサイズではないことに注意。
         /// </summary>
         public System.Drawing.Size PreferredSize {

@@ -72,16 +72,21 @@ namespace CharaChipGen.MaterialViewForm
             }
             else
             {
-                int imageWidth = prefSize.Width * 3;
-                int imageHeight = prefSize.Height * 4;
-                if ((imageBuffer == null) || (imageBuffer.Width != imageWidth) || (imageBuffer.Height != imageHeight))
+                if ((imageBuffer == null) || (imageBuffer.Width != prefSize.Width) || (imageBuffer.Height != prefSize.Height))
                 {
-                    imageBuffer = ImageBuffer.Create(imageWidth, imageHeight);
+                    imageBuffer = ImageBuffer.Create(prefSize.Width, prefSize.Height);
                 }
 
-                Parallel.For(0, 4, y =>
+                int patternWidth = prefSize.Width / 3;
+                int patternHeight = prefSize.Height / 4;
+
+                // 3 x 4 のパターンを描画する。
+                // workBuferにそれぞれのパターンを描画し、
+                // imageBufferの所定のオフセット位置に書き込むしくみ。
+                //Parallel.For(0, 4, y =>
+                for (int y = 0; y < 4; y++)
                 {
-                    ImageBuffer workBuffer = ImageBuffer.Create(prefSize.Width, prefSize.Height);
+                    ImageBuffer workBuffer = ImageBuffer.Create(patternWidth, patternHeight);
                     for (int x = 0; x < 3; x++)
                     {
                         int xoffs = workBuffer.Width * x;
@@ -89,7 +94,8 @@ namespace CharaChipGen.MaterialViewForm
                         MaterialRenderer.Draw(renderData, workBuffer, x, y);
                         imageBuffer.WriteImage(workBuffer, xoffs, yoffs);
                     }
-                });
+                //});
+                }
 
             }
             return imageBuffer?.GetImage() ?? null;
