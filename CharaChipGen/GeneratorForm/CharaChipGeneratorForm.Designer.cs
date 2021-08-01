@@ -30,6 +30,19 @@
         {
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(CharaChipGeneratorForm));
             this.panelCharaChipParts = new System.Windows.Forms.Panel();
+            this.buttonOK = new System.Windows.Forms.Button();
+            this.buttonCancel = new System.Windows.Forms.Button();
+            this.flowLayoutPanel1 = new System.Windows.Forms.FlowLayoutPanel();
+            this.tableLayoutPanel1 = new System.Windows.Forms.TableLayoutPanel();
+            this.menuStrip1 = new System.Windows.Forms.MenuStrip();
+            this.fileToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.menuItemSaveAsTemplate = new System.Windows.Forms.ToolStripMenuItem();
+            this.menuItemLoadFromTemplate = new System.Windows.Forms.ToolStripMenuItem();
+            this.menuItemExport = new System.Windows.Forms.ToolStripMenuItem();
+            this.menuItemOption = new System.Windows.Forms.ToolStripMenuItem();
+            this.menuItemImageBackground = new System.Windows.Forms.ToolStripMenuItem();
+            this.saveFileDialog = new System.Windows.Forms.SaveFileDialog();
+            this.charaChipView = new CharaChipGen.GeneratorForm.CharaChipView();
             this.partsViewHeadAccessory2 = new CharaChipGen.GeneratorForm.CharaChipGeneratorPartsView();
             this.partsViewHeadAccessory1 = new CharaChipGen.GeneratorForm.CharaChipGeneratorPartsView();
             this.partsViewAccessory3 = new CharaChipGen.GeneratorForm.CharaChipGeneratorPartsView();
@@ -39,19 +52,6 @@
             this.partsViewEye = new CharaChipGen.GeneratorForm.CharaChipGeneratorPartsView();
             this.partsViewHairStyle = new CharaChipGen.GeneratorForm.CharaChipGeneratorPartsView();
             this.partsViewHead = new CharaChipGen.GeneratorForm.CharaChipGeneratorPartsView();
-            this.buttonOK = new System.Windows.Forms.Button();
-            this.buttonCancel = new System.Windows.Forms.Button();
-            this.flowLayoutPanel1 = new System.Windows.Forms.FlowLayoutPanel();
-            this.tableLayoutPanel1 = new System.Windows.Forms.TableLayoutPanel();
-            this.charaChipView = new CharaChipGen.GeneratorForm.CharaChipView();
-            this.menuStrip1 = new System.Windows.Forms.MenuStrip();
-            this.fileToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
-            this.menuItemSaveAsTemplate = new System.Windows.Forms.ToolStripMenuItem();
-            this.menuItemLoadFromTemplate = new System.Windows.Forms.ToolStripMenuItem();
-            this.menuItemExport = new System.Windows.Forms.ToolStripMenuItem();
-            this.menuItemOption = new System.Windows.Forms.ToolStripMenuItem();
-            this.menuItemImageBackground = new System.Windows.Forms.ToolStripMenuItem();
-            this.saveFileDialog = new System.Windows.Forms.SaveFileDialog();
             this.panelCharaChipParts.SuspendLayout();
             this.flowLayoutPanel1.SuspendLayout();
             this.tableLayoutPanel1.SuspendLayout();
@@ -71,78 +71,6 @@
             this.panelCharaChipParts.Controls.Add(this.partsViewHead);
             resources.ApplyResources(this.panelCharaChipParts, "panelCharaChipParts");
             this.panelCharaChipParts.Name = "panelCharaChipParts";
-            // 
-            // partsViewHeadAccessory2
-            // 
-            resources.ApplyResources(this.partsViewHeadAccessory2, "partsViewHeadAccessory2");
-            this.partsViewHeadAccessory2.EditHSV = false;
-            this.partsViewHeadAccessory2.EditYOffset = true;
-            this.partsViewHeadAccessory2.Name = "partsViewHeadAccessory2";
-            this.partsViewHeadAccessory2.PartsName = "HeadAccessory2";
-            // 
-            // partsViewHeadAccessory1
-            // 
-            resources.ApplyResources(this.partsViewHeadAccessory1, "partsViewHeadAccessory1");
-            this.partsViewHeadAccessory1.EditHSV = false;
-            this.partsViewHeadAccessory1.EditYOffset = true;
-            this.partsViewHeadAccessory1.Name = "partsViewHeadAccessory1";
-            this.partsViewHeadAccessory1.PartsName = "HeadAccessory1";
-            // 
-            // partsViewAccessory3
-            // 
-            resources.ApplyResources(this.partsViewAccessory3, "partsViewAccessory3");
-            this.partsViewAccessory3.EditHSV = false;
-            this.partsViewAccessory3.EditYOffset = true;
-            this.partsViewAccessory3.Name = "partsViewAccessory3";
-            this.partsViewAccessory3.PartsName = "Accessory3";
-            // 
-            // partsViewAccessory2
-            // 
-            resources.ApplyResources(this.partsViewAccessory2, "partsViewAccessory2");
-            this.partsViewAccessory2.EditHSV = false;
-            this.partsViewAccessory2.EditYOffset = true;
-            this.partsViewAccessory2.Name = "partsViewAccessory2";
-            this.partsViewAccessory2.PartsName = "Accessory2";
-            // 
-            // partsViewAccessory1
-            // 
-            resources.ApplyResources(this.partsViewAccessory1, "partsViewAccessory1");
-            this.partsViewAccessory1.EditHSV = false;
-            this.partsViewAccessory1.EditYOffset = true;
-            this.partsViewAccessory1.Name = "partsViewAccessory1";
-            this.partsViewAccessory1.PartsName = "Accessory1";
-            // 
-            // partsViewBody
-            // 
-            resources.ApplyResources(this.partsViewBody, "partsViewBody");
-            this.partsViewBody.EditHSV = false;
-            this.partsViewBody.EditYOffset = true;
-            this.partsViewBody.Name = "partsViewBody";
-            this.partsViewBody.PartsName = "Body";
-            // 
-            // partsViewEye
-            // 
-            resources.ApplyResources(this.partsViewEye, "partsViewEye");
-            this.partsViewEye.EditHSV = false;
-            this.partsViewEye.EditYOffset = true;
-            this.partsViewEye.Name = "partsViewEye";
-            this.partsViewEye.PartsName = "Eye";
-            // 
-            // partsViewHairStyle
-            // 
-            resources.ApplyResources(this.partsViewHairStyle, "partsViewHairStyle");
-            this.partsViewHairStyle.EditHSV = false;
-            this.partsViewHairStyle.EditYOffset = true;
-            this.partsViewHairStyle.Name = "partsViewHairStyle";
-            this.partsViewHairStyle.PartsName = "HairStyle";
-            // 
-            // partsViewHead
-            // 
-            resources.ApplyResources(this.partsViewHead, "partsViewHead");
-            this.partsViewHead.EditHSV = false;
-            this.partsViewHead.EditYOffset = true;
-            this.partsViewHead.Name = "partsViewHead";
-            this.partsViewHead.PartsName = "Head";
             // 
             // buttonOK
             // 
@@ -171,12 +99,6 @@
             this.tableLayoutPanel1.Controls.Add(this.charaChipView, 0, 0);
             this.tableLayoutPanel1.Controls.Add(this.panelCharaChipParts, 1, 0);
             this.tableLayoutPanel1.Name = "tableLayoutPanel1";
-            // 
-            // charaChipView
-            // 
-            resources.ApplyResources(this.charaChipView, "charaChipView");
-            this.charaChipView.ImageBackground = System.Drawing.SystemColors.Control;
-            this.charaChipView.Name = "charaChipView";
             // 
             // menuStrip1
             // 
@@ -229,6 +151,84 @@
             // saveFileDialog
             // 
             resources.ApplyResources(this.saveFileDialog, "saveFileDialog");
+            // 
+            // charaChipView
+            // 
+            resources.ApplyResources(this.charaChipView, "charaChipView");
+            this.charaChipView.ImageBackground = System.Drawing.SystemColors.Control;
+            this.charaChipView.Name = "charaChipView";
+            // 
+            // partsViewHeadAccessory2
+            // 
+            resources.ApplyResources(this.partsViewHeadAccessory2, "partsViewHeadAccessory2");
+            this.partsViewHeadAccessory2.EditHSV = true;
+            this.partsViewHeadAccessory2.EditYOffset = true;
+            this.partsViewHeadAccessory2.Name = "partsViewHeadAccessory2";
+            this.partsViewHeadAccessory2.PartsName = "HeadAccessory2";
+            // 
+            // partsViewHeadAccessory1
+            // 
+            resources.ApplyResources(this.partsViewHeadAccessory1, "partsViewHeadAccessory1");
+            this.partsViewHeadAccessory1.EditHSV = true;
+            this.partsViewHeadAccessory1.EditYOffset = true;
+            this.partsViewHeadAccessory1.Name = "partsViewHeadAccessory1";
+            this.partsViewHeadAccessory1.PartsName = "HeadAccessory1";
+            // 
+            // partsViewAccessory3
+            // 
+            resources.ApplyResources(this.partsViewAccessory3, "partsViewAccessory3");
+            this.partsViewAccessory3.EditHSV = true;
+            this.partsViewAccessory3.EditYOffset = true;
+            this.partsViewAccessory3.Name = "partsViewAccessory3";
+            this.partsViewAccessory3.PartsName = "Accessory3";
+            // 
+            // partsViewAccessory2
+            // 
+            resources.ApplyResources(this.partsViewAccessory2, "partsViewAccessory2");
+            this.partsViewAccessory2.EditHSV = true;
+            this.partsViewAccessory2.EditYOffset = true;
+            this.partsViewAccessory2.Name = "partsViewAccessory2";
+            this.partsViewAccessory2.PartsName = "Accessory2";
+            // 
+            // partsViewAccessory1
+            // 
+            resources.ApplyResources(this.partsViewAccessory1, "partsViewAccessory1");
+            this.partsViewAccessory1.EditHSV = true;
+            this.partsViewAccessory1.EditYOffset = true;
+            this.partsViewAccessory1.Name = "partsViewAccessory1";
+            this.partsViewAccessory1.PartsName = "Accessory1";
+            // 
+            // partsViewBody
+            // 
+            resources.ApplyResources(this.partsViewBody, "partsViewBody");
+            this.partsViewBody.EditHSV = true;
+            this.partsViewBody.EditYOffset = true;
+            this.partsViewBody.Name = "partsViewBody";
+            this.partsViewBody.PartsName = "Body";
+            // 
+            // partsViewEye
+            // 
+            resources.ApplyResources(this.partsViewEye, "partsViewEye");
+            this.partsViewEye.EditHSV = true;
+            this.partsViewEye.EditYOffset = true;
+            this.partsViewEye.Name = "partsViewEye";
+            this.partsViewEye.PartsName = "Eye";
+            // 
+            // partsViewHairStyle
+            // 
+            resources.ApplyResources(this.partsViewHairStyle, "partsViewHairStyle");
+            this.partsViewHairStyle.EditHSV = true;
+            this.partsViewHairStyle.EditYOffset = true;
+            this.partsViewHairStyle.Name = "partsViewHairStyle";
+            this.partsViewHairStyle.PartsName = "HairStyle";
+            // 
+            // partsViewHead
+            // 
+            resources.ApplyResources(this.partsViewHead, "partsViewHead");
+            this.partsViewHead.EditHSV = true;
+            this.partsViewHead.EditYOffset = true;
+            this.partsViewHead.Name = "partsViewHead";
+            this.partsViewHead.PartsName = "Head";
             // 
             // CharaChipGeneratorForm
             // 

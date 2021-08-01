@@ -357,6 +357,9 @@
   <data name="&gt;&gt;panelCharaChipParts.ZOrder" xml:space="preserve">
     <value>1</value>
   </data>
+  <data name="buttonOK.ImeMode" type="System.Windows.Forms.ImeMode, System.Windows.Forms">
+    <value>NoControl</value>
+  </data>
   <data name="buttonOK.Location" type="System.Drawing.Point, System.Drawing">
     <value>547, 3</value>
   </data>
@@ -380,6 +383,9 @@
   </data>
   <data name="&gt;&gt;buttonOK.ZOrder" xml:space="preserve">
     <value>1</value>
+  </data>
+  <data name="buttonCancel.ImeMode" type="System.Windows.Forms.ImeMode, System.Windows.Forms">
+    <value>NoControl</value>
   </data>
   <data name="buttonCancel.Location" type="System.Drawing.Point, System.Drawing">
     <value>628, 3</value>
@@ -723,6 +729,9 @@
         AAHgAAAH8AAAD/AAAA/wAAAP8AAAD/gAAB/4AAAf+AAAH/wAAD/8AAA//gAAf/8AAP//wAP///AP////
         /////////////w==
 </value>
+  </data>
+  <data name="$this.ImeMode" type="System.Windows.Forms.ImeMode, System.Windows.Forms">
+    <value>NoControl</value>
   </data>
   <data name="$this.Text" xml:space="preserve">
     <value>Chara Chip Setting</value>

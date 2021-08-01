@@ -146,7 +146,7 @@ namespace CharaChipGen.GeneratorForm
         public void OnClosed()
         {
             timer.Stop();
-            renderThread.Stop();
+            renderThread.Stop(500);
         }
 
         /// <summary>

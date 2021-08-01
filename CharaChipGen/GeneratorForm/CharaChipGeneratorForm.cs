@@ -74,9 +74,20 @@ namespace CharaChipGen.GeneratorForm
         /// <param name="e">イベントオブジェクト</param>
         private void OnImageRendered(object sender, EventArgs e)
         {
+            if (IsDisposed)
+            {
+                return; // フォームがクローズ済みの場合など。
+            }
+
             if (InvokeRequired)
             {
-                Invoke((MethodInvoker)(CheckRenderError));
+                try
+                {
+                    Invoke((MethodInvoker)(() => CheckRenderError()));
+                }
+                catch (Exception)
+                {
+                }
             }
             else
             {

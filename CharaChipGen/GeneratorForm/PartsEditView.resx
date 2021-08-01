@@ -271,7 +271,7 @@
     <value>Bottom</value>
   </data>
   <data name="panel1.Location" type="System.Drawing.Point, System.Drawing">
-    <value>0, 282</value>
+    <value>0, 309</value>
   </data>
   <data name="panel1.Padding" type="System.Windows.Forms.Padding, System.Windows.Forms">
     <value>6, 4, 6, 4</value>
@@ -294,28 +294,28 @@
   <data name="&gt;&gt;panel1.ZOrder" xml:space="preserve">
     <value>1</value>
   </data>
-  <data name="colorSettingView1.Dock" type="System.Windows.Forms.DockStyle, System.Windows.Forms">
+  <data name="colorSettingViewColor1.Dock" type="System.Windows.Forms.DockStyle, System.Windows.Forms">
     <value>Fill</value>
   </data>
-  <data name="colorSettingView1.Location" type="System.Drawing.Point, System.Drawing">
+  <data name="colorSettingViewColor1.Location" type="System.Drawing.Point, System.Drawing">
     <value>3, 3</value>
   </data>
-  <data name="colorSettingView1.Size" type="System.Drawing.Size, System.Drawing">
-    <value>260, 188</value>
+  <data name="colorSettingViewColor1.Size" type="System.Drawing.Size, System.Drawing">
+    <value>260, 215</value>
   </data>
-  <data name="colorSettingView1.TabIndex" type="System.Int32, mscorlib">
+  <data name="colorSettingViewColor1.TabIndex" type="System.Int32, mscorlib">
     <value>0</value>
   </data>
-  <data name="&gt;&gt;colorSettingView1.Name" xml:space="preserve">
-    <value>colorSettingView1</value>
+  <data name="&gt;&gt;colorSettingViewColor1.Name" xml:space="preserve">
+    <value>colorSettingViewColor1</value>
   </data>
-  <data name="&gt;&gt;colorSettingView1.Type" xml:space="preserve">
+  <data name="&gt;&gt;colorSettingViewColor1.Type" xml:space="preserve">
     <value>CharaChipGen.GeneratorForm.ColorSettingView, CharaChipGen, Version=3.0.0.0, Culture=neutral, PublicKeyToken=null</value>
   </data>
-  <data name="&gt;&gt;colorSettingView1.Parent" xml:space="preserve">
+  <data name="&gt;&gt;colorSettingViewColor1.Parent" xml:space="preserve">
     <value>tabPage1</value>
   </data>
-  <data name="&gt;&gt;colorSettingView1.ZOrder" xml:space="preserve">
+  <data name="&gt;&gt;colorSettingViewColor1.ZOrder" xml:space="preserve">
     <value>0</value>
   </data>
   <data name="tabPage1.Location" type="System.Drawing.Point, System.Drawing">
@@ -325,7 +325,7 @@
     <value>3, 3, 3, 3</value>
   </data>
   <data name="tabPage1.Size" type="System.Drawing.Size, System.Drawing">
-    <value>266, 194</value>
+    <value>266, 221</value>
   </data>
   <data name="tabPage1.TabIndex" type="System.Int32, mscorlib">
     <value>0</value>
@@ -340,7 +340,7 @@
     <value>System.Windows.Forms.TabPage, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </data>
   <data name="&gt;&gt;tabPage1.Parent" xml:space="preserve">
-    <value>tabControl1</value>
+    <value>tabControlColor2</value>
   </data>
   <data name="&gt;&gt;tabPage1.ZOrder" xml:space="preserve">
     <value>0</value>
@@ -352,7 +352,7 @@
     <value>3, 3</value>
   </data>
   <data name="colorSettingView2.Size" type="System.Drawing.Size, System.Drawing">
-    <value>260, 188</value>
+    <value>260, 284</value>
   </data>
   <data name="colorSettingView2.TabIndex" type="System.Int32, mscorlib">
     <value>0</value>
@@ -376,7 +376,7 @@
     <value>3, 3, 3, 3</value>
   </data>
   <data name="tabPage2.Size" type="System.Drawing.Size, System.Drawing">
-    <value>266, 194</value>
+    <value>266, 290</value>
   </data>
   <data name="tabPage2.TabIndex" type="System.Int32, mscorlib">
     <value>1</value>
@@ -391,33 +391,33 @@
     <value>System.Windows.Forms.TabPage, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </data>
   <data name="&gt;&gt;tabPage2.Parent" xml:space="preserve">
-    <value>tabControl1</value>
+    <value>tabControlColor2</value>
   </data>
   <data name="&gt;&gt;tabPage2.ZOrder" xml:space="preserve">
     <value>1</value>
   </data>
-  <data name="tabControl1.Dock" type="System.Windows.Forms.DockStyle, System.Windows.Forms">
+  <data name="tabControlColor2.Dock" type="System.Windows.Forms.DockStyle, System.Windows.Forms">
     <value>Fill</value>
   </data>
-  <data name="tabControl1.Location" type="System.Drawing.Point, System.Drawing">
+  <data name="tabControlColor2.Location" type="System.Drawing.Point, System.Drawing">
     <value>3, 59</value>
   </data>
-  <data name="tabControl1.Size" type="System.Drawing.Size, System.Drawing">
-    <value>274, 220</value>
+  <data name="tabControlColor2.Size" type="System.Drawing.Size, System.Drawing">
+    <value>274, 247</value>
   </data>
-  <data name="tabControl1.TabIndex" type="System.Int32, mscorlib">
+  <data name="tabControlColor2.TabIndex" type="System.Int32, mscorlib">
     <value>1</value>
   </data>
-  <data name="&gt;&gt;tabControl1.Name" xml:space="preserve">
-    <value>tabControl1</value>
+  <data name="&gt;&gt;tabControlColor2.Name" xml:space="preserve">
+    <value>tabControlColor2</value>
   </data>
-  <data name="&gt;&gt;tabControl1.Type" xml:space="preserve">
+  <data name="&gt;&gt;tabControlColor2.Type" xml:space="preserve">
     <value>System.Windows.Forms.TabControl, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </data>
-  <data name="&gt;&gt;tabControl1.Parent" xml:space="preserve">
+  <data name="&gt;&gt;tabControlColor2.Parent" xml:space="preserve">
     <value>groupBox1</value>
   </data>
-  <data name="&gt;&gt;tabControl1.ZOrder" xml:space="preserve">
+  <data name="&gt;&gt;tabControlColor2.ZOrder" xml:space="preserve">
     <value>0</value>
   </data>
   <data name="groupBox1.Dock" type="System.Windows.Forms.DockStyle, System.Windows.Forms">
@@ -427,7 +427,7 @@
     <value>0, 0</value>
   </data>
   <data name="groupBox1.Size" type="System.Drawing.Size, System.Drawing">
-    <value>280, 282</value>
+    <value>280, 309</value>
   </data>
   <data name="groupBox1.TabIndex" type="System.Int32, mscorlib">
     <value>0</value>
@@ -457,7 +457,7 @@
     <value>280, 280</value>
   </data>
   <data name="$this.Size" type="System.Drawing.Size, System.Drawing">
-    <value>280, 333</value>
+    <value>280, 360</value>
   </data>
   <data name="&gt;&gt;$this.Name" xml:space="preserve">
     <value>PartsEditView</value>

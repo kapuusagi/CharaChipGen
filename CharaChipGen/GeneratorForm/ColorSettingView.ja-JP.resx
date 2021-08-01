@@ -119,90 +119,78 @@
   </resheader>
   <assembly alias="System.Drawing" name="System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a" />
   <data name="label2.Size" type="System.Drawing.Size, System.Drawing">
-    <value>70, 38</value>
+    <value>53, 60</value>
   </data>
   <data name="label2.Text" xml:space="preserve">
     <value>色相</value>
   </data>
   <data name="label3.Location" type="System.Drawing.Point, System.Drawing">
-    <value>9, 42</value>
+    <value>9, 64</value>
   </data>
   <data name="label3.Size" type="System.Drawing.Size, System.Drawing">
-    <value>70, 38</value>
+    <value>53, 60</value>
   </data>
   <data name="label3.Text" xml:space="preserve">
     <value>彩度</value>
   </data>
   <data name="label4.Location" type="System.Drawing.Point, System.Drawing">
-    <value>9, 80</value>
+    <value>9, 124</value>
   </data>
   <data name="label4.Size" type="System.Drawing.Size, System.Drawing">
-    <value>70, 38</value>
+    <value>53, 60</value>
   </data>
   <data name="label4.Text" xml:space="preserve">
     <value>明度</value>
   </data>
   <data name="label5.Location" type="System.Drawing.Point, System.Drawing">
-    <value>9, 118</value>
+    <value>9, 184</value>
   </data>
   <data name="label5.Size" type="System.Drawing.Size, System.Drawing">
-    <value>70, 38</value>
+    <value>53, 62</value>
   </data>
   <data name="label5.Text" xml:space="preserve">
     <value>不透明度</value>
   </data>
   <data name="numericUpDownHue.Location" type="System.Drawing.Point, System.Drawing">
-    <value>161, 7</value>
-  </data>
-  <data name="numericUpDownHue.Size" type="System.Drawing.Size, System.Drawing">
-    <value>54, 19</value>
+    <value>160, 24</value>
   </data>
   <data name="numericUpDownSaturation.Location" type="System.Drawing.Point, System.Drawing">
-    <value>161, 45</value>
-  </data>
-  <data name="numericUpDownSaturation.Size" type="System.Drawing.Size, System.Drawing">
-    <value>54, 19</value>
+    <value>160, 84</value>
   </data>
   <data name="numericUpDownValue.Location" type="System.Drawing.Point, System.Drawing">
-    <value>161, 83</value>
-  </data>
-  <data name="numericUpDownValue.Size" type="System.Drawing.Size, System.Drawing">
-    <value>54, 19</value>
+    <value>160, 144</value>
   </data>
   <data name="numericUpDownOpacity.Location" type="System.Drawing.Point, System.Drawing">
-    <value>161, 121</value>
-  </data>
-  <data name="numericUpDownOpacity.Size" type="System.Drawing.Size, System.Drawing">
-    <value>54, 19</value>
+    <value>160, 205</value>
   </data>
   <data name="trackBarHue.Location" type="System.Drawing.Point, System.Drawing">
-    <value>85, 7</value>
+    <value>68, 11</value>
   </data>
   <data name="trackBarHue.Size" type="System.Drawing.Size, System.Drawing">
-    <value>70, 32</value>
+    <value>86, 45</value>
   </data>
   <data name="trackBarSaturation.Location" type="System.Drawing.Point, System.Drawing">
-    <value>85, 45</value>
+    <value>68, 71</value>
   </data>
   <data name="trackBarSaturation.Size" type="System.Drawing.Size, System.Drawing">
-    <value>70, 32</value>
+    <value>86, 45</value>
   </data>
   <data name="trackBarValue.Location" type="System.Drawing.Point, System.Drawing">
-    <value>85, 83</value>
+    <value>68, 131</value>
   </data>
   <data name="trackBarValue.Size" type="System.Drawing.Size, System.Drawing">
-    <value>70, 32</value>
+    <value>86, 45</value>
   </data>
   <data name="trackBarOpacity.Location" type="System.Drawing.Point, System.Drawing">
-    <value>85, 121</value>
+    <value>68, 192</value>
   </data>
   <data name="trackBarOpacity.Size" type="System.Drawing.Size, System.Drawing">
-    <value>70, 32</value>
+    <value>86, 45</value>
   </data>
   <data name="tableLayoutPanel1.Size" type="System.Drawing.Size, System.Drawing">
-    <value>226, 160</value>
+    <value>226, 250</value>
   </data>
   <data name="$this.Size" type="System.Drawing.Size, System.Drawing">
-    <value>226, 160</value>
+    <value>226, 250</value>
   </data>
 </root>

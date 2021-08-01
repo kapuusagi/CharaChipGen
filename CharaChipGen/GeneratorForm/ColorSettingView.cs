@@ -145,12 +145,15 @@ namespace CharaChipGen.GeneratorForm
             }
         }
 
+        private bool editHSV = false;
+
         /// <summary>
         /// HSVの表示可否
         /// </summary>
         public bool EditHSV {
-            get { return numericUpDownHue.Visible; }
+            get => editHSV;
             set {
+                editHSV = value;
                 numericUpDownHue.Visible = value;
                 trackBarHue.Visible = value;
                 numericUpDownSaturation.Visible = value;

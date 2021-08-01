@@ -35,7 +35,7 @@ namespace CharaChipGen.GeneratorForm
                 += (s, e) => { model.OffsetY = (int)(numericUpDownYPos.Value); };
             trackBarYPos.ValueChanged
                 += (s, e) => { model.OffsetY = trackBarYPos.Value; };
-            colorSettingView1.ColorSetting = model.Color1;
+            colorSettingViewColor1.ColorSetting = model.Color1;
             colorSettingView2.ColorSetting = model.Color2;
         }
 
@@ -79,7 +79,7 @@ namespace CharaChipGen.GeneratorForm
             trackBarYPos.Value = model.OffsetY;
             numericUpDownYPos.Value = model.OffsetY;
 
-            colorSettingView1.ColorSetting = model.Color1;
+            colorSettingViewColor1.ColorSetting = model.Color1;
             colorSettingView2.ColorSetting = model.Color2;
         }
 
@@ -110,9 +110,9 @@ namespace CharaChipGen.GeneratorForm
         /// HSVの表示可否
         /// </summary>
         public bool EditHSV {
-            get => colorSettingView1.EditHSV;
+            get => colorSettingViewColor1.EditHSV;
             set {
-                colorSettingView1.EditHSV = value;
+                colorSettingViewColor1.EditHSV = value;
                 colorSettingView2.EditHSV = value;
             }
         }
