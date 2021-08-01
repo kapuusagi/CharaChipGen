@@ -20,6 +20,10 @@
         /// </summary>
         HeadAccessoryFront,
         /// <summary>
+        /// ヘアスタイル表
+        /// </summary>
+        HairStyleFront,
+        /// <summary>
         /// 目
         /// </summary>
         Eye,
@@ -27,10 +31,6 @@
         /// 耳(サイドビュー用)
         /// </summary>
         HeadEar,
-        /// <summary>
-        /// ヘアスタイル表
-        /// </summary>
-        HairStyleFront,
         /// <summary>
         /// アクセサリ1表
         /// </summary>
