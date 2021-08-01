@@ -250,22 +250,20 @@ namespace CharaChipGen.Model.Layer
         /// <returns>ImageBufferオブジェクトが返る。</returns>
         public ImageBuffer GetProcessedImage()
         {
-            bool isNeedRender = false;
             lock (renderRequestLock)
             {
-                isNeedRender = renderRequested;
-                renderRequested = false;
-            }
-            if (isNeedRender)
-            {
-                if (image != null)
+                if (renderRequested)
                 {
-                    processedImage = ImageProcessor.ProcessHSLFilter(
-                        ImageBuffer.CreateFrom(image), hue, saturation, value);
+                    if (image != null)
+                    {
+                        processedImage = ImageProcessor.ProcessHSLFilter(
+                            ImageBuffer.CreateFrom(image), hue, saturation, value);
+                    }
+                    renderRequested = false;
                 }
-            }
 
-            return processedImage;
+                return processedImage;
+            }
         }
 
         /// <summary>

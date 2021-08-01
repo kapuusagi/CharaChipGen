@@ -83,8 +83,7 @@ namespace CharaChipGen.MaterialViewForm
                 // 3 x 4 のパターンを描画する。
                 // workBuferにそれぞれのパターンを描画し、
                 // imageBufferの所定のオフセット位置に書き込むしくみ。
-                //Parallel.For(0, 4, y =>
-                for (int y = 0; y < 4; y++)
+                Parallel.For(0, 4, y =>
                 {
                     ImageBuffer workBuffer = ImageBuffer.Create(patternWidth, patternHeight);
                     for (int x = 0; x < 3; x++)
@@ -94,8 +93,7 @@ namespace CharaChipGen.MaterialViewForm
                         MaterialRenderer.Draw(renderData, workBuffer, x, y);
                         imageBuffer.WriteImage(workBuffer, xoffs, yoffs);
                     }
-                //});
-                }
+                });
 
             }
             return imageBuffer?.GetImage() ?? null;
