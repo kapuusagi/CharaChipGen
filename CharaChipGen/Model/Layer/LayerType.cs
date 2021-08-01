@@ -20,6 +20,14 @@
         /// </summary>
         HeadAccessoryFront,
         /// <summary>
+        /// 耳(サイドビュー用)
+        /// </summary>
+        /// <remarks>
+        /// エルフ耳など、ヘアスタイルの上にレンダリングしたいボディパーツで使用する。
+        /// 飛び出ない耳は基本的にBodyレイヤーで完結する想定。
+        /// </remarks>
+        HeadEar,
+        /// <summary>
         /// ヘアスタイル表
         /// </summary>
         HairStyleFront,
@@ -27,10 +35,6 @@
         /// 目
         /// </summary>
         Eye,
-        /// <summary>
-        /// 耳(サイドビュー用)
-        /// </summary>
-        HeadEar,
         /// <summary>
         /// アクセサリ1表
         /// </summary>

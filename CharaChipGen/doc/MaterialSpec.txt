@@ -1,4 +1,7 @@
 ﻿■エントリファイル仕様
+  ※一般ユーザーがこれを直接記述する必要はない。
+    ソフトウェアのパーツエディタで保存したときのファイル仕様。
+
   ファイル形式： テキストファイル(UTF-8エンコーディング)
   拡張子： ccgmaterial
   記述内容
@@ -32,9 +35,9 @@
 			HeadAccessoryFrontを1，Eyeを2というように加算した値。
 			    ExtAccessoryFront
 				HeadAccessoryFront
-				Eye
 				HeadEar
 				HairStyleFront
+				Eye
 				AccessoryFront
 				Costume
 				Body
