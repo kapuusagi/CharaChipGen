@@ -30,7 +30,6 @@
         {
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(MaterialEditorLayerView));
             this.groupBoxLayerName = new System.Windows.Forms.GroupBox();
-            this.materialView4x3 = new CharaChipGen.MaterialEditorForm.LayerView3x4();
             this.panel1 = new System.Windows.Forms.Panel();
             this.tableLayoutPanel1 = new System.Windows.Forms.TableLayoutPanel();
             this.flowLayoutPanel1 = new System.Windows.Forms.FlowLayoutPanel();
@@ -50,6 +49,7 @@
             this.checkBoxColorImmutable = new System.Windows.Forms.CheckBox();
             this.checkBoxColoring = new System.Windows.Forms.CheckBox();
             this.openFileDialog = new System.Windows.Forms.OpenFileDialog();
+            this.materialView4x3 = new CharaChipGen.MaterialEditorForm.LayerView3x4();
             this.groupBoxLayerName.SuspendLayout();
             this.panel1.SuspendLayout();
             this.tableLayoutPanel1.SuspendLayout();
@@ -64,13 +64,6 @@
             resources.ApplyResources(this.groupBoxLayerName, "groupBoxLayerName");
             this.groupBoxLayerName.Name = "groupBoxLayerName";
             this.groupBoxLayerName.TabStop = false;
-            // 
-            // materialView4x3
-            // 
-            resources.ApplyResources(this.materialView4x3, "materialView4x3");
-            this.materialView4x3.Image = null;
-            this.materialView4x3.ImageBackground = System.Drawing.SystemColors.Control;
-            this.materialView4x3.Name = "materialView4x3";
             // 
             // panel1
             // 
@@ -202,12 +195,22 @@
             // 
             resources.ApplyResources(this.openFileDialog, "openFileDialog");
             // 
+            // materialView4x3
+            // 
+            resources.ApplyResources(this.materialView4x3, "materialView4x3");
+            this.materialView4x3.Image = null;
+            this.materialView4x3.ImageBackground = System.Drawing.SystemColors.Control;
+            this.materialView4x3.Name = "materialView4x3";
+            // 
             // MaterialEditorLayerView
             // 
+            this.AllowDrop = true;
             resources.ApplyResources(this, "$this");
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.Controls.Add(this.groupBoxLayerName);
             this.Name = "MaterialEditorLayerView";
+            this.DragDrop += new System.Windows.Forms.DragEventHandler(this.OnDragDrop);
+            this.DragEnter += new System.Windows.Forms.DragEventHandler(this.OnDragEnter);
             this.groupBoxLayerName.ResumeLayout(false);
             this.panel1.ResumeLayout(false);
             this.tableLayoutPanel1.ResumeLayout(false);

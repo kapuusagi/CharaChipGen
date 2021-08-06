@@ -352,5 +352,44 @@ namespace CharaChipGen.MaterialEditorForm
         {
             layerInfo.Coloring = checkBoxColoring.Checked;
         }
+
+        /// <summary>
+        /// ファイルがドラッグされてきたときに通知を受け取る。
+        /// </summary>
+        /// <param name="sender">送信元オブジェクト</param>
+        /// <param name="e">イベントオブジェクト</param>
+        private void OnDragEnter(object sender, DragEventArgs e)
+        {
+            if (e.Data.GetDataPresent(DataFormats.FileDrop))
+            {
+                e.Effect = DragDropEffects.Copy;
+            }
+            else
+            {
+                e.Effect = DragDropEffects.None;
+            }
+        }
+
+        /// <summary>
+        /// ファイルがドロップされたときに通知を受け取る。
+        /// </summary>
+        /// <param name="sender">送信元オブジェクト</param>
+        /// <param name="e">イベントオブジェクト</param>
+        private void OnDragDrop(object sender, DragEventArgs e)
+        {
+            try
+            {
+                string[] fileNames = (string[])(e.Data.GetData(DataFormats.FileDrop, false));
+                layerInfo.Path = fileNames[0];
+                ModelToUI();
+                NotifyLayerChanged();
+
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show(this, ex.Message, Resources.DialogTitleError);
+            }
+
+        }
     }
 }
