@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Drawing;
+using System.Threading.Tasks;
 
 namespace CGenImaging
 {
@@ -8,7 +9,61 @@ namespace CGenImaging
     /// </summary>
     public class ImageProcessor
     {
+        /// <summary>
+        /// cで指定された色で着色して返す。
+        /// </summary>
+        /// <remarks>このアルゴリズムでいいんだろうか</remarks>
+        /// <param name="srcColor"></param>
+        /// <param name="c"></param>
+        /// <returns>着色した色</returns>
+        public static Color ProcessColoring(Color srcColor, Color c)
+        {
+            // Note: BT.709でグレースケール変換する。
+            float v = 0.2126f * srcColor.R / 255.0f
+                + 0.7152f * srcColor.G / 255.0f
+                + 0.0722f * srcColor.B / 255.0f;
+            if (v < 0.5)
+            {
+                // 暗い方は割合として使用する。
+                float rate = v * 2;
+                int r = ColorUtility.Clamp(Convert.ToInt32(c.R * rate), 0, 255);
+                int g = ColorUtility.Clamp(Convert.ToInt32(c.G * rate), 0, 255);
+                int b = ColorUtility.Clamp(Convert.ToInt32(c.B * rate), 0, 255);
+                return Color.FromArgb(srcColor.A, r, g, b);
+            }
+            else
+            {
+                // 明るい方は、白に寄せる。
+                float rate = (v - 0.5f) * 2;
+                int r = ColorUtility.Clamp(Convert.ToInt32(c.R + (255 - c.R) * rate), 0, 255);
+                int g = ColorUtility.Clamp(Convert.ToInt32(c.G + (255 - c.R) * rate), 0, 255);
+                int b = ColorUtility.Clamp(Convert.ToInt32(c.B + (255 - c.R) * rate), 0, 255);
+                return Color.FromArgb(srcColor.A, r, g, b);
+            }
+        }
 
+
+        /// <summary>
+        /// cで指定された色で着色して返す。
+        /// </summary>
+        /// <param name="image">元画像</param>
+        /// <param name="c">色</param>
+        /// <returns>着色した画像</returns>
+        public static ImageBuffer ProcessColoring(ImageBuffer image, Color c)
+        {
+            ImageBuffer dst = ImageBuffer.Create(image.Width, image.Height);
+
+            Parallel.For(0, image.Height, y =>
+            {
+                for (int x = 0; x < image.Width; x++)
+                {
+                    Color srcColor = image.GetPixel(x, y);
+
+                    dst.SetPixel(x, y, ProcessColoring(srcColor, c));
+                }
+            });
+            return dst;
+        }
 
         /// <summary>
         /// HSVの色調整を行ってピクセルデータを返す。
@@ -17,7 +72,7 @@ namespace CGenImaging
         /// <param name="hue">色差加算値(-360≦hue≦360)</param>
         /// <param name="saturation">彩度加割合(-255≦saturation≦255)</param>
         /// <param name="value">明度加算割合(-255≦value≦255)</param>
-        /// <returns></returns>
+        /// <returns>カラー</returns>
         public static Color ProcessHSVFilter(Color c, int hue, int saturation, int value)
         {
             if (((hue == 0) && (saturation == 0) && (value == 0)))
@@ -25,7 +80,7 @@ namespace CGenImaging
                 return c; // 色変換しない。
             }
 
-            ColorHSV srcHSV = ColorConverter.ConvertRGBtoHSV(c);
+            var srcHSV = ColorConverter.ConvertRGBtoHSV(c);
             float h = ColorUtility.GetHueWithLimitedRange((srcHSV.Hue + hue) % 360.0f);
 
             float s = ColorUtility.ModifyValueByPercent(srcHSV.Saturation, 0f, 1.0f, saturation / 255.0f);
@@ -51,7 +106,7 @@ namespace CGenImaging
 
             ImageBuffer dst = ImageBuffer.Create(image.Width, image.Height);
 
-            for (int y = 0; y < image.Height; y++)
+            Parallel.For(0, image.Height, y =>
             {
                 for (int x = 0; x < image.Width; x++)
                 {
@@ -59,7 +114,7 @@ namespace CGenImaging
 
                     dst.SetPixel(x, y, ProcessHSVFilter(srcColor, hue, saturation, value));
                 }
-            }
+            });
             return dst;
         }
 
@@ -103,7 +158,7 @@ namespace CGenImaging
 
             ImageBuffer dst = ImageBuffer.Create(image.Width, image.Height);
 
-            for (int y = 0; y < image.Height; y++)
+            Parallel.For(0, image.Height, y =>
             {
                 for (int x = 0; x < image.Width; x++)
                 {
@@ -111,7 +166,7 @@ namespace CGenImaging
 
                     dst.SetPixel(x, y, ProcessHSLFilter(srcColor, hue, saturation, lightness));
                 }
-            }
+            });
             return dst;
         }
         /// <summary>
@@ -127,14 +182,14 @@ namespace CGenImaging
         {
             ImageBuffer dst = ImageBuffer.Create(image.Width, image.Height);
 
-            for (int y = 0; y < image.Height; y++)
+            Parallel.For(0, image.Height, y =>
             {
                 for (int x = 0; x < image.Width; x++)
                 {
                     Color srcColor = image.GetPixel(x, y);
                     dst.SetPixel(x, y, MonoricColor(srcColor, color));
                 }
-            }
+            });
             return dst;
         }
 
@@ -147,14 +202,14 @@ namespace CGenImaging
         {
             ImageBuffer dst = ImageBuffer.Create(image.Width, image.Height);
 
-            for (int y = 0; y < image.Height; y++)
+            Parallel.For(0, image.Height, y =>
             {
                 for (int x = 0; x < image.Width; x++)
                 {
                     Color srcColor = image.GetPixel(x, y);
                     dst.SetPixel(x, y, SepiaColor(srcColor));
                 }
-            }
+            });
             return dst;
         }
 
@@ -164,7 +219,7 @@ namespace CGenImaging
         /// <param name="color">色</param>
         /// <param name="hue">変更先の色相(0≦hue≦360)</param>
         /// <returns>変化させた色</returns>
-        public static Color MonoricColor(Color color, int hue)
+        public static Color MonoricColor(Color color, float hue)
         {
             ColorHSV hsv = ColorConverter.ConvertRGBtoHSV(color);
             ColorHSV newHsv = ColorHSV.FromHSV(hue, hsv.Saturation, hsv.Value);
@@ -179,15 +234,10 @@ namespace CGenImaging
         /// <returns>変化させた色</returns>
         public static Color MonoricColor(Color color, Color modifyTo)
         {
-            // Note: BT.709
-            float v = 0.2126f * color.R / 255.0f
-                + 0.7152f * color.G / 255.0f
-                + 0.0722f * color.B / 255.0f;
-            int r = ColorUtility.Clamp(Convert.ToInt32(modifyTo.R * v), 0, 255);
-            int g = ColorUtility.Clamp(Convert.ToInt32(modifyTo.G * v), 0, 255);
-            int b = ColorUtility.Clamp(Convert.ToInt32(modifyTo.B * v), 0, 255);
-            return Color.FromArgb(color.A, r, g, b);
+            ColorHSV newHsv = ColorConverter.ConvertRGBtoHSV(modifyTo);
+            return MonoricColor(color, newHsv.Hue);
         }
+
 
         /// <summary>
         /// セピア色に変換する
@@ -271,7 +321,7 @@ namespace CGenImaging
         /// <returns>outputに指定したバッファが返る</returns>
         public static ImageBuffer Blend(ImageBuffer image1, ImageBuffer image2, ImageBuffer output)
         {
-            for (int y = 0; y < output.Height; y++)
+            Parallel.For(0, output.Height, y =>
             {
                 for (int x = 0; x < output.Width; x++)
                 {
@@ -280,7 +330,7 @@ namespace CGenImaging
 
                     output.SetPixel(x, y, Blend(c1, c2));
                 }
-            }
+            });
             return output;
         }
 
@@ -292,7 +342,7 @@ namespace CGenImaging
         public static ImageBuffer ExpansionX2(ImageBuffer image)
         {
             ImageBuffer output = ImageBuffer.Create(image.Width * 2, image.Height * 2);
-            for (int y = 0; y < output.Height; y++)
+            Parallel.For(0, output.Height, y =>
             {
                 for (int x = 0; x < output.Width; x += 2)
                 {
@@ -300,7 +350,7 @@ namespace CGenImaging
                     output.SetPixel(x + 0, y, c);
                     output.SetPixel(x + 1, y, c);
                 }
-            }
+            });
             return output;
         }
 
@@ -313,7 +363,7 @@ namespace CGenImaging
         public static ImageBuffer ApplyOpacity(ImageBuffer image, float opacity)
         {
             ImageBuffer output = ImageBuffer.Create(image.Width, image.Height);
-            for (int y = 0; y < output.Height; y++)
+            Parallel.For(0, output.Height, y =>
             {
                 for (int x = 0; x < output.Width; x++)
                 {
@@ -330,7 +380,7 @@ namespace CGenImaging
                     }
                     output.SetPixel(x, y, Color.FromArgb(newAlpha, c.R, c.G, c.B));
                 }
-            }
+            });
             return output;
 
         }

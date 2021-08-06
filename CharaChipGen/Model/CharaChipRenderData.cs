@@ -236,6 +236,7 @@ namespace CharaChipGen.Model
                 RenderLayer layer = new RenderLayer(info.LayerType, partsType,
                     colorPartsRefs, colorPropertyName);
                 layer.ColorImmutable = info.ColorImmutable;
+                layer.Coloring = info.Coloring;
                 try
                 {
                     layer.Image = m.LoadLayerImage(i);

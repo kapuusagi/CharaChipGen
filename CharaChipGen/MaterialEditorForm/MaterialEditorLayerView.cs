@@ -342,5 +342,15 @@ namespace CharaChipGen.MaterialEditorForm
             }
             NotifyLayerChanged();
         }
+
+        /// <summary>
+        /// Coloringチェックボックスの選択が変更された時に通知を受け取る。
+        /// </summary>
+        /// <param name="sender">送信元オブジェクト</param>
+        /// <param name="e">イベントオブジェクト</param>
+        private void OnCheckBoxColoringCheckedChanged(object sender, EventArgs e)
+        {
+            layerInfo.Coloring = checkBoxColoring.Checked;
+        }
     }
 }

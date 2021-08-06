@@ -32,6 +32,8 @@ namespace CharaChipGen.Model.Layer
         private int value;
         // 不透明度
         private int opacity;
+        // 着色レイヤーかどうか
+        private bool coloring;
         // 画像状態ロック
         private readonly object renderRequestLock;
         // 再描画する必要があるか
@@ -54,7 +56,6 @@ namespace CharaChipGen.Model.Layer
             LayerType = layerType;
             PartsType = partsType;
             ColorPartsRefs = colorPartsRefs;
-            ColorImmutable = false;
             ColorPropertyName = colorPropertyName;
             this.image = null;
             this.offsetX = 0;
@@ -63,6 +64,7 @@ namespace CharaChipGen.Model.Layer
             this.saturation = 0;
             this.value = 0;
             this.opacity = 100;
+            this.coloring = false;
         }
 
         /// <summary>
@@ -92,11 +94,11 @@ namespace CharaChipGen.Model.Layer
         /// <summary>
         /// Hue, Saturation, Value, Opacity を取得する部品種別
         /// </summary>
-        public PartsType ColorPartsRefs { get; set; }
+        public PartsType ColorPartsRefs { get; private set; }
         /// <summary>
         /// Hue, Saturation, Value, Opacity を取得する色プロパティ名(Color1だとかColor2だとか)
         /// </summary>
-        public string ColorPropertyName { get; set; }
+        public string ColorPropertyName { get; private set; }
 
         /// <summary>
         /// 色が不変かどうか
@@ -104,7 +106,30 @@ namespace CharaChipGen.Model.Layer
         /// <remarks>
         /// trueにすると、HSVによる色変更が適用できなくなる。
         /// </remarks>
-        public bool ColorImmutable { get; set; }
+        public bool ColorImmutable { get; set; } = false;
+
+        /// <summary>
+        /// 着色レイヤーかどうか
+        /// </summary>
+        /// <remarks>
+        /// trueにすると、HSVで指定された色で着色する。ColorImmutableが優先される。
+        /// </remarks>
+        public bool Coloring {
+            get => coloring;
+            set {
+                if (ColorImmutable)
+                {
+                    return;
+                }
+                if (coloring == value)
+                {
+                    return;
+                }
+                coloring = value;
+                InvalidateProcessedImage();
+                NotifyPropertyChange(nameof(Saturation));
+            }
+        }
 
         /// <summary>
         /// レイヤーイメージ
@@ -256,8 +281,20 @@ namespace CharaChipGen.Model.Layer
                 {
                     if (image != null)
                     {
-                        processedImage = ImageProcessor.ProcessHSLFilter(
-                            ImageBuffer.CreateFrom(image), hue, saturation, value);
+                        if (coloring)
+                        {
+                            var h = hue;
+                            var s = Math.Min(255, Math.Max(0, saturation));
+                            var v = Math.Min(255, Math.Max(0, value));
+                            var c = CGenImaging.ColorConverter.ConvertHSVtoRGB(ColorHSV.FromHSV(h, s,v));
+                            processedImage = ImageProcessor.ProcessColoring(
+                                ImageBuffer.CreateFrom(image), c);
+                        }
+                        else
+                        {
+                            processedImage = ImageProcessor.ProcessHSLFilter(
+                                ImageBuffer.CreateFrom(image), hue, saturation, value);
+                        }
                     }
                     renderRequested = false;
                 }

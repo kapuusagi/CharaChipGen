@@ -43,15 +43,18 @@
             this.label2 = new System.Windows.Forms.Label();
             this.comboBoxLayerType = new System.Windows.Forms.ComboBox();
             this.comboBoxColorRefs = new System.Windows.Forms.ComboBox();
-            this.checkBoxColorImmutable = new System.Windows.Forms.CheckBox();
             this.label5 = new System.Windows.Forms.Label();
             this.labelFileName = new System.Windows.Forms.Label();
-            this.openFileDialog = new System.Windows.Forms.OpenFileDialog();
             this.comboBoxColorProperty = new System.Windows.Forms.ComboBox();
+            this.flowLayoutPanel2 = new System.Windows.Forms.FlowLayoutPanel();
+            this.checkBoxColorImmutable = new System.Windows.Forms.CheckBox();
+            this.checkBoxColoring = new System.Windows.Forms.CheckBox();
+            this.openFileDialog = new System.Windows.Forms.OpenFileDialog();
             this.groupBoxLayerName.SuspendLayout();
             this.panel1.SuspendLayout();
             this.tableLayoutPanel1.SuspendLayout();
             this.flowLayoutPanel1.SuspendLayout();
+            this.flowLayoutPanel2.SuspendLayout();
             this.SuspendLayout();
             // 
             // groupBoxLayerName
@@ -87,10 +90,10 @@
             this.tableLayoutPanel1.Controls.Add(this.label2, 0, 4);
             this.tableLayoutPanel1.Controls.Add(this.comboBoxLayerType, 1, 3);
             this.tableLayoutPanel1.Controls.Add(this.comboBoxColorRefs, 1, 4);
-            this.tableLayoutPanel1.Controls.Add(this.checkBoxColorImmutable, 1, 5);
             this.tableLayoutPanel1.Controls.Add(this.label5, 0, 0);
             this.tableLayoutPanel1.Controls.Add(this.labelFileName, 1, 0);
             this.tableLayoutPanel1.Controls.Add(this.comboBoxColorProperty, 2, 4);
+            this.tableLayoutPanel1.Controls.Add(this.flowLayoutPanel2, 1, 5);
             this.tableLayoutPanel1.Name = "tableLayoutPanel1";
             // 
             // flowLayoutPanel1
@@ -154,14 +157,6 @@
             this.comboBoxColorRefs.Name = "comboBoxColorRefs";
             this.comboBoxColorRefs.SelectedValueChanged += new System.EventHandler(this.OnComboBoxColorRefsSelectedValueChanged);
             // 
-            // checkBoxColorImmutable
-            // 
-            resources.ApplyResources(this.checkBoxColorImmutable, "checkBoxColorImmutable");
-            this.tableLayoutPanel1.SetColumnSpan(this.checkBoxColorImmutable, 2);
-            this.checkBoxColorImmutable.Name = "checkBoxColorImmutable";
-            this.checkBoxColorImmutable.UseVisualStyleBackColor = true;
-            this.checkBoxColorImmutable.CheckedChanged += new System.EventHandler(this.OnCheckBoxColorImmutableCheckedChanged);
-            // 
             // label5
             // 
             resources.ApplyResources(this.label5, "label5");
@@ -173,10 +168,6 @@
             resources.ApplyResources(this.labelFileName, "labelFileName");
             this.labelFileName.Name = "labelFileName";
             // 
-            // openFileDialog
-            // 
-            resources.ApplyResources(this.openFileDialog, "openFileDialog");
-            // 
             // comboBoxColorProperty
             // 
             this.comboBoxColorProperty.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
@@ -184,6 +175,32 @@
             resources.ApplyResources(this.comboBoxColorProperty, "comboBoxColorProperty");
             this.comboBoxColorProperty.Name = "comboBoxColorProperty";
             this.comboBoxColorProperty.SelectedIndexChanged += new System.EventHandler(this.OnComboBoxColorPropertySelectedIndexChanged);
+            // 
+            // flowLayoutPanel2
+            // 
+            resources.ApplyResources(this.flowLayoutPanel2, "flowLayoutPanel2");
+            this.tableLayoutPanel1.SetColumnSpan(this.flowLayoutPanel2, 2);
+            this.flowLayoutPanel2.Controls.Add(this.checkBoxColorImmutable);
+            this.flowLayoutPanel2.Controls.Add(this.checkBoxColoring);
+            this.flowLayoutPanel2.Name = "flowLayoutPanel2";
+            // 
+            // checkBoxColorImmutable
+            // 
+            resources.ApplyResources(this.checkBoxColorImmutable, "checkBoxColorImmutable");
+            this.checkBoxColorImmutable.Name = "checkBoxColorImmutable";
+            this.checkBoxColorImmutable.UseVisualStyleBackColor = true;
+            this.checkBoxColorImmutable.CheckedChanged += new System.EventHandler(this.OnCheckBoxColorImmutableCheckedChanged);
+            // 
+            // checkBoxColoring
+            // 
+            resources.ApplyResources(this.checkBoxColoring, "checkBoxColoring");
+            this.checkBoxColoring.Name = "checkBoxColoring";
+            this.checkBoxColoring.UseVisualStyleBackColor = true;
+            this.checkBoxColoring.CheckedChanged += new System.EventHandler(this.OnCheckBoxColoringCheckedChanged);
+            // 
+            // openFileDialog
+            // 
+            resources.ApplyResources(this.openFileDialog, "openFileDialog");
             // 
             // MaterialEditorLayerView
             // 
@@ -196,6 +213,8 @@
             this.tableLayoutPanel1.ResumeLayout(false);
             this.tableLayoutPanel1.PerformLayout();
             this.flowLayoutPanel1.ResumeLayout(false);
+            this.flowLayoutPanel2.ResumeLayout(false);
+            this.flowLayoutPanel2.PerformLayout();
             this.ResumeLayout(false);
 
         }
@@ -221,5 +240,7 @@
         private System.Windows.Forms.Label label5;
         private System.Windows.Forms.Label labelFileName;
         private System.Windows.Forms.ComboBox comboBoxColorProperty;
+        private System.Windows.Forms.FlowLayoutPanel flowLayoutPanel2;
+        private System.Windows.Forms.CheckBox checkBoxColoring;
     }
 }

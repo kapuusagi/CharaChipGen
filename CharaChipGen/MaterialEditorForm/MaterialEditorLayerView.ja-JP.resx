@@ -134,10 +134,10 @@
     <value>部品サイズ</value>
   </data>
   <data name="labelCharaSize.Location" type="System.Drawing.Point, System.Drawing">
-    <value>86, 69</value>
+    <value>86, 59</value>
   </data>
   <data name="labelPictureSize.Location" type="System.Drawing.Point, System.Drawing">
-    <value>86, 39</value>
+    <value>86, 33</value>
   </data>
   <data name="label1.Size" type="System.Drawing.Size, System.Drawing">
     <value>67, 12</value>
@@ -152,25 +152,16 @@
     <value>色変換参照先</value>
   </data>
   <data name="comboBoxLayerType.Location" type="System.Drawing.Point, System.Drawing">
-    <value>86, 93</value>
+    <value>86, 81</value>
   </data>
   <data name="comboBoxLayerType.Size" type="System.Drawing.Size, System.Drawing">
     <value>228, 20</value>
   </data>
   <data name="comboBoxColorRefs.Location" type="System.Drawing.Point, System.Drawing">
-    <value>86, 123</value>
+    <value>86, 107</value>
   </data>
   <data name="comboBoxColorRefs.Size" type="System.Drawing.Size, System.Drawing">
     <value>129, 20</value>
-  </data>
-  <data name="checkBoxColorImmutable.Location" type="System.Drawing.Point, System.Drawing">
-    <value>86, 153</value>
-  </data>
-  <data name="checkBoxColorImmutable.Size" type="System.Drawing.Size, System.Drawing">
-    <value>172, 16</value>
-  </data>
-  <data name="checkBoxColorImmutable.Text" xml:space="preserve">
-    <value>このレイヤーは色を変更しない。</value>
   </data>
   <data name="label5.Size" type="System.Drawing.Size, System.Drawing">
     <value>39, 12</value>
@@ -182,7 +173,25 @@
     <value>86, 0</value>
   </data>
   <data name="labelFileName.Size" type="System.Drawing.Size, System.Drawing">
-    <value>228, 30</value>
+    <value>228, 26</value>
+  </data>
+  <data name="checkBoxColorImmutable.Size" type="System.Drawing.Size, System.Drawing">
+    <value>172, 16</value>
+  </data>
+  <data name="checkBoxColorImmutable.Text" xml:space="preserve">
+    <value>このレイヤーは色を変更しない。</value>
+  </data>
+  <data name="checkBoxColoring.Size" type="System.Drawing.Size, System.Drawing">
+    <value>155, 16</value>
+  </data>
+  <data name="checkBoxColoring.Text" xml:space="preserve">
+    <value>着色レイヤーとして使用する</value>
+  </data>
+  <data name="flowLayoutPanel2.Location" type="System.Drawing.Point, System.Drawing">
+    <value>86, 133</value>
+  </data>
+  <data name="flowLayoutPanel2.Size" type="System.Drawing.Size, System.Drawing">
+    <value>178, 44</value>
   </data>
   <data name="groupBoxLayerName.Text" xml:space="preserve">
     <value>レイヤー</value>

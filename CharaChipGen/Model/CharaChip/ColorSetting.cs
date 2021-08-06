@@ -8,7 +8,7 @@ using System.ComponentModel;
 namespace CharaChipGen.Model.CharaChip
 {
     /// <summary>
-    /// 色変更設定
+    /// 色変更設定（H,S,V,不透明度変更）
     /// </summary>
     public class ColorSetting : INotifyPropertyChanged
     {

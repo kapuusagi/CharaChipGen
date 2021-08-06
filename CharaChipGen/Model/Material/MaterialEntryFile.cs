@@ -277,6 +277,10 @@ namespace CharaChipGen.Model.Material
             {
                 sb.Append(nameof(info.ColorImmutable));
             }
+            if (info.Coloring)
+            {
+                sb.Append(nameof(info.Coloring));
+            }
             return sb.ToString();
         }
 
@@ -403,6 +407,9 @@ namespace CharaChipGen.Model.Material
                 {
                     case nameof(layer.ColorImmutable):
                         layer.ColorImmutable = true;
+                        break;
+                    case nameof(layer.Coloring):
+                        layer.Coloring = true;
                         break;
                 }
             }

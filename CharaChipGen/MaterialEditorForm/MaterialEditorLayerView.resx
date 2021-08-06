@@ -175,13 +175,13 @@
     <value>0</value>
   </data>
   <data name="flowLayoutPanel1.Location" type="System.Drawing.Point, System.Drawing">
-    <value>221, 33</value>
+    <value>221, 29</value>
   </data>
   <data name="flowLayoutPanel1.Padding" type="System.Windows.Forms.Padding, System.Windows.Forms">
     <value>6, 6, 6, 6</value>
   </data>
   <data name="flowLayoutPanel1.Size" type="System.Drawing.Size, System.Drawing">
-    <value>93, 50</value>
+    <value>93, 46</value>
   </data>
   <data name="flowLayoutPanel1.TabIndex" type="System.Int32, mscorlib">
     <value>2</value>
@@ -208,7 +208,7 @@
     <value>NoControl</value>
   </data>
   <data name="label3.Location" type="System.Drawing.Point, System.Drawing">
-    <value>3, 39</value>
+    <value>3, 33</value>
   </data>
   <data name="label3.Size" type="System.Drawing.Size, System.Drawing">
     <value>66, 12</value>
@@ -241,7 +241,7 @@
     <value>NoControl</value>
   </data>
   <data name="label4.Location" type="System.Drawing.Point, System.Drawing">
-    <value>3, 69</value>
+    <value>3, 59</value>
   </data>
   <data name="label4.Size" type="System.Drawing.Size, System.Drawing">
     <value>57, 12</value>
@@ -274,7 +274,7 @@
     <value>NoControl</value>
   </data>
   <data name="labelCharaSize.Location" type="System.Drawing.Point, System.Drawing">
-    <value>117, 69</value>
+    <value>117, 59</value>
   </data>
   <data name="labelCharaSize.Size" type="System.Drawing.Size, System.Drawing">
     <value>65, 12</value>
@@ -307,7 +307,7 @@
     <value>NoControl</value>
   </data>
   <data name="labelPictureSize.Location" type="System.Drawing.Point, System.Drawing">
-    <value>117, 39</value>
+    <value>117, 33</value>
   </data>
   <data name="labelPictureSize.Size" type="System.Drawing.Size, System.Drawing">
     <value>65, 12</value>
@@ -340,7 +340,7 @@
     <value>NoControl</value>
   </data>
   <data name="label1.Location" type="System.Drawing.Point, System.Drawing">
-    <value>3, 99</value>
+    <value>3, 85</value>
   </data>
   <data name="label1.Size" type="System.Drawing.Size, System.Drawing">
     <value>88, 12</value>
@@ -373,7 +373,7 @@
     <value>NoControl</value>
   </data>
   <data name="label2.Location" type="System.Drawing.Point, System.Drawing">
-    <value>3, 129</value>
+    <value>3, 111</value>
   </data>
   <data name="label2.Size" type="System.Drawing.Size, System.Drawing">
     <value>108, 12</value>
@@ -400,7 +400,7 @@
     <value>Fill</value>
   </data>
   <data name="comboBoxLayerType.Location" type="System.Drawing.Point, System.Drawing">
-    <value>117, 93</value>
+    <value>117, 81</value>
   </data>
   <data name="comboBoxLayerType.Size" type="System.Drawing.Size, System.Drawing">
     <value>197, 20</value>
@@ -424,7 +424,7 @@
     <value>Fill</value>
   </data>
   <data name="comboBoxColorRefs.Location" type="System.Drawing.Point, System.Drawing">
-    <value>117, 123</value>
+    <value>117, 107</value>
   </data>
   <data name="comboBoxColorRefs.Size" type="System.Drawing.Size, System.Drawing">
     <value>98, 20</value>
@@ -444,36 +444,6 @@
   <data name="&gt;&gt;comboBoxColorRefs.ZOrder" xml:space="preserve">
     <value>8</value>
   </data>
-  <data name="checkBoxColorImmutable.AutoSize" type="System.Boolean, mscorlib">
-    <value>True</value>
-  </data>
-  <data name="checkBoxColorImmutable.ImeMode" type="System.Windows.Forms.ImeMode, System.Windows.Forms">
-    <value>NoControl</value>
-  </data>
-  <data name="checkBoxColorImmutable.Location" type="System.Drawing.Point, System.Drawing">
-    <value>117, 153</value>
-  </data>
-  <data name="checkBoxColorImmutable.Size" type="System.Drawing.Size, System.Drawing">
-    <value>186, 16</value>
-  </data>
-  <data name="checkBoxColorImmutable.TabIndex" type="System.Int32, mscorlib">
-    <value>9</value>
-  </data>
-  <data name="checkBoxColorImmutable.Text" xml:space="preserve">
-    <value>This layer ignore color settings.</value>
-  </data>
-  <data name="&gt;&gt;checkBoxColorImmutable.Name" xml:space="preserve">
-    <value>checkBoxColorImmutable</value>
-  </data>
-  <data name="&gt;&gt;checkBoxColorImmutable.Type" xml:space="preserve">
-    <value>System.Windows.Forms.CheckBox, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
-  </data>
-  <data name="&gt;&gt;checkBoxColorImmutable.Parent" xml:space="preserve">
-    <value>tableLayoutPanel1</value>
-  </data>
-  <data name="&gt;&gt;checkBoxColorImmutable.ZOrder" xml:space="preserve">
-    <value>9</value>
-  </data>
   <data name="label5.Anchor" type="System.Windows.Forms.AnchorStyles, System.Windows.Forms">
     <value>Left</value>
   </data>
@@ -484,7 +454,7 @@
     <value>NoControl</value>
   </data>
   <data name="label5.Location" type="System.Drawing.Point, System.Drawing">
-    <value>3, 9</value>
+    <value>3, 7</value>
   </data>
   <data name="label5.Size" type="System.Drawing.Size, System.Drawing">
     <value>24, 12</value>
@@ -505,7 +475,7 @@
     <value>tableLayoutPanel1</value>
   </data>
   <data name="&gt;&gt;label5.ZOrder" xml:space="preserve">
-    <value>10</value>
+    <value>9</value>
   </data>
   <data name="labelFileName.Dock" type="System.Windows.Forms.DockStyle, System.Windows.Forms">
     <value>Fill</value>
@@ -517,7 +487,7 @@
     <value>117, 0</value>
   </data>
   <data name="labelFileName.Size" type="System.Drawing.Size, System.Drawing">
-    <value>197, 30</value>
+    <value>197, 26</value>
   </data>
   <data name="labelFileName.TabIndex" type="System.Int32, mscorlib">
     <value>11</value>
@@ -535,10 +505,10 @@
     <value>tableLayoutPanel1</value>
   </data>
   <data name="&gt;&gt;labelFileName.ZOrder" xml:space="preserve">
-    <value>11</value>
+    <value>10</value>
   </data>
   <data name="comboBoxColorProperty.Location" type="System.Drawing.Point, System.Drawing">
-    <value>221, 123</value>
+    <value>221, 107</value>
   </data>
   <data name="comboBoxColorProperty.Size" type="System.Drawing.Size, System.Drawing">
     <value>89, 20</value>
@@ -556,6 +526,90 @@
     <value>tableLayoutPanel1</value>
   </data>
   <data name="&gt;&gt;comboBoxColorProperty.ZOrder" xml:space="preserve">
+    <value>11</value>
+  </data>
+  <data name="flowLayoutPanel2.AutoSize" type="System.Boolean, mscorlib">
+    <value>True</value>
+  </data>
+  <data name="checkBoxColorImmutable.AutoSize" type="System.Boolean, mscorlib">
+    <value>True</value>
+  </data>
+  <data name="checkBoxColorImmutable.ImeMode" type="System.Windows.Forms.ImeMode, System.Windows.Forms">
+    <value>NoControl</value>
+  </data>
+  <data name="checkBoxColorImmutable.Location" type="System.Drawing.Point, System.Drawing">
+    <value>3, 3</value>
+  </data>
+  <data name="checkBoxColorImmutable.Size" type="System.Drawing.Size, System.Drawing">
+    <value>186, 16</value>
+  </data>
+  <data name="checkBoxColorImmutable.TabIndex" type="System.Int32, mscorlib">
+    <value>9</value>
+  </data>
+  <data name="checkBoxColorImmutable.Text" xml:space="preserve">
+    <value>This layer ignore color settings.</value>
+  </data>
+  <data name="&gt;&gt;checkBoxColorImmutable.Name" xml:space="preserve">
+    <value>checkBoxColorImmutable</value>
+  </data>
+  <data name="&gt;&gt;checkBoxColorImmutable.Type" xml:space="preserve">
+    <value>System.Windows.Forms.CheckBox, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="&gt;&gt;checkBoxColorImmutable.Parent" xml:space="preserve">
+    <value>flowLayoutPanel2</value>
+  </data>
+  <data name="&gt;&gt;checkBoxColorImmutable.ZOrder" xml:space="preserve">
+    <value>0</value>
+  </data>
+  <data name="checkBoxColoring.AutoSize" type="System.Boolean, mscorlib">
+    <value>True</value>
+  </data>
+  <data name="checkBoxColoring.Location" type="System.Drawing.Point, System.Drawing">
+    <value>3, 25</value>
+  </data>
+  <data name="checkBoxColoring.Size" type="System.Drawing.Size, System.Drawing">
+    <value>158, 16</value>
+  </data>
+  <data name="checkBoxColoring.TabIndex" type="System.Int32, mscorlib">
+    <value>10</value>
+  </data>
+  <data name="checkBoxColoring.Text" xml:space="preserve">
+    <value>Use this layer for coloring</value>
+  </data>
+  <data name="&gt;&gt;checkBoxColoring.Name" xml:space="preserve">
+    <value>checkBoxColoring</value>
+  </data>
+  <data name="&gt;&gt;checkBoxColoring.Type" xml:space="preserve">
+    <value>System.Windows.Forms.CheckBox, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="&gt;&gt;checkBoxColoring.Parent" xml:space="preserve">
+    <value>flowLayoutPanel2</value>
+  </data>
+  <data name="&gt;&gt;checkBoxColoring.ZOrder" xml:space="preserve">
+    <value>1</value>
+  </data>
+  <data name="flowLayoutPanel2.FlowDirection" type="System.Windows.Forms.FlowDirection, System.Windows.Forms">
+    <value>TopDown</value>
+  </data>
+  <data name="flowLayoutPanel2.Location" type="System.Drawing.Point, System.Drawing">
+    <value>117, 133</value>
+  </data>
+  <data name="flowLayoutPanel2.Size" type="System.Drawing.Size, System.Drawing">
+    <value>192, 44</value>
+  </data>
+  <data name="flowLayoutPanel2.TabIndex" type="System.Int32, mscorlib">
+    <value>13</value>
+  </data>
+  <data name="&gt;&gt;flowLayoutPanel2.Name" xml:space="preserve">
+    <value>flowLayoutPanel2</value>
+  </data>
+  <data name="&gt;&gt;flowLayoutPanel2.Type" xml:space="preserve">
+    <value>System.Windows.Forms.FlowLayoutPanel, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="&gt;&gt;flowLayoutPanel2.Parent" xml:space="preserve">
+    <value>tableLayoutPanel1</value>
+  </data>
+  <data name="&gt;&gt;flowLayoutPanel2.ZOrder" xml:space="preserve">
     <value>12</value>
   </data>
   <data name="tableLayoutPanel1.Dock" type="System.Windows.Forms.DockStyle, System.Windows.Forms">
@@ -586,7 +640,7 @@
     <value>0</value>
   </data>
   <data name="tableLayoutPanel1.LayoutSettings" type="System.Windows.Forms.TableLayoutSettings, System.Windows.Forms">
-    <value>&lt;?xml version="1.0" encoding="utf-16"?&gt;&lt;TableLayoutSettings&gt;&lt;Controls&gt;&lt;Control Name="flowLayoutPanel1" Row="1" RowSpan="2" Column="2" ColumnSpan="1" /&gt;&lt;Control Name="label3" Row="1" RowSpan="1" Column="0" ColumnSpan="1" /&gt;&lt;Control Name="label4" Row="2" RowSpan="1" Column="0" ColumnSpan="1" /&gt;&lt;Control Name="labelCharaSize" Row="2" RowSpan="1" Column="1" ColumnSpan="1" /&gt;&lt;Control Name="labelPictureSize" Row="1" RowSpan="1" Column="1" ColumnSpan="1" /&gt;&lt;Control Name="label1" Row="3" RowSpan="1" Column="0" ColumnSpan="1" /&gt;&lt;Control Name="label2" Row="4" RowSpan="1" Column="0" ColumnSpan="1" /&gt;&lt;Control Name="comboBoxLayerType" Row="3" RowSpan="1" Column="1" ColumnSpan="2" /&gt;&lt;Control Name="comboBoxColorRefs" Row="4" RowSpan="1" Column="1" ColumnSpan="1" /&gt;&lt;Control Name="checkBoxColorImmutable" Row="5" RowSpan="1" Column="1" ColumnSpan="2" /&gt;&lt;Control Name="label5" Row="0" RowSpan="1" Column="0" ColumnSpan="1" /&gt;&lt;Control Name="labelFileName" Row="0" RowSpan="1" Column="1" ColumnSpan="2" /&gt;&lt;Control Name="comboBoxColorProperty" Row="4" RowSpan="1" Column="2" ColumnSpan="1" /&gt;&lt;/Controls&gt;&lt;Columns Styles="AutoSize,0,Percent,100,AutoSize,0" /&gt;&lt;Rows Styles="Percent,16.66667,Percent,16.66667,Percent,16.66667,Percent,16.66667,Percent,16.66667,Percent,16.66667" /&gt;&lt;/TableLayoutSettings&gt;</value>
+    <value>&lt;?xml version="1.0" encoding="utf-16"?&gt;&lt;TableLayoutSettings&gt;&lt;Controls&gt;&lt;Control Name="flowLayoutPanel1" Row="1" RowSpan="2" Column="2" ColumnSpan="1" /&gt;&lt;Control Name="label3" Row="1" RowSpan="1" Column="0" ColumnSpan="1" /&gt;&lt;Control Name="label4" Row="2" RowSpan="1" Column="0" ColumnSpan="1" /&gt;&lt;Control Name="labelCharaSize" Row="2" RowSpan="1" Column="1" ColumnSpan="1" /&gt;&lt;Control Name="labelPictureSize" Row="1" RowSpan="1" Column="1" ColumnSpan="1" /&gt;&lt;Control Name="label1" Row="3" RowSpan="1" Column="0" ColumnSpan="1" /&gt;&lt;Control Name="label2" Row="4" RowSpan="1" Column="0" ColumnSpan="1" /&gt;&lt;Control Name="comboBoxLayerType" Row="3" RowSpan="1" Column="1" ColumnSpan="2" /&gt;&lt;Control Name="comboBoxColorRefs" Row="4" RowSpan="1" Column="1" ColumnSpan="1" /&gt;&lt;Control Name="label5" Row="0" RowSpan="1" Column="0" ColumnSpan="1" /&gt;&lt;Control Name="labelFileName" Row="0" RowSpan="1" Column="1" ColumnSpan="2" /&gt;&lt;Control Name="comboBoxColorProperty" Row="4" RowSpan="1" Column="2" ColumnSpan="1" /&gt;&lt;Control Name="flowLayoutPanel2" Row="5" RowSpan="1" Column="1" ColumnSpan="2" /&gt;&lt;/Controls&gt;&lt;Columns Styles="AutoSize,0,Percent,100,AutoSize,0" /&gt;&lt;Rows Styles="Percent,20,Percent,20,Percent,20,Percent,20,Percent,20,AutoSize,0" /&gt;&lt;/TableLayoutSettings&gt;</value>
   </data>
   <data name="panel1.Dock" type="System.Windows.Forms.DockStyle, System.Windows.Forms">
     <value>Top</value>

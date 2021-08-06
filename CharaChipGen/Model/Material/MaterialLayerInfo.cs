@@ -9,7 +9,6 @@ namespace CharaChipGen.Model.Material
     /// </summary>
     public class MaterialLayerInfo
     {
-        private PartsType? attributeType;
         /// <summary>
         /// 新しいインスタンスを構築する。
         /// </summary>
@@ -17,9 +16,6 @@ namespace CharaChipGen.Model.Material
         public MaterialLayerInfo(string name)
         {
             Name = name;
-            attributeType = null;
-            ColorImmutable = false;
-            ColorPropertyName = string.Empty;
         }
 
         /// <summary>
@@ -40,15 +36,12 @@ namespace CharaChipGen.Model.Material
         /// <summary>
         /// 色パラメータを取得する部品。素材が割り当てられている部品の設定を使用する場合にはnull。
         /// </summary>
-        public PartsType? ColorPartsRefs {
-            get => attributeType;
-            set => attributeType = value;
-        }
+        public PartsType? ColorPartsRefs { get; set; } = null;
 
         /// <summary>
         /// 色プロパティ名
         /// </summary>
-        public string ColorPropertyName { get; set; }
+        public string ColorPropertyName { get; set; } = string.Empty;
 
         /// <summary>
         /// 色は不変かどうか。
@@ -56,9 +49,14 @@ namespace CharaChipGen.Model.Material
         /// <remarks>
         /// trueにすると、HSVによる変更が適用できなくなる。
         /// </remarks>
-        public bool ColorImmutable {
-            get; set;
-        }
+        public bool ColorImmutable { get; set; } = false;
+        /// <summary>
+        /// 着色レイヤーかどうか。
+        /// </summary>
+        /// <remarks>
+        /// trueにすると、HSVによる着色を行う。ColorImmutableが優先される。
+        /// </remarks>
+        public bool Coloring { get; set; } = false;
 
         /// <summary>
         /// このレイヤーデータが有効データを持つかどうか。
