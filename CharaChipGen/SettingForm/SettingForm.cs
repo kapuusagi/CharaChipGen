@@ -3,6 +3,7 @@ using CharaChipGen.Properties;
 using System;
 using System.Drawing;
 using System.Windows.Forms;
+using CharaChipGen.CommonControl;
 
 namespace CharaChipGen.ExportSettingForm
 {
@@ -11,6 +12,8 @@ namespace CharaChipGen.ExportSettingForm
     /// </summary>
     public partial class SettingForm : Form
     {
+        // フォルダ選択ダイアログ
+        private FolderSelectDialog folderSelectDialog;
         /// <summary>
         /// 新しいインスタンスを構築する。
         /// </summary>
@@ -98,12 +101,16 @@ namespace CharaChipGen.ExportSettingForm
         /// <param name="e">イベントオブジェクト</param>
         private void OnButtonSelectMaterialFolderClick(object sender, EventArgs e)
         {
-            folderBrowserDialog.SelectedPath = labelMaterialDirectory.Text;
-            if (folderBrowserDialog.ShowDialog(this) != DialogResult.OK)
+            if (folderSelectDialog == null)
+            {
+                folderSelectDialog = new FolderSelectDialog();
+            }
+            folderSelectDialog.Path = labelMaterialDirectory.Text;
+            if (folderSelectDialog.ShowDialog(this) != DialogResult.OK)
             {
                 return;
             }
-            labelMaterialDirectory.Text = folderBrowserDialog.SelectedPath;
+            labelMaterialDirectory.Text = folderSelectDialog.Path;
         }
 
         /// <summary>

@@ -54,7 +54,6 @@
             this.label5 = new System.Windows.Forms.Label();
             this.label3 = new System.Windows.Forms.Label();
             this.labelImageBackground = new System.Windows.Forms.Label();
-            this.folderBrowserDialog = new System.Windows.Forms.FolderBrowserDialog();
             this.flowLayoutPanel1.SuspendLayout();
             this.tableLayoutPanel3.SuspendLayout();
             this.tableLayoutPanel4.SuspendLayout();
@@ -232,20 +231,6 @@
             this.labelImageBackground.Name = "labelImageBackground";
             this.labelImageBackground.Click += new System.EventHandler(this.OnLabelImageBackgroundClick);
             // 
-            // folderBrowserDialog
-            // 
-            resources.ApplyResources(this.folderBrowserDialog, "folderBrowserDialog");
-            // 
-            // label5
-            // 
-            this.label5.Anchor = System.Windows.Forms.AnchorStyles.Left;
-            this.label5.AutoSize = true;
-            this.label5.Location = new System.Drawing.Point(0, 0);
-            this.label5.Name = "label5";
-            this.label5.Size = new System.Drawing.Size(129, 12);
-            this.label5.TabIndex = 1;
-            this.label5.Text = "デフォルトキャラチップサイズ";
-            // 
             // SettingForm
             // 
             resources.ApplyResources(this, "$this");
@@ -253,7 +238,6 @@
             this.Controls.Add(this.tabControl1);
             this.Controls.Add(this.flowLayoutPanel1);
             this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.FixedSingle;
-            this.Icon = ((System.Drawing.Icon)(resources.GetObject("$this.Icon")));
             this.Name = "SettingForm";
             this.flowLayoutPanel1.ResumeLayout(false);
             this.tableLayoutPanel3.ResumeLayout(false);
@@ -291,7 +275,6 @@
         private System.Windows.Forms.Label label4;
         private System.Windows.Forms.Button buttonSelectMaterialFolder;
         private System.Windows.Forms.Label labelMaterialDirectory;
-        private System.Windows.Forms.FolderBrowserDialog folderBrowserDialog;
         private System.Windows.Forms.Label label5;
         private CharaChipGen.SettingForm.SizeInput sizeInputCharaChipSize;
         private CharaChipGen.SettingForm.SizeInput sizeInputDefaultCharaChipSize;

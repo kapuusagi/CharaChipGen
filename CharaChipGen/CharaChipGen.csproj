@@ -49,6 +49,7 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="AppData.cs" />
+    <Compile Include="CommonControl\FolderSelectDialog.cs" />
     <Compile Include="CommonControl\ImageViewControl.cs">
       <SubType>UserControl</SubType>
     </Compile>
