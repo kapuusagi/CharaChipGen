@@ -226,20 +226,27 @@ namespace CharaChipGen.Model
             }
 
             // この部品のレイヤーを得て追加する。
-            var m = AppData.Instance.GetMaterialList(partsType).Get(parts.MaterialName);
-            for (int i = 0; i < m.GetLayerCount(); i++)
+            var material = AppData.Instance.GetMaterialList(partsType).Get(parts.MaterialName);
+            if (material == null)
             {
-                MaterialLayerInfo info = m.Layers[i];
-                RenderLayerGroup group = layerGroups.First((entry) => entry.LayerType == info.LayerType);
-                PartsType colorPartsRefs = info.ColorPartsRefs ?? partsType;
-                string colorPropertyName = info.ColorPropertyName ?? Parts.DefaultColorPropertyName;
-                RenderLayer layer = new RenderLayer(info.LayerType, partsType,
+                // 素材読み出しエラー
+                HasMaterialError = true;
+                return;
+            }
+
+            for (int i = 0; i < material.GetLayerCount(); i++)
+            {
+                var info = material.Layers[i];
+                var group = layerGroups.First((entry) => entry.LayerType == info.LayerType);
+                var colorPartsRefs = info.ColorPartsRefs ?? partsType;
+                var colorPropertyName = info.ColorPropertyName ?? Parts.DefaultColorPropertyName;
+                var layer = new RenderLayer(info.LayerType, partsType,
                     colorPartsRefs, colorPropertyName);
                 layer.ColorImmutable = info.ColorImmutable;
                 layer.Coloring = info.Coloring;
                 try
                 {
-                    layer.Image = m.LoadLayerImage(i);
+                    layer.Image = material.LoadLayerImage(i);
                     layer.HasError = false;
                 }
                 catch
@@ -252,6 +259,8 @@ namespace CharaChipGen.Model
                 ApplyLayerColor(layer, model);
                 group.Add(partsType, layer);
             }
+
+            HasMaterialError = false;
         }
 
         /// <summary>
@@ -341,9 +350,14 @@ namespace CharaChipGen.Model
         /// </summary>
         public bool HasError {
             get {
-                return layerGroups.Any((group) => group.HasError);
+                return HasMaterialError || layerGroups.Any((group) => group.HasError);
             }
         }
+
+        /// <summary>
+        /// 素材エラー
+        /// </summary>
+        private bool HasMaterialError { get; set; } = false;
 
         /// <summary>
         /// レイヤーにアクセスするための列挙子を取得する。
