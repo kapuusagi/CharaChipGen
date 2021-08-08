@@ -284,8 +284,8 @@ namespace CharaChipGen.Model.Layer
                         if (coloring)
                         {
                             var h = hue;
-                            var s = Math.Min(255, Math.Max(0, saturation));
-                            var v = Math.Min(255, Math.Max(0, value));
+                            var s = Math.Min(255, Math.Max(0, saturation + 255));
+                            var v = Math.Min(255, Math.Max(0, value + 255));
                             var c = CGenImaging.ColorConverter.ConvertHSVtoRGB(ColorHSV.FromHSV(h, s,v));
                             processedImage = ImageProcessor.ProcessColoring(
                                 ImageBuffer.CreateFrom(image), c);
