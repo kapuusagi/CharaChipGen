@@ -55,7 +55,7 @@ namespace CharaChipGen.Model.Material
         }
 
         /// <summary>
-        /// レイヤーを追加する。
+        /// entryFileで指定されるエントリに新規レイヤー情報を追加する。
         /// </summary>
         /// <param name="entryFile">エントリファイル</param>
         /// <param name="layerName">レイヤー名</param>
@@ -65,7 +65,7 @@ namespace CharaChipGen.Model.Material
             => AddLayer(entryFile, layerName, drawLayer, null);
 
         /// <summary>
-        /// レイヤーを追加する。
+        /// entryFileで指定されるエントリに新規レイヤー情報を追加する。
         /// </summary>
         /// <param name="entryFile">エントリファイル</param>
         /// <param name="layerName">レイヤー名</param>
@@ -76,7 +76,7 @@ namespace CharaChipGen.Model.Material
             => AddLayer(entryFile, layerName, drawLayer, colorRefs, Parts.DefaultColorPropertyName);
 
         /// <summary>
-        /// レイヤーを追加する。
+        /// entryFileで指定されるエントリに新規レイヤー情報を追加する。
         /// </summary>
         /// <param name="entryFile">エントリファイル</param>
         /// <param name="layerName">レイヤー名</param>
@@ -88,7 +88,9 @@ namespace CharaChipGen.Model.Material
         {
             entryFile.Layers.Add(layerName, new MaterialLayerInfo(layerName)
             {
-                LayerType = drawLayer, ColorImmutable = false,
+                LayerType = drawLayer, 
+                ColorImmutable = false,
+                Coloring = false,
                 ColorPartsRefs = colorRefs,
                 ColorPropertyName = colorPropertyName
             });
