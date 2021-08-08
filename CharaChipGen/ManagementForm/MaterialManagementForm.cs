@@ -47,14 +47,14 @@ namespace CharaChipGen.ManagementForm
         /// </summary>
         private void UpdateMaterialListView()
         {
-            MaterialList materialList = GetCurrentMaterialList();
+            var materialList = GetCurrentMaterialList();
             groupBoxMaterial.Text = materialList?.Name ?? Resources.DialogTitleMaterials;
             listViewMaterials.Enabled = (materialList != null);
             listViewMaterials.Items.Clear();
             if (materialList != null)
             {
                 // リストビューへの追加
-                foreach (Material material in materialList)
+                foreach (var material in materialList)
                 {
                     listViewMaterials.Items.Add(GenerateListViewMaterial(material));
                 }
@@ -100,8 +100,7 @@ namespace CharaChipGen.ManagementForm
         private void OnMaterialAddClicked(object sender, EventArgs e)
         {
             // 追加ボタンが押されたとき、外部の素材をコピーしてくる。
-            DialogResult res = openFileDialog.ShowDialog(this);
-            if (res != DialogResult.OK)
+            if (openFileDialog.ShowDialog(this) != DialogResult.OK)
             {
                 return;
             }
@@ -129,12 +128,12 @@ namespace CharaChipGen.ManagementForm
         /// <param name="srcEntryFilePath">追加するエントリファイルパス</param>
         private void AddMaterial(string srcEntryFilePath)
         {
-            MaterialList materialList = GetCurrentMaterialList();
-            string srcEntryFileDir = System.IO.Path.GetDirectoryName(srcEntryFilePath);
-            string dstEntryFileDir = System.IO.Path.Combine(AppData.Instance.MaterialDirectory, materialList.SubDirectoryName);
-            string materialName = System.IO.Path.GetFileNameWithoutExtension(srcEntryFilePath);
+            var materialList = GetCurrentMaterialList();
+            var srcEntryFileDir = System.IO.Path.GetDirectoryName(srcEntryFilePath);
+            var dstEntryFileDir = System.IO.Path.Combine(AppData.Instance.MaterialDirectory, materialList.SubDirectoryName);
+            var materialName = System.IO.Path.GetFileNameWithoutExtension(srcEntryFilePath);
 
-            MaterialEntryFile srcEntryFile = MaterialEntryFile.LoadFrom(srcEntryFilePath);
+            var srcEntryFile = MaterialEntryFile.LoadFrom(srcEntryFilePath);
 
 
             // レイヤーを構成する画像ファイルをコピーする。
@@ -147,7 +146,7 @@ namespace CharaChipGen.ManagementForm
             }
 
             // エントリファイルをコピーする。
-            string entryFileName = System.IO.Path.GetFileName(srcEntryFilePath);
+            var entryFileName = System.IO.Path.GetFileName(srcEntryFilePath);
             CopyFile(srcEntryFileDir, dstEntryFileDir, entryFileName);
 
             // 既存のエントリがあるなら削除
@@ -155,7 +154,7 @@ namespace CharaChipGen.ManagementForm
             {
                 materialList.Delete(materialName);
             }
-            string relPath = System.IO.Path.Combine(materialList.SubDirectoryName, entryFileName);
+            var relPath = System.IO.Path.Combine(materialList.SubDirectoryName, entryFileName);
             materialList.Add(new Material(relPath, srcEntryFile));
         }
 
@@ -169,9 +168,9 @@ namespace CharaChipGen.ManagementForm
         /// <param name="relativePath">ファイル名(相対パス)</param>
         private void CopyFile(string srcDir, string dstDir, string relativePath)
         {
-            string srcPath = System.IO.Path.Combine(srcDir, relativePath);
-            string dstPath = System.IO.Path.Combine(dstDir, relativePath);
-            string dir = System.IO.Path.GetDirectoryName(dstPath);
+            var srcPath = System.IO.Path.Combine(srcDir, relativePath);
+            var dstPath = System.IO.Path.Combine(dstDir, relativePath);
+            var dir = System.IO.Path.GetDirectoryName(dstPath);
             if (!System.IO.Directory.Exists(dir))
             {
                 System.IO.Directory.CreateDirectory(dir);
@@ -195,24 +194,21 @@ namespace CharaChipGen.ManagementForm
             try
             {
                 int selectedIndex = selectedIndices[0];
-                ListViewItem selectedItem = listViewMaterials.Items[selectedIndex];
-                MaterialList materialList = GetCurrentMaterialList();
-                string materialName = selectedItem.SubItems[0].Text;
-                Material material = materialList.Get(materialName);
+                var selectedItem = listViewMaterials.Items[selectedIndex];
+                var materialList = GetCurrentMaterialList();
+                var materialName = selectedItem.SubItems[0].Text;
+                var material = materialList.Get(materialName);
                 if (material == null)
                 {
                     return;
                 }
-                MaterialEditorForm.MaterialEditorForm form
-                    = new MaterialEditorForm.MaterialEditorForm();
+                var form = new MaterialEditorForm.MaterialEditorForm();
 
                 string entryFilePath = System.IO.Path.Combine(
                     AppData.Instance.MaterialDirectory, material.RelativePath);
-                MaterialEntryFile entryFile = MaterialEntryFile.LoadFrom(entryFilePath);
-
+                var entryFile = MaterialEntryFile.LoadFrom(entryFilePath);
                 form.MaterialEntryFile = entryFile;
-                DialogResult res = form.ShowDialog(this);
-                if (res != DialogResult.OK)
+                if (form.ShowDialog(this) != DialogResult.OK)
                 {
                     return;
                 }
@@ -237,32 +233,32 @@ namespace CharaChipGen.ManagementForm
         /// <param name="entryFile">エントリファイル</param>
         private void ApplyEdit(MaterialEntryFile entryFile)
         {
-            string entryFileDir = System.IO.Path.GetDirectoryName(entryFile.Path);
+            var entryFileDir = System.IO.Path.GetDirectoryName(entryFile.Path);
 
             foreach (var layerEntry in entryFile.Layers)
             {
-                MaterialLayerInfo layer = layerEntry.Value;
-                if (string.IsNullOrEmpty(layer.Path))
+                var layerInfo = layerEntry.Value;
+                if (string.IsNullOrEmpty(layerInfo.Path))
                 {
                     // 普通はここに来ないけど。
                     continue;
                 }
-                if (System.IO.Path.IsPathRooted(layer.Path))
+                if (System.IO.Path.IsPathRooted(layerInfo.Path))
                 {
                     // 絶対パス指定になってるので変更されたやつである。
-                    if (layer.Path.StartsWith(entryFileDir))
+                    if (layerInfo.Path.StartsWith(entryFileDir))
                     {
                         // エントリファイルと同じフォルダかサブフォルダにあるので
                         // 相対パスに書き換えるだけで良い。
-                        layer.Path = RemoveRootDirectory(layer.Path, entryFileDir);
+                        layerInfo.Path = RemoveRootDirectory(layerInfo.Path, entryFileDir);
                     }
                     else
                     {
                         // コピーして相対パスに変更する。
-                        string newFileName = $"{entryFile.Name}.{layer.Name}.png";
-                        string newPath = System.IO.Path.Combine(entryFileDir, newFileName);
-                        System.IO.File.Copy(layer.Path, newPath, true);
-                        layer.Path = newFileName;
+                        var newFileName = $"{entryFile.Name}.{layerInfo.Name}.png";
+                        var newPath = System.IO.Path.Combine(entryFileDir, newFileName);
+                        System.IO.File.Copy(layerInfo.Path, newPath, true);
+                        layerInfo.Path = newFileName;
                     }
                 }
             }
@@ -280,14 +276,12 @@ namespace CharaChipGen.ManagementForm
         /// <returns>相対パス</returns>
         private string RemoveRootDirectory(string path, string rootDirectory)
         {
-            int index = rootDirectory.Length;
-            while (index < path.Length)
+            for (int index = rootDirectory.Length; index < path.Length; index++)
             {
                 if (path[index] != System.IO.Path.DirectorySeparatorChar)
                 {
                     return path.Substring(index);
                 }
-                index++;
             }
 
             throw new Exception(Resources.MessagePathIsRootDirectory);
@@ -302,7 +296,7 @@ namespace CharaChipGen.ManagementForm
         /// <param name="e">イベントオブジェクト</param>
         private void OnMaterialDeleteClicked(object sender, EventArgs e)
         {
-            DialogResult res = MessageBox.Show(this,
+            var res = MessageBox.Show(this,
                 Resources.MessageConfirmRemoveParts,
                 Resources.DialogTitleConfirm, MessageBoxButtons.YesNo);
             if (res != DialogResult.Yes)
@@ -310,15 +304,15 @@ namespace CharaChipGen.ManagementForm
                 return;
             }
 
-            ListView.SelectedListViewItemCollection selItems = listViewMaterials.SelectedItems;
+            var selItems = listViewMaterials.SelectedItems;
 
             try
             {
-                MaterialList materialList = GetCurrentMaterialList();
+                var materialList = GetCurrentMaterialList();
                 foreach (ListViewItem item in selItems)
                 {
-                    string materialName = item.SubItems[0].Text;
-                    Material material = materialList.Get(materialName);
+                    var materialName = item.SubItems[0].Text;
+                    var material = materialList.Get(materialName);
                     if (material == null)
                     {
                         return;
@@ -329,7 +323,7 @@ namespace CharaChipGen.ManagementForm
 
                     // 実際のファイルの削除処理
                     // エントリファイルだけ削除する。
-                    string path = System.IO.Path.Combine(
+                    var path = System.IO.Path.Combine(
                         AppData.Instance.MaterialDirectory, material.RelativePath);
                     System.IO.File.Delete(path);
                 }
@@ -359,7 +353,7 @@ namespace CharaChipGen.ManagementForm
         /// <returns>ノードの名前</returns>
         private string GetCurrentNodeName()
         {
-            TreeNode node = treeViewMaterials.SelectedNode;
+            var node = treeViewMaterials.SelectedNode;
             return (node != null) ? node.Name : "";
         }
 
@@ -370,7 +364,7 @@ namespace CharaChipGen.ManagementForm
         /// <returns></returns>
         private MaterialList GetMaterialList(string name)
         {
-            AppData data = AppData.Instance;
+            var data = AppData.Instance;
             return data.GetMaterialList(name);
         }
 
@@ -387,8 +381,8 @@ namespace CharaChipGen.ManagementForm
                 return;
             }
 
-            MaterialList materialList = GetCurrentMaterialList();
-            Material targetMaterial = materialList.Get(items[0].SubItems[0].Text);
+            var materialList = GetCurrentMaterialList();
+            var targetMaterial = materialList.Get(items[0].SubItems[0].Text);
             string inputText = InputForm.InputForm.ShowDialog(this,
                 Resources.MessageInputMaterialName, Resources.DialogTitleChangeMaterialName,
                 targetMaterial.Name);
@@ -401,20 +395,20 @@ namespace CharaChipGen.ManagementForm
             // 素材の名前を変更する
             try
             {
-                string newName = inputText.Trim();
+                var newName = inputText.Trim();
                 CheckMaterialName(materialList, newName);
 
                 // エントリファイルのパス名を変更
-                string entryFilePath = System.IO.Path.Combine(
+                var entryFilePath = System.IO.Path.Combine(
                     AppData.Instance.MaterialDirectory, targetMaterial.RelativePath);
-                string dstRelativePath = System.IO.Path.Combine(materialList.SubDirectoryName,
+                var dstRelativePath = System.IO.Path.Combine(materialList.SubDirectoryName,
                     $"{newName}{MaterialEntryFile.EntryFileSuffix}");
-                string dstFilePath = System.IO.Path.Combine(AppData.Instance.MaterialDirectory,
+                var dstFilePath = System.IO.Path.Combine(AppData.Instance.MaterialDirectory,
                     dstRelativePath);
                 System.IO.File.Move(entryFilePath, dstFilePath);
 
                 // 素材リストの素材を入れ替え
-                Material newMaterial = new Material(dstRelativePath, new MaterialEntryFile(dstFilePath));
+                var newMaterial = new Material(dstRelativePath, new MaterialEntryFile(dstFilePath));
                 materialList.Delete(targetMaterial);
                 materialList.Add(newMaterial);
 
@@ -434,9 +428,9 @@ namespace CharaChipGen.ManagementForm
         /// <param name="e">イベントオブジェクト</param>
         private void OnButtonNewClick(object sender, EventArgs e)
         {
-            MaterialList materialList = GetCurrentMaterialList();
-            string defaultName = GenerateName(materialList);
-            string intputText = InputForm.InputForm.ShowDialog(this,
+            var materialList = GetCurrentMaterialList();
+            var defaultName = GenerateName(materialList);
+            var intputText = InputForm.InputForm.ShowDialog(this,
                 Resources.MessageInputMaterialName,
                 Resources.DialogTitleNewMaterial, defaultName);
             if (intputText == null)
@@ -450,15 +444,15 @@ namespace CharaChipGen.ManagementForm
             {
                 CheckMaterialName(materialList, newName);
 
-                string newRelativePath = System.IO.Path.Combine(materialList.SubDirectoryName,
+                var newRelativePath = System.IO.Path.Combine(materialList.SubDirectoryName,
                     $"{newName}{MaterialEntryFile.EntryFileSuffix}");
-                string newEntryFilePath = System.IO.Path.Combine(AppData.Instance.MaterialDirectory, newRelativePath);
+                var newEntryFilePath = System.IO.Path.Combine(AppData.Instance.MaterialDirectory, newRelativePath);
 
-                MaterialEntryFile entryFile = MaterialUtils.CreateDefaultEntryFile(
+                var entryFile = MaterialUtils.CreateDefaultEntryFile(
                     newEntryFilePath, materialList.MaterialType);
                 entryFile.Save();
 
-                Material newMaterial = new Material(newRelativePath, entryFile);
+                var newMaterial = new Material(newRelativePath, entryFile);
                 materialList.Add(newMaterial);
 
                 listViewMaterials.Items.Add(GenerateListViewMaterial(newMaterial));
@@ -502,10 +496,10 @@ namespace CharaChipGen.ManagementForm
         /// <returns>デフォルト名</returns>
         private string GenerateName(MaterialList materialList)
         {
-            string baseName = materialList.SubDirectoryName;
+            var baseName = materialList.SubDirectoryName;
             for (int i = 0; i < 999; i++)
             {
-                string name = $"{baseName}{i.ToString("000")}";
+                var name = $"{baseName}{i.ToString("000")}";
                 if (!materialList.Contains(name))
                 {
                     return name;
@@ -522,10 +516,10 @@ namespace CharaChipGen.ManagementForm
         private void OnButtonPreviewClick(object sender, EventArgs e)
         {
             int selectedIndex = listViewMaterials.SelectedIndices[0];
-            ListViewItem selectedItem = listViewMaterials.Items[selectedIndex];
-            MaterialList materialList = GetCurrentMaterialList();
-            string materialName = selectedItem.SubItems[0].Text;
-            Material material = materialList.Get(materialName);
+            var selectedItem = listViewMaterials.Items[selectedIndex];
+            var materialList = GetCurrentMaterialList();
+            var materialName = selectedItem.SubItems[0].Text;
+            var material = materialList.Get(materialName);
             if (material == null)
             {
                 return;
@@ -533,12 +527,11 @@ namespace CharaChipGen.ManagementForm
 
             try
             {
-                MaterialViewForm.MaterialViewForm form
-                    = new CharaChipGen.MaterialViewForm.MaterialViewForm()
-                    {
-                        Text = material.GetDisplayName(),
-                        Material = material
-                    };
+                var form = new MaterialViewForm.MaterialViewForm()
+                {
+                    Text = material.GetDisplayName(),
+                    Material = material
+                };
                 form.ShowDialog();
             }
             catch (Exception ex)
@@ -554,7 +547,7 @@ namespace CharaChipGen.ManagementForm
         /// <param name="e">イベントオブジェクト</param>
         private void OnButtonBrowseDirectoryClick(object sender, EventArgs e)
         {
-            string materialDir = AppData.Instance.MaterialDirectory;
+            var materialDir = AppData.Instance.MaterialDirectory;
             System.Diagnostics.Process.Start("EXPLORER.EXE", materialDir);
         }
     }
