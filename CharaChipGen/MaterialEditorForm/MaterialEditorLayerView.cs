@@ -120,6 +120,8 @@ namespace CharaChipGen.MaterialEditorForm
             SetColorPropertyName(layerInfo?.ColorPropertyName ?? null);
             // 色不変設定
             checkBoxColorImmutable.Checked = layerInfo.ColorImmutable;
+            // 着色設定
+            checkBoxColoring.Checked = layerInfo.Coloring;
         }
 
         /// <summary>
