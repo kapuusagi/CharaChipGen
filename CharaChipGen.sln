@@ -24,6 +24,8 @@ Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Common", "Common", "{5B2194
 		Common\TextUtility.cs = Common\TextUtility.cs
 	EndProjectSection
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ColorPalette", "ColorPalette\ColorPalette.csproj", "{14539691-0519-47E5-BD6F-B8C57351AB4E}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -62,6 +64,10 @@ Global
 		{C7ABBB7E-36AF-4391-A6C4-962CF1D9B01D}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{C7ABBB7E-36AF-4391-A6C4-962CF1D9B01D}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{C7ABBB7E-36AF-4391-A6C4-962CF1D9B01D}.Release|Any CPU.Build.0 = Release|Any CPU
+		{14539691-0519-47E5-BD6F-B8C57351AB4E}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{14539691-0519-47E5-BD6F-B8C57351AB4E}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{14539691-0519-47E5-BD6F-B8C57351AB4E}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{14539691-0519-47E5-BD6F-B8C57351AB4E}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE

@@ -237,5 +237,17 @@ namespace CGenImaging
                 return 0.0f;
             }
         }
+
+        /// <summary>
+        /// 補色を計算する。
+        /// </summary>
+        /// <param name="c">カラー</param>
+        /// <returns>補色</returns>
+        public static Color GetComplementaryColor(Color c)
+        {
+            int baseValue = Math.Max(c.R, Math.Max(c.G, c.B)) + Math.Min(c.R, Math.Min(c.G, c.B));
+
+            return Color.FromArgb(c.A, baseValue - c.R, baseValue - c.G, baseValue - c.B);
+        }
     }
 }
