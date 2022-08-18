@@ -11,6 +11,10 @@ namespace CGenImaging
     /// 
     /// HSL<->RGBの処理は次のURLを参考にした。
     /// https://www.peko-step.com/tool/hslrgb.html
+    /// 
+    /// グレースケール変換は、次のURLを参考にした。
+    /// https://qiita.com/yoya/items/96c36b069e74398796f3
+    /// SMPTEの規格書でもいいと思うけど。
     /// </summary>
     public static class ColorConverter
     {
@@ -235,6 +239,25 @@ namespace CGenImaging
             else
             {
                 return 0.0f;
+            }
+        }
+
+        /// <summary>
+        /// グレースケールに変換する。
+        /// 元の色のアルファ値は参照されない。
+        /// </summary>
+        /// <param name="c">色</param>
+        /// <returns>グレースケール値</returns>
+        public static byte ConvertRGBToGrayscale(Color c) 
+        {
+            if ((c.R == c.G) && (c.G == c.B))// 全輝度レベルが一致？
+            {
+                return c.R; // 既にグレースケール
+            }
+            else
+            {
+                // BT.709 HDTV
+                return (byte)(ColorUtility.Clamp((int)(0.2126f * c.R + 0.7152f * c.G + 0.0722f * c.B), 0, 255));
             }
         }
     }

@@ -105,5 +105,7 @@ namespace CGenImagingTest
             Assert.AreEqual(72, colorRGB.B);
         }
 
+
+
     }
 }
