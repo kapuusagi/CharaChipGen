@@ -19,9 +19,7 @@ namespace CGenImaging
         public static Color ProcessColoring(Color srcColor, Color c)
         {
             // Note: BT.709でグレースケール変換する。
-            float v = 0.2126f * srcColor.R / 255.0f
-                + 0.7152f * srcColor.G / 255.0f
-                + 0.0722f * srcColor.B / 255.0f;
+            float v = ColorConverter.ConvertRGBToGrayscale(srcColor.R / 255.0f, srcColor.G / 255.0f, srcColor.B / 255.0f);
             if (v < 0.5)
             {
                 // 暗い方は割合として使用する。
@@ -40,6 +38,23 @@ namespace CGenImaging
                 int b = ColorUtility.Clamp(Convert.ToInt32(c.B + (255 - c.R) * rate), 0, 255);
                 return Color.FromArgb(srcColor.A, r, g, b);
             }
+        }
+
+        /// <summary>
+        /// srcColorをグレースケール変換し、指定されたLUTで着色して返す。
+        /// </summary>
+        /// <param name="srcColor">ベースカラー</param>
+        /// <param name="lut">LUT</param>
+        /// <returns>色</returns>
+        public static Color ProcessColoring(Color srcColor, ILut lut)
+        {
+            if (lut.Resolution != 256)
+            {
+                throw new ArgumentException($"Gradiation Lut resolution unsupported.");
+            }
+
+            var index = ColorConverter.ConvertRGBToGrayscale(srcColor);
+            return lut.Get(index);
         }
 
 

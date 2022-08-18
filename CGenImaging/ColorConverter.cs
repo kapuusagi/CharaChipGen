@@ -242,10 +242,15 @@ namespace CGenImaging
             }
         }
 
+
+
         /// <summary>
         /// グレースケールに変換する。
         /// 元の色のアルファ値は参照されない。
         /// </summary>
+        /// <remarks>
+        /// BT.709の返還式を使用して変換する。
+        /// </remarks>
         /// <param name="c">色</param>
         /// <returns>グレースケール値</returns>
         public static byte ConvertRGBToGrayscale(Color c) 
@@ -257,8 +262,26 @@ namespace CGenImaging
             else
             {
                 // BT.709 HDTV
-                return (byte)(ColorUtility.Clamp((int)(0.2126f * c.R + 0.7152f * c.G + 0.0722f * c.B), 0, 255));
+                var matrix = MatrixRGBtoYPbPr.BT709;
+                return (byte)(ColorUtility.Clamp((int)(matrix.R2Y * c.R + matrix.G2Y * c.G + matrix.B2Y * c.B), 0, 255));
             }
+        }
+
+        /// <summary>
+        /// RGBからグレースケールに変換する。
+        /// 元の色のアルファ値は参照されない。
+        /// </summary>
+        /// <remarks>
+        /// BT.709の返還式を使用して変換する。
+        /// </remarks>
+        /// <param name="r">R値(0.0≦r≦1.0)</param>
+        /// <param name="g">G値(0.0≦r≦1.0)</param>
+        /// <param name="b">B値(0.0≦r≦1.0)</param>
+        /// <returns>グレースケール値</returns>
+        public static float ConvertRGBToGrayscale(float r, float g, float b)
+        {
+            var matrix = MatrixRGBtoYPbPr.BT709;
+            return ColorUtility.Clamp(matrix.R2Y * r + matrix.G2Y * g + matrix.B2Y * b, 0.0f, 1.0f);
         }
     }
 }

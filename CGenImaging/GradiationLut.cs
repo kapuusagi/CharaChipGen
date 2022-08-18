@@ -10,7 +10,7 @@ namespace CGenImaging
     /// <summary>
     /// グラディエーションを処理するためのLUT
     /// </summary>
-    public class GradiationLut : IEnumerable<Color>
+    public class GradiationLut : IEnumerable<Color>, ILut
     {
         /// <summary>
         /// グラディエーションからLUTを作製する。
@@ -105,7 +105,18 @@ namespace CGenImaging
         /// <param name="index">インデックス(0≦index＜Resolution-1)</param>
         /// <returns>色</returns>
         public Color this[int index] {
-            get => colors[index];
+            get => Get(index);
+        }
+
+
+        /// <summary>
+        /// indexに対応する色を得る。
+        /// </summary>
+        /// <param name="index">インデックス(0≦index＜Resolution-1)</param>
+        /// <returns>色</returns>
+        public Color Get(int index)
+        {
+            return colors[index];
         }
 
         /// <summary>
