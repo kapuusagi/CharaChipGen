@@ -262,7 +262,7 @@ namespace CGenImaging
             else
             {
                 // BT.709 HDTV
-                var matrix = MatrixRGBtoYPbPr.BT709;
+                var matrix = MatrixRGBtoYCbCr.BT709;
                 return (byte)(ColorUtility.Clamp((int)(matrix.R2Y * c.R + matrix.G2Y * c.G + matrix.B2Y * c.B), 0, 255));
             }
         }
@@ -280,7 +280,7 @@ namespace CGenImaging
         /// <returns>グレースケール値</returns>
         public static float ConvertRGBToGrayscale(float r, float g, float b)
         {
-            var matrix = MatrixRGBtoYPbPr.BT709;
+            var matrix = MatrixRGBtoYCbCr.BT709;
             return ColorUtility.Clamp(matrix.R2Y * r + matrix.G2Y * g + matrix.B2Y * b, 0.0f, 1.0f);
         }
     }

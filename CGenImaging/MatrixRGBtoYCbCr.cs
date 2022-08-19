@@ -7,21 +7,21 @@ using System.Threading.Tasks;
 namespace CGenImaging
 {
     /// <summary>
-    /// RGBからYPbPrへ変換するマトリクス係数
+    /// RGBからYCbCrへ変換するマトリクス係数
     /// </summary>
     /// <remarks>
     /// <para>うんちく</para>
-    /// <para>YPbPrはデジタル表現。アナログ信号はYCbCrになる。逆かも。</para>
+    /// <para>YCbCrはデジタル表現。アナログ信号はYPbPrっていうことが多い。</para>
     /// <para>注意点</para>
     /// <para>白レベル、黒レベルの処理は加味されず、あくまで(0.0-1.0)に対するマトリクス係数である。</para>
     /// </remarks>
-    public struct MatrixRGBtoYPbPr
+    public struct MatrixRGBtoYCbCr
     {
         /// <summary>
         /// BT709の変換係数
         /// </summary>
-        public static readonly MatrixRGBtoYPbPr BT709
-            = new MatrixRGBtoYPbPr(new float[3, 3] {
+        public static readonly MatrixRGBtoYCbCr BT709
+            = new MatrixRGBtoYCbCr(new float[3, 3] {
                 { 0.2126f,    0.7152f,  0.0722f },
                 { -0.1146f,   -0.3854f, 0.5000f },
                 { 0.5000f,    -0.4542f, -0.0458f }
@@ -34,7 +34,7 @@ namespace CGenImaging
         /// <para>マトリクス係数の割り当て</para>
         /// </summary>
         /// <param name="matrix">マトリクス係数</param>
-        public MatrixRGBtoYPbPr(float[,] matrix)
+        public MatrixRGBtoYCbCr(float[,] matrix)
         {
             if ((matrix.GetLength(0) < 3) || (matrix.GetLength(1) < 3))
             {
@@ -55,21 +55,21 @@ namespace CGenImaging
         /// <param name="r2y">Yを計算する際のRの係数</param>
         /// <param name="g2y">Yを計算する際のGの係数</param>
         /// <param name="b2y">Yを計算する際のBの係数</param>
-        /// <param name="r2pb">Pbを計算する際のRの係数</param>
-        /// <param name="g2pb">Pbを計算する際のGの係数</param>
-        /// <param name="b2pb">Pbを計算する際のBの係数</param>
-        /// <param name="r2pr">Prを計算する際のRの係数</param>
-        /// <param name="g2pr">Prを計算する際のRの係数</param>
-        /// <param name="b2pr">Prを計算する際のRの係数</param>
-        public MatrixRGBtoYPbPr(
+        /// <param name="r2cb">Cbを計算する際のRの係数</param>
+        /// <param name="g2cb">Cbを計算する際のGの係数</param>
+        /// <param name="b2cb">Cbを計算する際のBの係数</param>
+        /// <param name="r2cr">Crを計算する際のRの係数</param>
+        /// <param name="g2cr">Crを計算する際のRの係数</param>
+        /// <param name="b2cr">Crを計算する際のRの係数</param>
+        public MatrixRGBtoYCbCr(
             float r2y, float g2y, float b2y,
-            float r2pb, float g2pb, float b2pb,
-            float r2pr, float g2pr, float b2pr) 
+            float r2cb, float g2cb, float b2cb,
+            float r2cr, float g2cr, float b2cr) 
         {
             coefficients = new float[3, 3] {
                 { r2y, g2y, b2y },
-                {r2pb, g2pb, b2pb },
-                {r2pr, g2pr, b2pr } 
+                {r2cb, g2cb, b2cb },
+                {r2cr, g2cr, b2cr } 
             };
         }
 
@@ -96,29 +96,29 @@ namespace CGenImaging
         /// </summary>
         public float B2Y { get => coefficients[0, 2]; }
         /// <summary>
-        /// PBを計算する際のRの係数
+        /// CBを計算する際のRの係数
         /// </summary>
-        public float R2PB { get => coefficients[1, 0]; }
+        public float R2CB { get => coefficients[1, 0]; }
         /// <summary>
-        /// PBを計算する際のGの係数
+        /// CBを計算する際のGの係数
         /// </summary>
-        public float G2PB { get => coefficients[1, 1]; }
+        public float G2CB { get => coefficients[1, 1]; }
         /// <summary>
-        /// PBを計算する際のBの係数
+        /// CBを計算する際のBの係数
         /// </summary>
-        public float B2PB { get => coefficients[1, 2]; }
+        public float B2CB { get => coefficients[1, 2]; }
         /// <summary>
-        /// PRを計算する際のRの係数
+        /// CRを計算する際のRの係数
         /// </summary>
-        public float R2PR { get => coefficients[2, 0]; }
+        public float R2CR { get => coefficients[2, 0]; }
         /// <summary>
-        /// PRを計算する際のGの係数
+        /// CRを計算する際のGの係数
         /// </summary>
-        public float G2PR { get => coefficients[2, 1]; }
+        public float G2CR { get => coefficients[2, 1]; }
         /// <summary>
-        /// PRを計算する際のBの係数
+        /// CRを計算する際のBの係数
         /// </summary>
-        public float B2PR { get => coefficients[2, 2]; }
+        public float B2CR { get => coefficients[2, 2]; }
 
         /// <summary>
         /// このオブジェクトがobjと等しいかどうかを判定する。
@@ -127,7 +127,7 @@ namespace CGenImaging
         /// <returns>等しい場合にはtrue, それ以外はfalse.</returns>
         public override bool Equals(object obj)
         {
-            return obj is MatrixRGBtoYPbPr pr &&
+            return obj is MatrixRGBtoYCbCr pr &&
                    EqualityComparer<float[,]>.Default.Equals(coefficients, pr.coefficients);
         }
 
