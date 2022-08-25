@@ -64,8 +64,13 @@
     <Compile Include="Forms\ColorSelectDialog.designer.cs">
       <DependentUpon>ColorSelectDialog.cs</DependentUpon>
     </Compile>
+    <Compile Include="Gradiation.cs" />
+    <Compile Include="GradiationEntry.cs" />
+    <Compile Include="GradiationLut.cs" />
+    <Compile Include="ILut.cs" />
     <Compile Include="ImageBuffer.cs" />
     <Compile Include="ImageProcessor.cs" />
+    <Compile Include="MatrixRGBtoYCbCr.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="ColorUtility.cs" />
   </ItemGroup>

@@ -11,6 +11,10 @@ namespace CGenImaging
     /// 
     /// HSL<->RGBの処理は次のURLを参考にした。
     /// https://www.peko-step.com/tool/hslrgb.html
+    /// 
+    /// グレースケール変換は、次のURLを参考にした。
+    /// https://qiita.com/yoya/items/96c36b069e74398796f3
+    /// SMPTEの規格書でもいいと思うけど。
     /// </summary>
     public static class ColorConverter
     {
@@ -248,6 +252,46 @@ namespace CGenImaging
             int baseValue = Math.Max(c.R, Math.Max(c.G, c.B)) + Math.Min(c.R, Math.Min(c.G, c.B));
 
             return Color.FromArgb(c.A, baseValue - c.R, baseValue - c.G, baseValue - c.B);
+
+
+        /// <summary>
+        /// グレースケールに変換する。
+        /// 元の色のアルファ値は参照されない。
+        /// </summary>
+        /// <remarks>
+        /// BT.709の返還式を使用して変換する。
+        /// </remarks>
+        /// <param name="c">色</param>
+        /// <returns>グレースケール値</returns>
+        public static byte ConvertRGBToGrayscale(Color c) 
+        {
+            if ((c.R == c.G) && (c.G == c.B))// 全輝度レベルが一致？
+            {
+                return c.R; // 既にグレースケール
+            }
+            else
+            {
+                // BT.709 HDTV
+                var matrix = MatrixRGBtoYCbCr.BT709;
+                return (byte)(ColorUtility.Clamp((int)(matrix.R2Y * c.R + matrix.G2Y * c.G + matrix.B2Y * c.B), 0, 255));
+            }
+        }
+
+        /// <summary>
+        /// RGBからグレースケールに変換する。
+        /// 元の色のアルファ値は参照されない。
+        /// </summary>
+        /// <remarks>
+        /// BT.709の返還式を使用して変換する。
+        /// </remarks>
+        /// <param name="r">R値(0.0≦r≦1.0)</param>
+        /// <param name="g">G値(0.0≦r≦1.0)</param>
+        /// <param name="b">B値(0.0≦r≦1.0)</param>
+        /// <returns>グレースケール値</returns>
+        public static float ConvertRGBToGrayscale(float r, float g, float b)
+        {
+            var matrix = MatrixRGBtoYCbCr.BT709;
+            return ColorUtility.Clamp(matrix.R2Y * r + matrix.G2Y * g + matrix.B2Y * b, 0.0f, 1.0f);
         }
     }
 }

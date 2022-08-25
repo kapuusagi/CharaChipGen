@@ -54,7 +54,7 @@ namespace CharaChipGen.Model
         /// <param name="layer">レイヤーモデル</param>
         private static void DrawLayer(ImageBuffer buffer, int xPos, int yPos, RenderLayer layer)
         {
-            ImageBuffer srcImage = layer.GetProcessedImage();
+            var srcImage = layer.GetProcessedImage();
             if (srcImage == null)
             {
                 return; // このレイヤーは描画対象が存在しない。
@@ -74,17 +74,15 @@ namespace CharaChipGen.Model
                     int dstX = x + xOffset;
                     int dstY = y + yOffset;
 
-                    Color srcColor = srcImage.GetPixel(srcOriginX + x, srcOriginY + y);
-                    if ((dstX < 0) || (dstX >= buffer.Width)
-                        || (dstY < 0) || (dstY >= buffer.Height)
-                        || (srcColor.A == 0x0))
+                    var srcColor = srcImage.GetPixel(srcOriginX + x, srcOriginY + y);
+                    if ((dstX < 0) || (dstX >= buffer.Width) // 書き込み先の水平方向が描画範囲外？
+                        || (dstY < 0) || (dstY >= buffer.Height) // 書き込み先垂直方向が描画範囲外？
+                        || (srcColor.A == 0x0)) // 元画像の画素が透明？
                     {
-                        // コピー先の座標が範囲外であるか、
-                        // ソースが完全透明なので処理不要。
-                        continue;
+                        continue; // 描画処理不要。
                     }
                     srcColor = ImageProcessor.ProcessHSLFilter(srcColor, layer.Hue, layer.Saturation, layer.Value);
-                    if (opacity < 100)
+                    if (opacity < 100) // このレイヤーの等価率が100%未満？
                     {
                         int newAlpha = (int)(srcColor.A * opacity / 100.0f);
                         srcColor = Color.FromArgb(newAlpha, srcColor.R, srcColor.G, srcColor.B);
