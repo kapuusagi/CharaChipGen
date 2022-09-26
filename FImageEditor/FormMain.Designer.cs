@@ -35,6 +35,7 @@ namespace FImageEditor
             this.fileToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.newToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.toolStripSeparator1 = new System.Windows.Forms.ToolStripSeparator();
+            this.saveNewToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.saveToolStripMenuItem1 = new System.Windows.Forms.ToolStripMenuItem();
             this.openToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.toolStripSeparator2 = new System.Windows.Forms.ToolStripSeparator();
@@ -44,14 +45,14 @@ namespace FImageEditor
             this.optionToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.settingToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.tableLayoutPanel1 = new System.Windows.Forms.TableLayoutPanel();
-            this.faceViewControl8 = new FImageEditor.FaceViewControl();
-            this.faceViewControl7 = new FImageEditor.FaceViewControl();
-            this.faceViewControl6 = new FImageEditor.FaceViewControl();
-            this.faceViewControl5 = new FImageEditor.FaceViewControl();
             this.faceViewControl1 = new FImageEditor.FaceViewControl();
             this.faceViewControl2 = new FImageEditor.FaceViewControl();
             this.faceViewControl3 = new FImageEditor.FaceViewControl();
             this.faceViewControl4 = new FImageEditor.FaceViewControl();
+            this.faceViewControl8 = new FImageEditor.FaceViewControl();
+            this.faceViewControl5 = new FImageEditor.FaceViewControl();
+            this.faceViewControl7 = new FImageEditor.FaceViewControl();
+            this.faceViewControl6 = new FImageEditor.FaceViewControl();
             this.panel1 = new System.Windows.Forms.Panel();
             this.saveFileDialog = new System.Windows.Forms.SaveFileDialog();
             this.openFileDialog = new System.Windows.Forms.OpenFileDialog();
@@ -97,6 +98,7 @@ namespace FImageEditor
             this.fileToolStripMenuItem.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] {
             this.newToolStripMenuItem,
             this.toolStripSeparator1,
+            this.saveNewToolStripMenuItem,
             this.saveToolStripMenuItem1,
             this.openToolStripMenuItem,
             this.toolStripSeparator2,
@@ -110,50 +112,64 @@ namespace FImageEditor
             // newToolStripMenuItem
             // 
             this.newToolStripMenuItem.Name = "newToolStripMenuItem";
-            this.newToolStripMenuItem.Size = new System.Drawing.Size(108, 22);
+            this.newToolStripMenuItem.ShortcutKeys = ((System.Windows.Forms.Keys)((System.Windows.Forms.Keys.Control | System.Windows.Forms.Keys.N)));
+            this.newToolStripMenuItem.Size = new System.Drawing.Size(196, 22);
             this.newToolStripMenuItem.Text = "New";
             this.newToolStripMenuItem.Click += new System.EventHandler(this.OnMenuItemNewClick);
             // 
             // toolStripSeparator1
             // 
             this.toolStripSeparator1.Name = "toolStripSeparator1";
-            this.toolStripSeparator1.Size = new System.Drawing.Size(105, 6);
+            this.toolStripSeparator1.Size = new System.Drawing.Size(193, 6);
+            // 
+            // saveNewToolStripMenuItem
+            // 
+            this.saveNewToolStripMenuItem.Name = "saveNewToolStripMenuItem";
+            this.saveNewToolStripMenuItem.ShortcutKeys = ((System.Windows.Forms.Keys)(((System.Windows.Forms.Keys.Control | System.Windows.Forms.Keys.Shift) 
+            | System.Windows.Forms.Keys.S)));
+            this.saveNewToolStripMenuItem.Size = new System.Drawing.Size(196, 22);
+            this.saveNewToolStripMenuItem.Text = "Save New";
+            this.saveNewToolStripMenuItem.Click += new System.EventHandler(this.OnMenuItemSaveNewClick);
             // 
             // saveToolStripMenuItem1
             // 
             this.saveToolStripMenuItem1.Name = "saveToolStripMenuItem1";
-            this.saveToolStripMenuItem1.Size = new System.Drawing.Size(108, 22);
+            this.saveToolStripMenuItem1.ShortcutKeys = ((System.Windows.Forms.Keys)((System.Windows.Forms.Keys.Control | System.Windows.Forms.Keys.S)));
+            this.saveToolStripMenuItem1.Size = new System.Drawing.Size(196, 22);
             this.saveToolStripMenuItem1.Text = "Save";
             this.saveToolStripMenuItem1.Click += new System.EventHandler(this.OnMenuItemSaveClick);
             // 
             // openToolStripMenuItem
             // 
             this.openToolStripMenuItem.Name = "openToolStripMenuItem";
-            this.openToolStripMenuItem.Size = new System.Drawing.Size(108, 22);
+            this.openToolStripMenuItem.ShortcutKeys = ((System.Windows.Forms.Keys)((System.Windows.Forms.Keys.Control | System.Windows.Forms.Keys.O)));
+            this.openToolStripMenuItem.Size = new System.Drawing.Size(196, 22);
             this.openToolStripMenuItem.Text = "Open";
             this.openToolStripMenuItem.Click += new System.EventHandler(this.OnMenuItemOpenClick);
             // 
             // toolStripSeparator2
             // 
             this.toolStripSeparator2.Name = "toolStripSeparator2";
-            this.toolStripSeparator2.Size = new System.Drawing.Size(105, 6);
+            this.toolStripSeparator2.Size = new System.Drawing.Size(193, 6);
             // 
             // saveToolStripMenuItem
             // 
             this.saveToolStripMenuItem.Name = "saveToolStripMenuItem";
-            this.saveToolStripMenuItem.Size = new System.Drawing.Size(108, 22);
+            this.saveToolStripMenuItem.ShortcutKeys = ((System.Windows.Forms.Keys)((System.Windows.Forms.Keys.Control | System.Windows.Forms.Keys.E)));
+            this.saveToolStripMenuItem.Size = new System.Drawing.Size(196, 22);
             this.saveToolStripMenuItem.Text = "Export";
             this.saveToolStripMenuItem.Click += new System.EventHandler(this.OnMenuItemGenerateClick);
             // 
             // toolStripSeparator3
             // 
             this.toolStripSeparator3.Name = "toolStripSeparator3";
-            this.toolStripSeparator3.Size = new System.Drawing.Size(105, 6);
+            this.toolStripSeparator3.Size = new System.Drawing.Size(193, 6);
             // 
             // exitToolStripMenuItem
             // 
             this.exitToolStripMenuItem.Name = "exitToolStripMenuItem";
-            this.exitToolStripMenuItem.Size = new System.Drawing.Size(108, 22);
+            this.exitToolStripMenuItem.ShortcutKeys = ((System.Windows.Forms.Keys)((System.Windows.Forms.Keys.Alt | System.Windows.Forms.Keys.F4)));
+            this.exitToolStripMenuItem.Size = new System.Drawing.Size(196, 22);
             this.exitToolStripMenuItem.Text = "Exit";
             this.exitToolStripMenuItem.Click += new System.EventHandler(this.OnButtonExitClick);
             // 
@@ -196,46 +212,6 @@ namespace FImageEditor
             this.tableLayoutPanel1.Size = new System.Drawing.Size(784, 508);
             this.tableLayoutPanel1.TabIndex = 2;
             // 
-            // faceViewControl8
-            // 
-            this.faceViewControl8.AllowDrop = true;
-            this.faceViewControl8.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.faceViewControl8.FaceImageEntry = null;
-            this.faceViewControl8.Location = new System.Drawing.Point(591, 257);
-            this.faceViewControl8.Name = "faceViewControl8";
-            this.faceViewControl8.Size = new System.Drawing.Size(190, 248);
-            this.faceViewControl8.TabIndex = 7;
-            // 
-            // faceViewControl7
-            // 
-            this.faceViewControl7.AllowDrop = true;
-            this.faceViewControl7.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.faceViewControl7.FaceImageEntry = null;
-            this.faceViewControl7.Location = new System.Drawing.Point(395, 257);
-            this.faceViewControl7.Name = "faceViewControl7";
-            this.faceViewControl7.Size = new System.Drawing.Size(190, 248);
-            this.faceViewControl7.TabIndex = 6;
-            // 
-            // faceViewControl6
-            // 
-            this.faceViewControl6.AllowDrop = true;
-            this.faceViewControl6.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.faceViewControl6.FaceImageEntry = null;
-            this.faceViewControl6.Location = new System.Drawing.Point(199, 257);
-            this.faceViewControl6.Name = "faceViewControl6";
-            this.faceViewControl6.Size = new System.Drawing.Size(190, 248);
-            this.faceViewControl6.TabIndex = 5;
-            // 
-            // faceViewControl5
-            // 
-            this.faceViewControl5.AllowDrop = true;
-            this.faceViewControl5.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.faceViewControl5.FaceImageEntry = null;
-            this.faceViewControl5.Location = new System.Drawing.Point(3, 257);
-            this.faceViewControl5.Name = "faceViewControl5";
-            this.faceViewControl5.Size = new System.Drawing.Size(190, 248);
-            this.faceViewControl5.TabIndex = 4;
-            // 
             // faceViewControl1
             // 
             this.faceViewControl1.AllowDrop = true;
@@ -275,6 +251,46 @@ namespace FImageEditor
             this.faceViewControl4.Name = "faceViewControl4";
             this.faceViewControl4.Size = new System.Drawing.Size(190, 248);
             this.faceViewControl4.TabIndex = 3;
+            // 
+            // faceViewControl8
+            // 
+            this.faceViewControl8.AllowDrop = true;
+            this.faceViewControl8.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.faceViewControl8.FaceImageEntry = null;
+            this.faceViewControl8.Location = new System.Drawing.Point(591, 257);
+            this.faceViewControl8.Name = "faceViewControl8";
+            this.faceViewControl8.Size = new System.Drawing.Size(190, 248);
+            this.faceViewControl8.TabIndex = 7;
+            // 
+            // faceViewControl5
+            // 
+            this.faceViewControl5.AllowDrop = true;
+            this.faceViewControl5.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.faceViewControl5.FaceImageEntry = null;
+            this.faceViewControl5.Location = new System.Drawing.Point(3, 257);
+            this.faceViewControl5.Name = "faceViewControl5";
+            this.faceViewControl5.Size = new System.Drawing.Size(190, 248);
+            this.faceViewControl5.TabIndex = 4;
+            // 
+            // faceViewControl7
+            // 
+            this.faceViewControl7.AllowDrop = true;
+            this.faceViewControl7.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.faceViewControl7.FaceImageEntry = null;
+            this.faceViewControl7.Location = new System.Drawing.Point(395, 257);
+            this.faceViewControl7.Name = "faceViewControl7";
+            this.faceViewControl7.Size = new System.Drawing.Size(190, 248);
+            this.faceViewControl7.TabIndex = 6;
+            // 
+            // faceViewControl6
+            // 
+            this.faceViewControl6.AllowDrop = true;
+            this.faceViewControl6.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.faceViewControl6.FaceImageEntry = null;
+            this.faceViewControl6.Location = new System.Drawing.Point(199, 257);
+            this.faceViewControl6.Name = "faceViewControl6";
+            this.faceViewControl6.Size = new System.Drawing.Size(190, 248);
+            this.faceViewControl6.TabIndex = 5;
             // 
             // panel1
             // 
@@ -343,6 +359,7 @@ namespace FImageEditor
         private System.Windows.Forms.ToolStripSeparator toolStripSeparator2;
         private System.Windows.Forms.ToolStripSeparator toolStripSeparator3;
         private System.Windows.Forms.OpenFileDialog openFileDialog;
+        private System.Windows.Forms.ToolStripMenuItem saveNewToolStripMenuItem;
     }
 }
 

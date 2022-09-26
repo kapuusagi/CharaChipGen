@@ -35,7 +35,6 @@ namespace FImageEditor
             faceViewControl7.FaceImageEntry = faceImageEntrySet.GetEntry(6);
             faceViewControl8.FaceImageEntry = faceImageEntrySet.GetEntry(7);
         }
-
         /// <summary>
         /// Exitボタンが押されたときの処理を行う。
         /// </summary>
@@ -150,8 +149,48 @@ namespace FImageEditor
         private void OnMenuItemNewClick(object sender, EventArgs e)
         {
             faceImageEntrySet.Clear();
+            Properties.Settings.Default.LastSaveSettingPath = string.Empty;
         }
 
+        /// <summary>
+        /// 新規保存メニューがクリックされた
+        /// </summary>
+        /// <param name="sender">送信元オブジェクト</param>
+        /// <param name="e">イベントオブジェクト</param>
+        private void OnMenuItemSaveNewClick(object sender, EventArgs e)
+        {
+            try
+            {
+                ProcSaveNew();
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show(this, ex.Message);
+            }
+        }
+
+        private void ProcSaveNew()
+        {
+            // 最後の編集ファイルに合わせ、ファイル選択ダイアログを設定
+            var lastFileName = Properties.Settings.Default.LastSaveSettingPath;
+            if (System.IO.File.Exists(lastFileName))
+            {
+                saveFileDialog.InitialDirectory = System.IO.Path.GetDirectoryName(lastFileName);
+                saveFileDialog.FileName = System.IO.Path.GetDirectoryName(lastFileName);
+            }
+            saveFileDialog.Filter = Properties.Resources.FILEFILTER_SETTING;
+            saveFileDialog.FilterIndex = 0;
+
+            // ファイル選択する
+            if (saveFileDialog.ShowDialog(this) != DialogResult.OK)
+            {
+                return;
+            }
+
+            // 保存処理する。
+            Properties.Settings.Default.LastSaveSettingPath = saveFileDialog.FileName;
+            faceImageEntrySet.SaveTo(saveFileDialog.FileName);
+        }
         /// <summary>
         /// 保存メニューがクリックされた
         /// </summary>
@@ -161,21 +200,15 @@ namespace FImageEditor
         {
             try
             {
-                var lastFileName = Properties.Settings.Default.LastSaveSettingPath;
-                if (System.IO.File.Exists(lastFileName))
+                var lastSaveSettingPath = Properties.Settings.Default.LastSaveSettingPath;
+                if (string.IsNullOrEmpty(lastSaveSettingPath))
                 {
-                    saveFileDialog.InitialDirectory = System.IO.Path.GetDirectoryName(lastFileName);
-                    saveFileDialog.FileName = System.IO.Path.GetDirectoryName(lastFileName);
+                    ProcSaveNew();
                 }
-                saveFileDialog.Filter = Properties.Resources.FILEFILTER_SETTING;
-                saveFileDialog.FilterIndex = 0;
-                if (saveFileDialog.ShowDialog(this) != DialogResult.OK)
+                else
                 {
-                    return;
+                    faceImageEntrySet.SaveTo(lastSaveSettingPath);
                 }
-                Properties.Settings.Default.LastSaveSettingPath = saveFileDialog.FileName;
-
-                faceImageEntrySet.SaveTo(saveFileDialog.FileName);
             }
             catch (Exception ex)
             {
@@ -213,5 +246,7 @@ namespace FImageEditor
                 MessageBox.Show(this, ex.Message);
             }
         }
+
+
     }
 }
