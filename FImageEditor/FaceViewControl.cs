@@ -93,8 +93,8 @@ namespace FImageEditor
                     else
                     {
                         facePictureControl.ImageRect = new Rectangle(entry.X, entry.Y, entry.Width, entry.Height);
-                        numericUpDownX.Value = entry.X;
-                        numericUpDownY.Value = entry.Y;
+                        numericUpDownX.Value = ClampNumericUpDownValue(numericUpDownX, entry.X);
+                        numericUpDownY.Value = ClampNumericUpDownValue(numericUpDownY, entry.Y);
                     }
                 }
                 else
@@ -105,6 +105,28 @@ namespace FImageEditor
             buttonSelect.Enabled = (entry != null);
             numericUpDownX.Enabled = (entry != null);
             numericUpDownY.Enabled = (entry != null);
+        }
+
+        /// <summary>
+        /// valueに対し、numericUpDownのMinimum以上、Maximum以下の値を得る。
+        /// </summary>
+        /// <param name="numericUpDown">コントロール</param>
+        /// <param name="value">値</param>
+        /// <returns>値</returns>
+        private static Decimal ClampNumericUpDownValue(NumericUpDown numericUpDown, Decimal value)
+        {
+            if (value < numericUpDown.Minimum)
+            {
+                return numericUpDown.Minimum;
+            }
+            else if (value > numericUpDown.Maximum)
+            {
+                return numericUpDown.Maximum;
+            }
+            else
+            {
+                return value;
+            }
         }
 
         /// <summary>
