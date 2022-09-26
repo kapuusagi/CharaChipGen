@@ -176,11 +176,13 @@ namespace ImageStacker
                     {
                         var image = pictureBox.Image;
                         pictureBox.Image = null;
+                        labelSize.Text = "0 x 0";
                         image.Dispose();
                     }
 
                     using (var image = Image.FromFile(layerEntry.FileName))
                     {
+                        labelSize.Text = $"{image.Width} x {image.Height}";
                         pictureBox.Image = (Image)(image.Clone());
                         imageFileName = layerEntry.FileName;
                     }
