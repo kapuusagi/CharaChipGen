@@ -71,6 +71,7 @@ namespace ImageStacker
             try
             {
                 Properties.Settings.Default.WindowSize = Size;
+                Properties.Settings.Default.SplitterDistance = splitContainerMain.SplitterDistance;
                 Properties.Settings.Default.Save();
             }
             catch (Exception ex)
@@ -554,6 +555,7 @@ namespace ImageStacker
                 var location = Location;
                 SetBounds(location.X, location.Y, savedSize.Width, savedSize.Height);
             }
+            splitContainerMain.SplitterDistance = Properties.Settings.Default.SplitterDistance;
         }
 
         /// <summary>
@@ -748,5 +750,7 @@ namespace ImageStacker
                 System.Diagnostics.Debug.WriteLine(ex);
             }
         }
+
+
     }
 }

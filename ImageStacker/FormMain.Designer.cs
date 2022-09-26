@@ -29,9 +29,10 @@ namespace ImageStacker
         /// </summary>
         private void InitializeComponent()
         {
-            ImageStacker.LayerSetRenderer layerSetRenderer2 = new ImageStacker.LayerSetRenderer();
-            this.splitContainer1 = new System.Windows.Forms.SplitContainer();
+            ImageStacker.LayerSetRenderer layerSetRenderer1 = new ImageStacker.LayerSetRenderer();
+            this.splitContainerMain = new System.Windows.Forms.SplitContainer();
             this.panelPicture = new System.Windows.Forms.Panel();
+            this.layerSetViewControl = new ImageStacker.LayerSetViewControl();
             this.panel1 = new System.Windows.Forms.Panel();
             this.label1 = new System.Windows.Forms.Label();
             this.panelLayerParent = new System.Windows.Forms.Panel();
@@ -48,6 +49,7 @@ namespace ImageStacker
             this.tableLayoutPanel2 = new System.Windows.Forms.TableLayoutPanel();
             this.label4 = new System.Windows.Forms.Label();
             this.numericUpDownRenderingScale = new System.Windows.Forms.NumericUpDown();
+            this.checkBoxRenderGrid = new System.Windows.Forms.CheckBox();
             this.menuStrip1 = new System.Windows.Forms.MenuStrip();
             this.fileToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.newToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
@@ -60,12 +62,10 @@ namespace ImageStacker
             this.exitToolStripMenuItem1 = new System.Windows.Forms.ToolStripMenuItem();
             this.openFileDialog = new System.Windows.Forms.OpenFileDialog();
             this.saveFileDialog = new System.Windows.Forms.SaveFileDialog();
-            this.layerSetViewControl = new ImageStacker.LayerSetViewControl();
-            this.checkBoxRenderGrid = new System.Windows.Forms.CheckBox();
-            ((System.ComponentModel.ISupportInitialize)(this.splitContainer1)).BeginInit();
-            this.splitContainer1.Panel1.SuspendLayout();
-            this.splitContainer1.Panel2.SuspendLayout();
-            this.splitContainer1.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.splitContainerMain)).BeginInit();
+            this.splitContainerMain.Panel1.SuspendLayout();
+            this.splitContainerMain.Panel2.SuspendLayout();
+            this.splitContainerMain.SuspendLayout();
             this.panelPicture.SuspendLayout();
             this.panel1.SuspendLayout();
             this.flowLayoutPanel1.SuspendLayout();
@@ -78,23 +78,23 @@ namespace ImageStacker
             this.menuStrip1.SuspendLayout();
             this.SuspendLayout();
             // 
-            // splitContainer1
+            // splitContainerMain
             // 
-            this.splitContainer1.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.splitContainer1.Location = new System.Drawing.Point(0, 60);
-            this.splitContainer1.Name = "splitContainer1";
+            this.splitContainerMain.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.splitContainerMain.Location = new System.Drawing.Point(0, 60);
+            this.splitContainerMain.Name = "splitContainerMain";
             // 
-            // splitContainer1.Panel1
+            // splitContainerMain.Panel1
             // 
-            this.splitContainer1.Panel1.Controls.Add(this.panelPicture);
+            this.splitContainerMain.Panel1.Controls.Add(this.panelPicture);
             // 
-            // splitContainer1.Panel2
+            // splitContainerMain.Panel2
             // 
-            this.splitContainer1.Panel2.Controls.Add(this.panel1);
-            this.splitContainer1.Panel2.Controls.Add(this.flowLayoutPanel1);
-            this.splitContainer1.Size = new System.Drawing.Size(784, 381);
-            this.splitContainer1.SplitterDistance = 437;
-            this.splitContainer1.TabIndex = 0;
+            this.splitContainerMain.Panel2.Controls.Add(this.panel1);
+            this.splitContainerMain.Panel2.Controls.Add(this.flowLayoutPanel1);
+            this.splitContainerMain.Size = new System.Drawing.Size(784, 381);
+            this.splitContainerMain.SplitterDistance = 462;
+            this.splitContainerMain.TabIndex = 0;
             // 
             // panelPicture
             // 
@@ -104,10 +104,25 @@ namespace ImageStacker
             this.panelPicture.Dock = System.Windows.Forms.DockStyle.Fill;
             this.panelPicture.Location = new System.Drawing.Point(0, 0);
             this.panelPicture.Name = "panelPicture";
-            this.panelPicture.Size = new System.Drawing.Size(437, 381);
+            this.panelPicture.Size = new System.Drawing.Size(462, 381);
             this.panelPicture.TabIndex = 0;
             this.panelPicture.DragDrop += new System.Windows.Forms.DragEventHandler(this.OnPanelPictureDragDrop);
             this.panelPicture.DragEnter += new System.Windows.Forms.DragEventHandler(this.OnPanelPictureDragEnter);
+            // 
+            // layerSetViewControl
+            // 
+            this.layerSetViewControl.AutoSize = true;
+            this.layerSetViewControl.BackgroundImage = global::ImageStacker.Properties.Resources.Background;
+            layerSetRenderer1.LayerSet = null;
+            this.layerSetViewControl.LayerSetRenderer = layerSetRenderer1;
+            this.layerSetViewControl.Location = new System.Drawing.Point(3, 6);
+            this.layerSetViewControl.Name = "layerSetViewControl";
+            this.layerSetViewControl.RenderCenterLine = false;
+            this.layerSetViewControl.Size = new System.Drawing.Size(0, 0);
+            this.layerSetViewControl.TabIndex = 0;
+            this.layerSetViewControl.MouseDown += new System.Windows.Forms.MouseEventHandler(this.OnLayerSetViewMouseDown);
+            this.layerSetViewControl.MouseMove += new System.Windows.Forms.MouseEventHandler(this.OnLayerSetViewMouseMove);
+            this.layerSetViewControl.MouseUp += new System.Windows.Forms.MouseEventHandler(this.OnLayerSetViewMouseUp);
             // 
             // panel1
             // 
@@ -120,7 +135,7 @@ namespace ImageStacker
             this.panel1.Dock = System.Windows.Forms.DockStyle.Fill;
             this.panel1.Location = new System.Drawing.Point(0, 29);
             this.panel1.Name = "panel1";
-            this.panel1.Size = new System.Drawing.Size(343, 352);
+            this.panel1.Size = new System.Drawing.Size(318, 352);
             this.panel1.TabIndex = 4;
             this.panel1.DragDrop += new System.Windows.Forms.DragEventHandler(this.OnLayerPanelDragDrop);
             this.panel1.DragEnter += new System.Windows.Forms.DragEventHandler(this.OnLayerPanelDragEnter);
@@ -130,7 +145,7 @@ namespace ImageStacker
             this.label1.Dock = System.Windows.Forms.DockStyle.Top;
             this.label1.Location = new System.Drawing.Point(0, 0);
             this.label1.Name = "label1";
-            this.label1.Size = new System.Drawing.Size(341, 40);
+            this.label1.Size = new System.Drawing.Size(316, 40);
             this.label1.TabIndex = 0;
             this.label1.Text = "Drag image file to here.";
             this.label1.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
@@ -141,7 +156,7 @@ namespace ImageStacker
             this.panelLayerParent.Dock = System.Windows.Forms.DockStyle.Top;
             this.panelLayerParent.Location = new System.Drawing.Point(0, 0);
             this.panelLayerParent.Name = "panelLayerParent";
-            this.panelLayerParent.Size = new System.Drawing.Size(341, 0);
+            this.panelLayerParent.Size = new System.Drawing.Size(316, 0);
             this.panelLayerParent.TabIndex = 3;
             // 
             // flowLayoutPanel1
@@ -152,7 +167,7 @@ namespace ImageStacker
             this.flowLayoutPanel1.Dock = System.Windows.Forms.DockStyle.Top;
             this.flowLayoutPanel1.Location = new System.Drawing.Point(0, 0);
             this.flowLayoutPanel1.Name = "flowLayoutPanel1";
-            this.flowLayoutPanel1.Size = new System.Drawing.Size(343, 29);
+            this.flowLayoutPanel1.Size = new System.Drawing.Size(318, 29);
             this.flowLayoutPanel1.TabIndex = 0;
             // 
             // buttonAdd
@@ -323,6 +338,18 @@ namespace ImageStacker
             0});
             this.numericUpDownRenderingScale.ValueChanged += new System.EventHandler(this.OnNumericUpDownRenderScaleValueChanged);
             // 
+            // checkBoxRenderGrid
+            // 
+            this.checkBoxRenderGrid.Anchor = System.Windows.Forms.AnchorStyles.Left;
+            this.checkBoxRenderGrid.AutoSize = true;
+            this.checkBoxRenderGrid.Location = new System.Drawing.Point(176, 7);
+            this.checkBoxRenderGrid.Name = "checkBoxRenderGrid";
+            this.checkBoxRenderGrid.Size = new System.Drawing.Size(120, 16);
+            this.checkBoxRenderGrid.TabIndex = 2;
+            this.checkBoxRenderGrid.Text = "Display center line";
+            this.checkBoxRenderGrid.UseVisualStyleBackColor = true;
+            this.checkBoxRenderGrid.CheckedChanged += new System.EventHandler(this.OnCheckBoxRenderGridCheckedChanged);
+            // 
             // menuStrip1
             // 
             this.menuStrip1.Items.AddRange(new System.Windows.Forms.ToolStripItem[] {
@@ -398,50 +425,23 @@ namespace ImageStacker
             this.exitToolStripMenuItem1.Text = "Exit";
             this.exitToolStripMenuItem1.Click += new System.EventHandler(this.OnMenuItemExitClick);
             // 
-            // layerSetViewControl
-            // 
-            this.layerSetViewControl.AutoSize = true;
-            this.layerSetViewControl.BackgroundImage = global::ImageStacker.Properties.Resources.Background;
-            layerSetRenderer2.LayerSet = null;
-            this.layerSetViewControl.LayerSetRenderer = layerSetRenderer2;
-            this.layerSetViewControl.Location = new System.Drawing.Point(3, 6);
-            this.layerSetViewControl.Name = "layerSetViewControl";
-            this.layerSetViewControl.RenderCenterLine = false;
-            this.layerSetViewControl.Size = new System.Drawing.Size(0, 0);
-            this.layerSetViewControl.TabIndex = 0;
-            this.layerSetViewControl.MouseDown += new System.Windows.Forms.MouseEventHandler(this.OnLayerSetViewMouseDown);
-            this.layerSetViewControl.MouseMove += new System.Windows.Forms.MouseEventHandler(this.OnLayerSetViewMouseMove);
-            this.layerSetViewControl.MouseUp += new System.Windows.Forms.MouseEventHandler(this.OnLayerSetViewMouseUp);
-            // 
-            // checkBoxRenderGrid
-            // 
-            this.checkBoxRenderGrid.Anchor = System.Windows.Forms.AnchorStyles.Left;
-            this.checkBoxRenderGrid.AutoSize = true;
-            this.checkBoxRenderGrid.Location = new System.Drawing.Point(176, 7);
-            this.checkBoxRenderGrid.Name = "checkBoxRenderGrid";
-            this.checkBoxRenderGrid.Size = new System.Drawing.Size(120, 16);
-            this.checkBoxRenderGrid.TabIndex = 2;
-            this.checkBoxRenderGrid.Text = "Display center line";
-            this.checkBoxRenderGrid.UseVisualStyleBackColor = true;
-            this.checkBoxRenderGrid.CheckedChanged += new System.EventHandler(this.OnCheckBoxRenderGridCheckedChanged);
-            // 
             // FormMain
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 12F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(784, 441);
-            this.Controls.Add(this.splitContainer1);
+            this.Controls.Add(this.splitContainerMain);
             this.Controls.Add(this.flowLayoutPanel2);
             this.Controls.Add(this.menuStrip1);
             this.Name = "FormMain";
             this.Text = "ImageStacker";
             this.FormClosing += new System.Windows.Forms.FormClosingEventHandler(this.OnFormClosing);
             this.Shown += new System.EventHandler(this.OnFormShown);
-            this.splitContainer1.Panel1.ResumeLayout(false);
-            this.splitContainer1.Panel2.ResumeLayout(false);
-            this.splitContainer1.Panel2.PerformLayout();
-            ((System.ComponentModel.ISupportInitialize)(this.splitContainer1)).EndInit();
-            this.splitContainer1.ResumeLayout(false);
+            this.splitContainerMain.Panel1.ResumeLayout(false);
+            this.splitContainerMain.Panel2.ResumeLayout(false);
+            this.splitContainerMain.Panel2.PerformLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.splitContainerMain)).EndInit();
+            this.splitContainerMain.ResumeLayout(false);
             this.panelPicture.ResumeLayout(false);
             this.panelPicture.PerformLayout();
             this.panel1.ResumeLayout(false);
@@ -464,7 +464,7 @@ namespace ImageStacker
 
         #endregion
 
-        private System.Windows.Forms.SplitContainer splitContainer1;
+        private System.Windows.Forms.SplitContainer splitContainerMain;
         private System.Windows.Forms.FlowLayoutPanel flowLayoutPanel1;
         private System.Windows.Forms.Button buttonAdd;
         private System.Windows.Forms.FlowLayoutPanel flowLayoutPanel2;
