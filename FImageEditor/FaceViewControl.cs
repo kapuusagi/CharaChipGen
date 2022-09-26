@@ -181,33 +181,44 @@ namespace FImageEditor
                 facePictureControl.Image = null;
             }
             else
-            { 
-                var image = Image.FromFile(fileName);
-                if ((image.Width < entry.Width) || (image.Height < entry.Height))
+            {
+                using (var image = Image.FromFile(fileName))
                 {
-                    throw new Exception($"Image size incorrect. [width={image.Width},height={image.Height}]");
+                    if ((image.Width < entry.Width) || (image.Height < entry.Height))
+                    {
+                        throw new Exception($"Image size incorrect. [width={image.Width},height={image.Height}]");
+                    }
+
+                    int width = image.Width;
+                    int height = image.Height;
+
+                    var setImage = new Bitmap(width, height, System.Drawing.Imaging.PixelFormat.Format32bppArgb);
+                    using (var g = Graphics.FromImage(setImage))
+                    {
+                        g.DrawImage(image, 0, 0);
+                    }
+
+                    int maxX = width - entry.Width;
+                    int maxY = height - entry.Height;
+                    entry.X = Math.Min(entry.X, maxX);
+                    entry.Y = Math.Min(entry.Y, maxY);
+                    entry.FileName = fileName;
+                    imageFileName = entry.FileName;
+
+                    numericUpDownX.Maximum = maxX;
+                    numericUpDownY.Maximum = maxY;
+                    numericUpDownX.Value = entry.X;
+                    numericUpDownY.Value = entry.Y;
+
+                    if (facePictureControl.Image != null)
+                    {
+                        var prevImage = facePictureControl.Image;
+                        facePictureControl.Image = null;
+                        prevImage.Dispose();
+                    }
+                    facePictureControl.Image = setImage;
+                    facePictureControl.ImageRect = new Rectangle(entry.X, entry.Y, entry.Width, entry.Height);
                 }
-
-                int maxX = image.Width - entry.Width;
-                int maxY = image.Height - entry.Height;
-                entry.X = Math.Min(entry.X, maxX);
-                entry.Y = Math.Min(entry.Y, maxY);
-                entry.FileName = fileName;
-                imageFileName = entry.FileName;
-
-                numericUpDownX.Maximum = maxX;
-                numericUpDownY.Maximum = maxY;
-                numericUpDownX.Value = entry.X;
-                numericUpDownY.Value = entry.Y;
-
-                if (facePictureControl.Image != null)
-                {
-                    var prevImage = facePictureControl.Image;
-                    facePictureControl.Image = null;
-                    prevImage.Dispose();
-                }
-                facePictureControl.Image = image;
-                facePictureControl.ImageRect = new Rectangle(entry.X, entry.Y, entry.Width, entry.Height);
             }
             numericUpDownX.Enabled = facePictureControl.Image != null;
             numericUpDownY.Enabled = facePictureControl.Image != null;
