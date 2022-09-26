@@ -252,6 +252,7 @@ namespace CGenImaging
             int baseValue = Math.Max(c.R, Math.Max(c.G, c.B)) + Math.Min(c.R, Math.Min(c.G, c.B));
 
             return Color.FromArgb(c.A, baseValue - c.R, baseValue - c.G, baseValue - c.B);
+        }
 
 
         /// <summary>
