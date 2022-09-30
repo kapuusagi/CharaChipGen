@@ -92,9 +92,9 @@
             // 
             // panel1
             // 
-            resources.ApplyResources(this.panel1, "panel1");
             this.panel1.Controls.Add(this.textBoxMaterialName);
             this.panel1.Controls.Add(this.label1);
+            resources.ApplyResources(this.panel1, "panel1");
             this.panel1.Name = "panel1";
             // 
             // flowLayoutPanel1
@@ -159,22 +159,22 @@
             // 
             // panel3
             // 
-            resources.ApplyResources(this.panel3, "panel3");
             this.panel3.Controls.Add(this.flowLayoutPanel2);
             this.panel3.Controls.Add(this.groupBox1);
+            resources.ApplyResources(this.panel3, "panel3");
             this.panel3.Name = "panel3";
             // 
             // groupBox1
             // 
-            resources.ApplyResources(this.groupBox1, "groupBox1");
             this.groupBox1.Controls.Add(this.listBoxLayers);
+            resources.ApplyResources(this.groupBox1, "groupBox1");
             this.groupBox1.Name = "groupBox1";
             this.groupBox1.TabStop = false;
             // 
             // listBoxLayers
             // 
-            resources.ApplyResources(this.listBoxLayers, "listBoxLayers");
             this.listBoxLayers.AllowDrop = true;
+            resources.ApplyResources(this.listBoxLayers, "listBoxLayers");
             this.listBoxLayers.DrawMode = System.Windows.Forms.DrawMode.OwnerDrawFixed;
             this.listBoxLayers.FormattingEnabled = true;
             this.listBoxLayers.Name = "listBoxLayers";
@@ -192,22 +192,22 @@
             // 
             // menuStrip1
             // 
-            resources.ApplyResources(this.menuStrip1, "menuStrip1");
             this.menuStrip1.Items.AddRange(new System.Windows.Forms.ToolStripItem[] {
             this.optionToolStripMenuItem});
+            resources.ApplyResources(this.menuStrip1, "menuStrip1");
             this.menuStrip1.Name = "menuStrip1";
             // 
             // optionToolStripMenuItem
             // 
-            resources.ApplyResources(this.optionToolStripMenuItem, "optionToolStripMenuItem");
             this.optionToolStripMenuItem.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] {
             this.menuItemImageBackground});
             this.optionToolStripMenuItem.Name = "optionToolStripMenuItem";
+            resources.ApplyResources(this.optionToolStripMenuItem, "optionToolStripMenuItem");
             // 
             // menuItemImageBackground
             // 
-            resources.ApplyResources(this.menuItemImageBackground, "menuItemImageBackground");
             this.menuItemImageBackground.Name = "menuItemImageBackground";
+            resources.ApplyResources(this.menuItemImageBackground, "menuItemImageBackground");
             this.menuItemImageBackground.Click += new System.EventHandler(this.OnMenuItemImageBackgroundClick);
             // 
             // MaterialEditorForm
@@ -217,12 +217,13 @@
             this.Controls.Add(this.tableLayoutPanel1);
             this.Controls.Add(this.flowLayoutPanel1);
             this.Controls.Add(this.panel1);
-            this.Icon = ((System.Drawing.Icon)(resources.GetObject("$this.Icon")));
             this.Controls.Add(this.menuStrip1);
+            this.KeyPreview = true;
             this.MainMenuStrip = this.menuStrip1;
             this.Name = "MaterialEditorForm";
             this.FormClosed += new System.Windows.Forms.FormClosedEventHandler(this.OnFormClosed);
             this.Shown += new System.EventHandler(this.OnFormShown);
+            this.KeyDown += new System.Windows.Forms.KeyEventHandler(this.OnFormKeyDown);
             this.panel1.ResumeLayout(false);
             this.panel1.PerformLayout();
             this.flowLayoutPanel1.ResumeLayout(false);

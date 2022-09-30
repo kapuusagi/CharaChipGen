@@ -494,5 +494,22 @@ namespace CharaChipGen.MaterialEditorForm
             Color selectColor = CGenImaging.Forms.ColorSelectDialog.ShowDialog(this, defaultColor);
             Settings.Default.ImageBackground = selectColor;
         }
+
+        /// <summary>
+        /// フォームでキーが押された時にイベント通知を受け取る。
+        /// </summary>
+        /// <param name="sender">送信元オブジェクト</param>
+        /// <param name="e">イベントオブジェクト</param>
+        private void OnFormKeyDown(object sender, KeyEventArgs e)
+        {
+            if (e.KeyCode == Keys.Enter)
+            {
+                OnSaveButtonClicked(sender, e);
+            }
+            else if (e.KeyCode == Keys.Escape)
+            {
+                OnCancelButtonClicked(sender, e);
+            }
+        }
     }
 }
