@@ -4,6 +4,8 @@ using System;
 using System.Text;
 using System.Collections.Generic;
 using System.Linq;
+using System.IO;
+using System.Drawing.Text;
 
 namespace CharaChipGen.Model.Material
 {
@@ -54,6 +56,18 @@ namespace CharaChipGen.Model.Material
             return materialEntryFile;
         }
 
+        public static MaterialEntryFile CreateFrom(string path, string dataText)
+        {
+            var materialEntryFile = new MaterialEntryFile(path);
+
+            var binary = Encoding.UTF8.GetBytes(dataText);
+            using (var reader = new System.IO.StreamReader(new System.IO.MemoryStream(binary)))
+            {
+                materialEntryFile.Load(reader);
+                materialEntryFile.Save();
+            }
+            return materialEntryFile;
+        }
 
         // 表示名
         private Dictionary<string, string> displayNames;
@@ -215,6 +229,7 @@ namespace CharaChipGen.Model.Material
         /// </summary>
         public void Save() => SaveAs(Path);
 
+
         /// <summary>
         /// パスにエントリファイルを書き出す。
         /// </summary>
@@ -224,43 +239,64 @@ namespace CharaChipGen.Model.Material
             using (var writer = new System.IO.StreamWriter(
                 new System.IO.FileStream(path, System.IO.FileMode.Create)))
             {
-                writer.WriteLine("# Material information.");
-                // 表示名
-                if (displayNames != null)
-                {
-                    foreach (var entry in DisplayNames)
-                    {
-                        writer.WriteLine($"Name.{entry.Key} = {entry.Value}");
-                    }
-                }
-                else
-                {
-                    string name = System.IO.Path.GetFileNameWithoutExtension(path);
-                    writer.WriteLine($"Name.default = {name}");
-                }
+                string defaultName = System.IO.Path.GetFileNameWithoutExtension(path);
+                SaveAs(writer, defaultName);
+            }
+        }
+
+        /// <summary>
+        /// ストリームにエントリファイルを書き出す。
+        /// </summary>
+        /// <param name="writer">ライター</param>
+        public void SaveAs(System.IO.StreamWriter writer)
+        {
+            string defaultName = System.IO.Path.GetFileNameWithoutExtension(Path);
+            SaveAs(writer, defaultName);
+            writer.Flush();
+        }
 
 
-                // レイヤー
-                if (layers != null)
+        /// <summary>
+        /// ストリームにエントリファイルを書き出す。
+        /// </summary>
+        /// <param name="writer">デフォルト素材名</param>
+        public void SaveAs(System.IO.StreamWriter writer, string defaultName)
+        {
+            writer.WriteLine("# Material information.");
+            // 表示名
+            if (displayNames != null)
+            {
+                foreach (var entry in DisplayNames)
                 {
-                    int no = 1;
-                    foreach (var entry in Layers)
+                    writer.WriteLine($"Name.{entry.Key} = {entry.Value}");
+                }
+            }
+            else
+            {
+                writer.WriteLine($"Name.default = {defaultName}");
+            }
+
+
+            // レイヤー
+            if (layers != null)
+            {
+                int no = 1;
+                foreach (var entry in Layers)
+                {
+                    writer.WriteLine($"# Layer{no}");
+                    MaterialLayerInfo layer = entry.Value;
+                    writer.WriteLine($"Layer.{layer.Name}.Path = {layer.Path}");
+                    writer.WriteLine($"Layer.{layer.Name}.Type = {layer.LayerType.ToString()}");
+                    if (layer.ColorPartsRefs != null)
                     {
-                        writer.WriteLine($"# Layer{no}");
-                        MaterialLayerInfo layer = entry.Value;
-                        writer.WriteLine($"Layer.{layer.Name}.Path = {layer.Path}");
-                        writer.WriteLine($"Layer.{layer.Name}.Type = {layer.LayerType.ToString()}");
-                        if (layer.ColorPartsRefs != null)
-                        {
-                            writer.WriteLine($"Layer.{layer.Name}.ColorPartsRefs = {layer.ColorPartsRefs.ToString()}");
-                        }
-                        if (!string.IsNullOrEmpty(layer.ColorPropertyName))
-                        {
-                            writer.WriteLine($"Layer.{layer.Name}.ColorPropertyName = {layer.ColorPropertyName}");
-                        }
-                        writer.WriteLine($"Layer.{layer.Name}.Attribute = {GetAttributeString(layer)}");
-                        no++;
+                        writer.WriteLine($"Layer.{layer.Name}.ColorPartsRefs = {layer.ColorPartsRefs.ToString()}");
                     }
+                    if (!string.IsNullOrEmpty(layer.ColorPropertyName))
+                    {
+                        writer.WriteLine($"Layer.{layer.Name}.ColorPropertyName = {layer.ColorPropertyName}");
+                    }
+                    writer.WriteLine($"Layer.{layer.Name}.Attribute = {GetAttributeString(layer)}");
+                    no++;
                 }
             }
         }
@@ -293,36 +329,45 @@ namespace CharaChipGen.Model.Material
 
             using (var reader = new System.IO.StreamReader(System.IO.File.OpenRead(Path)))
             {
-                displayNames.Clear();
-                displayNames["default"] = System.IO.Path.GetFileNameWithoutExtension(Path);
-                layers.Clear();
+                Load(reader);
+            }
+        }
 
-                string[] lines = reader.ReadToEnd().Split('\n');
-                for (int i = 0; i < lines.Length; i++)
+        /// <summary>
+        /// ストリームから読み込みする。
+        /// </summary>
+        /// <param name="reader">読み込み元</param>
+        private void Load(System.IO.StreamReader reader)
+        {
+            displayNames.Clear();
+            displayNames["default"] = System.IO.Path.GetFileNameWithoutExtension(Path);
+            layers.Clear();
+
+            string[] lines = reader.ReadToEnd().Split('\n');
+            for (int i = 0; i < lines.Length; i++)
+            {
+                string line = lines[i];
+                if (line.StartsWith("#"))
                 {
-                    string line = lines[i];
-                    if (line.StartsWith("#"))
-                    {
-                        continue;
-                    }
-                    int index = line.IndexOf('=');
-                    if (index <= 0)
-                    {
-                        continue;
-                    }
-                    string key = line.Substring(0, index).Trim();
-                    string value = line.Substring(index + 1).Trim();
-                    if (string.IsNullOrEmpty(key) || string.IsNullOrEmpty(value))
-                    {
-                        continue;
-                    }
-                    if (((value[0] == '\"') && (value[value.Length - 1] == '\"'))
-                        || ((value[0] == '\'') && (value[value.Length - 1] == '\'')))
-                    {
-                        value = value.Substring(1, value.Length - 2);
-                    }
-                    SetValue(key, value);
+                    continue;
                 }
+                int index = line.IndexOf('=');
+                if (index <= 0)
+                {
+                    continue;
+                }
+                string key = line.Substring(0, index).Trim();
+                string value = line.Substring(index + 1).Trim();
+                if (string.IsNullOrEmpty(key) || string.IsNullOrEmpty(value))
+                {
+                    continue;
+                }
+                if (((value[0] == '\"') && (value[value.Length - 1] == '\"'))
+                    || ((value[0] == '\'') && (value[value.Length - 1] == '\'')))
+                {
+                    value = value.Substring(1, value.Length - 2);
+                }
+                SetValue(key, value);
             }
         }
 

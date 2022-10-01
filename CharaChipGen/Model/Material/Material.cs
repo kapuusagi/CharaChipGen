@@ -1,6 +1,8 @@
 ﻿using System;
 using System.Drawing;
+using System.IO;
 using System.Linq;
+using System.Text;
 
 namespace CharaChipGen.Model.Material
 {
@@ -100,6 +102,23 @@ namespace CharaChipGen.Model.Material
         public void Reload()
         {
             entryFile.Load();
+        }
+
+        /// <summary>
+        /// このマテリアルの設定を表すテキストデータを得る。
+        /// </summary>
+        /// <returns>テキストデータ</returns>
+        public string GetData()
+        {
+            using (var ms = new System.IO.MemoryStream())
+            {
+                using (var writer = new System.IO.StreamWriter(ms))
+                {
+                    var defaultName = System.IO.Path.GetFileNameWithoutExtension(entryFile.Path);
+                    entryFile.SaveAs(writer);
+                    return Encoding.UTF8.GetString(ms.GetBuffer()).Trim();
+                }
+            }
         }
 
         /// <summary>

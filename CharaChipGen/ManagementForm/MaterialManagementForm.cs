@@ -233,6 +233,7 @@ namespace CharaChipGen.ManagementForm
 
             listViewMaterials.Items.RemoveAt(index);
             listViewMaterials.Items.Insert(index, GenerateListViewMaterial(material));
+            listViewMaterials.SelectedIndices.Clear();
             listViewMaterials.SelectedIndices.Add(index);
         }
 
@@ -350,10 +351,32 @@ namespace CharaChipGen.ManagementForm
         /// 
         /// 選択されているマテリアルリストが存在しない場合にはnullが返る。
         /// </summary>
-        /// <returns></returns>
+        /// <returns>MaterialListオブジェクト</returns>
         private MaterialList GetCurrentMaterialList()
         {
             return GetMaterialList(GetCurrentNodeName());
+        }
+
+        /// <summary>
+        /// 現在選択されているマテリアルリスト上の、indexで指定される素材エントリを得る。
+        /// 
+        /// 選択されているマテリアルリストが無かったり、indexが範囲外の場合にはnullが帰る。
+        /// </summary>
+        /// <param name="index">インデックス番号</param>
+        /// <returns>Materialオブジェクト</returns>
+        private Material GetMaterial(int index)
+        {
+            var selectedItem = listViewMaterials.Items[index];
+            var materialList = GetCurrentMaterialList();
+            if (selectedItem == null)
+            {
+                return null;
+            }
+            else
+            {
+                var materialName = selectedItem.SubItems[0].Text;
+                return materialList.Get(materialName);
+            }
         }
 
         /// <summary>
@@ -420,7 +443,7 @@ namespace CharaChipGen.ManagementForm
             var newName = inputText.Trim();
             CheckMaterialName(materialList, newName);
 
-            // エントリファイルのパス名を変更
+            // エントリファイルをリネーム
             var entryFilePath = System.IO.Path.Combine(
                 AppData.Instance.MaterialDirectory, targetMaterial.RelativePath);
             var dstRelativePath = System.IO.Path.Combine(materialList.SubDirectoryName,
@@ -560,6 +583,8 @@ namespace CharaChipGen.ManagementForm
             }
         }
 
+
+
         /// <summary>
         /// フォルダ閲覧ボタンがクリックされたときに通知を受け取る。
         /// </summary>
@@ -590,6 +615,18 @@ namespace CharaChipGen.ManagementForm
                 {
                     ProcessRename(listViewMaterials.Items[selectedIndex]);
                 }
+                else if ((e.KeyCode == Keys.Delete) && IsControlDown() && (selectedIndex != -1))
+                {
+                    ProcessDelete(selectedIndex);
+                }
+                else if ((e.KeyCode == Keys.C) && IsControlDown() && (selectedIndex != -1))
+                {
+                    ProcessCopyToClipboard(selectedIndex);
+                }
+                else if ((e.KeyCode == Keys.V) && IsControlDown())
+                {
+                    ProcessCopyFromClipboard();
+                }
             }
             catch (Exception ex)
             {
@@ -597,5 +634,78 @@ namespace CharaChipGen.ManagementForm
             }
         }
 
+        /// <summary>
+        /// indexで指定された項目を削除する。
+        /// </summary>
+        /// <param name="index">インデックス番号</param>
+        private void ProcessDelete(int index)
+        {
+            var material = GetMaterial(index);
+            if (material == null)
+            {
+                return;
+            }
+
+            var materialList = GetCurrentMaterialList();
+
+            // リストビューアイテムの1項目目はマテリアル名
+            materialList.Delete(material.Name);
+
+            // 実際のファイルの削除処理
+            // エントリファイルだけ削除する。
+            var path = System.IO.Path.Combine(
+                AppData.Instance.MaterialDirectory, material.RelativePath);
+            System.IO.File.Delete(path);
+            UpdateMaterialListView();
+        }
+
+        /// <summary>
+        /// Controlキーが押下されているかどうかを判定する。
+        /// </summary>
+        /// <returns>押下されている場合にはtrue, それ以外はfalse.</returns>
+        private bool IsControlDown()
+        {
+            return ((ModifierKeys & Keys.Control) == Keys.Control);
+        }
+
+        /// <summary>
+        /// クリップボードにコピーする。
+        /// </summary>
+        private void ProcessCopyToClipboard(int selectedIndex)
+        {
+            var material = GetMaterial(selectedIndex);
+            if (material == null)
+            {
+                return;
+            }
+
+            Clipboard.SetText(material.GetData());
+        }
+
+        /// <summary>
+        /// クリップボードからコピーする。
+        /// </summary>
+        private void ProcessCopyFromClipboard()
+        {
+            var materialList = GetCurrentMaterialList();
+            var newName = GenerateName(materialList);
+            CheckMaterialName(materialList, newName);
+
+            var dstRelativePath = System.IO.Path.Combine(materialList.SubDirectoryName,
+                $"{newName}{MaterialEntryFile.EntryFileSuffix}");
+            var dstFilePath = System.IO.Path.Combine(AppData.Instance.MaterialDirectory,
+                dstRelativePath);
+
+            var dataText = Clipboard.GetText();
+            var newMaterial = new Material(dstRelativePath, MaterialEntryFile.CreateFrom(dstFilePath, dataText));
+
+            materialList.Add(newMaterial);
+
+            var newListViewItem = GenerateListViewMaterial(newMaterial);
+            listViewMaterials.Items.Add(newListViewItem);
+            var index = listViewMaterials.Items.IndexOf(newListViewItem);
+            listViewMaterials.SelectedIndices.Clear();
+            listViewMaterials.SelectedIndices.Add(index);
+        }
     }
 }
