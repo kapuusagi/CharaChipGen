@@ -390,8 +390,23 @@ namespace CharaChipGen.ManagementForm
                 return;
             }
 
+            try
+            {
+                ProcessRename(items[0]);
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show(this, ex.Message, Resources.DialogTitleError);
+            }
+        }
+        /// <summary>
+        /// リネーム処理する
+        /// </summary>
+        /// <param name="listViewItem"></param>
+        private void ProcessRename(ListViewItem listViewItem)
+        { 
             var materialList = GetCurrentMaterialList();
-            var targetMaterial = materialList.Get(items[0].SubItems[0].Text);
+            var targetMaterial = materialList.Get(listViewItem.SubItems[0].Text);
             string inputText = InputForm.InputForm.ShowDialog(this,
                 Resources.MessageInputMaterialName, Resources.DialogTitleChangeMaterialName,
                 targetMaterial.Name);
@@ -402,32 +417,28 @@ namespace CharaChipGen.ManagementForm
             }
 
             // 素材の名前を変更する
-            try
-            {
-                var newName = inputText.Trim();
-                CheckMaterialName(materialList, newName);
+            var newName = inputText.Trim();
+            CheckMaterialName(materialList, newName);
 
-                // エントリファイルのパス名を変更
-                var entryFilePath = System.IO.Path.Combine(
-                    AppData.Instance.MaterialDirectory, targetMaterial.RelativePath);
-                var dstRelativePath = System.IO.Path.Combine(materialList.SubDirectoryName,
-                    $"{newName}{MaterialEntryFile.EntryFileSuffix}");
-                var dstFilePath = System.IO.Path.Combine(AppData.Instance.MaterialDirectory,
-                    dstRelativePath);
-                System.IO.File.Move(entryFilePath, dstFilePath);
+            // エントリファイルのパス名を変更
+            var entryFilePath = System.IO.Path.Combine(
+                AppData.Instance.MaterialDirectory, targetMaterial.RelativePath);
+            var dstRelativePath = System.IO.Path.Combine(materialList.SubDirectoryName,
+                $"{newName}{MaterialEntryFile.EntryFileSuffix}");
+            var dstFilePath = System.IO.Path.Combine(AppData.Instance.MaterialDirectory,
+                dstRelativePath);
+            System.IO.File.Move(entryFilePath, dstFilePath);
 
-                // 素材リストの素材を入れ替え
-                var newMaterial = new Material(dstRelativePath, new MaterialEntryFile(dstFilePath));
-                materialList.Delete(targetMaterial);
-                materialList.Add(newMaterial);
+            // 素材リストの素材を入れ替え
+            var newMaterial = new Material(dstRelativePath, new MaterialEntryFile(dstFilePath));
+            materialList.Delete(targetMaterial);
+            materialList.Add(newMaterial);
 
-                listViewMaterials.Items.Remove(items[0]);
-                listViewMaterials.Items.Add(GenerateListViewMaterial(newMaterial));
-            }
-            catch (Exception ex)
-            {
-                MessageBox.Show(this, ex.Message, Resources.DialogTitleError);
-            }
+            listViewMaterials.Items.Remove(listViewItem);
+            var newListViewItem = GenerateListViewMaterial(newMaterial);
+            listViewMaterials.Items.Add(newListViewItem);
+            var index = listViewMaterials.Items.IndexOf(newListViewItem);
+            listViewMaterials.SelectedIndices.Add(index);
         }
 
         /// <summary>
@@ -567,15 +578,17 @@ namespace CharaChipGen.ManagementForm
         /// <param name="e">イベントオブジェクト</param>
         private void OnListViewMaterialsKeyDown(object sender, KeyEventArgs e)
         {
+            var selectedIndex = (listViewMaterials.SelectedIndices.Count == 1) ? listViewMaterials.SelectedIndices[0] : -1;
+
             try
             {
-                if (e.KeyCode == Keys.Enter)
+                if ((e.KeyCode == Keys.Enter) && (selectedIndex != -1))
                 {
-                    var selectedIndics = listViewMaterials.SelectedIndices;
-                    if (selectedIndics.Count == 1)
-                    {
-                        ProcessEditMaterial(selectedIndics[0]);
-                    }
+                    ProcessEditMaterial(selectedIndex);
+                }
+                else if ((e.KeyCode == Keys.F2) && (selectedIndex != -1))
+                {
+                    ProcessRename(listViewMaterials.Items[selectedIndex]);
                 }
             }
             catch (Exception ex)
@@ -583,5 +596,6 @@ namespace CharaChipGen.ManagementForm
                 MessageBox.Show(this, ex.Message, Resources.DialogTitleError);
             }
         }
+
     }
 }
