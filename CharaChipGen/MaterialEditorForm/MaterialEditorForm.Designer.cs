@@ -46,10 +46,10 @@
             this.panel3 = new System.Windows.Forms.Panel();
             this.groupBox1 = new System.Windows.Forms.GroupBox();
             this.listBoxLayers = new System.Windows.Forms.ListBox();
-            this.materialEditorLayerView = new CharaChipGen.MaterialEditorForm.MaterialEditorLayerView();
             this.menuStrip1 = new System.Windows.Forms.MenuStrip();
             this.optionToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.menuItemImageBackground = new System.Windows.Forms.ToolStripMenuItem();
+            this.materialEditorLayerView = new CharaChipGen.MaterialEditorForm.MaterialEditorLayerView();
             this.panel1.SuspendLayout();
             this.flowLayoutPanel1.SuspendLayout();
             this.flowLayoutPanel2.SuspendLayout();
@@ -184,13 +184,6 @@
             this.listBoxLayers.DragEnter += new System.Windows.Forms.DragEventHandler(this.OnListBoxLayersDragEnter);
             this.listBoxLayers.KeyDown += new System.Windows.Forms.KeyEventHandler(this.OnListBoxLayersKeyDown);
             // 
-            // materialEditorLayerView
-            // 
-            this.materialEditorLayerView.AllowDrop = true;
-            resources.ApplyResources(this.materialEditorLayerView, "materialEditorLayerView");
-            this.materialEditorLayerView.ImageBackground = System.Drawing.SystemColors.Control;
-            this.materialEditorLayerView.Name = "materialEditorLayerView";
-            // 
             // menuStrip1
             // 
             this.menuStrip1.Items.AddRange(new System.Windows.Forms.ToolStripItem[] {
@@ -210,6 +203,13 @@
             this.menuItemImageBackground.Name = "menuItemImageBackground";
             resources.ApplyResources(this.menuItemImageBackground, "menuItemImageBackground");
             this.menuItemImageBackground.Click += new System.EventHandler(this.OnMenuItemImageBackgroundClick);
+            // 
+            // materialEditorLayerView
+            // 
+            this.materialEditorLayerView.AllowDrop = true;
+            resources.ApplyResources(this.materialEditorLayerView, "materialEditorLayerView");
+            this.materialEditorLayerView.ImageBackground = System.Drawing.SystemColors.Control;
+            this.materialEditorLayerView.Name = "materialEditorLayerView";
             // 
             // MaterialEditorForm
             // 

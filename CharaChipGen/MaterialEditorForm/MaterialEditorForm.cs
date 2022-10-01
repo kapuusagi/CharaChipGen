@@ -206,6 +206,10 @@ namespace CharaChipGen.MaterialEditorForm
         private void OnButtonRenameLayerClick(object sender, EventArgs e)
         {
             MaterialLayerInfo targetLayerInfo = (MaterialLayerInfo)(listBoxLayers.SelectedItem);
+            if (targetLayerInfo == null)
+            {
+                return;
+            }
             string inputText = InputForm.InputForm.ShowDialog(this, Resources.MessageInputLayerName,
                 Resources.DialogTitleInput, targetLayerInfo.Name);
             if (inputText == null)
@@ -510,6 +514,43 @@ namespace CharaChipGen.MaterialEditorForm
             {
                 OnCancelButtonClicked(sender, e);
             }
+            else if (e.KeyCode == Keys.Delete)
+            {
+                OnDeleteLayerButtonClicked(sender, e);
+            }
+            else if (e.KeyCode == Keys.F2)
+            {
+                OnButtonRenameLayerClick(sender, e);
+            }
+            else if ((e.KeyCode == Keys.Up) && IsShiftKeyDown())
+            {
+                OnButtonUpLayerClick(sender, e);
+            }
+            else if ((e.KeyCode == Keys.Down) && IsShiftKeyDown())
+            {
+                OnButtonDownLayerClick(sender, e);
+            }
+            else if ((e.KeyCode == Keys.N) && IsControlKeyDown())
+            {
+                OnButtonAddLayerClick(sender, e);
+            }
+        }
+
+        /// <summary>
+        /// Shiftキーが押下されているかどうかを判定する。
+        /// </summary>
+        /// <returns>Shiftキーが押下されている場合にはtrue, それ以外はfalse.</returns>
+        private bool IsShiftKeyDown()
+        {
+            return ((ModifierKeys & Keys.Shift) == Keys.Shift);
+        }
+        /// <summary>
+        /// Controlキーが押下されているかどうかを判定する。
+        /// </summary>
+        /// <returns>Controlキーが押下されている場合にはtrue, それ以外はfalse.</returns>
+        private bool IsControlKeyDown()
+        {
+            return ((ModifierKeys & Keys.Control) == Keys.Control);
         }
     }
 }
