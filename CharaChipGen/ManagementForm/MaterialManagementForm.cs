@@ -193,38 +193,47 @@ namespace CharaChipGen.ManagementForm
 
             try
             {
-                int selectedIndex = selectedIndices[0];
-                var selectedItem = listViewMaterials.Items[selectedIndex];
-                var materialList = GetCurrentMaterialList();
-                var materialName = selectedItem.SubItems[0].Text;
-                var material = materialList.Get(materialName);
-                if (material == null)
-                {
-                    return;
-                }
-                var form = new MaterialEditorForm.MaterialEditorForm();
-
-                string entryFilePath = System.IO.Path.Combine(
-                    AppData.Instance.MaterialDirectory, material.RelativePath);
-                var entryFile = MaterialEntryFile.LoadFrom(entryFilePath);
-                form.MaterialEntryFile = entryFile;
-                if (form.ShowDialog(this) != DialogResult.OK)
-                {
-                    return;
-                }
-
-                // 編集反映処理
-                ApplyEdit(entryFile);
-
-                material.Reload(); // 更新する。
-
-                listViewMaterials.Items.RemoveAt(selectedIndex);
-                listViewMaterials.Items.Insert(selectedIndex, GenerateListViewMaterial(material));
+                ProcessEditMaterial(selectedIndices[0]);
             }
             catch (Exception ex)
             {
                 MessageBox.Show(this, ex.Message, Resources.DialogTitleError);
             }
+        }
+
+        /// <summary>
+        /// indexで指定された素材の編集操作を行う。
+        /// </summary>
+        /// <param name="index">インデックス番号</param>
+        private void ProcessEditMaterial(int index)
+        {
+            var selectedItem = listViewMaterials.Items[index];
+            var materialList = GetCurrentMaterialList();
+            var materialName = selectedItem.SubItems[0].Text;
+            var material = materialList.Get(materialName);
+            if (material == null)
+            {
+                return;
+            }
+            var form = new MaterialEditorForm.MaterialEditorForm();
+
+            string entryFilePath = System.IO.Path.Combine(
+                AppData.Instance.MaterialDirectory, material.RelativePath);
+            var entryFile = MaterialEntryFile.LoadFrom(entryFilePath);
+            form.MaterialEntryFile = entryFile;
+            if (form.ShowDialog(this) != DialogResult.OK)
+            {
+                return;
+            }
+
+            // 編集反映処理
+            ApplyEdit(entryFile);
+
+            material.Reload(); // 更新する。
+
+            listViewMaterials.Items.RemoveAt(index);
+            listViewMaterials.Items.Insert(index, GenerateListViewMaterial(material));
+            listViewMaterials.SelectedIndices.Add(index);
         }
 
         /// <summary>
@@ -549,6 +558,30 @@ namespace CharaChipGen.ManagementForm
         {
             var materialDir = AppData.Instance.MaterialDirectory;
             System.Diagnostics.Process.Start("EXPLORER.EXE", materialDir);
+        }
+
+        /// <summary>
+        /// リストビューでキーが押されたときの処理を行う
+        /// </summary>
+        /// <param name="sender">送信元オブジェクト</param>
+        /// <param name="e">イベントオブジェクト</param>
+        private void OnListViewMaterialsKeyDown(object sender, KeyEventArgs e)
+        {
+            try
+            {
+                if (e.KeyCode == Keys.Enter)
+                {
+                    var selectedIndics = listViewMaterials.SelectedIndices;
+                    if (selectedIndics.Count == 1)
+                    {
+                        ProcessEditMaterial(selectedIndics[0]);
+                    }
+                }
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show(this, ex.Message, Resources.DialogTitleError);
+            }
         }
     }
 }

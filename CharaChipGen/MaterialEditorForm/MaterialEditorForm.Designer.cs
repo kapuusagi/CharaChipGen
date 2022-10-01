@@ -186,6 +186,7 @@
             // 
             // materialEditorLayerView
             // 
+            this.materialEditorLayerView.AllowDrop = true;
             resources.ApplyResources(this.materialEditorLayerView, "materialEditorLayerView");
             this.materialEditorLayerView.ImageBackground = System.Drawing.SystemColors.Control;
             this.materialEditorLayerView.Name = "materialEditorLayerView";

@@ -75,22 +75,22 @@
             // 
             // menuStrip1
             // 
-            resources.ApplyResources(this.menuStrip1, "menuStrip1");
             this.menuStrip1.Items.AddRange(new System.Windows.Forms.ToolStripItem[] {
             this.menuItemFile});
+            resources.ApplyResources(this.menuStrip1, "menuStrip1");
             this.menuStrip1.Name = "menuStrip1";
             // 
             // menuItemFile
             // 
-            resources.ApplyResources(this.menuItemFile, "menuItemFile");
             this.menuItemFile.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] {
             this.menuItemClose});
             this.menuItemFile.Name = "menuItemFile";
+            resources.ApplyResources(this.menuItemFile, "menuItemFile");
             // 
             // menuItemClose
             // 
-            resources.ApplyResources(this.menuItemClose, "menuItemClose");
             this.menuItemClose.Name = "menuItemClose";
+            resources.ApplyResources(this.menuItemClose, "menuItemClose");
             this.menuItemClose.Click += new System.EventHandler(this.OnMenuItemCloseClick);
             // 
             // treeViewMaterials
@@ -103,17 +103,18 @@
             // 
             // listViewMaterials
             // 
-            resources.ApplyResources(this.listViewMaterials, "listViewMaterials");
             this.listViewMaterials.Columns.AddRange(new System.Windows.Forms.ColumnHeader[] {
             this.columnHeaderName,
             this.columnHeaderDisplayName,
             this.columnHeaderPath});
+            resources.ApplyResources(this.listViewMaterials, "listViewMaterials");
             this.listViewMaterials.HideSelection = false;
             this.listViewMaterials.Name = "listViewMaterials";
             this.listViewMaterials.UseCompatibleStateImageBehavior = false;
             this.listViewMaterials.View = System.Windows.Forms.View.Details;
             this.listViewMaterials.ItemSelectionChanged += new System.Windows.Forms.ListViewItemSelectionChangedEventHandler(this.OnMaterialListSelectionChanged);
             this.listViewMaterials.DoubleClick += new System.EventHandler(this.OnMaterialEditClicked);
+            this.listViewMaterials.KeyDown += new System.Windows.Forms.KeyEventHandler(this.OnListViewMaterialsKeyDown);
             // 
             // columnHeaderName
             // 
@@ -129,16 +130,16 @@
             // 
             // groupBoxMaterial
             // 
-            resources.ApplyResources(this.groupBoxMaterial, "groupBoxMaterial");
             this.groupBoxMaterial.Controls.Add(this.panel4);
             this.groupBoxMaterial.Controls.Add(this.flowLayoutPanel2);
+            resources.ApplyResources(this.groupBoxMaterial, "groupBoxMaterial");
             this.groupBoxMaterial.Name = "groupBoxMaterial";
             this.groupBoxMaterial.TabStop = false;
             // 
             // panel4
             // 
-            resources.ApplyResources(this.panel4, "panel4");
             this.panel4.Controls.Add(this.listViewMaterials);
+            resources.ApplyResources(this.panel4, "panel4");
             this.panel4.Name = "panel4";
             // 
             // flowLayoutPanel2
@@ -212,9 +213,9 @@
             // 
             // panel1
             // 
-            resources.ApplyResources(this.panel1, "panel1");
             this.panel1.Controls.Add(this.flowLayoutPanel3);
             this.panel1.Controls.Add(this.labelDirectory);
+            resources.ApplyResources(this.panel1, "panel1");
             this.panel1.Name = "panel1";
             // 
             // flowLayoutPanel3
@@ -232,14 +233,14 @@
             // 
             // panel2
             // 
-            resources.ApplyResources(this.panel2, "panel2");
             this.panel2.Controls.Add(this.treeViewMaterials);
+            resources.ApplyResources(this.panel2, "panel2");
             this.panel2.Name = "panel2";
             // 
             // panel3
             // 
-            resources.ApplyResources(this.panel3, "panel3");
             this.panel3.Controls.Add(this.groupBoxMaterial);
+            resources.ApplyResources(this.panel3, "panel3");
             this.panel3.Name = "panel3";
             // 
             // MaterialManagementForm
