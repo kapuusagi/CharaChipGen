@@ -89,6 +89,12 @@ namespace CharaChipGen.MaterialEditorForm
         /// <param name="sender">送信元オブジェクト</param>
         /// <param name="e">イベントオブジェクト</param>
         private void OnCancelButtonClicked(object sender, EventArgs e)
+            => ProcessCancel();
+
+        /// <summary>
+        /// キャンセル処理してウィンドウを閉じる。
+        /// </summary>
+        private void ProcessCancel()
         {
             Close();
         }
@@ -99,6 +105,14 @@ namespace CharaChipGen.MaterialEditorForm
         /// <param name="sender">送信元オブジェクト</param>
         /// <param name="e">イベントオブジェクト</param>
         private void OnSaveButtonClicked(object sender, EventArgs e)
+        {
+            ProcessSave();
+        }
+
+        /// <summary>
+        /// 保存処理をしてウィンドウを閉じる
+        /// </summary>
+        private void ProcessSave()
         {
             if (textBoxMaterialName.Text.Length == 0)
             {
@@ -141,6 +155,21 @@ namespace CharaChipGen.MaterialEditorForm
         /// <param name="e">イベントオブジェクト</param>
         private void OnDeleteLayerButtonClicked(object sender, EventArgs e)
         {
+            try
+            {
+                ProcessDeleteLayer();
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show(this, ex.Message, Resources.DialogTitleError);
+            }
+        }
+
+        /// <summary>
+        /// レイヤーの削除処理をする。
+        /// </summary>
+        private void ProcessDeleteLayer()
+        {
             int index = listBoxLayers.SelectedIndex;
             if (index >= 0)
             {
@@ -174,23 +203,9 @@ namespace CharaChipGen.MaterialEditorForm
         /// <param name="e">イベントオブジェクト</param>
         private void OnButtonAddLayerClick(object sender, EventArgs e)
         {
-            string defaultLayerName = GenerateDefaultLayerName();
-            string inputText = InputForm.InputForm.ShowDialog(this, Resources.MessageInputLayerName, 
-                Resources.DialogTitleInput, defaultLayerName);
-            if (inputText == null)
-            {
-                return;
-            }
-
             try
             {
-                string layerName = inputText.Trim();
-                CheckLayerName(layerName);
-
-                // 適用可能
-                MaterialLayerInfo layerInfo = new MaterialLayerInfo(layerName);
-                entryFile.Layers.Add(layerName, layerInfo);
-                listBoxLayers.Items.Add(layerInfo);
+                ProcessAddLayer();
             }
             catch (Exception ex)
             {
@@ -199,11 +214,48 @@ namespace CharaChipGen.MaterialEditorForm
         }
 
         /// <summary>
+        /// レイヤーの追加処理を行う。
+        /// </summary>
+        private void ProcessAddLayer()
+        { 
+            string defaultLayerName = GenerateDefaultLayerName();
+            string inputText = InputForm.InputForm.ShowDialog(this, Resources.MessageInputLayerName, 
+                Resources.DialogTitleInput, defaultLayerName);
+            if (inputText == null)
+            {
+                return;
+            }
+
+
+            string layerName = inputText.Trim();
+            CheckLayerName(layerName);
+
+            // 適用可能
+            MaterialLayerInfo layerInfo = new MaterialLayerInfo(layerName);
+            entryFile.Layers.Add(layerName, layerInfo);
+            listBoxLayers.Items.Add(layerInfo);
+        }
+
+        /// <summary>
         /// レイヤー名変更ボタンがクリックされたときに通知を受け取る。
         /// </summary>
         /// <param name="sender">送信元オブジェクト</param>
         /// <param name="e">イベントオブジェクト</param>
         private void OnButtonRenameLayerClick(object sender, EventArgs e)
+        {
+            try
+            {
+                ProcessRenameLayer();
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show(this, ex.Message, Resources.DialogTitleError);
+            }
+        }
+        /// <summary>
+        /// レイヤーリネーム処理を行う。
+        /// </summary>
+        private void ProcessRenameLayer()
         {
             MaterialLayerInfo targetLayerInfo = (MaterialLayerInfo)(listBoxLayers.SelectedItem);
             if (targetLayerInfo == null)
@@ -224,33 +276,25 @@ namespace CharaChipGen.MaterialEditorForm
                 return;
             }
 
-            try
+
+            // 使用不可能な文字が使われていないか？
+            CheckLayerName(newLayerName);
+
+            // 適用可能
+            entryFile.Layers.Remove(targetLayerInfo.Name);
+            int selIndex = listBoxLayers.SelectedIndex;
+            listBoxLayers.Items.RemoveAt(selIndex);
+
+            MaterialLayerInfo layerInfo = new MaterialLayerInfo(newLayerName)
             {
-                // 使用不可能な文字が使われていないか？
-                CheckLayerName(newLayerName);
+                Path = targetLayerInfo.Path,
+                LayerType = targetLayerInfo.LayerType,
+                ColorPartsRefs = targetLayerInfo.ColorPartsRefs,
+                ColorPropertyName = targetLayerInfo.ColorPropertyName
+            };
 
-                // 適用可能
-                entryFile.Layers.Remove(targetLayerInfo.Name);
-                int selIndex = listBoxLayers.SelectedIndex;
-                listBoxLayers.Items.RemoveAt(selIndex);
-
-                MaterialLayerInfo layerInfo = new MaterialLayerInfo(newLayerName)
-                {
-                    Path = targetLayerInfo.Path,
-                    LayerType = targetLayerInfo.LayerType,
-                    ColorPartsRefs = targetLayerInfo.ColorPartsRefs,
-                    ColorPropertyName = targetLayerInfo.ColorPropertyName
-                };
-
-                entryFile.Layers.Add(newLayerName, layerInfo);
-                listBoxLayers.Items.Insert(selIndex, layerInfo);
-
-                listBoxLayers.SelectedIndex = selIndex;
-            }
-            catch (Exception ex)
-            {
-                MessageBox.Show(this, ex.Message, Resources.DialogTitleError);
-            }
+            entryFile.Layers.Add(newLayerName, layerInfo);
+            listBoxLayers.Items.Insert(selIndex, layerInfo);
         }
 
         /// <summary>
@@ -305,8 +349,8 @@ namespace CharaChipGen.MaterialEditorForm
         /// <summary>
         /// 下へ移動ボタンがクリックされた時に通知を受け取る。
         /// </summary>
-        /// <param name="sender"></param>
-        /// <param name="e"></param>
+        /// <param name="sender">送信元オブジェクト</param>
+        /// <param name="e">イベントオブジェクト</param>
         private void OnButtonDownLayerClick(object sender, EventArgs e)
         {
             try
@@ -346,16 +390,29 @@ namespace CharaChipGen.MaterialEditorForm
             layers.RemoveAt(selectedIndex);
             layers.Insert(newIndex, targetLayer);
 
-            // Dictionaryを再構築。なんて面倒な！
+            // Dictionaryの並び順は制御できないので、
+            // Dictionaryを再構築する。なんて面倒な！
             entryFile.Layers.Clear();
-            listBoxLayers.Items.Clear();
             foreach (MaterialLayerInfo layer in layers)
             {
                 entryFile.Layers.Add(layer.Name, layer);
-                listBoxLayers.Items.Add(layer);
             }
 
+            ModelToUI();
+            //var item = listBoxLayers.Items[selectedIndex];
+            //listBoxLayers.Items.RemoveAt(selectedIndex);
+            //listBoxLayers.Items.Insert(newIndex, item);
             listBoxLayers.SelectedIndex = newIndex;
+
+
+            //listBoxLayers.Items.Clear();
+            //foreach (MaterialLayerInfo layer in layers)
+            //{
+            //    entryFile.Layers.Add(layer.Name, layer);
+            //    listBoxLayers.Items.Add(layer);
+            //}
+
+            //listBoxLayers.SelectedItem = targetLayer;
         }
 
         /// <summary>
@@ -387,6 +444,14 @@ namespace CharaChipGen.MaterialEditorForm
         /// <param name="sender">送信元オブジェクト</param>
         /// <param name="e">イベントオブジェクト</param>
         private void OnButtonPreviewClick(object sender, EventArgs e)
+        {
+            ProcessShowMaterialPreview();
+        }
+
+        /// <summary>
+        /// プレビューを表示する。
+        /// </summary>
+        private void ProcessShowMaterialPreview()
         {
             Material material = new Material("", entryFile);
             MaterialViewForm.MaterialViewForm form
@@ -506,33 +571,44 @@ namespace CharaChipGen.MaterialEditorForm
         /// <param name="e">イベントオブジェクト</param>
         private void OnFormKeyDown(object sender, KeyEventArgs e)
         {
-            if (e.KeyCode == Keys.Enter)
+            try
             {
-                OnSaveButtonClicked(sender, e);
+                if (e.KeyCode == Keys.Enter)
+                {
+                    ProcessSave();
+                }
+                else if (e.KeyCode == Keys.Escape)
+                {
+                    ProcessCancel();
+                }
+                else if (e.KeyCode == Keys.Delete)
+                {
+                    ProcessDeleteLayer();
+                }
+                else if (e.KeyCode == Keys.F2)
+                {
+                    ProcessRenameLayer();
+                }
+                else if ((e.KeyCode == Keys.Up) && IsShiftKeyDown())
+                {
+                    ModifyLayerOrder(-1);
+                }
+                else if ((e.KeyCode == Keys.Down) && IsShiftKeyDown())
+                {
+                    ModifyLayerOrder(1);
+                }
+                else if ((e.KeyCode == Keys.N) && IsControlKeyDown())
+                {
+                    ProcessAddLayer();
+                }
+                else if ((e.KeyCode == Keys.P) && IsControlKeyDown())
+                {
+                    ProcessShowMaterialPreview();
+                }
             }
-            else if (e.KeyCode == Keys.Escape)
+            catch (Exception ex)
             {
-                OnCancelButtonClicked(sender, e);
-            }
-            else if (e.KeyCode == Keys.Delete)
-            {
-                OnDeleteLayerButtonClicked(sender, e);
-            }
-            else if (e.KeyCode == Keys.F2)
-            {
-                OnButtonRenameLayerClick(sender, e);
-            }
-            else if ((e.KeyCode == Keys.Up) && IsShiftKeyDown())
-            {
-                OnButtonUpLayerClick(sender, e);
-            }
-            else if ((e.KeyCode == Keys.Down) && IsShiftKeyDown())
-            {
-                OnButtonDownLayerClick(sender, e);
-            }
-            else if ((e.KeyCode == Keys.N) && IsControlKeyDown())
-            {
-                OnButtonAddLayerClick(sender, e);
+                MessageBox.Show(this, ex.Message, Resources.DialogTitleError);
             }
         }
 
