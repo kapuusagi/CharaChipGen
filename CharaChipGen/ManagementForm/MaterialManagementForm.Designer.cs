@@ -158,7 +158,7 @@
             resources.ApplyResources(this.buttonDelete, "buttonDelete");
             this.buttonDelete.Name = "buttonDelete";
             this.buttonDelete.UseVisualStyleBackColor = true;
-            this.buttonDelete.Click += new System.EventHandler(this.OnMaterialDeleteClicked);
+            this.buttonDelete.Click += new System.EventHandler(this.OnButtonDeleteClicked);
             // 
             // buttonEdit
             // 

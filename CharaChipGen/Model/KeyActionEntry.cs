@@ -45,7 +45,7 @@ namespace CharaChipGen.Model
         /// <param name="key">キー</param>
         /// <returns>ハンドルされる場合にはtrue, それ以外はfalse</returns>
         public bool IsAccept(Keys key)
-            => IsAccept(key, Control.ModifierKeys);
+            => CanAccept(key, Control.ModifierKeys);
 
         /// <summary>
         /// ショートカットがハンドルされるかどうかを判定する。
@@ -53,7 +53,7 @@ namespace CharaChipGen.Model
         /// <param name="key">キー</param>
         /// <param name="modifiers">モディファイアキー</param>
         /// <returns>ハンドルされる場合にはtrue, それ以外はfalse</returns>
-        public bool IsAccept(Keys key, Keys modifiers)
+        public bool CanAccept(Keys key, Keys modifiers)
         {
             return (key == Key)
                 && ((modifiers & Modifiers) == Modifiers);

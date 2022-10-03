@@ -1,7 +1,9 @@
-﻿using CharaChipGen.Model.Material;
-using CharaChipGen.Properties;
-using System;
+﻿using System;
+using System.Collections.Generic;
 using System.Windows.Forms;
+using CharaChipGen.Model.Material;
+using CharaChipGen.Properties;
+using CharaChipGen.Model;
 
 namespace CharaChipGen.ManagementForm
 {
@@ -10,6 +12,7 @@ namespace CharaChipGen.ManagementForm
     /// </summary>
     public partial class MaterialManagementForm : Form
     {
+        private List<KeyActionEntry> formKeyActions = new List<KeyActionEntry>();
         /// <summary>
         /// 新しいインスタンスを構築する。
         /// </summary>
@@ -18,6 +21,12 @@ namespace CharaChipGen.ManagementForm
             InitializeComponent();
             treeViewMaterials.ExpandAll();
             labelDirectory.Text = AppData.Instance.MaterialDirectory;
+
+            formKeyActions.Add(new KeyActionEntry(Keys.Enter, Keys.None, () => ProcessEditMaterial()));
+            formKeyActions.Add(new KeyActionEntry(Keys.F2, Keys.None, () => ProcessRename()));
+            formKeyActions.Add(new KeyActionEntry(Keys.Delete, Keys.Control, () => ProcessDelete()));
+            formKeyActions.Add(new KeyActionEntry(Keys.C, Keys.Control, () => ProcessCopyToClipboard()));
+            formKeyActions.Add(new KeyActionEntry(Keys.V, Keys.Control, () => ProcessCopyFromClipboard()));
         }
 
         /// <summary>
@@ -185,15 +194,10 @@ namespace CharaChipGen.ManagementForm
         /// <param name="e">イベントオブジェクト</param>
         private void OnMaterialEditClicked(object sender, EventArgs e)
         {
-            var selectedIndices = listViewMaterials.SelectedIndices;
-            if (selectedIndices.Count != 1)
-            {
-                return;
-            }
 
             try
             {
-                ProcessEditMaterial(selectedIndices[0]);
+                ProcessEditMaterial();
             }
             catch (Exception ex)
             {
@@ -204,9 +208,15 @@ namespace CharaChipGen.ManagementForm
         /// <summary>
         /// indexで指定された素材の編集操作を行う。
         /// </summary>
-        /// <param name="index">インデックス番号</param>
-        private void ProcessEditMaterial(int index)
+        private void ProcessEditMaterial()
         {
+            var selectedIndices = listViewMaterials.SelectedIndices;
+            if (selectedIndices.Count != 1)
+            {
+                return;
+            }
+            int index = selectedIndices[0];
+
             var selectedItem = listViewMaterials.Items[index];
             var materialList = GetCurrentMaterialList();
             var materialName = selectedItem.SubItems[0].Text;
@@ -304,39 +314,12 @@ namespace CharaChipGen.ManagementForm
         /// </summary>
         /// <param name="sender">送信元オブジェクト</param>
         /// <param name="e">イベントオブジェクト</param>
-        private void OnMaterialDeleteClicked(object sender, EventArgs e)
+        private void OnButtonDeleteClicked(object sender, EventArgs e)
         {
-            var res = MessageBox.Show(this,
-                Resources.MessageConfirmRemoveParts,
-                Resources.DialogTitleConfirm, MessageBoxButtons.YesNo);
-            if (res != DialogResult.Yes)
-            {
-                return;
-            }
-
-            var selItems = listViewMaterials.SelectedItems;
-
             try
             {
-                var materialList = GetCurrentMaterialList();
-                foreach (ListViewItem item in selItems)
-                {
-                    var materialName = item.SubItems[0].Text;
-                    var material = materialList.Get(materialName);
-                    if (material == null)
-                    {
-                        return;
-                    }
+                ProcessDelete();
 
-                    // リストビューアイテムの1項目目はマテリアル名
-                    materialList.Delete(material.Name);
-
-                    // 実際のファイルの削除処理
-                    // エントリファイルだけ削除する。
-                    var path = System.IO.Path.Combine(
-                        AppData.Instance.MaterialDirectory, material.RelativePath);
-                    System.IO.File.Delete(path);
-                }
             }
             catch (Exception ex)
             {
@@ -407,15 +390,10 @@ namespace CharaChipGen.ManagementForm
         /// <param name="e">イベントオブジェクト</param>
         private void OnButtonRenameClick(object sender, EventArgs e)
         {
-            var items = listViewMaterials.SelectedItems;
-            if (items.Count != 1)
-            {
-                return;
-            }
 
             try
             {
-                ProcessRename(items[0]);
+                ProcessRename();
             }
             catch (Exception ex)
             {
@@ -425,9 +403,14 @@ namespace CharaChipGen.ManagementForm
         /// <summary>
         /// リネーム処理する
         /// </summary>
-        /// <param name="listViewItem"></param>
-        private void ProcessRename(ListViewItem listViewItem)
-        { 
+        private void ProcessRename()
+        {
+            var items = listViewMaterials.SelectedItems;
+            if (items.Count != 1)
+            {
+                return;
+            }
+            var listViewItem = items[0];
             var materialList = GetCurrentMaterialList();
             var targetMaterial = materialList.Get(listViewItem.SubItems[0].Text);
             string inputText = InputForm.InputForm.ShowDialog(this,
@@ -603,29 +586,16 @@ namespace CharaChipGen.ManagementForm
         /// <param name="e">イベントオブジェクト</param>
         private void OnListViewMaterialsKeyDown(object sender, KeyEventArgs e)
         {
-            var selectedIndex = (listViewMaterials.SelectedIndices.Count == 1) ? listViewMaterials.SelectedIndices[0] : -1;
-
             try
             {
-                if ((e.KeyCode == Keys.Enter) && (selectedIndex != -1))
+                foreach (var keyAction in formKeyActions)
                 {
-                    ProcessEditMaterial(selectedIndex);
-                }
-                else if ((e.KeyCode == Keys.F2) && (selectedIndex != -1))
-                {
-                    ProcessRename(listViewMaterials.Items[selectedIndex]);
-                }
-                else if ((e.KeyCode == Keys.Delete) && IsControlDown() && (selectedIndex != -1))
-                {
-                    ProcessDelete(selectedIndex);
-                }
-                else if ((e.KeyCode == Keys.C) && IsControlDown() && (selectedIndex != -1))
-                {
-                    ProcessCopyToClipboard(selectedIndex);
-                }
-                else if ((e.KeyCode == Keys.V) && IsControlDown())
-                {
-                    ProcessCopyFromClipboard();
+                    if (keyAction.CanAccept(e.KeyCode, e.Modifiers))
+                    {
+                        keyAction.Invoke();
+                        e.Handled = true;
+                        break;
+                    }
                 }
             }
             catch (Exception ex)
@@ -635,44 +605,58 @@ namespace CharaChipGen.ManagementForm
         }
 
         /// <summary>
-        /// indexで指定された項目を削除する。
+        /// 選択されている項目を削除する。
         /// </summary>
-        /// <param name="index">インデックス番号</param>
-        private void ProcessDelete(int index)
+        private void ProcessDelete()
         {
-            var material = GetMaterial(index);
-            if (material == null)
+            var selItems = listViewMaterials.SelectedItems;
+            if (selItems.Count == 0)
             {
                 return;
             }
 
-            var materialList = GetCurrentMaterialList();
 
-            // リストビューアイテムの1項目目はマテリアル名
-            materialList.Delete(material.Name);
+            var res = MessageBox.Show(this,
+                Resources.MessageConfirmRemoveParts,
+                Resources.DialogTitleConfirm, MessageBoxButtons.YesNo);
+            if (res != DialogResult.Yes)
+            {
+                return;
+            }
 
-            // 実際のファイルの削除処理
-            // エントリファイルだけ削除する。
-            var path = System.IO.Path.Combine(
-                AppData.Instance.MaterialDirectory, material.RelativePath);
-            System.IO.File.Delete(path);
-            UpdateMaterialListView();
-        }
+            foreach (ListViewItem item in selItems)
+            {
+                var materialName = item.SubItems[0].Text;
+                var materialList = GetCurrentMaterialList();
+                var material = materialList.Get(materialName);
+                if (material == null)
+                {
+                    return;
+                }
 
-        /// <summary>
-        /// Controlキーが押下されているかどうかを判定する。
-        /// </summary>
-        /// <returns>押下されている場合にはtrue, それ以外はfalse.</returns>
-        private bool IsControlDown()
-        {
-            return ((ModifierKeys & Keys.Control) == Keys.Control);
+                // リストビューアイテムの1項目目はマテリアル名
+                materialList.Delete(material.Name);
+
+                // 実際のファイルの削除処理
+                // エントリファイルだけ削除する。
+                var path = System.IO.Path.Combine(
+                    AppData.Instance.MaterialDirectory, material.RelativePath);
+                System.IO.File.Delete(path);
+            }
+
         }
 
         /// <summary>
         /// クリップボードにコピーする。
         /// </summary>
-        private void ProcessCopyToClipboard(int selectedIndex)
+        private void ProcessCopyToClipboard()
         {
+            var selectedIndex = (listViewMaterials.SelectedIndices.Count == 1) ? listViewMaterials.SelectedIndices[0] : -1;
+            if (selectedIndex == -1)
+            {
+                return;
+            }
+
             var material = GetMaterial(selectedIndex);
             if (material == null)
             {

@@ -19,6 +19,8 @@ namespace CharaChipGen.MaterialEditorForm
         private MaterialEntryFile entryFile;
         // リストビューのキーショットカット
         private List<KeyActionEntry> listViewActions = new List<KeyActionEntry>();
+        // フォームのキーショートカット
+        private List<KeyActionEntry> formViewActions = new List<KeyActionEntry>();
 
         /// <summary>
         /// コンストラクタ
@@ -29,12 +31,16 @@ namespace CharaChipGen.MaterialEditorForm
             materialEditorLayerView.ImageBackground = Properties.Settings.Default.ImageBackground;
             Settings.Default.PropertyChanged += OnSettingsPropertyChanged;
             DialogResult = DialogResult.Cancel;
+
             listViewActions.Add(new KeyActionEntry(Keys.Up, Keys.Shift, () => ModifyLayerOrder(-1)));
             listViewActions.Add(new KeyActionEntry(Keys.Down, Keys.Shift, () => ModifyLayerOrder(1)));
             listViewActions.Add(new KeyActionEntry(Keys.Delete, Keys.Control, () => ProcessDeleteLayer()));
             listViewActions.Add(new KeyActionEntry(Keys.F2, Keys.None, () => ProcessRenameLayer()));
             listViewActions.Add(new KeyActionEntry(Keys.N, Keys.Control, () => ProcessAddLayer()));
             listViewActions.Add(new KeyActionEntry(Keys.P, Keys.Control, () => ProcessShowMaterialPreview()));
+
+            formViewActions.Add(new KeyActionEntry(Keys.Enter, Keys.None, () => ProcessSave()));
+            formViewActions.Add(new KeyActionEntry(Keys.Escape, Keys.None, () => ProcessCancel()));
         }
         /// <summary>
         /// 編集対象の素材
@@ -429,7 +435,7 @@ namespace CharaChipGen.MaterialEditorForm
         {
             foreach (var keyAction in listViewActions)
             {
-                if (keyAction.IsAccept(e.KeyCode, e.Modifiers))
+                if (keyAction.CanAccept(e.KeyCode, e.Modifiers))
                 {
                     try
                     {
@@ -580,38 +586,20 @@ namespace CharaChipGen.MaterialEditorForm
         {
             try
             {
-                if (e.KeyCode == Keys.Enter)
+                foreach (var keyAction in formViewActions)
                 {
-                    ProcessSave();
-                    e.Handled = true;
-                }
-                else if (e.KeyCode == Keys.Escape)
-                {
-                    ProcessCancel();
-                    e.Handled = true;
+                    if (keyAction.CanAccept(e.KeyCode, e.Modifiers))
+                    {
+                        keyAction.Invoke();
+                        e.Handled = true;
+                        break;
+                    }
                 }
             }
             catch (Exception ex)
             {
                 MessageBox.Show(this, ex.Message, Resources.DialogTitleError);
             }
-        }
-
-        /// <summary>
-        /// Shiftキーが押下されているかどうかを判定する。
-        /// </summary>
-        /// <returns>Shiftキーが押下されている場合にはtrue, それ以外はfalse.</returns>
-        private bool IsShiftKeyDown()
-        {
-            return ((ModifierKeys & Keys.Shift) == Keys.Shift);
-        }
-        /// <summary>
-        /// Controlキーが押下されているかどうかを判定する。
-        /// </summary>
-        /// <returns>Controlキーが押下されている場合にはtrue, それ以外はfalse.</returns>
-        private bool IsControlKeyDown()
-        {
-            return ((ModifierKeys & Keys.Control) == Keys.Control);
         }
     }
 }
