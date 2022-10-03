@@ -180,6 +180,7 @@
       <DependentUpon>MainForm.cs</DependentUpon>
     </Compile>
     <Compile Include="Model\Material\MaterialLayerInfo.cs" />
+    <Compile Include="Model\Material\MaterialLayerList.cs" />
     <Compile Include="Model\Material\MaterialList.cs" />
     <Compile Include="Model\Material\MaterialType.cs" />
     <Compile Include="Model\Material\MaterialUtils.cs" />

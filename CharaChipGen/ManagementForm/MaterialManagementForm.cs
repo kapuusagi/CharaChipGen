@@ -146,11 +146,11 @@ namespace CharaChipGen.ManagementForm
 
 
             // レイヤーを構成する画像ファイルをコピーする。
-            foreach (var layerEntry in srcEntryFile.Layers)
+            foreach (var layer in srcEntryFile.Layers)
             {
-                if (!string.IsNullOrEmpty(layerEntry.Value.Path))
+                if (!string.IsNullOrEmpty(layer.Path))
                 {
-                    CopyFile(srcEntryFileDir, dstEntryFileDir, layerEntry.Value.Path);
+                    CopyFile(srcEntryFileDir, dstEntryFileDir, layer.Path);
                 }
             }
 
@@ -255,30 +255,29 @@ namespace CharaChipGen.ManagementForm
         {
             var entryFileDir = System.IO.Path.GetDirectoryName(entryFile.Path);
 
-            foreach (var layerEntry in entryFile.Layers)
+            foreach (var layer in entryFile.Layers)
             {
-                var layerInfo = layerEntry.Value;
-                if (string.IsNullOrEmpty(layerInfo.Path))
+                if (string.IsNullOrEmpty(layer.Path))
                 {
                     // 普通はここに来ないけど。
                     continue;
                 }
-                if (System.IO.Path.IsPathRooted(layerInfo.Path))
+                if (System.IO.Path.IsPathRooted(layer.Path))
                 {
                     // 絶対パス指定になってるので変更されたやつである。
-                    if (layerInfo.Path.StartsWith(entryFileDir))
+                    if (layer.Path.StartsWith(entryFileDir))
                     {
                         // エントリファイルと同じフォルダかサブフォルダにあるので
                         // 相対パスに書き換えるだけで良い。
-                        layerInfo.Path = RemoveRootDirectory(layerInfo.Path, entryFileDir);
+                        layer.Path = RemoveRootDirectory(layer.Path, entryFileDir);
                     }
                     else
                     {
                         // コピーして相対パスに変更する。
-                        var newFileName = $"{entryFile.Name}.{layerInfo.Name}.png";
+                        var newFileName = $"{entryFile.Name}.{layer.Name}.png";
                         var newPath = System.IO.Path.Combine(entryFileDir, newFileName);
-                        System.IO.File.Copy(layerInfo.Path, newPath, true);
-                        layerInfo.Path = newFileName;
+                        System.IO.File.Copy(layer.Path, newPath, true);
+                        layer.Path = newFileName;
                     }
                 }
             }

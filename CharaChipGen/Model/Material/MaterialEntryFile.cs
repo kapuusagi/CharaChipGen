@@ -56,6 +56,13 @@ namespace CharaChipGen.Model.Material
             return materialEntryFile;
         }
 
+        /// <summary>
+        /// path, dataTextにより、新しい素材情報を構築する。
+        /// 本メソッドはdataTextから素材情報を構築し、新しいファイルとして保存する。
+        /// </summary>
+        /// <param name="path">ファイルパス</param>
+        /// <param name="dataText">データテキスト</param>
+        /// <returns>MaterialEntryFileオブジェクト</returns>
         public static MaterialEntryFile CreateFrom(string path, string dataText)
         {
             var materialEntryFile = new MaterialEntryFile(path);
@@ -69,10 +76,11 @@ namespace CharaChipGen.Model.Material
             return materialEntryFile;
         }
 
-        // 表示名
-        private Dictionary<string, string> displayNames;
-        // レイヤー
-        private Dictionary<string, MaterialLayerInfo> layers;
+        // 表示名リスト
+        // key:ロケール名, value:表示名
+        private Dictionary<string, string> displayNames = new Dictionary<string, string>();
+        // レイヤーリスト
+        private MaterialLayerList layers = new MaterialLayerList();
 
         /// <summary>
         /// 新しいインスタンスを構築する。
@@ -85,9 +93,7 @@ namespace CharaChipGen.Model.Material
         {
             IsNeedLoad = System.IO.File.Exists(path); // pathのファイルが存在するなら遅延ロード対象。
             Path = path;
-            displayNames = new Dictionary<string, string>();
             displayNames["default"] = System.IO.Path.GetFileNameWithoutExtension(Path);
-            layers = new Dictionary<string, MaterialLayerInfo>();
         }
 
         /// <summary>
@@ -125,9 +131,9 @@ namespace CharaChipGen.Model.Material
         }
 
         /// <summary>
-        /// レイヤー一覧。MaterialLayerInfo.NameとMaterialLayerInfoのディクショナリ。
+        /// レイヤー一覧。
         /// </summary>
-        public Dictionary<string, MaterialLayerInfo> Layers {
+        public MaterialLayerList Layers {
             get {
                 if (IsNeedLoad)
                 {
@@ -145,25 +151,14 @@ namespace CharaChipGen.Model.Material
         /// <param name="index">インデックス番号</param>
         /// <returns>レイヤー情報</returns>
         public MaterialLayerInfo GetLayer(int index)
-        {
-            if ((index >= 0) && (index < Layers.Count))
-            {
-                return Layers.ElementAt(index).Value;
-            }
-            else
-            {
-                return null;
-            }
-        }
+            => Layers.Get(index);
 
         /// <summary>
         /// レイヤー数を得る。
         /// </summary>
-        /// <returns></returns>
+        /// <returns>レイヤー数</returns>
         public int GetLayerCount()
-        {
-            return Layers.Count;
-        }
+            => Layers.Count;
 
         /// <summary>
         /// デフォルトの表示名を取得する。
@@ -281,10 +276,9 @@ namespace CharaChipGen.Model.Material
             if (layers != null)
             {
                 int no = 1;
-                foreach (var entry in Layers)
+                foreach (var layer in Layers)
                 {
                     writer.WriteLine($"# Layer{no}");
-                    MaterialLayerInfo layer = entry.Value;
                     writer.WriteLine($"Layer.{layer.Name}.Path = {layer.Path}");
                     writer.WriteLine($"Layer.{layer.Name}.Type = {layer.LayerType.ToString()}");
                     if (layer.ColorPartsRefs != null)
@@ -394,9 +388,9 @@ namespace CharaChipGen.Model.Material
                         break;
                     }
                     string layerName = keys[1];
-                    if (!Layers.ContainsKey(layerName))
+                    if (!Layers.Contains(layerName)) // 既にインスタンスがある？
                     {
-                        Layers.Add(layerName, new MaterialLayerInfo(layerName));
+                        Layers.Add(new MaterialLayerInfo(layerName)); // インスタンスを追加。
                     }
                     MaterialLayerInfo layer = Layers[layerName];
                     switch (keys[2])

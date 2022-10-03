@@ -64,7 +64,7 @@ namespace CharaChipGen.MaterialEditorForm
             listBoxLayers.Items.Clear();
             if (entryFile != null)
             {
-                MaterialLayerInfo[] layers = entryFile.Layers.Select((entry) => entry.Value).ToArray();
+                MaterialLayerInfo[] layers = entryFile.Layers.ToArray();
                 listBoxLayers.Items.AddRange(layers);
                 if (listBoxLayers.Items.Count > 0)
                 {
@@ -254,8 +254,8 @@ namespace CharaChipGen.MaterialEditorForm
             CheckLayerName(layerName);
 
             // 適用可能
-            MaterialLayerInfo layerInfo = new MaterialLayerInfo(layerName);
-            entryFile.Layers.Add(layerName, layerInfo);
+            var layerInfo = new MaterialLayerInfo(layerName);
+            entryFile.Layers.Add(layerInfo);
             listBoxLayers.Items.Add(layerInfo);
         }
 
@@ -316,7 +316,7 @@ namespace CharaChipGen.MaterialEditorForm
                 ColorPropertyName = targetLayerInfo.ColorPropertyName
             };
 
-            entryFile.Layers.Add(newLayerName, layerInfo);
+            entryFile.Layers.Add(layerInfo);
             listBoxLayers.Items.Insert(selIndex, layerInfo);
             listBoxLayers.SelectedIndex = selIndex; // リネーム後、選択状態を復元する。
         }
@@ -338,7 +338,7 @@ namespace CharaChipGen.MaterialEditorForm
                 throw new Exception(Resources.MessageInvalidLayerNameCharacter);
             }
 
-            if (entryFile.Layers.ContainsKey(name))
+            if (entryFile.Layers.Contains(name))
             {
                 throw new Exception(Resources.MessageLayernameUsed);
             }
@@ -407,20 +407,9 @@ namespace CharaChipGen.MaterialEditorForm
             }
 
             // 並び替え用に配列取得
-            List<MaterialLayerInfo> layers
-                = new List<MaterialLayerInfo>(entryFile.Layers.Select((entry) => entry.Value));
-
-            MaterialLayerInfo targetLayer = layers[selectedIndex];
-            layers.RemoveAt(selectedIndex);
-            layers.Insert(newIndex, targetLayer);
-
-            // Dictionaryの並び順は制御できないので、
-            // Dictionaryを再構築する。なんて面倒な！
-            entryFile.Layers.Clear();
-            foreach (MaterialLayerInfo layer in layers)
-            {
-                entryFile.Layers.Add(layer.Name, layer);
-            }
+            var targetLayer = entryFile.Layers[selectedIndex];
+            entryFile.Layers.RemoveAt(selectedIndex);
+            entryFile.Layers.Insert(newIndex, targetLayer);
 
             ModelToUI();
             listBoxLayers.SelectedIndex = newIndex;
@@ -538,7 +527,7 @@ namespace CharaChipGen.MaterialEditorForm
             {
                 layerInfo.Path = path;
             }
-            entryFile.Layers.Add(layerName, layerInfo);
+            entryFile.Layers.Add(layerInfo);
             listBoxLayers.Items.Add(layerInfo);
         }
 

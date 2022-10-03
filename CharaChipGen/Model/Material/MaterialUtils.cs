@@ -86,7 +86,7 @@ namespace CharaChipGen.Model.Material
         private static void AddLayer(MaterialEntryFile entryFile, string layerName,
             LayerType drawLayer, PartsType? colorRefs, string colorPropertyName)
         {
-            entryFile.Layers.Add(layerName, new MaterialLayerInfo(layerName)
+            entryFile.Layers.Add(new MaterialLayerInfo(layerName)
             {
                 LayerType = drawLayer, 
                 ColorImmutable = false,

@@ -55,7 +55,7 @@ namespace CharaChipGen.Model.Material
         /// レイヤーのリストを得る。
         /// </summary>
         public MaterialLayerInfo[] Layers {
-            get => entryFile.Layers.Select((entry) => entry.Value).ToArray();
+            get => entryFile.Layers.ToArray();
         }
 
         /// <summary>
