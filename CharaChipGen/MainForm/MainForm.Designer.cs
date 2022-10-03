@@ -146,7 +146,7 @@
             // 
             this.menuItemExport.Name = "menuItemExport";
             resources.ApplyResources(this.menuItemExport, "menuItemExport");
-            this.menuItemExport.Click += new System.EventHandler(this.OnExportButtonClick);
+            this.menuItemExport.Click += new System.EventHandler(this.OnButtonExportClick);
             // 
             // toolStripMenuItem3
             // 
@@ -199,7 +199,7 @@
             // 
             this.menuItemPreference.Name = "menuItemPreference";
             resources.ApplyResources(this.menuItemPreference, "menuItemPreference");
-            this.menuItemPreference.Click += new System.EventHandler(this.OnPreferenceClick);
+            this.menuItemPreference.Click += new System.EventHandler(this.OnButtonConfigClick);
             // 
             // toolStripSeparator1
             // 
@@ -210,7 +210,7 @@
             // 
             this.menuItemMaterialManagement.Name = "menuItemMaterialManagement";
             resources.ApplyResources(this.menuItemMaterialManagement, "menuItemMaterialManagement");
-            this.menuItemMaterialManagement.Click += new System.EventHandler(this.OnMaterialManageClicked);
+            this.menuItemMaterialManagement.Click += new System.EventHandler(this.OnButtonMaterialManageClicked);
             // 
             // menuItemHelp
             // 
@@ -230,21 +230,21 @@
             resources.ApplyResources(this.buttonExport, "buttonExport");
             this.buttonExport.Name = "buttonExport";
             this.buttonExport.UseVisualStyleBackColor = true;
-            this.buttonExport.Click += new System.EventHandler(this.OnExportButtonClick);
+            this.buttonExport.Click += new System.EventHandler(this.OnButtonExportClick);
             // 
             // buttonMaterialManage
             // 
             resources.ApplyResources(this.buttonMaterialManage, "buttonMaterialManage");
             this.buttonMaterialManage.Name = "buttonMaterialManage";
             this.buttonMaterialManage.UseVisualStyleBackColor = true;
-            this.buttonMaterialManage.Click += new System.EventHandler(this.OnMaterialManageClicked);
+            this.buttonMaterialManage.Click += new System.EventHandler(this.OnButtonMaterialManageClicked);
             // 
             // buttonConfig
             // 
             resources.ApplyResources(this.buttonConfig, "buttonConfig");
             this.buttonConfig.Name = "buttonConfig";
             this.buttonConfig.UseVisualStyleBackColor = true;
-            this.buttonConfig.Click += new System.EventHandler(this.OnPreferenceClick);
+            this.buttonConfig.Click += new System.EventHandler(this.OnButtonConfigClick);
             // 
             // openFileDialog
             // 

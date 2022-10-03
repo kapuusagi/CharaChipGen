@@ -47,6 +47,7 @@
             this.buttonRename = new System.Windows.Forms.Button();
             this.buttonNew = new System.Windows.Forms.Button();
             this.buttonPreview = new System.Windows.Forms.Button();
+            this.buttonReload = new System.Windows.Forms.Button();
             this.labelDirectory = new System.Windows.Forms.Label();
             this.openFileDialog = new System.Windows.Forms.OpenFileDialog();
             this.flowLayoutPanel1 = new System.Windows.Forms.FlowLayoutPanel();
@@ -151,6 +152,7 @@
             this.flowLayoutPanel2.Controls.Add(this.buttonRename);
             this.flowLayoutPanel2.Controls.Add(this.buttonNew);
             this.flowLayoutPanel2.Controls.Add(this.buttonPreview);
+            this.flowLayoutPanel2.Controls.Add(this.buttonReload);
             this.flowLayoutPanel2.Name = "flowLayoutPanel2";
             // 
             // buttonDelete
@@ -194,6 +196,13 @@
             this.buttonPreview.Name = "buttonPreview";
             this.buttonPreview.UseVisualStyleBackColor = true;
             this.buttonPreview.Click += new System.EventHandler(this.OnButtonPreviewClick);
+            // 
+            // buttonReload
+            // 
+            resources.ApplyResources(this.buttonReload, "buttonReload");
+            this.buttonReload.Name = "buttonReload";
+            this.buttonReload.UseVisualStyleBackColor = true;
+            this.buttonReload.Click += new System.EventHandler(this.OnButtonReloadClick);
             // 
             // labelDirectory
             // 
@@ -299,5 +308,6 @@
         private System.Windows.Forms.Button buttonPreview;
         private System.Windows.Forms.FlowLayoutPanel flowLayoutPanel3;
         private System.Windows.Forms.Button buttonBrowseMaterialDirectory;
+        private System.Windows.Forms.Button buttonReload;
     }
 }

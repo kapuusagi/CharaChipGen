@@ -75,8 +75,10 @@ namespace CharaChipGen.MainForm
         /// </summary>
         /// <param name="sender">送信元オブジェクト</param>
         /// <param name="e">イベントオブジェクト</param>
-        private void OnMaterialManageClicked(object sender, EventArgs e)
+        private void OnButtonMaterialManageClicked(object sender, EventArgs e)
         {
+            AppData.Instance.Reload(); // 再読込する。
+
             ManagementForm.MaterialManagementForm form
                 = new ManagementForm.MaterialManagementForm();
             // モーダルダイアログとして表示する。
@@ -224,14 +226,14 @@ namespace CharaChipGen.MainForm
         /// </summary>
         /// <param name="sender">送信元オブジェクト</param>
         /// <param name="e">イベントオブジェクト</param>
-        private void OnExportButtonClick(object sender, EventArgs e)
+        private void OnButtonExportClick(object sender, EventArgs e)
         {
             // エクスポートボタンが押されたらエクスポート処理する。
-            GeneratorSetting setting = AppData.Instance.GeneratorSetting;
+            var setting = AppData.Instance.GeneratorSetting;
             if (string.IsNullOrEmpty(setting.ExportSetting.ExportFilePath))
             {
                 RestoreDialog(saveFileDialogExport, Properties.Settings.Default.LastSavePath);
-                DialogResult res = saveFileDialogExport.ShowDialog();
+                var res = saveFileDialogExport.ShowDialog();
                 if (res != DialogResult.OK)
                 {
                     return; // OK押されていない。
@@ -256,7 +258,7 @@ namespace CharaChipGen.MainForm
         /// </summary>
         /// <param name="sender">送信元オブジェクト</param>
         /// <param name="e">イベントオブジェクト</param>
-        private void OnPreferenceClick(object sender, EventArgs e)
+        private void OnButtonConfigClick(object sender, EventArgs e)
         {
             // 設定ボタンが押されたとき
             ExportSettingForm.SettingForm form

@@ -59,7 +59,8 @@ namespace CharaChipGen.Model.Material
         public string SubDirectoryName { get; private set; }
 
         /// <summary>
-        /// マテリアルリストを読み込む
+        /// マテリアルリストを読み込む。
+        /// それまで保持していたデータは全て破棄する。
         /// </summary>
         /// <param name="materialDirectory">ルートディレクトリ</param>
         public void LoadMaterials(string materialDirectory)

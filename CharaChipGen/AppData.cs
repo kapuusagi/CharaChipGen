@@ -76,12 +76,45 @@ namespace CharaChipGen
         public bool Initialize(string directory)
         {
             string dir = System.IO.Path.GetFullPath(directory);
+            bool isLoadSucceed = LoadResources(dir);
+            if (isLoadSucceed)
+            {
+                MaterialDirectory = dir;
+            }
+            return isLoadSucceed;
+        }
+
+        /// <summary>
+        /// リソースを再読込する。
+        /// </summary>
+        public void Reload()
+        {
+            LoadResources(MaterialDirectory);
+        }
+
+        /// <summary>
+        /// 再読込する。
+        /// </summary>
+        /// <param name="materialType">素材タイプ</param>
+        public void Reload(MaterialType materialType)
+        {
+            var materialList = GetMaterialList(materialType);
+            LoadMaterials(MaterialDirectory, materialList);
+        }
+
+        /// <summary>
+        /// リソースを読み込む。
+        /// </summary>
+        /// <param name="dir">ディレクトリ</param>
+        /// <returns>読み込みが完了した場合にはtrue, 読み込めなかった場合にはfalse.</returns>
+        private bool LoadResources(string dir)
+        {
             if (!System.IO.Directory.Exists(dir))
             {
                 return false;
             }
 
-            foreach (MaterialList materialList in materialLists)
+            foreach (var materialList in materialLists)
             {
                 if (materialList.Count == 0)
                 {
@@ -96,7 +129,6 @@ namespace CharaChipGen
                 LoadTemplates(templateDir);
             }
 
-            MaterialDirectory = dir;
             return true;
         }
 

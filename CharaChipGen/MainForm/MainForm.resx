@@ -192,7 +192,7 @@
     <value>Ctrl+C</value>
   </data>
   <data name="menuItemCopy.Size" type="System.Drawing.Size, System.Drawing">
-    <value>142, 22</value>
+    <value>180, 22</value>
   </data>
   <data name="menuItemCopy.Text" xml:space="preserve">
     <value>Copy</value>
@@ -201,7 +201,7 @@
     <value>Ctrl+V</value>
   </data>
   <data name="menuItemPaste.Size" type="System.Drawing.Size, System.Drawing">
-    <value>142, 22</value>
+    <value>180, 22</value>
   </data>
   <data name="menuItemPaste.Text" xml:space="preserve">
     <value>Paste</value>
@@ -240,7 +240,7 @@
     <value>Option</value>
   </data>
   <data name="menuItemVersion.Size" type="System.Drawing.Size, System.Drawing">
-    <value>177, 22</value>
+    <value>180, 22</value>
   </data>
   <data name="menuItemVersion.Text" xml:space="preserve">
     <value>Version Information</value>

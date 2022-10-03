@@ -72,6 +72,7 @@ namespace CharaChipGen.ManagementForm
 
             buttonNew.Enabled = (materialList != null);
             buttonAdd.Enabled = (materialList != null);
+            buttonReload.Enabled = (materialList != null);
             buttonDelete.Enabled = (listViewMaterials.SelectedItems.Count > 0);
             buttonEdit.Enabled = (listViewMaterials.SelectedItems.Count == 1);
             buttonRename.Enabled = (listViewMaterials.SelectedItems.Count == 1);
@@ -671,6 +672,10 @@ namespace CharaChipGen.ManagementForm
         private void ProcessCopyFromClipboard()
         {
             var materialList = GetCurrentMaterialList();
+            if (materialList == null)
+            {
+                return;
+            }
             var newName = GenerateName(materialList);
             CheckMaterialName(materialList, newName);
 
@@ -689,6 +694,23 @@ namespace CharaChipGen.ManagementForm
             var index = listViewMaterials.Items.IndexOf(newListViewItem);
             listViewMaterials.SelectedIndices.Clear();
             listViewMaterials.SelectedIndices.Add(index);
+        }
+
+        /// <summary>
+        /// 再読込ボタンがクリックされた。
+        /// </summary>
+        /// <param name="sender">送信元オブジェクト</param>
+        /// <param name="e">イベントオブジェクト</param>
+        private void OnButtonReloadClick(object sender, EventArgs e)
+        {
+            var materialList = GetCurrentMaterialList();
+            if (materialList == null)
+            {
+                return;
+            }
+            AppData.Instance.Reload(materialList.MaterialType);
+
+            UpdateMaterialListView();
         }
     }
 }

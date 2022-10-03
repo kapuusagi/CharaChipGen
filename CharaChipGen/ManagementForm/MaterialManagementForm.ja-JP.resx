@@ -199,6 +199,9 @@
   <data name="buttonPreview.Text" xml:space="preserve">
     <value>プレビュー</value>
   </data>
+  <data name="buttonReload.Text" xml:space="preserve">
+    <value>リロード</value>
+  </data>
   <data name="labelDirectory.Size" type="System.Drawing.Size, System.Drawing">
     <value>40, 12</value>
   </data>
