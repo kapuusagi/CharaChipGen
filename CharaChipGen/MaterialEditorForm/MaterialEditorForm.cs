@@ -6,6 +6,7 @@ using CharaChipGen.Model.Material;
 using CharaChipGen.Model.CharaChip;
 using CharaChipGen.Properties;
 using System.Drawing;
+using CharaChipGen.Model;
 
 namespace CharaChipGen.MaterialEditorForm
 {
@@ -14,7 +15,10 @@ namespace CharaChipGen.MaterialEditorForm
     /// </summary>
     public partial class MaterialEditorForm : Form
     {
+        // 対象のエントリファイル
         private MaterialEntryFile entryFile;
+        // リストビューのキーショットカット
+        private List<KeyActionEntry> listViewActions = new List<KeyActionEntry>();
 
         /// <summary>
         /// コンストラクタ
@@ -25,8 +29,13 @@ namespace CharaChipGen.MaterialEditorForm
             materialEditorLayerView.ImageBackground = Properties.Settings.Default.ImageBackground;
             Settings.Default.PropertyChanged += OnSettingsPropertyChanged;
             DialogResult = DialogResult.Cancel;
+            listViewActions.Add(new KeyActionEntry(Keys.Up, Keys.Shift, () => ModifyLayerOrder(-1)));
+            listViewActions.Add(new KeyActionEntry(Keys.Down, Keys.Shift, () => ModifyLayerOrder(1)));
+            listViewActions.Add(new KeyActionEntry(Keys.Delete, Keys.Control, () => ProcessDeleteLayer()));
+            listViewActions.Add(new KeyActionEntry(Keys.F2, Keys.None, () => ProcessRenameLayer()));
+            listViewActions.Add(new KeyActionEntry(Keys.N, Keys.Control, () => ProcessAddLayer()));
+            listViewActions.Add(new KeyActionEntry(Keys.P, Keys.Control, () => ProcessShowMaterialPreview()));
         }
-
         /// <summary>
         /// 編集対象の素材
         /// </summary>
@@ -176,6 +185,14 @@ namespace CharaChipGen.MaterialEditorForm
                 MaterialLayerInfo sel = (MaterialLayerInfo)(listBoxLayers.SelectedItem);
                 listBoxLayers.Items.RemoveAt(listBoxLayers.SelectedIndex);
                 entryFile.Layers.Remove(sel.Name);
+                if (index < listBoxLayers.Items.Count)
+                {
+                    listBoxLayers.SelectedIndex = index; // 次を選択。
+                }
+                else
+                {
+                    listBoxLayers.SelectedIndex = listBoxLayers.Items.Count - 1; // 最後尾を選択
+                }
             }
         }
 
@@ -186,8 +203,8 @@ namespace CharaChipGen.MaterialEditorForm
         /// <param name="e">イベントオブジェクト</param>
         private void OnListBoxLayersSelectedValueChanged(object sender, EventArgs e)
         {
-            ListBox listBox = (ListBox)(sender);
-            MaterialLayerInfo layer = listBox.SelectedItem as MaterialLayerInfo;
+            var listBox = sender as ListBox;
+            var layer = listBox.SelectedItem as MaterialLayerInfo;
             materialEditorLayerView.Visible = (layer != null);
             if (layer != null)
             {
@@ -257,7 +274,7 @@ namespace CharaChipGen.MaterialEditorForm
         /// </summary>
         private void ProcessRenameLayer()
         {
-            MaterialLayerInfo targetLayerInfo = (MaterialLayerInfo)(listBoxLayers.SelectedItem);
+            var targetLayerInfo = listBoxLayers.SelectedItem as MaterialLayerInfo;
             if (targetLayerInfo == null)
             {
                 return;
@@ -285,7 +302,7 @@ namespace CharaChipGen.MaterialEditorForm
             int selIndex = listBoxLayers.SelectedIndex;
             listBoxLayers.Items.RemoveAt(selIndex);
 
-            MaterialLayerInfo layerInfo = new MaterialLayerInfo(newLayerName)
+            var layerInfo = new MaterialLayerInfo(newLayerName)
             {
                 Path = targetLayerInfo.Path,
                 LayerType = targetLayerInfo.LayerType,
@@ -295,6 +312,7 @@ namespace CharaChipGen.MaterialEditorForm
 
             entryFile.Layers.Add(newLayerName, layerInfo);
             listBoxLayers.Items.Insert(selIndex, layerInfo);
+            listBoxLayers.SelectedIndex = selIndex; // リネーム後、選択状態を復元する。
         }
 
         /// <summary>
@@ -399,20 +417,7 @@ namespace CharaChipGen.MaterialEditorForm
             }
 
             ModelToUI();
-            //var item = listBoxLayers.Items[selectedIndex];
-            //listBoxLayers.Items.RemoveAt(selectedIndex);
-            //listBoxLayers.Items.Insert(newIndex, item);
             listBoxLayers.SelectedIndex = newIndex;
-
-
-            //listBoxLayers.Items.Clear();
-            //foreach (MaterialLayerInfo layer in layers)
-            //{
-            //    entryFile.Layers.Add(layer.Name, layer);
-            //    listBoxLayers.Items.Add(layer);
-            //}
-
-            //listBoxLayers.SelectedItem = targetLayer;
         }
 
         /// <summary>
@@ -422,18 +427,20 @@ namespace CharaChipGen.MaterialEditorForm
         /// <param name="e">イベントオブジェクト</param>
         private void OnListBoxLayersKeyDown(object sender, KeyEventArgs e)
         {
-            if ((e.Modifiers & Keys.Control) == Keys.Control)
+            foreach (var keyAction in listViewActions)
             {
-                switch (e.KeyCode)
+                if (keyAction.IsAccept(e.KeyCode, e.Modifiers))
                 {
-                    case Keys.Up:
-                        ModifyLayerOrder(-1);
+                    try
+                    {
+                        keyAction.Invoke();
                         e.Handled = true;
-                        break;
-                    case Keys.Down:
-                        ModifyLayerOrder(1);
-                        e.Handled = true;
-                        break;
+                    }
+                    catch (Exception ex)
+                    {
+                        MessageBox.Show(this, ex.Message, Resources.DialogTitleError);
+                    }
+                    break;
                 }
             }
         }
@@ -576,34 +583,12 @@ namespace CharaChipGen.MaterialEditorForm
                 if (e.KeyCode == Keys.Enter)
                 {
                     ProcessSave();
+                    e.Handled = true;
                 }
                 else if (e.KeyCode == Keys.Escape)
                 {
                     ProcessCancel();
-                }
-                else if (e.KeyCode == Keys.Delete)
-                {
-                    ProcessDeleteLayer();
-                }
-                else if (e.KeyCode == Keys.F2)
-                {
-                    ProcessRenameLayer();
-                }
-                else if ((e.KeyCode == Keys.Up) && IsShiftKeyDown())
-                {
-                    ModifyLayerOrder(-1);
-                }
-                else if ((e.KeyCode == Keys.Down) && IsShiftKeyDown())
-                {
-                    ModifyLayerOrder(1);
-                }
-                else if ((e.KeyCode == Keys.N) && IsControlKeyDown())
-                {
-                    ProcessAddLayer();
-                }
-                else if ((e.KeyCode == Keys.P) && IsControlKeyDown())
-                {
-                    ProcessShowMaterialPreview();
+                    e.Handled = true;
                 }
             }
             catch (Exception ex)
